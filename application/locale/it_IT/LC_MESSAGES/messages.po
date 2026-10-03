@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-02 08:48+0000\n"
+"POT-Creation-Date: 2026-10-03 09:01+0000\n"
 "PO-Revision-Date: 2026-10-03 08:39+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -132,8 +132,8 @@ msgstr "Canalizzazioni troposferiche"
 #: application/controllers/Activatorsmap.php:12
 #: application/controllers/Adif.php:22
 #: application/controllers/Amsatstatus.php:8 application/controllers/Api.php:33
-#: application/controllers/Api.php:81 application/controllers/Api.php:120
-#: application/controllers/Api.php:154 application/controllers/Api_token.php:32
+#: application/controllers/Api.php:82 application/controllers/Api.php:121
+#: application/controllers/Api.php:155 application/controllers/Api_token.php:32
 #: application/controllers/Api_token.php:85
 #: application/controllers/Awards.php:19
 #: application/controllers/Azimuthal.php:8
@@ -231,23 +231,17 @@ msgstr "Canalizzazioni troposferiche"
 #: application/controllers/Update.php:28 application/controllers/User.php:15
 #: application/controllers/User.php:61 application/controllers/User.php:108
 #: application/controllers/User.php:125 application/controllers/User.php:148
-#: application/controllers/User.php:410 application/controllers/User.php:411
-#: application/controllers/User.php:1213 application/controllers/User.php:1231
-#: application/controllers/User.php:1277 application/controllers/User.php:1529
-#: application/controllers/User.php:1667 application/controllers/User.php:1887
-#: application/controllers/User.php:1903 application/controllers/User.php:1927
-#: application/controllers/User_options.php:8
-#: application/controllers/Usermode.php:14
-#: application/controllers/Webadif.php:10
-#: application/controllers/Webadif.php:101
-#: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84 application/controllers/Api.php:82
-#: application/controllers/Api.php:121 application/controllers/Api.php:155
 #: application/controllers/User.php:418 application/controllers/User.php:419
 #: application/controllers/User.php:1221 application/controllers/User.php:1239
 #: application/controllers/User.php:1285 application/controllers/User.php:1537
 #: application/controllers/User.php:1675 application/controllers/User.php:1895
 #: application/controllers/User.php:1911 application/controllers/User.php:1935
+#: application/controllers/User_options.php:8
+#: application/controllers/Usermode.php:14
+#: application/controllers/Webadif.php:10
+#: application/controllers/Webadif.php:101
+#: application/controllers/Zonechecker.php:16
+#: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
 msgstr "Non ti è permesso farlo!"
 
@@ -432,53 +426,51 @@ msgstr ""
 msgid "AMSAT Satellite Status"
 msgstr "Stato satelliti AMSAT"
 
-#: application/controllers/Api.php:46 application/controllers/Api.php:47
+#: application/controllers/Api.php:47
 msgid "API"
 msgstr "API"
 
-#: application/controllers/Api.php:89
-#: application/views/api/components/edit_legacy.php:26
 #: application/controllers/Api.php:90
+#: application/views/api/components/edit_legacy.php:26
 msgid "API Description"
 msgstr "Descrizione API"
 
-#: application/controllers/Api.php:90 application/controllers/Api.php:91
+#: application/controllers/Api.php:91
 msgid "API Key is required. Do not change this field"
 msgstr "La chiave API è richiesta. Non modificare questo campo"
 
-#: application/controllers/Api.php:95 application/controllers/Api.php:96
+#: application/controllers/Api.php:96
 msgid "Edit API Description"
 msgstr "Modifica descrizione API"
 
-#: application/controllers/Api.php:105 application/controllers/Api.php:106
+#: application/controllers/Api.php:106
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "La descrizione per la chiave %s è stata aggiornata."
 
-#: application/controllers/Api.php:115 application/controllers/Api.php:149
+#: application/controllers/Api.php:116 application/controllers/Api.php:150
 #: application/controllers/Api_token.php:27
 #: application/controllers/Api_token.php:80 application/controllers/Qso.php:626
-#: application/controllers/Api.php:116 application/controllers/Api.php:150
 msgid "Invalid request method"
 msgstr "Metodo di richiesta non valido"
 
-#: application/controllers/Api.php:125 application/controllers/Api.php:126
+#: application/controllers/Api.php:126
 msgid "Invalid API rights"
 msgstr "Diritti API non validi"
 
-#: application/controllers/Api.php:139 application/controllers/Api.php:140
+#: application/controllers/Api.php:140
 msgid "API Key generated"
 msgstr "Chiave API generata"
 
-#: application/controllers/Api.php:141 application/controllers/Api.php:142
+#: application/controllers/Api.php:142
 msgid "API Key could not be generated"
 msgstr "Impossibile generare la chiave API"
 
-#: application/controllers/Api.php:158 application/controllers/Api.php:159
+#: application/controllers/Api.php:159
 msgid "Invalid API Key"
 msgstr "Chiave API non valida"
 
-#: application/controllers/Api.php:167 application/controllers/Api.php:168
+#: application/controllers/Api.php:168
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "La chiave %s è stata cancellata"
@@ -1276,7 +1268,7 @@ msgid "Access denied"
 msgstr "Accesso negato"
 
 #: application/controllers/Contesting.php:1054
-#: application/controllers/User.php:1485 application/controllers/User.php:1493
+#: application/controllers/User.php:1493
 msgid "Incorrect username or password!"
 msgstr "Username o password non validi!"
 
@@ -1533,13 +1525,7 @@ msgstr "Modifica Cronjob"
 
 #: application/controllers/Cron.php:293 application/controllers/Cron.php:294
 #: application/views/cron/index.php:106 application/views/cron/index.php:108
-#: application/views/cron/index.php:110 application/views/debug/index.php:743
-#: application/views/debug/index.php:750 application/views/debug/index.php:756
-#: application/views/debug/index.php:762 application/views/debug/index.php:768
-#: application/views/debug/index.php:774 application/views/debug/index.php:780
-#: application/views/debug/index.php:786 application/views/debug/index.php:792
-#: application/views/debug/index.php:798 application/views/debug/index.php:804
-#: application/views/debug/index.php:810 application/views/debug/index.php:744
+#: application/views/cron/index.php:110 application/views/debug/index.php:744
 #: application/views/debug/index.php:751 application/views/debug/index.php:757
 #: application/views/debug/index.php:763 application/views/debug/index.php:769
 #: application/views/debug/index.php:775 application/views/debug/index.php:781
@@ -1695,40 +1681,39 @@ msgstr "Nessun profilo stazione trovato da caricare su DCL"
 msgid "Key(s) Deleted."
 msgstr "Chiave/i eliminata/e."
 
-#: application/controllers/Debug.php:113 application/controllers/Debug.php:114
+#: application/controllers/Debug.php:114
 msgid "(empty)"
 msgstr "(vuoto)"
 
-#: application/controllers/Debug.php:133 application/controllers/Debug.php:134
+#: application/controllers/Debug.php:134
 msgid "Debug"
 msgstr "Debug"
 
-#: application/controllers/Debug.php:184 application/controllers/Debug.php:185
+#: application/controllers/Debug.php:185
 msgid "Migrate data now"
 msgstr "Esegui migrazione ora"
 
-#: application/controllers/Debug.php:187 application/controllers/Debug.php:188
+#: application/controllers/Debug.php:188
 msgid "Migration already done. Run again?"
 msgstr "Migrazione già effettuata. Eseguirla ancora?"
 
-#: application/controllers/Debug.php:191 application/controllers/Debug.php:192
+#: application/controllers/Debug.php:192
 msgid "No data to migrate"
 msgstr "Nessun dato da migrare"
 
-#: application/controllers/Debug.php:195 application/controllers/Debug.php:200
 #: application/controllers/Debug.php:196 application/controllers/Debug.php:201
 msgid "No migration possible"
 msgstr "Nessuna migrazione da fare"
 
-#: application/controllers/Debug.php:265 application/controllers/Debug.php:266
+#: application/controllers/Debug.php:266
 msgid "Wavelog was updated successfully!"
 msgstr "Wavelog aggiornato con successo!"
 
-#: application/controllers/Debug.php:283 application/controllers/Debug.php:284
+#: application/controllers/Debug.php:284
 msgid "Selfupdate() not available. Check the Error Log."
 msgstr "Selfupdate() non disponibile. Controllare il log errori."
 
-#: application/controllers/Debug.php:342 application/controllers/Debug.php:343
+#: application/controllers/Debug.php:343
 msgid ""
 "File Migration was successful, but please check also manually. If everything "
 "seems right you can delete the folders 'assets/qslcard' and 'images/"
@@ -1738,7 +1723,7 @@ msgstr ""
 "controllare anche manualmente. Se tutto sembra a posto, puoi eliminare le "
 "cartelle “assets/qslcard” e “images/eqsl_card_images”."
 
-#: application/controllers/Debug.php:345 application/controllers/Debug.php:346
+#: application/controllers/Debug.php:346
 msgid "File Migration failed. Please check the Error Log."
 msgstr "Migrazione files fallita. Prego controllare il log errori."
 
@@ -1937,7 +1922,7 @@ msgid "User not found."
 msgstr "Utente non trovato."
 
 #: application/controllers/Header_auth.php:114
-#: application/controllers/User.php:1475 application/controllers/User.php:1483
+#: application/controllers/User.php:1483
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
@@ -2402,7 +2387,7 @@ msgstr "Tutte le ricerche del nominativo non hanno prodotto alcun risultato."
 #: application/views/dbtools/checkresult.php:378
 #: application/views/dbtools/missinggridlist.php:46
 #: application/views/dbtools/showStateQsos.php:23
-#: application/views/debug/index.php:833
+#: application/views/debug/index.php:834
 #: application/views/distancerecords/index.php:23
 #: application/views/distances/index.php:66
 #: application/views/dxatlas/index.php:42
@@ -2458,7 +2443,6 @@ msgstr "Tutte le ricerche del nominativo non hanno prodotto alcun risultato."
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
-#: application/views/debug/index.php:834
 msgid "Mode"
 msgstr "Modo"
 
@@ -2695,7 +2679,7 @@ msgstr "Distanza"
 #: application/views/dbtools/checkresult.php:377
 #: application/views/dbtools/missinggridlist.php:47
 #: application/views/dbtools/showStateQsos.php:24
-#: application/views/debug/index.php:834 application/views/dxatlas/index.php:31
+#: application/views/debug/index.php:835 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
 #: application/views/eqslcard/index.php:36
 #: application/views/gridmap/index.php:78 application/views/kml/index.php:19
@@ -2745,7 +2729,6 @@ msgstr "Distanza"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
-#: application/views/debug/index.php:835
 msgid "Band"
 msgstr "Banda"
 
@@ -3357,8 +3340,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Per favore, confronta il tuo attuale config.php con l'ultimo "
-"config.sample.php e aggiornalo di conseguenza."
+"Per favore, confronta il tuo attuale config.php con l'ultimo config.sample."
+"php e aggiornalo di conseguenza."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:576
@@ -3458,9 +3441,8 @@ msgstr "Opzioni"
 #: application/controllers/Radio.php:60
 #: application/views/contesting/logger/components/winkeyer.php:52
 #: application/views/contesting/logger/index.php:128
-#: application/views/debug/index.php:411 application/views/qso/index.php:831
+#: application/views/debug/index.php:412 application/views/qso/index.php:831
 #: application/views/satellite/pass.php:119
-#: application/views/debug/index.php:412
 msgid "Settings"
 msgstr "Impostazioni"
 
@@ -3489,7 +3471,7 @@ msgstr "ultimo aggiornamento"
 #: application/controllers/Stationsetup.php:401
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
 #: application/views/club/permissions.php:313
-#: application/views/contest_admin/add.php:68
+#: application/views/contest_admin/add.php:69
 #: application/views/contesting/logger/components/qso-form.php:39
 #: application/views/contesting/manager/index.php:72
 #: application/views/cron/index.php:80
@@ -3504,7 +3486,6 @@ msgstr "ultimo aggiornamento"
 #: application/views/stationsetup/stationsetup.php:200
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
-#: application/views/contest_admin/add.php:69
 msgid "Edit"
 msgstr "Modifica"
 
@@ -3515,7 +3496,7 @@ msgstr "Modifica"
 #: application/views/club/permissions.php:370
 #: application/views/club/permissions.php:392
 #: application/views/club/permissions.php:453
-#: application/views/contest_admin/add.php:71
+#: application/views/contest_admin/add.php:73
 #: application/views/contesting/logger/components/qso-form.php:40
 #: application/views/contesting/manager/index.php:79
 #: application/views/interface_assets/footer.php:72
@@ -3543,7 +3524,6 @@ msgstr "Modifica"
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:727
 #: application/views/view_log/qso.php:735
-#: application/views/contest_admin/add.php:73
 msgid "Delete"
 msgstr "Elimina"
 
@@ -3701,7 +3681,6 @@ msgstr "Crea postazione"
 
 #: application/controllers/Station.php:74
 #: application/controllers/Station.php:99 application/controllers/User.php:270
-#: application/controllers/User.php:1037 application/controllers/User.php:1249
 #: application/controllers/User.php:1045 application/controllers/User.php:1257
 msgid "Invalid security token"
 msgstr "Token di sicurezza non valido"
@@ -3720,7 +3699,6 @@ msgid "Duplicate Station Location:"
 msgstr "Duplica postazione:"
 
 #: application/controllers/Station.php:236
-#: application/controllers/User.php:1550 application/controllers/User.php:1803
 #: application/controllers/User.php:1558 application/controllers/User.php:1811
 #, php-format
 msgid "Please check value for grid locator (%s)"
@@ -3784,7 +3762,7 @@ msgid "Error. Link is already in use!"
 msgstr "Errore. Collegamento già in uso!"
 
 #: application/controllers/Stationsetup.php:278
-#: application/views/debug/index.php:907
+#: application/views/debug/index.php:908
 #: application/views/options/appearance.php:31
 #: application/views/options/appearance.php:40
 #: application/views/options/appearance.php:49
@@ -3796,7 +3774,7 @@ msgstr "Errore. Collegamento già in uso!"
 #: application/views/station_profile/edit.php:393
 #: application/views/stationsetup/locationlist.php:55
 #: application/views/stationsetup/stationsetup.php:107
-#: application/views/user/edit.php:553 application/views/debug/index.php:908
+#: application/views/user/edit.php:553
 msgid "Disabled"
 msgstr "Disabilitato"
 
@@ -4164,47 +4142,44 @@ msgstr "Utente %s aggiunto!"
 msgid "Users"
 msgstr "Utenti"
 
-#: application/controllers/User.php:468 application/controllers/User.php:476
+#: application/controllers/User.php:476
 msgid "Can't be changed. Manage this through your Identity Provider."
 msgstr ""
 "Non può essere modificato. Gestisci questo tramite il tuo Provider di "
 "Identità."
 
-#: application/controllers/User.php:471
-#: application/views/club/permissions.php:318
 #: application/controllers/User.php:479
+#: application/views/club/permissions.php:318
 msgid "Edit User"
 msgstr "Modifica utente"
 
-#: application/controllers/User.php:1142 application/controllers/User.php:1145
 #: application/controllers/User.php:1150 application/controllers/User.php:1153
 #, php-format
 msgid "User %s edited"
 msgstr "Utente %s modificato"
 
-#: application/controllers/User.php:1216 application/controllers/User.php:1224
+#: application/controllers/User.php:1224
 msgid "Profile"
 msgstr "Profilo"
 
-#: application/controllers/User.php:1239
-#: application/views/club/permissions.php:375
 #: application/controllers/User.php:1247
+#: application/views/club/permissions.php:375
 msgid "Delete User"
 msgstr "Elimina utente"
 
-#: application/controllers/User.php:1255 application/controllers/User.php:1263
+#: application/controllers/User.php:1263
 msgid "User deleted"
 msgstr "Utente eliminato"
 
-#: application/controllers/User.php:1258 application/controllers/User.php:1266
+#: application/controllers/User.php:1266
 msgid "Could not delete user!"
 msgstr "Impossibile eliminare l'utente!"
 
-#: application/controllers/User.php:1258 application/controllers/User.php:1266
+#: application/controllers/User.php:1266
 msgid "Database error:"
 msgstr "Errore del database:"
 
-#: application/controllers/User.php:1332 application/controllers/User.php:1340
+#: application/controllers/User.php:1340
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
@@ -4212,24 +4187,22 @@ msgstr ""
 "Congratulazioni! Wavelog è stato installato con successo. Ora puoi "
 "effettuare il primo accesso."
 
-#: application/controllers/User.php:1370 application/controllers/User.php:1378
+#: application/controllers/User.php:1378
 msgid "This is not allowed!"
 msgstr "Questo non è consentito!"
 
-#: application/controllers/User.php:1407 application/controllers/User.php:1420
 #: application/controllers/User.php:1415 application/controllers/User.php:1428
 msgid "Login failed. Try again."
 msgstr "Accesso non riuscito. Riprova."
 
-#: application/controllers/User.php:1428
+#: application/controllers/User.php:1436
 #: application/views/interface_assets/header.php:439
 #: application/views/user/login.php:80
 #: application/views/visitor/layout/header.php:87
-#: application/controllers/User.php:1436
 msgid "Login"
 msgstr "Accesso"
 
-#: application/controllers/User.php:1478 application/controllers/User.php:1486
+#: application/controllers/User.php:1486
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
@@ -4237,7 +4210,7 @@ msgstr ""
 "Il tuo account è stato bloccato a causa di troppi tentativi di accesso non "
 "riusciti. Ti preghiamo di reimpostare la tua password."
 
-#: application/controllers/User.php:1482 application/controllers/User.php:1490
+#: application/controllers/User.php:1490
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -4248,52 +4221,48 @@ msgstr ""
 "un amministratore. Al momento solo gli amministratori possono effettuare "
 "l'accesso."
 
-#: application/controllers/User.php:1509 application/controllers/User.php:1517
+#: application/controllers/User.php:1517
 #, php-format
 msgid "User %s logged out."
 msgstr "Utente %s scollegato."
 
-#: application/controllers/User.php:1532
+#: application/controllers/User.php:1540
 #: application/views/oqrs/request_grouped.php:19
 #: application/views/user/modals/first_login_wizard.php:26
-#: application/controllers/User.php:1540
 msgid "Station Name"
 msgstr "Nome della stazione"
 
-#: application/controllers/User.php:1533 application/views/debug/index.php:835
+#: application/controllers/User.php:1541 application/views/debug/index.php:836
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:60
 #: application/views/station_profile/edit.php:77
 #: application/views/stationsetup/linkedlocations.php:32
 #: application/views/stationsetup/stationsetup.php:156
 #: application/views/user/modals/first_login_wizard.php:34
-#: application/controllers/User.php:1541 application/views/debug/index.php:836
 msgid "Station Callsign"
 msgstr "Nominativo di stazione"
 
-#: application/controllers/User.php:1534
+#: application/controllers/User.php:1542
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:99
 #: application/views/user/modals/first_login_wizard.php:42
-#: application/controllers/User.php:1542
 msgid "Station DXCC"
 msgstr "DXCC della stazione"
 
-#: application/controllers/User.php:1535 application/controllers/User.php:1543
+#: application/controllers/User.php:1543
 msgid "Station CQ Zone"
 msgstr "Zona CQ della stazione"
 
-#: application/controllers/User.php:1536 application/controllers/User.php:1544
+#: application/controllers/User.php:1544
 msgid "Station ITU Zone"
 msgstr "Zona ITU della stazione"
 
-#: application/controllers/User.php:1537
-#: application/views/user/modals/first_login_wizard.php:93
 #: application/controllers/User.php:1545
+#: application/views/user/modals/first_login_wizard.php:93
 msgid "Station Locator"
 msgstr "Locatore della stazione"
 
-#: application/controllers/User.php:1558 application/controllers/User.php:1566
+#: application/controllers/User.php:1566
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -4302,39 +4271,36 @@ msgstr ""
 "Stazione creata con successo! Benvenuto su Wavelog! Per completare la "
 "configurazione della tua stazione, clicca %squi%s."
 
-#: application/controllers/User.php:1561 application/controllers/User.php:1569
+#: application/controllers/User.php:1569
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
 "Impostazione della stazione non riuscita! Impostare manualmente la stazione."
 
-#: application/controllers/User.php:1578 application/controllers/User.php:1586
+#: application/controllers/User.php:1586
 msgid "Password Reset is disabled on the Demo!"
 msgstr "La reimpostazione della password è disabilitata nella versione demo!"
 
-#: application/controllers/User.php:1592 application/controllers/User.php:1600
+#: application/controllers/User.php:1600
 msgid "Forgot Password"
 msgstr "Password dimenticata"
 
-#: application/controllers/User.php:1642
-#: application/views/user/modals/more_actions_modal.php:88
 #: application/controllers/User.php:1650
+#: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "Le impostazioni dell'e-mail non sono corrette."
 
-#: application/controllers/User.php:1646 application/controllers/User.php:1651
 #: application/controllers/User.php:1654 application/controllers/User.php:1659
 msgid "Password Reset Processed."
 msgstr "Reimpostazione password completata."
 
-#: application/controllers/User.php:1757
+#: application/controllers/User.php:1765
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
-#: application/controllers/User.php:1765
 msgid "Reset Password"
 msgstr "Reimposta password"
 
-#: application/controllers/User.php:1777 application/controllers/User.php:1785
+#: application/controllers/User.php:1785
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
@@ -4342,7 +4308,7 @@ msgstr ""
 "Impossibile impostare l'account con questo nome utente. Prova con un nome "
 "diverso da “%s”."
 
-#: application/controllers/User.php:1786 application/controllers/User.php:1794
+#: application/controllers/User.php:1794
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
@@ -4350,7 +4316,7 @@ msgstr ""
 "Impossibile impostare l'account con questo nome utente. Prova con un nome "
 "diverso da “%s”."
 
-#: application/controllers/User.php:1825 application/controllers/User.php:1833
+#: application/controllers/User.php:1833
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -4359,9 +4325,8 @@ msgstr ""
 "Al momento non è possibile impersonare un altro utente. È necessario "
 "impostare %s su %s nel file config.php!"
 
-#: application/controllers/User.php:1836
-#: application/views/user/modals/admin_impersonate_modal.php:36
 #: application/controllers/User.php:1844
+#: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
@@ -4369,15 +4334,15 @@ msgstr ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
 
-#: application/controllers/User.php:1843 application/controllers/User.php:1851
+#: application/controllers/User.php:1851
 msgid "Invalid Hash"
 msgstr "Hash non valido"
 
-#: application/controllers/User.php:1856 application/controllers/User.php:1864
+#: application/controllers/User.php:1864
 msgid "The impersonation hash is too old. Please try again."
 msgstr "L'hash di impersonificazione è troppo vecchio. Riprova."
 
-#: application/controllers/User.php:1863 application/controllers/User.php:1871
+#: application/controllers/User.php:1871
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -4385,15 +4350,15 @@ msgstr ""
 "Non è possibile impersonare un altro utente se non si è connessi come utente "
 "di origine"
 
-#: application/controllers/User.php:1869 application/controllers/User.php:1877
+#: application/controllers/User.php:1877
 msgid "There was a problem with your session. Please try again."
 msgstr "Si è verificato un problema con la tua sessione. Riprova."
 
-#: application/controllers/User.php:1876 application/controllers/User.php:1884
+#: application/controllers/User.php:1884
 msgid "The requested user to impersonate does not exist"
 msgstr "L'utente richiesto da impersonare non esiste"
 
-#: application/controllers/User.php:1897 application/controllers/User.php:1905
+#: application/controllers/User.php:1905
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -4401,16 +4366,14 @@ msgstr ""
 "Impossibile determinare il livello di autorizzazione corretto per la "
 "clubstation. Riprova dopo aver effettuato nuovamente l'accesso."
 
-#: application/controllers/User.php:1938 application/controllers/User.php:1950
-#: application/controllers/User.php:1956 application/controllers/User.php:1965
-#: application/controllers/User.php:1973 application/controllers/User.php:1946
-#: application/controllers/User.php:1958 application/controllers/User.php:1964
+#: application/controllers/User.php:1946 application/controllers/User.php:1958
+#: application/controllers/User.php:1964 application/controllers/User.php:1973
 #: application/controllers/User.php:1981
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr ""
 "Ops... Qualcosa è andato storto. Prova a effettuare nuovamente l'accesso."
 
-#: application/controllers/User.php:1979 application/controllers/User.php:1987
+#: application/controllers/User.php:1987
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -4418,7 +4381,7 @@ msgstr ""
 "La possibilità di tornare rapidamente è stata disabilitata dopo la scadenza "
 "dell'hash di sicurezza. Effettua nuovamente l'accesso."
 
-#: application/controllers/User.php:1995 application/controllers/User.php:2003
+#: application/controllers/User.php:2003
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -5021,11 +4984,10 @@ msgstr "Livello di autorizzazione non valido!"
 msgid "Error adding Club Member!"
 msgstr "Errore durante l'aggiunta del membro del club!"
 
-#: application/models/Club_model.php:333 application/views/api/index.php:68
+#: application/models/Club_model.php:338 application/views/api/index.php:68
 #: application/views/contesting/logger/components/qso-form.php:35
 #: application/views/satellite/index.php:94
 #: application/views/satellite/satinfo.php:51
-#: application/models/Club_model.php:338
 msgid "Unknown"
 msgstr "Sconosciuto"
 
@@ -6434,7 +6396,7 @@ msgstr ""
 #: application/views/dashboard/index.php:339
 #: application/views/dbtools/checkresult.php:229
 #: application/views/dbtools/checkresult.php:305
-#: application/views/debug/index.php:830
+#: application/views/debug/index.php:831
 #: application/views/distancerecords/index.php:20
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
@@ -6467,7 +6429,6 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:134
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
-#: application/views/debug/index.php:831
 msgid "Date"
 msgstr "Data"
 
@@ -6484,7 +6445,7 @@ msgstr "Data"
 #: application/views/dashboard/index.php:341
 #: application/views/dbtools/checkresult.php:230
 #: application/views/dbtools/checkresult.php:306
-#: application/views/debug/index.php:831
+#: application/views/debug/index.php:832
 #: application/views/distancerecords/index.php:21
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
@@ -6504,7 +6465,6 @@ msgstr "Data"
 #: application/views/visitor/index.php:154
 #: application/views/webadif/rejected.php:10
 #: application/views/zonechecker/result.php:66
-#: application/views/debug/index.php:832
 msgid "Time"
 msgstr "Orario"
 
@@ -6515,7 +6475,7 @@ msgstr "Orario"
 #: application/views/dbtools/missinggridlist.php:44
 #: application/views/dbtools/showStateQsos.php:21
 #: application/views/dcl_views/key_import.php:45
-#: application/views/debug/index.php:832 application/views/debug/index.php:867
+#: application/views/debug/index.php:833 application/views/debug/index.php:868
 #: application/views/dxcalendar/index.php:17
 #: application/views/eqsl/analysis.php:38
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
@@ -6528,8 +6488,7 @@ msgstr "Orario"
 #: application/views/view_log/partial/log_ajax.php:138
 #: application/views/visitor/index.php:156
 #: application/views/webadif/rejected.php:9
-#: application/views/widgets/qsos.php:17 application/views/debug/index.php:833
-#: application/views/debug/index.php:868
+#: application/views/widgets/qsos.php:17
 msgid "Call"
 msgstr "Nominativo"
 
@@ -6588,8 +6547,8 @@ msgstr "Dimensione massima del file caricabile: "
 #: application/views/adif/import.php:98 application/views/adif/import.php:375
 #: application/views/clublog/export.php:70
 #: application/views/contesting/logger/index.php:59
-#: application/views/debug/index.php:253 application/views/debug/index.php:270
-#: application/views/debug/index.php:822 application/views/hrdlog/export.php:25
+#: application/views/debug/index.php:254 application/views/debug/index.php:271
+#: application/views/debug/index.php:823 application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:38
 #: application/views/notes/add.php:23 application/views/notes/edit.php:29
@@ -6603,8 +6562,6 @@ msgstr "Dimensione massima del file caricabile: "
 #: application/views/view_log/qso.php:744
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:104
-#: application/views/debug/index.php:254 application/views/debug/index.php:271
-#: application/views/debug/index.php:823
 msgid "Warning"
 msgstr "Avviso"
 
@@ -7381,9 +7338,8 @@ msgstr "Il tuo token API"
 #: application/views/api/components/new_token_modal.php:17
 #: application/views/api/index.php:19 application/views/api/index.php:54
 #: application/views/api/index.php:125 application/views/cron/index.php:36
-#: application/views/debug/index.php:60
-#: application/views/qso/components/share_modal.php:19
 #: application/views/debug/index.php:61
+#: application/views/qso/components/share_modal.php:19
 msgid "Copy to clipboard"
 msgstr "Copia"
 
@@ -8923,7 +8879,7 @@ msgstr "Nessun dato sul continente disponibile nel tuo log."
 
 #: application/views/awards/dxcc/index.php:422
 #: application/views/contesting/logger/components/scp.php:52
-#: application/views/debug/index.php:176 application/views/debug/index.php:177
+#: application/views/debug/index.php:177
 msgid "Loading..."
 msgstr "Caricamento..."
 
@@ -12475,7 +12431,7 @@ msgstr "Nome ADIF"
 #: application/views/contest_admin/add.php:53
 #: application/views/contest_admin/edit.php:43
 #: application/views/contest_admin/edit.php:46
-#: application/views/debug/index.php:514 application/views/debug/index.php:525
+#: application/views/debug/index.php:515 application/views/debug/index.php:526
 #: application/views/interface_assets/header.php:660
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
@@ -12483,7 +12439,6 @@ msgstr "Nome ADIF"
 #: application/views/stationsetup/locationlist.php:10
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
-#: application/views/debug/index.php:515 application/views/debug/index.php:526
 msgid "Active"
 msgstr "Attivo"
 
@@ -12494,39 +12449,33 @@ msgid "Not Active"
 msgstr "Non attivo"
 
 #: application/views/contest_admin/add.php:49
-#: application/views/contest_admin/add.php:58
+#: application/views/contest_admin/add.php:59
 #: application/views/mode/index.php:7 application/views/mode/index.php:60
 #: application/views/usermode/index.php:5
 #: application/views/usermode/index.php:56
-#: application/views/contest_admin/add.php:59
 msgid "Activate"
 msgstr "Attiva"
 
 #: application/views/contest_admin/add.php:51
-#: application/views/contest_admin/add.php:56
+#: application/views/contest_admin/add.php:57
 #: application/views/mode/index.php:6 application/views/mode/index.php:58
 #: application/views/usermode/index.php:4
 #: application/views/usermode/index.php:54
-#: application/views/contest_admin/add.php:57
 msgid "Deactivate"
 msgstr "Disattiva"
 
-#: application/views/contest_admin/add.php:63
 #: application/views/contest_admin/add.php:64
 msgid "DANGER!"
 msgstr "PERICOLO!"
 
-#: application/views/contest_admin/add.php:64
 #: application/views/contest_admin/add.php:65
 msgid "Warning! Are you sure you want to delete the following contest: "
 msgstr "Attenzione! Sei sicuro di voler eliminare il seguente contest: "
 
-#: application/views/contest_admin/add.php:65
 #: application/views/contest_admin/add.php:66
 msgid "Warning! Are you sure you want to activate all contests?"
 msgstr "Attenzione! Sei sicuro di voler abilitare tutti i contest?"
 
-#: application/views/contest_admin/add.php:66
 #: application/views/contest_admin/add.php:67
 msgid "Warning! Are you sure you want to deactivate all contests?"
 msgstr "Attenzione! Sei sicuro di voler disattivare tutti i contest?"
@@ -13035,15 +12984,12 @@ msgid "Unknown error"
 msgstr "Errore sconosciuto"
 
 #: application/views/contesting/logger/index.php:60
-#: application/views/debug/index.php:190 application/views/debug/index.php:201
-#: application/views/debug/index.php:212 application/views/debug/index.php:223
-#: application/views/debug/index.php:235
-#: application/views/interface_assets/footer.php:39
-#: application/views/labeldesigner/designer.php:59
-#: application/views/qslpostcard/designer.php:46
 #: application/views/debug/index.php:191 application/views/debug/index.php:202
 #: application/views/debug/index.php:213 application/views/debug/index.php:224
 #: application/views/debug/index.php:236
+#: application/views/interface_assets/footer.php:39
+#: application/views/labeldesigner/designer.php:59
+#: application/views/qslpostcard/designer.php:46
 msgid "Success"
 msgstr "Successo"
 
@@ -14748,9 +14694,8 @@ msgstr ""
 
 #: application/views/dbtools/checkresult.php:49
 #: application/views/dbtools/checkresult.php:65
-#: application/views/debug/index.php:714
-#: application/views/logbookadvanced/index.php:57
 #: application/views/debug/index.php:715
+#: application/views/logbookadvanced/index.php:57
 msgid "Update now"
 msgstr "Aggiorna ora"
 
@@ -15315,44 +15260,43 @@ msgstr "Il repository remoto non conosce il tuo branch."
 msgid "Wavelog Information"
 msgstr "Informazioni su Wavelog"
 
-#: application/views/debug/index.php:36 application/views/debug/index.php:156
-#: application/views/debug/index.php:157
+#: application/views/debug/index.php:36 application/views/debug/index.php:157
 msgid "Version"
 msgstr "Versione"
 
-#: application/views/debug/index.php:39 application/views/debug/index.php:40
+#: application/views/debug/index.php:40
 msgid "Latest Version"
 msgstr "Ultima versione"
 
-#: application/views/debug/index.php:45 application/views/debug/index.php:46
+#: application/views/debug/index.php:46
 msgid "Latest Release"
 msgstr "Ultima versione"
 
-#: application/views/debug/index.php:50 application/views/debug/index.php:51
+#: application/views/debug/index.php:51
 msgid "ADIF Version"
 msgstr "Versione ADIF"
 
-#: application/views/debug/index.php:55 application/views/debug/index.php:56
+#: application/views/debug/index.php:56
 msgid "Language"
 msgstr "Lingua"
 
-#: application/views/debug/index.php:59 application/views/debug/index.php:60
+#: application/views/debug/index.php:60
 msgid "Base URL"
 msgstr "URL di base"
 
-#: application/views/debug/index.php:63 application/views/debug/index.php:64
+#: application/views/debug/index.php:64
 msgid "Migration"
 msgstr "Migrazione"
 
-#: application/views/debug/index.php:64 application/views/debug/index.php:65
+#: application/views/debug/index.php:65
 msgid "There is something wrong with your Migration in Database!"
 msgstr "C'è qualcosa che non va con la tua migrazione del database!"
 
-#: application/views/debug/index.php:69 application/views/debug/index.php:70
+#: application/views/debug/index.php:70
 msgid "Migration is outdated and locked!"
 msgstr "La migrazione è obsoleta e bloccata!"
 
-#: application/views/debug/index.php:70 application/views/debug/index.php:71
+#: application/views/debug/index.php:71
 #, php-format
 msgid ""
 "The current migration is not the version it is supposed to be. Reload this "
@@ -15365,86 +15309,84 @@ msgstr ""
 "probabilmente bloccata a causa di un processo precedentemente fallito. "
 "Elimina il file %s per forzare la migrazione a ripartire."
 
-#: application/views/debug/index.php:71 application/views/debug/index.php:147
 #: application/views/debug/index.php:72 application/views/debug/index.php:148
 #, php-format
 msgid "Check this wiki article %shere%s for more information."
 msgstr "Controlla %squesto%s articolo di wiki per ulteriori informazioni."
 
-#: application/views/debug/index.php:72 application/views/debug/index.php:73
+#: application/views/debug/index.php:73
 #, php-format
 msgid "Current migration is %s"
 msgstr "La migrazione attuale è %s"
 
-#: application/views/debug/index.php:73 application/views/debug/index.php:74
+#: application/views/debug/index.php:74
 #, php-format
 msgid "Migration should be %s"
 msgstr "La migrazione dovrebbe essere %s"
 
-#: application/views/debug/index.php:78 application/views/debug/index.php:79
+#: application/views/debug/index.php:79
 msgid "Environment"
 msgstr "Ambiente"
 
-#: application/views/debug/index.php:82 application/views/debug/index.php:83
+#: application/views/debug/index.php:83
 msgid "System Time"
 msgstr "Ora di sistema"
 
-#: application/views/debug/index.php:90 application/views/debug/index.php:91
+#: application/views/debug/index.php:91
 msgid "Total QSO on this instance"
 msgstr "Conteggio totale QSO in questa istanza"
 
-#: application/views/debug/index.php:94 application/views/debug/index.php:95
+#: application/views/debug/index.php:95
 msgid "Total User"
 msgstr "Utenti totali"
 
-#: application/views/debug/index.php:95 application/views/user/index.php:27
-#: application/views/debug/index.php:96
+#: application/views/debug/index.php:96 application/views/user/index.php:27
 msgid "User"
 msgid_plural "Users"
 msgstr[0] "Utente"
 msgstr[1] "Utenti"
 
-#: application/views/debug/index.php:102 application/views/debug/index.php:103
+#: application/views/debug/index.php:103
 msgid "Server Information"
 msgstr "Informazioni sul server"
 
-#: application/views/debug/index.php:106 application/views/debug/index.php:107
+#: application/views/debug/index.php:107
 msgid "Server Software"
 msgstr "Software del server"
 
-#: application/views/debug/index.php:111 application/views/debug/index.php:112
+#: application/views/debug/index.php:112
 msgid "PHP Version"
 msgstr "Versione PHP"
 
-#: application/views/debug/index.php:117 application/views/debug/index.php:118
+#: application/views/debug/index.php:118
 msgid "Deprecated"
 msgstr "Obsoleto"
 
-#: application/views/debug/index.php:124 application/views/debug/index.php:125
+#: application/views/debug/index.php:125
 msgid "MySQL Version"
 msgstr "Versione MySQL"
 
-#: application/views/debug/index.php:129 application/views/debug/index.php:130
+#: application/views/debug/index.php:130
 msgid "OpenSSL Version"
 msgstr "Versione OpenSSL"
 
-#: application/views/debug/index.php:130 application/views/debug/index.php:131
+#: application/views/debug/index.php:131
 msgid "not found"
 msgstr "non trovato"
 
-#: application/views/debug/index.php:133 application/views/debug/index.php:134
+#: application/views/debug/index.php:134
 msgid "Codeigniter Version"
 msgstr "Versione Codeigniter"
 
-#: application/views/debug/index.php:141 application/views/debug/index.php:142
+#: application/views/debug/index.php:142
 msgid "Wavelog Worker Backend"
 msgstr "Wavelog Worker Backend"
 
-#: application/views/debug/index.php:145 application/views/debug/index.php:146
+#: application/views/debug/index.php:146
 msgid "Worker configuration has changed"
 msgstr "La configurazione del worker è cambiata"
 
-#: application/views/debug/index.php:146 application/views/debug/index.php:147
+#: application/views/debug/index.php:147
 #, php-format
 msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
@@ -15453,40 +15395,39 @@ msgstr ""
 "%s e %s sono deprecati e verranno rimossi in Wavelog Worker 1.0.0. Si prega "
 "di impostare %s nella configurazione del tuo worker."
 
-#: application/views/debug/index.php:147 application/views/debug/index.php:148
+#: application/views/debug/index.php:148
 msgid "Everything keeps working until then."
 msgstr "Tutto continuerà a funzionare fino ad allora."
 
-#: application/views/debug/index.php:153 application/views/debug/index.php:154
+#: application/views/debug/index.php:154
 msgid "Worker"
 msgstr "Worker"
 
-#: application/views/debug/index.php:154 application/views/debug/index.php:155
+#: application/views/debug/index.php:155
 msgid "Topics"
 msgstr "Argomenti"
 
-#: application/views/debug/index.php:155 application/views/debug/index.php:156
+#: application/views/debug/index.php:156
 msgid "Clients"
 msgstr "Clients"
 
-#: application/views/debug/index.php:157 application/views/debug/index.php:158
+#: application/views/debug/index.php:158
 msgid "Cluster nodes"
 msgstr "Nodi del cluster"
 
-#: application/views/debug/index.php:158 application/views/debug/index.php:159
+#: application/views/debug/index.php:159
 msgid "Uptime"
 msgstr "Uptime"
 
-#: application/views/debug/index.php:163 application/views/debug/index.php:905
 #: application/views/debug/index.php:164 application/views/debug/index.php:906
 msgid "Online"
 msgstr "Online"
 
-#: application/views/debug/index.php:182 application/views/debug/index.php:183
+#: application/views/debug/index.php:183
 msgid "Folder Permissions"
 msgstr "Permessi della cartella"
 
-#: application/views/debug/index.php:184 application/views/debug/index.php:185
+#: application/views/debug/index.php:185
 msgid ""
 "This verifies that the folders used by Wavelog have read and write "
 "permissions by PHP."
@@ -15494,10 +15435,6 @@ msgstr ""
 "Questo verifica che le cartelle utilizzate da Wavelog abbiano permessi di "
 "lettura e scrittura da parte di PHP."
 
-#: application/views/debug/index.php:192 application/views/debug/index.php:203
-#: application/views/debug/index.php:214 application/views/debug/index.php:225
-#: application/views/debug/index.php:237 application/views/debug/index.php:516
-#: application/views/debug/index.php:527 application/views/debug/index.php:568
 #: application/views/debug/index.php:193 application/views/debug/index.php:204
 #: application/views/debug/index.php:215 application/views/debug/index.php:226
 #: application/views/debug/index.php:238 application/views/debug/index.php:517
@@ -15505,21 +15442,20 @@ msgstr ""
 msgid "Failed"
 msgstr "Fallito"
 
-#: application/views/debug/index.php:247 application/views/debug/index.php:248
+#: application/views/debug/index.php:248
 msgid "Config Maintenance"
 msgstr "Manutenzione della Configurazione"
 
-#: application/views/debug/index.php:253 application/views/debug/index.php:254
+#: application/views/debug/index.php:254
 msgid "Your authentication mode is outdated and possibly unsafe"
 msgstr "Il tuo modo di autenticazione è obsoleto e potenzialmente non sicuro"
 
-#: application/views/debug/index.php:255 application/views/debug/index.php:272
 #: application/views/debug/index.php:256 application/views/debug/index.php:273
 #, php-format
 msgid "Please edit your %s File:"
 msgstr "Si prega di modificare il tuo file %s:"
 
-#: application/views/debug/index.php:256 application/views/debug/index.php:257
+#: application/views/debug/index.php:257
 msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
@@ -15527,29 +15463,28 @@ msgstr ""
 "Vai alla tua cartella \"application/config\" (o \"application/config/"
 "docker\") e confronta \"config.sample.php\" con il tuo \"config.php\""
 
-#: application/views/debug/index.php:257 application/views/debug/index.php:258
+#: application/views/debug/index.php:258
 #, php-format
 msgid "Change %s to the value %s (Strongly recommended)"
 msgstr "Cambia %s con il valore %s (Fortemente consigliato)"
 
-#: application/views/debug/index.php:263 application/views/debug/index.php:264
+#: application/views/debug/index.php:264
 msgid "Authentication Mode is set correctly"
 msgstr "La modalità di autenticazione è stata impostata correttamente"
 
-#: application/views/debug/index.php:263 application/views/debug/index.php:280
 #: application/views/debug/index.php:264 application/views/debug/index.php:281
 msgid "Ok"
 msgstr "Ok"
 
-#: application/views/debug/index.php:270 application/views/debug/index.php:271
+#: application/views/debug/index.php:271
 msgid "You use the default encryption key. You should change it!"
 msgstr "Utilizzi la chiave di crittografia predefinita. Dovresti cambiarla!"
 
-#: application/views/debug/index.php:273 application/views/debug/index.php:274
+#: application/views/debug/index.php:274
 msgid "This will also enable the 'Keep me logged in' feature."
 msgstr "Questo consentirà anche la funzione 'Tienimi connesso'."
 
-#: application/views/debug/index.php:274 application/views/debug/index.php:275
+#: application/views/debug/index.php:275
 #, php-format
 msgid ""
 "Change the value of %s to a new encryption key other then "
@@ -15559,15 +15494,15 @@ msgstr ""
 "'flossie1234555541'. Scegli una password sicura e lunga. (Fortemente "
 "consigliato)"
 
-#: application/views/debug/index.php:280 application/views/debug/index.php:281
+#: application/views/debug/index.php:281
 msgid "You do not use the default encryption key"
 msgstr "Non usi la chiave di crittografia predefinita"
 
-#: application/views/debug/index.php:287 application/views/debug/index.php:288
+#: application/views/debug/index.php:288
 msgid "Migrate Userdata"
 msgstr "Migrare i dati dell'utente"
 
-#: application/views/debug/index.php:289 application/views/debug/index.php:290
+#: application/views/debug/index.php:290
 msgid ""
 "Here you can migrate existing QSL cards and eQSL cards to the new userdata "
 "folder."
@@ -15575,90 +15510,82 @@ msgstr ""
 "Qui puoi migrare le schede QSL esistenti e le schede eQSL nella nuova "
 "cartella userdata."
 
-#: application/views/debug/index.php:302 application/views/debug/index.php:303
+#: application/views/debug/index.php:303
 msgid "Modules"
 msgstr "Moduli"
 
-#: application/views/debug/index.php:308 application/views/debug/index.php:319
-#: application/views/debug/index.php:330 application/views/debug/index.php:341
-#: application/views/debug/index.php:352 application/views/debug/index.php:363
-#: application/views/debug/index.php:375 application/views/debug/index.php:388
-#: application/views/debug/index.php:401 application/views/debug/index.php:309
-#: application/views/debug/index.php:320 application/views/debug/index.php:331
-#: application/views/debug/index.php:342 application/views/debug/index.php:353
-#: application/views/debug/index.php:364 application/views/debug/index.php:376
-#: application/views/debug/index.php:389 application/views/debug/index.php:402
+#: application/views/debug/index.php:309 application/views/debug/index.php:320
+#: application/views/debug/index.php:331 application/views/debug/index.php:342
+#: application/views/debug/index.php:353 application/views/debug/index.php:364
+#: application/views/debug/index.php:376 application/views/debug/index.php:389
+#: application/views/debug/index.php:402
 msgid "Installed"
 msgstr "Installato"
 
-#: application/views/debug/index.php:310 application/views/debug/index.php:321
-#: application/views/debug/index.php:332 application/views/debug/index.php:343
-#: application/views/debug/index.php:354 application/views/debug/index.php:365
-#: application/views/debug/index.php:377 application/views/debug/index.php:390
-#: application/views/debug/index.php:403 application/views/debug/index.php:311
-#: application/views/debug/index.php:322 application/views/debug/index.php:333
-#: application/views/debug/index.php:344 application/views/debug/index.php:355
-#: application/views/debug/index.php:366 application/views/debug/index.php:378
-#: application/views/debug/index.php:391 application/views/debug/index.php:404
+#: application/views/debug/index.php:311 application/views/debug/index.php:322
+#: application/views/debug/index.php:333 application/views/debug/index.php:344
+#: application/views/debug/index.php:355 application/views/debug/index.php:366
+#: application/views/debug/index.php:378 application/views/debug/index.php:391
+#: application/views/debug/index.php:404
 msgid "Not Installed"
 msgstr "Non installato"
 
-#: application/views/debug/index.php:503 application/views/debug/index.php:504
+#: application/views/debug/index.php:504
 msgid "Cache Information"
 msgstr "Informazioni sulla cache"
 
-#: application/views/debug/index.php:507 application/views/debug/index.php:508
+#: application/views/debug/index.php:508
 msgid "Current Configuration"
 msgstr "Configurazione attuale"
 
-#: application/views/debug/index.php:510 application/views/debug/index.php:511
+#: application/views/debug/index.php:511
 msgctxt "Cache Adapter"
 msgid "Primary adapter"
 msgstr "Adattatore primario"
 
-#: application/views/debug/index.php:521 application/views/debug/index.php:522
+#: application/views/debug/index.php:522
 msgctxt "Cache Backup Adapter (Fallback)"
 msgid "Backup adapter"
 msgstr "Adattatore secondario"
 
-#: application/views/debug/index.php:532 application/views/debug/index.php:533
+#: application/views/debug/index.php:533
 #, php-format
 msgctxt "Cache Path"
 msgid "Path for %s adapter"
 msgstr "Percorso per l'adattatore %s"
 
-#: application/views/debug/index.php:536 application/views/debug/index.php:537
+#: application/views/debug/index.php:537
 msgctxt "Cache Key Prefix"
 msgid "Key Prefix"
 msgstr "Prefisso Chiave"
 
-#: application/views/debug/index.php:542 application/views/debug/index.php:543
+#: application/views/debug/index.php:543
 msgid "Cache Details"
 msgstr "Dettagli cache"
 
-#: application/views/debug/index.php:545 application/views/debug/index.php:546
+#: application/views/debug/index.php:546
 msgctxt "Cache Details"
 msgid "Total Size"
 msgstr "Dimensione totale"
 
-#: application/views/debug/index.php:551 application/views/debug/index.php:552
+#: application/views/debug/index.php:552
 msgctxt "Cache Key"
 msgid "Number of Keys"
 msgstr "Numero di tasti"
 
-#: application/views/debug/index.php:559 application/views/debug/index.php:560
+#: application/views/debug/index.php:560
 msgid "Round-Trip Test (write - read - delete)"
 msgstr "Test di andata e ritorno (scrivi - leggi - elimina)"
 
-#: application/views/debug/index.php:566 application/views/debug/index.php:567
+#: application/views/debug/index.php:567
 msgid "Working"
 msgstr "Funzionante"
 
-#: application/views/debug/index.php:579 application/views/debug/index.php:580
+#: application/views/debug/index.php:580
 msgid "Cache is working properly. Everything okay!"
 msgstr "La cache sta lavorando correttamente. Tutto ok!"
 
-#: application/views/debug/index.php:583 application/views/debug/index.php:584
+#: application/views/debug/index.php:584
 msgid ""
 "Cache is currently using the backup adapter because the primary is "
 "unavailable. Check your file permissions, PHP extensions, and/or your "
@@ -15669,7 +15596,7 @@ msgstr ""
 "estensioni PHP e/o la connessione di rete ai servizi (se stai usando redis/"
 "memcached)."
 
-#: application/views/debug/index.php:587 application/views/debug/index.php:588
+#: application/views/debug/index.php:588
 #, php-format
 msgid ""
 "Cache does not work! Currently the system is using a %s adapter. Check your "
@@ -15683,128 +15610,120 @@ msgstr ""
 "Wavelog, ma nessun valore verrà memorizzato nella cache (il che è "
 "sconsigliato)."
 
-#: application/views/debug/index.php:595 application/views/debug/index.php:596
+#: application/views/debug/index.php:596
 msgid "Available Adapters"
 msgstr "Adattatori disponibili"
 
-#: application/views/debug/index.php:612 application/views/debug/index.php:613
+#: application/views/debug/index.php:613
 msgid "Clear Cache"
 msgstr "Svuota la cache"
 
-#: application/views/debug/index.php:660 application/views/debug/index.php:661
+#: application/views/debug/index.php:661
 msgid "Git Information"
 msgstr "Informazioni su Git"
 
-#: application/views/debug/index.php:664 application/views/debug/index.php:665
+#: application/views/debug/index.php:665
 msgid "Branch"
 msgstr "Branch"
 
-#: application/views/debug/index.php:675 application/views/debug/index.php:686
-#: application/views/debug/index.php:696
-#: application/views/lotw_views/index.php:104
-#: application/views/widgets/lotw_upload.php:106
 #: application/views/debug/index.php:676 application/views/debug/index.php:687
 #: application/views/debug/index.php:697
+#: application/views/lotw_views/index.php:104
+#: application/views/widgets/lotw_upload.php:106
 msgid "n/a"
 msgstr "n/a"
 
-#: application/views/debug/index.php:681 application/views/debug/index.php:682
+#: application/views/debug/index.php:682
 msgid "Commit"
 msgstr "Commit"
 
-#: application/views/debug/index.php:691 application/views/debug/index.php:692
+#: application/views/debug/index.php:692
 msgid "Tag"
 msgstr "Etichetta"
 
-#: application/views/debug/index.php:701 application/views/debug/index.php:702
+#: application/views/debug/index.php:702
 msgid "Last Fetch"
 msgstr "Ultimo controllo"
 
-#: application/views/debug/index.php:713 application/views/debug/index.php:714
+#: application/views/debug/index.php:714
 msgid "Check for new version"
 msgstr "Controlla se ci sono nuove versioni"
 
-#: application/views/debug/index.php:732 application/views/debug/index.php:733
+#: application/views/debug/index.php:733
 msgid "File download date"
 msgstr "Data di download del file"
 
-#: application/views/debug/index.php:736 application/views/debug/index.php:737
+#: application/views/debug/index.php:737
 msgid "File"
 msgstr "File"
 
-#: application/views/debug/index.php:737 application/views/debug/index.php:738
+#: application/views/debug/index.php:738
 msgid "Last update"
 msgstr "Ultimo aggiornamento"
 
-#: application/views/debug/index.php:741 application/views/debug/index.php:742
+#: application/views/debug/index.php:742
 msgid "DXCC update from Club Log"
 msgstr "Aggiornamento DXCC da Clulog"
 
-#: application/views/debug/index.php:744 application/views/debug/index.php:751
-#: application/views/debug/index.php:757 application/views/debug/index.php:763
-#: application/views/debug/index.php:769 application/views/debug/index.php:775
-#: application/views/debug/index.php:781 application/views/debug/index.php:787
-#: application/views/debug/index.php:793 application/views/debug/index.php:799
-#: application/views/debug/index.php:805 application/views/debug/index.php:811
-#: application/views/station_profile/edit.php:53
 #: application/views/debug/index.php:745 application/views/debug/index.php:752
 #: application/views/debug/index.php:758 application/views/debug/index.php:764
 #: application/views/debug/index.php:770 application/views/debug/index.php:776
 #: application/views/debug/index.php:782 application/views/debug/index.php:788
 #: application/views/debug/index.php:794 application/views/debug/index.php:800
 #: application/views/debug/index.php:806 application/views/debug/index.php:812
+#: application/views/station_profile/edit.php:53
 msgid "Update"
 msgstr "Aggiorna"
 
-#: application/views/debug/index.php:748 application/views/debug/index.php:749
+#: application/views/debug/index.php:749
 msgid "DOK file download"
 msgstr "Download del file DOK"
 
-#: application/views/debug/index.php:754 application/views/debug/index.php:755
+#: application/views/debug/index.php:755
 msgid "LoTW users download"
 msgstr "Scarica utenti LoTW"
 
-#: application/views/debug/index.php:760 application/views/debug/index.php:761
+#: application/views/debug/index.php:761
 msgid "POTA file download"
 msgstr "Download del file POTA"
 
-#: application/views/debug/index.php:766 application/views/debug/index.php:767
+#: application/views/debug/index.php:767
 msgid "POTA park boundaries (GeoJSON)"
 msgstr "Confini del parco POTA (GeoJSON)"
 
-#: application/views/debug/index.php:772 application/views/debug/index.php:773
+#: application/views/debug/index.php:773
 msgid "SCP file download"
 msgstr "Download del file SCP"
 
-#: application/views/debug/index.php:778 application/views/debug/index.php:779
+#: application/views/debug/index.php:779
 msgid "SOTA file download"
 msgstr "Download del file SOTA"
 
-#: application/views/debug/index.php:784 application/views/debug/index.php:785
+#: application/views/debug/index.php:785
 msgid "WWFF file download"
 msgstr "Download del file WWFF"
 
-#: application/views/debug/index.php:790 application/views/debug/index.php:791
+#: application/views/debug/index.php:791
 msgid "TLE update"
 msgstr "Aggiornamento TLE"
 
-#: application/views/debug/index.php:796 application/views/debug/index.php:797
+#: application/views/debug/index.php:797
 msgid "Hams Of Note update"
 msgstr "Aggiorna Hams Of Note"
 
-#: application/views/debug/index.php:802 application/views/debug/index.php:803
+#: application/views/debug/index.php:803
 msgid "HAMqsl"
 msgstr "HAMqsl"
 
-#: application/views/debug/index.php:808 application/views/debug/index.php:809
+#: application/views/debug/index.php:809
 msgid "VUCC Grids"
 msgstr "Locatori VUCC"
 
-#: application/views/debug/index.php:818 application/views/debug/index.php:819
+#: application/views/debug/index.php:819
 msgid "QSO-DB Maintenance"
 msgstr "Manutenzione del database QSO"
 
-#: application/views/debug/index.php:822 application/views/debug/index.php:823
+#: application/views/debug/index.php:823
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
@@ -15814,52 +15733,51 @@ msgstr[0] ""
 msgstr[1] ""
 "Il Database contiene %d collegamenti senza un profilo stazione (ubicazione)"
 
-#: application/views/debug/index.php:860 application/views/debug/index.php:861
+#: application/views/debug/index.php:861
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
 "Si prega di contrassegnare i QSOs e riassegnarli a una posizione della "
 "stazione esistente:"
 
-#: application/views/debug/index.php:868 application/views/debug/index.php:869
+#: application/views/debug/index.php:869
 msgctxt "Stationlocation"
 msgid "Target Location"
 msgstr "Posizione target"
 
-#: application/views/debug/index.php:869 application/views/debug/index.php:880
 #: application/views/debug/index.php:870 application/views/debug/index.php:881
 msgid "Reassign"
 msgstr "Riassegna"
 
-#: application/views/debug/index.php:889 application/views/debug/index.php:890
+#: application/views/debug/index.php:890
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
 "Ogni QSO nel tuo database è assegnato a un profilo stazione (posizione)"
 
-#: application/views/debug/index.php:889 application/views/debug/index.php:890
+#: application/views/debug/index.php:890
 msgid "Everything ok"
 msgstr "Tutto ok"
 
-#: application/views/debug/index.php:906 application/views/debug/index.php:907
+#: application/views/debug/index.php:907
 msgid "Degraded"
 msgstr "Degradato"
 
-#: application/views/debug/index.php:907 application/views/debug/index.php:908
+#: application/views/debug/index.php:908
 msgid "Worker backend is not configured."
 msgstr "Worker backend non è configurato."
 
-#: application/views/debug/index.php:908 application/views/debug/index.php:909
+#: application/views/debug/index.php:909
 msgid "Unreachable"
 msgstr "Non raggiungibile"
 
-#: application/views/debug/index.php:908 application/views/debug/index.php:909
+#: application/views/debug/index.php:909
 msgid "Worker is configured but did not respond."
 msgstr "Il worker è configurato ma non ha risposto."
 
-#: application/views/debug/index.php:909 application/views/debug/index.php:910
+#: application/views/debug/index.php:910
 msgid "Outdated"
 msgstr "Obsoleto"
 
-#: application/views/debug/index.php:909 application/views/debug/index.php:910
+#: application/views/debug/index.php:910
 msgid ""
 "Please update your Wavelog Worker to version 0.2.0 or newer to see the "
 "status."
@@ -15867,131 +15785,131 @@ msgstr ""
 "Aggiorna per favore il tuo Wavelog Worker alla versione 0.2.0 o successiva "
 "per vedere lo stato."
 
-#: application/views/debug/index.php:928 application/views/debug/index.php:929
+#: application/views/debug/index.php:929
 msgid "Albanian"
 msgstr "Albanese"
 
-#: application/views/debug/index.php:929 application/views/debug/index.php:930
+#: application/views/debug/index.php:930
 msgid "Armenian"
 msgstr "Armeno"
 
-#: application/views/debug/index.php:930 application/views/debug/index.php:931
+#: application/views/debug/index.php:931
 msgid "Bosnian"
 msgstr "Bosniaco"
 
-#: application/views/debug/index.php:931 application/views/debug/index.php:932
+#: application/views/debug/index.php:932
 msgid "Bulgarian"
 msgstr "Bulgaro"
 
-#: application/views/debug/index.php:932 application/views/debug/index.php:933
+#: application/views/debug/index.php:933
 msgid "Chinese (Simplified)"
 msgstr "Cinese (semplificato)"
 
-#: application/views/debug/index.php:933 application/views/debug/index.php:934
+#: application/views/debug/index.php:934
 msgid "Croatian"
 msgstr "Croato"
 
-#: application/views/debug/index.php:934 application/views/debug/index.php:935
+#: application/views/debug/index.php:935
 msgid "Czech"
 msgstr "Ceco"
 
-#: application/views/debug/index.php:935 application/views/debug/index.php:936
+#: application/views/debug/index.php:936
 msgid "Dutch"
 msgstr "Olandese"
 
-#: application/views/debug/index.php:936 application/views/debug/index.php:937
+#: application/views/debug/index.php:937
 msgid "English"
 msgstr "Inglese"
 
-#: application/views/debug/index.php:937 application/views/debug/index.php:938
+#: application/views/debug/index.php:938
 msgid "Estonian"
 msgstr "Estone"
 
-#: application/views/debug/index.php:938 application/views/debug/index.php:939
+#: application/views/debug/index.php:939
 msgid "Finnish"
 msgstr "Finlandese"
 
-#: application/views/debug/index.php:939 application/views/debug/index.php:940
+#: application/views/debug/index.php:940
 msgid "French"
 msgstr "Francese"
 
-#: application/views/debug/index.php:940 application/views/debug/index.php:941
+#: application/views/debug/index.php:941
 msgid "German"
 msgstr "Tedesco"
 
-#: application/views/debug/index.php:941 application/views/debug/index.php:942
+#: application/views/debug/index.php:942
 msgid "Greek"
 msgstr "Greco"
 
-#: application/views/debug/index.php:942 application/views/debug/index.php:943
+#: application/views/debug/index.php:943
 msgid "Hungarian"
 msgstr "Ungherese"
 
-#: application/views/debug/index.php:943 application/views/debug/index.php:944
+#: application/views/debug/index.php:944
 msgid "Italian"
 msgstr "Italiano"
 
-#: application/views/debug/index.php:944 application/views/debug/index.php:945
+#: application/views/debug/index.php:945
 msgid "Japanese"
 msgstr "Giapponese"
 
-#: application/views/debug/index.php:945 application/views/debug/index.php:946
+#: application/views/debug/index.php:946
 msgid "Latvian"
 msgstr "Lettone"
 
-#: application/views/debug/index.php:946 application/views/debug/index.php:947
+#: application/views/debug/index.php:947
 msgid "Lithuanian"
 msgstr "Lituano"
 
-#: application/views/debug/index.php:947 application/views/debug/index.php:948
+#: application/views/debug/index.php:948
 msgid "Montenegrin"
 msgstr "Montenegrino"
 
-#: application/views/debug/index.php:948 application/views/debug/index.php:949
+#: application/views/debug/index.php:949
 msgid "Norwegian (Bokmål)"
 msgstr "Norvegese (Bokmål)"
 
-#: application/views/debug/index.php:949 application/views/debug/index.php:950
+#: application/views/debug/index.php:950
 msgid "Polish"
 msgstr "Polacco"
 
-#: application/views/debug/index.php:950 application/views/debug/index.php:951
+#: application/views/debug/index.php:951
 msgid "Portuguese"
 msgstr "Portoghese"
 
-#: application/views/debug/index.php:951 application/views/debug/index.php:952
+#: application/views/debug/index.php:952
 msgid "Romanian"
 msgstr "Romeno"
 
-#: application/views/debug/index.php:952 application/views/debug/index.php:953
+#: application/views/debug/index.php:953
 msgid "Russian"
 msgstr "Russo"
 
-#: application/views/debug/index.php:953 application/views/debug/index.php:954
+#: application/views/debug/index.php:954
 msgid "Serbian"
 msgstr "Serbo"
 
-#: application/views/debug/index.php:954 application/views/debug/index.php:955
+#: application/views/debug/index.php:955
 msgid "Slovak"
 msgstr "Slovacco"
 
-#: application/views/debug/index.php:955 application/views/debug/index.php:956
+#: application/views/debug/index.php:956
 msgid "Slovenian"
 msgstr "Sloveno"
 
-#: application/views/debug/index.php:956 application/views/debug/index.php:957
+#: application/views/debug/index.php:957
 msgid "Spanish"
 msgstr "Spagnolo"
 
-#: application/views/debug/index.php:957 application/views/debug/index.php:958
+#: application/views/debug/index.php:958
 msgid "Swedish"
 msgstr "Svedese"
 
-#: application/views/debug/index.php:958 application/views/debug/index.php:959
+#: application/views/debug/index.php:959
 msgid "Turkish"
 msgstr "Turco"
 
-#: application/views/debug/index.php:959 application/views/debug/index.php:960
+#: application/views/debug/index.php:960
 msgid "Ukrainian"
 msgstr "Ucraino"
 
@@ -23608,9 +23526,8 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file "
-"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
-"di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
+"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
