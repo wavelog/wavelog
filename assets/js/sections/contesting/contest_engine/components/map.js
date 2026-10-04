@@ -203,6 +203,11 @@ class MapComponent {
 				this.upsertQsoMarker(qso, true);
 			});
 
+			// Edited QSO (own edit or sync delta): move its marker
+			this.dataStore.on('qso_updated', (qso) => {
+				this.upsertQsoMarker(qso, false);
+			});
+
 			// Current QSO location preview (callsign/grid entry, before logging)
 			this.dataStore.on('qso_location_updated', (location) => {
 				this.showCurrentLocation(location);
