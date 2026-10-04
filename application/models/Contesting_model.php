@@ -415,7 +415,7 @@ class Contesting_model extends CI_Model {
 				JOIN contest_session cs ON cs.id = cq.contest_session_id
 				JOIN " . $this->config->item('table_name') . " lb ON lb.COL_PRIMARY_KEY = cq.qso_id
 				WHERE cq.contest_session_id = ? {$band_constraint}
-				ORDER BY cq.id ASC";
+				ORDER BY lb.COL_TIME_ON ASC, cq.id ASC";
 
 		$query = $this->db->query($sql, $bindings);
 		return $query->result_array();
@@ -886,7 +886,7 @@ class Contesting_model extends CI_Model {
 				JOIN {$table} ON {$table}.COL_PRIMARY_KEY = cq.qso_id
 				JOIN station_profile ON station_profile.station_id = {$table}.station_id
 				WHERE cq.contest_session_id = ? AND cs.user_id = ? {$band_constraint}
-				ORDER BY {$table}.COL_TIME_ON ASC";
+				ORDER BY {$table}.COL_TIME_ON ASC, cq.id ASC";
 
 		return $this->db->query($sql, $bindings);
 		
