@@ -357,6 +357,7 @@ class MapComponent {
 		}
 
 		if (makeCurrent) this.setCurrent(key, latlng);
+		else if (key === this.currentKey && !this._previewMarker) this.updatePathLine(latlng);
 	}
 
 	_removeMarker(key) {
