@@ -553,7 +553,7 @@ class QsoFormComponent {
 		}
 
 		try {
-			const resp = await fetch(base_url + 'contesting/delete_qso', {
+			const resp = await fetch(base_url + 'index.php/contesting/delete_qso', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ contest_session_id: sessionId, qso_id: serverId }),
