@@ -209,10 +209,14 @@ class eqsl extends CI_Controller {
 					log_message('error', 'eQSL Credentials-Error for '.$data['user_eqsl_name'].'. Login will be disabled!');
 					$this->eqslmethods_model->disable_eqsl_uid($this->session->userdata('user_id'));
 					$status=__("User/Pass wrong for eQSL");
+					$rows .= "<td colspan='6'>".html_escape($status)."</td></tr>";
+					break;
 				} elseif ($status == 'Nick Error') {
 					log_message('error', 'eQSL error for user '.$data['user_eqsl_name'].' with QTH Nickname '.($qsl['eqslqthnickname'] ?? '').' at station_profile '.($qsl['eqsl_station_id'] ?? '').'. eQSL QTH Nickname will be removed from station location!');
 					$this->eqslmethods_model->disable_eqsl_station_id($this->session->userdata('user_id'),$qsl['eqsl_station_id']);
 					$status=sprintf(__("No such eQSL QTH Nickname: %s"), $qsl['eqslqthnickname'] ?? '');
+					$rows .= "<td colspan='6'>".html_escape($status)."</td></tr>";
+					break;
 				}
 
 				if($status == 'Error') {

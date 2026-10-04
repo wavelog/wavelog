@@ -698,6 +698,12 @@ class Logbook_model extends CI_Model {
 				}
 				$this->db->where('COL_DXCC', '339');
 				break;
+			case 'JCG':
+				// Unlike JCC, JCG (gun/county) numbers have no "ward of a
+				// designated city" variant, so COL_CNTY is matched directly.
+				$this->db->where('COL_CNTY', $searchphrase);
+				$this->db->where('COL_DXCC', '339');
+				break;
 			case 'SOTA':
 				$this->db->where('COL_SOTA_REF', $searchphrase);
 				break;
@@ -4394,8 +4400,9 @@ class Logbook_model extends CI_Model {
 				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_LOTW,
 				COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Deleted_Worked_LOTW,
 				-- DXCC confirmed totals intentionally count only paper QSL + LoTW.
-				-- eQSL is tracked separately in the UI as display-only information.
+				-- eQSL is not longer part of DXCC (never should be)
 				COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Worked_Confirmed,
+				COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Deleted_Confirmed,
 				COUNT(DISTINCT CASE WHEN d.end IS NULL AND d.adif != 0 AND t.COL_COUNTRY != 'Invalid' AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as Countries_Current,
 				-- QSL stats (SUM - no filtering, all QSOs)
 				SUM(CASE WHEN t.COL_QSL_SENT = 'Y' THEN 1 ELSE 0 END) as QSL_Sent,
@@ -4445,7 +4452,8 @@ class Logbook_model extends CI_Model {
 					COUNT(DISTINCT CASE WHEN t.COL_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted_qsl,
 					COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as lotw,
 					COUNT(DISTINCT CASE WHEN t.COL_LOTW_QSL_RCVD = 'Y' AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted_lotw,
-					COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as confirmed
+					COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND d.end IS NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as confirmed,
+					COUNT(DISTINCT CASE WHEN (t.COL_QSL_RCVD = 'Y' OR t.COL_LOTW_QSL_RCVD = 'Y') AND t.COL_COUNTRY != 'Invalid' AND d.end IS NOT NULL AND t.COL_DXCC > 0 THEN t.COL_DXCC END) as deleted_confirmed
 					FROM " . $this->config->item('table_name') . " t
 					LEFT JOIN dxcc_entities d ON d.adif = t.col_dxcc
 					LEFT JOIN bands b ON b.band = t.COL_BAND
@@ -4468,6 +4476,7 @@ class Logbook_model extends CI_Model {
 						'lotw' => (int) $group_row->lotw,
 						'deleted_lotw' => (int) $group_row->deleted_lotw,
 						'confirmed' => (int) $group_row->confirmed,
+						'deleted_confirmed' => (int) $group_row->deleted_confirmed,
 					];
 				}
 			}
@@ -4484,6 +4493,7 @@ class Logbook_model extends CI_Model {
 					'Countries_Worked_LOTW' => $row->Countries_Worked_LOTW,
 					'Countries_Deleted_Worked_LOTW' => $row->Countries_Deleted_Worked_LOTW,
 					'Countries_Worked_Confirmed' => $row->Countries_Worked_Confirmed,
+					'Countries_Deleted_Confirmed' => $row->Countries_Deleted_Confirmed,
 					'Countries_Current' => $row->Countries_Current,
 					// HF / SAT / VHF+ split
 					'DXCC_Groups' => $dxcc_groups,
@@ -4524,6 +4534,7 @@ class Logbook_model extends CI_Model {
 			'Countries_Worked_LOTW' => 0,
 			'Countries_Deleted_Worked_LOTW' => 0,
 			'Countries_Worked_Confirmed' => 0,
+			'Countries_Deleted_Confirmed' => 0,
 			'Countries_Current' => 0,
 			'DXCC_Groups' => [],
 			'QSL_Sent' => 0,

@@ -1,123 +1,123 @@
 {
-    "search": "Search:",
+    "search": "Søk:",
     "paginate": {
-        "first": "First",
-        "previous": "Previous",
-        "next": "Next",
-        "last": "Last"
+        "first": "Første",
+        "previous": "Forrige",
+        "next": "Neste",
+        "last": "Siste"
     },
     "autoFill": {
-        "cancel": "Cancel",
-        "fill": "Fill all cells with <i>%d</i>",
-        "fillHorizontal": "Fill cells horizontally",
-        "fillVertical": "Fill cells vertically",
-        "info": "AutoFill info example"
+        "cancel": "Avbryt",
+        "fill": "Fyll alle celler med <i>%d</i>",
+        "fillHorizontal": "Fyll celler horisontalt",
+        "fillVertical": "Fyll celler vertikalt",
+        "info": "Eksempel på AutoFill-info"
     },
     "buttons": {
-        "colvis": "Column visibility",
-        "copy": "Copy",
-        "copyTitle": "Copy to clipboard",
+        "colvis": "Kolonne synlighet",
+        "copy": "Kopier",
+        "copyTitle": "Kopier til utklippstavle",
         "csv": "CSV",
         "excel": "Excel",
         "pdf": "PDF",
         "pageLength": {
-            "-1": "Show all rows",
-            "_": "Show %d rows",
-            "1": "Show 1 row"
+            "-1": "Vis alle rader",
+            "_": "Vis %d rader",
+            "1": "Vis 1 rad"
         },
-        "print": "Print",
-        "copyKeys": "Press Ctrl or u2318 + C to copy the table data to your system clipboard.<br /><br />To cancel, click this message or press Escape.",
+        "print": "Skriv ut",
+        "copyKeys": "Trykk Ctrl eller u2318 + C for å kopiere tabelldataene til systemets utklippstavle.<br /><br />For å avbryte, klikk på denne meldingen eller trykk Escape.",
         "copySuccess": {
-            "1": "Copied 1 row to clipboard",
-            "_": "Copied %d rows to clipboard"
+            "1": "Kopierte 1 rad til utklippstavlen",
+            "_": "Kopierte %d rader til utklippstavlen"
         },
-        "createState": "Create state",
-        "removeAllStates": "Remove all states",
-        "removeState": "Remove",
-        "renameState": "Rename",
-        "stateRestore": "State %d",
-        "updateState": "Update",
-        "collection": "Collection<span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"></span>",
-        "colvisRestore": "Restore visibility",
-        "savedStates": "Saved states"
+        "createState": "Opprett visning",
+        "removeAllStates": "Fjern alle visninger",
+        "removeState": "Fjern",
+        "renameState": "Gi nytt navn",
+        "stateRestore": "Status %d",
+        "updateState": "Oppdater",
+        "collection": "Samling<span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"></span>",
+        "colvisRestore": "Gjenopprett synlighet",
+        "savedStates": "Lagrede tilstander"
     },
     "searchBuilder": {
         "button": {
-            "0": "Search builder",
-            "_": "Search builder (%d)"
+            "0": "Avansert søk",
+            "_": "Avansert søk (%d)"
         },
-        "clearAll": "Clear all",
-        "condition": "Condition",
+        "clearAll": "Fjern alt",
+        "condition": "Tilstand",
         "data": "Data",
         "title": {
-            "0": "Search builder",
-            "_": "Search builder (%d)"
+            "0": "Søkebygger",
+            "_": "Avansert søk (%d)"
         },
-        "value": "Value",
+        "value": "Verdi",
         "conditions": {
             "date": {
-                "equals": "Equals",
-                "after": "After",
-                "before": "Before",
-                "between": "Between",
-                "empty": "Empty",
-                "not": "Not",
-                "notBetween": "Not between",
-                "notEmpty": "Not empty"
+                "equals": "Er lik",
+                "after": "Etter",
+                "before": "Før",
+                "between": "Mellom",
+                "empty": "Tom",
+                "not": "Ikke",
+                "notBetween": "Ikke mellom",
+                "notEmpty": "Ikke tom"
             },
             "number": {
-                "between": "Between",
-                "empty": "Empty",
-                "equals": "Equals",
-                "gt": "Greater than",
-                "gte": "Greater than or equal to",
-                "lt": "Less than",
-                "lte": "Less than or equal to",
-                "not": "Not",
-                "notBetween": "Not between",
-                "notEmpty": "Not empty"
+                "between": "Mellom",
+                "empty": "Tom",
+                "equals": "Er lik",
+                "gt": "Større enn",
+                "gte": "Større enn eller lik",
+                "lt": "Mindre enn",
+                "lte": "Mindre enn eller lik",
+                "not": "Ikke",
+                "notBetween": "Ikke mellom",
+                "notEmpty": "Ikke tom"
             },
             "string": {
-                "contains": "Contains",
-                "empty": "Empty",
-                "endsWith": "Ends with",
-                "equals": "Equals",
-                "not": "Not",
-                "notEmpty": "Not empty",
-                "startsWith": "Starts with",
-                "notContains": "Does not contain",
-                "notStartsWith": "Does not start with",
-                "notEndsWith": "Does not end with"
+                "contains": "Inneholder",
+                "empty": "Tom",
+                "endsWith": "Slutter med",
+                "equals": "Er lik",
+                "not": "Ikke",
+                "notEmpty": "Ikke tom",
+                "startsWith": "Starter med",
+                "notContains": "Inneholder ikke",
+                "notStartsWith": "Starter ikke med",
+                "notEndsWith": "Slutter ikke med"
             },
             "array": {
-                "equals": "Equals",
-                "empty": "Empty",
-                "contains": "Contains",
-                "not": "Not",
-                "notEmpty": "Not empty",
-                "without": "Without"
+                "equals": "Er lik",
+                "empty": "Tom",
+                "contains": "Inneholder",
+                "not": "Ikke",
+                "notEmpty": "Ikke tom",
+                "without": "Uten"
             }
         },
-        "add": "Add condition",
-        "deleteTitle": "Delete filtering rule",
-        "logicAnd": "And",
-        "logicOr": "Or",
-        "leftTitle": "Outdent criteria",
-        "rightTitle": "Indent criteria"
+        "add": "Legg til betingelse",
+        "deleteTitle": "Slett filtreringsregel",
+        "logicAnd": "Og",
+        "logicOr": "Eller",
+        "leftTitle": "Reduser innrykk for kriterium",
+        "rightTitle": "Innrykk kriterie"
     },
     "searchPanes": {
-        "clearMessage": "Clear all",
+        "clearMessage": "Fjern alt",
         "collapse": {
-            "0": "Search panes",
-            "_": "Search panes (%d)"
+            "0": "Søkepaneler",
+            "_": "Søkepanel (%d)"
         },
         "count": "{total}",
         "countFiltered": "{shown} ({total})",
-        "emptyPanes": "No search panes",
-        "loadMessage": "Loading search panes...",
-        "showMessage": "Show all",
-        "collapseMessage": "Collapse all",
-        "title": "Filters active - %d"
+        "emptyPanes": "Ingen søkepaneler",
+        "loadMessage": "Laster inn søkepaneler...",
+        "showMessage": "Vis alle",
+        "collapseMessage": "Skjul alle",
+        "title": "Aktive filtre - %d"
     },
     "infoThousands": ",",
     "thousands": ",",
@@ -126,121 +126,121 @@
             "AM",
             "PM"
         ],
-        "minutes": "Minute",
+        "minutes": "Minutt",
         "months": {
-            "0": "January",
-            "1": "February",
-            "10": "November",
-            "11": "December",
-            "2": "March",
-            "3": "April",
-            "4": "May",
-            "5": "June",
-            "6": "July",
-            "7": "August",
-            "8": "September",
-            "9": "October"
+            "0": "januar",
+            "1": "februar",
+            "10": "november",
+            "11": "desember",
+            "2": "mars",
+            "3": "april",
+            "4": "mai",
+            "5": "juni",
+            "6": "juli",
+            "7": "august",
+            "8": "september",
+            "9": "oktober"
         },
-        "seconds": "Second",
-        "previous": "Previous",
-        "next": "Next",
-        "hours": "Hour",
+        "seconds": "Sekund",
+        "previous": "Forrige",
+        "next": "Neste",
+        "hours": "Time",
         "unknown": "-",
         "weekdays": [
-            "Sun",
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thu",
-            "Fri",
-            "Sat"
+            "Søn",
+            "Man",
+            "Tir",
+            "Ons",
+            "Tor",
+            "Fre",
+            "Lør"
         ]
     },
     "editor": {
-        "close": "Close",
+        "close": "Lukk",
         "create": {
-            "button": "New",
-            "submit": "Create",
-            "title": "Create new entry"
+            "button": "Ny",
+            "submit": "Opprett",
+            "title": "Opprett ny post"
         },
         "edit": {
-            "button": "Edit",
-            "submit": "Update",
-            "title": "Edit entry"
+            "button": "Rediger",
+            "submit": "Oppdater",
+            "title": "Rediger post"
         },
         "multi": {
-            "restore": "Undo changes",
-            "title": "Multiple values",
-            "noMulti": "This input can be edited individually, but not part of a group.",
-            "info": "The selected items contain different values for this input. To edit and set all items for this input to the same value, click or tap here, otherwise they will retain their individual values."
+            "restore": "Angre endringer",
+            "title": "Flere verdier",
+            "noMulti": "Dette feltet kan redigeres individuelt, men ikke som en del av en gruppe.",
+            "info": "De valgte elementene har forskjellige verdier for dette feltet. For å redigere og sette alle elementene for dette feltet til samme verdi, klikk eller trykk her, ellers vil de beholde sine individuelle verdier."
         },
         "remove": {
-            "button": "Delete",
-            "submit": "Delete",
-            "title": "Delete",
+            "button": "Slett",
+            "submit": "Slett",
+            "title": "Slett",
             "confirm": {
-                "_": "Are you sure you wish to delete %d rows?",
-                "1": "Are you sure you wish to delete 1 row?"
+                "_": "Er du sikker på at du vil slette %d rader?",
+                "1": "Er du sikker på at du vil slette 1 rad?"
             }
         },
         "error": {
-            "system": "A system error has occurred (<a target=\"\\\" rel=\"\\ nofollow\" href=\"\\\">More information&lt;\\/a&gt;).</a>"
+            "system": "Det har oppstått en systemfeil (<a target=\"\\\" rel=\"\\ nofollow\" href=\"\\\">Mer informasjon&lt;\\/a&gt;).</a>"
         }
     },
-    "loadingRecords": "Loading...",
-    "processing": "Processing...",
+    "loadingRecords": "Laster inn...",
+    "processing": "Behandler...",
     "decimal": ".",
-    "emptyTable": "No data available in table",
+    "emptyTable": "Ingen data tilgjengelig i tabellen",
     "select": {
         "cells": {
-            "1": "1 cell selected",
-            "_": "%d cells selected"
+            "1": "1 celle valgt",
+            "_": "%d celler valgt"
         },
         "columns": {
-            "1": "1 column selected",
-            "_": "%d columns selected"
+            "1": "1 kolonne er valgt",
+            "_": "%d kolonner er valgt"
         },
         "rows": {
-            "1": "1 row selected",
-            "_": "%d rows selected"
+            "1": "1 rad valgt",
+            "_": "%d rader valgt"
         }
     },
-    "zeroRecords": "No matching records found",
+    "zeroRecords": "Ingen treff funnet",
     "stateRestore": {
         "creationModal": {
-            "button": "Create",
+            "button": "Opprett",
             "columns": {
-                "search": "Column search",
-                "visible": "Column visibility"
+                "search": "Kolonnesøk",
+                "visible": "Vis kolonner"
             },
-            "name": "Name:",
-            "order": "Sorting",
-            "paging": "Paging",
-            "search": "Search",
-            "searchBuilder": "Search builder",
-            "select": "Select",
-            "title": "Create new state",
-            "toggleLabel": "Include:",
-            "scroller": "Scroll position"
+            "name": "Navn:",
+            "order": "Sortering",
+            "paging": "Paginering",
+            "search": "Søk",
+            "searchBuilder": "Søkebygger",
+            "select": "Velg",
+            "title": "Opprett nytt utvalg",
+            "toggleLabel": "Inkluder:",
+            "scroller": "Rulleposisjon"
         },
-        "duplicateError": "A state with this name already exists.",
-        "emptyError": "Name cannot be empty.",
-        "emptyStates": "No saved states",
-        "removeConfirm": "Are you sure you want to remove %s?",
-        "removeError": "Failed to remove state.",
-        "removeJoiner": "and",
-        "removeSubmit": "Remove",
-        "removeTitle": "Remove state",
-        "renameButton": "Rename",
-        "renameLabel": "New name for %s:",
-        "renameTitle": "Rename state"
+        "duplicateError": "Et oppsett med dette navnet finnes allerede.",
+        "emptyError": "Navn kan ikke være tomt.",
+        "emptyStates": "Ingen lagrede oppsett",
+        "removeConfirm": "Er du sikker på at du vil fjerne %s?",
+        "removeError": "Kunne ikke fjerne oppsettet.",
+        "removeJoiner": "og",
+        "removeSubmit": "Fjern",
+        "removeTitle": "Slett oppsett",
+        "renameButton": "Gi nytt navn",
+        "renameLabel": "Nytt navn for %s:",
+        "renameTitle": "Gi nytt navn på oppsettet"
     },
-    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-    "infoEmpty": "Showing 0 to 0 of 0 entries",
-    "infoFiltered": "(filtered from _MAX_ total entries)",
-    "lengthMenu": "Show _MENU_ entries",
+    "info": "Viser _START_ til _END_ av _TOTAL_ oppføringer",
+    "infoEmpty": "Viser 0 til 0 av 0 oppføringer",
+    "infoFiltered": "(filtrert fra totalt _MAX_ oppføringer)",
+    "lengthMenu": "Vis _MENU_ oppføringer",
     "aria": {
-        "sortAscending": ": activate to sort column ascending",
-        "sortDescending": ": activate to sort column descending"
+        "sortAscending": ": aktiver for å sortere kolonnen stigende",
+        "sortDescending": ": aktiver for å sortere kolonnen synkende"
     }
 }

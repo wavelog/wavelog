@@ -1951,7 +1951,7 @@
 
 		// Frame the selection — on phones this centres on the 4-char square so
 		// the border arrows are in view; desktop fits the exact clicked cell.
-		zoomToGrid(lat, lng, cell);
+		if (map.getZoom() > (isMobile() ? 10 : 8)) { map.panTo([lat, lng]); } else { zoomToGrid(lat, lng, cell); }
 
 		let info = document.getElementById('glInfo');
 		let baseInfo = '<strong>' + loc + '</strong> &middot; ' + fmtLat(lat) + ', ' + fmtLng(lng);

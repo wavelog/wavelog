@@ -505,8 +505,7 @@ function echo_table_header_col($name) {
 							<th scope="row"><?= __("Confirmed"); ?></th>
 							<?php foreach ($dxcc_sections as $section) { ?>
 							<td>
-								<span title="<?= __("QSL Cards"); ?>" aria-label="<?= __("QSL Cards"); ?>: <?php echo $section['qsl']; ?>" data-bs-toggle="tooltip"><?php echo $section['qsl']; ?> <?php echo ($section['deleted_qsl'] > 0) ? "(".$section['deleted_qsl'].")" : ""; ?></span> /
-								<span title="<?= __("LoTW"); ?>" aria-label="<?= __("LoTW"); ?>: <?php echo $section['lotw']; ?>" data-bs-toggle="tooltip"><?php echo $section['lotw']; ?> <?php echo ($section['deleted_lotw'] > 0) ? "(".$section['deleted_lotw'].")" : ""; ?></span>
+								<span title="<?php echo __("QSL Cards").": ".$section['qsl']; echo ($section['deleted_qsl'] > 0) ? " (".$section['deleted_qsl'].")" : ""; echo "<br />"; echo __("LoTW").": ".$section['lotw']; echo ($section['deleted_lotw'] > 0) ? " (".$section['deleted_lotw'].")" : ""; ?>" aria-label="<?= __("QSL Cards"); ?> <?php echo $section['qsl']; ?>" data-bs-toggle="tooltip" data-bs-html="true"><?php echo $section['confirmed']; ?> <?php echo ($section['deleted_confirmed'] > 0) ? "(".$section['deleted_confirmed'].")" : ""; ?></span>
 							</td>
 							<?php } ?>
 						</tr>
@@ -514,6 +513,14 @@ function echo_table_header_col($name) {
 							<th scope="row"><?= __("Needed"); ?></th>
 							<?php foreach ($dxcc_sections as $section) { ?>
 							<td><?php echo $section['needed']; ?></td>
+							<?php } ?>
+						</tr>
+						<tr>
+							<th scope="row"><?= __("Awaiting Confirmation"); ?></th>
+							<?php foreach ($dxcc_sections as $section) { ?>
+							<td>
+								<span title="<?php echo __("QSL Cards").": ".($section['worked'] - $section['qsl']); echo "<br />"; echo __("LoTW").": ".($section['worked'] - $section['lotw']); ?>" aria-label="<?= __("Awaiting Confirmation"); ?> <?php echo $section['qsl']; ?>" data-bs-toggle="tooltip" data-bs-html="true"><?php echo ($section['worked'] - $section['confirmed']); ?></span>
+							</td>
 							<?php } ?>
 						</tr>
 					</tbody>

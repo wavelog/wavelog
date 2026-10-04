@@ -1372,7 +1372,7 @@
 								<div class="card-body">
 									<div class="mb-3">
 									<label><?= __("Private Feed Key"); ?></label>
-										<input class="form-control" type="text" name="user_hamsat_key" value="<?php if(isset($user_hamsat_key)) { echo $user_hamsat_key; } ?>" />
+										<input class="form-control" type="text" name="user_hamsat_key" value="<?php if(isset($user_hamsat_key)) { echo $user_hamsat_key; } ?>" pattern="^\s*([a-f0-9]{8}-)([a-f0-9]{4}-){3}()[a-f0-9]{12}\s*$" />
 										<small class="form-text text-muted"><?= sprintf(_pgettext("Hint for Hamsat API Key; uses Link", "See your profile at %s."), "<a href='https://hams.at/users/settings' target='_blank'>https://hams.at/users/settings</a>"); ?></small>
 									</div>
 									<?php if(!isset($user_hamsat_workable_only)) { $user_hamsat_workable_only='0'; }?>
