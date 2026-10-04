@@ -1880,7 +1880,7 @@ class Logbook_model extends CI_Model {
 			'COL_EQSL_QSLSDATE' => $eqslsdate,
 			'COL_EQSL_QSLRDATE' => $eqslrdate,
 			'COL_EQSL_QSL_SENT' => $this->input->post('eqsl_sent'),
-			'COL_EQSL_QSL_RCVD' => $this->input->post('eqsl_rcvd'),
+			'COL_EQSL_QSL_RCVD' => $eqsl_rcvd,
 			'COL_QSLMSG' => $this->input->post('qslmsg'),
 			'COL_QRZCOM_QSO_UPLOAD_DATE' => $qrzsdate,
 			'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qrzrdate,
