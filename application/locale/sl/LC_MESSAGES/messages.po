@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-02 08:48+0000\n"
+"POT-Creation-Date: 2026-10-04 13:14+0000\n"
 "PO-Revision-Date: 2026-06-09 21:07+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
@@ -128,8 +128,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Activatorsmap.php:12
 #: application/controllers/Adif.php:22
 #: application/controllers/Amsatstatus.php:8 application/controllers/Api.php:33
-#: application/controllers/Api.php:81 application/controllers/Api.php:120
-#: application/controllers/Api.php:154 application/controllers/Api_token.php:32
+#: application/controllers/Api.php:82 application/controllers/Api.php:121
+#: application/controllers/Api.php:155 application/controllers/Api_token.php:32
 #: application/controllers/Api_token.php:85
 #: application/controllers/Awards.php:19
 #: application/controllers/Azimuthal.php:8
@@ -172,9 +172,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
 #: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:169
 #: application/controllers/Eqsl.php:258 application/controllers/Eqsl.php:281
-#: application/controllers/Eqsl.php:319 application/controllers/Eqsl.php:521
-#: application/controllers/Eqsl.php:592 application/controllers/Eqsl.php:607
-#: application/controllers/Eqsl.php:665
+#: application/controllers/Eqsl.php:326 application/controllers/Eqsl.php:466
+#: application/controllers/Eqsl.php:537 application/controllers/Eqsl.php:552
+#: application/controllers/Eqsl.php:610
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -195,8 +195,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Qrz.php:28 application/controllers/Qrz.php:293
 #: application/controllers/Qrz.php:316 application/controllers/Qrz.php:380
 #: application/controllers/Qsl.php:11 application/controllers/Qsl.php:12
-#: application/controllers/Qsl.php:47 application/controllers/Qsl.php:54
-#: application/controllers/Qsl.php:82 application/controllers/Qsl.php:132
+#: application/controllers/Qsl.php:73 application/controllers/Qsl.php:80
+#: application/controllers/Qsl.php:108 application/controllers/Qsl.php:158
 #: application/controllers/Qslpostcard.php:15
 #: application/controllers/Qslprint.php:22
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
@@ -227,11 +227,11 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Update.php:28 application/controllers/User.php:15
 #: application/controllers/User.php:61 application/controllers/User.php:108
 #: application/controllers/User.php:125 application/controllers/User.php:148
-#: application/controllers/User.php:410 application/controllers/User.php:411
-#: application/controllers/User.php:1213 application/controllers/User.php:1231
-#: application/controllers/User.php:1277 application/controllers/User.php:1529
-#: application/controllers/User.php:1667 application/controllers/User.php:1887
-#: application/controllers/User.php:1903 application/controllers/User.php:1927
+#: application/controllers/User.php:418 application/controllers/User.php:419
+#: application/controllers/User.php:1221 application/controllers/User.php:1239
+#: application/controllers/User.php:1285 application/controllers/User.php:1537
+#: application/controllers/User.php:1675 application/controllers/User.php:1895
+#: application/controllers/User.php:1911 application/controllers/User.php:1935
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
 #: application/controllers/Webadif.php:10
@@ -420,51 +420,51 @@ msgstr ""
 msgid "AMSAT Satellite Status"
 msgstr ""
 
-#: application/controllers/Api.php:46
+#: application/controllers/Api.php:47
 msgid "API"
 msgstr "API"
 
-#: application/controllers/Api.php:89
+#: application/controllers/Api.php:90
 #: application/views/api/components/edit_legacy.php:26
 msgid "API Description"
 msgstr "Opis API"
 
-#: application/controllers/Api.php:90
+#: application/controllers/Api.php:91
 msgid "API Key is required. Do not change this field"
 msgstr "Zahtevan API Key. Ne spreminjaj tega polja"
 
-#: application/controllers/Api.php:95
+#: application/controllers/Api.php:96
 msgid "Edit API Description"
 msgstr "Uredi opis API"
 
-#: application/controllers/Api.php:105
+#: application/controllers/Api.php:106
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "Opis API Key %s je bil spremenjen."
 
-#: application/controllers/Api.php:115 application/controllers/Api.php:149
+#: application/controllers/Api.php:116 application/controllers/Api.php:150
 #: application/controllers/Api_token.php:27
 #: application/controllers/Api_token.php:80 application/controllers/Qso.php:626
 msgid "Invalid request method"
 msgstr "Nepravilna metoda zahtevka"
 
-#: application/controllers/Api.php:125
+#: application/controllers/Api.php:126
 msgid "Invalid API rights"
 msgstr "Neveljavni API pravice"
 
-#: application/controllers/Api.php:139
+#: application/controllers/Api.php:140
 msgid "API Key generated"
 msgstr "API Key je generiran"
 
-#: application/controllers/Api.php:141
+#: application/controllers/Api.php:142
 msgid "API Key could not be generated"
 msgstr "Ne morem generirati API Key"
 
-#: application/controllers/Api.php:158
+#: application/controllers/Api.php:159
 msgid "Invalid API Key"
 msgstr "Neveljaven API Key"
 
-#: application/controllers/Api.php:167
+#: application/controllers/Api.php:168
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API Key %s je bil zbrisan"
@@ -820,7 +820,7 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 
 #: application/controllers/Awards.php:1801
 #: application/views/interface_assets/header.php:206
-#: application/views/logbookadvanced/edit.php:256
+#: application/views/logbookadvanced/edit.php:255
 #: application/views/logbookadvanced/useroptions.php:250
 #: application/views/qso/edit_ajax.php:378 application/views/qso/index.php:349
 #: application/views/qso/index.php:633
@@ -1256,7 +1256,7 @@ msgid "Access denied"
 msgstr ""
 
 #: application/controllers/Contesting.php:1054
-#: application/controllers/User.php:1485
+#: application/controllers/User.php:1493
 msgid "Incorrect username or password!"
 msgstr "Napačno uporabniško ime ali geslo!"
 
@@ -1513,13 +1513,13 @@ msgstr "Uredi Cronjob"
 
 #: application/controllers/Cron.php:293 application/controllers/Cron.php:294
 #: application/views/cron/index.php:106 application/views/cron/index.php:108
-#: application/views/cron/index.php:110 application/views/debug/index.php:743
-#: application/views/debug/index.php:750 application/views/debug/index.php:756
-#: application/views/debug/index.php:762 application/views/debug/index.php:768
-#: application/views/debug/index.php:774 application/views/debug/index.php:780
-#: application/views/debug/index.php:786 application/views/debug/index.php:792
-#: application/views/debug/index.php:798 application/views/debug/index.php:804
-#: application/views/debug/index.php:810
+#: application/views/cron/index.php:110 application/views/debug/index.php:744
+#: application/views/debug/index.php:751 application/views/debug/index.php:757
+#: application/views/debug/index.php:763 application/views/debug/index.php:769
+#: application/views/debug/index.php:775 application/views/debug/index.php:781
+#: application/views/debug/index.php:787 application/views/debug/index.php:793
+#: application/views/debug/index.php:799 application/views/debug/index.php:805
+#: application/views/debug/index.php:811
 msgid "never"
 msgstr "nikoli"
 
@@ -1669,39 +1669,39 @@ msgstr "Ni najdenih profilov postaj za nalaganje v DCL"
 msgid "Key(s) Deleted."
 msgstr "Ključ(i) izbrisani."
 
-#: application/controllers/Debug.php:113
+#: application/controllers/Debug.php:114
 msgid "(empty)"
 msgstr "(prazno)"
 
-#: application/controllers/Debug.php:133
+#: application/controllers/Debug.php:134
 msgid "Debug"
 msgstr "Odpravljanje napak"
 
-#: application/controllers/Debug.php:184
+#: application/controllers/Debug.php:185
 msgid "Migrate data now"
 msgstr "Preseli podatke zdaj"
 
-#: application/controllers/Debug.php:187
+#: application/controllers/Debug.php:188
 msgid "Migration already done. Run again?"
 msgstr "Selitev je že končana. Želite znova zagnati?"
 
-#: application/controllers/Debug.php:191
+#: application/controllers/Debug.php:192
 msgid "No data to migrate"
 msgstr "Ni podatkov za selitev"
 
-#: application/controllers/Debug.php:195 application/controllers/Debug.php:200
+#: application/controllers/Debug.php:196 application/controllers/Debug.php:201
 msgid "No migration possible"
 msgstr "Selitev ni možna"
 
-#: application/controllers/Debug.php:265
+#: application/controllers/Debug.php:266
 msgid "Wavelog was updated successfully!"
 msgstr "Wavelog je bil uspešno posodobljen!"
 
-#: application/controllers/Debug.php:283
+#: application/controllers/Debug.php:284
 msgid "Selfupdate() not available. Check the Error Log."
 msgstr "Selfupdate() ni na voljo. Preverite dnevnik napak."
 
-#: application/controllers/Debug.php:342
+#: application/controllers/Debug.php:343
 msgid ""
 "File Migration was successful, but please check also manually. If everything "
 "seems right you can delete the folders 'assets/qslcard' and 'images/"
@@ -1711,7 +1711,7 @@ msgstr ""
 "vse v redu, lahko izbrišete mapi 'assets/qslcard' in 'images/"
 "eqsl_card_images'."
 
-#: application/controllers/Debug.php:345
+#: application/controllers/Debug.php:346
 msgid "File Migration failed. Please check the Error Log."
 msgstr "Selitev datotek ni uspela. Preverite dnevnik napak."
 
@@ -1763,7 +1763,7 @@ msgstr "DX koledar"
 msgid "eQSL Cards"
 msgstr "eQSL Cards"
 
-#: application/controllers/Eqsl.php:55
+#: application/controllers/Eqsl.php:55 application/controllers/Qsl.php:51
 #, php-format
 msgid "Showing %d to %d of %d entries"
 msgstr "Prikazanih je od %d do %d od %d vnosov"
@@ -1797,65 +1797,65 @@ msgstr "Napačno uporabniško ime/geslo za eQSL"
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "Ni takšnega vzdevka eQSL QTH: %s"
 
-#: application/controllers/Eqsl.php:335
+#: application/controllers/Eqsl.php:343
 msgid "QSO not found or not accessible"
 msgstr "QSO ni bilo mogoče najti ali ni dostopna"
 
-#: application/controllers/Eqsl.php:353
+#: application/controllers/Eqsl.php:361
 msgid "User not found"
 msgstr "Uporabnik ni bil najden"
 
-#: application/controllers/Eqsl.php:362
+#: application/controllers/Eqsl.php:370
 msgid "eQSL password not configured for this user"
 msgstr "Geslo eQSL ni konfigurirano za tega uporabnika"
 
-#: application/controllers/Eqsl.php:379
+#: application/controllers/Eqsl.php:387
 msgid "Failed to fetch eQSL image data"
 msgstr "Pridobivanje podatkov o sliki eQSL ni uspelo"
 
-#: application/controllers/Eqsl.php:398
+#: application/controllers/Eqsl.php:406
 msgid "eQSL image not available"
 msgstr "Slika eQSL ni na voljo"
 
-#: application/controllers/Eqsl.php:416
+#: application/controllers/Eqsl.php:424
 msgid "Failed to download eQSL image"
 msgstr "Prenos slike eQSL ni uspel"
 
-#: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:579
+#: application/controllers/Eqsl.php:434 application/controllers/Eqsl.php:524
 msgid "Not enough free disk space to store the eQSL card"
 msgstr ""
 
-#: application/controllers/Eqsl.php:450
+#: application/controllers/Eqsl.php:458
 msgid "Failed to load cached eQSL image"
 msgstr "Nalaganje predpomnjene slike eQSL ni uspelo"
 
-#: application/controllers/Eqsl.php:596
+#: application/controllers/Eqsl.php:541
 msgid "eQSL Tools"
 msgstr "Orodja eQSL"
 
-#: application/controllers/Eqsl.php:625
+#: application/controllers/Eqsl.php:570
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "Omejeno na prvih 150 QSO za to zahtevo. Prosimo, ponovite."
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:576
 msgid " / Errors: "
 msgstr " / Errors: "
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:576
 msgid "Successfully downloaded: "
 msgstr "Uspešno preneseno: "
 
-#: application/controllers/Eqsl.php:638
+#: application/controllers/Eqsl.php:583
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr ""
 "Dosežena je omejitev števila dostopov do eQSL. Pred ponovnim zagonom "
 "počakajte."
 
-#: application/controllers/Eqsl.php:650
+#: application/controllers/Eqsl.php:595
 msgid "eQSL Card Image Download"
 msgstr "Prenos slike kartice eQSL"
 
-#: application/controllers/Eqsl.php:673
+#: application/controllers/Eqsl.php:618
 msgid "All eQSLs marked as uploaded"
 msgstr "Vsi eQSL-ji so označeni kot naloženi"
 
@@ -1910,7 +1910,7 @@ msgid "User not found."
 msgstr "Uporabnik ni bil najden."
 
 #: application/controllers/Header_auth.php:114
-#: application/controllers/User.php:1475
+#: application/controllers/User.php:1483
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
@@ -2373,7 +2373,7 @@ msgstr "Vsa iskanja v Callbooku so bila neuspešna ali niso dala rezultatov."
 #: application/views/dbtools/checkresult.php:378
 #: application/views/dbtools/missinggridlist.php:46
 #: application/views/dbtools/showStateQsos.php:23
-#: application/views/debug/index.php:833
+#: application/views/debug/index.php:834
 #: application/views/distancerecords/index.php:23
 #: application/views/distances/index.php:66
 #: application/views/dxatlas/index.php:42
@@ -2400,7 +2400,7 @@ msgstr "Vsa iskanja v Callbooku so bila neuspešna ali niso dala rezultatov."
 #: application/views/oqrs/showrequests.php:94
 #: application/views/public_search/result.php:15
 #: application/views/qslcard/confirmationresult.php:17
-#: application/views/qslcard/index.php:44
+#: application/views/qslcard/index.php:34
 #: application/views/qslcard/searchresult.php:12
 #: application/views/qslcard/searchresult.php:28
 #: application/views/qslcard/searchresult.php:44
@@ -2665,7 +2665,7 @@ msgstr "Razdalja"
 #: application/views/dbtools/checkresult.php:377
 #: application/views/dbtools/missinggridlist.php:47
 #: application/views/dbtools/showStateQsos.php:24
-#: application/views/debug/index.php:834 application/views/dxatlas/index.php:31
+#: application/views/debug/index.php:835 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
 #: application/views/eqslcard/index.php:36
 #: application/views/gridmap/index.php:78 application/views/kml/index.php:19
@@ -2686,7 +2686,7 @@ msgstr "Razdalja"
 #: application/views/oqrs/showrequests.php:93
 #: application/views/public_search/result.php:16
 #: application/views/qslcard/confirmationresult.php:18
-#: application/views/qslcard/index.php:47
+#: application/views/qslcard/index.php:37
 #: application/views/qslcard/searchresult.php:21
 #: application/views/qslcard/searchresult.php:37
 #: application/views/qslcard/searchresult.php:39
@@ -3024,7 +3024,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:109
-#: application/models/Logbook_model.php:1553
+#: application/models/Logbook_model.php:1556
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -3281,7 +3281,7 @@ msgstr "Uvoz QRZ QSL"
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF Informacije"
 
-#: application/controllers/Qsl.php:24
+#: application/controllers/Qsl.php:41
 #: application/views/dashboard/_options_menu.php:17
 #: application/views/dashboard/index.php:508
 #: application/views/dashboard/index.php:522
@@ -3293,15 +3293,15 @@ msgstr "QRZ ADIF Informacije"
 msgid "QSL Cards"
 msgstr "QSL kartice"
 
-#: application/controllers/Qsl.php:39
+#: application/controllers/Qsl.php:65
 msgid "Upload QSL Cards"
 msgstr "Naloži QSL kartice"
 
-#: application/controllers/Qsl.php:95 application/controllers/Qsl.php:144
+#: application/controllers/Qsl.php:121 application/controllers/Qsl.php:170
 msgid "Not enough free disk space to store the QSL card."
 msgstr ""
 
-#: application/controllers/Qsl.php:112 application/controllers/Qsl.php:161
+#: application/controllers/Qsl.php:138 application/controllers/Qsl.php:187
 #: application/controllers/Qslpostcard.php:89
 msgid "The uploaded file is not a valid image."
 msgstr ""
@@ -3416,7 +3416,7 @@ msgstr "Možnosti"
 #: application/controllers/Radio.php:60
 #: application/views/contesting/logger/components/winkeyer.php:52
 #: application/views/contesting/logger/index.php:128
-#: application/views/debug/index.php:411 application/views/qso/index.php:831
+#: application/views/debug/index.php:412 application/views/qso/index.php:831
 #: application/views/satellite/pass.php:119
 msgid "Settings"
 msgstr "Nastavitve"
@@ -3446,7 +3446,7 @@ msgstr "nazadnje posodobljeno"
 #: application/controllers/Stationsetup.php:401
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
 #: application/views/club/permissions.php:313
-#: application/views/contest_admin/add.php:68
+#: application/views/contest_admin/add.php:69
 #: application/views/contesting/logger/components/qso-form.php:39
 #: application/views/contesting/manager/index.php:72
 #: application/views/cron/index.php:80
@@ -3471,7 +3471,7 @@ msgstr "Uredi"
 #: application/views/club/permissions.php:370
 #: application/views/club/permissions.php:392
 #: application/views/club/permissions.php:453
-#: application/views/contest_admin/add.php:71
+#: application/views/contest_admin/add.php:73
 #: application/views/contesting/logger/components/qso-form.php:40
 #: application/views/contesting/manager/index.php:79
 #: application/views/interface_assets/footer.php:72
@@ -3486,8 +3486,7 @@ msgstr "Uredi"
 #: application/views/lotw_views/index.php:143
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:80
-#: application/views/qslcard/index.php:80
-#: application/views/qslcard/index.php:129
+#: application/views/qslcard/index.php:70
 #: application/views/qslpostcard/designer.php:321
 #: application/views/qslpostcard/designer.php:360
 #: application/views/satellite/edit.php:57
@@ -3652,7 +3651,7 @@ msgstr "Ustvari lokacijo postaje"
 
 #: application/controllers/Station.php:74
 #: application/controllers/Station.php:99 application/controllers/User.php:270
-#: application/controllers/User.php:1037 application/controllers/User.php:1249
+#: application/controllers/User.php:1045 application/controllers/User.php:1257
 msgid "Invalid security token"
 msgstr "Neveljaven varnostni žeton"
 
@@ -3670,7 +3669,7 @@ msgid "Duplicate Station Location:"
 msgstr "Podvojena lokacija postaje:"
 
 #: application/controllers/Station.php:236
-#: application/controllers/User.php:1550 application/controllers/User.php:1803
+#: application/controllers/User.php:1558 application/controllers/User.php:1811
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "Preverite vrednost UL lokatorja (%s)"
@@ -3733,7 +3732,7 @@ msgid "Error. Link is already in use!"
 msgstr "Napaka. Povezava je že v uporabi!"
 
 #: application/controllers/Stationsetup.php:278
-#: application/views/debug/index.php:907
+#: application/views/debug/index.php:908
 #: application/views/options/appearance.php:31
 #: application/views/options/appearance.php:40
 #: application/views/options/appearance.php:49
@@ -4115,64 +4114,64 @@ msgstr "Uporabnik %s je bil dodan!"
 msgid "Users"
 msgstr "Uporabniki"
 
-#: application/controllers/User.php:468
+#: application/controllers/User.php:476
 msgid "Can't be changed. Manage this through your Identity Provider."
 msgstr "Ni mogoče spremeniti. To lahko uredite prek ponudnika identitete."
 
-#: application/controllers/User.php:471
+#: application/controllers/User.php:479
 #: application/views/club/permissions.php:318
 msgid "Edit User"
 msgstr "Uredi uporabnika"
 
-#: application/controllers/User.php:1142 application/controllers/User.php:1145
+#: application/controllers/User.php:1150 application/controllers/User.php:1153
 #, php-format
 msgid "User %s edited"
 msgstr "Uporabnik %s je urejen"
 
-#: application/controllers/User.php:1216
+#: application/controllers/User.php:1224
 msgid "Profile"
 msgstr "Profil"
 
-#: application/controllers/User.php:1239
+#: application/controllers/User.php:1247
 #: application/views/club/permissions.php:375
 msgid "Delete User"
 msgstr "Izbriši uporabnika"
 
-#: application/controllers/User.php:1255
+#: application/controllers/User.php:1263
 msgid "User deleted"
 msgstr "Uporabnik izbrisan"
 
-#: application/controllers/User.php:1258
+#: application/controllers/User.php:1266
 msgid "Could not delete user!"
 msgstr "Uporabnika ni bilo mogoče izbrisati!"
 
-#: application/controllers/User.php:1258
+#: application/controllers/User.php:1266
 msgid "Database error:"
 msgstr "Napaka v zbirki podatkov:"
 
-#: application/controllers/User.php:1332
+#: application/controllers/User.php:1340
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
 msgstr ""
 "Čestitamo! Wavelog je bil uspešno nameščen. Zdaj se lahko prvič prijavite."
 
-#: application/controllers/User.php:1370
+#: application/controllers/User.php:1378
 msgid "This is not allowed!"
 msgstr "To ni dovoljeno!"
 
-#: application/controllers/User.php:1407 application/controllers/User.php:1420
+#: application/controllers/User.php:1415 application/controllers/User.php:1428
 msgid "Login failed. Try again."
 msgstr "Prijava ni uspela. Poskusite znova."
 
-#: application/controllers/User.php:1428
+#: application/controllers/User.php:1436
 #: application/views/interface_assets/header.php:439
 #: application/views/user/login.php:80
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Prijava"
 
-#: application/controllers/User.php:1478
+#: application/controllers/User.php:1486
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
@@ -4180,7 +4179,7 @@ msgstr ""
 "Vaš račun je zaklenjen zaradi preveč neuspelih poskusov prijave. Prosimo, "
 "ponastavite geslo."
 
-#: application/controllers/User.php:1482
+#: application/controllers/User.php:1490
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -4190,18 +4189,18 @@ msgstr ""
 "nepričakovano pojavi ali se nenehno pojavlja, se obrnite na skrbnika. "
 "Trenutno se lahko prijavijo samo skrbniki."
 
-#: application/controllers/User.php:1509
+#: application/controllers/User.php:1517
 #, php-format
 msgid "User %s logged out."
 msgstr "Uporabnik %s se je odjavil."
 
-#: application/controllers/User.php:1532
+#: application/controllers/User.php:1540
 #: application/views/oqrs/request_grouped.php:19
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "Ime postaje"
 
-#: application/controllers/User.php:1533 application/views/debug/index.php:835
+#: application/controllers/User.php:1541 application/views/debug/index.php:836
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:60
 #: application/views/station_profile/edit.php:77
@@ -4211,27 +4210,27 @@ msgstr "Ime postaje"
 msgid "Station Callsign"
 msgstr "Klicni znak postaje"
 
-#: application/controllers/User.php:1534
+#: application/controllers/User.php:1542
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:99
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "DXCC postaje"
 
-#: application/controllers/User.php:1535
+#: application/controllers/User.php:1543
 msgid "Station CQ Zone"
 msgstr "CQ zona postaje"
 
-#: application/controllers/User.php:1536
+#: application/controllers/User.php:1544
 msgid "Station ITU Zone"
 msgstr "ITU zona postaje"
 
-#: application/controllers/User.php:1537
+#: application/controllers/User.php:1545
 #: application/views/user/modals/first_login_wizard.php:93
 msgid "Station Locator"
 msgstr "Lokator postaje"
 
-#: application/controllers/User.php:1558
+#: application/controllers/User.php:1566
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -4240,35 +4239,35 @@ msgstr ""
 "Postaja uspešno ustvarjena! Dobrodošli v Wavelogu! Za dokončanje nastavitve "
 "postaje kliknite %stukaj%s."
 
-#: application/controllers/User.php:1561
+#: application/controllers/User.php:1569
 msgid "Station setup failed! Please set up your station manually."
 msgstr "Nastavitev postaje ni uspela! Postajo nastavite ročno."
 
-#: application/controllers/User.php:1578
+#: application/controllers/User.php:1586
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Ponastavitev gesla je v demo načinu onemogočena!"
 
-#: application/controllers/User.php:1592
+#: application/controllers/User.php:1600
 msgid "Forgot Password"
 msgstr "Pozabljeno geslo"
 
-#: application/controllers/User.php:1642
+#: application/controllers/User.php:1650
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "Nastavitve e-pošte so napačne."
 
-#: application/controllers/User.php:1646 application/controllers/User.php:1651
+#: application/controllers/User.php:1654 application/controllers/User.php:1659
 msgid "Password Reset Processed."
 msgstr "Ponastavitev gesla obdelana."
 
-#: application/controllers/User.php:1757
+#: application/controllers/User.php:1765
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Ponastavi geslo"
 
-#: application/controllers/User.php:1777
+#: application/controllers/User.php:1785
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
@@ -4276,7 +4275,7 @@ msgstr ""
 "Računa ni bilo mogoče nastaviti za to uporabniško ime. Poskusite z drugim, "
 "ne z \"%s\"."
 
-#: application/controllers/User.php:1786
+#: application/controllers/User.php:1794
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
@@ -4284,7 +4283,7 @@ msgstr ""
 "Računa ni bilo mogoče nastaviti za ta e-poštni naslov. Poskusite z drugim "
 "naslovom, ne z \"%s\"."
 
-#: application/controllers/User.php:1825
+#: application/controllers/User.php:1833
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -4293,7 +4292,7 @@ msgstr ""
 "Trenutno se ne morete izdajati za drugega uporabnika. V datoteki config.php "
 "morate nastaviti %s na %s!"
 
-#: application/controllers/User.php:1836
+#: application/controllers/User.php:1844
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -4302,15 +4301,15 @@ msgstr ""
 "Trenutno se ne morete izdajati za drugega uporabnika. Najprej spremenite "
 "šifrirni ključ v datoteki config.php!"
 
-#: application/controllers/User.php:1843
+#: application/controllers/User.php:1851
 msgid "Invalid Hash"
 msgstr "Neveljavna zgoščena vrednost"
 
-#: application/controllers/User.php:1856
+#: application/controllers/User.php:1864
 msgid "The impersonation hash is too old. Please try again."
 msgstr "Zgoščena vrednost za poosebljanje je prestara. Poskusite znova."
 
-#: application/controllers/User.php:1863
+#: application/controllers/User.php:1871
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -4318,15 +4317,15 @@ msgstr ""
 "Ne morete se izdajati za drugega uporabnika, če niste prijavljeni kot "
 "izvorni uporabnik"
 
-#: application/controllers/User.php:1869
+#: application/controllers/User.php:1877
 msgid "There was a problem with your session. Please try again."
 msgstr "Prišlo je do težave z vašo sejo. Poskusite znova."
 
-#: application/controllers/User.php:1876
+#: application/controllers/User.php:1884
 msgid "The requested user to impersonate does not exist"
 msgstr "Zahtevani uporabnik za predstavljanje ne obstaja"
 
-#: application/controllers/User.php:1897
+#: application/controllers/User.php:1905
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -4334,13 +4333,13 @@ msgstr ""
 "Ni bilo mogoče določiti pravilne ravni dovoljenj za clubstation. Poskusite "
 "znova po ponovni prijavi."
 
-#: application/controllers/User.php:1938 application/controllers/User.php:1950
-#: application/controllers/User.php:1956 application/controllers/User.php:1965
-#: application/controllers/User.php:1973
+#: application/controllers/User.php:1946 application/controllers/User.php:1958
+#: application/controllers/User.php:1964 application/controllers/User.php:1973
+#: application/controllers/User.php:1981
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "Ups ... Nekaj je šlo narobe. Poskusite se znova prijaviti."
 
-#: application/controllers/User.php:1979
+#: application/controllers/User.php:1987
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -4348,7 +4347,7 @@ msgstr ""
 "Možnost hitre vrnitve je bila onemogočena po izteku varnostne zgoščene "
 "vrednosti. Prosimo, prijavite se znova."
 
-#: application/controllers/User.php:1995
+#: application/controllers/User.php:2003
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -4959,7 +4958,7 @@ msgstr "Neveljavna raven dovoljenja!"
 msgid "Error adding Club Member!"
 msgstr "Napaka pri dodajanju člana kluba!"
 
-#: application/models/Club_model.php:333 application/views/api/index.php:68
+#: application/models/Club_model.php:338 application/views/api/index.php:68
 #: application/views/contesting/logger/components/qso-form.php:35
 #: application/views/satellite/index.php:94
 #: application/views/satellite/satinfo.php:51
@@ -5141,34 +5140,34 @@ msgstr ""
 msgid "Imported label type"
 msgstr ""
 
-#: application/models/Logbook_model.php:370
+#: application/models/Logbook_model.php:371
 msgid "Station not accessible"
 msgstr "Postaja ni dostopna"
 
-#: application/models/Logbook_model.php:1006
+#: application/models/Logbook_model.php:1007
 msgid "Realtime upload disabled"
 msgstr ""
 
-#: application/models/Logbook_model.php:1543
+#: application/models/Logbook_model.php:1546
 msgid "Station ID not allowed"
 msgstr "ID postaje ni dovoljen"
 
-#: application/models/Logbook_model.php:1548
+#: application/models/Logbook_model.php:1551
 msgid "No Call given"
 msgstr "Ni podanega pozivnega znaka"
 
-#: application/models/Logbook_model.php:1624
-#: application/models/Logbook_model.php:1842
+#: application/models/Logbook_model.php:1627
+#: application/models/Logbook_model.php:1846
 msgid "DXCC has to be Numeric"
 msgstr "DXCC mora biti numeričen"
 
-#: application/models/Logbook_model.php:5120
+#: application/models/Logbook_model.php:5124
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Različen klicni znak postaje %s med uvozom QSO z %s za %s: PRESKOČENO"
 
-#: application/models/Logbook_model.php:5128
+#: application/models/Logbook_model.php:5132
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5176,7 +5175,7 @@ msgid ""
 msgstr ""
 "Različen lokator %s med uvozom QSO z %s za lokator postaje %s: PRESKOČENO"
 
-#: application/models/Logbook_model.php:5144
+#: application/models/Logbook_model.php:5148
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5184,28 +5183,28 @@ msgstr ""
 "Poskušali ste uvoziti QSO brez veljavnega datuma. Ta QSO ni bila uvožena. Je "
 "neveljavna"
 
-#: application/models/Logbook_model.php:5154
+#: application/models/Logbook_model.php:5158
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
 msgstr ""
 
-#: application/models/Logbook_model.php:5161
+#: application/models/Logbook_model.php:5165
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5231
+#: application/models/Logbook_model.php:5235
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
 msgstr ""
 
-#: application/models/Logbook_model.php:5238
+#: application/models/Logbook_model.php:5242
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5214,63 +5213,63 @@ msgstr ""
 "Zveza na %s: Poskušali ste uvoziti QSO brez podanega banda. Ta QSO ni bila "
 "uvožena. Je neveljavna"
 
-#: application/models/Logbook_model.php:5513
+#: application/models/Logbook_model.php:5517
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate je napačen (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5524
+#: application/models/Logbook_model.php:5528
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate je napačen (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5585
+#: application/models/Logbook_model.php:5591
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date je napačen (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5961
+#: application/models/Logbook_model.php:5967
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Dvojnik za"
 
-#: application/models/Logbook_model.php:6028
-#: application/models/Logbook_model.php:6128
+#: application/models/Logbook_model.php:6034
+#: application/models/Logbook_model.php:6134
 msgid "QSO could not be matched"
 msgstr "QSO ni bilo mogoče najti"
 
-#: application/models/Logbook_model.php:6036
+#: application/models/Logbook_model.php:6042
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potrjeno od LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:6042
+#: application/models/Logbook_model.php:6048
 msgid "confirmed by award manager"
 msgstr "potrjeno od award managerja"
 
-#: application/models/Logbook_model.php:6046
+#: application/models/Logbook_model.php:6052
 msgid "confirmed by cross-check of DCL data"
 msgstr "potrjeno z navzkrižnim preverjanjem podatkov DCL"
 
-#: application/models/Logbook_model.php:6050
+#: application/models/Logbook_model.php:6056
 msgid "confirmation pending"
 msgstr "potrditev čaka na"
 
-#: application/models/Logbook_model.php:6053
+#: application/models/Logbook_model.php:6059
 msgid "unconfirmed"
 msgstr "nepotrjeno"
 
-#: application/models/Logbook_model.php:6056
+#: application/models/Logbook_model.php:6062
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "neznano"
 
-#: application/models/Logbook_model.php:6131
+#: application/models/Logbook_model.php:6137
 msgid "POTA reference already in log"
 msgstr "Referenca POTA je že v dnevniku"
 
-#: application/models/Logbook_model.php:6134
+#: application/models/Logbook_model.php:6140
 msgid "QSO updated"
 msgstr "QSO posodobljena"
 
-#: application/models/Logbook_model.php:6555
+#: application/models/Logbook_model.php:6561
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5638,8 +5637,8 @@ msgstr "Vse razen SAT"
 #: application/views/countqsoby/index.php:147
 #: application/views/distances/index.php:61
 #: application/views/gridmap/index.php:95
-#: application/views/logbookadvanced/edit.php:221
-#: application/views/logbookadvanced/edit.php:229
+#: application/views/logbookadvanced/edit.php:220
+#: application/views/logbookadvanced/edit.php:228
 #: application/views/logbookadvanced/index.php:528
 #: application/views/timeline/index.php:91
 msgid "None/Empty"
@@ -6238,7 +6237,7 @@ msgstr "Ničesar nisem našel!"
 #: application/views/map/qso_map.php:30 application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:15
 #: application/views/qslcard/confirmationresult.php:15
-#: application/views/qslcard/index.php:43
+#: application/views/qslcard/index.php:33
 #: application/views/qslcard/searchform.php:3
 #: application/views/qslprint/index.php:38
 #: application/views/qslprint/qslprint.php:34
@@ -6343,7 +6342,7 @@ msgstr ""
 #: application/views/dashboard/index.php:339
 #: application/views/dbtools/checkresult.php:229
 #: application/views/dbtools/checkresult.php:305
-#: application/views/debug/index.php:830
+#: application/views/debug/index.php:831
 #: application/views/distancerecords/index.php:20
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
@@ -6355,7 +6354,7 @@ msgstr ""
 #: application/views/oqrs/qsolist.php:7 application/views/oqrs/request.php:17
 #: application/views/oqrs/request_grouped.php:11
 #: application/views/public_search/result.php:13
-#: application/views/qslcard/index.php:45
+#: application/views/qslcard/index.php:35
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:35
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:158
@@ -6392,13 +6391,13 @@ msgstr "Datum"
 #: application/views/dashboard/index.php:341
 #: application/views/dbtools/checkresult.php:230
 #: application/views/dbtools/checkresult.php:306
-#: application/views/debug/index.php:831
+#: application/views/debug/index.php:832
 #: application/views/distancerecords/index.php:21
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:35
 #: application/views/hamsat/index.php:36 application/views/oqrs/qsolist.php:8
-#: application/views/qslcard/index.php:46
+#: application/views/qslcard/index.php:36
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:36
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:199
@@ -6422,7 +6421,7 @@ msgstr "Čas"
 #: application/views/dbtools/missinggridlist.php:44
 #: application/views/dbtools/showStateQsos.php:21
 #: application/views/dcl_views/key_import.php:45
-#: application/views/debug/index.php:832 application/views/debug/index.php:867
+#: application/views/debug/index.php:833 application/views/debug/index.php:868
 #: application/views/dxcalendar/index.php:17
 #: application/views/eqsl/analysis.php:38
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
@@ -6494,8 +6493,8 @@ msgstr "Največja velikost datoteke za nalaganje je "
 #: application/views/adif/import.php:98 application/views/adif/import.php:375
 #: application/views/clublog/export.php:70
 #: application/views/contesting/logger/index.php:59
-#: application/views/debug/index.php:253 application/views/debug/index.php:270
-#: application/views/debug/index.php:822 application/views/hrdlog/export.php:25
+#: application/views/debug/index.php:254 application/views/debug/index.php:271
+#: application/views/debug/index.php:823 application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:38
 #: application/views/notes/add.php:23 application/views/notes/edit.php:29
@@ -7268,7 +7267,7 @@ msgstr ""
 #: application/views/api/components/new_token_modal.php:17
 #: application/views/api/index.php:19 application/views/api/index.php:54
 #: application/views/api/index.php:125 application/views/cron/index.php:36
-#: application/views/debug/index.php:60
+#: application/views/debug/index.php:61
 #: application/views/qso/components/share_modal.php:19
 msgid "Copy to clipboard"
 msgstr "Kopiraj v odložišče"
@@ -8664,7 +8663,7 @@ msgstr "Vključi izbrisane"
 #: application/views/awards/wpx/index.php:60
 #: application/views/bandmap/list.php:348
 #: application/views/bandmap/list.php:362
-#: application/views/logbookadvanced/edit.php:231
+#: application/views/logbookadvanced/edit.php:230
 #: application/views/logbookadvanced/index.php:530
 #: application/views/lookup/index.php:60
 #: application/views/options/dxcluster.php:29
@@ -8678,7 +8677,7 @@ msgstr "Antarktika"
 #: application/views/awards/wpx/index.php:61
 #: application/views/bandmap/list.php:347
 #: application/views/bandmap/list.php:361
-#: application/views/logbookadvanced/edit.php:230
+#: application/views/logbookadvanced/edit.php:229
 #: application/views/logbookadvanced/index.php:529
 #: application/views/lookup/index.php:59
 #: application/views/options/dxcluster.php:28
@@ -8692,7 +8691,7 @@ msgstr "Afrika"
 #: application/views/awards/wpx/index.php:62
 #: application/views/bandmap/list.php:349
 #: application/views/bandmap/list.php:363
-#: application/views/logbookadvanced/edit.php:233
+#: application/views/logbookadvanced/edit.php:232
 #: application/views/logbookadvanced/index.php:532
 #: application/views/lookup/index.php:62
 #: application/views/options/dxcluster.php:30
@@ -8706,7 +8705,7 @@ msgstr "Azija"
 #: application/views/awards/wpx/index.php:63
 #: application/views/bandmap/list.php:350
 #: application/views/bandmap/list.php:364
-#: application/views/logbookadvanced/edit.php:234
+#: application/views/logbookadvanced/edit.php:233
 #: application/views/logbookadvanced/index.php:533
 #: application/views/lookup/index.php:63
 #: application/views/options/dxcluster.php:31
@@ -8720,7 +8719,7 @@ msgstr "Evropa"
 #: application/views/awards/wpx/index.php:64
 #: application/views/bandmap/list.php:351
 #: application/views/bandmap/list.php:365
-#: application/views/logbookadvanced/edit.php:232
+#: application/views/logbookadvanced/edit.php:231
 #: application/views/logbookadvanced/index.php:531
 #: application/views/lookup/index.php:61
 #: application/views/options/dxcluster.php:32
@@ -8734,7 +8733,7 @@ msgstr "Severna Amerika"
 #: application/views/awards/wpx/index.php:65
 #: application/views/bandmap/list.php:353
 #: application/views/bandmap/list.php:367
-#: application/views/logbookadvanced/edit.php:235
+#: application/views/logbookadvanced/edit.php:234
 #: application/views/logbookadvanced/index.php:534
 #: application/views/lookup/index.php:64
 #: application/views/options/dxcluster.php:34
@@ -8748,7 +8747,7 @@ msgstr "Južna Amerika"
 #: application/views/awards/wpx/index.php:66
 #: application/views/bandmap/list.php:352
 #: application/views/bandmap/list.php:366
-#: application/views/logbookadvanced/edit.php:236
+#: application/views/logbookadvanced/edit.php:235
 #: application/views/logbookadvanced/index.php:535
 #: application/views/lookup/index.php:65
 #: application/views/options/dxcluster.php:33
@@ -8793,7 +8792,7 @@ msgstr "Podatki o celini niso na voljo."
 
 #: application/views/awards/dxcc/index.php:422
 #: application/views/contesting/logger/components/scp.php:52
-#: application/views/debug/index.php:176
+#: application/views/debug/index.php:177
 msgid "Loading..."
 msgstr "Nalagam..."
 
@@ -9841,16 +9840,16 @@ msgstr "WAB Square"
 #: application/views/lookup/lotwuser.php:14
 #: application/views/qso/edit_ajax.php:429
 #: application/views/qso/edit_ajax.php:462
-#: application/views/qso/edit_ajax.php:490
-#: application/views/qso/edit_ajax.php:503
-#: application/views/qso/edit_ajax.php:535
-#: application/views/qso/edit_ajax.php:548
-#: application/views/qso/edit_ajax.php:564
-#: application/views/qso/edit_ajax.php:578
-#: application/views/qso/edit_ajax.php:592
-#: application/views/qso/edit_ajax.php:604
-#: application/views/qso/edit_ajax.php:618
-#: application/views/qso/edit_ajax.php:630 application/views/qso/index.php:711
+#: application/views/qso/edit_ajax.php:489
+#: application/views/qso/edit_ajax.php:502
+#: application/views/qso/edit_ajax.php:533
+#: application/views/qso/edit_ajax.php:546
+#: application/views/qso/edit_ajax.php:561
+#: application/views/qso/edit_ajax.php:575
+#: application/views/qso/edit_ajax.php:588
+#: application/views/qso/edit_ajax.php:600
+#: application/views/qso/edit_ajax.php:613
+#: application/views/qso/edit_ajax.php:625 application/views/qso/index.php:711
 #: application/views/satellite/create.php:76
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
@@ -12278,7 +12277,7 @@ msgstr "Ime ADIF"
 #: application/views/contest_admin/add.php:53
 #: application/views/contest_admin/edit.php:43
 #: application/views/contest_admin/edit.php:46
-#: application/views/debug/index.php:514 application/views/debug/index.php:525
+#: application/views/debug/index.php:515 application/views/debug/index.php:526
 #: application/views/interface_assets/header.php:660
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
@@ -12296,7 +12295,7 @@ msgid "Not Active"
 msgstr "Neaktivno"
 
 #: application/views/contest_admin/add.php:49
-#: application/views/contest_admin/add.php:58
+#: application/views/contest_admin/add.php:59
 #: application/views/mode/index.php:7 application/views/mode/index.php:60
 #: application/views/usermode/index.php:5
 #: application/views/usermode/index.php:56
@@ -12304,26 +12303,26 @@ msgid "Activate"
 msgstr "Aktiviraj"
 
 #: application/views/contest_admin/add.php:51
-#: application/views/contest_admin/add.php:56
+#: application/views/contest_admin/add.php:57
 #: application/views/mode/index.php:6 application/views/mode/index.php:58
 #: application/views/usermode/index.php:4
 #: application/views/usermode/index.php:54
 msgid "Deactivate"
 msgstr "Deaktiviraj"
 
-#: application/views/contest_admin/add.php:63
+#: application/views/contest_admin/add.php:64
 msgid "DANGER!"
 msgstr "NEVARNOST!"
 
-#: application/views/contest_admin/add.php:64
+#: application/views/contest_admin/add.php:65
 msgid "Warning! Are you sure you want to delete the following contest: "
 msgstr "Opozorilo! Ste prepričani, da želite izbrisati naslednje tekmovanje: "
 
-#: application/views/contest_admin/add.php:65
+#: application/views/contest_admin/add.php:66
 msgid "Warning! Are you sure you want to activate all contests?"
 msgstr "Opozorilo! Ste prepričani, da želite aktivirati vsa tekmovanja?"
 
-#: application/views/contest_admin/add.php:66
+#: application/views/contest_admin/add.php:67
 msgid "Warning! Are you sure you want to deactivate all contests?"
 msgstr "Opozorilo! Ste prepričani, da želite deaktivirati vsa tekmovanja?"
 
@@ -12345,7 +12344,7 @@ msgstr "Ustvari"
 
 #: application/views/contest_admin/edit.php:31
 #: application/views/contesting/manager/components/session_modal.php:23
-#: application/views/qso/edit_ajax.php:677
+#: application/views/qso/edit_ajax.php:671
 #: application/views/view_log/qso.php:329
 msgid "Contest Name"
 msgstr "Ime tekmovanja"
@@ -12827,9 +12826,9 @@ msgid "Unknown error"
 msgstr ""
 
 #: application/views/contesting/logger/index.php:60
-#: application/views/debug/index.php:190 application/views/debug/index.php:201
-#: application/views/debug/index.php:212 application/views/debug/index.php:223
-#: application/views/debug/index.php:235
+#: application/views/debug/index.php:191 application/views/debug/index.php:202
+#: application/views/debug/index.php:213 application/views/debug/index.php:224
+#: application/views/debug/index.php:236
 #: application/views/interface_assets/footer.php:39
 #: application/views/labeldesigner/designer.php:59
 #: application/views/qslpostcard/designer.php:46
@@ -13325,16 +13324,16 @@ msgstr ""
 #: application/views/lookup/lotwuser.php:12
 #: application/views/qso/edit_ajax.php:430
 #: application/views/qso/edit_ajax.php:463
-#: application/views/qso/edit_ajax.php:491
-#: application/views/qso/edit_ajax.php:504
-#: application/views/qso/edit_ajax.php:536
-#: application/views/qso/edit_ajax.php:549
-#: application/views/qso/edit_ajax.php:565
-#: application/views/qso/edit_ajax.php:579
-#: application/views/qso/edit_ajax.php:593
-#: application/views/qso/edit_ajax.php:605
-#: application/views/qso/edit_ajax.php:619
-#: application/views/qso/edit_ajax.php:631 application/views/qso/index.php:712
+#: application/views/qso/edit_ajax.php:490
+#: application/views/qso/edit_ajax.php:503
+#: application/views/qso/edit_ajax.php:534
+#: application/views/qso/edit_ajax.php:547
+#: application/views/qso/edit_ajax.php:562
+#: application/views/qso/edit_ajax.php:576
+#: application/views/qso/edit_ajax.php:589
+#: application/views/qso/edit_ajax.php:601
+#: application/views/qso/edit_ajax.php:614
+#: application/views/qso/edit_ajax.php:626 application/views/qso/index.php:712
 #: application/views/satellite/create.php:75
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
@@ -14167,11 +14166,11 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:164
 #: application/views/qslprint/qsolist.php:193
 #: application/views/qso/edit_ajax.php:426
-#: application/views/qso/edit_ajax.php:487
-#: application/views/qso/edit_ajax.php:532
-#: application/views/qso/edit_ajax.php:561
-#: application/views/qso/edit_ajax.php:589
-#: application/views/qso/edit_ajax.php:615 application/views/qso/index.php:708
+#: application/views/qso/edit_ajax.php:486
+#: application/views/qso/edit_ajax.php:530
+#: application/views/qso/edit_ajax.php:558
+#: application/views/qso/edit_ajax.php:585
+#: application/views/qso/edit_ajax.php:610 application/views/qso/index.php:708
 #: application/views/search/search_result_ajax.php:183
 #: application/views/search/search_result_ajax.php:263
 #: application/views/search/search_result_ajax.php:301
@@ -14205,11 +14204,11 @@ msgstr "Poslano"
 #: application/views/qslprint/qsolist.php:177
 #: application/views/qslprint/qsolist.php:208
 #: application/views/qso/edit_ajax.php:459
-#: application/views/qso/edit_ajax.php:500
-#: application/views/qso/edit_ajax.php:545
-#: application/views/qso/edit_ajax.php:575
-#: application/views/qso/edit_ajax.php:601
-#: application/views/qso/edit_ajax.php:627
+#: application/views/qso/edit_ajax.php:499
+#: application/views/qso/edit_ajax.php:543
+#: application/views/qso/edit_ajax.php:572
+#: application/views/qso/edit_ajax.php:597
+#: application/views/qso/edit_ajax.php:622
 #: application/views/search/search_result_ajax.php:225
 #: application/views/search/search_result_ajax.php:276
 #: application/views/search/search_result_ajax.php:316
@@ -14248,16 +14247,16 @@ msgstr "Prejeto"
 #: application/views/qslprint/qsolist.php:132
 #: application/views/qso/edit_ajax.php:431
 #: application/views/qso/edit_ajax.php:464
-#: application/views/qso/edit_ajax.php:492
-#: application/views/qso/edit_ajax.php:505
-#: application/views/qso/edit_ajax.php:537
-#: application/views/qso/edit_ajax.php:550
-#: application/views/qso/edit_ajax.php:566
-#: application/views/qso/edit_ajax.php:580
-#: application/views/qso/edit_ajax.php:594
-#: application/views/qso/edit_ajax.php:606
-#: application/views/qso/edit_ajax.php:620
-#: application/views/qso/edit_ajax.php:632 application/views/qso/index.php:713
+#: application/views/qso/edit_ajax.php:491
+#: application/views/qso/edit_ajax.php:504
+#: application/views/qso/edit_ajax.php:535
+#: application/views/qso/edit_ajax.php:548
+#: application/views/qso/edit_ajax.php:563
+#: application/views/qso/edit_ajax.php:577
+#: application/views/qso/edit_ajax.php:590
+#: application/views/qso/edit_ajax.php:602
+#: application/views/qso/edit_ajax.php:615
+#: application/views/qso/edit_ajax.php:627 application/views/qso/index.php:713
 #: application/views/search/search_result_ajax.php:189
 #: application/views/search/search_result_ajax.php:231
 #: application/views/view_log/partial/log_ajax.php:226
@@ -14476,7 +14475,7 @@ msgstr ""
 
 #: application/views/dbtools/checkresult.php:49
 #: application/views/dbtools/checkresult.php:65
-#: application/views/debug/index.php:714
+#: application/views/debug/index.php:715
 #: application/views/logbookadvanced/index.php:57
 msgid "Update now"
 msgstr "Posodobi zdaj"
@@ -15015,43 +15014,43 @@ msgstr "Oddaljeni repozitorij ne pozna vaše veje."
 msgid "Wavelog Information"
 msgstr "Informacije o Wavelog"
 
-#: application/views/debug/index.php:36 application/views/debug/index.php:156
+#: application/views/debug/index.php:36 application/views/debug/index.php:157
 msgid "Version"
 msgstr "Verzija"
 
-#: application/views/debug/index.php:39
+#: application/views/debug/index.php:40
 msgid "Latest Version"
 msgstr "Najnovejša različica"
 
-#: application/views/debug/index.php:45
+#: application/views/debug/index.php:46
 msgid "Latest Release"
 msgstr "Najnovejša izdaja"
 
-#: application/views/debug/index.php:50
+#: application/views/debug/index.php:51
 msgid "ADIF Version"
 msgstr "Različica ADIF"
 
-#: application/views/debug/index.php:55
+#: application/views/debug/index.php:56
 msgid "Language"
 msgstr "Jezik"
 
-#: application/views/debug/index.php:59
+#: application/views/debug/index.php:60
 msgid "Base URL"
 msgstr "Osnovni URL"
 
-#: application/views/debug/index.php:63
+#: application/views/debug/index.php:64
 msgid "Migration"
 msgstr "Migracija"
 
-#: application/views/debug/index.php:64
+#: application/views/debug/index.php:65
 msgid "There is something wrong with your Migration in Database!"
 msgstr "Nekaj je narobe z vašo migracijo v zbirki podatkov!"
 
-#: application/views/debug/index.php:69
+#: application/views/debug/index.php:70
 msgid "Migration is outdated and locked!"
 msgstr "Migracija je zastarela in zaklenjena!"
 
-#: application/views/debug/index.php:70
+#: application/views/debug/index.php:71
 #, php-format
 msgid ""
 "The current migration is not the version it is supposed to be. Reload this "
@@ -15064,38 +15063,38 @@ msgstr ""
 "zaklenjena zaradi prejšnjega neuspelega postopka. Izbrišite datoteko %s, da "
 "se migracija znova zažene."
 
-#: application/views/debug/index.php:71 application/views/debug/index.php:147
+#: application/views/debug/index.php:72 application/views/debug/index.php:148
 #, php-format
 msgid "Check this wiki article %shere%s for more information."
 msgstr "Za več informacij si oglejte ta wiki članek %stukaj%s."
 
-#: application/views/debug/index.php:72
+#: application/views/debug/index.php:73
 #, php-format
 msgid "Current migration is %s"
 msgstr "Trenutna migracija je %s"
 
-#: application/views/debug/index.php:73
+#: application/views/debug/index.php:74
 #, php-format
 msgid "Migration should be %s"
 msgstr "Selitev bi morala biti %s"
 
-#: application/views/debug/index.php:78
+#: application/views/debug/index.php:79
 msgid "Environment"
 msgstr "Okolje"
 
-#: application/views/debug/index.php:82
+#: application/views/debug/index.php:83
 msgid "System Time"
 msgstr "Sistemski čas"
 
-#: application/views/debug/index.php:90
+#: application/views/debug/index.php:91
 msgid "Total QSO on this instance"
 msgstr "Skupno število zvez v tej instanci"
 
-#: application/views/debug/index.php:94
+#: application/views/debug/index.php:95
 msgid "Total User"
 msgstr "Skupaj uporabnik"
 
-#: application/views/debug/index.php:95 application/views/user/index.php:27
+#: application/views/debug/index.php:96 application/views/user/index.php:27
 msgid "User"
 msgid_plural "Users"
 msgstr[0] "Uporabnik"
@@ -15103,86 +15102,86 @@ msgstr[1] "Uporabnika"
 msgstr[2] "Uporabniki"
 msgstr[3] "Uporabnikov"
 
-#: application/views/debug/index.php:102
+#: application/views/debug/index.php:103
 msgid "Server Information"
 msgstr "Informacije o strežniku"
 
-#: application/views/debug/index.php:106
+#: application/views/debug/index.php:107
 msgid "Server Software"
 msgstr "Strežniška programska oprema"
 
-#: application/views/debug/index.php:111
+#: application/views/debug/index.php:112
 msgid "PHP Version"
 msgstr "Različica PHP"
 
-#: application/views/debug/index.php:117
+#: application/views/debug/index.php:118
 msgid "Deprecated"
 msgstr "Zastarelo"
 
-#: application/views/debug/index.php:124
+#: application/views/debug/index.php:125
 msgid "MySQL Version"
 msgstr "Različica MySQL-a"
 
-#: application/views/debug/index.php:129
+#: application/views/debug/index.php:130
 msgid "OpenSSL Version"
 msgstr "Različica OpenSSL"
 
-#: application/views/debug/index.php:130
+#: application/views/debug/index.php:131
 msgid "not found"
 msgstr "ni najdeno"
 
-#: application/views/debug/index.php:133
+#: application/views/debug/index.php:134
 msgid "Codeigniter Version"
 msgstr "Različica CodeIgniter"
 
-#: application/views/debug/index.php:141
+#: application/views/debug/index.php:142
 msgid "Wavelog Worker Backend"
 msgstr ""
 
-#: application/views/debug/index.php:145
+#: application/views/debug/index.php:146
 msgid "Worker configuration has changed"
 msgstr ""
 
-#: application/views/debug/index.php:146
+#: application/views/debug/index.php:147
 #, php-format
 msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
 
-#: application/views/debug/index.php:147
+#: application/views/debug/index.php:148
 msgid "Everything keeps working until then."
 msgstr ""
 
-#: application/views/debug/index.php:153
+#: application/views/debug/index.php:154
 msgid "Worker"
 msgstr ""
 
-#: application/views/debug/index.php:154
+#: application/views/debug/index.php:155
 msgid "Topics"
 msgstr ""
 
-#: application/views/debug/index.php:155
+#: application/views/debug/index.php:156
 msgid "Clients"
 msgstr ""
 
-#: application/views/debug/index.php:157
+#: application/views/debug/index.php:158
 msgid "Cluster nodes"
 msgstr ""
 
-#: application/views/debug/index.php:158
+#: application/views/debug/index.php:159
 msgid "Uptime"
 msgstr ""
 
-#: application/views/debug/index.php:163 application/views/debug/index.php:905
+#: application/views/debug/index.php:164 application/views/debug/index.php:906
 msgid "Online"
 msgstr ""
 
-#: application/views/debug/index.php:182
+#: application/views/debug/index.php:183
 msgid "Folder Permissions"
 msgstr "Dovoljenja za mape"
 
-#: application/views/debug/index.php:184
+#: application/views/debug/index.php:185
 msgid ""
 "This verifies that the folders used by Wavelog have read and write "
 "permissions by PHP."
@@ -15190,27 +15189,27 @@ msgstr ""
 "To preveri, ali imajo mape, ki jih uporablja Wavelog, dovoljenja za branje "
 "in pisanje s strani PHP."
 
-#: application/views/debug/index.php:192 application/views/debug/index.php:203
-#: application/views/debug/index.php:214 application/views/debug/index.php:225
-#: application/views/debug/index.php:237 application/views/debug/index.php:516
-#: application/views/debug/index.php:527 application/views/debug/index.php:568
+#: application/views/debug/index.php:193 application/views/debug/index.php:204
+#: application/views/debug/index.php:215 application/views/debug/index.php:226
+#: application/views/debug/index.php:238 application/views/debug/index.php:517
+#: application/views/debug/index.php:528 application/views/debug/index.php:569
 msgid "Failed"
 msgstr "Neuspešno"
 
-#: application/views/debug/index.php:247
+#: application/views/debug/index.php:248
 msgid "Config Maintenance"
 msgstr "Vzdrževanje konfiguracije"
 
-#: application/views/debug/index.php:253
+#: application/views/debug/index.php:254
 msgid "Your authentication mode is outdated and possibly unsafe"
 msgstr "Vaš način preverjanja pristnosti je zastarel in morda nevaren"
 
-#: application/views/debug/index.php:255 application/views/debug/index.php:272
+#: application/views/debug/index.php:256 application/views/debug/index.php:273
 #, php-format
 msgid "Please edit your %s File:"
 msgstr "Prosimo, uredite svojo datoteko %s:"
 
-#: application/views/debug/index.php:256
+#: application/views/debug/index.php:257
 msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
@@ -15218,28 +15217,28 @@ msgstr ""
 "Pojdite v mapo application/config in primerjajte datoteko config.sample.php "
 "z vašo datoteko config.php"
 
-#: application/views/debug/index.php:257
+#: application/views/debug/index.php:258
 #, php-format
 msgid "Change %s to the value %s (Strongly recommended)"
 msgstr "Spremenite %s na vrednost %s (zelo priporočljivo)"
 
-#: application/views/debug/index.php:263
+#: application/views/debug/index.php:264
 msgid "Authentication Mode is set correctly"
 msgstr "Način preverjanja pristnosti je pravilno nastavljen"
 
-#: application/views/debug/index.php:263 application/views/debug/index.php:280
+#: application/views/debug/index.php:264 application/views/debug/index.php:281
 msgid "Ok"
 msgstr "Ok"
 
-#: application/views/debug/index.php:270
+#: application/views/debug/index.php:271
 msgid "You use the default encryption key. You should change it!"
 msgstr "Uporabljate privzeti šifrirni ključ. Spremeniti ga morate!"
 
-#: application/views/debug/index.php:273
+#: application/views/debug/index.php:274
 msgid "This will also enable the 'Keep me logged in' feature."
 msgstr "S tem boste omogočili tudi funkcijo 'Naj ostanem prijavljen'."
 
-#: application/views/debug/index.php:274
+#: application/views/debug/index.php:275
 #, php-format
 msgid ""
 "Change the value of %s to a new encryption key other then "
@@ -15248,15 +15247,15 @@ msgstr ""
 "Spremenite vrednost %s v nov šifrirni ključ, ki ni 'flossie1234555541'. "
 "Izberite varno in dolgo geslo. (Zelo priporočljivo)"
 
-#: application/views/debug/index.php:280
+#: application/views/debug/index.php:281
 msgid "You do not use the default encryption key"
 msgstr "Ne uporabljate privzetega šifrirnega ključa"
 
-#: application/views/debug/index.php:287
+#: application/views/debug/index.php:288
 msgid "Migrate Userdata"
 msgstr "Migracija uporabniških podatkov"
 
-#: application/views/debug/index.php:289
+#: application/views/debug/index.php:290
 msgid ""
 "Here you can migrate existing QSL cards and eQSL cards to the new userdata "
 "folder."
@@ -15264,82 +15263,82 @@ msgstr ""
 "Here you can migrate existing QSL cards and eQSL cards to the new userdata "
 "folder."
 
-#: application/views/debug/index.php:302
+#: application/views/debug/index.php:303
 msgid "Modules"
 msgstr "Moduli"
 
-#: application/views/debug/index.php:308 application/views/debug/index.php:319
-#: application/views/debug/index.php:330 application/views/debug/index.php:341
-#: application/views/debug/index.php:352 application/views/debug/index.php:363
-#: application/views/debug/index.php:375 application/views/debug/index.php:388
-#: application/views/debug/index.php:401
+#: application/views/debug/index.php:309 application/views/debug/index.php:320
+#: application/views/debug/index.php:331 application/views/debug/index.php:342
+#: application/views/debug/index.php:353 application/views/debug/index.php:364
+#: application/views/debug/index.php:376 application/views/debug/index.php:389
+#: application/views/debug/index.php:402
 msgid "Installed"
 msgstr "Nameščeno"
 
-#: application/views/debug/index.php:310 application/views/debug/index.php:321
-#: application/views/debug/index.php:332 application/views/debug/index.php:343
-#: application/views/debug/index.php:354 application/views/debug/index.php:365
-#: application/views/debug/index.php:377 application/views/debug/index.php:390
-#: application/views/debug/index.php:403
+#: application/views/debug/index.php:311 application/views/debug/index.php:322
+#: application/views/debug/index.php:333 application/views/debug/index.php:344
+#: application/views/debug/index.php:355 application/views/debug/index.php:366
+#: application/views/debug/index.php:378 application/views/debug/index.php:391
+#: application/views/debug/index.php:404
 msgid "Not Installed"
 msgstr "Ni nameščeno"
 
-#: application/views/debug/index.php:503
+#: application/views/debug/index.php:504
 msgid "Cache Information"
 msgstr "Informacije o predpomnilniku"
 
-#: application/views/debug/index.php:507
+#: application/views/debug/index.php:508
 msgid "Current Configuration"
 msgstr "Trenutna konfiguracija"
 
-#: application/views/debug/index.php:510
+#: application/views/debug/index.php:511
 msgctxt "Cache Adapter"
 msgid "Primary adapter"
 msgstr "Primarni adapter"
 
-#: application/views/debug/index.php:521
+#: application/views/debug/index.php:522
 msgctxt "Cache Backup Adapter (Fallback)"
 msgid "Backup adapter"
 msgstr "Rezervni adapter"
 
-#: application/views/debug/index.php:532
+#: application/views/debug/index.php:533
 #, php-format
 msgctxt "Cache Path"
 msgid "Path for %s adapter"
 msgstr "Pot za adapter %s"
 
-#: application/views/debug/index.php:536
+#: application/views/debug/index.php:537
 msgctxt "Cache Key Prefix"
 msgid "Key Prefix"
 msgstr "Predpona ključa"
 
-#: application/views/debug/index.php:542
+#: application/views/debug/index.php:543
 msgid "Cache Details"
 msgstr "Podrobnosti predpomnilnika"
 
-#: application/views/debug/index.php:545
+#: application/views/debug/index.php:546
 msgctxt "Cache Details"
 msgid "Total Size"
 msgstr "Skupna velikost"
 
-#: application/views/debug/index.php:551
+#: application/views/debug/index.php:552
 msgctxt "Cache Key"
 msgid "Number of Keys"
 msgstr "Število ključev"
 
-#: application/views/debug/index.php:559
+#: application/views/debug/index.php:560
 msgid "Round-Trip Test (write - read - delete)"
 msgstr ""
 
-#: application/views/debug/index.php:566
+#: application/views/debug/index.php:567
 msgid "Working"
 msgstr ""
 
-#: application/views/debug/index.php:579
+#: application/views/debug/index.php:580
 msgid "Cache is working properly. Everything okay!"
 msgstr "Predpomnilnik deluje pravilno. Vse je v redu!"
 
-#: application/views/debug/index.php:583
+#: application/views/debug/index.php:584
 msgid ""
 "Cache is currently using the backup adapter because the primary is "
 "unavailable. Check your file permissions, PHP extensions, and/or your "
@@ -15349,7 +15348,7 @@ msgstr ""
 "Preverite dovoljenja za datoteke, razširitve PHP in/ali omrežno povezavo s "
 "storitvami (če uporabljate redis/memcached)."
 
-#: application/views/debug/index.php:587
+#: application/views/debug/index.php:588
 #, php-format
 msgid ""
 "Cache does not work! Currently the system is using a %s adapter. Check your "
@@ -15362,120 +15361,120 @@ msgstr ""
 "(če uporabljate redis/memcached). Wavelog lahko uporabljate še naprej, "
 "vendar nobene vrednosti ne bodo shranjene v predpomnilnik (kar je slabo)."
 
-#: application/views/debug/index.php:595
+#: application/views/debug/index.php:596
 msgid "Available Adapters"
 msgstr "Razpoložljivi adapterji"
 
-#: application/views/debug/index.php:612
+#: application/views/debug/index.php:613
 msgid "Clear Cache"
 msgstr "Počisti predpomnilnik"
 
-#: application/views/debug/index.php:660
+#: application/views/debug/index.php:661
 msgid "Git Information"
 msgstr "Informacije o Git"
 
-#: application/views/debug/index.php:664
+#: application/views/debug/index.php:665
 msgid "Branch"
 msgstr "Veja"
 
-#: application/views/debug/index.php:675 application/views/debug/index.php:686
-#: application/views/debug/index.php:696
+#: application/views/debug/index.php:676 application/views/debug/index.php:687
+#: application/views/debug/index.php:697
 #: application/views/lotw_views/index.php:104
 #: application/views/widgets/lotw_upload.php:106
 msgid "n/a"
 msgstr "n/a"
 
-#: application/views/debug/index.php:681
+#: application/views/debug/index.php:682
 msgid "Commit"
 msgstr "Zapiši"
 
-#: application/views/debug/index.php:691
+#: application/views/debug/index.php:692
 msgid "Tag"
 msgstr "Označi"
 
-#: application/views/debug/index.php:701
+#: application/views/debug/index.php:702
 msgid "Last Fetch"
 msgstr "Zadnji prevzem"
 
-#: application/views/debug/index.php:713
+#: application/views/debug/index.php:714
 msgid "Check for new version"
 msgstr "Preveri novo različico"
 
-#: application/views/debug/index.php:732
+#: application/views/debug/index.php:733
 msgid "File download date"
 msgstr "Datum prenosa datoteke"
 
-#: application/views/debug/index.php:736
+#: application/views/debug/index.php:737
 msgid "File"
 msgstr "Datoteka"
 
-#: application/views/debug/index.php:737
+#: application/views/debug/index.php:738
 msgid "Last update"
 msgstr "Zadnja posodobitev"
 
-#: application/views/debug/index.php:741
+#: application/views/debug/index.php:742
 msgid "DXCC update from Club Log"
 msgstr "Posodobitev DXCC iz Club Log"
 
-#: application/views/debug/index.php:744 application/views/debug/index.php:751
-#: application/views/debug/index.php:757 application/views/debug/index.php:763
-#: application/views/debug/index.php:769 application/views/debug/index.php:775
-#: application/views/debug/index.php:781 application/views/debug/index.php:787
-#: application/views/debug/index.php:793 application/views/debug/index.php:799
-#: application/views/debug/index.php:805 application/views/debug/index.php:811
+#: application/views/debug/index.php:745 application/views/debug/index.php:752
+#: application/views/debug/index.php:758 application/views/debug/index.php:764
+#: application/views/debug/index.php:770 application/views/debug/index.php:776
+#: application/views/debug/index.php:782 application/views/debug/index.php:788
+#: application/views/debug/index.php:794 application/views/debug/index.php:800
+#: application/views/debug/index.php:806 application/views/debug/index.php:812
 #: application/views/station_profile/edit.php:53
 msgid "Update"
 msgstr "Posodobitev"
 
-#: application/views/debug/index.php:748
+#: application/views/debug/index.php:749
 msgid "DOK file download"
 msgstr "Prenos datoteke DOK"
 
-#: application/views/debug/index.php:754
+#: application/views/debug/index.php:755
 msgid "LoTW users download"
 msgstr "Prenos LoTW uporabniki"
 
-#: application/views/debug/index.php:760
+#: application/views/debug/index.php:761
 msgid "POTA file download"
 msgstr "Prenos datoteke POTA"
 
-#: application/views/debug/index.php:766
+#: application/views/debug/index.php:767
 msgid "POTA park boundaries (GeoJSON)"
 msgstr ""
 
-#: application/views/debug/index.php:772
+#: application/views/debug/index.php:773
 msgid "SCP file download"
 msgstr "Prenos datoteke SCP"
 
-#: application/views/debug/index.php:778
+#: application/views/debug/index.php:779
 msgid "SOTA file download"
 msgstr "Prenos datoteke SOTA"
 
-#: application/views/debug/index.php:784
+#: application/views/debug/index.php:785
 msgid "WWFF file download"
 msgstr "Prenos datoteke WWFF"
 
-#: application/views/debug/index.php:790
+#: application/views/debug/index.php:791
 msgid "TLE update"
 msgstr "Posodobitev TLE"
 
-#: application/views/debug/index.php:796
+#: application/views/debug/index.php:797
 msgid "Hams Of Note update"
 msgstr "Posodobitev Hams of Note"
 
-#: application/views/debug/index.php:802
+#: application/views/debug/index.php:803
 msgid "HAMqsl"
 msgstr "HAMqsl"
 
-#: application/views/debug/index.php:808
+#: application/views/debug/index.php:809
 msgid "VUCC Grids"
 msgstr "VUCC polja"
 
-#: application/views/debug/index.php:818
+#: application/views/debug/index.php:819
 msgid "QSO-DB Maintenance"
 msgstr "Vzdrževanje QSO-DB"
 
-#: application/views/debug/index.php:822
+#: application/views/debug/index.php:823
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
@@ -15485,180 +15484,180 @@ msgstr[1] "Baza podatkov vsebuje %d zvezi brez profila postaje (lokacije)"
 msgstr[2] "Baza podatkov vsebuje %d zveze brez profila postaje (lokacije)"
 msgstr[3] "Baza podatkov vsebuje %d zvez brez profila postaje (lokacije)"
 
-#: application/views/debug/index.php:860
+#: application/views/debug/index.php:861
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
 "Prosimo, označite zveze in jih prerazporedite na obstoječo lokacijo postaje:"
 
-#: application/views/debug/index.php:868
+#: application/views/debug/index.php:869
 msgctxt "Stationlocation"
 msgid "Target Location"
 msgstr "Ciljna lokacija"
 
-#: application/views/debug/index.php:869 application/views/debug/index.php:880
+#: application/views/debug/index.php:870 application/views/debug/index.php:881
 msgid "Reassign"
 msgstr "Prerazporedi"
 
-#: application/views/debug/index.php:889
+#: application/views/debug/index.php:890
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
 "Vsaka zveza v vaši bazi podatkov je dodeljena profilu postaje (lokaciji)"
 
-#: application/views/debug/index.php:889
+#: application/views/debug/index.php:890
 msgid "Everything ok"
 msgstr "Vse v redu"
 
-#: application/views/debug/index.php:906
+#: application/views/debug/index.php:907
 msgid "Degraded"
 msgstr ""
 
-#: application/views/debug/index.php:907
+#: application/views/debug/index.php:908
 msgid "Worker backend is not configured."
 msgstr ""
 
-#: application/views/debug/index.php:908
+#: application/views/debug/index.php:909
 msgid "Unreachable"
 msgstr ""
 
-#: application/views/debug/index.php:908
+#: application/views/debug/index.php:909
 msgid "Worker is configured but did not respond."
 msgstr ""
 
-#: application/views/debug/index.php:909
+#: application/views/debug/index.php:910
 msgid "Outdated"
 msgstr ""
 
-#: application/views/debug/index.php:909
+#: application/views/debug/index.php:910
 msgid ""
 "Please update your Wavelog Worker to version 0.2.0 or newer to see the "
 "status."
 msgstr ""
 
-#: application/views/debug/index.php:928
+#: application/views/debug/index.php:929
 msgid "Albanian"
 msgstr "Albanščina"
 
-#: application/views/debug/index.php:929
+#: application/views/debug/index.php:930
 msgid "Armenian"
 msgstr "Armenščina"
 
-#: application/views/debug/index.php:930
+#: application/views/debug/index.php:931
 msgid "Bosnian"
 msgstr "Bosanščina"
 
-#: application/views/debug/index.php:931
+#: application/views/debug/index.php:932
 msgid "Bulgarian"
 msgstr "Bolgarščina"
 
-#: application/views/debug/index.php:932
+#: application/views/debug/index.php:933
 msgid "Chinese (Simplified)"
 msgstr "Kitajščina (Preprosta)"
 
-#: application/views/debug/index.php:933
+#: application/views/debug/index.php:934
 msgid "Croatian"
 msgstr "Hrvaščina"
 
-#: application/views/debug/index.php:934
+#: application/views/debug/index.php:935
 msgid "Czech"
 msgstr "Češčina"
 
-#: application/views/debug/index.php:935
+#: application/views/debug/index.php:936
 msgid "Dutch"
 msgstr "Danščina"
 
-#: application/views/debug/index.php:936
+#: application/views/debug/index.php:937
 msgid "English"
 msgstr "Angleščina"
 
-#: application/views/debug/index.php:937
+#: application/views/debug/index.php:938
 msgid "Estonian"
 msgstr "Estonščina"
 
-#: application/views/debug/index.php:938
+#: application/views/debug/index.php:939
 msgid "Finnish"
 msgstr "Finščina"
 
-#: application/views/debug/index.php:939
+#: application/views/debug/index.php:940
 msgid "French"
 msgstr "Francoščina"
 
-#: application/views/debug/index.php:940
+#: application/views/debug/index.php:941
 msgid "German"
 msgstr "Nemščina"
 
-#: application/views/debug/index.php:941
+#: application/views/debug/index.php:942
 msgid "Greek"
 msgstr "Grščina"
 
-#: application/views/debug/index.php:942
+#: application/views/debug/index.php:943
 msgid "Hungarian"
 msgstr "Madžarščina"
 
-#: application/views/debug/index.php:943
+#: application/views/debug/index.php:944
 msgid "Italian"
 msgstr "Italijanščina"
 
-#: application/views/debug/index.php:944
+#: application/views/debug/index.php:945
 msgid "Japanese"
 msgstr "Japanese"
 
-#: application/views/debug/index.php:945
+#: application/views/debug/index.php:946
 msgid "Latvian"
 msgstr "Latvian"
 
-#: application/views/debug/index.php:946
+#: application/views/debug/index.php:947
 msgid "Lithuanian"
 msgstr "Lithuanian"
 
-#: application/views/debug/index.php:947
+#: application/views/debug/index.php:948
 msgid "Montenegrin"
 msgstr "Montenegrin"
 
-#: application/views/debug/index.php:948
+#: application/views/debug/index.php:949
 msgid "Norwegian (Bokmål)"
 msgstr ""
 
-#: application/views/debug/index.php:949
+#: application/views/debug/index.php:950
 msgid "Polish"
 msgstr "Polish"
 
-#: application/views/debug/index.php:950
+#: application/views/debug/index.php:951
 msgid "Portuguese"
 msgstr "Portuguese"
 
-#: application/views/debug/index.php:951
+#: application/views/debug/index.php:952
 msgid "Romanian"
 msgstr ""
 
-#: application/views/debug/index.php:952
+#: application/views/debug/index.php:953
 msgid "Russian"
 msgstr "Russian"
 
-#: application/views/debug/index.php:953
+#: application/views/debug/index.php:954
 msgid "Serbian"
 msgstr "Serbian"
 
-#: application/views/debug/index.php:954
+#: application/views/debug/index.php:955
 msgid "Slovak"
 msgstr "Slovak"
 
-#: application/views/debug/index.php:955
+#: application/views/debug/index.php:956
 msgid "Slovenian"
 msgstr "Slovenščina"
 
-#: application/views/debug/index.php:956
+#: application/views/debug/index.php:957
 msgid "Spanish"
 msgstr "Spanish"
 
-#: application/views/debug/index.php:957
+#: application/views/debug/index.php:958
 msgid "Swedish"
 msgstr "Swedish"
 
-#: application/views/debug/index.php:958
+#: application/views/debug/index.php:959
 msgid "Turkish"
 msgstr "Turkish"
 
-#: application/views/debug/index.php:959
+#: application/views/debug/index.php:960
 msgid "Ukrainian"
 msgstr "Ukrainian"
 
@@ -16063,8 +16062,7 @@ msgid "View eQSL Cards"
 msgstr "Oglejte si eQSL kartice"
 
 #: application/views/eqslcard/index.php:39
-#: application/views/qslcard/index.php:48
-#: application/views/qslcard/index.php:124
+#: application/views/qslcard/index.php:38
 msgid "QSL Date"
 msgstr "Datum QSL"
 
@@ -16073,7 +16071,7 @@ msgstr "Datum QSL"
 #: application/views/interface_assets/footer.php:2711
 #: application/views/interface_assets/footer.php:2730
 #: application/views/interface_assets/footer.php:2748
-#: application/views/qslcard/index.php:81
+#: application/views/qslcard/index.php:72
 #: application/views/statistics/antennaanalytics.php:85
 #: application/views/view_log/qso.php:728
 #: application/views/view_log/qso.php:736
@@ -16260,7 +16258,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:58
 #: application/views/qso/edit_ajax.php:198
-#: application/views/qso/edit_ajax.php:554
+#: application/views/qso/edit_ajax.php:551
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr ""
 
@@ -18154,16 +18152,16 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:215
 #: application/views/qso/edit_ajax.php:433
 #: application/views/qso/edit_ajax.php:465
-#: application/views/qso/edit_ajax.php:494
-#: application/views/qso/edit_ajax.php:506
-#: application/views/qso/edit_ajax.php:539
-#: application/views/qso/edit_ajax.php:551
-#: application/views/qso/edit_ajax.php:568
-#: application/views/qso/edit_ajax.php:581
-#: application/views/qso/edit_ajax.php:596
-#: application/views/qso/edit_ajax.php:607
-#: application/views/qso/edit_ajax.php:622
-#: application/views/qso/edit_ajax.php:633 application/views/qso/index.php:715
+#: application/views/qso/edit_ajax.php:493
+#: application/views/qso/edit_ajax.php:505
+#: application/views/qso/edit_ajax.php:537
+#: application/views/qso/edit_ajax.php:549
+#: application/views/qso/edit_ajax.php:565
+#: application/views/qso/edit_ajax.php:578
+#: application/views/qso/edit_ajax.php:592
+#: application/views/qso/edit_ajax.php:603
+#: application/views/qso/edit_ajax.php:617
+#: application/views/qso/edit_ajax.php:628 application/views/qso/index.php:715
 #: application/views/search/search_result_ajax.php:192
 #: application/views/search/search_result_ajax.php:234
 #: application/views/search/search_result_ajax.php:308
@@ -18198,11 +18196,11 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:87
 #: application/views/qslprint/qsolist.php:129
 #: application/views/qso/edit_ajax.php:432
-#: application/views/qso/edit_ajax.php:493
-#: application/views/qso/edit_ajax.php:538
-#: application/views/qso/edit_ajax.php:567
-#: application/views/qso/edit_ajax.php:595
-#: application/views/qso/edit_ajax.php:621 application/views/qso/index.php:714
+#: application/views/qso/edit_ajax.php:492
+#: application/views/qso/edit_ajax.php:536
+#: application/views/qso/edit_ajax.php:564
+#: application/views/qso/edit_ajax.php:591
+#: application/views/qso/edit_ajax.php:616 application/views/qso/index.php:714
 #: application/views/search/search_result_ajax.php:186
 #: application/views/search/search_result_ajax.php:228
 #: application/views/view_log/partial/log_ajax.php:223
@@ -18220,15 +18218,7 @@ msgstr ""
 msgid "Queued"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:217
-#: application/views/logbookadvanced/index.php:610
-#: application/views/logbookadvanced/index.php:654
-#: application/views/logbookadvanced/index.php:677
-#: application/views/logbookadvanced/index.php:701
-msgid "Verified"
-msgstr ""
-
-#: application/views/logbookadvanced/edit.php:222
+#: application/views/logbookadvanced/edit.php:221
 #: application/views/logbookadvanced/index.php:618
 #: application/views/logbookadvanced/index.php:628
 #: application/views/oqrs/qsolist.php:73 application/views/oqrs/qsolist.php:115
@@ -18238,7 +18228,7 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:148
 #: application/views/qslprint/qsolist.php:237
 #: application/views/qso/edit_ajax.php:443
-#: application/views/qso/edit_ajax.php:476 application/views/qso/index.php:725
+#: application/views/qso/edit_ajax.php:475 application/views/qso/index.php:725
 #: application/views/search/search_result_ajax.php:205
 #: application/views/search/search_result_ajax.php:247
 #: application/views/view_log/partial/log_ajax.php:245
@@ -18247,7 +18237,7 @@ msgstr ""
 msgid "Direct"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:223
+#: application/views/logbookadvanced/edit.php:222
 #: application/views/logbookadvanced/index.php:617
 #: application/views/logbookadvanced/index.php:627
 #: application/views/oqrs/qsolist.php:70 application/views/oqrs/qsolist.php:112
@@ -18259,7 +18249,7 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:145
 #: application/views/qslprint/qsolist.php:236
 #: application/views/qso/edit_ajax.php:444
-#: application/views/qso/edit_ajax.php:477 application/views/qso/index.php:726
+#: application/views/qso/edit_ajax.php:476 application/views/qso/index.php:726
 #: application/views/search/search_result_ajax.php:202
 #: application/views/search/search_result_ajax.php:244
 #: application/views/view_log/partial/log_ajax.php:242
@@ -18268,7 +18258,7 @@ msgstr ""
 msgid "Bureau"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:224
+#: application/views/logbookadvanced/edit.php:223
 #: application/views/logbookadvanced/index.php:619
 #: application/views/logbookadvanced/index.php:629
 #: application/views/oqrs/qsolist.php:79 application/views/oqrs/qsolist.php:121
@@ -18278,7 +18268,7 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:154
 #: application/views/qslprint/qsolist.php:238
 #: application/views/qso/edit_ajax.php:445
-#: application/views/qso/edit_ajax.php:478 application/views/qso/index.php:727
+#: application/views/qso/edit_ajax.php:477 application/views/qso/index.php:727
 #: application/views/search/search_result_ajax.php:211
 #: application/views/search/search_result_ajax.php:253
 #: application/views/view_log/partial/log_ajax.php:251
@@ -18287,70 +18277,70 @@ msgstr ""
 msgid "Electronic"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:225
+#: application/views/logbookadvanced/edit.php:224
 #: application/views/logbookadvanced/index.php:620
 #: application/views/logbookadvanced/index.php:630
 #: application/views/oqrs/qsolist.php:118
 #: application/views/qslprint/qsolist.php:151
 #: application/views/qso/edit_ajax.php:446
-#: application/views/qso/edit_ajax.php:479 application/views/qso/index.php:728
+#: application/views/qso/edit_ajax.php:478 application/views/qso/index.php:728
 #: application/views/search/search_result_ajax.php:250
 #: application/views/view_log/partial/log_ajax.php:286
 msgid "Manager"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:241
+#: application/views/logbookadvanced/edit.php:240
 #: application/views/qso/edit_ajax.php:316 application/views/qso/index.php:506
 msgid "NONE"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:242
+#: application/views/logbookadvanced/edit.php:241
 #: application/views/qso/edit_ajax.php:317 application/views/qso/index.php:507
 msgid "African Italy"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:243
+#: application/views/logbookadvanced/edit.php:242
 #: application/views/qso/edit_ajax.php:318 application/views/qso/index.php:508
 msgid "Bear Island"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:244
+#: application/views/logbookadvanced/edit.php:243
 #: application/views/qso/edit_ajax.php:319 application/views/qso/index.php:509
 msgid "European Turkey"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:245
+#: application/views/logbookadvanced/edit.php:244
 #: application/views/qso/edit_ajax.php:320 application/views/qso/index.php:510
 msgid "ITU Vienna"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:246
+#: application/views/logbookadvanced/edit.php:245
 #: application/views/qso/edit_ajax.php:321 application/views/qso/index.php:511
 msgid "Kosovo"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:247
+#: application/views/logbookadvanced/edit.php:246
 #: application/views/qso/edit_ajax.php:322 application/views/qso/index.php:512
 msgid "Shetland Islands"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:248
+#: application/views/logbookadvanced/edit.php:247
 #: application/views/qso/edit_ajax.php:323 application/views/qso/index.php:513
 msgid "Sicily"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:251
+#: application/views/logbookadvanced/edit.php:250
 msgid ""
 "Distance (in km). Leave blank to recalculate distance. (It will only work if "
 "a gridsquare is set)."
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:258
-#: application/views/logbookadvanced/edit.php:261
+#: application/views/logbookadvanced/edit.php:257
+#: application/views/logbookadvanced/edit.php:260
 msgid "clear"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:259
+#: application/views/logbookadvanced/edit.php:258
 msgid "SIG_INFO"
 msgstr ""
 
@@ -18885,6 +18875,13 @@ msgstr ""
 msgid "QSL received"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:610
+#: application/views/logbookadvanced/index.php:654
+#: application/views/logbookadvanced/index.php:677
+#: application/views/logbookadvanced/index.php:701
+msgid "Verified"
+msgstr ""
+
 #: application/views/logbookadvanced/index.php:614
 msgid "QSL send. method"
 msgstr ""
@@ -19007,7 +19004,7 @@ msgid " QSO(s) will be deleted"
 msgstr ""
 
 #: application/views/logbookadvanced/index.php:831
-#: application/views/qso/edit_ajax.php:715
+#: application/views/qso/edit_ajax.php:709
 msgid "Update from Callbook"
 msgstr ""
 
@@ -19121,13 +19118,13 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:991
 #: application/views/logbookadvanced/useroptions.php:154
-#: application/views/qso/edit_ajax.php:513
+#: application/views/qso/edit_ajax.php:511
 msgid "QSL Msg (S)"
 msgstr ""
 
 #: application/views/logbookadvanced/index.php:994
 #: application/views/logbookadvanced/useroptions.php:160
-#: application/views/qso/edit_ajax.php:522
+#: application/views/qso/edit_ajax.php:520
 msgid "QSL Msg (R)"
 msgstr ""
 
@@ -19759,7 +19756,7 @@ msgid "View Note"
 msgstr ""
 
 #: application/views/operator/index.php:10
-#: application/views/qso/edit_ajax.php:667 application/views/qso/index.php:460
+#: application/views/qso/edit_ajax.php:661 application/views/qso/index.php:460
 msgid "Operator Callsign"
 msgstr "Opreaterjev Klicni znak"
 
@@ -20449,16 +20446,7 @@ msgstr ""
 msgid "You are using %s of disk space to store QSL Card assets"
 msgstr ""
 
-#: application/views/qslcard/index.php:21
-msgid "List View"
-msgstr ""
-
-#: application/views/qslcard/index.php:22
-msgid "Gallery View"
-msgstr ""
-
-#: application/views/qslcard/index.php:82
-#: application/views/qslcard/index.php:130
+#: application/views/qslcard/index.php:71
 msgid "Add Qsos"
 msgstr ""
 
@@ -20912,7 +20900,7 @@ msgid "Station County"
 msgstr ""
 
 #: application/views/qso/edit_ajax.php:397
-#: application/views/qso/edit_ajax.php:516 application/views/qso/index.php:700
+#: application/views/qso/edit_ajax.php:514 application/views/qso/index.php:700
 #: application/views/qso/index.php:744
 msgid "Note: Gets exported to third-party services."
 msgstr ""
@@ -20922,7 +20910,7 @@ msgid "Sent Method"
 msgstr ""
 
 #: application/views/qso/edit_ajax.php:442
-#: application/views/qso/edit_ajax.php:475 application/views/qso/index.php:721
+#: application/views/qso/edit_ajax.php:474 application/views/qso/index.php:721
 #: application/views/qso/index.php:724
 msgid "Method"
 msgstr ""
@@ -20931,61 +20919,52 @@ msgstr ""
 msgid "Sent Via"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:466
-#: application/views/qso/edit_ajax.php:507
-#: application/views/qso/edit_ajax.php:552
-#: application/views/qso/edit_ajax.php:582
-#: application/views/qso/edit_ajax.php:608
-#: application/views/qso/edit_ajax.php:634
-msgid "Verified (Match)"
-msgstr ""
-
-#: application/views/qso/edit_ajax.php:472
+#: application/views/qso/edit_ajax.php:471
 msgid "Received Method"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:513 application/views/qso/index.php:741
+#: application/views/qso/edit_ajax.php:511 application/views/qso/index.php:741
 msgid "Get the default message for eQSL, for this station."
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:525
+#: application/views/qso/edit_ajax.php:523
 msgid "Note: Not editable. Only displayed here."
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:569
+#: application/views/qso/edit_ajax.php:566
 #: application/views/view_log/partial/log_ajax.php:448
 #: application/views/view_log/partial/log_ajax.php:505
 #: src/QSLManager/QSO.php:600 src/QSLManager/QSO.php:746
 msgid "Modified"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:657
+#: application/views/qso/edit_ajax.php:651
 msgid "Change Station Profile"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:687
+#: application/views/qso/edit_ajax.php:681
 msgid "Serial (R)"
 msgstr "Serijska št (R)"
 
-#: application/views/qso/edit_ajax.php:692
+#: application/views/qso/edit_ajax.php:686
 msgid "Serial (S)"
 msgstr "Serijska št (S)"
 
-#: application/views/qso/edit_ajax.php:697
+#: application/views/qso/edit_ajax.php:691
 msgid "Exchange (R)"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:702
+#: application/views/qso/edit_ajax.php:696
 msgid "Exchange (S)"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:714
+#: application/views/qso/edit_ajax.php:708
 #: application/views/search/search_result_ajax.php:488
 #: application/views/view_log/partial/log_ajax.php:640
 msgid "Delete QSO"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:717
+#: application/views/qso/edit_ajax.php:711
 msgid "Save changes"
 msgstr ""
 

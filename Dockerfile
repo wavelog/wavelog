@@ -35,6 +35,8 @@ RUN a2enmod rewrite \
 
 # application
 WORKDIR /var/www/html
+ARG GIT_DESCRIBE=""
+ENV WAVELOG_GIT_DESCRIBE=$GIT_DESCRIBE
 COPY --chown=wavelog:www-data ./ ./
 
 # basic setup steps and permissions

@@ -41,7 +41,7 @@
 					<tbody>
 						<?php foreach ($api_keys->result() as $row) { ?>
 							<tr>
-								<?php if ($clubmode && $row->user_callsign !== $this->session->userdata('cd_src_call')) {
+								<?php if ($clubmode && $row->user_callsign !== ($this->session->userdata('cd_src_call') ?: $this->session->userdata('user_callsign'))) {
 									$api_key = substr($row->key, 0, 2) . str_repeat('*', strlen($row->key) - 6) . substr($row->key, -4);
 									$masked = true;
 								} else {

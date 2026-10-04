@@ -284,7 +284,8 @@ class Logbook_model extends CI_Model {
 		}
 
 		$qsl_sent = $qso_data['qsl_sent'] ?? 'N';
-		$qsl_rcvd = $qso_data['qsl_rcvd'] ?? 'N';
+		// 'V' is a deprecated import-only QSL Rcvd value (ADIF 3.1.6) — never store it
+		$qsl_rcvd = strtoupper($t = $qso_data['qsl_rcvd'] ?? 'N') === 'V' ? 'Y' : $t;
 		$qslsdate = $qsl_sent == 'N' ? NULL : date('Y-m-d H:i:s');
 		$qslrdate = $qsl_rcvd == 'N' ? NULL : date('Y-m-d H:i:s');
 
@@ -1040,8 +1041,10 @@ class Logbook_model extends CI_Model {
 					}
 				}
 
-				// WebADIF export
-				if ($creds && isset($creds->webadifapikey) && $creds->webadifrealtime == 1) {
+			// WebADIF export
+			if ($creds && isset($creds->webadifapikey) && $creds->webadifrealtime == 1
+				&& ($data['COL_PROP_MODE'] ?? '') == 'SAT'
+				&& ($data['COL_SAT_NAME'] ?? '') == 'QO-100') {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
@@ -1632,7 +1635,8 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('qsl_rcvd')) {
-			$qsl_rcvd = $this->input->post('qsl_rcvd',true);
+			// 'V' is a deprecated import-only QSL Rcvd value (ADIF 3.1.6) — never store it
+			$qsl_rcvd = strtoupper($p = $this->input->post('qsl_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$qsl_rcvd = 'N';
 		}
@@ -1644,7 +1648,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('eqsl_rcvd')) {
-			$eqsl_rcvd = $this->input->post('eqsl_rcvd',true);
+			$eqsl_rcvd = strtoupper($p = $this->input->post('eqsl_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$eqsl_rcvd = 'N';
 		}
@@ -1680,7 +1684,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('dcl_rcvd')) {
-			$dcl_rcvd = $this->input->post('dcl_rcvd',true);
+			$dcl_rcvd = strtoupper($p = $this->input->post('dcl_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$dcl_rcvd = 'N';
 		}
@@ -1696,7 +1700,7 @@ class Logbook_model extends CI_Model {
 		if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
 			$lotw_rcvd = 'I';
 		} elseif ($this->input->post('lotw_rcvd')) {
-			$lotw_rcvd = $this->input->post('lotw_rcvd');
+			$lotw_rcvd = strtoupper($p = $this->input->post('lotw_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$lotw_rcvd = 'N';
 		}
@@ -1876,7 +1880,7 @@ class Logbook_model extends CI_Model {
 			'COL_EQSL_QSLSDATE' => $eqslsdate,
 			'COL_EQSL_QSLRDATE' => $eqslrdate,
 			'COL_EQSL_QSL_SENT' => $this->input->post('eqsl_sent'),
-			'COL_EQSL_QSL_RCVD' => $this->input->post('eqsl_rcvd'),
+			'COL_EQSL_QSL_RCVD' => $eqsl_rcvd,
 			'COL_QSLMSG' => $this->input->post('qslmsg'),
 			'COL_QRZCOM_QSO_UPLOAD_DATE' => $qrzsdate,
 			'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qrzrdate,
@@ -5586,7 +5590,9 @@ class Logbook_model extends CI_Model {
 			}
 
 			if (isset($record['qsl_rcvd'])) {
-				$input_qsl_rcvd = mb_strimwidth($record['qsl_rcvd'], 0, 1);
+				// 'V' (verified) is a deprecated import-only value of the QSL Rcvd
+				// enumeration (ADIF 3.1.6) — normalize to 'Y' so it never reaches the DB.
+				$input_qsl_rcvd = strtoupper($v = mb_strimwidth($record['qsl_rcvd'], 0, 1)) === 'V' ? 'Y' : $v;
 			} else {
 				$input_qsl_rcvd = "N";
 			}
@@ -5650,7 +5656,7 @@ class Logbook_model extends CI_Model {
 			 * Validate LoTW Fields
 			 */
 			if (isset($record['lotw_qsl_rcvd'])) {
-				$input_lotw_qsl_rcvd = mb_strimwidth($record['lotw_qsl_rcvd'], 0, 1);
+				$input_lotw_qsl_rcvd = strtoupper($v = mb_strimwidth($record['lotw_qsl_rcvd'], 0, 1)) === 'V' ? 'Y' : $v;
 			} else {
 				$input_lotw_qsl_rcvd = NULL;
 			}
@@ -5695,7 +5701,7 @@ class Logbook_model extends CI_Model {
 			 * Validate eQSL Fields
 			 */
 			if (isset($record['eqsl_qsl_rcvd'])) {
-				$input_eqsl_qsl_rcvd = mb_strimwidth($record['eqsl_qsl_rcvd'], 0, 1);
+				$input_eqsl_qsl_rcvd = strtoupper($v = mb_strimwidth($record['eqsl_qsl_rcvd'], 0, 1)) === 'V' ? 'Y' : $v;
 			} else {
 				$input_eqsl_qsl_rcvd = NULL;
 			}
@@ -5903,7 +5909,7 @@ class Logbook_model extends CI_Model {
 				'COL_DCL_QSLSDATE' => $input_dcl_qso_upload_date,
 				'COL_DCL_QSL_SENT' => $input_dcl_qso_upload_status,
 				'COL_DCL_QSLRDATE' => (!empty($record['dcl_qslrdate'])) ? $record['dcl_qslrdate'] : null,
-				'COL_DCL_QSL_RCVD' => (!empty($record['dcl_qsl_rcvd'])) ? $record['dcl_qsl_rcvd'] : null,
+				'COL_DCL_QSL_RCVD' => (!empty($record['dcl_qsl_rcvd'])) ? (strtoupper($record['dcl_qsl_rcvd']) === 'V' ? 'Y' : $record['dcl_qsl_rcvd']) : null,
 				'COL_QSL_RCVD' => $input_qsl_rcvd,
 				'COL_QSL_RCVD_VIA' => $input_qsl_rcvd_via,
 				'COL_QSL_SENT' => $input_qsl_sent,
