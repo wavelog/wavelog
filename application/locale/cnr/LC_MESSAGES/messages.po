@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-03 13:48+0000\n"
+"POT-Creation-Date: 2026-10-04 08:50+0000\n"
 "PO-Revision-Date: 2024-11-19 01:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Montenegrin <https://translate.wavelog.org/projects/wavelog/"
@@ -172,9 +172,9 @@ msgstr ""
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
 #: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:169
 #: application/controllers/Eqsl.php:258 application/controllers/Eqsl.php:281
-#: application/controllers/Eqsl.php:319 application/controllers/Eqsl.php:521
-#: application/controllers/Eqsl.php:592 application/controllers/Eqsl.php:607
-#: application/controllers/Eqsl.php:665
+#: application/controllers/Eqsl.php:326 application/controllers/Eqsl.php:466
+#: application/controllers/Eqsl.php:537 application/controllers/Eqsl.php:552
+#: application/controllers/Eqsl.php:610
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -195,8 +195,8 @@ msgstr ""
 #: application/controllers/Qrz.php:28 application/controllers/Qrz.php:293
 #: application/controllers/Qrz.php:316 application/controllers/Qrz.php:380
 #: application/controllers/Qsl.php:11 application/controllers/Qsl.php:12
-#: application/controllers/Qsl.php:47 application/controllers/Qsl.php:54
-#: application/controllers/Qsl.php:82 application/controllers/Qsl.php:132
+#: application/controllers/Qsl.php:73 application/controllers/Qsl.php:80
+#: application/controllers/Qsl.php:108 application/controllers/Qsl.php:158
 #: application/controllers/Qslpostcard.php:15
 #: application/controllers/Qslprint.php:22
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
@@ -1751,7 +1751,7 @@ msgstr ""
 msgid "eQSL Cards"
 msgstr ""
 
-#: application/controllers/Eqsl.php:55
+#: application/controllers/Eqsl.php:55 application/controllers/Qsl.php:51
 #, php-format
 msgid "Showing %d to %d of %d entries"
 msgstr ""
@@ -1785,63 +1785,63 @@ msgstr ""
 msgid "No such eQSL QTH Nickname: %s"
 msgstr ""
 
-#: application/controllers/Eqsl.php:335
+#: application/controllers/Eqsl.php:343
 msgid "QSO not found or not accessible"
 msgstr ""
 
-#: application/controllers/Eqsl.php:353
+#: application/controllers/Eqsl.php:361
 msgid "User not found"
 msgstr ""
 
-#: application/controllers/Eqsl.php:362
+#: application/controllers/Eqsl.php:370
 msgid "eQSL password not configured for this user"
 msgstr ""
 
-#: application/controllers/Eqsl.php:379
+#: application/controllers/Eqsl.php:387
 msgid "Failed to fetch eQSL image data"
 msgstr ""
 
-#: application/controllers/Eqsl.php:398
+#: application/controllers/Eqsl.php:406
 msgid "eQSL image not available"
 msgstr ""
 
-#: application/controllers/Eqsl.php:416
+#: application/controllers/Eqsl.php:424
 msgid "Failed to download eQSL image"
 msgstr ""
 
-#: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:579
+#: application/controllers/Eqsl.php:434 application/controllers/Eqsl.php:524
 msgid "Not enough free disk space to store the eQSL card"
 msgstr ""
 
-#: application/controllers/Eqsl.php:450
+#: application/controllers/Eqsl.php:458
 msgid "Failed to load cached eQSL image"
 msgstr ""
 
-#: application/controllers/Eqsl.php:596
+#: application/controllers/Eqsl.php:541
 msgid "eQSL Tools"
 msgstr ""
 
-#: application/controllers/Eqsl.php:625
+#: application/controllers/Eqsl.php:570
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr ""
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:576
 msgid " / Errors: "
 msgstr ""
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:576
 msgid "Successfully downloaded: "
 msgstr ""
 
-#: application/controllers/Eqsl.php:638
+#: application/controllers/Eqsl.php:583
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr ""
 
-#: application/controllers/Eqsl.php:650
+#: application/controllers/Eqsl.php:595
 msgid "eQSL Card Image Download"
 msgstr ""
 
-#: application/controllers/Eqsl.php:673
+#: application/controllers/Eqsl.php:618
 msgid "All eQSLs marked as uploaded"
 msgstr ""
 
@@ -2376,7 +2376,7 @@ msgstr ""
 #: application/views/oqrs/showrequests.php:94
 #: application/views/public_search/result.php:15
 #: application/views/qslcard/confirmationresult.php:17
-#: application/views/qslcard/index.php:44
+#: application/views/qslcard/index.php:34
 #: application/views/qslcard/searchresult.php:12
 #: application/views/qslcard/searchresult.php:28
 #: application/views/qslcard/searchresult.php:44
@@ -2662,7 +2662,7 @@ msgstr ""
 #: application/views/oqrs/showrequests.php:93
 #: application/views/public_search/result.php:16
 #: application/views/qslcard/confirmationresult.php:18
-#: application/views/qslcard/index.php:47
+#: application/views/qslcard/index.php:37
 #: application/views/qslcard/searchresult.php:21
 #: application/views/qslcard/searchresult.php:37
 #: application/views/qslcard/searchresult.php:39
@@ -3245,7 +3245,7 @@ msgstr ""
 msgid "QRZ ADIF Information"
 msgstr ""
 
-#: application/controllers/Qsl.php:24
+#: application/controllers/Qsl.php:41
 #: application/views/dashboard/_options_menu.php:17
 #: application/views/dashboard/index.php:508
 #: application/views/dashboard/index.php:522
@@ -3257,15 +3257,15 @@ msgstr ""
 msgid "QSL Cards"
 msgstr ""
 
-#: application/controllers/Qsl.php:39
+#: application/controllers/Qsl.php:65
 msgid "Upload QSL Cards"
 msgstr ""
 
-#: application/controllers/Qsl.php:95 application/controllers/Qsl.php:144
+#: application/controllers/Qsl.php:121 application/controllers/Qsl.php:170
 msgid "Not enough free disk space to store the QSL card."
 msgstr ""
 
-#: application/controllers/Qsl.php:112 application/controllers/Qsl.php:161
+#: application/controllers/Qsl.php:138 application/controllers/Qsl.php:187
 #: application/controllers/Qslpostcard.php:89
 msgid "The uploaded file is not a valid image."
 msgstr ""
@@ -3450,8 +3450,7 @@ msgstr ""
 #: application/views/lotw_views/index.php:143
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:80
-#: application/views/qslcard/index.php:80
-#: application/views/qslcard/index.php:129
+#: application/views/qslcard/index.php:70
 #: application/views/qslpostcard/designer.php:321
 #: application/views/qslpostcard/designer.php:360
 #: application/views/satellite/edit.php:57
@@ -6141,7 +6140,7 @@ msgstr ""
 #: application/views/map/qso_map.php:30 application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:15
 #: application/views/qslcard/confirmationresult.php:15
-#: application/views/qslcard/index.php:43
+#: application/views/qslcard/index.php:33
 #: application/views/qslcard/searchform.php:3
 #: application/views/qslprint/index.php:38
 #: application/views/qslprint/qslprint.php:34
@@ -6256,7 +6255,7 @@ msgstr ""
 #: application/views/oqrs/qsolist.php:7 application/views/oqrs/request.php:17
 #: application/views/oqrs/request_grouped.php:11
 #: application/views/public_search/result.php:13
-#: application/views/qslcard/index.php:45
+#: application/views/qslcard/index.php:35
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:35
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:158
@@ -6299,7 +6298,7 @@ msgstr ""
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:35
 #: application/views/hamsat/index.php:36 application/views/oqrs/qsolist.php:8
-#: application/views/qslcard/index.php:46
+#: application/views/qslcard/index.php:36
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:36
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:199
@@ -15517,8 +15516,7 @@ msgid "View eQSL Cards"
 msgstr ""
 
 #: application/views/eqslcard/index.php:39
-#: application/views/qslcard/index.php:48
-#: application/views/qslcard/index.php:124
+#: application/views/qslcard/index.php:38
 msgid "QSL Date"
 msgstr ""
 
@@ -15527,7 +15525,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:2711
 #: application/views/interface_assets/footer.php:2730
 #: application/views/interface_assets/footer.php:2748
-#: application/views/qslcard/index.php:81
+#: application/views/qslcard/index.php:72
 #: application/views/statistics/antennaanalytics.php:85
 #: application/views/view_log/qso.php:728
 #: application/views/view_log/qso.php:736
@@ -19895,16 +19893,7 @@ msgstr ""
 msgid "You are using %s of disk space to store QSL Card assets"
 msgstr ""
 
-#: application/views/qslcard/index.php:21
-msgid "List View"
-msgstr ""
-
-#: application/views/qslcard/index.php:22
-msgid "Gallery View"
-msgstr ""
-
-#: application/views/qslcard/index.php:82
-#: application/views/qslcard/index.php:130
+#: application/views/qslcard/index.php:71
 msgid "Add Qsos"
 msgstr ""
 

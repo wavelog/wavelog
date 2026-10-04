@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-03 13:48+0000\n"
+"POT-Creation-Date: 2026-10-04 08:50+0000\n"
 "PO-Revision-Date: 2026-10-02 07:33+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -176,9 +176,9 @@ msgstr "対流圏ダクト"
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
 #: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:169
 #: application/controllers/Eqsl.php:258 application/controllers/Eqsl.php:281
-#: application/controllers/Eqsl.php:319 application/controllers/Eqsl.php:521
-#: application/controllers/Eqsl.php:592 application/controllers/Eqsl.php:607
-#: application/controllers/Eqsl.php:665
+#: application/controllers/Eqsl.php:326 application/controllers/Eqsl.php:466
+#: application/controllers/Eqsl.php:537 application/controllers/Eqsl.php:552
+#: application/controllers/Eqsl.php:610
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -199,8 +199,8 @@ msgstr "対流圏ダクト"
 #: application/controllers/Qrz.php:28 application/controllers/Qrz.php:293
 #: application/controllers/Qrz.php:316 application/controllers/Qrz.php:380
 #: application/controllers/Qsl.php:11 application/controllers/Qsl.php:12
-#: application/controllers/Qsl.php:47 application/controllers/Qsl.php:54
-#: application/controllers/Qsl.php:82 application/controllers/Qsl.php:132
+#: application/controllers/Qsl.php:73 application/controllers/Qsl.php:80
+#: application/controllers/Qsl.php:108 application/controllers/Qsl.php:158
 #: application/controllers/Qslpostcard.php:15
 #: application/controllers/Qslprint.php:22
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
@@ -1767,7 +1767,7 @@ msgstr "DXカレンダー"
 msgid "eQSL Cards"
 msgstr "eQSLカード"
 
-#: application/controllers/Eqsl.php:55
+#: application/controllers/Eqsl.php:55 application/controllers/Qsl.php:51
 #, php-format
 msgid "Showing %d to %d of %d entries"
 msgstr "%d 件中 %d 件から %d 件を表示中"
@@ -1802,65 +1802,65 @@ msgstr "eQSLのユーザー名/パスワードが間違っています"
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "そのような eQSL QTH ニックネーム( アカウント名)はありません: %s"
 
-#: application/controllers/Eqsl.php:335
+#: application/controllers/Eqsl.php:343
 msgid "QSO not found or not accessible"
 msgstr "QSOが見つかりません、またはアクセスできません"
 
-#: application/controllers/Eqsl.php:353
+#: application/controllers/Eqsl.php:361
 msgid "User not found"
 msgstr "ユーザーが見つかりません"
 
-#: application/controllers/Eqsl.php:362
+#: application/controllers/Eqsl.php:370
 msgid "eQSL password not configured for this user"
 msgstr "このユーザーにはeQSLパスワードが設定されていません"
 
-#: application/controllers/Eqsl.php:379
+#: application/controllers/Eqsl.php:387
 msgid "Failed to fetch eQSL image data"
 msgstr "eQSL画像データの取得に失敗しました"
 
-#: application/controllers/Eqsl.php:398
+#: application/controllers/Eqsl.php:406
 msgid "eQSL image not available"
 msgstr "eQSL画像は利用できません"
 
-#: application/controllers/Eqsl.php:416
+#: application/controllers/Eqsl.php:424
 msgid "Failed to download eQSL image"
 msgstr "eQSLイメージのダウンロードに失敗しました"
 
-#: application/controllers/Eqsl.php:426 application/controllers/Eqsl.php:579
+#: application/controllers/Eqsl.php:434 application/controllers/Eqsl.php:524
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "eQSLカードを保存するのに十分な空きディスク容量がありません"
 
-#: application/controllers/Eqsl.php:450
+#: application/controllers/Eqsl.php:458
 msgid "Failed to load cached eQSL image"
 msgstr "キャッシュされたeQSL画像の読み込みに失敗しました"
 
-#: application/controllers/Eqsl.php:596
+#: application/controllers/Eqsl.php:541
 msgid "eQSL Tools"
 msgstr "eQSLツール"
 
-#: application/controllers/Eqsl.php:625
+#: application/controllers/Eqsl.php:570
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr ""
 "このリクエストは最初の150QSOまでに制限されています。もう一度実行してくださ"
 "い。"
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:576
 msgid " / Errors: "
 msgstr " / エラー: "
 
-#: application/controllers/Eqsl.php:631
+#: application/controllers/Eqsl.php:576
 msgid "Successfully downloaded: "
 msgstr "ダウンロードに成功しました: "
 
-#: application/controllers/Eqsl.php:638
+#: application/controllers/Eqsl.php:583
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr "eQSLの制限回数に達しました。再度実行する前にしばらくお待ちください。"
 
-#: application/controllers/Eqsl.php:650
+#: application/controllers/Eqsl.php:595
 msgid "eQSL Card Image Download"
 msgstr "eQSLカード画像のダウンロード"
 
-#: application/controllers/Eqsl.php:673
+#: application/controllers/Eqsl.php:618
 msgid "All eQSLs marked as uploaded"
 msgstr "すべてのeQSLがアップロード済みとしてマークされています"
 
@@ -2405,7 +2405,7 @@ msgstr "すべてのコールブック検索が失敗したか、結果が提供
 #: application/views/oqrs/showrequests.php:94
 #: application/views/public_search/result.php:15
 #: application/views/qslcard/confirmationresult.php:17
-#: application/views/qslcard/index.php:44
+#: application/views/qslcard/index.php:34
 #: application/views/qslcard/searchresult.php:12
 #: application/views/qslcard/searchresult.php:28
 #: application/views/qslcard/searchresult.php:44
@@ -2691,7 +2691,7 @@ msgstr "距離"
 #: application/views/oqrs/showrequests.php:93
 #: application/views/public_search/result.php:16
 #: application/views/qslcard/confirmationresult.php:18
-#: application/views/qslcard/index.php:47
+#: application/views/qslcard/index.php:37
 #: application/views/qslcard/searchresult.php:21
 #: application/views/qslcard/searchresult.php:37
 #: application/views/qslcard/searchresult.php:39
@@ -3290,7 +3290,7 @@ msgstr "QRZ QSLインポート"
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF情報"
 
-#: application/controllers/Qsl.php:24
+#: application/controllers/Qsl.php:41
 #: application/views/dashboard/_options_menu.php:17
 #: application/views/dashboard/index.php:508
 #: application/views/dashboard/index.php:522
@@ -3302,15 +3302,15 @@ msgstr "QRZ ADIF情報"
 msgid "QSL Cards"
 msgstr "QSLカード"
 
-#: application/controllers/Qsl.php:39
+#: application/controllers/Qsl.php:65
 msgid "Upload QSL Cards"
 msgstr "QSLカードをアップロードする"
 
-#: application/controllers/Qsl.php:95 application/controllers/Qsl.php:144
+#: application/controllers/Qsl.php:121 application/controllers/Qsl.php:170
 msgid "Not enough free disk space to store the QSL card."
 msgstr "QSLカードを保存するのに十分な空きディスク容量がありません。"
 
-#: application/controllers/Qsl.php:112 application/controllers/Qsl.php:161
+#: application/controllers/Qsl.php:138 application/controllers/Qsl.php:187
 #: application/controllers/Qslpostcard.php:89
 msgid "The uploaded file is not a valid image."
 msgstr "アップロードされたファイルは有効な画像ではありません。"
@@ -3499,8 +3499,7 @@ msgstr "編集"
 #: application/views/lotw_views/index.php:143
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:80
-#: application/views/qslcard/index.php:80
-#: application/views/qslcard/index.php:129
+#: application/views/qslcard/index.php:70
 #: application/views/qslpostcard/designer.php:321
 #: application/views/qslpostcard/designer.php:360
 #: application/views/satellite/edit.php:57
@@ -6260,7 +6259,7 @@ msgstr "何も見つかりません!"
 #: application/views/map/qso_map.php:30 application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:15
 #: application/views/qslcard/confirmationresult.php:15
-#: application/views/qslcard/index.php:43
+#: application/views/qslcard/index.php:33
 #: application/views/qslcard/searchform.php:3
 #: application/views/qslprint/index.php:38
 #: application/views/qslprint/qslprint.php:34
@@ -6377,7 +6376,7 @@ msgstr ""
 #: application/views/oqrs/qsolist.php:7 application/views/oqrs/request.php:17
 #: application/views/oqrs/request_grouped.php:11
 #: application/views/public_search/result.php:13
-#: application/views/qslcard/index.php:45
+#: application/views/qslcard/index.php:35
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:35
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:158
@@ -6420,7 +6419,7 @@ msgstr "日付"
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:35
 #: application/views/hamsat/index.php:36 application/views/oqrs/qsolist.php:8
-#: application/views/qslcard/index.php:46
+#: application/views/qslcard/index.php:36
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:36
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:199
@@ -16226,8 +16225,7 @@ msgid "View eQSL Cards"
 msgstr "eQSLカードを見る"
 
 #: application/views/eqslcard/index.php:39
-#: application/views/qslcard/index.php:48
-#: application/views/qslcard/index.php:124
+#: application/views/qslcard/index.php:38
 msgid "QSL Date"
 msgstr "QSL日付"
 
@@ -16236,7 +16234,7 @@ msgstr "QSL日付"
 #: application/views/interface_assets/footer.php:2711
 #: application/views/interface_assets/footer.php:2730
 #: application/views/interface_assets/footer.php:2748
-#: application/views/qslcard/index.php:81
+#: application/views/qslcard/index.php:72
 #: application/views/statistics/antennaanalytics.php:85
 #: application/views/view_log/qso.php:728
 #: application/views/view_log/qso.php:736
@@ -20752,16 +20750,7 @@ msgstr "確認タイプ"
 msgid "You are using %s of disk space to store QSL Card assets"
 msgstr "あなたはディスク容量の%sをQSLカード資産の保存に使用しています"
 
-#: application/views/qslcard/index.php:21
-msgid "List View"
-msgstr "リストビュー"
-
-#: application/views/qslcard/index.php:22
-msgid "Gallery View"
-msgstr "ギャラリービュー"
-
-#: application/views/qslcard/index.php:82
-#: application/views/qslcard/index.php:130
+#: application/views/qslcard/index.php:71
 msgid "Add Qsos"
 msgstr "QSOを追加"
 
@@ -25010,6 +24999,12 @@ msgstr "Clublog Log を検索"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTWユーザー。最後のアップロードは "
+
+#~ msgid "List View"
+#~ msgstr "リストビュー"
+
+#~ msgid "Gallery View"
+#~ msgstr "ギャラリービュー"
 
 #, php-format
 #~ msgid ""
