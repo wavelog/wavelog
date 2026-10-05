@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-05 11:48+0000\n"
-"PO-Revision-Date: 2026-10-05 14:02+0000\n"
+"PO-Revision-Date: 2026-10-05 14:15+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
@@ -586,7 +586,7 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:391
 msgid "Awards - WAPC"
-msgstr "Ocenění - WAPC"
+msgstr "Diplomy - WAPC"
 
 #: application/controllers/Awards.php:471
 msgid "Awards - WAJA"
@@ -898,7 +898,7 @@ msgstr "WPX"
 #: application/views/awards/pl_polska/index.php:41
 #: application/views/interface_assets/header.php:289
 msgid "\"Polska\" Award"
-msgstr "Ocenění \"Polska\""
+msgstr "Diplom Polska"
 
 #: application/controllers/Awards.php:3253
 msgid "Awards - AMSAT Rover"
@@ -2435,7 +2435,7 @@ msgstr ""
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
 msgid "Mode"
-msgstr "Režim"
+msgstr "Mód"
 
 #: application/controllers/Logbook.php:1508
 #: application/views/awards/73on73/index.php:43
@@ -2944,7 +2944,7 @@ msgstr "Mapa QSO"
 #: application/views/statistics/qsltable.php:111
 #: application/views/usermode/index.php:25
 msgid "Modes"
-msgstr "Režimy"
+msgstr "Módy"
 
 #: application/controllers/Mode.php:61
 msgid "Edit Mode"
@@ -2953,7 +2953,7 @@ msgstr "Režim úprav"
 #: application/controllers/Mode.php:76
 #, php-format
 msgid "Mode %s updated"
-msgstr "Režim %s byl aktualizován"
+msgstr "Druh provozu %s byl aktualizován"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -3569,15 +3569,15 @@ msgstr "Dráha satelitu"
 
 #: application/controllers/Satellite.php:272
 msgid "Satellite pass"
-msgstr "Průchod satelitu"
+msgstr "Přelet satelitu"
 
 #: application/controllers/Satellite.php:331
 msgid "Failed to save pass settings!"
-msgstr "Nepodařilo se uložit nastavení průchodu!"
+msgstr "Nepodařilo se uložit nastavení přeletu!"
 
 #: application/controllers/Satellite.php:334
 msgid "Pass settings saved!"
-msgstr "Nastavení průchodu uloženo!"
+msgstr "Nastavení přeletu uloženo!"
 
 #: application/controllers/Satellite.php:347
 msgid "No settings found!"
@@ -3585,11 +3585,11 @@ msgstr "Nenalezena žádná nastavení!"
 
 #: application/controllers/Satellite.php:361
 msgid "Failed to delete pass settings!"
-msgstr "Nepodařilo se smazat nastavení průchodu!"
+msgstr "Nepodařilo se smazat nastavení přeletu!"
 
 #: application/controllers/Satellite.php:363
 msgid "Pass settings deleted!"
-msgstr "Nastavení průchodu smazáno!"
+msgstr "Nastavení přeletu smazáno!"
 
 #: application/controllers/Satellite.php:373
 msgid "Saved Pass Settings"
@@ -4714,7 +4714,7 @@ msgstr[2] ""
 
 #: application/models/Achievements_model.php:237
 msgid "QSOs in classic digimodes"
-msgstr "QSO v klasických digitálních režimech"
+msgstr "QSO v klasických digitálních módech"
 
 #: application/models/Achievements_model.php:239
 #: application/models/Achievements_model.php:356
@@ -4724,7 +4724,7 @@ msgstr "První QSO dne"
 
 #: application/models/Achievements_model.php:242
 msgid "Top classic mode"
-msgstr "Nejčastější klasický režim"
+msgstr "Nejčastější klasický mód"
 
 #: application/models/Achievements_model.php:245
 msgid "First CW QSO"
@@ -4740,7 +4740,7 @@ msgstr "První QSO v FT8"
 
 #: application/models/Achievements_model.php:251
 msgid "First Classic Digimode QSO"
-msgstr "První QSO v klasickém digitálním režimu"
+msgstr "První QSO v klasickém digitálním módu"
 
 #: application/models/Achievements_model.php:252
 msgid "Triple Threat"
@@ -4750,17 +4750,17 @@ msgstr "Trojkombinace"
 #, php-format
 msgid "%s / 3 mode"
 msgid_plural "%s / 3 modes"
-msgstr[0] "%s / 3 režimů%s / 3 režimů%s / 3 režimů"
+msgstr[0] "%s / 3 módů%s / 3 módů%s / 3 módů"
 msgstr[1] ""
 msgstr[2] ""
 
 #: application/models/Achievements_model.php:255
 msgid "Worked modes"
-msgstr "Pracované režimy"
+msgstr "Pracované módy"
 
 #: application/models/Achievements_model.php:256
 msgid "Missing modes"
-msgstr "Chybějící režimy"
+msgstr "Chybějící módy"
 
 #: application/models/Achievements_model.php:272
 msgid "First LoTW Confirmation"
@@ -4811,7 +4811,7 @@ msgstr "Navázáno"
 
 #: application/models/Achievements_model.php:306
 msgid "Classic digimodes"
-msgstr "Klasické digitální režimy"
+msgstr "Klasické digitální módy"
 
 #: application/models/Achievements_model.php:310
 #, php-format
@@ -4851,11 +4851,11 @@ msgstr "Objem"
 
 #: application/models/Achievements_model.php:324
 msgid "Classic Mode Ratio"
-msgstr "Poměr klasických režimů"
+msgstr "Poměr klasických módů"
 
 #: application/models/Achievements_model.php:353
 msgid "QSOs in this mode"
-msgstr "QSO v tomto režimu"
+msgstr "QSO v tomto módu"
 
 #: application/models/Achievements_model.php:371
 msgid "Bands worked"
@@ -5418,7 +5418,7 @@ msgstr "Kumulativní počet navázaných VUCC lokátorů"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
-msgstr "Kumulativní počet WAJA spojení"
+msgstr "Kumulativní počet pracovaných WAJA"
 
 #: application/views/accumulate/index.php:8
 #: application/views/contesting/manager/import_legacy.php:38
@@ -5639,7 +5639,7 @@ msgstr "Období"
 #: application/views/view_log/partial/log_ajax.php:22
 #: application/views/view_log/qso.php:235
 msgid "Propagation"
-msgstr "Propagace"
+msgstr "Šíření"
 
 #: application/views/accumulate/index.php:90
 #: application/views/distances/index.php:60
@@ -6004,11 +6004,11 @@ msgstr "Pole"
 
 #: application/views/activationplanner/index.php:34
 msgid "Square"
-msgstr "Velký čtverec"
+msgstr "Velký lokátor"
 
 #: application/views/activationplanner/index.php:35
 msgid "Subsquare"
-msgstr "Malý čtverec"
+msgstr "Malý lokátor"
 
 #: application/views/activationplanner/index.php:36
 msgid "Locating…"
@@ -7577,7 +7577,7 @@ msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 msgstr ""
-"Pole použitá pro tento diplom: Režim propagace a název SAT (ADIF: "
+"Pole použitá pro tento diplom: způsob šíření a název SAT (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 
 #: application/views/awards/73on73/index.php:19
@@ -7742,7 +7742,7 @@ msgstr "Celkem bodů"
 
 #: application/views/awards/amsat_rover/index.php:188
 msgid "Activations by Mode"
-msgstr "Aktivace podle režimu"
+msgstr "Aktivace podle módu"
 
 #: application/views/awards/amsat_rover/index.php:191
 msgid "FM"
@@ -8392,7 +8392,7 @@ msgstr "Datum do"
 #: application/views/awards/was/index.php:72
 #: application/views/awards/wwff/index.php:88
 msgid "Show worked"
-msgstr "Zobrazit spojené"
+msgstr "Zobrazit pracované"
 
 #: application/views/awards/cq/index.php:102
 #: application/views/awards/dok/index.php:83
@@ -8542,7 +8542,7 @@ msgstr "Celkem (bez SAT)"
 #: application/views/awards/was/index.php:203
 #: application/views/awards/wpx/index.php:181
 msgid "Total worked"
-msgstr "Celkem spojené"
+msgstr "Celkem pracováno"
 
 #: application/views/awards/cq/index.php:267
 #: application/views/awards/dok/index.php:209
@@ -8573,7 +8573,7 @@ msgstr "Filtrování podle"
 
 #: application/views/awards/dok/index.php:13
 msgid "DOK Award"
-msgstr "Odznak DOK"
+msgstr "Diplom DOK"
 
 #: application/views/awards/dok/index.php:14
 msgid ""
@@ -8619,7 +8619,7 @@ msgstr ""
 
 #: application/views/awards/dok/index.php:17
 msgid "Fields taken for this Award: DOK (ADIF: DARC_DOK)"
-msgstr "Pole použitá pro toto ocenění: DOK (ADIF: DARC_DOK)"
+msgstr "Pole použitá pro tento diplom: DOK (ADIF: DARC_DOK)"
 
 #: application/views/awards/dok/index.php:26
 msgid "View progress of DOK awards"
@@ -8635,7 +8635,7 @@ msgstr "DOK + SDOK"
 
 #: application/views/awards/dxcc/index.php:15
 msgid "DXCC Award"
-msgstr "Odznak DXCC"
+msgstr "Diplom DXCC"
 
 #: application/views/awards/dxcc/index.php:16
 msgid "'How to Count Countries Worked, A New DX Scoring System'"
@@ -8648,8 +8648,8 @@ msgid ""
 "DXCC List is based on an article created in 1935 by Clinton B. DeSoto, "
 "W1CBD, titled %s."
 msgstr ""
-"DXCC znamená 'DX Century Club', odznak založený na pracovaných zemích. "
-"Seznam DXCC je založen na článku vytvořeném v roce 1935 Clintonem B. DeSoto, "
+"DXCC znamená 'DX Century Club', diplom založený na pracovaných zemích. "
+"Seznam DXCC vychází z článku, který v roce 1935 napsal Clinton B. DeSoto, "
 "W1CBD, s názvem %s."
 
 #: application/views/awards/dxcc/index.php:17
@@ -8682,7 +8682,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Needs to be a valid one out of the DXCC-"
 "ADIF-Spec-List"
 msgstr ""
-"Pole použitá pro tento odznak: DXCC (musí být platné z DXCC-ADIF-Spec-Listu)"
+"Pole použitá pro tento diplom: DXCC (musí být platné podle seznamu DXCC ve "
+"specifikaci ADIF"
 
 #: application/views/awards/dxcc/index.php:47
 msgid "Show DXCC Map"
@@ -8805,7 +8806,7 @@ msgstr "Podle kontinentu"
 
 #: application/views/awards/dxcc/index.php:283
 msgid "By Mode"
-msgstr "Podle režimu"
+msgstr "Podle módu"
 
 #: application/views/awards/dxcc/index.php:366
 #: application/views/awards/wac/index.php:147
@@ -8862,12 +8863,12 @@ msgstr ""
 
 #: application/views/awards/dxcc/progress.php:31
 msgid "No mode data available."
-msgstr "Nejsou k dispozici žádná data o režimech."
+msgstr "Nejsou k dispozici žádná data o módech."
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:313
 msgid "Fred Fish Memorial Award"
-msgstr "Pamatníkový odznak Fred Fish"
+msgstr "Fred Fish Memorial Award"
 
 #: application/views/awards/ffma/index.php:12
 msgid ""
@@ -8875,17 +8876,15 @@ msgid ""
 "who was the first amateur to have worked and confirmed all 488 Maidenhead "
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
-"Pamatníkový odznak Fred Fish byl vytvořen na počest Freda Fishe, W5FF (SK), "
-"který byl prvním radioamatérem, který navázal a potvrdil všech 488 "
-"Maidenhead lokátorů v 48 sousedících státech USA na 6 metrech."
+"Diplom Fred Fish Memorial Award vznikl na počest Freda Fishe, W5FF (SK), "
+"který jako první radioamatér pracoval a potvrdil všech 488 lokátorů "
+"Maidenhead ve 48 sousedících státech USA na pásmu 6 m."
 
 #: application/views/awards/ffma/index.php:13
 msgid ""
 "The award will be given to any amateur who can duplicate W5FF's "
 "accomplishment."
-msgstr ""
-"Odznak bude udělen každému radioamatérovi, který dokáže zopakovat W5FFův "
-"výkon."
+msgstr "Diplom získá každý radioamatér, který zopakuje úspěch W5FF."
 
 #: application/views/awards/ffma/index.php:14
 #, php-format
@@ -8897,8 +8896,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
-"Pole použitá pro tento odznak: DXCC (musí být USA), lokátor (musí obsahovat "
-"lokátor z jednoho z 488 pevninských lokátorů!), pásmo musí být 6M."
+"Pole použitá pro tento diplom: DXCC (musí být USA), lokátor (musí obsahovat "
+"jeden z 488 pevninských lokátorů!), pásmo musí být 6M."
 
 #: application/views/awards/gridmaster/index.php:11
 msgid "US Gridmaster Award"
@@ -8911,10 +8910,10 @@ msgid ""
 "operators worldwide who manage to work all 488 grid squares in the USA via "
 "satellite and can provide QSL confirmations for each contact."
 msgstr ""
-"Odznak GridMaster je nejprestižnější ocenění AMSAT, poprvé představené v "
-"roce 2014 skupinou Star Comm. Je dostupné všem radioamatérům na celém světě, "
-"kteří dokáží navázat spojení se všemi 488 lokátory v USA přes satelit a "
-"mohou poskytnout QSL potvrzení pro každé spojení."
+"Diplom GridMaster je nejprestižnější diplom AMSAT, který v roce 2014 poprvé "
+"představila skupina Star Comm. Mohou jej získat radioamatéři z celého světa, "
+"kteří přes satelit pracují všech 488 lokátorů v USA a doloží QSL potvrzení "
+"každého spojení."
 
 #: application/views/awards/gridmaster/index.php:13
 #, php-format
@@ -8928,13 +8927,13 @@ msgid ""
 "when achieved from another location, which is in a different 200-kilometer "
 "circle."
 msgstr ""
-"Oficiální informace z %s: Dvoucestná komunikace musí být navázána přes "
-"amatérský satelit s každým lokátorem. Není požadováno žádné minimální "
-"hlášení signálu. Spojení musí být navázána ze stejného místa nebo z míst, "
-"která jsou od sebe vzdálena nejvýše 200 kilometrů. Prohlášení žadatele v "
-"žádosti o odznak slouží jako potvrzení dodržování pravidla vzdálenosti. "
-"Jednotlivci mohou žádat a být jim uděleno více GridMaster odznaků, když jsou "
-"dosaženy z jiného místa, které je v jiném 200kilometrovém kruhu."
+"Oficiální informace z %s: Oboustranné spojení musí být navázáno přes "
+"amatérský satelit s každým lokátorem. Minimální report není vyžadován. "
+"Spojení musí být navázána ze stejného místa nebo z míst, z nichž žádná dvě "
+"nejsou od sebe vzdálena více než 200 kilometrů. Prohlášení žadatele v "
+"žádosti o diplom slouží jako potvrzení dodržení pravidla vzdálenosti. "
+"Jednotlivci mohou žádat o více diplomů GridMaster a získat je, pokud jich "
+"dosáhli z jiného místa ležícího v jiném 200kilometrovém kruhu."
 
 #: application/views/awards/gridmaster/index.php:13
 msgid "website"
@@ -8943,7 +8942,7 @@ msgstr "webová stránka"
 #: application/views/awards/gridmaster/index.php:14
 #: application/views/awards/gridmaster/index.php:20
 msgid "This map shows only QSOs worked on SAT."
-msgstr "Tato mapa zobrazuje pouze QSO uskutečněná přes SAT."
+msgstr "Tato mapa zobrazuje pouze QSO navázaná přes SAT."
 
 #: application/views/awards/gridmaster/index.php:15
 msgid ""
@@ -8951,19 +8950,18 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Propagation-Mode and SAT-"
 "Name"
 msgstr ""
-"Pole použité pro toto ocenění: DXCC (musí být USA), lokátor (musí obsahovat "
-"lokátor z jednoho z 488 pevninských lokátorů!), režim šíření a SAT-název"
+"Pole použitá pro tento diplom: DXCC (musí být USA), lokátor (musí obsahovat "
+"jeden z 488 pevninských lokátorů!), způsob šíření a název SAT"
 
 #: application/views/awards/gridmaster/index.php:17
 msgid "Gridmaster Award"
-msgstr "Odznak Gridmaster"
+msgstr "Diplom Gridmaster"
 
 #: application/views/awards/gridmaster/index.php:18
 msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
-msgstr ""
-"Odznak Gridmaster byl původně navržen pro 488 lokátorů k navázání v USA."
+msgstr "Diplom Gridmaster byl původně navržen pro 488 lokátorů v USA."
 
 #: application/views/awards/gridmaster/index.php:19
 msgid ""
@@ -8971,16 +8969,16 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
-"Na této mapě jsou zobrazeny lokátory pro konkrétní DXCC. Toto není oficiální "
-"odznak, ale pouze zobrazuje lokátory, které byly navázány podle pravidel US "
-"Gridmaster Award pro tento DXCC."
+"Na této mapě jsou zobrazeny lokátory pro konkrétní DXCC. Nejde o oficiální "
+"diplom, mapa pouze ukazuje lokátory pracované podle pravidel US Gridmaster "
+"Award pro toto DXCC."
 
 #: application/views/awards/gridmaster/index.php:23
 msgid ""
 "Fields taken for this Award: DXCC (Must be Germany), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
-"Pole použitá pro tento odznak: DXCC (musí být Německo), lokátor, způsob "
+"Pole použitá pro tento diplom: DXCC (musí být Německo), lokátor, způsob "
 "šíření a název SAT"
 
 #: application/views/awards/gridmaster/index.php:26
@@ -8988,7 +8986,7 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Luxembourg), Gridsquare, "
 "Propagation-Mode and SAT-Name"
 msgstr ""
-"Pole použitá pro tento odznak: DXCC (musí být Lucembursko), lokátor, způsob "
+"Pole použitá pro tento diplom: DXCC (musí být Lucembursko), lokátor, způsob "
 "šíření a název SAT"
 
 #: application/views/awards/gridmaster/index.php:29
@@ -8996,7 +8994,7 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Japan), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
-"Pole použitá pro tento odznak: DXCC (musí být Japonsko), lokátor, způsob "
+"Pole použitá pro tento diplom: DXCC (musí být Japonsko), lokátor, způsob "
 "šíření a název SAT"
 
 #: application/views/awards/helvetia/index.php:3
@@ -9010,7 +9008,7 @@ msgstr "Přejeďte myší přes kanton"
 
 #: application/views/awards/helvetia/index.php:26
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
-msgstr "HELVETIA 26 | OCENĚNÍ ŠVÝCARSKA"
+msgstr "HELVETIA 26 | DIPLOM SWITZERLAND"
 
 #: application/views/awards/helvetia/index.php:27
 msgid ""
@@ -9019,9 +9017,9 @@ msgid ""
 "activities on the bands by encouraging contacts across as many Swiss cantons "
 "as possible on multiple bands."
 msgstr ""
-"USKA (Svaz švýcarských krátkovlnných radioamatérů) sponzoruje dva odznaky, "
-"HELVETIA 26 (H26) a SWITZERLAND, jejichž cílem je podpora aktivit na pásmech "
-"povzbuzováním spojení přes co nejvíce švýcarských kantonů na více pásmech."
+"USKA (Svaz švýcarských krátkovlnných radioamatérů) vydává dva diplomy, "
+"HELVETIA 26 (H26) a SWITZERLAND, jejichž cílem je podpořit aktivitu na "
+"pásmech navazováním spojení s co nejvíce švýcarskými kantony na více pásmech."
 
 #: application/views/awards/helvetia/index.php:28
 msgid ""
@@ -9029,17 +9027,16 @@ msgid ""
 "(including SHF and UHF) bands. Valid connections for these awards date back "
 "to January 1, 1980"
 msgstr ""
-"Tyto odznaky existují ve dvou verzích: jedna pro pásma HF a druhá pro pásma "
-"VHF (včetně SHF a UHF). Platná spojení pro tyto odznaky sahají zpět k 1. "
-"lednu 1980"
+"Tyto diplomy existují ve dvou verzích: jedna pro pásma HF a druhá pro pásma "
+"VHF (včetně UHF a SHF). Pro tyto diplomy platí spojení od 1. ledna 1980"
 
 #: application/views/awards/helvetia/index.php:30
 msgid ""
 "Fields taken for this Award: DXCC (Must be Switzerland) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
-"Pole použitá pro tento odznak: DXCC (musí být Švýcarsko) a STATE (musí "
-"obsahovat platnou zkratku státu!)"
+"Pole použitá pro tento diplom: DXCC (musí být Švýcarsko) a STATE (musí "
+"obsahovat platnou zkratku kantonu!)"
 
 #: application/views/awards/helvetia/index.php:54
 msgid "Show Helvetia Map"
@@ -9056,7 +9053,7 @@ msgstr "CQ"
 
 #: application/views/awards/iota/index.php:21
 msgid "IOTA Awards"
-msgstr "IOTA ocenění"
+msgstr "Diplomy IOTA"
 
 #: application/views/awards/iota/index.php:22
 msgid ""
@@ -9086,16 +9083,15 @@ msgid ""
 "an Honor Roll and annual listings, as well as recognizing it with "
 "certificates and prestigious awards."
 msgstr ""
-"Spravuje jej společnost Islands On The Air (IOTA) Ltd (označovaná jako IOTA "
-"Management) ve spolupráci s Radio Society of Great Britain (RSGB). IOTA "
-"Management seskupil ostrovy světa do přibližně 1200 'IOTA skupin', přičemž "
-"každá má různý počet 'counters', což jsou kvalifikované ostrovy. Tyto "
-"seznamy jsou publikovány v IOTA Directory a na webových stránkách IOTA. "
-"Cílem pro IOTA Island Chaser je navázat rozhlasový kontakt s alespoň jedním "
-"counterem v co nejvíce těchto skupinách. Program má dobře definovanou sadu "
-"pravidel a podporuje přátelskou soutěž mezi chasery publikováním výkonu "
-"účastníků v Honor Roll a ročních seznamech, stejně jako uznáním certifikáty "
-"a prestižními odznaky."
+"Program spravuje společnost Islands On The Air (IOTA) Ltd (označovaná jako "
+"IOTA Management) ve spolupráci s Radio Society of Great Britain (RSGB). IOTA "
+"Management rozdělil ostrovy světa do přibližně 1200 'skupin IOTA', z nichž "
+"každá obsahuje různý počet 'counters', tedy započitatelných ostrovů. Tyto "
+"seznamy jsou zveřejněny v IOTA Directory a na webu IOTA. Cílem lovce ostrovů "
+"IOTA je navázat spojení s alespoň jedním započitatelným ostrovem v co "
+"nejvíce skupinách. Program má jasně daná pravidla a podporuje přátelské "
+"soutěžení mezi lovci zveřejňováním výsledků v Honor Roll a ročních "
+"přehledech a také jejich oceňováním certifikáty a prestižními diplomy."
 
 #: application/views/awards/iota/index.php:24
 #, php-format
@@ -9107,8 +9103,8 @@ msgid ""
 "Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-"
 "Reference"
 msgstr ""
-"Pole použitá pro tento odznak: IOTA (ADIF: IOTA) musí obsahovat platnou IOTA "
-"referenci"
+"Pole použitá pro tento diplom: IOTA (ADIF: IOTA) musí obsahovat platnou "
+"referenci IOTA"
 
 #: application/views/awards/iota/index.php:50
 msgid "Show IOTA Map"
@@ -9121,9 +9117,9 @@ msgid ""
 "broadcasting zones as defined by the International Telecommunications Union "
 "(ITU)."
 msgstr ""
-"Klasický odznak Worked ITU Zones lze získat předložením důkazu o navázání "
-"spojení se pozemními amatérskými rozhlasovými stanicemi v alespoň 70 z 75 "
-"vysílacích zón definovaných Mezinárodní telekomunikační unií (ITU)."
+"Klasický diplom Worked ITU Zones lze získat doložením spojení s pozemními "
+"radioamatérskými stanicemi v alespoň 70 ze 75 zón definovaných Mezinárodní "
+"telekomunikační unií (ITU)."
 
 #: application/views/awards/itu/index.php:29
 #, php-format
@@ -9133,11 +9129,11 @@ msgstr "Další informace naleznete na webových stránkách %s."
 
 #: application/views/awards/itu/index.php:31
 msgid "Fields taken for this Award: ITU-Zone (ADIF: ITUZ)"
-msgstr "Pole použitá pro toto ocenění: ITU-zóna (ADIF: ITUZ)"
+msgstr "Pole použitá pro tento diplom: ITU zóna (ADIF: ITUZ)"
 
 #: application/views/awards/itu/index.php:33
 msgid "Awards - ITU Zones"
-msgstr "Ocenění - ITU zóny"
+msgstr "Diplomy - ITU zóny"
 
 #: application/views/awards/itu/index.php:55
 msgid "Show ITU Zone Map"
@@ -9145,7 +9141,7 @@ msgstr "Zobrazit mapu ITU zón"
 
 #: application/views/awards/jcc/index.php:11
 msgid "JCC - Japan Century Cities Award"
-msgstr "JCC - ocenění Japan Century Cities"
+msgstr "JCC - Japan Century Cities Award"
 
 #: application/views/awards/jcc/index.php:12
 msgid ""
@@ -9162,17 +9158,17 @@ msgid ""
 "however names of city may be omitted. An additional sticker will be issued "
 "at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."
 msgstr ""
-"JCC-200, 300, 400, 500, 600, 700 a 800 budou vydány jako samostatné odznaky. "
-"Seznam QSL karet by měl být uspořádán podle JCC referenčního čísla, nicméně "
-"názvy měst mohou být vynechány. Dodatečná nálepka bude vydána každých 50 "
-"kontaktů, jako například 150, 250, 350, 450, 550, 650, 750 měst."
+"JCC-200, 300, 400, 500, 600, 700 a 800 se vydávají jako samostatné diplomy. "
+"Seznam QSL karet by měl být seřazen podle referenčního čísla JCC, názvy měst "
+"však lze vynechat. Za každých dalších 50 spojení, např. 150, 250, 350, 450, "
+"550, 650, 750 měst, se vydává doplňková nálepka."
 
 #: application/views/awards/jcc/index.php:15
 msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "reference!)"
 msgstr ""
-"Pole použitá pro tento odznak: DXCC (Japonsko) a County (musí obsahovat "
+"Pole použitá pro tento diplom: DXCC (Japonsko) a County (musí obsahovat "
 "platnou referenci!)"
 
 #: application/views/awards/jcc/index.php:26
@@ -9196,7 +9192,7 @@ msgstr "Exportovat potvrzená QSO"
 #: application/views/awards/jcg/index.php:168
 #: application/views/interface_assets/footer.php:50
 msgid "Worked not confirmed"
-msgstr "Spojení nepotvrzeno"
+msgstr "Pracováno, nepotvrzeno"
 
 #: application/views/awards/jcc/index.php:172
 #: application/views/awards/jcg/index.php:172
@@ -9281,9 +9277,8 @@ msgid ""
 "contacts with stations operating from all 16 Polish voivodeships "
 "(provinces). Valid from January 1, 1999."
 msgstr ""
-"Odznak Polska je vydáván Polským svazem radioamatérů (PZK) za spojení se "
-"stanicemi operujícími ze všech 16 polských vojvodství. Platný od 1. ledna "
-"1999."
+"Diplom Polska vydává Polský svaz radioamatérů (PZK) za spojení se stanicemi "
+"vysílajícími ze všech 16 polských vojvodství. Platí spojení od 1. ledna 1999."
 
 #: application/views/awards/pl_polska/index.php:43
 msgid ""
@@ -9291,7 +9286,7 @@ msgid ""
 "(RTTY/PSK/FSK), and individual bands (160M-2M). Classes: Basic (1 QSO/voiv), "
 "Bronze (3), Silver (7), Gold (12). All 16 voivodeships required."
 msgstr ""
-"Kategorie odznaků: MIXED (všechny módy/pásma), PHONE (SSB/AM/FM/SSTV), CW, "
+"Kategorie diplomu: MIXED (všechny módy/pásma), PHONE (SSB/AM/FM/SSTV), CW, "
 "DIGI (RTTY/PSK/FSK) a jednotlivá pásma (160M-2M). Třídy: Základní (1 QSO/"
 "vojvodství), Bronzová (3), Stříbrná (7), Zlatá (12). Vyžadováno všech 16 "
 "vojvodství."
@@ -9303,7 +9298,7 @@ msgstr "Oficiální pravidla a informace: %s"
 
 #: application/views/awards/pl_polska/index.php:44
 msgid "PZK Polska Award Rules"
-msgstr "Pravidla ocenění PZK Polska"
+msgstr "Pravidla diplomu PZK Polska"
 
 #: application/views/awards/pl_polska/index.php:45
 msgid ""
@@ -9331,9 +9326,9 @@ msgid ""
 "accepted for award applications. Other digital confirmations are shown here "
 "for tracking purposes only."
 msgstr ""
-"Podle oficiálních pravidel odznaků jsou pro žádosti o odznak přijímány "
-"papírové QSL karty nebo LoTW potvrzení. Ostatní digitální potvrzení jsou zde "
-"zobrazena pouze pro účely sledování."
+"Podle oficiálních pravidel diplomu se pro žádost o diplom uznávají papírové "
+"QSL karty nebo potvrzení LoTW. Ostatní elektronická potvrzení jsou zde "
+"zobrazena pouze pro přehled."
 
 #: application/views/awards/pl_polska/index.php:94
 msgid "Confirmation methods"
@@ -9341,14 +9336,14 @@ msgstr "Metody potvrzení"
 
 #: application/views/awards/pl_polska/index.php:134
 msgid "Award Categories"
-msgstr "Kategorie ocenění"
+msgstr "Kategorie diplomu"
 
 #: application/views/awards/pl_polska/index.php:136
 msgid ""
 "Polska Award categories are based on the minimum number of confirmed QSOs "
 "with each of all 16 voivodeships:"
 msgstr ""
-"Kategorie odznaku Polska jsou založeny na minimálním počtu potvrzených QSO s "
+"Kategorie diplomu Polska vycházejí z minimálního počtu potvrzených QSO s "
 "každým ze všech 16 vojvodství:"
 
 #: application/views/awards/pl_polska/index.php:140
@@ -9389,7 +9384,7 @@ msgstr "Gratulujeme!"
 
 #: application/views/awards/pl_polska/index.php:173
 msgid "You are entitled to the following award categories"
-msgstr "Náleží vám následující kategorie ocenění"
+msgstr "Máte nárok na následující kategorie diplomu"
 
 #: application/views/awards/pl_polska/index.php:211
 #: application/views/awards/pl_polska/index.php:282
@@ -9443,15 +9438,15 @@ msgstr "Bravo! Máte nárok na"
 #: application/views/awards/pl_polska/index.php:261
 #: application/views/awards/pl_polska/index.php:333
 msgid "category award!"
-msgstr "ocenění v kategorii!"
+msgstr "kategorie diplomu!"
 
 #: application/views/awards/pl_polska/index.php:351
 msgid "Award Category:"
-msgstr "Kategorie ocenění:"
+msgstr "Kategorie diplomu:"
 
 #: application/views/awards/pl_polska/index.php:353
 msgid "Mode Categories"
-msgstr "Kategorie podle módu"
+msgstr "Kategorie módů"
 
 #: application/views/awards/pl_polska/index.php:359
 msgid "Band Categories"
@@ -9472,8 +9467,8 @@ msgid ""
 "This award uses the State field from your logbook. Ensure this field is "
 "populated for all SP (Poland) contacts."
 msgstr ""
-"Tento odznak používá pole State z vašeho logu. Ujistěte se, že toto pole je "
-"vyplněno pro všechny SP (Polsko) kontakty."
+"Tento diplom používá pole State z vašeho deníku. Ujistěte se, že je vyplněno "
+"u všech spojení s SP (Polsko)."
 
 #: application/views/awards/pl_polska/index.php:381
 msgid "Tip:"
@@ -9528,9 +9523,8 @@ msgid ""
 "there are several categories based on the number of parks, geographic areas, "
 "and more."
 msgstr ""
-"POTA funguje podobně jako SOTA, s Aktivátory a Lovci. Pro odznaky existuje "
-"několik kategorií založených na počtu parků, zeměpisných oblastech a dalších "
-"faktorech."
+"POTA funguje podobně jako SOTA, s aktivátory a lovci. Diplomy mají několik "
+"kategorií podle počtu parků, zeměpisných oblastí a dalších kritérií."
 
 #: application/views/awards/pota/index.php:27
 #, php-format
@@ -9543,7 +9537,7 @@ msgstr "Další informace o dostupných odznacích a kategoriích naleznete na %
 #: application/views/awards/pota/index.php:28
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
 msgstr ""
-"Pole použitá pro toto ocenění: POTA_REF (musí obsahovat Park-Reference)"
+"Pole použitá pro tento diplom: POTA_REF (musí obsahovat referenci parku)"
 
 #: application/views/awards/pota/index.php:69
 msgid "No award yet"
@@ -9624,9 +9618,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"Kategorie SIG nebo Special Interest Group poskytuje možnost použít jakýkoli "
-"'Special Interest Group Award' pro odznaky, které nejsou implementovány ve "
-"Wavelogu."
+"Kategorie SIG (Special Interest Group) umožňuje použít libovolný 'Special "
+"Interest Group Award' pro diplomy, které ve Wavelogu nejsou implementovány."
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -9634,9 +9627,9 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
 msgstr ""
-"Důvodem je, že běžný formát ADIF poskytuje pouze několik vyhrazených polí "
-"pro určité odznaky. SIG stále umožňuje používat a vyhodnocovat všechny "
-"ostatní typy značek pro skupiny se speciálním zájmem."
+"Důvodem je, že běžný formát ADIF obsahuje vyhrazená pole jen pro několik "
+"diplomů. SIG přesto umožňuje používat a vyhodnocovat všechny ostatní typy "
+"označení zájmových skupin."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -9645,10 +9638,9 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
-"Při zpracování QSO najdete dvě pole: 'SIG' obsahuje zkratku názvu skupiny se "
-"speciálním zájmem, která je také viditelná ve vyhodnocení odznaku, a 'SIG "
-"INFO', která obsahuje skutečné reference. Obě pole jsou volně "
-"přizpůsobitelná."
+"Při zpracování QSO najdete dvě pole: 'SIG' obsahuje zkratku názvu zájmové "
+"skupiny, která se zobrazuje i ve vyhodnocení diplomu, a 'SIG INFO', které "
+"obsahuje vlastní referenci (reference). Obě pole lze libovolně upravit."
 
 #: application/views/awards/sig/index.php:18
 msgid "View progress of SIG awards"
@@ -9729,8 +9721,8 @@ msgid ""
 "SOTA (Summits On The Air) is an award scheme for radio amateurs that "
 "encourages portable operation in mountainous areas."
 msgstr ""
-"SOTA (Summits On The Air) je program odznaků pro radioamatéry, který "
-"podporuje přenosnou prevenci v horských oblastech."
+"SOTA (Summits On The Air) je diplomový program pro radioamatéry, který "
+"podporuje přenosný provoz v horských oblastech."
 
 #: application/views/awards/sota/index.php:26
 msgid ""
@@ -9766,8 +9758,8 @@ msgid ""
 "The VHF/UHF Century Club Award is given for a minimum number of worked and "
 "confirmed gridsquares on a desired band."
 msgstr ""
-"Odznak VHF/UHF Century Club je udělován za minimální počet navázaných a "
-"potvrzených lokátorů na požadovaném pásmu."
+"Diplom VHF/UHF Century Club se uděluje za minimální počet pracovaných a "
+"potvrzených lokátorů na zvoleném pásmu."
 
 #: application/views/awards/vucc/index.php:8
 #: application/views/awards/wae/index.php:27
@@ -9784,7 +9776,7 @@ msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
-"Pole použitá pro tento odznak: Lokátor a vucc_grids (ADIF: GRIDSQUARE, "
+"Pole použitá pro tento diplom: lokátor a vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:19
@@ -9808,24 +9800,24 @@ msgid ""
 "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham "
 "radio operators to work all the squares in Great Britain."
 msgstr ""
-"WAB, Worked All Britain squares v amatérském rádiu, povzbuzuje licencované "
-"radioamatéry k navázání spojení se všemi čtverci ve Velké Británii."
+"WAB (Worked All Britain) motivuje radioamatéry k navázání spojení se všemi "
+"čtverci ve Velké Británii."
 
 #: application/views/awards/wab/index.php:16
 msgid ""
 "May be claimed for having contacted an amateur station located in the "
 "required amount of squares, described on the page linked below."
 msgstr ""
-"Lze získat za navázání spojení s amatérskou stanicí umístěnou v požadovaném "
-"počtu čtverců, popsaném na stránce uvedené níže."
+"Diplom lze získat za spojení s radioamatérskými stanicemi v požadovaném "
+"počtu čtverců, jak je popsáno na stránce, na kterou vede odkaz níže."
 
 #: application/views/awards/wab/index.php:18
 msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
 msgstr ""
-"Pole použitá pro tento odznak: SIG (musí být 'WAB') a SIG_INFO (mělo by "
-"obsahovat platný WAB-Grid)"
+"Pole použitá pro tento diplom: SIG (musí být 'WAB') a SIG_INFO (mělo by "
+"obsahovat platný čtverec WAB)"
 
 #: application/views/awards/wab/index.php:19
 msgid "Total squares"
@@ -9842,7 +9834,7 @@ msgstr "Přejít na čtverec"
 
 #: application/views/awards/wab/index.php:23
 msgid "WAB square not found"
-msgstr "Lokátor WAB nebyl nalezen"
+msgstr "Čtverec WAB nebyl nalezen"
 
 #: application/views/awards/wab/index.php:34
 msgid "View a map of worked / confirmed WAB squares"
@@ -9934,21 +9926,21 @@ msgid ""
 "Continents award is issued for working and confirming all six continents. "
 "These are North America, South America, Oceania, Asia, Europe and Africa."
 msgstr ""
-"Pod záštitou Mezinárodní unie radioamatérů (IARU) je vydáván odznak Worked "
-"All Continents za navázání a potvrzení všech šesti kontinentů. Jedná se o "
-"Severní Ameriku, Jižní Ameriku, Oceánii, Asii, Evropu a Afriku."
+"Diplom Worked All Continents vydává Mezinárodní radioamatérská unie (IARU) "
+"za pracování a potvrzení všech šesti kontinentů: Severní Ameriky, Jižní "
+"Ameriky, Oceánie, Asie, Evropy a Afriky."
 
 #: application/views/awards/wac/index.php:11
 msgid ""
 "Fields taken for this Award: Continent (ADIF tag 'CONT'). Must contain a "
 "valid continent-abbreviation!"
 msgstr ""
-"Pole použitá pro tento odznak: Kontinent (ADIF tag 'CONT'). Musí obsahovat "
+"Pole použitá pro tento diplom: kontinent (ADIF tag 'CONT'). Musí obsahovat "
 "platnou zkratku kontinentu!"
 
 #: application/views/awards/wac/index.php:13
 msgid "Awards - Worked All Continents (WAC)"
-msgstr "Ocenění - Worked All Continents (WAC)"
+msgstr "Diplomy - Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:20
 msgid "View progress of WAC awards"
@@ -9960,11 +9952,11 @@ msgstr "Zobrazit QSO s typem QSL"
 
 #: application/views/awards/wac/index.php:232
 msgid "No QSOS found matching the criteria for this award!"
-msgstr "Pro tuto odznaku nebyly nalezeny žádné QSO odpovídající kritériím!"
+msgstr "Pro tento diplom nebyla nalezena žádná QSO odpovídající kritériím!"
 
 #: application/views/awards/wae/index.php:24
 msgid "WAE Award"
-msgstr "Odznak WAE"
+msgstr "Diplom WAE"
 
 #: application/views/awards/wae/index.php:25
 msgid ""
@@ -9982,13 +9974,13 @@ msgid ""
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
 "I, WAE TOP and the WAE Trophy."
 msgstr ""
-"WAE bude vydáváno v následujících módech: CW, SSB, Phone, RTTY, FT8, Digital "
-"a Mixed Modes. Vydává se v pěti třídách: WAE III, WAE II, WAE I, WAE TOP a "
-"WAE Trophy."
+"Diplom WAE se vydává v následujících módech: CW, SSB, Phone, RTTY, FT8, "
+"Digital a Mixed Modes. Vydává se v pěti třídách: WAE III, WAE II, WAE I, WAE "
+"TOP a WAE Trophy."
 
 #: application/views/awards/wae/index.php:28
 msgid "Fields taken for this Award: Region, DXCC"
-msgstr "Pole použitá pro tuto odznaku: Region, DXCC"
+msgstr "Pole použitá pro tento diplom: Region, DXCC"
 
 #: application/views/awards/wae/index.php:37
 msgid "View progress of WAE awards"
@@ -10062,7 +10054,7 @@ msgstr "Postup k navázání spojení se všemi italskými kraji:"
 #: application/views/awards/waip/index.php:39
 #: application/views/awards/waip/index.php:93
 msgid "By Mode Category"
-msgstr "Podle kategorie režimu"
+msgstr "Podle kategorie módu"
 
 #: application/views/awards/waip/index.php:113
 #: application/views/awards/waip/index.php:171
@@ -10113,8 +10105,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and STATE (Must contain a valid "
 "prefecture!)"
 msgstr ""
-"Pole použitá pro tento odznak: DXCC (Japonsko) a STATE (musí obsahovat "
-"platnou prefekturní!)"
+"Pole použitá pro tento diplom: DXCC (Japonsko) a STATE (musí obsahovat "
+"platnou prefekturu!)"
 
 #: application/views/awards/waja/index.php:54
 msgid "Show WAJA Map"
@@ -10160,11 +10152,11 @@ msgid ""
 "encourages operators to engage with a diverse range of stations across the "
 "country, promoting both national connectivity and operational skill."
 msgstr ""
-"VRZA (Vereniging voor Radio Zend Amateurs) nabízí odznak Worked All "
+"VRZA (Vereniging voor Radio Zend Amateurs) nabízí diplom Worked All "
 "Provinces (WAP) radioamatérům, kteří mají potvrzená spojení se stanicemi v "
-"každé z dvanácti provincií Nizozemska. Tento odznak povzbuzuje operátory k "
-"navázání spojení s různými stanicemi po celé zemi, podporuje jak národní "
-"propojení, tak provozní dovednosti."
+"každé z dvanácti provincií Nizozemska. Diplom motivuje operátory k "
+"navazování spojení s různými stanicemi po celé zemi a podporuje tak "
+"propojení v rámci země i provozní dovednosti."
 
 #: application/views/awards/wap/index.php:27
 #, php-format
@@ -10177,8 +10169,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
-"Pole použitá pro tento odznak: DXCC (musí být Nizozemsko) a STATE (musí "
-"obsahovat platnou zkratku státu!)"
+"Pole použitá pro tento diplom: DXCC (musí být Nizozemsko) a STATE (musí "
+"obsahovat platnou zkratku provincie!)"
 
 #: application/views/awards/wap/index.php:52
 msgid "Show WAP Map"
@@ -10200,18 +10192,18 @@ msgid ""
 "municipalities, autonomous regions, and special administrative regions of "
 "China, fostering a deeper understanding of China."
 msgstr ""
-"Odznak WAPC, vydávaný Mulan DX Clubem, si klade za cíl podpořit komunikaci "
-"mezi radioamatéry po celém světě a operátory ve všech provinciích, městech, "
-"autonomních regionech a zvláštních správních oblastech Číny, podporující "
-"hlubší porozumění Číně."
+"Diplom WAPC, vydávaný Mulan DX Clubem, má podpořit spojení mezi radioamatéry "
+"z celého světa a operátory ve všech provinciích, městech, autonomních "
+"oblastech a zvláštních správních oblastech Číny a přispět k hlubšímu poznání "
+"Číny."
 
 #: application/views/awards/wapc/index.php:28
 msgid ""
 "The award can be earned through long-term accumulation of contacts or "
 "achieved in a single effort during the annual WAPC Contest."
 msgstr ""
-"Odznak lze získat dlouhodobou akumulací kontaktů nebo dosažením v jednom "
-"úsilí během každoroční soutěže WAPC Contest."
+"Diplom lze získat dlouhodobým sbíráním spojení nebo jednorázově během "
+"každoročního závodu WAPC Contest."
 
 #: application/views/awards/wapc/index.php:30
 msgid ""
@@ -10219,9 +10211,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
-"Pole použitá pro tento odznak: DXCC (musí být jeden z Čína/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 nebo Scarborough "
-"Reef/506) a platný State (ADIF: DXCC a STATE)"
+"Pole použitá pro tento diplom: DXCC (musí být jedno z Čína/318, HongKong/"
+"321, Macao/152, Taiwan/386, Pratas Isl./505 nebo Scarborough Reef/506) a "
+"platný State (ADIF: DXCC a STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -10243,7 +10235,7 @@ msgstr "vč."
 
 #: application/views/awards/was/index.php:27
 msgid "WAS Award"
-msgstr "Odznak WAS"
+msgstr "Diplom WAS"
 
 #: application/views/awards/was/index.php:28
 msgid ""
@@ -10252,10 +10244,10 @@ msgid ""
 "101st year, they have redesigned the certificates and the program in hopes "
 "of streamlining and improving the award program."
 msgstr ""
-"Nejoblíbenějším odznakem ARRL je Worked All States Award. Tisíce a tisíce "
-"odznaků bylo vydáno radioamatérům po celém světě. V 101. roce ARRL "
-"přepracovali certifikáty a program v naději, že zjednoduší a vylepší program "
-"odznaků."
+"Nejoblíbenějším diplomem ARRL je Worked All States Award. Radioamatérům po "
+"celém světě bylo vydáno mnoho tisíc těchto diplomů. Ve 101. roce existence "
+"ARRL byly certifikáty i celý program přepracovány s cílem diplomový program "
+"zjednodušit a vylepšit."
 
 #: application/views/awards/was/index.php:29
 msgid ""
@@ -10265,24 +10257,23 @@ msgid ""
 "possessions must be members of ARRL to apply for a WAS. Applicants from "
 "outside the U.S. are exempt from this requirement."
 msgstr ""
-"Odznak WAS (Worked All States) je dostupný všem radioamatérům na celém "
-"světě, kteří předloží důkaz s písemným potvrzením spojení s každým z 50 "
-"států Spojených států amerických. Radioamatéři v USA a jeho územích musí být "
-"členy ARRL, aby mohli žádat o WAS. Žadatelé z mimo USA jsou z této požadavky "
-"osvobozeni."
+"Diplom WAS (Worked All States) mohou získat radioamatéři z celého světa, "
+"kteří doloží písemné potvrzení spojení s každým z 50 států USA. Radioamatéři "
+"v USA a na jejich územích musí být pro žádost o WAS členy ARRL. Žadatelé "
+"mimo USA tento požadavek splňovat nemusí."
 
 #: application/views/awards/was/index.php:30
 #, php-format
 msgctxt "uses 'here'"
 msgid "All information and rules for the ARRL WAS Award can be found %s."
-msgstr "Veškeré informace a pravidla pro odznak ARRL WAS naleznete %s."
+msgstr "Veškeré informace a pravidla diplomu ARRL WAS najdete %s."
 
 #: application/views/awards/was/index.php:31
 msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
-"Pole použitá pro tento odznak: DXCC (musí být jeden z USA, Aljaška nebo "
+"Pole použitá pro tento diplom: DXCC (musí být jedno z USA, Aljaška nebo "
 "Havaj) a STATE (musí obsahovat platnou zkratku státu USA!)"
 
 #: application/views/awards/was/index.php:55
@@ -10342,13 +10333,13 @@ msgid ""
 "registered in the WWFF Directory. Hunters and Activators can apply for "
 "colorful awards, both globally and nationally."
 msgstr ""
-"Více než 26 000 chráněných oblastí flóry a fauny (PFF) po celém světě je již "
-"registrováno v WWFF Directory. Lovci a Aktivátoři mohou žádat o barevné "
-"odznaky, jak globálně, tak národně."
+"Ve WWFF Directory je již registrováno více než 26 000 chráněných území flóry "
+"a fauny (PFF) po celém světě. Lovci i aktivátoři mohou žádat o barevné "
+"diplomy, a to na celosvětové i národní úrovni."
 
 #: application/views/awards/wwff/index.php:24
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
-msgstr "Pole použitá pro tuto odznaku: WWFF (ADIF: WWFF_REF)"
+msgstr "Pole použitá pro tento diplom: WWFF (ADIF: WWFF_REF)"
 
 #: application/views/awards/wwff/index.php:52
 msgid "Press ''Apply'' to update the table"
@@ -10567,11 +10558,11 @@ msgstr "Nepodařilo se načíst oblíbené"
 
 #: application/views/bandmap/list.php:48
 msgid "Modes applied. Band filter preserved (CAT connection is active)"
-msgstr "Módy aplikovány. Filtr pásma zachován (CAT připojení je aktivní)"
+msgstr "Módy použity. Filtr pásma zachován (CAT připojení je aktivní)"
 
 #: application/views/bandmap/list.php:49
 msgid "Applied your favorite bands and modes"
-msgstr "Aplikovány vaše oblíbená pásma a módy"
+msgstr "Použita vaše oblíbená pásma a módy"
 
 #: application/views/bandmap/list.php:52 application/views/bandmap/list.php:323
 #: application/views/bandmap/list.php:492
@@ -10597,7 +10588,8 @@ msgstr "Nastavte v Uživatelských nastaveních - Módy"
 #: application/views/bandmap/list.php:57
 msgid "No submodes configured - configure in User Settings - Modes"
 msgstr ""
-"Žádné podmódy nenastaveny - nastavte v Uživatelských nastaveních - Módy"
+"Nejsou nastaveny žádné podmódy - nastavte je v Uživatelských nastaveních - "
+"Módy"
 
 #: application/views/bandmap/list.php:58
 msgid "No submodes enabled in settings - showing all spots"
@@ -10606,22 +10598,23 @@ msgstr "Žádné podmódy povoleny v nastavení - zobrazuji všechny spoty"
 #: application/views/bandmap/list.php:59
 msgid "Disabled - no submodes enabled for this mode in User Settings"
 msgstr ""
-"Zakázáno - žádné podmódy povoleny pro tento mód v Uživatelských nastaveních"
+"Zakázáno - pro tento mód nejsou v Uživatelských nastaveních povoleny žádné "
+"podmódy"
 
 #: application/views/bandmap/list.php:60 application/views/bandmap/list.php:481
 #: application/views/components/dxwaterfall.php:32
 msgid "Toggle CW mode filter"
-msgstr "Přepnout filtr CW módu"
+msgstr "Přepnout filtr módu CW"
 
 #: application/views/bandmap/list.php:61 application/views/bandmap/list.php:482
 #: application/views/components/dxwaterfall.php:34
 msgid "Toggle Digital mode filter"
-msgstr "Přepnout filtr digitálního módu"
+msgstr "Přepnout filtr digitálních módů"
 
 #: application/views/bandmap/list.php:62 application/views/bandmap/list.php:483
 #: application/views/components/dxwaterfall.php:30
 msgid "Toggle Phone mode filter"
-msgstr "Přepnout filtr Phone módu"
+msgstr "Přepnout filtr módu Phone"
 
 #: application/views/bandmap/list.php:65 application/views/bandmap/list.php:434
 msgid "Favorites"
@@ -10713,7 +10706,7 @@ msgstr "Načítání..."
 
 #: application/views/bandmap/list.php:93 application/views/bandmap/list.php:308
 msgid "Worked, not Confirmed"
-msgstr "Spojené, nepotvrzené"
+msgstr "Pracováno, nepotvrzeno"
 
 #: application/views/bandmap/list.php:94 application/views/bandmap/list.php:324
 #: application/views/lookup/lotwuser.php:2
@@ -10739,7 +10732,7 @@ msgstr "Nová země"
 
 #: application/views/bandmap/list.php:98
 msgid "Worked Before"
-msgstr "Dříve spojené"
+msgstr "Dříve pracováno"
 
 #: application/views/bandmap/list.php:99
 #, php-format
@@ -10954,7 +10947,7 @@ msgstr "Chyba při načítání spotů. Zkuste to prosím znovu."
 
 #: application/views/bandmap/list.php:161
 msgid "Show all modes"
-msgstr "Zobrazit všechny druhy provozu"
+msgstr "Zobrazit všechny módy"
 
 #: application/views/bandmap/list.php:162
 msgid "Show all spots"
@@ -11170,7 +11163,7 @@ msgstr "Přepnout filtr SHF pásem"
 
 #: application/views/bandmap/list.php:491
 msgid "Loading submodes..."
-msgstr "Načítání podrežimů..."
+msgstr "Načítání podmódů..."
 
 #: application/views/bandmap/list.php:496
 msgid "Toggle LoTW User filter"
@@ -11358,9 +11351,7 @@ msgstr "Hranice pásem"
 msgid ""
 "Using the bandedges list you can control the mode classification in the "
 "cluster."
-msgstr ""
-"Pomocí seznamu hranic pásem můžete ovládat klasifikaci druhů provozu v "
-"clusteru."
+msgstr "Pomocí seznamu hranic pásem můžete ovládat zařazení módů v clusteru."
 
 #: application/views/bands/bandedges.php:29
 msgid "Frequency from (Hz)"
@@ -12181,7 +12172,7 @@ msgstr "Změnit kontinent spottera"
 
 #: application/views/components/dxwaterfall.php:29
 msgid "Filter by mode"
-msgstr "Filtrovat podle druhu provozu"
+msgstr "Filtrovat podle módu"
 
 #: application/views/components/dxwaterfall.php:36
 msgid "Zoom out"
@@ -12205,7 +12196,7 @@ msgstr "Komentář: "
 
 #: application/views/components/dxwaterfall.php:41
 msgid "modes:"
-msgstr "druhy provozu:"
+msgstr "módy:"
 
 #: application/views/components/dxwaterfall.php:42
 msgid "OUT OF BANDPLAN"
@@ -12467,7 +12458,7 @@ msgstr "Komponenta rádia není dostupná. QSO nelze uložit."
 #: application/views/contesting/logger/components/qso-form.php:30
 msgid "Frequency or Mode not set. Please check radio settings."
 msgstr ""
-"Frekvence nebo režim nejsou nastaveny. Zkontrolujte prosím nastavení rádia."
+"Frekvence nebo mód nejsou nastaveny. Zkontrolujte prosím nastavení rádia."
 
 #: application/views/contesting/logger/components/qso-form.php:32
 msgid "New"
@@ -12571,7 +12562,7 @@ msgstr "Rádio připojeno"
 
 #: application/views/contesting/logger/components/radio.php:28
 msgid "Manual mode: Enter frequency/mode manually"
-msgstr "Ruční režim: Zadejte frekvenci/režim ručně"
+msgstr "Ruční režim: Zadejte frekvenci/mód ručně"
 
 #: application/views/contesting/logger/components/radio.php:29
 msgid "Connecting to WebSocket radio..."
@@ -13968,7 +13959,7 @@ msgstr "Budou exportovány pouze QSO se SOTA informacemi!"
 #: application/views/eqslcard/index.php:37 application/views/kml/index.php:77
 #: application/views/qso/edit_ajax.php:189 application/views/qso/index.php:543
 msgid "Propagation Mode"
-msgstr "Šíření signálu"
+msgstr "Způsob šíření"
 
 #: application/views/csv/index.php:95
 msgctxt "Propagation Mode"
@@ -14860,7 +14851,7 @@ msgstr "Použít vyhledávání v callbooku k nastavení lokátoru"
 
 #: application/views/dbtools/index.php:126
 msgid "Lookup"
-msgstr ""
+msgstr "Vyhledat"
 
 #: application/views/dbtools/index.php:134
 msgid "Check IOTA against DXCC"
@@ -14873,35 +14864,35 @@ msgstr "Použít Wavelog ke kontrole IOTA proti DXCC"
 #: application/views/dbtools/missinggridlist.php:12
 #, php-format
 msgid "%s QSO(s) selected"
-msgstr ""
+msgstr "Vybráno QSO: %s"
 
 #: application/views/dbtools/missinggridlist.php:13
 #, php-format
 msgid "%s QSO(s) remaining"
-msgstr ""
+msgstr "Zbývá QSO: %s"
 
 #: application/views/dbtools/missinggridlist.php:14
 #, php-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Aktualizováno: %s"
 
 #: application/views/dbtools/missinggridlist.php:15
 #, php-format
 msgid "Not found: %s"
-msgstr ""
+msgstr "Nenalezeno: %s"
 
 #: application/views/dbtools/missinggridlist.php:16
 #, php-format
 msgid "Errors: %s"
-msgstr ""
+msgstr "Chyby: %s"
 
 #: application/views/dbtools/missinggridlist.php:17
 msgid "Retrieving callbook data..."
-msgstr ""
+msgstr "Načítání dat z callbooku..."
 
 #: application/views/dbtools/missinggridlist.php:18
 msgid "Not found in callbook"
-msgstr ""
+msgstr "Nenalezeno v callbooku"
 
 #: application/views/dbtools/missinggridlist.php:19
 #: application/views/logbookadvanced/index.php:39
@@ -14912,23 +14903,24 @@ msgstr "Přeskočeno"
 #, php-format
 msgid "Lookup finished: %s gridsquare(s) set, %s not found, %s error(s)."
 msgstr ""
+"Vyhledávání dokončeno: nastaveno lokátorů: %s, nenalezeno: %s, chyb: %s."
 
 #: application/views/dbtools/missinggridlist.php:22
 msgid "Lookup cancelled."
-msgstr ""
+msgstr "Vyhledávání zrušeno."
 
 #: application/views/dbtools/missinggridlist.php:32
 msgid "Only unconfirmed QSOs"
-msgstr ""
+msgstr "Pouze nepotvrzená QSO"
 
 #: application/views/dbtools/missinggridlist.php:36
 #, php-format
 msgid "Found %s QSO(s) with missing gridsquare."
-msgstr ""
+msgstr "Nalezeno QSO s chybějícím lokátorem: %s."
 
 #: application/views/dbtools/missinggridlist.php:37
 msgid "Uncheck the QSOs you want to skip, then start the lookup."
-msgstr ""
+msgstr "Odškrtněte QSO, která chcete přeskočit, a poté spusťte vyhledávání."
 
 #: application/views/dbtools/missinggridlist.php:50
 #: application/views/view_log/partial/log_ajax.php:129
@@ -14975,11 +14967,11 @@ msgstr "Důvod"
 #: application/views/dbtools/showUpdateResult.php:74
 #: application/views/dbtools/showUpdateResult.php:76
 msgid "The number of QSOs updated for state/province across all DXCCs is"
-msgstr ""
+msgstr "Počet QSO aktualizovaných podle státu/provincie napříč všemi DXCC je"
 
 #: application/views/dbtools/showUpdateResult.php:76
 msgid "DXCCs processed"
-msgstr ""
+msgstr "Zpracovaných DXCC"
 
 #: application/views/dbtools/showUpdateResult.php:128
 msgid "Results for continent update:"
@@ -15012,7 +15004,7 @@ msgstr ""
 
 #: application/views/dbtools/statecheckresult.php:7
 msgid "Fix all DXCCs"
-msgstr ""
+msgstr "Opravit všechna DXCC"
 
 #: application/views/dbtools/statecheckresult.php:34
 msgid "Run fix"
@@ -15254,7 +15246,7 @@ msgstr "Backend Wavelog Worker"
 
 #: application/views/debug/index.php:146
 msgid "Worker configuration has changed"
-msgstr ""
+msgstr "Konfigurace Workeru se změnila"
 
 #: application/views/debug/index.php:147
 #, php-format
@@ -15262,10 +15254,12 @@ msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
+"%s a %s jsou zastaralé a budou odstraněny ve Wavelog Worker 1.0.0. Nastavte "
+"prosím místo toho %s v konfiguraci Workeru."
 
 #: application/views/debug/index.php:148
 msgid "Everything keeps working until then."
-msgstr ""
+msgstr "Do té doby vše funguje dál."
 
 #: application/views/debug/index.php:154
 msgid "Worker"
@@ -15442,11 +15436,11 @@ msgstr "Počet klíčů"
 
 #: application/views/debug/index.php:560
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "Test celého cyklu (zápis - čtení - smazání)"
 
 #: application/views/debug/index.php:567
 msgid "Working"
-msgstr ""
+msgstr "Funguje"
 
 #: application/views/debug/index.php:580
 msgid "Cache is working properly. Everything okay!"
@@ -15554,7 +15548,7 @@ msgstr "Stažení souboru POTA"
 
 #: application/views/debug/index.php:767
 msgid "POTA park boundaries (GeoJSON)"
-msgstr ""
+msgstr "Hranice POTA parků (GeoJSON)"
 
 #: application/views/debug/index.php:773
 msgid "SCP file download"
@@ -15582,7 +15576,7 @@ msgstr "HAMqsl"
 
 #: application/views/debug/index.php:809
 msgid "VUCC Grids"
-msgstr "VUCC Mřížky"
+msgstr "VUCC lokátory"
 
 #: application/views/debug/index.php:819
 msgid "QSO-DB Maintenance"
@@ -15728,7 +15722,7 @@ msgstr "Černohorsky"
 
 #: application/views/debug/index.php:949
 msgid "Norwegian (Bokmål)"
-msgstr ""
+msgstr "Norština (Bokmål)"
 
 #: application/views/debug/index.php:950
 msgid "Polish"
@@ -15975,7 +15969,7 @@ msgstr "Uživatel nezadal žádnou další zprávu."
 
 #: application/views/email/oqrs_request.php:18
 msgid "Requested QSOs"
-msgstr ""
+msgstr "Požadovaná QSO"
 
 #: application/views/email/oqrs_request.php:50
 #, php-format
@@ -15996,7 +15990,7 @@ msgstr "QSL trasa"
 
 #: application/views/email/oqrs_request.php:59
 msgid "DX Callsign"
-msgstr ""
+msgstr "DX značka"
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -16278,7 +16272,7 @@ msgstr "Satelitní roveři"
 
 #: application/views/hamsat/index.php:18
 msgid "LoTW User. Days since last upload: "
-msgstr ""
+msgstr "Uživatel LoTW. Dní od posledního nahrání: "
 
 #: application/views/hamsat/index.php:29
 #, php-format
@@ -16413,13 +16407,13 @@ msgstr "Barvy"
 
 #: application/views/interface_assets/footer.php:57
 msgid "Post"
-msgstr ""
+msgstr "Zveřejnit"
 
 #: application/views/interface_assets/footer.php:58
 #: application/views/qso/edit_ajax.php:198
 #: application/views/qso/edit_ajax.php:551
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
-msgstr "Režim šíření není podporován LoTW. Pole LoTW QSL jsou zakázána."
+msgstr "Způsob šíření není podporován LoTW. Pole LoTW QSL jsou zakázána."
 
 #: application/views/interface_assets/footer.php:59
 msgid "No states for this DXCC available"
@@ -16438,6 +16432,8 @@ msgid ""
 "At least one of the locators is empty. Calculation not possible. Possibly "
 "missing locator in station location. Please check."
 msgstr ""
+"Alespoň jeden z lokátorů je prázdný. Výpočet není možný. V umístění stanice "
+"možná chybí lokátor. Zkontrolujte to prosím."
 
 #: application/views/interface_assets/footer.php:63
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -16460,7 +16456,7 @@ msgstr "Informace o družici"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Prepare hams.at Activation Posting"
-msgstr ""
+msgstr "Připravit zveřejnění aktivace na hams.at"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Error loading notes"
@@ -16539,7 +16535,7 @@ msgstr "QSO s %s od %s bylo přidáno do deníku."
 #: application/views/interface_assets/footer.php:87
 #, php-format
 msgid "Realtime upload failed: %s"
-msgstr ""
+msgstr "Nahrávání v reálném čase selhalo: %s"
 
 #: application/views/interface_assets/footer.php:88
 msgid "QSO Added to Backlog"
@@ -16554,12 +16550,12 @@ msgstr "Odeslat e-mail na %s"
 msgid ""
 "Callsign was already worked and confirmed in the past on this band and mode!"
 msgstr ""
-"Značka již byla v minulosti na tomto pásmu a druhu provozu spojena a "
+"Značka již byla v minulosti na tomto pásmu a v tomto módu pracována a "
 "potvrzena!"
 
 #: application/views/interface_assets/footer.php:91
 msgid "Callsign was already worked in the past on this band and mode!"
-msgstr "Značka již byla v minulosti na tomto pásmu a druhu provozu spojena!"
+msgstr "Značka již byla v minulosti na tomto pásmu a v tomto módu pracována!"
 
 #: application/views/interface_assets/footer.php:92
 msgid "New Callsign!"
@@ -16567,11 +16563,11 @@ msgstr "Nová značka!"
 
 #: application/views/interface_assets/footer.php:93
 msgid "Grid was already worked and confirmed in the past"
-msgstr "Lokátor již byl v minulosti spojen a potvrzen"
+msgstr "Lokátor již byl v minulosti pracován a potvrzen"
 
 #: application/views/interface_assets/footer.php:94
 msgid "Grid was already worked in the past"
-msgstr "Lokátor již byl v minulosti spojen"
+msgstr "Lokátor již byl v minulosti pracován"
 
 #: application/views/interface_assets/footer.php:95
 msgid "New grid!"
@@ -16585,15 +16581,16 @@ msgstr "Jste si jisti, že chcete smazat oblíbené?"
 msgid ""
 "DXCC was already worked and confirmed in the past on this band and mode!"
 msgstr ""
-"DXCC již byl v minulosti na tomto pásmu a druhu provozu spojen a potvrzen!"
+"DXCC již bylo v minulosti na tomto pásmu a v tomto módu pracováno a "
+"potvrzeno!"
 
 #: application/views/interface_assets/footer.php:98
 msgid "DXCC was already worked in the past on this band and mode!"
-msgstr "DXCC již byl v minulosti na tomto pásmu a druhu provozu spojen!"
+msgstr "DXCC již bylo v minulosti na tomto pásmu a v tomto módu pracováno!"
 
 #: application/views/interface_assets/footer.php:99
 msgid "New DXCC, not worked on this band and mode!"
-msgstr "Nový DXCC, dosud nepracován na tomto pásmu a druhu provozu!"
+msgstr "Nové DXCC, dosud nepracované na tomto pásmu a v tomto módu!"
 
 #: application/views/interface_assets/footer.php:100
 #, php-format
@@ -16977,11 +16974,11 @@ msgstr "Potvrzené okresy pro stát:"
 
 #: application/views/interface_assets/footer.php:2943
 msgid "Counties in state:"
-msgstr ""
+msgstr "Okresy ve státě:"
 
 #: application/views/interface_assets/footer.php:2944
 msgid "Needed counties for state:"
-msgstr ""
+msgstr "Potřebné okresy pro stát:"
 
 #: application/views/interface_assets/header.php:97
 msgid "Skip to content"
@@ -17340,7 +17337,7 @@ msgstr "Vlastní text"
 
 #: application/views/labeldesigner/designer.php:46
 msgid "Line"
-msgstr ""
+msgstr "Čára"
 
 #: application/views/labeldesigner/designer.php:48
 #: application/views/qslpostcard/designer.php:35
@@ -17405,12 +17402,12 @@ msgstr "vybráno"
 
 #: application/views/labeldesigner/designer.php:62
 msgid "Please select a label type first."
-msgstr ""
+msgstr "Nejprve prosím vyberte typ štítku."
 
 #: application/views/labeldesigner/designer.php:63
 msgid ""
 "The label type of this template no longer exists. Please select another one."
-msgstr ""
+msgstr "Typ štítku této šablony již neexistuje. Vyberte prosím jiný."
 
 #: application/views/labeldesigner/designer.php:64
 #: application/views/qslpostcard/designer.php:49
@@ -17452,23 +17449,23 @@ msgstr "Opustit stránku"
 
 #: application/views/labeldesigner/designer.php:70
 msgid "Import failed"
-msgstr ""
+msgstr "Import selhal"
 
 #: application/views/labeldesigner/designer.php:71
 msgid "Export failed"
-msgstr ""
+msgstr "Export selhal"
 
 #: application/views/labeldesigner/designer.php:72
 msgid "Template imported."
-msgstr ""
+msgstr "Šablona byla importována."
 
 #: application/views/labeldesigner/designer.php:73
 msgid "Please select a template to export."
-msgstr ""
+msgstr "Vyberte prosím šablonu k exportu."
 
 #: application/views/labeldesigner/designer.php:74
 msgid "File is too large."
-msgstr ""
+msgstr "Soubor je příliš velký."
 
 #: application/views/labeldesigner/designer.php:75
 #: application/views/labeldesigner/designer.php:126
@@ -17512,23 +17509,23 @@ msgstr "Smazat šablonu"
 
 #: application/views/labeldesigner/designer.php:109
 msgid "Export Template"
-msgstr ""
+msgstr "Exportovat šablonu"
 
 #: application/views/labeldesigner/designer.php:112
 msgid "Import Template"
-msgstr ""
+msgstr "Importovat šablonu"
 
 #: application/views/labeldesigner/designer.php:121
 msgid "Label type"
-msgstr ""
+msgstr "Typ štítku"
 
 #: application/views/labeldesigner/designer.php:124
 msgid "(select label type)"
-msgstr ""
+msgstr "(vyberte typ štítku)"
 
 #: application/views/labeldesigner/designer.php:130
 msgid "Generate sample PDF with your latest QSOs"
-msgstr ""
+msgstr "Vygenerovat ukázkové PDF s vašimi posledními QSO"
 
 #: application/views/labeldesigner/designer.php:131
 #: application/views/qslpostcard/designer.php:95
@@ -17593,28 +17590,33 @@ msgid ""
 "Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
 "QSO row"
 msgstr ""
+"Vodorovná linka — zapněte 'Opakovat pro každé QSO' pro vykreslení oddělovače "
+"pod každým řádkem QSO"
 
 #: application/views/labeldesigner/designer.php:201
 msgid "Horizontal Line"
-msgstr ""
+msgstr "Vodorovná čára"
 
 #: application/views/labeldesigner/designer.php:203
 msgid "Vertical rule — place at column edges to build a table grid"
 msgstr ""
+"Svislá linka — umístěte ji na okraje sloupců a vytvořte tak mřížku tabulky"
 
 #: application/views/labeldesigner/designer.php:204
 msgid "Vertical Line"
-msgstr ""
+msgstr "Svislá čára"
 
 #: application/views/labeldesigner/designer.php:208
 msgid ""
 "Table grid — drag the corner to resize, drag the column markers to adjust "
 "column widths"
 msgstr ""
+"Mřížka tabulky — tažením za roh změníte velikost, tažením značek sloupců "
+"upravíte jejich šířku"
 
 #: application/views/labeldesigner/designer.php:209
 msgid "Add Table"
-msgstr ""
+msgstr "Přidat tabulku"
 
 #: application/views/labeldesigner/designer.php:224
 #: application/views/qslpostcard/designer.php:175
@@ -17623,11 +17625,11 @@ msgstr "Vašemu hledání neodpovídají žádná pole."
 
 #: application/views/labeldesigner/designer.php:232
 msgid "Label Canvas"
-msgstr ""
+msgstr "Plocha štítku"
 
 #: application/views/labeldesigner/designer.php:233
 msgid "drag fields onto the label"
-msgstr ""
+msgstr "přetáhněte pole na štítek"
 
 #: application/views/labeldesigner/designer.php:254
 #: application/views/qslpostcard/designer.php:205
@@ -17636,7 +17638,7 @@ msgstr "Možnosti šablony"
 
 #: application/views/labeldesigner/designer.php:258
 msgid "Number of QSOs per label"
-msgstr ""
+msgstr "Počet QSO na štítek"
 
 #: application/views/labeldesigner/designer.php:262
 #: application/views/qslpostcard/designer.php:213
@@ -17648,14 +17650,15 @@ msgid ""
 "Draws a rule between the QSO rows automatically, like the classic label "
 "layout"
 msgstr ""
+"Automaticky vykreslí linku mezi řádky QSO, jako u klasického rozvržení štítku"
 
 #: application/views/labeldesigner/designer.php:267
 msgid "Separator lines between QSO rows"
-msgstr ""
+msgstr "Oddělovací čáry mezi řádky QSO"
 
 #: application/views/labeldesigner/designer.php:270
 msgid "Separator thickness"
-msgstr ""
+msgstr "Tloušťka oddělovače"
 
 #: application/views/labeldesigner/designer.php:279
 #: application/views/qslpostcard/designer.php:230
@@ -17699,11 +17702,11 @@ msgstr "Y"
 
 #: application/views/labeldesigner/designer.php:326
 msgid "Rows"
-msgstr ""
+msgstr "Řádky"
 
 #: application/views/labeldesigner/designer.php:330
 msgid "Columns"
-msgstr ""
+msgstr "Sloupce"
 
 #: application/views/labeldesigner/designer.php:336
 #: application/views/labels/index.php:45 application/views/labels/index.php:80
@@ -17718,7 +17721,7 @@ msgstr "Výška"
 #: application/views/labeldesigner/designer.php:344
 #: application/views/labeldesigner/designer.php:360
 msgid "Thickness"
-msgstr ""
+msgstr "Tloušťka"
 
 #: application/views/labeldesigner/designer.php:349
 #: application/views/labels/index.php:48
@@ -17727,15 +17730,15 @@ msgstr "Orientace"
 
 #: application/views/labeldesigner/designer.php:351
 msgid "Horizontal"
-msgstr ""
+msgstr "Vodorovně"
 
 #: application/views/labeldesigner/designer.php:352
 msgid "Vertical"
-msgstr ""
+msgstr "Svisle"
 
 #: application/views/labeldesigner/designer.php:356
 msgid "Length"
-msgstr ""
+msgstr "Délka"
 
 #: application/views/labeldesigner/designer.php:367
 #: application/views/qslpostcard/designer.php:275
@@ -17767,6 +17770,8 @@ msgstr "Šířka zalomení"
 #: application/views/labeldesigner/designer.php:399
 msgid "Print this field once per QSO if a label holds multiple QSOs"
 msgstr ""
+"Pokud štítek obsahuje více QSO, vytisknout toto pole pouze jednou pro každé "
+"QSO"
 
 #: application/views/labeldesigner/designer.php:400
 #: application/views/qslpostcard/designer.php:308
@@ -18068,13 +18073,13 @@ msgstr "Zobrazit QSO"
 #: application/views/logbookadvanced/startatform.php:20
 #: application/views/qslprint/printlabel.php:20
 msgid "Label layout"
-msgstr ""
+msgstr "Rozvržení štítku"
 
 #: application/views/labels/startatform.php:24
 #: application/views/logbookadvanced/startatform.php:23
 #: application/views/qslprint/printlabel.php:23
 msgid "Standard"
-msgstr ""
+msgstr "Standardní"
 
 #: application/views/labels/startatform.php:30
 #: application/views/logbookadvanced/startatform.php:29
@@ -18082,6 +18087,8 @@ msgstr ""
 msgid ""
 "Designed label templates use their own layout and ignore the options below."
 msgstr ""
+"Navržené šablony štítků používají vlastní rozvržení a ignorují níže uvedené "
+"možnosti."
 
 #: application/views/labels/startatform.php:41
 #: application/views/logbookadvanced/startatform.php:40
@@ -18164,11 +18171,11 @@ msgstr "Hledat duplicity pomocí:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:17
 msgid "Match QSOs within the selected time window of each other"
-msgstr ""
+msgstr "Najít QSO, která proběhla ve vybraném časovém okně od sebe"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:39
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
-msgstr "Shodovat QSO se stejným druhem provozu (SSB, CW, FM, atd.)"
+msgstr "Shoda QSO se stejným módem (SSB, CW, FM atd.)"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:54
 msgid "Match QSOs on the same band"
@@ -18296,7 +18303,7 @@ msgstr "QSL via"
 #: application/views/satellite/edit.php:51
 #: application/views/satellite/index.php:55
 msgid "SAT Mode"
-msgstr "Režim SAT"
+msgstr "Mód SAT"
 
 #: application/views/logbookadvanced/edit.php:116
 msgid "Band TX"
@@ -18595,7 +18602,7 @@ msgstr "Hledání duplicit kontroluje duplicitní QSO se stejnými údaji:"
 
 #: application/views/logbookadvanced/help.php:56
 msgid "Mode / Submode"
-msgstr "Režim / Podrežim"
+msgstr "Mód / Podmód"
 
 #: application/views/logbookadvanced/help.php:62
 msgid "Time window:"
@@ -18603,7 +18610,7 @@ msgstr "Časové okno:"
 
 #: application/views/logbookadvanced/help.php:62
 msgid "adjustable, 1 to 60 minutes (default 30 minutes)"
-msgstr ""
+msgstr "nastavitelné, 1 až 60 minut (výchozí 30 minut)"
 
 #: application/views/logbookadvanced/help.php:71
 msgid "Invalid Search"
@@ -18615,7 +18622,7 @@ msgstr "Kontroluje následující podmínky:"
 
 #: application/views/logbookadvanced/help.php:76
 msgid "Mode is blank or set to 0"
-msgstr "Režim je prázdný nebo nastavený na 0"
+msgstr "Mód je prázdný nebo nastavený na 0"
 
 #: application/views/logbookadvanced/help.php:77
 msgid "Band is blank"
@@ -19188,7 +19195,7 @@ msgstr "Hledat ITU zónu"
 
 #: application/views/logbookadvanced/index.php:795
 msgid "Search Mode"
-msgstr "Hledat druh provozu"
+msgstr "Hledat mód"
 
 #: application/views/logbookadvanced/index.php:798
 msgid "Search Band"
@@ -19868,20 +19875,20 @@ msgstr "Načíst mapu"
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
 msgid "ADIF Mode"
-msgstr "ADIF režim"
+msgstr "ADIF mód"
 
 #: application/views/mode/create.php:26 application/views/mode/edit.php:35
 msgid "Name of mode in ADIF-specification"
-msgstr "Název režimu v ADIF specifikaci"
+msgstr "Název módu v ADIF specifikaci"
 
 #: application/views/mode/create.php:30 application/views/mode/edit.php:39
 msgctxt "Name of sub-mode in ADIF-specification"
 msgid "ADIF Sub-Mode"
-msgstr "ADIF podrežim"
+msgstr "ADIF podmód"
 
 #: application/views/mode/create.php:32 application/views/mode/edit.php:41
 msgid "Name of sub-mode in ADIF-specification"
-msgstr "Název podrežimu v ADIF specifikaci"
+msgstr "Název podmódu v ADIF specifikaci"
 
 #: application/views/mode/create.php:42 application/views/mode/edit.php:53
 msgid "Defines the QRG-segment in bandplan."
@@ -19896,51 +19903,51 @@ msgstr "Neaktivní"
 
 #: application/views/mode/create.php:51 application/views/mode/edit.php:64
 msgid "Set to active if to be listed in Modes-list"
-msgstr "Nastavit jako aktivní, pokud má být uveden v seznamu režimů"
+msgstr "Nastavit jako aktivní, pokud má být uveden v seznamu módů"
 
 #: application/views/mode/create.php:54 application/views/mode/index.php:2
 msgid "Create mode"
-msgstr "Vytvořit režim"
+msgstr "Vytvořit mód"
 
 #: application/views/mode/edit.php:67
 msgid "Update mode"
-msgstr "Aktualizovat režim"
+msgstr "Aktualizovat mód"
 
 #: application/views/mode/index.php:3
 msgid "Warning! Are you sure you want to delete the following mode?:"
-msgstr "Varování! Jste si jisti, že chcete smazat následující režim?:"
+msgstr "Varování! Jste si jisti, že chcete smazat následující mód?:"
 
 #: application/views/mode/index.php:4 application/views/usermode/index.php:2
 msgid "Warning! Are you sure you want to activate all modes?"
-msgstr "Varování! Jste si jisti, že chcete aktivovat všechny režimy?"
+msgstr "Varování! Jste si jisti, že chcete aktivovat všechny módy?"
 
 #: application/views/mode/index.php:5 application/views/usermode/index.php:3
 msgid "Warning! Are you sure you want to deactivate all modes?"
-msgstr "Varování! Jste si jisti, že chcete deaktivovat všechny režimy?"
+msgstr "Varování! Jste si jisti, že chcete deaktivovat všechny módy?"
 
 #: application/views/mode/index.php:31 application/views/usermode/index.php:29
 msgid ""
 "Using the modes list you can control which modes are shown when creating a "
 "new QSO."
 msgstr ""
-"Pomocí seznamu režimů můžete ovládat, které režimy se zobrazují při "
-"vytváření nového spojení."
+"Pomocí seznamu módů můžete ovládat, které módy se zobrazují při vytváření "
+"nového spojení."
 
 #: application/views/mode/index.php:34 application/views/usermode/index.php:32
 msgid ""
 "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes "
 "will be hidden and cannot be selected."
 msgstr ""
-"Aktivní režimy budou zobrazeny v rozbalovací nabídce 'Režim' u spojení, "
-"zatímco neaktivní režimy budou skryty a nelze je vybrat."
+"Aktivní módy budou zobrazeny v rozbalovací nabídce 'Mód' u spojení, zatímco "
+"neaktivní módy budou skryty a nelze je vybrat."
 
 #: application/views/mode/index.php:41 application/views/usermode/index.php:39
 msgid "Sub-Mode"
-msgstr "Podrežim"
+msgstr "Podmód"
 
 #: application/views/mode/index.php:88
 msgid "Create a Mode"
-msgstr "Vytvořit režim"
+msgstr "Vytvořit mód"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
@@ -20907,7 +20914,7 @@ msgid ""
 "on the same band and mode."
 msgstr ""
 "Sloupec %s ukazuje, kolik QSL bylo dříve odesláno stejné stanici na stejném "
-"pásmu a režimu."
+"pásmu a módu."
 
 #: application/views/qslprint/qslprint.php:45
 #: application/views/qslprint/qsolist.php:17
@@ -20917,7 +20924,7 @@ msgstr "Metoda odeslání"
 #: application/views/qslprint/qslprint.php:95
 #: application/views/qslprint/qsolist.php:70
 msgid "Previous QSL sent (same band/mode)"
-msgstr "Předchozí QSL odesláno (stejné pásmo/režim)"
+msgstr "Předchozí QSL odesláno (stejné pásmo/mód)"
 
 #: application/views/qslprint/qslprint.php:96
 #: application/views/qslprint/qsolist.php:71
@@ -21011,7 +21018,7 @@ msgstr "Pro zobrazení shrnutí je nutné vyplnit WWFF!"
 
 #: application/views/qso/award_tabs.php:19
 msgid "Propagation mode needs to be SAT to show a summary!"
-msgstr "Pro zobrazení shrnutí musí být režim šíření SAT!"
+msgstr "Pro zobrazení shrnutí musí být způsob šíření SAT!"
 
 #: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
@@ -21055,11 +21062,11 @@ msgstr "Toot na Mastodon"
 
 #: application/views/qso/components/share_modal.php:14
 msgid "Share on Telegram"
-msgstr ""
+msgstr "Sdílet na Telegramu"
 
 #: application/views/qso/components/share_modal.php:17
 msgid "Share on Whatsapp"
-msgstr ""
+msgstr "Sdílet na WhatsAppu"
 
 #: application/views/qso/components/winkeysettings.php:15
 #: application/views/qso/components/winkeysettings.php:32
@@ -21155,7 +21162,7 @@ msgstr "Používá se pro VUCC MultiGrids"
 
 #: application/views/qso/edit_ajax.php:165
 msgid "VUCC Gridsquare"
-msgstr "VUCC Lokátor"
+msgstr "VUCC lokátor"
 
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:552
 msgid "Antenna Path"
@@ -21182,7 +21189,7 @@ msgstr "Název satelitu"
 
 #: application/views/qso/edit_ajax.php:274
 msgid "Sat Mode"
-msgstr "Režim satelitu"
+msgstr "Mód satelitu"
 
 #: application/views/qso/edit_ajax.php:279 application/views/qso/index.php:683
 msgid "Antenna Azimuth (°)"
@@ -21430,7 +21437,7 @@ msgstr "Název satelitu"
 
 #: application/views/qso/index.php:676 application/views/view_log/qso.php:256
 msgid "Satellite Mode"
-msgstr "Režim satelitu"
+msgstr "Mód satelitu"
 
 #: application/views/qso/index.php:698
 msgid "QSO Note"
@@ -21578,17 +21585,17 @@ msgstr "Zadejte, jakou orbitu má satelit (LEO, MEO, GEO)"
 
 #: application/views/satellite/create.php:44
 msgid "Satellite mode name"
-msgstr "Název režimu satelitu"
+msgstr "Název módu satelitu"
 
 #: application/views/satellite/create.php:46
 msgid "Enter satellite mode"
-msgstr "Zadejte režim satelitu"
+msgstr "Zadejte mód satelitu"
 
 #: application/views/satellite/create.php:51
 #: application/views/satellite/edit.php:52
 #: application/views/satellite/satinfo.php:8
 msgid "Uplink mode"
-msgstr "Režim uplinku"
+msgstr "Mód uplinku"
 
 #: application/views/satellite/create.php:53
 msgid "Enter modulation used for uplink"
@@ -21608,7 +21615,7 @@ msgstr "Zadejte frekvenci (v Hz) použitou pro uplink"
 #: application/views/satellite/edit.php:54
 #: application/views/satellite/satinfo.php:10
 msgid "Downlink mode"
-msgstr "Režim downlinku"
+msgstr "Mód downlinku"
 
 #: application/views/satellite/create.php:65
 msgid "Enter modulation used for downlink"
@@ -21644,7 +21651,7 @@ msgstr "Uložit satelit"
 
 #: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
-msgstr "Přidat režim satelitu"
+msgstr "Přidat mód satelitu"
 
 #: application/views/satellite/flightpath.php:38
 msgid "View a map with satellite flightpaths"
@@ -21654,7 +21661,7 @@ msgstr "Zobrazit mapu s drahami letu satelitů"
 #: application/views/satellite/pass.php:28
 msgid ""
 "Active station location does not have a gridsquare configured. Please check"
-msgstr ""
+msgstr "Aktivní umístění stanice nemá nastavený lokátor. Zkontrolujte to prosím"
 
 #: application/views/satellite/flightpath.php:57
 msgid ""
@@ -21666,31 +21673,31 @@ msgstr ""
 
 #: application/views/satellite/hamsatpost.php:27
 msgid "Pass Time"
-msgstr ""
+msgstr "Čas přeletu"
 
 #: application/views/satellite/hamsatpost.php:65
 msgid "Center"
-msgstr ""
+msgstr "Střed"
 
 #: application/views/satellite/hamsatpost.php:68
 msgid "Uplink"
-msgstr ""
+msgstr "Uplink"
 
 #: application/views/satellite/hamsatpost.php:69
 msgid "Downlink"
-msgstr ""
+msgstr "Downlink"
 
 #: application/views/satellite/hamsatpost.php:117
 msgid "Max 50 characters"
-msgstr ""
+msgstr "Max. 50 znaků"
 
 #: application/views/satellite/hamsatpost.php:122
 msgid "Realtime chat enabled"
-msgstr ""
+msgstr "Chat v reálném čase povolen"
 
 #: application/views/satellite/hamsatpost.php:126
 msgid "Chat is open until 1 day after the pass ends"
-msgstr ""
+msgstr "Chat je otevřený do 1 dne po skončení přeletu"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
@@ -21779,7 +21786,7 @@ msgstr "Čas AOS"
 
 #: application/views/satellite/passtable.php:8
 msgid "TCA Time"
-msgstr ""
+msgstr "Čas TCA"
 
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:46
@@ -22074,8 +22081,8 @@ msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
 msgstr ""
-"Varování! Nemůžete zaznamenat seznam QSO, protože některá QSO nemají "
-"definované pásmo a/nebo mód!"
+"Varování! Seznam QSO nelze zapsat do logu, protože některá QSO nemají zadané "
+"pásmo a/nebo mód!"
 
 #: application/views/simplefle/index.php:33
 msgid ""
@@ -22212,7 +22219,7 @@ msgid ""
 msgstr ""
 "Nejprve se ujistěte, že jste už ve formuláři vlevo vyplnili datum, značku "
 "stanice a značku operátora. Hlavní údaje zahrnují pásmo (nebo QRG v MHz, "
-"např. %s), režim a čas. Za časem uvedete první QSO, což je v podstatě značka."
+"např. %s), mód a čas. Za časem uvedete první QSO, což je v podstatě značka."
 
 #: application/views/simplefle/syntax_help.php:23
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -22230,7 +22237,7 @@ msgid ""
 "minutes later than the first QSO."
 msgstr ""
 "Pokud neuvedete žádný údaj RST, syntaxe použije 59 pro fonii, 599 pro CW a "
-"+0 dB pro digitální režimy. Naše další QSO nebylo 59 na obou stranách, proto "
+"+0 dB pro digitální módy. Naše další QSO nebylo 59 na obou stranách, proto "
 "údaj uvedeme, a to nejprve s odeslaným RST. Bylo o 2 minuty později než "
 "první QSO."
 
@@ -22241,8 +22248,8 @@ msgid ""
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
 "První QSO bylo v 21:34 a druhé o 2 minuty později v 21:36. Zapíšeme 6, "
-"protože to je jediná data, která se zde změnila. Informace o pásmu a módu se "
-"nezměnily, takže tato data vynecháme."
+"protože to je jediný údaj, který se změnil. Údaje o pásmu a módu se "
+"nezměnily, proto je vynecháme."
 
 #: application/views/simplefle/syntax_help.php:34
 msgid "Date and time"
@@ -22485,6 +22492,9 @@ msgid ""
 "distance statistics and more. Make sure to fill in the gridsquare if you "
 "want to use those features"
 msgstr ""
+"Je potřeba pro všechny funkce založené na aktuální poloze, např. mapy, "
+"statistiky vzdáleností a další. Pokud chcete tyto funkce používat, "
+"nezapomeňte vyplnit lokátor"
 
 #: application/views/station_profile/create.php:200
 #: application/views/station_profile/edit.php:222
@@ -23008,11 +23018,11 @@ msgstr "Elevace"
 
 #: application/views/statistics/antennaanalytics.php:87
 msgid "Radar"
-msgstr ""
+msgstr "Radar"
 
 #: application/views/statistics/antennaanalytics.php:101
 msgid "QSOs per degree of azimuth"
-msgstr ""
+msgstr "QSO na stupeň azimutu"
 
 #: application/views/statistics/antennaanalytics.php:102
 #, php-format
@@ -23021,7 +23031,7 @@ msgstr "25 / 50 / 75 % od maxima"
 
 #: application/views/statistics/antennaanalytics.php:103
 msgid "Marker every 5°"
-msgstr "Ryska každých 5°"
+msgstr "Značka každých 5°"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:101
@@ -23110,7 +23120,7 @@ msgid ""
 msgstr ""
 "Tato stránka umožňuje zobrazit iniciály (první spojení s danou stanicí) "
 "všech EME QSO, která jste navázali. Pro filtrování výsledků můžete vybrat "
-"pásmo a režim."
+"pásmo a mód."
 
 #: application/views/statistics/qsltable.php:85
 msgid "Absolute"
@@ -23122,7 +23132,7 @@ msgstr "Procent"
 
 #: application/views/statistics/qsltable.php:127
 msgid "Overall Stats by Mode"
-msgstr "Celkové statistiky podle druhu provozu"
+msgstr "Celkové statistiky podle módu"
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
@@ -23323,7 +23333,7 @@ msgstr "Pouze nové ve vybraném roce"
 #: application/views/timeline/index.php:392
 #: application/views/timeline/index.php:427
 msgid "Confirmation Date"
-msgstr ""
+msgstr "Datum potvrzení"
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
@@ -23351,7 +23361,7 @@ msgstr "Nejlepší pásmo"
 
 #: application/views/timeplotter/index.php:107
 msgid "Best Mode"
-msgstr "Nejlepší režim"
+msgstr "Nejlepší mód"
 
 #: application/views/timeplotter/index.php:118
 msgid "Total QSOs Plotted"
@@ -23583,7 +23593,7 @@ msgstr ""
 
 #: application/views/user/edit.php:459
 msgid "Prefill fields from callbook while logging"
-msgstr ""
+msgstr "Předvyplňovat pole z callbooku při logování"
 
 #: application/views/user/edit.php:460
 msgid ""
@@ -23591,18 +23601,21 @@ msgid ""
 "when entering a callsign. DXCC lookup, the previous QSOs table and the "
 "callbook profile panel are always shown."
 msgstr ""
+"Určuje, které zdroje vyplňují pole QSO (jméno, QTH, lokátor atd.) při zadání "
+"značky. Vyhledání DXCC, tabulka předchozích QSO a panel profilu z callbooku "
+"se zobrazují vždy."
 
 #: application/views/user/edit.php:463
 msgid "Callbook and previous QSOs (default)"
-msgstr ""
+msgstr "Callbook a předchozí QSO (výchozí)"
 
 #: application/views/user/edit.php:467
 msgid "Only previous QSOs"
-msgstr ""
+msgstr "Pouze předchozí QSO"
 
 #: application/views/user/edit.php:471
 msgid "No prefill"
-msgstr ""
+msgstr "Bez předvyplnění"
 
 #: application/views/user/edit.php:483
 msgid ""
@@ -23807,7 +23820,7 @@ msgstr "Vyberte, zda zobrazit mapu na palubní desce nebo ne"
 
 #: application/views/user/edit.php:798
 msgid "Dashboard solar and propagation data"
-msgstr "Data o slunci a šíření na palubní desce"
+msgstr "Data o slunci a šíření na přehledu"
 
 #: application/views/user/edit.php:804
 msgid ""
@@ -24128,15 +24141,15 @@ msgstr "Podívejte se na svůj profil na %s."
 
 #: application/views/user/edit.php:1385
 msgid "Show Workable Passes Only"
-msgstr "Zobrazit pouze průchody, které lze provést"
+msgstr "Zobrazit pouze pracovatelné přelety"
 
 #: application/views/user/edit.php:1386
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
 msgstr ""
-"Pokud je povoleno, zobrazí pouze proveditelné průchody na základě lokátoru "
-"nastaveného ve vašem účtu hams.at. Vyžaduje nastavení soukromého klíče feedu."
+"Pokud je povoleno, zobrazí pouze pracovatelné přelety podle lokátoru "
+"nastaveného ve vašem účtu hams.at. Vyžaduje nastavený soukromý klíč feedu."
 
 #: application/views/user/edit.php:1399
 msgid "Save Account"
@@ -24613,7 +24626,7 @@ msgstr "Elevace antény"
 
 #: application/views/view_log/qso.php:284
 msgid "Show all QSOs with this DXCC"
-msgstr ""
+msgstr "Zobrazit všechna QSO s tímto DXCC"
 
 #: application/views/view_log/qso.php:447
 msgid "QSL Card has been sent via the bureau"
@@ -24823,21 +24836,23 @@ msgstr "QSO jsou označena jako exportována do QO-100 Dx Club."
 
 #: application/views/webadif/rejected.php:3
 msgid "Rejected by QO-100 Dx Club"
-msgstr ""
+msgstr "Odmítnuto QO-100 DX Clubem"
 
 #: application/views/webadif/rejected.php:5
 msgid ""
 "These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
 "is not retried automatically."
 msgstr ""
+"Tato QSO byla odmítnuta API QO-100 DX Clubu a jejich nahrání se automaticky "
+"neopakuje."
 
 #: application/views/webadif/rejected.php:11
 msgid "Reason for rejection by QO-100 Dx Club"
-msgstr ""
+msgstr "Důvod odmítnutí QO-100 DX Clubem"
 
 #: application/views/webadif/rejected.php:24
 msgid "Retry Upload"
-msgstr ""
+msgstr "Opakovat nahrání"
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
