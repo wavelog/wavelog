@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-05 11:48+0000\n"
-"PO-Revision-Date: 2026-10-05 13:49+0000\n"
+"PO-Revision-Date: 2026-10-05 13:53+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
@@ -1153,7 +1153,7 @@ msgstr "Aktualizovat soutěž"
 #: application/controllers/Contest_admin.php:76
 #, php-format
 msgid "Contest %s updated"
-msgstr ""
+msgstr "Soutěž %s byla aktualizována"
 
 #: application/controllers/Contestcalendar.php:11
 #: application/views/interface_assets/header.php:326
@@ -1305,7 +1305,7 @@ msgstr "Kontinenty"
 #: application/views/countqsoby/index.php:211
 #: application/views/interface_assets/header.php:190
 msgid "Count QSOs by..."
-msgstr ""
+msgstr "Počet QSO podle..."
 
 #: application/controllers/Countqsoby.php:74
 #: application/controllers/Logbook.php:1516
@@ -1370,7 +1370,7 @@ msgstr ""
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
 msgid "Gridsquare"
-msgstr "Locátor"
+msgstr "Lokátor"
 
 #: application/controllers/Countqsoby.php:75
 #: application/views/activationplanner/index.php:121
@@ -1427,7 +1427,7 @@ msgstr "CQ zóna"
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:72
 msgid "POTA Reference"
-msgstr ""
+msgstr "POTA reference"
 
 #: application/controllers/Countqsoby.php:78
 #: application/views/awards/sota/index.php:178
@@ -1593,7 +1593,7 @@ msgstr "Přehled"
 
 #: application/controllers/Dashboard.php:222
 msgid "HF"
-msgstr ""
+msgstr "HF"
 
 #: application/controllers/Dashboard.php:222
 #: application/views/dashboard/index.php:699
@@ -1609,7 +1609,7 @@ msgstr "SAT"
 
 #: application/controllers/Dashboard.php:222
 msgid "VHF+"
-msgstr ""
+msgstr "VHF+"
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1962,7 +1962,7 @@ msgstr "Export KML"
 #: application/controllers/Labeldesigner.php:22
 #: application/views/labels/index.php:36
 msgid "Label Designer"
-msgstr ""
+msgstr "Návrhář štítků"
 
 #: application/controllers/Labeldesigner.php:114
 #: application/controllers/Labels.php:213
@@ -1982,11 +1982,11 @@ msgstr "JSON šablony je neplatný"
 
 #: application/controllers/Labeldesigner.php:125
 msgid "Template has no elements"
-msgstr ""
+msgstr "Šablona neobsahuje žádné prvky"
 
 #: application/controllers/Labeldesigner.php:131
 msgid "Label type not found"
-msgstr ""
+msgstr "Typ štítku nebyl nalezen"
 
 #: application/controllers/Labeldesigner.php:136
 #: application/controllers/Labels.php:225
@@ -2007,13 +2007,14 @@ msgstr "Soubor PDF nebyl vytvořen"
 
 #: application/controllers/Labeldesigner.php:165
 msgid "Label PDF failed: "
-msgstr ""
+msgstr "Generování PDF štítku selhalo: "
 
 #: application/controllers/Labeldesigner.php:180
 msgid ""
 "The label type of this template no longer exists. Please select another one "
 "before exporting."
 msgstr ""
+"Typ štítku této šablony již neexistuje. Před exportem prosím vyberte jiný."
 
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
@@ -2830,10 +2831,12 @@ msgid ""
 "The uploaded file is invalid. Please upload a Logbook of the World .p12 "
 "certificate file."
 msgstr ""
+"Nahraný soubor je neplatný. Nahrajte prosím soubor certifikátu .p12 z "
+"Logbook of the World."
 
 #: application/controllers/Lotw.php:134
 msgid "The uploaded file could not be read."
-msgstr ""
+msgstr "Nahraný soubor nelze přečíst."
 
 #: application/controllers/Lotw.php:153
 msgid "Certificate Imported."
@@ -2855,6 +2858,9 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Certifikát v souboru %s obsahuje heslo a nelze jej zpracovat. %sExportujte "
+"prosím certifikát LoTW z aplikace TQSL bez hesla!%s Další informace najdete "
+"na %sstránce řešení problémů s LoTW%s ve Wavelog Wiki."
 
 #: application/controllers/Lotw.php:438
 #, php-format
@@ -2864,6 +2870,10 @@ msgid ""
 "been processed by LoTW yet. For further information please visit the %sLoTW "
 "troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Obecná chyba při extrahování certifikátu ze souboru %s. Pokud název souboru "
+"obsahuje 'key-only', jde obvykle o žádost o certifikát, kterou LoTW zatím "
+"nezpracoval. Další informace najdete na %sstránce řešení problémů s LoTW%s "
+"ve Wavelog Wiki."
 
 #: application/controllers/Lotw.php:444
 #, php-format
@@ -2871,6 +2881,8 @@ msgid ""
 "Generic error processing the certificate in file %s. For further information "
 "please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Obecná chyba při zpracování certifikátu v souboru %s. Další informace "
+"najdete na %sstránce řešení problémů s LoTW%s ve Wavelog Wiki."
 
 #: application/controllers/Lotw.php:456
 #, php-format
@@ -2879,6 +2891,9 @@ msgid ""
 "further information please visit the %sLoTW troubleshooting page%s in the "
 "Wavelog Wiki."
 msgstr ""
+"Obecná chyba při extrahování soukromého klíče z certifikátu v souboru %s. "
+"Další informace najdete na %sstránce řešení problémů s LoTW%s ve Wavelog "
+"Wiki."
 
 #: application/controllers/Lotw.php:670
 msgid "LoTW ADIF Information"
@@ -2938,7 +2953,7 @@ msgstr "Režim úprav"
 #: application/controllers/Mode.php:76
 #, php-format
 msgid "Mode %s updated"
-msgstr ""
+msgstr "Režim %s byl aktualizován"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -3377,12 +3392,12 @@ msgstr "QSO se nepodařilo uložit"
 #: application/controllers/Qso.php:838 application/controllers/Qso.php:861
 #, php-format
 msgid "Please check value for gridsquare (%s)"
-msgstr ""
+msgstr "Zkontrolujte prosím hodnotu lokátoru (%s)"
 
 #: application/controllers/Qso.php:850
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
-msgstr ""
+msgstr "Zkontrolujte prosím hodnotu VUCC lokátoru (%s)"
 
 #: application/controllers/Qso.php:879
 msgid "You have to be logged in to access this URL."
@@ -3587,14 +3602,15 @@ msgstr "Nejsou k dispozici žádné předvolby"
 #: application/controllers/Satellite.php:651
 msgid "Generic error posting to hams.at. Please check the input values."
 msgstr ""
+"Obecná chyba při odesílání na hams.at. Zkontrolujte prosím zadané hodnoty."
 
 #: application/controllers/Satellite.php:655
 msgid "Error authenticating to hams.at. Please check API key."
-msgstr ""
+msgstr "Chyba ověření na hams.at. Zkontrolujte prosím API klíč."
 
 #: application/controllers/Satellite.php:659
 msgid "Generic error posting to hams.at. Please try again later."
-msgstr ""
+msgstr "Obecná chyba při odesílání na hams.at. Zkuste to prosím později."
 
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
@@ -3664,7 +3680,7 @@ msgstr "Úprava umístění stanice: "
 #: application/controllers/Station.php:105
 #, php-format
 msgid "Station Location %s updated"
-msgstr ""
+msgstr "Umístění stanice %s bylo aktualizováno"
 
 #: application/controllers/Station.php:124
 msgid "Duplicate Station Location:"
@@ -4029,11 +4045,11 @@ msgstr "Aktualizace POTA selhala. Výsledek: "
 
 #: application/controllers/Update.php:663
 msgid "POTA boundaries update complete. Result: "
-msgstr ""
+msgstr "Aktualizace hranic POTA dokončena. Výsledek: "
 
 #: application/controllers/Update.php:665
 msgid "POTA boundaries update failed. Result: "
-msgstr ""
+msgstr "Aktualizace hranic POTA selhala. Výsledek: "
 
 #: application/controllers/Update.php:682
 msgid "TLE Update complete. Result: "
@@ -4380,6 +4396,7 @@ msgstr "Nahrání do QO-100 DX Club"
 msgid ""
 "Rejected QSOs were reset. They will be picked up again by the next upload."
 msgstr ""
+"Odmítnutá QSO byla resetována. Při příštím nahrání budou znovu zpracována."
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -4410,7 +4427,7 @@ msgstr ""
 
 #: application/controllers/Widgets.php:282
 msgid "User has disabled the LoTW upload widget"
-msgstr ""
+msgstr "Uživatel zakázal widget nahrávání do LoTW"
 
 #: application/controllers/Widgets.php:540
 msgid "User not found by slug"
@@ -4443,11 +4460,11 @@ msgstr "Chyba při získávání klíče relace pro zápisník. Chyba: %s"
 
 #: application/libraries/Callbook.php:74
 msgid "Generic error storing the callbook session key in cache."
-msgstr ""
+msgstr "Obecná chyba při ukládání klíče relace callbooku do mezipaměti."
 
 #: application/libraries/Callbook.php:75
 msgid "Generic error reading the cached callbook session key."
-msgstr ""
+msgstr "Obecná chyba při čtení klíče relace callbooku z mezipaměti."
 
 #: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
@@ -4562,27 +4579,27 @@ msgstr "Čtení QSL potvrzení"
 
 #: application/libraries/api_v2/Contest_resource.php:55
 msgid "Read contest sessions"
-msgstr ""
+msgstr "Čtení soutěžních relací"
 
 #: application/libraries/api_v2/Contest_resource.php:56
 msgid "Create and update contest sessions"
-msgstr ""
+msgstr "Vytváření a úprava soutěžních relací"
 
 #: application/libraries/api_v2/Contest_resource.php:57
 msgid "Delete contest sessions"
-msgstr ""
+msgstr "Mazání soutěžních relací"
 
 #: application/libraries/api_v2/Logbook_resource.php:49
 msgid "Read logbooks"
-msgstr ""
+msgstr "Čtení deníků"
 
 #: application/libraries/api_v2/Logbook_resource.php:50
 msgid "Create and update logbooks"
-msgstr ""
+msgstr "Vytváření a úprava deníků"
 
 #: application/libraries/api_v2/Logbook_resource.php:51
 msgid "Delete logbooks"
-msgstr ""
+msgstr "Mazání deníků"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
@@ -4634,17 +4651,17 @@ msgstr "Čtení statistik"
 #, php-format
 msgid "%s day"
 msgid_plural "%s days"
-msgstr[0] ""
+msgstr[0] "%s den%s dny%s dní"
 msgstr[1] ""
 msgstr[2] ""
 
 #: application/models/Achievements_model.php:172
 msgid "Longest streak"
-msgstr ""
+msgstr "Nejdelší série"
 
 #: application/models/Achievements_model.php:173
 msgid "Current streak"
-msgstr ""
+msgstr "Aktuální série"
 
 #: application/models/Achievements_model.php:174
 #: application/models/Achievements_model.php:196
@@ -4655,124 +4672,124 @@ msgstr "Cíl"
 
 #: application/models/Achievements_model.php:177
 msgid "Reached on"
-msgstr ""
+msgstr "Dosaženo dne"
 
 #: application/models/Achievements_model.php:181
 #, php-format
 msgid "%d Day Streak"
-msgstr ""
+msgstr "Série %d dní"
 
 #: application/models/Achievements_model.php:185
 #, php-format
 msgid "%s / %s day"
 msgid_plural "%s / %s days"
-msgstr[0] ""
+msgstr[0] "%s / %s den%s / %s dny%s / %s dní"
 msgstr[1] ""
 msgstr[2] ""
 
 #: application/models/Achievements_model.php:195
 msgid "QSOs in log"
-msgstr ""
+msgstr "QSO v logu"
 
 #: application/models/Achievements_model.php:196
 #: application/models/Achievements_model.php:203
 #, php-format
 msgid "%s QSO"
 msgid_plural "%s QSOs"
-msgstr[0] ""
+msgstr[0] "%s QSO%s QSO%s QSO"
 msgstr[1] ""
 msgstr[2] ""
 
 #: application/models/Achievements_model.php:199
 msgid "Unlocked on"
-msgstr ""
+msgstr "Odemčeno dne"
 
 #: application/models/Achievements_model.php:207
 #, php-format
 msgid "%s / %s QSO"
 msgid_plural "%s / %s QSOs"
-msgstr[0] ""
+msgstr[0] "%s / %s QSO%s / %s QSO%s / %s QSO"
 msgstr[1] ""
 msgstr[2] ""
 
 #: application/models/Achievements_model.php:237
 msgid "QSOs in classic digimodes"
-msgstr ""
+msgstr "QSO v klasických digitálních režimech"
 
 #: application/models/Achievements_model.php:239
 #: application/models/Achievements_model.php:356
 #: application/models/Achievements_model.php:389
 msgid "First QSO on"
-msgstr ""
+msgstr "První QSO dne"
 
 #: application/models/Achievements_model.php:242
 msgid "Top classic mode"
-msgstr ""
+msgstr "Nejčastější klasický režim"
 
 #: application/models/Achievements_model.php:245
 msgid "First CW QSO"
-msgstr ""
+msgstr "První QSO v CW"
 
 #: application/models/Achievements_model.php:247
 msgid "First SSB QSO"
-msgstr ""
+msgstr "První QSO v SSB"
 
 #: application/models/Achievements_model.php:249
 msgid "First FT8 QSO"
-msgstr ""
+msgstr "První QSO v FT8"
 
 #: application/models/Achievements_model.php:251
 msgid "First Classic Digimode QSO"
-msgstr ""
+msgstr "První QSO v klasickém digitálním režimu"
 
 #: application/models/Achievements_model.php:252
 msgid "Triple Threat"
-msgstr ""
+msgstr "Trojkombinace"
 
 #: application/models/Achievements_model.php:253
 #, php-format
 msgid "%s / 3 mode"
 msgid_plural "%s / 3 modes"
-msgstr[0] ""
+msgstr[0] "%s / 3 režimů%s / 3 režimů%s / 3 režimů"
 msgstr[1] ""
 msgstr[2] ""
 
 #: application/models/Achievements_model.php:255
 msgid "Worked modes"
-msgstr ""
+msgstr "Pracované režimy"
 
 #: application/models/Achievements_model.php:256
 msgid "Missing modes"
-msgstr ""
+msgstr "Chybějící režimy"
 
 #: application/models/Achievements_model.php:272
 msgid "First LoTW Confirmation"
-msgstr ""
+msgstr "První potvrzení v LoTW"
 
 #: application/models/Achievements_model.php:273
 msgid "Confirmed on"
-msgstr ""
+msgstr "Potvrzeno dne"
 
 #: application/models/Achievements_model.php:291
 msgid "CW and SSB QSOs"
-msgstr ""
+msgstr "QSO v CW a SSB"
 
 #: application/models/Achievements_model.php:292
 msgid "FT8 and FT4 QSOs"
-msgstr ""
+msgstr "QSO v FT8 a FT4"
 
 #: application/models/Achievements_model.php:293
 msgid "Current ratio"
-msgstr ""
+msgstr "Aktuální poměr"
 
 #: application/models/Achievements_model.php:294
 msgid "Needed ratio"
-msgstr ""
+msgstr "Potřebný poměr"
 
 #: application/models/Achievements_model.php:299
 #, php-format
 msgid "Total: %s QSOs"
-msgstr ""
+msgstr "Celkem: %s QSO"
 
 #: application/models/Achievements_model.php:303
 #: application/views/awards/counties/index.php:195
@@ -4794,67 +4811,67 @@ msgstr "Navázáno"
 
 #: application/models/Achievements_model.php:306
 msgid "Classic digimodes"
-msgstr ""
+msgstr "Klasické digitální režimy"
 
 #: application/models/Achievements_model.php:310
 #, php-format
 msgid "HF: %s/%s"
-msgstr ""
+msgstr "HF: %s/%s"
 
 #: application/models/Achievements_model.php:311
 #, php-format
 msgid "WARC: %s/%s"
-msgstr ""
+msgstr "WARC: %s/%s"
 
 #: application/models/Achievements_model.php:312
 #, php-format
 msgid "SAT: %s"
-msgstr ""
+msgstr "SAT: %s"
 
 #: application/models/Achievements_model.php:314
 #, php-format
 msgid "First confirmation: %s"
-msgstr ""
+msgstr "První potvrzení: %s"
 
 #: application/models/Achievements_model.php:314
 msgid "No LoTW confirmation yet"
-msgstr ""
+msgstr "Zatím žádné potvrzení v LoTW"
 
 #: application/models/Achievements_model.php:316
 msgid "CW and SSB versus FT8 and FT4"
-msgstr ""
+msgstr "CW a SSB oproti FT8 a FT4"
 
 #: application/models/Achievements_model.php:319
 msgid "Streak"
-msgstr ""
+msgstr "Série"
 
 #: application/models/Achievements_model.php:320
 msgid "Volume"
-msgstr ""
+msgstr "Objem"
 
 #: application/models/Achievements_model.php:324
 msgid "Classic Mode Ratio"
-msgstr ""
+msgstr "Poměr klasických režimů"
 
 #: application/models/Achievements_model.php:353
 msgid "QSOs in this mode"
-msgstr ""
+msgstr "QSO v tomto režimu"
 
 #: application/models/Achievements_model.php:371
 msgid "Bands worked"
-msgstr ""
+msgstr "Pracovaná pásma"
 
 #: application/models/Achievements_model.php:372
 msgid "Missing bands"
-msgstr ""
+msgstr "Chybějící pásma"
 
 #: application/models/Achievements_model.php:373
 msgid "Range"
-msgstr ""
+msgstr "Rozsah"
 
 #: application/models/Achievements_model.php:376
 msgid "Completed on"
-msgstr ""
+msgstr "Dokončeno dne"
 
 #: application/models/Achievements_model.php:379
 #, php-format
