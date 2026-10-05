@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-05 11:48+0000\n"
-"PO-Revision-Date: 2026-10-05 14:30+0000\n"
+"PO-Revision-Date: 2026-10-05 14:44+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
@@ -2951,7 +2951,7 @@ msgstr "Režim úprav"
 #: application/controllers/Mode.php:76
 #, php-format
 msgid "Mode %s updated"
-msgstr "Druh provozu %s byl aktualizován"
+msgstr "Mód %s byl aktualizován"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -7892,9 +7892,9 @@ msgid ""
 "individuals for all county contacts made, regardless of callsigns used, "
 "operating locations, or dates."
 msgstr ""
-"USA-CA je dostupný všem licencovaným radioamatérům po celém světě a uděluje "
-"se jednotlivcům za všechny okresní kontakty bez ohledu na použité značky, "
-"provozní lokace nebo data."
+"Diplom USA-CA mohou získat všichni licencovaní radioamatéři na světě. "
+"Uděluje se jednotlivcům za všechna spojení s okresy bez ohledu na použité "
+"značky, místa vysílání nebo data."
 
 #: application/views/awards/counties/index.php:45
 msgid "Special USA-CA awards are also available to SWLs on a heard basis."
@@ -11841,7 +11841,7 @@ msgstr "Smazat QSO"
 
 #: application/views/club/permissions.php:104
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
-msgstr "Spravovat nastavení stanice (upravit/vytvořit deníky a lokace)"
+msgstr "Spravovat Nastavení stanoviště (upravit/vytvořit deníky a umístění)"
 
 #: application/views/club/permissions.php:113
 msgid "Manage Third-Party services"
@@ -14065,7 +14065,7 @@ msgstr "Musíte aktualizovat soubory zemí! Klikněte %szde%s pro aktualizaci."
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %shere%s to do it."
-msgstr "Nemáte žádné lokace stanic. Klikněte %szde%s pro přidání."
+msgstr "Nemáte žádná umístění stanic. Vytvoříte je kliknutím %szde%s."
 
 #: application/views/dashboard/index.php:147
 #, php-format
@@ -14953,7 +14953,7 @@ msgstr "Tato spojení nelze aktualizovat:"
 #: application/views/search/lotw_unconfirmed.php:28
 #: application/views/statistics/antennaanalytics.php:104
 msgid "Station location"
-msgstr "Lokace stanice"
+msgstr "Umístění stanice"
 
 #: application/views/dbtools/showUpdateResult.php:46
 #: application/views/dbtools/showUpdateResult.php:109
@@ -16891,7 +16891,7 @@ msgstr "Lokátory"
 
 #: application/views/interface_assets/footer.php:1351
 msgid "Location Lookup failed. Please check browser console."
-msgstr "Vyhledání lokace selhalo. Zkontrolujte prosím konzoli prohlížeče."
+msgstr "Vyhledání polohy selhalo. Zkontrolujte prosím konzoli prohlížeče."
 
 #: application/views/interface_assets/footer.php:1502
 #: application/views/interface_assets/footer.php:1506
@@ -18888,7 +18888,7 @@ msgstr "Při provádění požadavku došlo k chybě"
 
 #: application/views/logbookadvanced/index.php:67
 msgid "You need to select at least 1 location to do a search!"
-msgstr "Musíte vybrat alespoň 1 lokaci pro vyhledávání!"
+msgstr "Pro vyhledávání musíte vybrat alespoň 1 umístění!"
 
 #: application/views/logbookadvanced/index.php:69
 msgid "QSO records updated."
@@ -19594,7 +19594,7 @@ msgstr "Nastavení importu"
 
 #: application/views/lotw/import.php:22
 msgid "Upload a File"
-msgstr "Nahraj soubor"
+msgstr "Nahrát soubor"
 
 #: application/views/lotw/import.php:24
 msgid "Download Report"
@@ -19656,7 +19656,7 @@ msgstr "Dostupné certifikáty"
 
 #: application/views/lotw_views/index.php:24
 msgid "Upload Certificate"
-msgstr "Nahraj certifikát"
+msgstr "Nahrát certifikát"
 
 #: application/views/lotw_views/index.php:44
 msgid "QSO Start Date"
@@ -19772,7 +19772,7 @@ msgstr ""
 
 #: application/views/lotw_views/upload_cert.php:38
 msgid "Upload File"
-msgstr "Nahraj soubor"
+msgstr "Nahrát soubor"
 
 #: application/views/map/qso_map.php:8
 msgid "Loading QSO data..."
@@ -20388,8 +20388,7 @@ msgstr "Zadejte svou značku"
 
 #: application/views/oqrs/index.php:27
 msgid "This search will search in all station locations where OQRS is active."
-msgstr ""
-"Toto vyhledávání bude hledat ve všech lokacích stanic, kde je OQRS aktivní."
+msgstr "Vyhledávání proběhne ve všech umístěních stanic, kde je aktivní OQRS."
 
 #: application/views/oqrs/index.php:54
 msgid "Select station"
@@ -22372,7 +22371,7 @@ msgstr ""
 #: application/views/station_profile/create.php:55
 #: application/views/station_profile/edit.php:72
 msgid "Location Name"
-msgstr "Název lokace"
+msgstr "Název umístění"
 
 #: application/views/station_profile/create.php:56
 #: application/views/station_profile/create.php:57
@@ -22776,11 +22775,11 @@ msgstr "Navštívit exportní mapu"
 
 #: application/views/stationsetup/linkedlocations.php:13
 msgid "Select Available Station Locations"
-msgstr "Vybrat dostupné lokace stanic"
+msgstr "Vybrat dostupná umístění stanic"
 
 #: application/views/stationsetup/linkedlocations.php:25
 msgid "Link Location"
-msgstr "Propojit lokaci"
+msgstr "Propojit umístění"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:155
@@ -22789,7 +22788,7 @@ msgstr "Název profilu"
 
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
-msgstr "Odpojit lokaci stanice"
+msgstr "Odpojit umístění stanice"
 
 #: application/views/stationsetup/locationlist.php:3
 msgid "Limited to station locations linked to active logbook"
@@ -22864,7 +22863,7 @@ msgstr "Upravit název kontejneru"
 #: application/views/stationsetup/stationsetup.php:7
 #: application/views/stationsetup/stationsetup.php:45
 msgid "Edit Linked Locations"
-msgstr "Upravit propojené lokace"
+msgstr "Upravit propojená umístění"
 
 #: application/views/stationsetup/stationsetup.php:9
 msgid "Create a New Station Logbook"
@@ -22881,10 +22880,9 @@ msgid ""
 "analytics. Great for when you're operating in multiple locations but they "
 "are part of the same DXCC or VUCC Circle."
 msgstr ""
-"Stanice deníků umožňují seskupit lokace stanic, což vám umožní vidět všechny "
-"lokace napříč jednou relací z oblastí deníku až po analýzy. Skvělé pro "
-"případy, když operujete na více místech, ale jsou součástí stejného DXCC "
-"nebo VUCC okruhu."
+"Staniční deníky umožňují seskupit umístění stanic, takže všechna umístění "
+"vidíte pohromadě, od deníku až po analýzy. Hodí se, když vysíláte z více "
+"míst, která ale patří do stejného DXCC nebo VUCC okruhu."
 
 #: application/views/stationsetup/stationsetup.php:47
 msgid "Visitor Site"
@@ -22892,15 +22890,15 @@ msgstr "Návštěvnická stránka"
 
 #: application/views/stationsetup/stationsetup.php:122
 msgid "Station Locations"
-msgstr "Lokace stanic"
+msgstr "Umístění stanic"
 
 #: application/views/stationsetup/stationsetup.php:126
 msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
 msgstr ""
-"Lokace stanic definují provozní lokace, jako je vaše QTH, QTH přítele nebo "
-"přenosná stanice."
+"Umístění stanic definují místa, odkud vysíláte, např. vaše QTH, QTH přítele "
+"nebo přenosnou stanici."
 
 #: application/views/stationsetup/stationsetup.php:127
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
@@ -22919,32 +22917,32 @@ msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
 msgstr ""
-"Sloupec 'Propojeno' ukazuje, zda je lokace stanice propojena s aktivním "
+"Sloupec 'Propojeno' ukazuje, zda je umístění stanice propojeno s aktivním "
 "deníkem vybraným výše."
 
 #: application/views/stationsetup/stationsetup.php:132
 msgid "Create a Station Location"
-msgstr "Vytvořit lokaci stanice"
+msgstr "Vytvořit umístění stanice"
 
 #: application/views/stationsetup/stationsetup.php:132
 msgid "Show only locations from the active logbook"
-msgstr "Zobrazit pouze lokace z aktivního deníku"
+msgstr "Zobrazit pouze umístění z aktivního deníku"
 
 #: application/views/stationsetup/stationsetup.php:133
 msgid "Show all locations"
-msgstr "Zobrazit všechny lokace"
+msgstr "Zobrazit všechna umístění"
 
 #: application/views/stationsetup/stationsetup.php:134
 msgid "Show a location list"
-msgstr "Zobrazit seznam lokací"
+msgstr "Zobrazit seznam umístění"
 
 #: application/views/stationsetup/stationsetup.php:138
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
 msgstr ""
-"Upozornění: Musíte nastavit aktivní lokaci stanice. Přejděte na Značka-"
-">Lokace stanice a vyberte jednu."
+"Upozornění: Musíte nastavit aktivní umístění stanice. Vyberte ho v nabídce "
+"Značka->Umístění stanice."
 
 #: application/views/stationsetup/stationsetup.php:144
 msgid ""
@@ -23708,7 +23706,7 @@ msgstr ""
 
 #: application/views/user/edit.php:611
 msgid "Station Locations Quickswitch"
-msgstr "Rychlé přepínání lokací stanic"
+msgstr "Rychlé přepínání umístění stanic"
 
 #: application/views/user/edit.php:612
 msgid ""
@@ -23887,15 +23885,15 @@ msgstr ""
 
 #: application/views/user/edit.php:960
 msgid "Show station location name in grouped search results"
-msgstr "Zobrazit název lokace stanice ve výsledcích seskupeného vyhledávání"
+msgstr "Zobrazit název umístění stanice ve výsledcích seskupeného vyhledávání"
 
 #: application/views/user/edit.php:961
 msgid ""
 "If grouped search is ON, you can decide if the name of the station location "
 "shall be shown in the results table."
 msgstr ""
-"Pokud je seskupené vyhledávání ZAPNUTO, můžete rozhodnout, zda se má název "
-"lokace stanice zobrazit v tabulce výsledků."
+"Pokud je seskupené vyhledávání ZAPNUTO, můžete určit, zda se v tabulce "
+"výsledků zobrazí název umístění stanice."
 
 #: application/views/user/edit.php:972
 msgid "Automatic OQRS matching"
@@ -24361,9 +24359,8 @@ msgid ""
 "Location. You can find more information about how Station Locations and "
 "Logbooks work in our %sWiki here%s!"
 msgstr ""
-"Než můžete začít zaznamenávat QSO, musíme nastavit vaši první lokaci "
-"stanice. Více informací o tom, jak fungují lokace stanic a deníky, najdete v "
-"naší %sWiki zde%s!"
+"Než začnete zapisovat QSO, je potřeba nastavit první umístění stanice. Více "
+"o tom, jak fungují umístění stanic a deníky, najdete v naší %sWiki zde%s!"
 
 #: application/views/user/modals/first_login_wizard.php:22
 msgid ""
@@ -24569,8 +24566,7 @@ msgstr "Nezobrazovat znovu"
 #: application/views/view_log/index.php:6
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
-msgstr ""
-"Zobrazení všech QSO lokací stanic, které jsou propojeny s tímto deníkem"
+msgstr "Zobrazení všech QSO z umístění stanic propojených s tímto deníkem"
 
 #: application/views/view_log/partial/log_ajax.php:448
 #: application/views/view_log/partial/log_ajax.php:505
