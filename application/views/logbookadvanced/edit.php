@@ -214,7 +214,6 @@
 			<option value="N"><?= __("No"); ?></option>
 			<option value="R"><?= __("Requested"); ?></option>
 			<option value="I"><?= __("Invalid (Ignore)"); ?></option>
-			<option value="V"><?= __("Verified"); ?></option>
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editQslMethod"  name="qslmethod">
