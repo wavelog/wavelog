@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-05 11:48+0000\n"
-"PO-Revision-Date: 2026-10-05 14:24+0000\n"
+"PO-Revision-Date: 2026-10-05 14:30+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
@@ -3304,7 +3304,7 @@ msgstr "Informace QRZ ADIF"
 #: application/views/visitor/index.php:272
 #: application/views/visitor/index.php:285
 msgid "QSL Cards"
-msgstr "QSL karty"
+msgstr "QSL lístky"
 
 #: application/controllers/Qsl.php:65
 msgid "Upload QSL Cards"
@@ -3312,7 +3312,7 @@ msgstr "Nahrání QSL karet"
 
 #: application/controllers/Qsl.php:121 application/controllers/Qsl.php:170
 msgid "Not enough free disk space to store the QSL card."
-msgstr "Nedostatek volného místa na disku pro uložení QSL karty."
+msgstr "Nedostatek volného místa na disku pro uložení QSL lístku."
 
 #: application/controllers/Qsl.php:138 application/controllers/Qsl.php:187
 #: application/controllers/Qslpostcard.php:89
@@ -4748,8 +4748,8 @@ msgstr "Trojkombinace"
 #, php-format
 msgid "%s / 3 mode"
 msgid_plural "%s / 3 modes"
-msgstr[0] "%s / 3 módů"
-msgstr[1] "%s / 3 módů"
+msgstr[0] "%s / 3 mód"
+msgstr[1] "%s / 3 módy"
 msgstr[2] "%s / 3 módů"
 
 #: application/models/Achievements_model.php:255
@@ -4875,8 +4875,8 @@ msgstr "Dokončeno dne"
 #, php-format
 msgid "%s / %s band"
 msgid_plural "%s / %s bands"
-msgstr[0] "%s / %s pásem"
-msgstr[1] "%s / %s pásem"
+msgstr[0] "%s / %s pásmo"
+msgstr[1] "%s / %s pásma"
 msgstr[2] "%s / %s pásem"
 
 #: application/models/Achievements_model.php:387
@@ -5719,7 +5719,7 @@ msgstr "Pouze potvrzená"
 
 #: application/views/achievements/index.php:80
 msgid "Count only QSOs confirmed by LoTW or paper card"
-msgstr "Počítat pouze QSO potvrzená přes LoTW nebo papírovou QSL kartou"
+msgstr "Počítat pouze QSO potvrzená přes LoTW nebo papírovým QSL lístkem"
 
 #: application/views/achievements/index.php:83
 #, php-format
@@ -7821,7 +7821,7 @@ msgstr ""
 
 #: application/views/awards/amsat_rover/index.php:279
 msgid "If you have QSL cards instead, scan them and attach the scans."
-msgstr "Pokud máte místo toho QSL karty, naskenujte je a přiložte skeny."
+msgstr "Pokud máte místo toho QSL lístky, naskenujte je a přiložte skeny."
 
 #: application/views/awards/amsat_rover/index.php:282
 msgid "Send to"
@@ -8431,7 +8431,7 @@ msgstr "Zobrazit nepracované"
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
-msgstr "QSL karta"
+msgstr "QSL lístek"
 
 #: application/views/awards/cq/index.php:203
 #: application/views/awards/dxcc/index.php:439
@@ -8449,7 +8449,7 @@ msgstr "Legenda:"
 #: application/views/awards/wae/index.php:211
 #: application/views/lookup/result.php:29
 msgid "(Q)SL-Paper-Card"
-msgstr "(Q)SL papírová karta"
+msgstr "(Q)SL papírový lístek"
 
 #: application/views/awards/cq/index.php:205
 #: application/views/awards/dxcc/index.php:441
@@ -9144,8 +9144,8 @@ msgid ""
 "May be claimed for having contacted (heard) and received a QSL card from an "
 "amateur station located in each of at least 100 different cities of Japan."
 msgstr ""
-"Lze získat za navázání spojení (slyšení) a obdržení QSL karty z amatérské "
-"stanice umístěné v každém z alespoň 100 různých měst Japonska."
+"Lze získat za navázání spojení (poslech) a obdržení QSL lístku od "
+"radioamatérské stanice v každém z alespoň 100 různých měst Japonska."
 
 #: application/views/awards/jcc/index.php:13
 msgid ""
@@ -9228,7 +9228,7 @@ msgid ""
 msgstr ""
 "Doplňkový diplom k JCC, který místo měst pokrývá japonské okresy (gun) a jim "
 "odpovídající venkovské celky. Lze získat za navázání spojení (poslech) a "
-"obdržení QSL karty od amatérské stanice umístěné v každém z určeného počtu "
+"obdržení QSL lístku od radioamatérské stanice v každém z určeného počtu "
 "různých okresů Japonska."
 
 #: application/views/awards/jcg/index.php:13
@@ -9323,7 +9323,7 @@ msgid ""
 "for tracking purposes only."
 msgstr ""
 "Podle oficiálních pravidel diplomu se pro žádost o diplom uznávají papírové "
-"QSL karty nebo potvrzení LoTW. Ostatní elektronická potvrzení jsou zde "
+"QSL lístky nebo potvrzení LoTW. Ostatní elektronická potvrzení jsou zde "
 "zobrazena pouze pro přehled."
 
 #: application/views/awards/pl_polska/index.php:94
@@ -9914,7 +9914,7 @@ msgstr "Ne"
 
 #: application/views/awards/wab/list.php:37
 msgid "Q = QSL card, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog"
-msgstr "Q = QSL karta, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog"
+msgstr "Q = QSL lístek, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog"
 
 #: application/views/awards/wac/index.php:8
 msgid ""
@@ -10008,9 +10008,10 @@ msgid ""
 "225 (Sardinia), QSL card confirmation only. No satellite contacts allowed."
 msgstr ""
 "Kategorie diplomu: PHONE (SSB/AM/FM/SSTV), CW, DIGI (RTTY/PSK/FT8/atd.) a "
-"jednotlivá pásma. Všechny kraje musí být potvrzeny QSL kartou. Požadavky: "
-"COL_STATE (dvoupísmenný kód kraje), COL_DXCC=248 (Itálie) nebo 225 "
-"(Sardinie), potvrzení pouze QSL kartou. Satelitní spojení nejsou povolena."
+"jednotlivá pásma. Všechny provincie musí být potvrzeny QSL lístkem. "
+"Požadavky: COL_STATE (dvoupísmenný kód provincie), COL_DXCC=248 (Itálie) "
+"nebo 225 (Sardinie), potvrzení pouze QSL lístkem. Satelitní spojení nejsou "
+"povolena."
 
 #: application/views/awards/waip/index.php:10
 msgid ""
@@ -10035,8 +10036,8 @@ msgid ""
 "QSL card confirmations are accepted. Green = Confirmed, Orange = Worked but "
 "not confirmed."
 msgstr ""
-"Tento diplom sleduje stav navázáno a potvrzeno pro italské kraje. Uznávají "
-"se pouze potvrzení QSL kartou. Zelená = potvrzeno, oranžová = navázáno, ale "
+"Tento diplom sleduje pracované a potvrzené italské provincie. Uznávají se "
+"pouze potvrzení QSL lístkem. Zelená = potvrzeno, oranžová = pracováno, ale "
 "nepotvrzeno."
 
 #: application/views/awards/waip/index.php:31
@@ -10091,10 +10092,10 @@ msgid ""
 "QSL cards should be arranged in order of WAJA (HAJA) reference number, "
 "however names of prefectures may be omitted."
 msgstr ""
-"Lze získat za navázání spojení (slyšení) a obdržení QSL karty z amatérské "
-"stanice umístěné v každé z 47 prefektur Japonska. Seznam QSL karet by měl "
-"být uspořádán podle WAJA (HAJA) referenčního čísla, nicméně názvy prefektur "
-"mohou být vynechány."
+"Lze získat za navázání spojení (poslech) a obdržení QSL lístku od "
+"radioamatérské stanice v každé ze 47 prefektur Japonska. Seznam QSL lístků "
+"by měl být seřazen podle referenčního čísla WAJA (HAJA), názvy prefektur "
+"však lze vynechat."
 
 #: application/views/awards/waja/index.php:30
 msgid ""
@@ -11581,7 +11582,7 @@ msgstr "Místo"
 #: application/views/calltester/call_info.php:79
 #: application/views/dbtools/missinggridlist.php:58
 msgid "QSL card"
-msgstr "QSL karta"
+msgstr "QSL lístek"
 
 #: application/views/calltester/call_info.php:91
 #: application/views/calltester/comparison_result.php:97
@@ -15363,7 +15364,7 @@ msgid ""
 "Here you can migrate existing QSL cards and eQSL cards to the new userdata "
 "folder."
 msgstr ""
-"Zde můžete migrovat existující QSL karty a eQSL karty do nové složky "
+"Zde můžete přesunout existující QSL lístky a eQSL karty do nové složky "
 "userdata."
 
 #: application/views/debug/index.php:303
@@ -16908,11 +16909,11 @@ msgstr "Celkový počet"
 
 #: application/views/interface_assets/footer.php:2440
 msgid "QSL Card for "
-msgstr "QSL karta pro "
+msgstr "QSL lístek pro "
 
 #: application/views/interface_assets/footer.php:2460
 msgid "Warning! Are you sure you want to delete this QSL card?"
-msgstr "Varování! Jste si jisti, že chcete smazat tuto QSL kartu?"
+msgstr "Varování! Opravdu chcete smazat tento QSL lístek?"
 
 #: application/views/interface_assets/footer.php:2500
 #: application/views/view_log/qso.php:43
@@ -16931,15 +16932,15 @@ msgstr "Soubor s obrázkem QSL"
 
 #: application/views/interface_assets/footer.php:2723
 msgid "Front QSL Card"
-msgstr "Přední strana QSL karty"
+msgstr "Přední strana QSL lístku"
 
 #: application/views/interface_assets/footer.php:2759
 msgid "Back QSL Card"
-msgstr "Zadní strana QSL karty"
+msgstr "Zadní strana QSL lístku"
 
 #: application/views/interface_assets/footer.php:2763
 msgid "The QSL card upload could not be completed."
-msgstr "Nahrání QSL karty se nepodařilo dokončit."
+msgstr "Nahrání QSL lístku se nepodařilo dokončit."
 
 #: application/views/interface_assets/footer.php:2763
 #: application/views/qslpostcard/designer.php:31
@@ -16949,7 +16950,7 @@ msgstr "Nahrání selhalo"
 #: application/views/interface_assets/footer.php:2771
 #: application/views/interface_assets/footer.php:2796
 msgid "Add additional QSOs to a QSL Card"
-msgstr "Přidat další QSO do QSL karty"
+msgstr "Přidat další QSO na QSL lístek"
 
 #: application/views/interface_assets/footer.php:2807
 msgid "Something went wrong. Please try again!"
@@ -18833,7 +18834,7 @@ msgstr "Musíte vybrat řádek pro použití rychlých filtrů!"
 
 #: application/views/logbookadvanced/index.php:47
 msgid "You need to select a least 1 row to display a QSL card!"
-msgstr "Musíte vybrat alespoň 1 řádek pro zobrazení QSL karty!"
+msgstr "Pro zobrazení QSL lístku musíte vybrat alespoň 1 řádek!"
 
 #: application/views/logbookadvanced/index.php:48
 msgid "Continents updated successfully!"
@@ -18999,11 +19000,11 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:108
 msgid "You need to select at least 1 row to print a QSL card!"
-msgstr "Pro tisk QSL karty musíte vybrat alespoň 1 řádek!"
+msgstr "Pro tisk QSL lístku musíte vybrat alespoň 1 řádek!"
 
 #: application/views/logbookadvanced/index.php:109
 msgid "QSL Card print options"
-msgstr "Možnosti tisku QSL karty"
+msgstr "Možnosti tisku QSL lístku"
 
 #: application/views/logbookadvanced/index.php:364
 msgid "From"
@@ -19293,7 +19294,7 @@ msgstr "QSL prezentace"
 
 #: application/views/logbookadvanced/index.php:852
 msgid "Print QSL Card"
-msgstr "Vytisknout QSL kartu"
+msgstr "Vytisknout QSL lístek"
 
 #: application/views/logbookadvanced/index.php:858
 msgid "Attach to Contest"
@@ -19420,8 +19421,8 @@ msgid ""
 "Print options (QSOs per card, background image, address printing) are set "
 "per template in the QSL Postcard Designer."
 msgstr ""
-"Možnosti tisku (počet QSO na kartu, obrázek pozadí, tisk adresy) se "
-"nastavují pro každou šablonu v nástroji Návrhář QSL pohlednic."
+"Možnosti tisku (počet QSO na lístek, obrázek pozadí, tisk adresy) se "
+"nastavují pro každou šablonu v Návrháři QSL lístků."
 
 #: application/views/logbookadvanced/printQsl.php:30
 #: application/views/qslpostcard/printqueue.php:22
@@ -20379,7 +20380,7 @@ msgstr ""
 
 #: application/views/oqrs/index.php:9
 msgid "Request a QSL card"
-msgstr "Požádat o QSL kartu"
+msgstr "Požádat o QSL lístek"
 
 #: application/views/oqrs/index.php:27
 msgid "Enter your callsign"
@@ -20787,7 +20788,7 @@ msgstr "přetáhněte pole na pohlednici"
 
 #: application/views/qslpostcard/designer.php:209
 msgid "Number of QSOs per QSL card"
-msgstr "Počet QSO na QSL kartu"
+msgstr "Počet QSO na QSL lístek"
 
 #: application/views/qslpostcard/designer.php:218
 msgid "Print background image (uncheck for pre-printed cards)"
@@ -20795,11 +20796,11 @@ msgstr "Tisknout obrázek pozadí (u předtištěných karet odškrtněte)"
 
 #: application/views/qslpostcard/designer.php:222
 msgid "Skip address printing (for printing on regular QSL cards)"
-msgstr "Přeskočit tisk adresy (pro tisk na běžné QSL karty)"
+msgstr "Přeskočit tisk adresy (pro tisk na běžné QSL lístky)"
 
 #: application/views/qslpostcard/designer.php:307
 msgid "Print this field once per QSO when a card holds multiple QSOs"
-msgstr "Tisknout toto pole jednou za každé QSO, pokud karta obsahuje více QSO"
+msgstr "Tisknout toto pole jednou pro každé QSO, pokud lístek obsahuje více QSO"
 
 #: application/views/qslprint/index.php:4
 msgid "Please select at least one row"
@@ -20807,7 +20808,7 @@ msgstr "Vyberte prosím alespoň jeden řádek"
 
 #: application/views/qslprint/index.php:6
 msgid "Print QSLcard"
-msgstr "Tisk QSL karty"
+msgstr "Tisk QSL lístku"
 
 #: application/views/qslprint/index.php:7
 #: application/views/qslprint/qslprint.php:100
@@ -21971,19 +21972,19 @@ msgstr "Označit QSL přijato (Přímá)"
 #: application/views/view_log/partial/log_ajax.php:617
 #: application/views/view_log/qso.php:784
 msgid "Mark QSL Card Requested (Bureau)"
-msgstr "Označit QSL kartu požadováno (Bureau)"
+msgstr "Označit QSL lístek jako vyžádaný (Bureau)"
 
 #: application/views/search/search_result_ajax.php:474
 #: application/views/view_log/partial/log_ajax.php:618
 #: application/views/view_log/qso.php:786
 msgid "Mark QSL Card Requested (Direct)"
-msgstr "Označit QSL kartu jako vyžádanou (Direct)"
+msgstr "Označit QSL lístek jako vyžádaný (Direct)"
 
 #: application/views/search/search_result_ajax.php:475
 #: application/views/view_log/partial/log_ajax.php:619
 #: application/views/view_log/qso.php:788
 msgid "Mark QSL Card Not Required"
-msgstr "Označit QSL kartu jako nevyžadovanou"
+msgstr "Označit QSL lístek jako nevyžadovaný"
 
 #: application/views/search/search_result_ajax.php:484
 #: application/views/view_log/partial/log_ajax.php:636
@@ -22736,11 +22737,11 @@ msgstr "Nějaké informace, které chcete přidat ohledně QSL."
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
-msgstr "Název stanice deníku"
+msgstr "Název staničního deníku"
 
 #: application/views/stationsetup/create.php:19
 msgid "You can call a station logbook anything."
-msgstr "Můžete stanici deníku pojmenovat jakkoliv."
+msgstr "Staniční deník můžete pojmenovat libovolně."
 
 #: application/views/stationsetup/edit.php:18
 msgid "Container name"
@@ -22792,7 +22793,7 @@ msgstr "Odpojit lokaci stanice"
 
 #: application/views/stationsetup/locationlist.php:3
 msgid "Limited to station locations linked to active logbook"
-msgstr "Omezeno na umístění stanic propojená s aktivním logbookem"
+msgstr "Omezeno na umístění stanic propojená s aktivním deníkem"
 
 #: application/views/stationsetup/locationlist.php:11
 msgid "QSO Count"
@@ -22867,7 +22868,7 @@ msgstr "Upravit propojené lokace"
 
 #: application/views/stationsetup/stationsetup.php:9
 msgid "Create a New Station Logbook"
-msgstr "Vytvořit nový logbook stanice"
+msgstr "Vytvořit nový staniční deník"
 
 #: application/views/stationsetup/stationsetup.php:10
 msgid "Create a New Station Location"
@@ -23096,7 +23097,7 @@ msgstr "Prosinec"
 #: application/views/statistics/index.php:50
 #: application/views/statistics/index.php:55
 msgid "Explore the logbook."
-msgstr "Prozkoumejte logbook."
+msgstr "Prozkoumejte deník."
 
 #: application/views/statistics/index.php:167
 msgid "Unique Grids"
@@ -23552,7 +23553,7 @@ msgstr "Možnosti umístění stanice"
 
 #: application/views/user/edit.php:421
 msgid "Only show station locations linked to active logbook"
-msgstr "Zobrazit pouze umístění stanic propojená s aktivním logbookem"
+msgstr "Zobrazit pouze umístění stanic propojená s aktivním deníkem"
 
 #: application/views/user/edit.php:431
 msgid "QSO Logging Options"
@@ -23714,8 +23715,8 @@ msgid ""
 "Show the Station Locations Quickswitch in the main menu. You can add "
 "locations by adding them to favourites at the station setup page."
 msgstr ""
-"Zobrazit rychlé přepínání lokací stanic v hlavním menu. Můžete přidat lokace "
-"jejich přidáním k oblíbeným na stránce nastavení stanice."
+"Zobrazit rychlé přepínání umístění stanic v hlavním menu. Umístění sem "
+"přidáte tak, že je na stránce Nastavení stanoviště označíte jako oblíbená."
 
 #: application/views/user/edit.php:622
 msgid "UTC Time in Menu"
@@ -23794,23 +23795,23 @@ msgstr "Vyberte typ QSL k zobrazení v sekci předchozích QSO."
 
 #: application/views/user/edit.php:767
 msgid "Dashboard Settings"
-msgstr "Nastavení palubní desky"
+msgstr "Nastavení přehledu"
 
 #: application/views/user/edit.php:771
 msgid "Select the number of latest QSOs to be displayed on dashboard."
-msgstr "Vyberte počet nejnovějších QSO k zobrazení na palubní desce."
+msgstr "Vyberte počet nejnovějších QSO zobrazených na přehledu."
 
 #: application/views/user/edit.php:778
 msgid "Choose the number of latest QSOs to be displayed on dashboard."
-msgstr "Vyberte počet nejnovějších QSO k zobrazení na palubní desce."
+msgstr "Vyberte počet nejnovějších QSO zobrazených na přehledu."
 
 #: application/views/user/edit.php:782
 msgid "Show Dashboard Map"
-msgstr "Zobrazit mapu na palubní desce"
+msgstr "Zobrazit mapu na přehledu"
 
 #: application/views/user/edit.php:790
 msgid "Choose whether to show map on dashboard or not"
-msgstr "Vyberte, zda zobrazit mapu na palubní desce nebo ne"
+msgstr "Vyberte, zda se má na přehledu zobrazovat mapa"
 
 #: application/views/user/edit.php:798
 msgid "Dashboard solar and propagation data"
@@ -23827,11 +23828,11 @@ msgstr ""
 
 #: application/views/user/edit.php:814
 msgid "Dashboard Notification Banner"
-msgstr "Oznámení na palubní desce"
+msgstr "Oznámení na přehledu"
 
 #: application/views/user/edit.php:815
 msgid "This allows to disable the global notification banner on the dashboard."
-msgstr "Tímto lze zakázat globální oznámení na palubní desce."
+msgstr "Umožňuje vypnout globální oznámení na přehledu."
 
 #: application/views/user/edit.php:826
 msgid "Dashboard KPI statistics"
@@ -24180,8 +24181,8 @@ msgid ""
 "Users can be assigned roles which give them different permissions, such as "
 "adding QSOs to the logbook and accessing Wavelog APIs."
 msgstr ""
-"Uživatelům mohou být přiděleny role, které jim udělují různá oprávnění, jako "
-"je přidávání QSO do logu a přístup k Wavelog API."
+"Uživatelům lze přidělit role s různými oprávněními, například přidávání QSO "
+"do deníku nebo přístup k API Wavelogu."
 
 #: application/views/user/index.php:16
 msgid ""
@@ -24624,43 +24625,43 @@ msgstr "Zobrazit všechna QSO s tímto DXCC"
 
 #: application/views/view_log/qso.php:447
 msgid "QSL Card has been sent via the bureau"
-msgstr "QSL karta byla odeslána přes bureau"
+msgstr "QSL lístek byl odeslán přes bureau"
 
 #: application/views/view_log/qso.php:449
 msgid "QSL Card has been sent via direct"
-msgstr "QSL karta byla odeslána přímo"
+msgstr "QSL lístek byl odeslán přímo"
 
 #: application/views/view_log/qso.php:451
 msgid "QSL Card has been sent electronically"
-msgstr "QSL karta byla odeslána elektronicky"
+msgstr "QSL lístek byl odeslán elektronicky"
 
 #: application/views/view_log/qso.php:453
 msgid "QSL Card has been sent via manager"
-msgstr "QSL karta byla odeslána přes manažera"
+msgstr "QSL lístek byl odeslán přes manažera"
 
 #: application/views/view_log/qso.php:455
 msgid "QSL Card has been sent"
-msgstr "QSL karta byla odeslána"
+msgstr "QSL lístek byl odeslán"
 
 #: application/views/view_log/qso.php:464
 msgid "QSL Card has been received via the bureau"
-msgstr "QSL karta byla přijata přes bureau"
+msgstr "QSL lístek byl přijat přes bureau"
 
 #: application/views/view_log/qso.php:466
 msgid "QSL Card has been received via direct"
-msgstr "QSL karta byla přijata přímo"
+msgstr "QSL lístek byl přijat přímo"
 
 #: application/views/view_log/qso.php:468
 msgid "QSL Card has been received electronically"
-msgstr "QSL karta byla přijata elektronicky"
+msgstr "QSL lístek byl přijat elektronicky"
 
 #: application/views/view_log/qso.php:470
 msgid "QSL Card has been received via manager"
-msgstr "QSL karta byla přijata přes manažera"
+msgstr "QSL lístek byl přijat přes manažera"
 
 #: application/views/view_log/qso.php:472
 msgid "QSL Card has been received"
-msgstr "QSL karta byla přijata"
+msgstr "QSL lístek byl přijat"
 
 #: application/views/view_log/qso.php:481
 msgid "This station uses LoTW."
@@ -24700,15 +24701,15 @@ msgstr "Více QSO"
 
 #: application/views/view_log/qso.php:752
 msgid "Uploaded QSL Card front image"
-msgstr "Nahraný obrázek přední strany QSL karty"
+msgstr "Nahraný obrázek přední strany QSL lístku"
 
 #: application/views/view_log/qso.php:757
 msgid "Upload QSL Card image"
-msgstr "Nahrát obrázek QSL karty"
+msgstr "Nahrát obrázek QSL lístku"
 
 #: application/views/view_log/qso.php:762
 msgid "Uploaded QSL Card back image"
-msgstr "Nahraný obrázek zadní strany QSL karty"
+msgstr "Nahraný obrázek zadní strany QSL lístku"
 
 #: application/views/view_log/qso.php:778
 msgid "Mark QSL Received (Electronic)"
@@ -24901,7 +24902,7 @@ msgstr "Žádost Wavelog OQRS"
 #: application/views/widgets/oqrs.php:79
 #, php-format
 msgid "Request a QSL card for your QSO with %s."
-msgstr "Požádat o QSL kartu pro vaše QSO s %s."
+msgstr "Požádat o QSL lístek za vaše QSO s %s."
 
 #: application/views/widgets/oqrs.php:83
 msgid "Your Callsign:"
