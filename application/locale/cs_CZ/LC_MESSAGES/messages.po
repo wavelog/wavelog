@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-05 11:48+0000\n"
-"PO-Revision-Date: 2026-10-05 14:01+0000\n"
+"PO-Revision-Date: 2026-10-05 14:02+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
@@ -9846,11 +9846,11 @@ msgstr "Lokátor WAB nebyl nalezen"
 
 #: application/views/awards/wab/index.php:34
 msgid "View a map of worked / confirmed WAB squares"
-msgstr ""
+msgstr "Zobrazit mapu pracovaných / potvrzených čtverců WAB"
 
 #: application/views/awards/wab/index.php:43
 msgid "WAB square"
-msgstr ""
+msgstr "Čtverec WAB"
 
 #: application/views/awards/wab/index.php:171
 msgid "List"
@@ -9926,7 +9926,7 @@ msgstr "Ne"
 
 #: application/views/awards/wab/list.php:37
 msgid "Q = QSL card, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog"
-msgstr ""
+msgstr "Q = QSL karta, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog"
 
 #: application/views/awards/wac/index.php:8
 msgid ""
@@ -10352,58 +10352,60 @@ msgstr "Pole použitá pro tuto odznaku: WWFF (ADIF: WWFF_REF)"
 
 #: application/views/awards/wwff/index.php:52
 msgid "Press ''Apply'' to update the table"
-msgstr ""
+msgstr "Stiskněte ''Použít'' pro aktualizaci tabulky"
 
 #: application/views/azimuthal/index.php:16
 msgid ""
 "No gridsquare is set for your active station location, so the map cannot be "
 "centered."
 msgstr ""
+"Pro aktivní umístění stanice není nastaven lokátor, takže mapu nelze "
+"vycentrovat."
 
 #: application/views/azimuthal/index.php:24
 msgid "Azimuthal map centered on your active station location"
-msgstr ""
+msgstr "Azimutální mapa vycentrovaná na aktivní umístění stanice"
 
 #: application/views/azimuthal/index.php:29
 msgid "Projection"
-msgstr ""
+msgstr "Projekce"
 
 #: application/views/azimuthal/index.php:30
 msgid "Azimuthal Equidistant"
-msgstr ""
+msgstr "Azimutální ekvidistantní"
 
 #: application/views/azimuthal/index.php:31
 msgid "Lambert Equal-Area"
-msgstr ""
+msgstr "Lambertova stejnoplochá"
 
 #: application/views/azimuthal/index.php:34
 msgid "Distance rings"
-msgstr ""
+msgstr "Kruhy vzdáleností"
 
 #: application/views/azimuthal/index.php:43
 msgid "Maidenhead fields"
-msgstr ""
+msgstr "Pole lokátorů Maidenhead"
 
 #: application/views/azimuthal/index.php:48
 msgid "CQ zones"
-msgstr ""
+msgstr "CQ zóny"
 
 #: application/views/azimuthal/index.php:53
 msgid "ITU zones"
-msgstr ""
+msgstr "ITU zóny"
 
 #: application/views/azimuthal/index.php:58
 msgid "DXCC prefixes"
-msgstr ""
+msgstr "Prefixy DXCC"
 
 #: application/views/azimuthal/index.php:61
 msgid "Download PNG"
-msgstr ""
+msgstr "Stáhnout PNG"
 
 #: application/views/azimuthal/index.php:65
 #: application/views/statistics/antennaanalytics.php:97
 msgid "Azimuthal map"
-msgstr ""
+msgstr "Azimutální mapa"
 
 #: application/views/backup/main.php:17
 msgid ""
@@ -12477,7 +12479,7 @@ msgstr "Synchronizováno"
 
 #: application/views/contesting/logger/components/qso-form.php:36
 msgid "QSO could not be saved:"
-msgstr ""
+msgstr "QSO se nepodařilo uložit:"
 
 #: application/views/contesting/logger/components/qso-form.php:37
 msgid "Delete this QSO?"
@@ -12990,12 +12992,12 @@ msgstr "Dole"
 
 #: application/views/contesting/logger/index.php:143
 msgid "Clear Call on QSY"
-msgstr ""
+msgstr "Smazat značku při QSY"
 
 #: application/views/contesting/logger/index.php:143
 msgid ""
 "Clears the callsign field when the frequency changes by more than 500 Hz"
-msgstr ""
+msgstr "Smaže pole značky, když se frekvence změní o více než 500 Hz"
 
 #: application/views/contesting/logger/index.php:176
 msgid "Current Operator:"
@@ -13782,19 +13784,19 @@ msgstr "Data QSO"
 
 #: application/views/countqsoby/index.php:10
 msgid "QSOs total"
-msgstr ""
+msgstr "QSO celkem"
 
 #: application/views/countqsoby/index.php:28
 msgid "Filter"
-msgstr ""
+msgstr "Filtr"
 
 #: application/views/countqsoby/index.php:34
 msgid "Date presets"
-msgstr ""
+msgstr "Předvolby data"
 
 #: application/views/countqsoby/index.php:64
 msgid "Count QSOs by"
-msgstr ""
+msgstr "Počet QSO podle"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -14011,7 +14013,7 @@ msgstr "Rozpis DXCC"
 #: application/views/dashboard/index.php:694
 #: application/views/user/edit.php:858
 msgid "VUCC-Grids"
-msgstr "VUCC-Mřížky"
+msgstr "VUCC lokátory"
 
 #: application/views/dashboard/_options_menu.php:20
 #: application/views/dashboard/index.php:664
@@ -14227,7 +14229,7 @@ msgstr "Detaily"
 #: application/views/dashboard/index.php:501
 #: application/views/visitor/index.php:267
 msgid "Deleted DXCCs"
-msgstr ""
+msgstr "Smazané DXCC"
 
 #: application/views/dashboard/index.php:513
 #: application/views/visitor/index.php:277
@@ -14237,7 +14239,7 @@ msgstr "Zbývá"
 #: application/views/dashboard/index.php:519
 #: application/views/dashboard/index.php:522
 msgid "Awaiting Confirmation"
-msgstr ""
+msgstr "Čeká na potvrzení"
 
 #: application/views/dashboard/index.php:548
 #: application/views/dashboard/index.php:583
