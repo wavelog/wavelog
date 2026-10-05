@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-05 11:48+0000\n"
-"PO-Revision-Date: 2026-10-05 14:17+0000\n"
+"PO-Revision-Date: 2026-10-05 14:20+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
@@ -1092,7 +1092,7 @@ msgstr[2] "%d členů bylo odebráno."
 #: application/controllers/Hrdlog.php:19 application/controllers/Lotw.php:27
 #: application/controllers/Qrz.php:14 application/controllers/Update.php:15
 msgid "Maintenance Mode is active. Try again later."
-msgstr "Probíhá údržba. Zkus později."
+msgstr "Probíhá údržba. Zkuste to později."
 
 #: application/controllers/Clublog.php:51
 #: application/controllers/Clublog.php:78
@@ -1146,17 +1146,17 @@ msgstr "Správa závodů"
 
 #: application/controllers/Contest_admin.php:56
 msgid "Update Contest"
-msgstr "Aktualizovat soutěž"
+msgstr "Aktualizovat závod"
 
 #: application/controllers/Contest_admin.php:76
 #, php-format
 msgid "Contest %s updated"
-msgstr "Soutěž %s byla aktualizována"
+msgstr "Závod %s byl aktualizován"
 
 #: application/controllers/Contestcalendar.php:11
 #: application/views/interface_assets/header.php:326
 msgid "Contest Calendar"
-msgstr "Kalendář soutěží"
+msgstr "Kalendář závodů"
 
 #: application/controllers/Contestcalendar.php:36
 msgid "Contestcalendar not reachable. Try again later"
@@ -4577,15 +4577,15 @@ msgstr "Čtení QSL potvrzení"
 
 #: application/libraries/api_v2/Contest_resource.php:55
 msgid "Read contest sessions"
-msgstr "Čtení soutěžních relací"
+msgstr "Čtení závodních relací"
 
 #: application/libraries/api_v2/Contest_resource.php:56
 msgid "Create and update contest sessions"
-msgstr "Vytváření a úprava soutěžních relací"
+msgstr "Vytváření a úprava závodních relací"
 
 #: application/libraries/api_v2/Contest_resource.php:57
 msgid "Delete contest sessions"
-msgstr "Mazání soutěžních relací"
+msgstr "Mazání závodních relací"
 
 #: application/libraries/api_v2/Logbook_resource.php:49
 msgid "Read logbooks"
@@ -5719,7 +5719,7 @@ msgstr "Pouze potvrzená"
 
 #: application/views/achievements/index.php:80
 msgid "Count only QSOs confirmed by LoTW or paper card"
-msgstr "Počítat pouze QSO potvrzená přes LoTW nebo papírovým QSL lístkem"
+msgstr "Počítat pouze QSO potvrzená přes LoTW nebo papírovou QSL kartou"
 
 #: application/views/achievements/index.php:83
 #, php-format
@@ -6507,7 +6507,7 @@ msgstr "Soubory logů musí mít typ souboru *.adi"
 
 #: application/views/adif/import.php:98 application/views/view_log/qso.php:744
 msgid "Maximum file upload size is "
-msgstr "Maximální velikost uploadu souboru je "
+msgstr "Maximální velikost nahrávaného souboru je "
 
 #: application/views/adif/import.php:98 application/views/adif/import.php:375
 #: application/views/clublog/export.php:70
@@ -6543,12 +6543,12 @@ msgstr "Vyberte soubor ADIF"
 
 #: application/views/adif/import.php:121
 msgid "Add QSOs to Contest"
-msgstr "Přidat QSO do soutěže"
+msgstr "Přidat QSO do závodu"
 
 #: application/views/adif/import.php:123 application/views/adif/import.php:437
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
-msgstr "Žádná soutěž"
+msgstr "Žádný závod"
 
 #: application/views/adif/import.php:133
 msgid ""
@@ -6622,7 +6622,7 @@ msgstr ""
 
 #: application/views/adif/import.php:196
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
-msgstr "Označit QSO jako nahrané (Toto NEuploaduje QSO do těchto služeb!)"
+msgstr "Označit QSO jako nahraná (QSO se do těchto služeb NEnahrají!)"
 
 #: application/views/adif/import.php:203
 msgid "Mark imported QSOs as uploaded to LoTW"
@@ -6811,11 +6811,10 @@ msgid ""
 "can provide the Cabrillo file that this software also provides to rewrite "
 "that data in Wavelog."
 msgstr ""
-"Pokud jste importovali soubor ADIF soutěže z jiného logovacího softwaru, "
-"někdy, v závislosti na tom softwaru, nebudou vaše výměny správně importovány "
-"z ADIF tohoto softwaru. Pokud chcete toto opravit, můžete poskytnout soubor "
-"Cabrillo, který tento software také poskytuje, pro přepsání těchto dat ve "
-"Wavelogu."
+"Pokud jste importovali soubor ADIF závodu z jiného logovacího softwaru, v "
+"závislosti na tomto softwaru se někdy výměny z jeho ADIF neimportují "
+"správně. Pokud to chcete opravit, můžete nahrát soubor Cabrillo, který tento "
+"software také vytváří, a data ve Wavelogu jím přepsat."
 
 #: application/views/adif/import.php:429
 #: application/views/adif/import_success.php:40
