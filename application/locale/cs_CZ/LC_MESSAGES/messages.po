@@ -2,7 +2,7 @@
 # Copyright (c) 2026 Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA.
 # This file is distributed under the MIT licence.
 #
-# Ondřej Koloničný <ondra@ok1cdj.com>, 2024.
+# Ondřej Koloničný <ondra@ok1cdj.com>, 2024, 2026.
 # Michal Šiman <michal.siman@gmail.com>, 2024.
 # Filip Melik <filip@melik.cz>, 2024.
 # Petr OK1PTR <ok1ptr@pm.me>, 2024.
@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-05 11:48+0000\n"
-"PO-Revision-Date: 2026-07-29 08:13+0000\n"
-"Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
+"PO-Revision-Date: 2026-10-05 13:43+0000\n"
+"Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
 "Language: cs_CZ\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.17.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -319,7 +319,7 @@ msgstr "Celkem pracováno polí"
 
 #: application/controllers/Activationplanner.php:32
 msgid "CQ Zones"
-msgstr ""
+msgstr "CQ zóny"
 
 #: application/controllers/Activationplanner.php:32
 #: application/controllers/Activationplanner.php:33
@@ -336,12 +336,12 @@ msgstr "ITU zóny"
 
 #: application/controllers/Activationplanner.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "Státy / provincie"
 
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:336
 msgid "Activation Planner"
-msgstr ""
+msgstr "Plánovač aktivací"
 
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
@@ -414,14 +414,14 @@ msgstr "Data POTA importována"
 #: application/controllers/Amsatstatus.php:30
 msgid ""
 "The AMSAT status service is currently unavailable. Please try again later."
-msgstr ""
+msgstr "Služba stavu AMSAT je momentálně nedostupná. Zkuste to prosím později."
 
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:195
 #: application/views/amsatstatus/index.php:10
 #: application/views/interface_assets/header.php:330
 msgid "AMSAT Satellite Status"
-msgstr ""
+msgstr "Stav satelitů AMSAT"
 
 #: application/controllers/Api.php:47
 msgid "API"
@@ -474,27 +474,27 @@ msgstr "API klíč %s byl smazán"
 
 #: application/controllers/Api_token.php:36
 msgid "Please provide a token name"
-msgstr ""
+msgstr "Zadejte prosím název tokenu"
 
 #: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
-msgstr ""
+msgstr "Vyberte prosím alespoň jeden rozsah oprávnění"
 
 #: application/controllers/Api_token.php:67
 msgid "API Token generated"
-msgstr ""
+msgstr "API token byl vygenerován"
 
 #: application/controllers/Api_token.php:69
 msgid "API Token could not be generated"
-msgstr ""
+msgstr "API token se nepodařilo vygenerovat"
 
 #: application/controllers/Api_token.php:89
 msgid "Invalid API Token"
-msgstr ""
+msgstr "Neplatný API token"
 
 #: application/controllers/Api_token.php:96
 msgid "API Token has been deleted"
-msgstr ""
+msgstr "API token byl smazán"
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:196
@@ -1041,47 +1041,51 @@ msgstr "Uživatele se nepodařilo odstranit z klubu."
 
 #: application/controllers/Club.php:187 application/controllers/Club.php:256
 msgid "No members selected."
-msgstr ""
+msgstr "Nejsou vybráni žádní členové."
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
-msgstr ""
+msgstr "Žádný z vybraných uživatelů není členem tohoto klubu."
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
 "Cannot proceed: this would remove the last Club Officer. An instance "
 "administrator must perform this action."
 msgstr ""
+"Nelze pokračovat: tímto by byl odebrán poslední funkcionář klubu. Tuto akci "
+"musí provést administrátor instance."
 
 #: application/controllers/Club.php:209
 msgid "Club member permissions could not be updated."
-msgstr ""
+msgstr "Oprávnění členů klubu se nepodařilo aktualizovat."
 
 #: application/controllers/Club.php:213
 msgid "No members were updated."
-msgstr ""
+msgstr "Nebyli aktualizováni žádní členové."
 
 #: application/controllers/Club.php:226
 #, php-format
 msgid "%d member updated."
 msgid_plural "%d members updated."
 msgstr[0] ""
+"%d člen byl aktualizován.%d členové byli aktualizováni.%d členů bylo "
+"aktualizováno."
 msgstr[1] ""
 msgstr[2] ""
 
 #: application/controllers/Club.php:277
 msgid "Users could not be removed from club."
-msgstr ""
+msgstr "Uživatele se nepodařilo odebrat z klubu."
 
 #: application/controllers/Club.php:281
 msgid "No members were removed."
-msgstr ""
+msgstr "Nebyli odebráni žádní členové."
 
 #: application/controllers/Club.php:285
 #, php-format
 msgid "%d member removed."
 msgid_plural "%d members removed."
-msgstr[0] ""
+msgstr[0] "%d člen byl odebrán.%d členové byli odebráni.%d členů bylo odebráno."
 msgstr[1] ""
 msgstr[2] ""
 
@@ -3202,11 +3206,11 @@ msgstr "OQRS požadavky"
 #: application/views/oqrs/request.php:2
 #: application/views/oqrs/request_grouped.php:2
 msgid "Please enter a valid date."
-msgstr ""
+msgstr "Zadejte prosím platné datum."
 
 #: application/controllers/Oqrs.php:291
 msgid "Please enter a valid time."
-msgstr ""
+msgstr "Zadejte prosím platný čas."
 
 #: application/controllers/Oqrs.php:444
 msgid "QSO match deleted successfully."
@@ -4542,19 +4546,19 @@ msgstr "Město / Ku / Gun"
 
 #: application/libraries/api_v2/Club_resource.php:71
 msgid "Read club members"
-msgstr ""
+msgstr "Čtení členů klubu"
 
 #: application/libraries/api_v2/Club_resource.php:72
 msgid "Manage club member permissions"
-msgstr ""
+msgstr "Správa oprávnění členů klubu"
 
 #: application/libraries/api_v2/Club_resource.php:73
 msgid "Remove club members"
-msgstr ""
+msgstr "Odebírání členů klubu"
 
 #: application/libraries/api_v2/Confirmation_resource.php:54
 msgid "Read QSL confirmations"
-msgstr ""
+msgstr "Čtení QSL potvrzení"
 
 #: application/libraries/api_v2/Contest_resource.php:55
 msgid "Read contest sessions"
@@ -4582,47 +4586,47 @@ msgstr ""
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
-msgstr ""
+msgstr "Vyhledávání značek a lokátorů"
 
 #: application/libraries/api_v2/Qso_resource.php:48
 msgid "Read QSOs"
-msgstr ""
+msgstr "Čtení QSO"
 
 #: application/libraries/api_v2/Qso_resource.php:49
 msgid "Create and update QSOs"
-msgstr ""
+msgstr "Vytváření a úprava QSO"
 
 #: application/libraries/api_v2/Qso_resource.php:50
 msgid "Delete QSOs"
-msgstr ""
+msgstr "Mazání QSO"
 
 #: application/libraries/api_v2/Radio_resource.php:30
 msgid "Read radios"
-msgstr ""
+msgstr "Čtení rádií"
 
 #: application/libraries/api_v2/Radio_resource.php:31
 msgid "Create and update radios"
-msgstr ""
+msgstr "Vytváření a úprava rádií"
 
 #: application/libraries/api_v2/Radio_resource.php:32
 msgid "Delete radios"
-msgstr ""
+msgstr "Mazání rádií"
 
 #: application/libraries/api_v2/Station_resource.php:45
 msgid "Read station locations"
-msgstr ""
+msgstr "Čtení umístění stanic"
 
 #: application/libraries/api_v2/Station_resource.php:46
 msgid "Create and update station locations"
-msgstr ""
+msgstr "Vytváření a úprava umístění stanic"
 
 #: application/libraries/api_v2/Station_resource.php:47
 msgid "Delete station locations"
-msgstr ""
+msgstr "Mazání umístění stanic"
 
 #: application/libraries/api_v2/Statistic_resource.php:49
 msgid "Read statistics"
-msgstr ""
+msgstr "Čtení statistik"
 
 #: application/models/Achievements_model.php:172
 #: application/models/Achievements_model.php:173
@@ -4896,29 +4900,31 @@ msgstr ""
 
 #: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
-msgstr ""
+msgstr " (min. 2.1.0)"
 
 #: application/models/Api_v2_model.php:106
 msgid ""
 "Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
 "least version 2.1.0 of WaveLogGate."
 msgstr ""
+"Ovládání rádia a nahrávání QSO z WSJT-X, JTDX a podobných programů. Vyžaduje "
+"WaveLogGate alespoň ve verzi 2.1.0."
 
 #: application/models/Api_v2_model.php:112
 msgid "Read-only"
-msgstr ""
+msgstr "Pouze pro čtení"
 
 #: application/models/Api_v2_model.php:113
 msgid "Read access to everything, no changes to your data."
-msgstr ""
+msgstr "Přístup ke čtení všech dat, bez možnosti změn."
 
 #: application/models/Api_v2_model.php:119
 msgid "Statistics only"
-msgstr ""
+msgstr "Pouze statistiky"
 
 #: application/models/Api_v2_model.php:120
 msgid "Statistics only, no changes to your data."
-msgstr ""
+msgstr "Pouze statistiky, bez možnosti změn vašich dat."
 
 #: application/models/Club_model.php:12
 msgid "Club Officer"
@@ -5893,6 +5899,8 @@ msgstr "Zeměpisná délka"
 msgid ""
 "Invalid gridsquare — use 2, 4, 6, 8 or 10 characters (e.g. FN, FN31, FN31pr)."
 msgstr ""
+"Neplatný lokátor — použijte 2, 4, 6, 8 nebo 10 znaků (např. FN, FN31, FN31pr)"
+"."
 
 #: application/views/activationplanner/index.php:21
 #: application/views/satellite/pass.php:21
@@ -5901,7 +5909,7 @@ msgstr "Přelety satelitů"
 
 #: application/views/activationplanner/index.php:22
 msgid "Gridsquare borders"
-msgstr ""
+msgstr "Hranice lokátorů"
 
 #: application/views/activationplanner/index.php:24
 #: application/views/activationplanner/index.php:82
@@ -5959,7 +5967,7 @@ msgstr "Název"
 
 #: application/views/activationplanner/index.php:32
 msgid "Tracking"
-msgstr ""
+msgstr "Sledování"
 
 #: application/views/activationplanner/index.php:33
 #: application/views/labeldesigner/designer.php:290
@@ -5970,27 +5978,27 @@ msgstr "Pole"
 
 #: application/views/activationplanner/index.php:34
 msgid "Square"
-msgstr ""
+msgstr "Čtverec"
 
 #: application/views/activationplanner/index.php:35
 msgid "Subsquare"
-msgstr ""
+msgstr "Malý čtverec"
 
 #: application/views/activationplanner/index.php:36
 msgid "Locating…"
-msgstr ""
+msgstr "Zjišťování polohy…"
 
 #: application/views/activationplanner/index.php:37
 msgid "Location access denied."
-msgstr ""
+msgstr "Přístup k poloze byl odepřen."
 
 #: application/views/activationplanner/index.php:38
 msgid "Location unavailable."
-msgstr ""
+msgstr "Poloha není k dispozici."
 
 #: application/views/activationplanner/index.php:39
 msgid "Location request timed out."
-msgstr ""
+msgstr "Vypršel časový limit pro zjištění polohy."
 
 #: application/views/activationplanner/index.php:41
 msgid "Create station location"
@@ -6063,31 +6071,31 @@ msgstr ""
 
 #: application/views/activationplanner/index.php:66
 msgid "Plan your activity here"
-msgstr ""
+msgstr "Zde si naplánujte svou aktivitu"
 
 #: application/views/activationplanner/index.php:74
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
-msgstr ""
+msgstr "Lokátor o 2, 4, 6, 8 nebo 10 znacích"
 
 #: application/views/activationplanner/index.php:74
 msgid "e.g. FN31pr"
-msgstr ""
+msgstr "např. FN31pr"
 
 #: application/views/activationplanner/index.php:75
 msgid "to"
-msgstr ""
+msgstr "do"
 
 #: application/views/activationplanner/index.php:78
 msgid "Optional second gridsquare for distance and bearing"
-msgstr ""
+msgstr "Volitelný druhý lokátor pro výpočet vzdálenosti a azimutu"
 
 #: application/views/activationplanner/index.php:78
 msgid "e.g. JN58qm"
-msgstr ""
+msgstr "např. JN58qm"
 
 #: application/views/activationplanner/index.php:79
 msgid "Go"
-msgstr ""
+msgstr "Přejít"
 
 #: application/views/activationplanner/index.php:80
 #: application/views/awards/cq/index.php:75
@@ -6108,11 +6116,11 @@ msgstr "Vymazat"
 
 #: application/views/activationplanner/index.php:81
 msgid "Find my location and gridsquare"
-msgstr ""
+msgstr "Najít moji polohu a lokátor"
 
 #: application/views/activationplanner/index.php:81
 msgid "Locate me"
-msgstr ""
+msgstr "Najdi mě"
 
 #: application/views/activationplanner/index.php:87
 msgid ""
@@ -6132,7 +6140,7 @@ msgstr "Další možnosti"
 
 #: application/views/activationplanner/index.php:106
 msgid "Hide options"
-msgstr ""
+msgstr "Skrýt možnosti"
 
 #: application/views/activators/index.php:33
 msgctxt "Orbiter LEO or GEO"
@@ -6999,14 +7007,16 @@ msgid ""
 "Last-heard status for the past 24 hours. Data source: %s (cached for 15 "
 "minutes)."
 msgstr ""
+"Stav posledního slyšení za posledních 24 hodin. Zdroj dat: %s (uloženo v "
+"mezipaměti na 15 minut)."
 
 #: application/views/amsatstatus/index.php:21
 msgid "No status reports available."
-msgstr ""
+msgstr "Nejsou k dispozici žádná hlášení o stavu."
 
 #: application/views/amsatstatus/index.php:78
 msgid "Active last hour"
-msgstr ""
+msgstr "Aktivní v poslední hodině"
 
 #: application/views/amsatstatus/index.php:79
 msgid "heard or crew active"
@@ -7076,41 +7086,43 @@ msgstr "více"
 #: application/views/api/components/create_token_modal.php:5
 #: application/views/api/index.php:189
 msgid "Create a new API Token"
-msgstr ""
+msgstr "Vytvořit nový API token"
 
 #: application/views/api/components/create_token_modal.php:10
 msgid ""
 "Create a token with granular permissions (scopes). The token is shown only "
 "once when it is created, so copy it right away."
 msgstr ""
+"Vytvořte token s podrobnými oprávněními (rozsahy). Token se zobrazí pouze "
+"jednou při vytvoření, proto si jej ihned zkopírujte."
 
 #: application/views/api/components/create_token_modal.php:13
 msgid "Token Name"
-msgstr ""
+msgstr "Název tokenu"
 
 #: application/views/api/components/create_token_modal.php:14
 msgid "e.g. My logging tool"
-msgstr ""
+msgstr "např. Můj logovací nástroj"
 
 #: application/views/api/components/create_token_modal.php:15
 msgid "A name to help you recognise this token later."
-msgstr ""
+msgstr "Název, podle kterého token později poznáte."
 
 #: application/views/api/components/create_token_modal.php:18
 msgid "Expiration"
-msgstr ""
+msgstr "Platnost"
 
 #: application/views/api/components/create_token_modal.php:20
 msgid "30 days"
-msgstr ""
+msgstr "30 dní"
 
 #: application/views/api/components/create_token_modal.php:21
 msgid "90 days"
-msgstr ""
+msgstr "90 dní"
 
 #: application/views/api/components/create_token_modal.php:22
 msgid "1 year"
-msgstr ""
+msgstr "1 rok"
 
 #: application/views/api/components/create_token_modal.php:23
 #: application/views/api/index.php:154 application/views/api/index.php:157
@@ -7121,26 +7133,28 @@ msgstr "Nikdy"
 
 #: application/views/api/components/create_token_modal.php:25
 msgid "When the token should stop working."
-msgstr ""
+msgstr "Kdy má token přestat fungovat."
 
 #: application/views/api/components/create_token_modal.php:27
 msgid ""
 "A token that never expires stays valid until you delete it manually. This is "
 "possible, but not recommended for security reasons."
 msgstr ""
+"Token bez omezení platnosti zůstává platný, dokud jej ručně nesmažete. Je to "
+"možné, ale z bezpečnostních důvodů se to nedoporučuje."
 
 #: application/views/api/components/create_token_modal.php:34
 #: application/views/api/index.php:136
 msgid "Scopes"
-msgstr ""
+msgstr "Rozsahy oprávnění"
 
 #: application/views/api/components/create_token_modal.php:35
 msgid "Select which parts of the API v2 this token may access."
-msgstr ""
+msgstr "Vyberte, ke kterým částem API v2 může tento token přistupovat."
 
 #: application/views/api/components/create_token_modal.php:63
 msgid "Please select at least one scope."
-msgstr ""
+msgstr "Vyberte prosím alespoň jeden rozsah oprávnění."
 
 #: application/views/api/components/create_token_modal.php:67
 #: application/views/satellite/pass.php:152
@@ -7196,7 +7210,7 @@ msgstr "Zrušit"
 
 #: application/views/api/components/create_token_modal.php:89
 msgid "Create Token"
-msgstr ""
+msgstr "Vytvořit token"
 
 #: application/views/api/components/edit_legacy.php:15
 msgid "Editing Description for API Key"
@@ -7235,15 +7249,17 @@ msgstr "Uložit"
 
 #: application/views/api/components/new_token_modal.php:6
 msgid "New API Token"
-msgstr ""
+msgstr "Nový API token"
 
 #: application/views/api/components/new_token_modal.php:12
 msgid "Copy this token now. For security reasons it will not be shown again."
 msgstr ""
+"Zkopírujte si tento token nyní. Z bezpečnostních důvodů již nebude znovu "
+"zobrazen."
 
 #: application/views/api/components/new_token_modal.php:14
 msgid "Your API Token"
-msgstr ""
+msgstr "Váš API token"
 
 #: application/views/api/components/new_token_modal.php:17
 #: application/views/api/index.php:19 application/views/api/index.php:54
@@ -7255,13 +7271,15 @@ msgstr "Kopírovat do schránky"
 
 #: application/views/api/index.php:8
 msgid "Legacy API Keys (API v1)"
-msgstr ""
+msgstr "Starší API klíče (API v1)"
 
 #: application/views/api/index.php:11
 msgid ""
 "New integrations should use the API v2 tokens below, if the third party "
 "system supports it."
 msgstr ""
+"Nové integrace by měly používat níže uvedené tokeny API v2, pokud je systém "
+"třetí strany podporuje."
 
 #: application/views/api/index.php:11
 msgid ""
@@ -7287,7 +7305,7 @@ msgstr ""
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog API v1:"
-msgstr ""
+msgstr "Odkazy na software třetích stran, který funguje s Wavelog API v1:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
@@ -7376,7 +7394,7 @@ msgstr "Test"
 
 #: application/views/api/index.php:79
 msgid "<noname>"
-msgstr ""
+msgstr "<bez názvu>"
 
 #: application/views/api/index.php:79
 #, php-format
