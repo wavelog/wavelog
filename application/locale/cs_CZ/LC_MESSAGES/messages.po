@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-05 11:48+0000\n"
-"PO-Revision-Date: 2026-10-05 14:15+0000\n"
+"PO-Revision-Date: 2026-10-05 14:17+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
@@ -1067,11 +1067,9 @@ msgstr "Nebyli aktualizováni žádní členové."
 #, php-format
 msgid "%d member updated."
 msgid_plural "%d members updated."
-msgstr[0] ""
-"%d člen byl aktualizován.%d členové byli aktualizováni.%d členů bylo "
-"aktualizováno."
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d člen byl aktualizován."
+msgstr[1] "%d členové byli aktualizováni."
+msgstr[2] "%d členů bylo aktualizováno."
 
 #: application/controllers/Club.php:277
 msgid "Users could not be removed from club."
@@ -1085,9 +1083,9 @@ msgstr "Nebyli odebráni žádní členové."
 #, php-format
 msgid "%d member removed."
 msgid_plural "%d members removed."
-msgstr[0] "%d člen byl odebrán.%d členové byli odebráni.%d členů bylo odebráno."
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d člen byl odebrán."
+msgstr[1] "%d členové byli odebráni."
+msgstr[2] "%d členů bylo odebráno."
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:12 application/controllers/Eqsl.php:13
@@ -4651,9 +4649,9 @@ msgstr "Čtení statistik"
 #, php-format
 msgid "%s day"
 msgid_plural "%s days"
-msgstr[0] "%s den%s dny%s dní"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%s den"
+msgstr[1] "%s dny"
+msgstr[2] "%s dní"
 
 #: application/models/Achievements_model.php:172
 msgid "Longest streak"
@@ -4683,9 +4681,9 @@ msgstr "Série %d dní"
 #, php-format
 msgid "%s / %s day"
 msgid_plural "%s / %s days"
-msgstr[0] "%s / %s den%s / %s dny%s / %s dní"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%s / %s den"
+msgstr[1] "%s / %s dny"
+msgstr[2] "%s / %s dní"
 
 #: application/models/Achievements_model.php:195
 msgid "QSOs in log"
@@ -4696,9 +4694,9 @@ msgstr "QSO v logu"
 #, php-format
 msgid "%s QSO"
 msgid_plural "%s QSOs"
-msgstr[0] "%s QSO%s QSO%s QSO"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%s QSO"
+msgstr[1] "%s QSO"
+msgstr[2] "%s QSO"
 
 #: application/models/Achievements_model.php:199
 msgid "Unlocked on"
@@ -4708,9 +4706,9 @@ msgstr "Odemčeno dne"
 #, php-format
 msgid "%s / %s QSO"
 msgid_plural "%s / %s QSOs"
-msgstr[0] "%s / %s QSO%s / %s QSO%s / %s QSO"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%s / %s QSO"
+msgstr[1] "%s / %s QSO"
+msgstr[2] "%s / %s QSO"
 
 #: application/models/Achievements_model.php:237
 msgid "QSOs in classic digimodes"
@@ -4750,9 +4748,9 @@ msgstr "Trojkombinace"
 #, php-format
 msgid "%s / 3 mode"
 msgid_plural "%s / 3 modes"
-msgstr[0] "%s / 3 módů%s / 3 módů%s / 3 módů"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%s / 3 módů"
+msgstr[1] "%s / 3 módů"
+msgstr[2] "%s / 3 módů"
 
 #: application/models/Achievements_model.php:255
 msgid "Worked modes"
@@ -4877,9 +4875,9 @@ msgstr "Dokončeno dne"
 #, php-format
 msgid "%s / %s band"
 msgid_plural "%s / %s bands"
-msgstr[0] "%s / %s pásem%s / %s pásem%s / %s pásem"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%s / %s pásem"
+msgstr[1] "%s / %s pásem"
+msgstr[2] "%s / %s pásem"
 
 #: application/models/Achievements_model.php:387
 msgid "SAT QSOs"
@@ -4893,17 +4891,17 @@ msgstr "Různé satelity"
 #, php-format
 msgid "Longest streak: %s day"
 msgid_plural "Longest streak: %s days"
-msgstr[0] "Nejdelší série: %s denNejdelší série: %s dnyNejdelší série: %s dní"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Nejdelší série: %s den"
+msgstr[1] "Nejdelší série: %s dny"
+msgstr[2] "Nejdelší série: %s dní"
 
 #: application/models/Achievements_model.php:400
 #, php-format
 msgid "Current streak: %s day"
 msgid_plural "Current streak: %s days"
-msgstr[0] "Aktuální série: %s denAktuální série: %s dnyAktuální série: %s dní"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Aktuální série: %s den"
+msgstr[1] "Aktuální série: %s dny"
+msgstr[2] "Aktuální série: %s dní"
 
 #: application/models/Achievements_model.php:407
 #: application/views/visitor/mini.php:214
@@ -7084,9 +7082,9 @@ msgstr "Hodin zpět (zcela vlevo: nyní)"
 #, php-format
 msgid "%d report in 24h"
 msgid_plural "%d reports in 24h"
-msgstr[0] "%d hlášení za 24 h%d hlášení za 24 h%d hlášení za 24 h"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d hlášení za 24 h"
+msgstr[1] "%d hlášení za 24 h"
+msgstr[2] "%d hlášení za 24 h"
 
 #: application/views/amsatstatus/index.php:158
 #, php-format
@@ -7102,9 +7100,9 @@ msgstr "nyní"
 #, php-format
 msgid "%d report"
 msgid_plural "%d reports"
-msgstr[0] "%d hlášení%d hlášení%d hlášení"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d hlášení"
+msgstr[1] "%d hlášení"
+msgstr[2] "%d hlášení"
 
 #: application/views/amsatstatus/index.php:195
 #: application/views/qso/index.php:34
