@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-05 11:48+0000\n"
-"PO-Revision-Date: 2026-10-05 14:20+0000\n"
+"PO-Revision-Date: 2026-10-05 14:24+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
@@ -2161,20 +2161,20 @@ msgid ""
 "No logbooks were found. You need to define a logbook under Station Logbooks! "
 "Do it here:"
 msgstr ""
-"Nebyly nalezeny žádné denníky. Musíte definovat denník pod Logy stanice! "
-"Udělejte to zde:"
+"Nebyly nalezeny žádné deníky. Deník musíte vytvořit v sekci Staniční deníky! "
+"Můžete to udělat zde:"
 
 #: application/controllers/Logbook.php:38
 #: application/views/stationsetup/stationsetup.php:30
 msgid "Station Logbooks"
-msgstr "Logy stanice"
+msgstr "Staniční deníky"
 
 #: application/controllers/Logbook.php:59
 #: application/views/interface_assets/header.php:116
 #: application/views/logbookadvanced/useroptions.php:4
 #: application/views/view_log/index.php:2
 msgid "Logbook"
-msgstr "Logbook"
+msgstr "Deník"
 
 #: application/controllers/Logbook.php:840
 #: application/controllers/Logbook.php:855
@@ -3658,7 +3658,7 @@ msgstr "Jednoduché rychlé zadání logu"
 #: application/controllers/Visitor.php:630
 #: application/controllers/Widgets.php:63
 msgid "Empty Logbook"
-msgstr "Prázdný logbook"
+msgstr "Prázdný deník"
 
 #: application/controllers/Station.php:37
 #: application/controllers/Stationsetup.php:251
@@ -3729,7 +3729,7 @@ msgstr "Chyba"
 #: application/controllers/Stationsetup.php:184
 #: application/views/stationsetup/stationsetup.php:34
 msgid "Create Station Logbook"
-msgstr "Vytvoření logbooku stanice"
+msgstr "Vytvoření staničního deníku"
 
 #: application/controllers/Stationsetup.php:191
 msgid "Edit container name"
@@ -3795,7 +3795,7 @@ msgstr "Upravit odkaz pro návštěvníky"
 #: application/controllers/Stationsetup.php:305
 #: application/views/stationsetup/stationsetup.php:84
 msgid "View Public Page for Logbook: "
-msgstr "Zobrazit veřejnou stránku pro logbook: "
+msgstr "Zobrazit veřejnou stránku deníku: "
 
 #: application/controllers/Stationsetup.php:306
 #: application/views/stationsetup/stationsetup.php:91
@@ -4974,7 +4974,7 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d) [Original: %s]"
 msgstr ""
-"Importováno z logbooku\n"
+"Importováno z deníku\n"
 "(ADIF: %s, rok: %d) [Originál: %s]"
 
 #: application/models/Contesting_import_model.php:221
@@ -4983,7 +4983,7 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d)"
 msgstr ""
-"Importováno z logbooku\n"
+"Importováno z deníku\n"
 "(ADIF: %s, rok: %d)"
 
 #: application/models/Contesting_model.php:257
@@ -6668,7 +6668,7 @@ msgstr "Nahrát"
 
 #: application/views/adif/import.php:268
 msgid "Take your logbook file anywhere!"
-msgstr "Vezměte si svůj logbook kamkoliv!"
+msgstr "Vezměte si svůj deník kamkoliv!"
 
 #: application/views/adif/import.php:269
 msgid ""
@@ -6691,7 +6691,7 @@ msgstr ""
 #: application/views/adif/import.php:275
 #: application/views/search/lotw_unconfirmed.php:24
 msgid "All is limited to station locations linked to active logbook"
-msgstr "Vše je omezeno na umístění stanic propojená s aktivním logbookem"
+msgstr "Vše je omezeno na umístění stanic propojená s aktivním deníkem"
 
 #: application/views/adif/import.php:296
 #: application/views/clublog/export.php:73 application/views/csv/index.php:104
@@ -6857,7 +6857,7 @@ msgstr ""
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
-msgstr "Sériové číslo je v této soutěži VŽDY součástí výměny pro obě strany."
+msgstr "Sériové číslo je v tomto závodě VŽDY součástí výměny pro obě strany."
 
 #: application/views/adif/import.php:451
 msgid ""
@@ -6911,7 +6911,7 @@ msgstr "Duplikáty byly přeskočeny."
 
 #: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
-msgstr "Soutěžní deníky importovány"
+msgstr "Závodní deníky importovány"
 
 #: application/views/adif/import_success.php:42
 msgid ""
@@ -6919,13 +6919,13 @@ msgid ""
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
 msgstr ""
-"Někdy, v závislosti na vašem soutěžním logovacím softwaru, nebudou vaše "
-"výměny správně importovány z ADIF tohoto softwaru. Pokud chcete toto "
-"opravit, přepněte na kartu CBR Import na stránce ADIF Import."
+"V závislosti na vašem závodním logovacím softwaru se někdy výměny z jeho "
+"ADIF neimportují správně. Pokud to chcete opravit, přepněte na kartu CBR "
+"Import na stránce ADIF Import."
 
 #: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
-msgstr "Importoval jsi alespoň 1 QSO obsahující contest ID."
+msgstr "Importovali jste alespoň 1 QSO obsahující ID závodu."
 
 #: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
@@ -6938,7 +6938,7 @@ msgstr "Detaily importu / možné problémy"
 #: application/views/adif/import_success.php:57
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
-msgstr "Zkontroluj %s pro nápovědu k chybám v ADIF souborech."
+msgstr "Nápovědu k chybám v souborech ADIF najdete na %s."
 
 #: application/views/adif/import_success.php:61
 msgid "Critical Errors - Wrong Call/Location"
@@ -6954,8 +6954,7 @@ msgstr "Duplicitní QSO"
 
 #: application/views/adif/import_success.php:87
 msgid "You might have ADIF errors. Please check the following information:"
-msgstr ""
-"Mohou se vyskytnout chyby ADIF. Zkontroluj prosím následující informace:"
+msgstr "V ADIF mohou být chyby. Zkontrolujte prosím následující informace:"
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
@@ -7247,7 +7246,7 @@ msgstr "Úprava popisu pro API klíč"
 
 #: application/views/api/components/edit_legacy.php:28
 msgid "Simple name to describe what you use this API for."
-msgstr "Jednoduchý název popisující, k čemu tento API používáš."
+msgstr "Jednoduchý název popisující, k čemu toto API používáte."
 
 #: application/views/api/components/edit_legacy.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:32
@@ -7428,11 +7427,11 @@ msgstr "<bez názvu>"
 #: application/views/api/index.php:79
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
-msgstr "Jsi si jistý, že chceš smazat API klíč %s?"
+msgstr "Opravdu chcete smazat API klíč %s?"
 
 #: application/views/api/index.php:97
 msgid "You have no API Keys."
-msgstr "Nemáš žádné API klíče."
+msgstr "Nemáte žádné API klíče."
 
 #: application/views/api/index.php:104
 msgid "Create a read & write key"
@@ -7554,8 +7553,8 @@ msgid ""
 "Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 "
 "(FUNcube-1) amateur radio satellite."
 msgstr ""
-"Paul Stoetzer N8HM sponzoruje diplom za spojení uskutečněná přes družici "
-"AO-73 (FUNcube-1)."
+"Paul Stoetzer N8HM vydává diplom za spojení navázaná přes radioamatérský "
+"satelit AO-73 (FUNcube-1)."
 
 #: application/views/awards/73on73/index.php:8
 #: application/views/awards/helvetia/index.php:29
@@ -7567,7 +7566,7 @@ msgstr ""
 #: application/views/awards/wwff/index.php:23
 #, php-format
 msgid "For more information, please visit: %s."
-msgstr "Pro více informací navštiv: %s."
+msgstr "Více informací najdete na: %s."
 
 #: application/views/awards/73on73/index.php:10
 msgid ""
@@ -8204,7 +8203,7 @@ msgstr ""
 #: application/views/awards/cq/index.php:28
 #, php-format
 msgid "You can find all the information and rules on the Website of N4BAA: %s"
-msgstr "Všechny informace a pravidla najdeš na webu N4BAA: %s"
+msgstr "Všechny informace a pravidla najdete na webu N4BAA: %s"
 
 #: application/views/awards/cq/index.php:29
 msgid "Fields taken for this Award: CQ-Zone (ADIF: CQZ)"
@@ -8421,7 +8420,7 @@ msgstr "Zobrazit potvrzené"
 #: application/views/awards/wapc/index.php:80
 #: application/views/awards/was/index.php:80
 msgid "Show not worked"
-msgstr "Zobrazit nespojené"
+msgstr "Zobrazit nepracované"
 
 #: application/views/awards/cq/index.php:118
 #: application/views/awards/iota/index.php:91
@@ -9199,7 +9198,7 @@ msgstr "Pracováno, nepotvrzeno"
 #: application/views/interface_assets/footer.php:51
 #: application/views/map/qso_map.php:27
 msgid "Not worked"
-msgstr "Nespojené"
+msgstr "Nepracováno"
 
 #: application/views/awards/jcc/index.php:183
 msgid "JCC progress"
@@ -9315,7 +9314,7 @@ msgstr "QSO podle pásma"
 
 #: application/views/awards/pl_polska/index.php:74
 msgid "Station Logbook"
-msgstr "Staniční log"
+msgstr "Staniční deník"
 
 #: application/views/awards/pl_polska/index.php:94
 msgid ""
@@ -9457,7 +9456,7 @@ msgstr "Upravit stát"
 
 #: application/views/awards/pl_polska/index.php:381
 msgid "Logbook Advanced"
-msgstr "Pokročilý logbook"
+msgstr "Pokročilý deník"
 
 #: application/views/awards/pl_polska/index.php:381
 msgid ""
@@ -10135,11 +10134,11 @@ msgid ""
 msgstr ""
 "Nizozemsko se rozkládá přibližně 300 km od severu na jih a asi 200 km od "
 "východu na západ. Z 18 milionů obyvatel země je kolem 11 500 licencovaných "
-"radioamatérů. Největšími amatérskými rozhlasovými organizacemi v Nizozemsku "
-"jsou VERON (Vereniging voor Experimenteel Radio Onderzoek in Nederland) a "
-"VRZA (Vereniging voor Radio Zend Amateurs). Obě organizace jsou aktivní v "
-"organizaci akcí, soutěží a školení a zastupují nizozemské amatéry na národní "
-"i mezinárodní úrovni."
+"radioamatérů. Největšími radioamatérskými organizacemi v Nizozemsku jsou "
+"VERON (Vereniging voor Experimenteel Radio Onderzoek in Nederland) a VRZA "
+"(Vereniging voor Radio Zend Amateurs). Obě organizace pořádají akce, závody "
+"a školení a zastupují nizozemské radioamatéry na národní i mezinárodní "
+"úrovni."
 
 #: application/views/awards/wap/index.php:26
 msgid ""
@@ -10767,7 +10766,7 @@ msgstr "Čerstvý spot (< 5 minut)"
 #: application/views/qso/edit_ajax.php:42
 #: application/views/simplefle/index.php:84
 msgid "Contest"
-msgstr "Soutěž"
+msgstr "Závod"
 
 #: application/views/bandmap/list.php:114
 msgid "Click to view"
@@ -11547,7 +11546,7 @@ msgstr "Poslední QSO"
 #: application/views/calltester/call_info.php:47
 #, php-format
 msgid "No QSOs with %s found in your logbook."
-msgstr "Ve vašem logbooku nebyla nalezena žádná QSO s %s."
+msgstr "Ve vašem deníku nebyla nalezena žádná QSO s %s."
 
 #: application/views/calltester/call_info.php:62
 #: application/views/zonechecker/result.php:74
@@ -12710,7 +12709,7 @@ msgstr "Zastavit ladění"
 #: application/views/contesting/logger/components/winkeyer.php:82
 #: application/views/qso/index.php:866
 msgid "Enter text..."
-msgstr "Zadej text..."
+msgstr "Zadejte text..."
 
 #: application/views/contesting/logger/components/winkeyer.php:83
 #: application/views/qso/index.php:867
@@ -13048,7 +13047,7 @@ msgstr "Stanice: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:19
 msgid "Also delete all QSOs logged in this session from the logbook"
-msgstr "Smazat z logbooku také všechna QSO zaznamenaná v této relaci"
+msgstr "Smazat z deníku také všechna QSO zapsaná v této relaci"
 
 #: application/views/contesting/manager/components/confirm_delete.php:26
 msgid "Delete Session"
@@ -13179,8 +13178,7 @@ msgstr "RX Výkon (W)"
 #: application/views/contesting/manager/components/session_modal.php:127
 msgid ""
 "The received Exchange (Exch R) value will be copied to this logbook field."
-msgstr ""
-"Přijatá hodnota výměny (Vým. R) bude zkopírována do tohoto pole logbooku."
+msgstr "Přijatá hodnota výměny (Vým. R) bude zkopírována do tohoto pole deníku."
 
 #: application/views/contesting/manager/components/session_modal.php:133
 msgid "Callbook Lookup (Online)"
@@ -13229,7 +13227,7 @@ msgid ""
 "expect a single shared series per station."
 msgstr ""
 "Sériová čísla přiděluje server, takže se stejné číslo nikdy nepoužije "
-"dvakrát, ani když loguje více operátorů současně. Většina soutěží očekává "
+"dvakrát, ani když loguje více operátorů současně. Většina závodů očekává "
 "jednu společnou řadu pro celou stanici."
 
 #: application/views/contesting/manager/components/session_modal.php:154
@@ -13477,8 +13475,8 @@ msgid ""
 "information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
 "characters."
 msgstr ""
-"Výměna, která byla odeslána během soutěže. Může být jakýkoli typ informace, "
-"např. provincie, DOK, okres, stát, výkon, jméno. Max. délka: 6 znaků."
+"Výměna odeslaná během závodu. Může jít o jakýkoli údaj, např. provincie, "
+"DOK, okres, stát, výkon, jméno. Max. délka: 6 znaků."
 
 #: application/views/contesting/manager/export_edi.php:75
 msgid ""
@@ -13510,11 +13508,11 @@ msgstr "Informace o umístění a operátorovi"
 
 #: application/views/contesting/manager/export_edi.php:112
 msgid "Contest Address 1"
-msgstr "Adresa soutěže 1"
+msgstr "Adresa pro závod 1"
 
 #: application/views/contesting/manager/export_edi.php:117
 msgid "Contest Address 2"
-msgstr "Adresa soutěže 2"
+msgstr "Adresa pro závod 2"
 
 #: application/views/contesting/manager/export_edi.php:122
 msgid "Operator Address 1"
@@ -13600,9 +13598,9 @@ msgid ""
 "linked to a contest session. Select the ones you want to import and click "
 "\"Import Selected\"."
 msgstr ""
-"Ve vašem logbooku byly nalezeny následující skupiny závodů, které zatím "
-"nejsou propojeny s relací závodu. Vyberte ty, které chcete importovat, a "
-"klikněte na „Importovat vybrané“."
+"Ve vašem deníku byly nalezeny následující skupiny závodů, které zatím nejsou "
+"propojeny se závodní relací. Vyberte ty, které chcete importovat, a klikněte "
+"na „Importovat vybrané“."
 
 #: application/views/contesting/manager/import_legacy.php:17
 msgid "How grouping works:"
@@ -13732,7 +13730,7 @@ msgstr "Vybrané relace: "
 
 #: application/views/contesting/manager/index.php:133
 msgid "Also delete all QSOs logged in these sessions from the logbook"
-msgstr "Smazat z logbooku také všechna QSO zaznamenaná v těchto relacích"
+msgstr "Smazat z deníku také všechna QSO zapsaná v těchto relacích"
 
 #: application/views/contesting/manager/index.php:140
 msgid "Delete Sessions"
@@ -13744,7 +13742,7 @@ msgstr "Vyberte prosím alespoň jednu relaci závodu."
 
 #: application/views/contesting/manager/index.php:183
 msgid "Import historical contests from logbook"
-msgstr "Importovat historické závody z logbooku"
+msgstr "Importovat historické závody z deníku"
 
 #: application/views/contesting/manager/index.php:186
 msgid ""
@@ -13945,7 +13943,7 @@ msgstr ""
 
 #: application/views/csv/index.php:7
 msgid "Export your logbook for SOTA uploads."
-msgstr "Exportujte svůj logbook pro nahrání do SOTA."
+msgstr "Exportujte svůj deník pro nahrání do SOTA."
 
 #: application/views/csv/index.php:11
 msgid "Only QSOs with SOTA information will be exported!"
@@ -14072,7 +14070,7 @@ msgstr "Nemáte žádné lokace stanic. Klikněte %szde%s pro přidání."
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
-msgstr "Nemáte žádný logbook stanice. Klikněte %szde%s pro vytvoření."
+msgstr "Nemáte žádný staniční deník. Vytvoříte ho kliknutím %szde%s."
 
 #: application/views/dashboard/index.php:156
 #, php-format
@@ -14081,15 +14079,15 @@ msgid ""
 "Your active station location is not linked to your active station logbook. "
 "Click %shere%s to do it."
 msgstr ""
-"Vaše aktivní umístění stanice není propojeno s vaším aktivním logbookem "
-"stanice. Klikněte %szde%s pro propojení."
+"Vaše aktivní umístění stanice není propojeno s vaším aktivním staničním "
+"deníkem. Propojíte je kliknutím %szde%s."
 
 #: application/views/dashboard/index.php:165
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your logbook. Click %shere%s to do it."
 msgstr ""
-"Nemáte žádnou stanici propojenou s logbookem. Klikněte %szde%s pro propojení."
+"K vašemu deníku není připojena žádná stanice. Připojíte ji kliknutím %szde%s."
 
 #: application/views/dashboard/index.php:175
 #, php-format
@@ -14772,7 +14770,7 @@ msgstr "Nástroje pro opravu dat"
 
 #: application/views/dbtools/index.php:30
 msgid "All Station Locations"
-msgstr "Všechny lokality stanic"
+msgstr "Všechna umístění stanic"
 
 #: application/views/dbtools/index.php:44
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
@@ -15813,7 +15811,7 @@ msgid ""
 "Export your logbook for use in DX Atlas to display worked / confirmed "
 "gridsquares."
 msgstr ""
-"Exportujte svůj logbook pro použití v DX Atlasu k zobrazení pracovaných / "
+"Exportujte svůj deník pro použití v DX Atlasu k zobrazení pracovaných / "
 "potvrzených lokátorů."
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
@@ -16329,8 +16327,8 @@ msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
 msgstr ""
-"Nebyly nalezeny žádné lokality stanic s platným nastavením HRDLog. "
-"Zkontrolujte přihlašovací údaje HRDLog v nastavení lokality stanice!"
+"Nebyla nalezena žádná umístění stanic s platným nastavením HRDlog. "
+"Zkontrolujte přihlašovací údaje HRDlog v nastavení umístění stanice!"
 
 #: application/views/hrdlog/export.php:74 application/views/qrz/export.php:96
 #: application/views/webadif/export.php:104
@@ -16449,7 +16447,7 @@ msgstr "zastaralé"
 
 #: application/views/interface_assets/footer.php:66
 msgid "Satellite Information"
-msgstr "Informace o družici"
+msgstr "Informace o satelitu"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Prepare hams.at Activation Posting"
@@ -17129,7 +17127,7 @@ msgstr "US Gridmaster"
 
 #: application/views/interface_assets/header.php:334
 msgid "Satellite Pass"
-msgstr "Přelet družice"
+msgstr "Přelet satelitu"
 
 #: application/views/interface_assets/header.php:348
 #: application/views/stationsetup/stationsetup.php:146
@@ -17276,7 +17274,7 @@ msgstr "Odhlásit se"
 
 #: application/views/interface_assets/header.php:633
 msgid "Station locations and logbooks"
-msgstr "Umístění stanic a logbooky"
+msgstr "Umístění stanic a deníky"
 
 #: application/views/interface_assets/header.php:635
 msgid "Select a Location"
@@ -18180,7 +18178,7 @@ msgstr "Shodovat QSO na stejném pásmu"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:69
 msgid "Match QSOs using the same satellite"
-msgstr "Shodovat QSO používající stejnou družici"
+msgstr "Shoda QSO přes stejný satelit"
 
 #: application/views/logbookadvanced/edit.php:3
 #: application/views/logbookadvanced/help.php:114
@@ -19678,7 +19676,7 @@ msgstr "Datum vypršení"
 #: application/views/lotw_views/index.php:49
 #: application/views/view_log/qso.php:481
 msgid "Last Upload"
-msgstr "Last upload"
+msgstr "Poslední nahrání"
 
 #: application/views/lotw_views/index.php:104
 msgid "Last change:"
@@ -19733,7 +19731,7 @@ msgstr "Příští automatická synchronizace s LoTW proběhne v: "
 #: application/views/lotw_views/upload_cert.php:8
 #: application/views/lotw_views/upload_cert.php:34
 msgid "Upload Logbook of the World .p12 Certificate"
-msgstr "Nahraj LoTW .p12 certifikát"
+msgstr "Nahrát certifikát Logbook of the World .p12"
 
 #: application/views/lotw_views/upload_cert.php:19
 msgid "Export .p12 File Instructions"
@@ -19745,7 +19743,7 @@ msgstr "Použijte alespoň verzi 2.7 TQSL"
 
 #: application/views/lotw_views/upload_cert.php:23
 msgid "Open TQSL and go to the Callsign Certificates Tab"
-msgstr "Otevři TQSL &amp; bež do záložky Callsign Certificates"
+msgstr "Otevřete TQSL a přejděte na záložku Callsign Certificates"
 
 #: application/views/lotw_views/upload_cert.php:24
 msgid "Right click on desired Callsign"
@@ -19949,7 +19947,7 @@ msgstr "Vytvořit mód"
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
 msgid "Your Notes"
-msgstr "Tvoje poznámky"
+msgstr "Vaše poznámky"
 
 #: application/views/notes/add.php:14 application/views/notes/edit.php:15
 #: application/views/notes/main.php:14 application/views/notes/main.php:46
@@ -20033,11 +20031,11 @@ msgstr ""
 
 #: application/views/options/appearance.php:28
 msgid "Logbook Map"
-msgstr "Mapa v logbooku"
+msgstr "Mapa v deníku"
 
 #: application/views/options/appearance.php:33
 msgid "This allows to disable the map in the logbook."
-msgstr "Toto umožňuje zakázat mapu v logbooku."
+msgstr "Umožňuje vypnout mapu v deníku."
 
 #: application/views/options/appearance.php:37
 msgid "Public Maps"
@@ -21151,7 +21149,7 @@ msgstr "RX pásmo"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:455
 msgid "Give power value in Watts. Include only numbers in the input."
-msgstr "Zadej výkon ve Wattech. Jsou povolena pouze čísla."
+msgstr "Zadejte výkon ve wattech. Povolena jsou pouze čísla."
 
 #: application/views/qso/edit_ajax.php:165
 msgid "Used for VUCC MultiGrids"
@@ -21301,12 +21299,12 @@ msgstr "méně"
 
 #: application/views/qso/index.php:36
 msgid "LoTW User. Last upload was 1 day ago."
-msgstr "Uživatel LoTW. Poslední upload byl před 1 dnem."
+msgstr "Uživatel LoTW. Poslední nahrání před 1 dnem."
 
 #: application/views/qso/index.php:37
 #, php-format
 msgid "LoTW User. Last upload was %x days ago."
-msgstr "Uživatel LoTW. Poslední upload byl před %x dny."
+msgstr "Uživatel LoTW. Poslední nahrání před %x dny."
 
 #: application/views/qso/index.php:38
 msgid "Invalid value for antenna elevation:"
@@ -21872,8 +21870,7 @@ msgstr "QSO nepotvrzená na LoTW"
 
 #: application/views/search/filter.php:31 application/views/search/main.php:23
 msgid "Search is limited to station locations linked to active logbook"
-msgstr ""
-"Vyhledávání je omezeno na umístění stanic propojená s aktivním logbookem"
+msgstr "Vyhledávání je omezeno na umístění stanic propojená s aktivním deníkem"
 
 #: application/views/search/filter.php:40
 msgid "Save query"
@@ -21911,11 +21908,11 @@ msgstr ""
 
 #: application/views/search/lotw_unconfirmed_result.php:10
 msgid "Last LoTW upload"
-msgstr "Poslední upload na LoTW"
+msgstr "Poslední nahrání do LoTW"
 
 #: application/views/search/lotw_unconfirmed_result.php:41
 msgid "No QSOs with outstanding LoTW upload were found."
-msgstr "Nebyla nalezena žádná QSO s nevyřízeným LoTW uploadem."
+msgstr "Nebyla nalezena žádná QSO čekající na nahrání do LoTW."
 
 #: application/views/search/main.php:26
 msgid "Callsign / Gridsquare"
@@ -21980,13 +21977,13 @@ msgstr "Označit QSL kartu požadováno (Bureau)"
 #: application/views/view_log/partial/log_ajax.php:618
 #: application/views/view_log/qso.php:786
 msgid "Mark QSL Card Requested (Direct)"
-msgstr "Označit QSL lístek jak odeslaný (Direct)"
+msgstr "Označit QSL kartu jako vyžádanou (Direct)"
 
 #: application/views/search/search_result_ajax.php:475
 #: application/views/view_log/partial/log_ajax.php:619
 #: application/views/view_log/qso.php:788
 msgid "Mark QSL Card Not Required"
-msgstr "Označit QSL lístek není vyžadován"
+msgstr "Označit QSL kartu jako nevyžadovanou"
 
 #: application/views/search/search_result_ajax.php:484
 #: application/views/view_log/partial/log_ajax.php:636
@@ -22071,7 +22068,7 @@ msgstr "Pole 'Operátor' je prázdné"
 
 #: application/views/simplefle/index.php:31
 msgid "Warning! Do you really want to reset everything?"
-msgstr "Varování! Opravdu chceš vše resetovat?"
+msgstr "Varování! Opravdu chcete vše resetovat?"
 
 #: application/views/simplefle/index.php:32
 msgid ""
@@ -22101,8 +22098,8 @@ msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
 msgstr ""
-"Pozor! Buď jste nastavili soutěž, ale nezahrnuli jste výměnu, nebo jste "
-"zaznamenali data soutěže, ale nevybrali jste soutěž."
+"Pozor! Buď jste nastavili závod, ale nezadali výměnu, nebo jste zapsali "
+"závodní data, ale nevybrali závod."
 
 #: application/views/simplefle/index.php:36
 msgid ""
@@ -22115,11 +22112,11 @@ msgstr "QSO zaznamenáno!"
 
 #: application/views/simplefle/index.php:38
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
-msgstr "QSO byla úspěšně zaznamenána v logu! Duplicity byly přeskočeny."
+msgstr "QSO byla úspěšně zapsána do deníku! Duplicity byly přeskočeny."
 
 #: application/views/simplefle/index.php:40
 msgid "An error occurred while saving the QSO to the logbook! Error: "
-msgstr "Při ukládání QSO do logu došlo k chybě! Chyba: "
+msgstr "Při ukládání QSO do deníku došlo k chybě! Chyba: "
 
 #: application/views/simplefle/index.php:44
 msgid "What is that?"
@@ -22135,7 +22132,7 @@ msgstr "Pokud nevyberete datum, bude použito dnešní datum."
 
 #: application/views/simplefle/index.php:92
 msgid "You can add the entered QSOs to a contest."
-msgstr "Můžete přidat zadaná QSO do soutěže."
+msgstr "Zadaná QSO můžete přidat do závodu."
 
 #: application/views/simplefle/index.php:99
 msgid "Station Call/Location"
@@ -22147,7 +22144,7 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
-"Pokud jste provozovali z nové lokality, nejprve vytvořte novou %slokaci "
+"Pokud jste vysílali z nového místa, nejprve vytvořte nové %sumístění "
 "stanice%s"
 
 #: application/views/simplefle/index.php:117
@@ -22298,7 +22295,7 @@ msgstr "Výměna v závodě"
 
 #: application/views/simplefle/syntax_help.php:67
 msgid "Contest exchange; serials or other exchange - or even both:"
-msgstr "Soutěžní výměna; sériová čísla nebo jiná výměna - nebo dokonce obojí:"
+msgstr "Závodní výměna; sériová čísla nebo jiná výměna - případně obojí:"
 
 #: application/views/simplefle/syntax_help.php:74
 #, php-format
@@ -22387,7 +22384,7 @@ msgstr "Domácí QTH"
 #: application/views/station_profile/edit.php:74
 #, php-format
 msgid "Shortname for the station location. For example: %s"
-msgstr "Zkrácený název pro lokalitu stanice. Například: %s"
+msgstr "Zkrácený název umístění stanice. Například: %s"
 
 #: application/views/station_profile/create.php:62
 #: application/views/station_profile/edit.php:79
@@ -22595,8 +22592,8 @@ msgid ""
 "Define a default message that will be populated and sent for each QSO for "
 "this station location."
 msgstr ""
-"Definujte výchozí zprávu, která bude vyplněna a odeslána pro každé QSO pro "
-"tuto lokalitu stanice."
+"Definujte výchozí zprávu, která se vyplní a odešle u každého QSO z tohoto "
+"umístění stanice."
 
 #: application/views/station_profile/create.php:297
 #: application/views/station_profile/edit.php:319
