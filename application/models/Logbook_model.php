@@ -1013,7 +1013,7 @@ class Logbook_model extends CI_Model {
 				$qso = null;
 				$needs_qso_lookup = (
 					$creds && (
-					(isset($creds->ucp) && isset($creds->ucn) && $creds->clublogrealtime == 1) ||
+					(isset($creds->ucp) && isset($creds->ucn) && $creds->clublogignore != 1 && $creds->clublogrealtime == 1) ||
 					(isset($creds->hrdlog_code) && isset($creds->hrdlog_username) && $creds->hrdlogrealtime == 1) ||
 					(isset($creds->qrzapikey) && $creds->qrzrealtime == 1) ||
 					(isset($creds->webadifapikey) && $creds->webadifrealtime == 1)
@@ -1024,8 +1024,8 @@ class Logbook_model extends CI_Model {
 					$qso = $this->get_qso($last_id, true)->result();
 				}
 
-				// ClubLog export
-				if ($creds && isset($creds->ucp) && isset($creds->ucn) && (($creds->ucp ?? '') != '') && (($creds->ucn ?? '') != '') && ($creds->clublogrealtime == 1)) {
+			// ClubLog export
+			if ($creds && isset($creds->ucp) && isset($creds->ucn) && (($creds->ucp ?? '') != '') && (($creds->ucn ?? '') != '') && ($creds->clublogignore != 1) && ($creds->clublogrealtime == 1)) {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
@@ -1182,7 +1182,7 @@ class Logbook_model extends CI_Model {
 					prof.hrdlog_username, prof.hrdlog_code, prof.hrdlogrealtime,
 					prof.qrzapikey, prof.qrzrealtime,
 					prof.webadifapikey, prof.webadifapiurl, prof.webadifrealtime,
-					prof.clublogrealtime,
+					prof.clublogrealtime, prof.clublogignore,
 					auth.user_clublog_name as ucn, auth.user_clublog_password as ucp
 				FROM station_profile prof
 				INNER JOIN ' . $this->config->item('auth_table') . ' auth ON (auth.user_id = prof.user_id)
