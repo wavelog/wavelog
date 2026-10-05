@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-05 11:48+0000\n"
-"PO-Revision-Date: 2026-10-05 13:53+0000\n"
+"PO-Revision-Date: 2026-10-05 13:55+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
@@ -4877,23 +4877,23 @@ msgstr "Dokončeno dne"
 #, php-format
 msgid "%s / %s band"
 msgid_plural "%s / %s bands"
-msgstr[0] ""
+msgstr[0] "%s / %s pásem%s / %s pásem%s / %s pásem"
 msgstr[1] ""
 msgstr[2] ""
 
 #: application/models/Achievements_model.php:387
 msgid "SAT QSOs"
-msgstr ""
+msgstr "SAT QSO"
 
 #: application/models/Achievements_model.php:392
 msgid "Different satellites"
-msgstr ""
+msgstr "Různé satelity"
 
 #: application/models/Achievements_model.php:398
 #, php-format
 msgid "Longest streak: %s day"
 msgid_plural "Longest streak: %s days"
-msgstr[0] ""
+msgstr[0] "Nejdelší série: %s denNejdelší série: %s dnyNejdelší série: %s dní"
 msgstr[1] ""
 msgstr[2] ""
 
@@ -4901,7 +4901,7 @@ msgstr[2] ""
 #, php-format
 msgid "Current streak: %s day"
 msgid_plural "Current streak: %s days"
-msgstr[0] ""
+msgstr[0] "Aktuální série: %s denAktuální série: %s dnyAktuální série: %s dní"
 msgstr[1] ""
 msgstr[2] ""
 
@@ -4913,7 +4913,7 @@ msgstr "Zatím žádná QSO"
 #: application/models/Achievements_model.php:410
 #: application/models/Achievements_model.php:412
 msgid "classic"
-msgstr ""
+msgstr "klasické"
 
 #: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
@@ -4994,51 +4994,58 @@ msgstr "Závody musí upravovat funkcionáři."
 
 #: application/models/Countqsoby_model.php:262
 msgid "Unlinked"
-msgstr ""
+msgstr "Nepřiřazeno"
 
 #: application/models/Dbtools_model.php:118
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
-msgstr "Tabulka VuccGrids je prázdná. Nejprve importujte data VUCC sítě."
+msgstr "Tabulka VuccGrids je prázdná. Nejprve importujte data VUCC lokátorů."
 
 #: application/models/Debug_model.php:317
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
 msgstr ""
+"Není k dispozici žádný funkční adaptér - mezipaměť běží na prázdném ovladači "
+"'dummy'."
 
 #: application/models/Debug_model.php:322
 #: application/models/Debug_model.php:370
 msgid "Adapter not supported."
-msgstr ""
+msgstr "Adaptér není podporován."
 
 #: application/models/Debug_model.php:351
 #, php-format
 msgid "%s adapter threw an exception: %s"
-msgstr ""
+msgstr "Adaptér %s vyvolal výjimku: %s"
 
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "PHP rozšíření '%s' není načteno."
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "Do adresáře mezipaměti nelze zapisovat: %s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
+"Server Redis je nedostupný - zkontrolujte nastavení v application/config/"
+"redis.php."
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Žádný server Memcached neodpověděl - zkontrolujte nastavení v application/"
+"config/memcached.php."
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
+"APCu je načteno, ale v tomto rozhraní PHP jej nelze použít (apc.enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
