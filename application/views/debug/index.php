@@ -35,6 +35,7 @@
                         <tr>
                             <td><?= __("Version"); ?></td>
                             <td><?php echo $running_version; ?>
+                                <?php if ($git_describe != '' && $git_describe != $running_version) { echo '(' . $git_describe . ')'; } ?>
                                 <?php if ($running_version == $latest_release) { ?>
                                     <span class="badge text-bg-success"> <?= __("Latest Version"); ?></span>
                                 <?php } ?>

@@ -463,7 +463,6 @@
                                                         <option value="Y" <?php if ($qso->COL_QSL_RCVD == "Y") echo "selected=\"selected\""; ?>><?= __("Yes"); ?></option>
                                                         <option value="R" <?php if ($qso->COL_QSL_RCVD == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
                                                         <option value="I" <?php if ($qso->COL_QSL_RCVD == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
-                                                        <option value="V" <?php if ($qso->COL_QSL_RCVD == "V") echo "selected=\"selected\""; ?>><?= __("Verified (Match)"); ?></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -504,7 +503,6 @@
                                                         <option value="Y" <?php if ($qso->COL_EQSL_QSL_RCVD == "Y") echo "selected=\"selected\""; ?>><?= __("Yes"); ?></option>
                                                         <option value="R" <?php if ($qso->COL_EQSL_QSL_RCVD == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
                                                         <option value="I" <?php if ($qso->COL_EQSL_QSL_RCVD == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
-                                                        <option value="V" <?php if ($qso->COL_EQSL_QSL_RCVD == "V") echo "selected=\"selected\""; ?>><?= __("Verified (Match)"); ?></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -549,7 +547,6 @@
                                                         <option value="Y" <?php if ($qso->COL_LOTW_QSL_RCVD == "Y") echo "selected=\"selected\""; ?>><?= __("Yes"); ?></option>
                                                         <option value="R" <?php if ($qso->COL_LOTW_QSL_RCVD == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
                                                         <option value="I" <?php if ($qso->COL_LOTW_QSL_RCVD == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
-                                                        <option value="V" <?php if ($qso->COL_LOTW_QSL_RCVD == "V") echo "selected=\"selected\""; ?>><?= __("Verified (Match)"); ?></option>
                                                     </select>
                                                     <small id="lotw_propmode_hint" class="form-text text-muted"><?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) echo __("Propagation mode is not supported by LoTW. LoTW QSL fields disabled."); else echo "&nbsp;"; ?></small>
                                                 </div>
@@ -579,7 +576,6 @@
                                                         <option value="Y" <?php if ($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y") echo "selected=\"selected\""; ?>><?= __("Yes"); ?></option>
                                                         <option value="R" <?php if ($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
                                                         <option value="I" <?php if ($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
-                                                        <option value="V" <?php if ($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "V") echo "selected=\"selected\""; ?>><?= __("Verified (Match)"); ?></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -605,7 +601,6 @@
                                                         <option value="Y" <?php if ($qso->COL_DCL_QSL_RCVD == "Y") echo "selected=\"selected\""; ?>><?= __("Yes"); ?></option>
                                                         <option value="R" <?php if ($qso->COL_DCL_QSL_RCVD == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
                                                         <option value="I" <?php if ($qso->COL_DCL_QSL_RCVD == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
-                                                        <option value="V" <?php if ($qso->COL_DCL_QSL_RCVD == "V") echo "selected=\"selected\""; ?>><?= __("Verified (Match)"); ?></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -631,7 +626,6 @@
                                                         <option value="Y" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") echo "selected=\"selected\""; ?>><?= __("Yes"); ?></option>
                                                         <option value="R" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
                                                         <option value="I" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
-                                                        <option value="V" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "V") echo "selected=\"selected\""; ?>><?= __("Verified (Match)"); ?></option>
                                                     </select>
                                                 </div>
                                             </div>
