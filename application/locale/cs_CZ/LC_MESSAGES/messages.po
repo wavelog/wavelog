@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-05 11:48+0000\n"
-"PO-Revision-Date: 2026-10-05 13:57+0000\n"
+"PO-Revision-Date: 2026-10-05 14:01+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
@@ -6093,7 +6093,7 @@ msgstr "Místa"
 
 #: application/views/activationplanner/index.php:56
 msgid "Press Enter to search places"
-msgstr ""
+msgstr "Stiskněte Enter pro vyhledání míst"
 
 #: application/views/activationplanner/index.php:66
 msgid "Plan your activity here"
@@ -6101,7 +6101,7 @@ msgstr "Zde si naplánujte svou aktivitu"
 
 #: application/views/activationplanner/index.php:74
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
-msgstr "Lokátor o 2, 4, 6, 8 nebo 10 znacích"
+msgstr "Maidenhead lokátor o 2, 4, 6, 8 nebo 10 znacích"
 
 #: application/views/activationplanner/index.php:74
 msgid "e.g. FN31pr"
@@ -6153,6 +6153,8 @@ msgid ""
 "Search WWFF / POTA / SOTA / IOTA by name or reference — Enter searches place "
 "names (OpenStreetMap)"
 msgstr ""
+"Hledejte WWFF / POTA / SOTA / IOTA podle názvu nebo reference — Enter "
+"vyhledá názvy míst (OpenStreetMap)"
 
 #: application/views/activationplanner/index.php:92
 #: application/views/simplefle/index.php:162
@@ -6484,11 +6486,11 @@ msgstr "CBR Import"
 
 #: application/views/adif/import.php:92
 msgid "No active station location. ADIF import is disabled."
-msgstr ""
+msgstr "Žádné aktivní umístění stanice. Import ADIF je zakázán."
 
 #: application/views/adif/import.php:93
 msgid "Go to Station Setup"
-msgstr ""
+msgstr "Přejít na Nastavení stanoviště"
 
 #: application/views/adif/import.php:97 application/views/adif/import.php:407
 #: application/views/adif/import.php:430 application/views/api/index.php:22
@@ -7076,7 +7078,7 @@ msgstr "Další AOS"
 
 #: application/views/amsatstatus/index.php:115
 msgid "Hours ago (left-most: now)"
-msgstr ""
+msgstr "Hodin zpět (zcela vlevo: nyní)"
 
 #: application/views/amsatstatus/index.php:135
 #, php-format
@@ -7775,7 +7777,7 @@ msgstr "Aktivace lokátorů"
 #: application/views/satellite/skedtable.php:40
 #: application/views/stationsetup/locationlist.php:14
 msgid "Grid"
-msgstr "Mřížka"
+msgstr "Lokátor"
 
 #: application/views/awards/amsat_rover/index.php:223
 #: application/views/awards/waip/index.php:41
@@ -7855,11 +7857,11 @@ msgstr "Okres"
 #: application/views/awards/counties/details_ajax.php:14
 #: application/views/awards/counties/state_ajax.php:26
 msgid "Not in USA-CA county list"
-msgstr ""
+msgstr "Není v seznamu okresů USA-CA"
 
 #: application/views/awards/counties/index.php:9
 msgid "Hover over a county"
-msgstr ""
+msgstr "Najeďte myší na okres"
 
 #: application/views/awards/counties/index.php:42
 msgid "US County Award"
@@ -7963,7 +7965,7 @@ msgstr "Mapa"
 
 #: application/views/awards/counties/index.php:71
 msgid "Show Counties Map"
-msgstr ""
+msgstr "Zobrazit mapu okresů"
 
 #: application/views/awards/counties/index.php:79
 #: application/views/awards/cq/index.php:61
@@ -7986,7 +7988,7 @@ msgstr ""
 #: application/views/awards/was/index.php:63
 #: application/views/awards/wpx/index.php:25
 msgid "Press 'Apply' to update the table"
-msgstr ""
+msgstr "Stiskněte 'Použít' pro aktualizaci tabulky"
 
 #: application/views/awards/counties/index.php:110
 #: application/views/awards/cq/index.php:142
@@ -8009,7 +8011,7 @@ msgstr ""
 #: application/views/awards/wpx/index.php:79
 #: application/views/awards/wwff/index.php:128
 msgid "Band & Mode"
-msgstr ""
+msgstr "Pásmo a mód"
 
 #: application/views/awards/counties/index.php:130
 #: application/views/awards/cq/index.php:178
@@ -8033,7 +8035,7 @@ msgstr ""
 #: application/views/awards/wpx/index.php:142
 #: application/views/awards/wwff/index.php:156
 msgid "Apply"
-msgstr ""
+msgstr "Použít"
 
 #: application/views/awards/counties/index.php:163
 msgid "Worked Counties"
@@ -8227,7 +8229,7 @@ msgstr "Zobrazit mapu CQ zón"
 #: application/views/awards/wae/index.php:55
 #: application/views/awards/wwff/index.php:56
 msgid "Date Range"
-msgstr ""
+msgstr "Časové období"
 
 #: application/views/awards/cq/index.php:67
 #: application/views/awards/dxcc/index.php:61
@@ -9208,22 +9210,22 @@ msgstr "Nespojené"
 
 #: application/views/awards/jcc/index.php:183
 msgid "JCC progress"
-msgstr ""
+msgstr "Postup JCC"
 
 #: application/views/awards/jcc/index.php:193
 #: application/views/awards/jcg/index.php:193
 msgid ""
 "Attention! Wavelog does not verify whether a QSO happened before the entity "
 "deletion date."
-msgstr ""
+msgstr "Pozor! Wavelog neověřuje, zda QSO proběhlo před datem zrušení entity."
 
 #: application/views/awards/jcc/index.php:199
 msgid "No worked or confirmed JCC slots match the current filters."
-msgstr ""
+msgstr "Aktuálním filtrům neodpovídají žádné pracované ani potvrzené sloty JCC."
 
 #: application/views/awards/jcg/index.php:11
 msgid "JCG - Japan Century Gun/County Award"
-msgstr ""
+msgstr "JCG - Japan Century Gun/County Award"
 
 #: application/views/awards/jcg/index.php:12
 msgid ""
@@ -9232,30 +9234,38 @@ msgid ""
 "received a QSL card from an amateur station located in each of a number of "
 "different guns of Japan."
 msgstr ""
+"Doplňkový diplom k JCC, který místo měst pokrývá japonské okresy (gun) a jim "
+"odpovídající venkovské celky. Lze získat za navázání spojení (poslech) a "
+"obdržení QSL karty od amatérské stanice umístěné v každém z určeného počtu "
+"různých okresů Japonska."
 
 #: application/views/awards/jcg/index.php:13
 msgid ""
 "A list of QSL cards should be arranged in order of JCG reference number, "
 "however names of gun may be omitted."
 msgstr ""
+"Seznam QSL karet by měl být seřazen podle referenčního čísla JCG, názvy "
+"okresů (gun) však lze vynechat."
 
 #: application/views/awards/jcg/index.php:15
 msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "JCG reference!)"
 msgstr ""
+"Pole použitá pro tento diplom: DXCC (Japonsko) a County (musí obsahovat "
+"platnou referenci JCG!)"
 
 #: application/views/awards/jcg/index.php:39
 msgid "Show JCG Map"
-msgstr ""
+msgstr "Zobrazit mapu JCG"
 
 #: application/views/awards/jcg/index.php:183
 msgid "JCG progress"
-msgstr ""
+msgstr "Postup JCG"
 
 #: application/views/awards/jcg/index.php:199
 msgid "No worked or confirmed JCG slots match the current filters."
-msgstr ""
+msgstr "Aktuálním filtrům neodpovídají žádné pracované ani potvrzené sloty JCG."
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
@@ -9555,23 +9565,23 @@ msgstr "Dosáhli jste nejvyšší úrovně diplomu POTA!"
 
 #: application/views/awards/pota/index.php:89
 msgid "Show all tiers"
-msgstr ""
+msgstr "Zobrazit všechny úrovně"
 
 #: application/views/awards/pota/index.php:93
 msgid "Advanced Awards"
-msgstr ""
+msgstr "Pokročilé diplomy"
 
 #: application/views/awards/pota/index.php:93
 msgid "Standard Awards"
-msgstr ""
+msgstr "Standardní diplomy"
 
 #: application/views/awards/pota/index.php:118
 msgid "POTA Hunter progress"
-msgstr ""
+msgstr "Postup POTA Hunter"
 
 #: application/views/awards/pota/index.php:121
 msgid "different parks hunted"
-msgstr ""
+msgstr "různých ulovených parků"
 
 #: application/views/awards/pota/index.php:140
 #: application/views/awards/sota/index.php:50
@@ -9697,17 +9707,18 @@ msgstr "Exportovat QSO do ADIF"
 
 #: application/views/awards/sota/index.php:4
 msgid "Error loading SOTA map data"
-msgstr ""
+msgstr "Chyba při načítání mapových dat SOTA"
 
 #: application/views/awards/sota/index.php:5
 msgid "No SOTA references worked for these filters."
-msgstr ""
+msgstr "Pro tyto filtry nebyly navázány žádné reference SOTA."
 
 #: application/views/awards/sota/index.php:6
 msgid ""
 "SOTA directory not loaded - coordinates missing. Run the update_sota cron "
 "job."
 msgstr ""
+"Adresář SOTA není načten - chybí souřadnice. Spusťte cron úlohu update_sota."
 
 #: application/views/awards/sota/index.php:24
 msgid "SOTA Awards"
@@ -9782,11 +9793,11 @@ msgstr "VUCC lokátory podle pásma"
 
 #: application/views/awards/vucc/index.php:27
 msgid "Grids Worked"
-msgstr "Pracovaná pole"
+msgstr "Pracované lokátory"
 
 #: application/views/awards/vucc/index.php:28
 msgid "Grids Confirmed"
-msgstr "Potvrzená pole"
+msgstr "Potvrzené lokátory"
 
 #: application/views/awards/wab/index.php:14
 msgid "WAB - Worked All Britain Award"
@@ -9818,20 +9829,20 @@ msgstr ""
 
 #: application/views/awards/wab/index.php:19
 msgid "Total squares"
-msgstr ""
+msgstr "Celkem čtverců"
 
 #: application/views/awards/wab/index.php:21
 msgid "Squares by DXCC"
-msgstr ""
+msgstr "Čtverce podle DXCC"
 
 #: application/views/awards/wab/index.php:22
 #: application/views/awards/wab/index.php:44
 msgid "Go to square"
-msgstr ""
+msgstr "Přejít na čtverec"
 
 #: application/views/awards/wab/index.php:23
 msgid "WAB square not found"
-msgstr ""
+msgstr "Lokátor WAB nebyl nalezen"
 
 #: application/views/awards/wab/index.php:34
 msgid "View a map of worked / confirmed WAB squares"
