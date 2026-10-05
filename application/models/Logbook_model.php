@@ -55,15 +55,52 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
+	 * Load the worker library on demand
+	 *
+	 * @return bool True if the worker is configured and enabled
+	 */
+	private function worker_enabled() {
+		$this->load->is_loaded('worker') ?: $this->load->library('worker');
+		return $this->worker->is_enabled();
+	}
+
+	/**
 	 * Worker-ready: notify about new qsos for a user
+	 *
+	 * @param int $user_id User (or clubstation) whose QSO topic is notified, 0 is a no-op
+	 * @return void
 	 */
 	private function notify_qso_change($user_id) {
-		if (!$user_id) {
-			return;
-		}
-		$this->load->is_loaded('worker') ?: $this->load->library('worker');
-		if ($this->worker->is_enabled()) {
+		if ($user_id && $this->worker_enabled()) {
 			$this->worker->publish('qso.' . $user_id, ['type' => 'qso_changed']);
+		}
+	}
+
+	/**
+	 * Worker-ready: resolve the contest session a QSO belongs to
+	 *
+	 * Skips the lookup when the worker is disabled, nobody could be notified then.
+	 *
+	 * @param int $qso_id QSO primary key (COL_PRIMARY_KEY)
+	 * @return int Contest session id, 0 if the QSO is not in a session or the worker is off
+	 */
+	private function contest_session_for_notify($qso_id) {
+		if (!$this->worker_enabled()) {
+			return 0;
+		}
+		$this->load->model('contesting_model');
+		return (int) $this->contesting_model->get_linked_contest($qso_id);
+	}
+
+	/**
+	 * Worker-ready: tell an open contest logger to sync after a change outside of it
+	 *
+	 * @param int $contest_session_id From contest_session_for_notify(), 0 is a no-op
+	 * @return void
+	 */
+	private function notify_contest_change($contest_session_id) {
+		if ($contest_session_id && $this->worker_enabled()) {
+			$this->worker->publish('contest_session.' . $contest_session_id, ['type' => 'sync_required']);
 		}
 	}
 
@@ -1530,7 +1567,14 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	/* Edit QSO */
+	/**
+	 * Edit a QSO from the posted edit form
+	 *
+	 * Reads all fields from POST (id = COL_PRIMARY_KEY). Notifies the user's
+	 * QSO topic and, if the QSO is in a contest session, the contest logger.
+	 *
+	 * @return array ['success' => bool, 'detail' => string|Exception on failure]
+	 */
 	function edit() {
 		$retvals=[];
 		$retvals['success']=false;
@@ -1955,6 +1999,7 @@ class Logbook_model extends CI_Model {
 			$this->db->update($this->config->item('table_name'), $data);
 			$retvals['success']=true;
 			$this->notify_qso_change($station_profile->user_id);
+			$this->notify_contest_change($this->contest_session_for_notify($this->input->post('id', true)));
 
 			// Invalidate DXCluster cache for this callsign
 			$this->dxclustercache->invalidate_for_callsign($data['COL_CALL']);
@@ -4701,9 +4746,10 @@ class Logbook_model extends CI_Model {
 		];
 	}
 
-	/* Delete QSO based on the QSO ID */
 	/**
 	 * Delete a QSO (and its OQRS/QSL/eQSL artefacts) after an ownership check.
+	 * Notifies the user's QSO topic and, if the QSO was in a contest session,
+	 * the contest logger.
 	 *
 	 * @param int      $id      QSO primary key (COL_PRIMARY_KEY).
 	 * @param int|null $user_id User to authorise against. Defaults to the
@@ -4715,6 +4761,9 @@ class Logbook_model extends CI_Model {
 			// was just verified, so read it trusted (works without a session too).
 			$qso = $this->get_qso($id, true);
 			$callsign = ($qso !== null && $qso->num_rows() > 0) ? $qso->row()->COL_CALL : null;
+
+			// Look up before the delete, contest_qsos cascades with it
+			$contest_session_id = $this->contest_session_for_notify($id);
 
 			$this->load->model('qsl_model');
 			$this->load->model('eqsl_images');
@@ -4730,6 +4779,7 @@ class Logbook_model extends CI_Model {
 
 			// qso was accessible so notify qso_changed for the current user_id (can also be a clubstation)
 			$this->notify_qso_change($user_id ?? $this->session->userdata('user_id'));
+			$this->notify_contest_change($contest_session_id);
 
 			// Invalidate DXCluster cache for this callsign
 			$this->dxclustercache->invalidate_for_callsign($callsign);
