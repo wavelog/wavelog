@@ -42,6 +42,13 @@ private $previous_version = "3.1.7";
 		$this->db->delete('options');
 		$this->db->insert('options', array('option_name' => 'adif_version', 'option_value' => $this->current_version));
 
+		$this->db->where('adifname', 'K1USNSST');
+		$this->db->update('contest', array('adifname' => 'K1USN-SST'));
+
+		$exists = $this->db->where('adifname', 'WFD')->get('contest')->num_rows() > 0;
+		if (!$exists) {
+			$this->db->insert('contest', array('name' => 'Winter Field Day (2017 and later)','adifname' => 'WFD'));
+		}
 	}
 
 	public function down() {
