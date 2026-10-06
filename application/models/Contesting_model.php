@@ -284,6 +284,8 @@ class Contesting_model extends CI_Model {
 	 * Deletes a contest session and its associated QSOs for the current user.
 	 *
 	 * @param int $contest_session_id The ID of the contest session to delete.
+	 * @param bool $delete_qsos Also delete the linked QSOs from the logbook, otherwise only unlink them.
+	 * @param int|null $user_id Owner to authorise against, defaults to the session user.
 	 * @return bool True on success, false on failure.
 	 */
 	function delete_contest_session($contest_session_id, $delete_qsos = false, $user_id = null) {
@@ -293,18 +295,22 @@ class Contesting_model extends CI_Model {
 		}
 		$user_id = $user_id ?? $this->session->userdata('user_id');
 
+		$qsos = [];
 		if ($delete_qsos) {
+			$qsos = $this->db->query("SELECT qso_id FROM contest_qsos WHERE contest_session_id = ?", [$contest_session_id])->result();
+		}
+
+		// Unlink first, so Logbook_model::delete() does not notify the session being torn down once per QSO
+		$this->db->query("DELETE FROM contest_qsos WHERE contest_session_id = ?", [$contest_session_id]);
+
+		if ($qsos) {
 			$this->load->is_loaded('logbook_model') ?: $this->load->model('logbook_model');
-			$query = $this->db->query("SELECT qso_id FROM contest_qsos WHERE contest_session_id = ?", [$contest_session_id]);
-			foreach ($query->result() as $row) {
+			foreach ($qsos as $row) {
 				// pass the resolved user explicitly - Logbook_model::delete()
 				// verifies ownership and would silently no-op in a sessionless
 				// (API) context otherwise
 				$this->logbook_model->delete($row->qso_id, $user_id);
 			}
-			// contest_qsos rows are cascade-deleted via FK when logbook rows are removed
-		} else {
-			$this->db->query("DELETE FROM contest_qsos WHERE contest_session_id = ?", [$contest_session_id]);
 		}
 
 		$this->db->query("DELETE FROM contest_session WHERE id = ? AND user_id = ?", [$contest_session_id, $user_id]);
@@ -415,7 +421,7 @@ class Contesting_model extends CI_Model {
 				JOIN contest_session cs ON cs.id = cq.contest_session_id
 				JOIN " . $this->config->item('table_name') . " lb ON lb.COL_PRIMARY_KEY = cq.qso_id
 				WHERE cq.contest_session_id = ? {$band_constraint}
-				ORDER BY cq.id ASC";
+				ORDER BY lb.COL_TIME_ON ASC, cq.id ASC";
 
 		$query = $this->db->query($sql, $bindings);
 		return $query->result_array();
@@ -886,7 +892,7 @@ class Contesting_model extends CI_Model {
 				JOIN {$table} ON {$table}.COL_PRIMARY_KEY = cq.qso_id
 				JOIN station_profile ON station_profile.station_id = {$table}.station_id
 				WHERE cq.contest_session_id = ? AND cs.user_id = ? {$band_constraint}
-				ORDER BY {$table}.COL_TIME_ON ASC";
+				ORDER BY {$table}.COL_TIME_ON ASC, cq.id ASC";
 
 		return $this->db->query($sql, $bindings);
 		

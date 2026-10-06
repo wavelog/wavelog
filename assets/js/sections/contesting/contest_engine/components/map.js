@@ -174,8 +174,7 @@ class MapComponent {
 			iconSize: [8, 8]
 		});
 
-		// Per-QSO markers, keyed by serverId or tmpId, so edits move a marker instead of
-		// duplicating it. Mirrors how the QSO table tracks rows.
+		// Per-QSO markers, keyed by tmpId, so edits move a marker instead of duplicating it.
 		this.qsoMarkers = new Map();
 		this.currentKey = null;   // key of the highlighted (current) QSO
 		this.pathLine = null;     // geodesic line station -> current QSO
@@ -201,6 +200,12 @@ class MapComponent {
 		if (this.dataStore) {
 			this.dataStore.on('qso_added', (qso) => {
 				this.upsertQsoMarker(qso, true);
+			});
+
+			// Edited QSO (own edit or sync delta): move its marker
+			this.dataStore.on('qso_updated', (qso) => {
+				this.upsertQsoMarker(qso, false);
+				if (this.prefs.autofit) this.fitAllMarkers(this._previewMarker?.getLatLng() ?? null);
 			});
 
 			// Current QSO location preview (callsign/grid entry, before logging)
@@ -318,10 +323,12 @@ class MapComponent {
 	}
 
 	/**
-	 * Stable key for a QSO marker: prefer serverId, fall back to tmpId.
+	 * Stable key for a QSO marker.
+	 * @param {Object} qso
+	 * @returns {string|null}
 	 */
 	_qsoKey(qso) {
-		return qso.serverId ? `s${qso.serverId}` : (qso.tmpId ? `t${qso.tmpId}` : null);
+		return qso.tmpId ? `t${qso.tmpId}` : null;
 	}
 
 	/**
@@ -329,6 +336,7 @@ class MapComponent {
 	 * edit (same QSO, new position) moves the existing marker instead of duplicating it.
 	 * @param {Object} qso
 	 * @param {boolean} makeCurrent  Highlight this QSO as the current one (red + pan).
+	 * @returns {void}
 	 */
 	upsertQsoMarker(qso, makeCurrent = false) {
 		if (!this.map || !this.markers) return;
@@ -339,6 +347,7 @@ class MapComponent {
 		if (!latlng) {
 			// No position: drop any stale marker for this key
 			this._removeMarker(key);
+			if (key === this.currentKey && !this._previewMarker) this.clearPathLine();
 			return;
 		}
 
@@ -352,6 +361,7 @@ class MapComponent {
 		}
 
 		if (makeCurrent) this.setCurrent(key, latlng);
+		else if (key === this.currentKey && !this._previewMarker) this.updatePathLine(latlng);
 	}
 
 	_removeMarker(key) {
