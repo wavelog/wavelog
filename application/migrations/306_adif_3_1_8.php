@@ -42,6 +42,7 @@ private $previous_version = "3.1.7";
 		$this->db->delete('options');
 		$this->db->insert('options', array('option_name' => 'adif_version', 'option_value' => $this->current_version));
 
+		// Fix some missing contests or wrong names. Excluded from downgrade
 		$this->db->where('adifname', 'K1USNSST');
 		$this->db->update('contest', array('adifname' => 'K1USN-SST'));
 
@@ -49,6 +50,9 @@ private $previous_version = "3.1.7";
 		if (!$exists) {
 			$this->db->insert('contest', array('name' => 'Winter Field Day (2017 and later)','adifname' => 'WFD'));
 		}
+
+		$this->db->query("UPDATE contest SET adifname = REPLACE(adifname, ' (import-only)', '') WHERE adifname LIKE '%(import-only)%'");
+
 	}
 
 	public function down() {
