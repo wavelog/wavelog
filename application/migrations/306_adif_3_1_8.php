@@ -51,7 +51,12 @@ private $previous_version = "3.1.7";
 			$this->db->insert('contest', array('name' => 'Winter Field Day (2017 and later)','adifname' => 'WFD'));
 		}
 
+		// Remove the " (import-only)" tags from ADIF names of the contests
 		$this->db->query("UPDATE contest SET adifname = REPLACE(adifname, ' (import-only)', '') WHERE adifname LIKE '%(import-only)%'");
+
+		// Replace some non-printable chars from adifname which were instroduced by old mig 063 (only affects migrated CL instances)
+		$this->db->query('UPDATE contest SET adifname = REGEXP_REPLACE(adifname, \'[^\\\\x20-\\\\x7E]\', \'\')');
+		$this->db->query('UPDATE contest SET name = REGEXP_REPLACE(name, \'[^\\\\x20-\\\\x7E]\', \'\')');
 
 	}
 
