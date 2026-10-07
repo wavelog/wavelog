@@ -5059,6 +5059,37 @@ class Logbook_model extends CI_Model {
 		return false;
 	}
 
+	/**
+	 * Choose the station grid stored for an imported QSO.
+	 *
+	 * A station profile identifies the operating area, while a mobile or portable
+	 * QSO can carry a more precise location within that area. VUCC profiles and
+	 * contradictory, absent, or no-more-precise ADIF values retain the profile.
+	 *
+	 * @param array $record ADIF record as associative array
+	 * @param string|null $station_grid Grid value from station profile
+	 * @return string Normalized grid to store in COL_MY_GRIDSQUARE
+	 */
+	function get_import_my_gridsquare($record, $station_grid) {
+		$station_grid = trim(strtoupper($station_grid ?? ''));
+		$record_grid = trim(strtoupper($record['my_gridsquare'] ?? ''));
+
+		if ($station_grid === '' || strpos($station_grid, ',') !== false) {
+			return $station_grid;
+		}
+
+		if ($record_grid === '' || strpos($record_grid, ',') !== false || strlen($record_grid) <= strlen($station_grid)) {
+			return $station_grid;
+		}
+
+		$adif_grid = $this->get_adif_grid_value($record);
+		if (!$this->adif_grid_check_location($adif_grid, $station_grid)) {
+			return $station_grid;
+		}
+
+		return $record_grid;
+	}
+
 	function import_bulk($records, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $skipGridCheck = false) {
 		$custom_errors['errormessage'] = '';
 		$critical_errors = [];
@@ -5973,7 +6004,7 @@ class Logbook_model extends CI_Model {
 					if (strpos(trim($row['station_gridsquare']), ',') !== false) {
 						$data['COL_MY_VUCC_GRIDS'] = strtoupper(trim($row['station_gridsquare']));
 					} else {
-						$data['COL_MY_GRIDSQUARE'] = strtoupper(trim($row['station_gridsquare']));
+						$data['COL_MY_GRIDSQUARE'] = $this->get_import_my_gridsquare($record, $row['station_gridsquare']);
 					}
 
 					$data['COL_MY_CITY'] = trim($row['station_city']);
