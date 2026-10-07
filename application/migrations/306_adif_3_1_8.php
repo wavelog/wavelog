@@ -54,7 +54,7 @@ private $previous_version = "3.1.7";
 		// Remove the " (import-only)" tags from ADIF names of the contests
 		$this->db->query("UPDATE contest SET adifname = REPLACE(adifname, ' (import-only)', '') WHERE adifname LIKE '%(import-only)%'");
 
-		// Replace some non-printable chars from adifname which were instroduced by old mig 063 (only affects migrated CL instances)
+		// Replace some non-printable chars from name and adifname which were instroduced by old mig 063 (only affects migrated CL instances)
 		$this->db->query('UPDATE contest SET adifname = REGEXP_REPLACE(adifname, \'[^\\\\x20-\\\\x7E]\', \'\')');
 		$this->db->query('UPDATE contest SET name = REGEXP_REPLACE(name, \'[^\\\\x20-\\\\x7E]\', \'\')');
 
