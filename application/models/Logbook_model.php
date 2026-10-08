@@ -395,7 +395,7 @@ class Logbook_model extends CI_Model {
 			'COL_SIG' => strtoupper(trim($qso_data['sig'] ?? '')) ?? NULL,
 			'COL_SIG_INFO' => strtoupper(trim($qso_data['sig_info'] ?? '')) ?? NULL,
 			'COL_DARC_DOK' => strtoupper(trim($darc_dok ?? '')) ?? NULL,
-			'COL_NOTES' => strtoupper(trim($qso_data['notes'] ?? '')) ?? NULL,
+			'COL_NOTES' => trim($qso_data['notes'] ?? '') ?: NULL,
 			'COL_EMAIL' => $email ?? NULL,
 			'COL_REGION' => $region ?? NULL,
 		);
