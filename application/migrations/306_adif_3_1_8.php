@@ -55,8 +55,16 @@ private $previous_version = "3.1.7";
 		$this->db->query("UPDATE contest SET adifname = REPLACE(adifname, ' (import-only)', '') WHERE adifname LIKE '%(import-only)%'");
 
 		// Replace some non-printable chars from name and adifname which were instroduced by old mig 063 (only affects migrated CL instances)
-		$this->db->query('UPDATE contest SET adifname = REGEXP_REPLACE(adifname, \'[^\\\\x20-\\\\x7E]\', \'\')');
-		$this->db->query('UPDATE contest SET name = REGEXP_REPLACE(name, \'[^\\\\x20-\\\\x7E]\', \'\')');
+		$this->db->query("UPDATE contest SET name = 'WIA Harry Angel Memorial 80m Sprint' WHERE adifname = 'WIA-HARRY ANGEL'");
+		$this->db->query("UPDATE contest SET name = 'WIA John Moyle Memorial Field Day' WHERE adifname = 'WIA-JMMFD'");
+		$this->db->query("UPDATE contest SET name = 'WIA Oceania DX (OCDX) Contest' WHERE adifname = 'WIA-OCDX'");
+		$this->db->query("UPDATE contest SET name = 'WIA Remembrance Day' WHERE adifname = 'WIA-REMEMBRANCE'");
+		$this->db->query("UPDATE contest SET name = 'WIA Ross Hull Memorial VHF/UHF Contest' WHERE adifname = 'WIA-ROSS HULL'");
+		$this->db->query("UPDATE contest SET name = 'WIA Trans Tasman Low Bands Challenge' WHERE adifname = 'WIA-TRANS TASMAN'");
+		$this->db->query("UPDATE contest SET name = 'WIA VHF UHF Field Days' WHERE adifname = 'WIA-VHF/UHF FD'");
+		$this->db->query("UPDATE contest SET name = 'WIA VK Shires' WHERE adifname = 'WIA-VK SHIRES'");
+		$this->db->query("UPDATE contest SET name = 'IARC Holyland Contest' WHERE adifname = 'HOLYLAND'");
+		$this->db->query("UPDATE contest SET adifname = 'URE-DX' WHERE name = 'Ukrainian DX Contest'");
 
 	}
 
