@@ -2,7 +2,7 @@
     <iframe
         class="ham-dash-frame"
         src="<?= site_url('ham-dash/'); ?>"
-        title="<?= html_escape(__("Propagation Map")); ?>"
+        title="<?= html_escape("Ham-Dash"); ?>"
         loading="eager"
         referrerpolicy="same-origin"
     ></iframe>

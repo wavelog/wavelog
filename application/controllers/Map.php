@@ -73,7 +73,7 @@ class Map extends CI_Controller {
  * Propagation map
  */
 public function propagation() {
-        $data['page_title'] = __("Propagation Map");
+        $data['page_title'] = "Ham-Dash";
         $footerData = [];
 
         $this->load->view('interface_assets/header', $data);

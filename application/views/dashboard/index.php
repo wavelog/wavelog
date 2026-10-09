@@ -228,7 +228,7 @@ function echo_table_header_col($name) {
 	<div class="d-flex justify-content-end mt-3">
 		<a class="btn btn-primary" href="<?= site_url('map/propagation'); ?>">
 			<i class="fas fa-broadcast-tower" aria-hidden="true"></i>
-			<?= __("Propagation Map"); ?>
+			<?= "Ham-Dash"; ?>
 		</a>
 	</div>
 </div>

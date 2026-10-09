@@ -77,6 +77,11 @@
 		} ?>
 		</ul>
 		<ul class="navbar-nav ms-auto">
+            <?php if (!empty($slug)) { ?>
+            <li class="nav-item">
+                <a class="btn btn-outline-primary me-2" href="<?= site_url('ham-dash/'); ?>" target="_blank" rel="noopener" title="Ham-Dash in einem neuen Tab öffnen"><i class="fas fa-globe" aria-hidden="true"></i> Ham-Dash</a>
+            </li>
+            <?php } ?>
 			<?php if($this->optionslib->get_option('public_github_button') != "false") { ?>  <!--  != false  causes to set it on per default -->
 				<li class="nav-item">
 					<a class="btn btn-secondary" href="https://github.com/wavelog/wavelog" target="_blank"><?= __("Visit Wavelog on Github"); ?></a>
