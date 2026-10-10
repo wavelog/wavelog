@@ -691,7 +691,7 @@ class Logbook_model extends CI_Model {
 				$sql .= ' AND (COL_PROP_MODE != "SAT" OR COL_PROP_MODE IS NULL)';
 
 				// Only count allowed bands for Polska Award
-				$bands = array('160M','80M','40M','30M','20M','17M','15M','12M','10M','6M','2M');
+				$bands = array('160m','80m','40m','30m','20m','17m','15m','12m','10m','6m','2m');
 				$sql .= ' AND `COL_BAND` IN ('.implode(',', array_fill(0, count($bands), '?')).')';
 				$binding = array_merge($binding, $bands);
 
@@ -781,7 +781,7 @@ class Logbook_model extends CI_Model {
 				$sql .= ' AND (COL_PROP_MODE != "SAT" OR COL_PROP_MODE IS NULL)';
 
 				// Only count allowed bands for Italian Award
-				$bands = array('160M','80M','40M','30M','20M','17M','15M','12M','10M','6M','2M');
+				$bands = array('160m','80m','40m','30m','20m','17m','15m','12m','10m','6m','2m');
 				$sql .= ' AND `COL_BAND` IN ('.implode(',', array_fill(0, count($bands), '?')).')';
 				$binding = array_merge($binding, $bands);
 
@@ -6174,11 +6174,11 @@ class Logbook_model extends CI_Model {
 
 		if ($pota_ref != '') {
 			if (substr(strtoupper($call), -2) == "/P") {
-				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE COL_CALL = ? AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND UPPER(COL_BAND) = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
-				$check = $this->db->query($sql, array($call, $time_on, $time_on, strtoupper($band), strtoupper($mode), $logbooks_locations_array));
+				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE COL_CALL = ? AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND COL_BAND = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
+				$check = $this->db->query($sql, array($call, $time_on, $time_on, $band, strtoupper($mode), $logbooks_locations_array));
 			} else {
-				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE (COL_CALL = ? OR COL_CALL = ?) AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND UPPER(COL_BAND) = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
-				$check = $this->db->query($sql, array($call, $call."/P", $time_on, $time_on, strtoupper($band), strtoupper($mode), $logbooks_locations_array));
+				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE (COL_CALL = ? OR COL_CALL = ?) AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND COL_BAND = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
+				$check = $this->db->query($sql, array($call, $call."/P", $time_on, $time_on, $band, strtoupper($mode), $logbooks_locations_array));
 			}
 			if ($check->num_rows() != 1) {
 				return array(2, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td class=\"callsign\">" . $call . "</td><td>" . $band . "</td><td>" . $mode . "</td><td></td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("QSO could not be matched") . "</td></tr>");

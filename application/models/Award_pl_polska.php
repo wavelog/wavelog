@@ -60,7 +60,7 @@ class Award_pl_polska extends CI_Model {
 			AND COL_DXCC = '" . $this->DXCC_POLAND . "'
 			AND COL_TIME_ON >= '" . $this->AWARD_START_DATE . "'
 			AND (COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)
-			AND COL_BAND IN ('" . implode("','", $this->VALID_BANDS) . "')
+			AND COL_BAND IN ('" . implode("','", array_map('strtolower', $this->VALID_BANDS)) . "')
 			AND COL_STATE IS NOT NULL AND COL_STATE != ''
 			AND UPPER(COL_STATE) IN ('" . implode("','", $this->getVoivodeshipCodes()) . "')";
 
@@ -73,7 +73,7 @@ class Award_pl_polska extends CI_Model {
 	private function addBandFilter($sql, $band, &$binding) {
 		if ($band != 'All') {
 			$sql .= " AND COL_BAND = ?";
-			$binding[] = $band;
+			$binding[] = strtolower($band);
 		}
 		return $sql;
 	}
