@@ -158,11 +158,11 @@
 					}
 				}
 
-				$valid_bands = array('160M', '80M', '40M', '30M', '20M', '17M', '15M', '12M', '10M', '6M', '2M');
+				$valid_bands = array('160m', '80m', '40m', '30m', '20m', '17m', '15m', '12m', '10m', '6m', '2m');
 				if (isset($polska_classes_bands)) {
 					foreach ($polska_classes_bands as $band => $class) {
-						if (in_array(strtoupper($band), $valid_bands) && $class) {
-							$eligible_classes[] = strtoupper($band) . ' (' . ucfirst($class) . ')';
+						if (in_array($band, $valid_bands) && $class) {
+							$eligible_classes[] = $band . ' (' . ucfirst($class) . ')';
 						}
 					}
 				}
@@ -330,7 +330,7 @@
 						elseif ($class_name == 'silver') $icon = '<i class="fas fa-medal" style="color: #c0c0c0 !important;"></i>';
 						elseif ($class_name == 'bronze') $icon = '<i class="fas fa-medal" style="color: #cd7f32 !important;"></i>';
 						elseif ($class_name == 'basic') $icon = '<i class="fas fa-certificate text-secondary"></i>';
-						echo '<span title="' . __('Bravo! You are entitled to') . ' ' . strtoupper($band) . ' ' . ucfirst($class_name) . ' ' . __('category award!') . '">' . $icon . '</span> ';
+						echo '<span title="' . __('Bravo! You are entitled to') . ' ' . $band . ' ' . ucfirst($class_name) . ' ' . __('category award!') . '">' . $icon . '</span> ';
 					}
 
 					echo '<strong>' . $count . '/16</strong></td>';
@@ -357,17 +357,17 @@
 									<option value="DIGI"><?= __("DIGI") ?></option>
 								</optgroup>
 								<optgroup label="<?= __("Band Categories") ?>">
-									<option value="160M">160M</option>
-									<option value="80M">80M</option>
-									<option value="40M">40M</option>
-									<option value="30M">30M</option>
-									<option value="20M">20M</option>
-									<option value="17M">17M</option>
-									<option value="15M">15M</option>
-									<option value="12M">12M</option>
-									<option value="10M">10M</option>
-									<option value="6M">6M</option>
-									<option value="2M">2M</option>
+									<option value="160m">160m</option>
+									<option value="80m">80m</option>
+									<option value="40m">40m</option>
+									<option value="30m">30m</option>
+									<option value="20m">20m</option>
+									<option value="17m">17m</option>
+									<option value="15m">15m</option>
+									<option value="12m">12m</option>
+									<option value="10m">10m</option>
+									<option value="6m">6m</option>
+									<option value="2m">2m</option>
 								</optgroup>
 							</select>
 						</div>
