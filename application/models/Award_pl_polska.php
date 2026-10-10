@@ -5,7 +5,7 @@ class Award_pl_polska extends CI_Model {
 	// Award constants
 	private $DXCC_POLAND = '269';
 	private $AWARD_START_DATE = '1999-01-01';
-	private $VALID_BANDS = array('160M','80M','40M','30M','20M','17M','15M','12M','10M','6M','2M');
+	private $VALID_BANDS = array('160m','80m','40m','30m','20m','17m','15m','12m','10m','6m','2m');
 	private $MODE_CATEGORIES = array('MIXED', 'PHONE', 'CW', 'DIGI');
 
 	// Voivodeship codes and names
@@ -60,7 +60,7 @@ class Award_pl_polska extends CI_Model {
 			AND COL_DXCC = '" . $this->DXCC_POLAND . "'
 			AND COL_TIME_ON >= '" . $this->AWARD_START_DATE . "'
 			AND (COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)
-			AND COL_BAND IN ('" . implode("','", array_map('strtolower', $this->VALID_BANDS)) . "')
+			AND COL_BAND IN ('" . implode("','", $this->VALID_BANDS) . "')
 			AND COL_STATE IS NOT NULL AND COL_STATE != ''
 			AND UPPER(COL_STATE) IN ('" . implode("','", $this->getVoivodeshipCodes()) . "')";
 
@@ -351,7 +351,7 @@ class Award_pl_polska extends CI_Model {
 
 		if (in_array($category, $this->MODE_CATEGORIES)) {
 			$options['mode_category'] = $category;
-		} elseif (in_array($category, $this->VALID_BANDS)) {
+		} elseif (in_array(strtolower($category), $this->VALID_BANDS)) {
 			$options['band'] = $category;
 		}
 

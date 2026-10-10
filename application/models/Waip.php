@@ -5,7 +5,7 @@ class Waip extends CI_Model {
 	// Award constants
 	private $DXCC_ITALY = '248';
 	private $DXCC_SARDINIA = '225';
-	private $VALID_BANDS = array('160M','80M','40M','30M','20M','17M','15M','12M','10M');
+	private $VALID_BANDS = array('160m','80m','40m','30m','20m','17m','15m','12m','10m');
 	private $MODE_CATEGORIES = array('MIXED', 'PHONE', 'CW', 'DIGI');
 	private $AWARD_START_DATE = '1948-06-02';
 
@@ -155,7 +155,7 @@ class Waip extends CI_Model {
 			AND COL_TIME_ON >= '" . $this->AWARD_START_DATE . "'
 			AND COL_DXCC IN ('" . $this->DXCC_ITALY . "', '" . $this->DXCC_SARDINIA . "')
 			AND (COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)
-			AND COL_BAND IN ('" . implode("','", array_map('strtolower', $this->VALID_BANDS)) . "')
+			AND COL_BAND IN ('" . implode("','", $this->VALID_BANDS) . "')
 			AND COL_STATE IS NOT NULL AND COL_STATE != ''
 			AND UPPER(COL_STATE) IN ('" . implode("','", $this->getProvinceCodes()) . "')";
 
@@ -386,7 +386,7 @@ class Waip extends CI_Model {
 
 		if (in_array($category, $this->MODE_CATEGORIES)) {
 			$options['mode_category'] = $category;
-		} elseif (in_array($category, $this->VALID_BANDS)) {
+		} elseif (in_array(strtolower($category), $this->VALID_BANDS)) {
 			$options['band'] = $category;
 		}
 
