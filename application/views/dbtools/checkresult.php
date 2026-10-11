@@ -127,7 +127,9 @@ function check_dxcc($result, $custom_date_format) { ?>
 				</table>
 			</div>
 
-		<?php }
+		<?php } else {
+			echo '<div class="alert alert-success">' . __("No incorrect DXCCs were found.") . '</div>';
+		}
 }
 
 function check_incorrect_gridsquares($result, $custom_date_format) { ?>
