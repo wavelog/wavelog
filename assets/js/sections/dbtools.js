@@ -521,7 +521,16 @@ function checkDxcc() {
 			$('.result').html(response);
 			initDbtoolsTable('#dxccCheckTable', {
 				ordering: true,
-				onInit: rebind_checkbox_trigger_dxcc,
+				onInit: function () {
+					rebind_checkbox_trigger_dxcc();
+
+					$('#forceDxccUpdate').on('change', function() {
+						$('#dxccCheckTable').DataTable().column(8).search('').draw();
+						$('#checkBoxAllDxcc').prop('checked', false);
+						$('#dxccCheckTable tbody input[type="checkbox"]').prop('checked', false);
+						$('#dxccCheckTable tbody tr.activeRow').removeClass('activeRow');
+					});
+				},
 			});
 		},
 		error: function(xhr, status, error) {
@@ -600,12 +609,19 @@ function rebind_checkbox_trigger_dxcc() {
 	$('#checkBoxAllDxcc').change(function (event) {
 		if (this.checked) {
 			$('#dxccCheckTable tbody tr').each(function (i) {
-				selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'dxccCheckTable');
+				var result = $(this).first().closest('tr').find("td[id='resultDxcc']").text().trim();
+				if ((result != 'Not Found' && result != '- None -') || $('#forceDxccUpdate').prop("checked")) {
+					selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'dxccCheckTable');
+				}
 			});
+			if (!$('#forceDxccUpdate').prop("checked")) {
+				$('#dxccCheckTable').DataTable().column(8).search('^(?!(Not Found|- None -|Invalid)$)', true, false).draw();
+			}
 		} else {
 			$('#dxccCheckTable tbody tr').each(function (i) {
 				unselectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'dxccCheckTable');
 			});
+			$('#dxccCheckTable').DataTable().column(8).search('').draw();
 		}
 	});
 }
@@ -666,7 +682,10 @@ function fixDxccSelected() {
 	let id_list = [];
 	$('#dxccCheckTable tbody input:checked').each(function () {
 		let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
-		id_list.push(id);
+		var result = $(this).closest('tr').find("td[id='resultDxcc']").text().trim();
+		if ((result != 'Not Found' && result != '- None -' && result != 'Invalid') || $('#forceDxccUpdate').prop("checked")) {
+			id_list.push(id);
+		}
 	});
 
 	if (id_list.length === 0) {

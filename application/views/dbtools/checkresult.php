@@ -70,12 +70,12 @@ function check_qsos_missing_continent($result) { ?>
 function check_dxcc($result, $custom_date_format) { ?>
 	<h5><?= __("DXCC Check Results") ?></h5>
 	<?php
-		echo __("Callsigns tested: ") .  $result['calls_tested'] . ". <br />";
-		echo __("Execution time: ") . round($result['execution_time'], 2) . "s. <br />";
-		echo __("Number of potential QSOs with wrong DXCC: ") . count($result['result']);
 
 		if ($result) { ?>
-		<br />
+		<div class="form-check form-check-lg border rounded p-3 bg-light h-100">
+				<input class="form-check-input me-2" type="checkbox" id="forceDxccUpdate" />
+				<?= __("Force update even if DXCC is not found, or set to none.") ?>
+			</div>
 		<button type="button" class="mt-2 mb-2 btn btn-sm btn-primary ld-ext-right" id="fixSelectedDxccBtn" onclick="fixDxccSelected(true)">
 			<?= __("Update selected") ?><div class="ld ld-ring ld-spin"></div>
 		</button>
@@ -107,7 +107,7 @@ function check_dxcc($result, $custom_date_format) { ?>
 									<td style='text-align: center'><div class="<?php echo $qso['lotw_qsl_rcvd'] == 'Y' ? 'bg-success' : 'bg-danger'; ?>"><?php echo $qso['lotw_qsl_rcvd'] == 'Y' ? __('Yes') : __('No'); ?></div></td>
 									<td><?php echo html_escape($qso['station_profile']); ?></td>
 									<td><?php echo htmlspecialchars(ucwords(strtolower($qso['existing_dxcc']), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
-									<td><?php echo htmlspecialchars(ucwords(strtolower($qso['result_country']), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
+									<td id='resultDxcc'><?php echo htmlspecialchars(ucwords(strtolower($qso['result_country']), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
 								</tr>
 						<?php endforeach; ?>
 					</tbody>

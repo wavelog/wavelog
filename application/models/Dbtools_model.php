@@ -560,7 +560,7 @@ class Dbtools_model extends CI_Model {
 		$dxccobj = new Dxcc();
 
 		if ($r->num_rows() > 0) { //query dxcc_prefixes
-			$sql = "update " . $this->config->item('table_name') . " set COL_COUNTRY = ?, COL_DXCC = ?, COL_CQZ = ?, COL_CONT = ? where COL_PRIMARY_KEY = ?";
+			$sql = "update " . $this->config->item('table_name') . " set COL_COUNTRY = ?, COL_DXCC = ?, COL_CQZ = ?, COL_ITUZ = null, COL_CONT = ? where COL_PRIMARY_KEY = ?";
 			$q = $this->db->conn_id->prepare($sql);
 			foreach ($r->result_array() as $row) {
 				$qso_date = $row['COL_TIME_ON'];
