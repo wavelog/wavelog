@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-06 15:17+0000\n"
-"PO-Revision-Date: 2026-10-03 08:39+0000\n"
+"PO-Revision-Date: 2026-10-10 20:23+0000\n"
 "Last-Translator: Lars Granheim <lb3qj.lars@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/nb_NO/>\n"
@@ -498,7 +498,7 @@ msgstr "API-nøkkel har blitt slettet"
 #: application/views/logbookadvanced/edit.php:27
 #: application/views/qso/edit_ajax.php:36
 msgid "Awards"
-msgstr ""
+msgstr "Priser"
 
 #: application/controllers/Awards.php:100
 #: application/controllers/Awards.php:209
@@ -527,7 +527,7 @@ msgstr ""
 #: application/controllers/Awards.php:3209
 #, php-format
 msgid "Awards - %s"
-msgstr ""
+msgstr "Priser - %s"
 
 #: application/controllers/Awards.php:100
 #: application/views/awards/dok/index.php:173
@@ -583,11 +583,11 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:391
 msgid "Awards - WAPC"
-msgstr ""
+msgstr "Priser – WAPC"
 
 #: application/controllers/Awards.php:471
 msgid "Awards - WAJA"
-msgstr ""
+msgstr "Priser - WAJA"
 
 #: application/controllers/Awards.php:524 application/views/bands/index.php:54
 #: application/views/interface_assets/header.php:273
@@ -606,7 +606,7 @@ msgstr "VUCC"
 
 #: application/controllers/Awards.php:693
 msgid "Log View - VUCC"
-msgstr ""
+msgstr "Loggvisning - VUCC"
 
 #: application/controllers/Awards.php:744
 #: application/controllers/Callstats.php:101
@@ -619,7 +619,7 @@ msgstr ""
 #: application/controllers/Timeline.php:140
 #: application/controllers/Timeline.php:143
 msgid "Log View"
-msgstr ""
+msgstr "Loggvisning"
 
 #: application/controllers/Awards.php:745
 #: application/controllers/Countqsoby.php:102
@@ -784,35 +784,35 @@ msgstr "IOTA (Island On The Air)"
 #: application/controllers/Awards.php:1456
 #: application/views/interface_assets/header.php:307
 msgid "US Counties"
-msgstr ""
+msgstr "Amerikanske kommuner"
 
 #: application/controllers/Awards.php:1540
 msgid "Log View - Counties"
-msgstr ""
+msgstr "Loggvisning - kommuner"
 
 #: application/controllers/Awards.php:1556
 msgid "Awards - "
-msgstr ""
+msgstr "Priser - "
 
 #: application/controllers/Awards.php:1575
 #: application/controllers/Awards.php:1611
 msgid "Gridsquares worked"
-msgstr ""
+msgstr "Kjørte ruter"
 
 #: application/controllers/Awards.php:1576
 #: application/controllers/Awards.php:1612
 msgid "Gridsquares confirmed on LoTW"
-msgstr ""
+msgstr "Ruter bekreftet via LoTW"
 
 #: application/controllers/Awards.php:1577
 #: application/controllers/Awards.php:1613
 msgid "Gridsquares confirmed by paper QSL"
-msgstr ""
+msgstr "Ruter bekreftet med papir-QSL"
 
 #: application/controllers/Awards.php:1578
 #: application/controllers/Awards.php:1614
 msgid "Total Gridsquares worked"
-msgstr ""
+msgstr "Totalt antall kjørte ruter"
 
 #: application/controllers/Awards.php:1595
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -875,7 +875,7 @@ msgstr "Wales"
 #: application/views/awards/wac/index.php:7
 #: application/views/interface_assets/header.php:212
 msgid "Worked All Continents (WAC)"
-msgstr ""
+msgstr "Kjørt alle kontinenter (WAC)"
 
 #: application/controllers/Awards.php:2979
 msgid "WAE"
@@ -895,11 +895,11 @@ msgstr "WPX"
 #: application/views/awards/pl_polska/index.php:41
 #: application/views/interface_assets/header.php:289
 msgid "\"Polska\" Award"
-msgstr ""
+msgstr "\"Polska\"-diplom"
 
 #: application/controllers/Awards.php:3253
 msgid "Awards - AMSAT Rover"
-msgstr ""
+msgstr "Diplomer – AMSAT Rover"
 
 #: application/controllers/Azimuthal.php:14
 #: application/views/interface_assets/header.php:338
@@ -982,11 +982,11 @@ msgstr "Ingen kallesignal oppgitt."
 #: application/controllers/Calltester.php:286
 #: application/controllers/Calltester.php:346
 msgid "CSV Call Tester"
-msgstr ""
+msgstr "CSV-kallesignালtester"
 
 #: application/controllers/Calltester.php:963
 msgid "Callsign Tester"
-msgstr ""
+msgstr "Kallesignaltester"
 
 #: application/controllers/Club.php:46 application/models/Club_model.php:139
 #: application/models/Club_model.php:230 application/models/Club_model.php:272
@@ -1043,21 +1043,23 @@ msgstr "Ingen medlemmer valgt."
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
-msgstr ""
+msgstr "Ingen av de valgte brukerne er medlemmer av denne klubben."
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
 "Cannot proceed: this would remove the last Club Officer. An instance "
 "administrator must perform this action."
 msgstr ""
+"Kan ikke fortsette: Dette vil fjerne den siste klubbansvarlige. En "
+"instansadministrator må utføre denne handlingen."
 
 #: application/controllers/Club.php:209
 msgid "Club member permissions could not be updated."
-msgstr ""
+msgstr "Klubbmedlemmenes tillatelser kunne ikke oppdateres."
 
 #: application/controllers/Club.php:213
 msgid "No members were updated."
-msgstr ""
+msgstr "Ingen medlemmer ble oppdatert."
 
 #: application/controllers/Club.php:226
 #, php-format
@@ -1086,14 +1088,14 @@ msgstr[1] "%d medlemmer fjernet."
 #: application/controllers/Hrdlog.php:19 application/controllers/Lotw.php:27
 #: application/controllers/Qrz.php:14 application/controllers/Update.php:15
 msgid "Maintenance Mode is active. Try again later."
-msgstr ""
+msgstr "Vedlikeholdsmodus er aktiv. Prøv igjen senere."
 
 #: application/controllers/Clublog.php:51
 #: application/controllers/Clublog.php:78
 #: application/controllers/Clublog.php:130
 #: application/controllers/Clublog.php:167
 msgid "No user has configured Clublog."
-msgstr ""
+msgstr "Ingen bruker har konfigurert Clublog."
 
 #: application/controllers/Clublog.php:93
 #: application/controllers/Logbook.php:852
@@ -1128,49 +1130,49 @@ msgstr ""
 #: application/views/view_log/qso.php:519
 #: application/views/view_log/qso.php:524
 msgid "Clublog"
-msgstr ""
+msgstr "Clublog"
 
 #: application/controllers/Clublog.php:148
 msgid "Clublog QSL Import"
-msgstr ""
+msgstr "Clublog QSL-import"
 
 #: application/controllers/Contest_admin.php:42
 msgid "Contests Administration"
-msgstr ""
+msgstr "Konkurranseadministrasjon"
 
 #: application/controllers/Contest_admin.php:56
 msgid "Update Contest"
-msgstr ""
+msgstr "Oppdater konkurranse"
 
 #: application/controllers/Contest_admin.php:76
 #, php-format
 msgid "Contest %s updated"
-msgstr ""
+msgstr "Konkurranse %s er oppdatert"
 
 #: application/controllers/Contestcalendar.php:11
 #: application/views/interface_assets/header.php:326
 msgid "Contest Calendar"
-msgstr ""
+msgstr "Konkurransekalender"
 
 #: application/controllers/Contestcalendar.php:36
 msgid "Contestcalendar not reachable. Try again later"
-msgstr ""
+msgstr "Konkurransekalenderen er ikke tilgjengelig. Prøv igjen senere"
 
 #: application/controllers/Contesting.php:65
 #: application/views/contesting/manager/export_cbr.php:15
 #: application/views/contesting/manager/export_edi.php:15
 msgid "Contest Management"
-msgstr ""
+msgstr "Konkurransehåndtering"
 
 #: application/controllers/Contesting.php:92
 #: application/controllers/Contesting.php:613
 msgid "Officers must set up contests."
-msgstr ""
+msgstr "Funksjonærer må sette opp konkurranser."
 
 #: application/controllers/Contesting.php:109
 #, php-format
 msgid "Quickstart Session: %s"
-msgstr ""
+msgstr "Hurtigstart av økt: %s"
 
 #: application/controllers/Contesting.php:123
 #: application/controllers/Contesting.php:155
@@ -1178,77 +1180,77 @@ msgstr ""
 #: application/controllers/Contesting.php:667
 #: application/controllers/Contesting.php:735
 msgid "Contest session not found."
-msgstr ""
+msgstr "Konkurranseøkt ikke funnet."
 
 #: application/controllers/Contesting.php:134
 #, php-format
 msgid "CBR Export: %s"
-msgstr ""
+msgstr "CBR-eksport: %s"
 
 #: application/controllers/Contesting.php:167
 #, php-format
 msgid "Export: %s"
-msgstr ""
+msgstr "Eksport: %s"
 
 #: application/controllers/Contesting.php:442
 msgid "You are not authorized to access this contest session."
-msgstr ""
+msgstr "Du har ikke tilgang til denne konkurranseøkten."
 
 #: application/controllers/Contesting.php:642
 msgid "Contest session created successfully."
-msgstr ""
+msgstr "Konkurranseøkten ble opprettet."
 
 #: application/controllers/Contesting.php:644
 msgid "There was an error creating the contest session. Please try again."
-msgstr ""
+msgstr "Det oppstod en feil ved oppretting av konkurranseøkten. Prøv igjen."
 
 #: application/controllers/Contesting.php:710
 msgid "Contest session updated successfully."
-msgstr ""
+msgstr "Konkurranseøkten ble oppdatert."
 
 #: application/controllers/Contesting.php:712
 msgid "There was an error updating the contest session. Please try again."
-msgstr ""
+msgstr "Det oppstod en feil ved oppdatering av konkurranseøkten. Prøv igjen."
 
 #: application/controllers/Contesting.php:757
 msgid "Contest session deleted successfully."
-msgstr ""
+msgstr "Konkurranseøkten ble slettet."
 
 #: application/controllers/Contesting.php:759
 msgid "There was an error deleting the contest session. Please try again."
-msgstr ""
+msgstr "Det oppstod en feil ved sletting av konkurranseøkten. Prøv igjen."
 
 #: application/controllers/Contesting.php:782
 #: application/models/Contesting_model.php:293
 msgid "Only clubstation officers can delete."
-msgstr ""
+msgstr "Bare klubbens stasjonsansvarlige kan slette."
 
 #: application/controllers/Contesting.php:790
 msgid "No contest sessions selected."
-msgstr ""
+msgstr "Ingen konkurranseøkter er valgt."
 
 #: application/controllers/Contesting.php:798
 #, php-format
 msgid "%d contest session deleted."
 msgid_plural "%d contest sessions deleted."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d konkurranseøkt slettet."
+msgstr[1] "%d konkurranseøkter ble slettet."
 
 #: application/controllers/Contesting.php:800
 msgid "There was an error deleting the contest sessions. Please try again."
-msgstr ""
+msgstr "Det oppstod en feil ved sletting av konkurranseøktene. Prøv igjen."
 
 #: application/controllers/Contesting.php:1016
 msgid "Operator switching is disabled."
-msgstr ""
+msgstr "Bytte av operatør er deaktivert."
 
 #: application/controllers/Contesting.php:1036
 msgid "Operator switching is only available in club stations."
-msgstr ""
+msgstr "Bytte av operatør er bare tilgjengelig på klubb­stasjoner."
 
 #: application/controllers/Contesting.php:1046
 msgid "Access denied"
-msgstr ""
+msgstr "Tilgang nektet"
 
 #: application/controllers/Contesting.php:1054
 #: application/controllers/User.php:1493
@@ -1257,30 +1259,30 @@ msgstr "Feil brukernavn eller passord!"
 
 #: application/controllers/Contesting.php:1063
 msgid "A club account cannot be used as an operator."
-msgstr ""
+msgstr "En klubbkonto kan ikke brukes som operatør."
 
 #: application/controllers/Contesting_import.php:14
 msgid "This feature is disabled."
-msgstr ""
+msgstr "Denne funksjonen er deaktivert."
 
 #: application/controllers/Contesting_import.php:36
 #: application/controllers/Contesting_import.php:104
 msgid "No historical contests found that could be imported."
-msgstr ""
+msgstr "Fant ingen historiske tester som kunne importeres."
 
 #: application/controllers/Contesting_import.php:40
 msgid "Import Historical Contests"
-msgstr ""
+msgstr "Importer historiske tester"
 
 #: application/controllers/Contesting_import.php:83
 #: application/controllers/Contesting_import.php:152
 #, php-format
 msgid "%d session(s) created, %d QSO(s) linked."
-msgstr ""
+msgstr "%d økt(er) opprettet, %d QSO(er) koblet."
 
 #: application/controllers/Contesting_import.php:108
 msgid "Import Historical Contests (All Users)"
-msgstr ""
+msgstr "Importer historiske tester (alle brukere)"
 
 #: application/controllers/Continents.php:22
 #: application/views/awards/dxcc/index.php:139
@@ -1288,14 +1290,14 @@ msgstr ""
 #: application/views/awards/wpx/index.php:56
 #: application/views/interface_assets/header.php:184
 msgid "Continents"
-msgstr ""
+msgstr "Kontinenter"
 
 #: application/controllers/Countqsoby.php:13
 #: application/views/countqsoby/index.php:3
 #: application/views/countqsoby/index.php:211
 #: application/views/interface_assets/header.php:190
 msgid "Count QSOs by..."
-msgstr ""
+msgstr "Tell QSO-er etter..."
 
 #: application/controllers/Countqsoby.php:74
 #: application/controllers/Logbook.php:1516
@@ -1360,7 +1362,7 @@ msgstr ""
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
 msgid "Gridsquare"
-msgstr ""
+msgstr "Rutenett"
 
 #: application/controllers/Countqsoby.php:75
 #: application/views/activationplanner/index.php:121
@@ -1412,12 +1414,12 @@ msgstr "ITU Sone"
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
 msgid "CQ Zone"
-msgstr ""
+msgstr "CQ-sone"
 
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:72
 msgid "POTA Reference"
-msgstr ""
+msgstr "POTA-referanse"
 
 #: application/controllers/Countqsoby.php:78
 #: application/views/awards/sota/index.php:178
@@ -1428,7 +1430,7 @@ msgstr ""
 #: application/views/user/edit.php:898 application/views/view_log/qso.php:343
 #: application/views/view_log/qso.php:678
 msgid "SOTA Reference"
-msgstr ""
+msgstr "SOTA-referanse"
 
 #: application/controllers/Countqsoby.php:79
 #: application/views/countqsoby/index.php:74
@@ -1438,7 +1440,7 @@ msgstr ""
 #: application/views/user/edit.php:894 application/views/view_log/qso.php:336
 #: application/views/view_log/qso.php:671
 msgid "IOTA Reference"
-msgstr ""
+msgstr "IOTA-referanse"
 
 #: application/controllers/Countqsoby.php:80
 #: application/views/awards/wwff/index.php:176
@@ -1449,7 +1451,7 @@ msgstr ""
 #: application/views/user/edit.php:902 application/views/view_log/qso.php:350
 #: application/views/view_log/qso.php:685
 msgid "WWFF Reference"
-msgstr ""
+msgstr "WWFF-referanse"
 
 #: application/controllers/Countqsoby.php:81
 #: application/views/calltester/index.php:11
@@ -1471,40 +1473,40 @@ msgstr ""
 #: application/views/webadif/export.php:125
 #: application/views/zonechecker/index.php:11
 msgid "Station Location"
-msgstr ""
+msgstr "Stasjonslokasjon"
 
 #: application/controllers/Cron.php:37
 #: application/views/interface_assets/header.php:367
 msgid "Cron Manager"
-msgstr ""
+msgstr "Cron-administrator"
 
 #: application/controllers/Cron.php:176
 msgid "Manual execution of cronjobs is disabled."
-msgstr ""
+msgstr "Manuell kjøring av cron-jobber er deaktivert."
 
 #: application/controllers/Cron.php:186
 msgid "Cronjob not found."
-msgstr ""
+msgstr "Cron-jobb ikke funnet."
 
 #: application/controllers/Cron.php:192
 msgid "Disabled cronjobs cannot be run."
-msgstr ""
+msgstr "Deaktiverte cron-jobber kan ikke kjøres."
 
 #: application/controllers/Cron.php:200
 msgid "Cronjob is already running."
-msgstr ""
+msgstr "Cron-jobben kjører allerede."
 
 #: application/controllers/Cron.php:206
 msgid "Cronjob executed successfully."
-msgstr ""
+msgstr "Cron-jobben ble kjørt."
 
 #: application/controllers/Cron.php:210
 msgid "Cronjob execution failed."
-msgstr ""
+msgstr "Kjøring av cron-jobben mislyktes."
 
 #: application/controllers/Cron.php:222 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
-msgstr ""
+msgstr "Rediger cron-jobb"
 
 #: application/controllers/Cron.php:293 application/controllers/Cron.php:294
 #: application/views/cron/index.php:106 application/views/cron/index.php:108
@@ -1516,37 +1518,37 @@ msgstr ""
 #: application/views/debug/index.php:799 application/views/debug/index.php:805
 #: application/views/debug/index.php:811
 msgid "never"
-msgstr ""
+msgstr "aldri"
 
 #: application/controllers/Cron.php:294
 msgid "calculating..."
-msgstr ""
+msgstr "beregner ..."
 
 #: application/controllers/Cron.php:306 application/views/cron/index.php:93
 msgid "healthy"
-msgstr ""
+msgstr "Sunn"
 
 #: application/controllers/Cron.php:308 application/views/cron/index.php:95
 msgid "failed"
-msgstr ""
+msgstr "mislyktes"
 
 #: application/controllers/Cron.php:310 application/views/cron/index.php:97
 msgid "pending"
-msgstr ""
+msgstr "venter"
 
 #: application/controllers/Cron.php:315 application/views/cron/index.php:102
 msgid "disabled"
-msgstr ""
+msgstr "deaktivert"
 
 #: application/controllers/Cron.php:332 application/views/cron/index.php:81
 #: application/views/cron/index.php:113
 msgid "Run Now"
-msgstr ""
+msgstr "Kjør nå"
 
 #: application/controllers/Cron.php:425
 #: application/views/interface_assets/footer.php:45
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: application/controllers/Cron.php:429
 #, php-format
@@ -1554,6 +1556,8 @@ msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
 msgstr ""
+"Siste kjøring skjedde for mer enn %s sekunder siden.%sSjekk hoved-cron-"
+"jobben din! Den skal kjøre hvert minutt (* * * * *)."
 
 #: application/controllers/Cron.php:432
 #, php-format
@@ -1561,25 +1565,27 @@ msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
 msgstr ""
+"Siste kjøring fant sted for mer enn %s minutter siden.%sDet ser ut til at "
+"Mastercron ikke kjører!%sDen skal kjøre hvert minutt (* * * * *)."
 
 #: application/controllers/Cron.php:437 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
-msgstr ""
+msgstr "Kjører ikke"
 
 #: application/controllers/Csv.php:19 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:546
 msgid "SOTA CSV Export"
-msgstr ""
+msgstr "SOTA CSV-eksport"
 
 #: application/controllers/Dashboard.php:175
 #: application/controllers/Visitor.php:130
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashbord"
 
 #: application/controllers/Dashboard.php:222
 msgid "HF"
-msgstr ""
+msgstr "HF"
 
 #: application/controllers/Dashboard.php:222
 #: application/views/dashboard/index.php:699
@@ -1591,38 +1597,38 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:58
 #: application/views/qslprint/qsolist.php:60
 msgid "SAT"
-msgstr ""
+msgstr "SAT"
 
 #: application/controllers/Dashboard.php:222
 msgid "VHF+"
-msgstr ""
+msgstr "VHF+"
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
 #: application/views/dayswithqso/index.php:12
 #: application/views/interface_assets/header.php:176
 msgid "Days with QSOs"
-msgstr ""
+msgstr "Dager med QSO-er"
 
 #: application/controllers/Dbtools.php:22
 #: application/views/interface_assets/header.php:341
 msgid "Database Tools"
-msgstr ""
+msgstr "Databaseverktøy"
 
 #: application/controllers/Dbtools.php:169
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
-msgstr ""
+msgstr "DXCC oppdatert for %d QSO-er."
 
 #: application/controllers/Dbtools.php:185
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
-msgstr ""
+msgstr "Kart over DXCC %s og rutenett %s."
 
 #: application/controllers/Dcl.php:27
 #: application/views/dcl_views/key_import.php:3
 msgid "DCL Key Import"
-msgstr ""
+msgstr "Import av DCL-nøkkel"
 
 #: application/controllers/Dcl.php:61 application/views/dcl_views/index.php:3
 #: application/views/logbookadvanced/index.php:988
@@ -1634,51 +1640,51 @@ msgstr ""
 #: application/views/view_log/qso.php:529
 #: application/views/view_log/qso.php:534
 msgid "DCL"
-msgstr ""
+msgstr "DCL"
 
 #: application/controllers/Dcl.php:130
 msgid "No QSOs to upload."
-msgstr ""
+msgstr "Ingen QSO-er å laste opp."
 
 #: application/controllers/Dcl.php:177 application/controllers/Dcl.php:189
 msgid "Upload Failed"
-msgstr ""
+msgstr "Opplasting mislyktes"
 
 #: application/controllers/Dcl.php:179
 msgid "Timeout reached. Stopping subsequent uploads."
-msgstr ""
+msgstr "Tidsavbrudd. Avbryter påfølgende opplastinger."
 
 #: application/controllers/Dcl.php:192
 msgid "Upload Successful"
-msgstr ""
+msgstr "Opplasting vellykket"
 
 #: application/controllers/Dcl.php:201
 msgid "No Station Profiles found to upload to DCL"
-msgstr ""
+msgstr "Ingen stasjonsprofiler funnet for opplasting til DCL"
 
 #: application/controllers/Dcl.php:217
 msgid "Key(s) Deleted."
-msgstr ""
+msgstr "Nøkkel/nøkler slettet."
 
 #: application/controllers/Debug.php:114
 msgid "(empty)"
-msgstr ""
+msgstr "(tom)"
 
 #: application/controllers/Debug.php:134
 msgid "Debug"
-msgstr ""
+msgstr "Feilsøking"
 
 #: application/controllers/Debug.php:185
 msgid "Migrate data now"
-msgstr ""
+msgstr "Migrer data nå"
 
 #: application/controllers/Debug.php:188
 msgid "Migration already done. Run again?"
-msgstr ""
+msgstr "Migreringen er allerede utført. Kjør på nytt?"
 
 #: application/controllers/Debug.php:192
 msgid "No data to migrate"
-msgstr ""
+msgstr "Ingen data å migrere"
 
 #: application/controllers/Debug.php:196 application/controllers/Debug.php:201
 msgid "No migration possible"
@@ -9081,40 +9087,40 @@ msgstr ""
 #: application/views/bandmap/list.php:314
 #: application/views/components/dxwaterfall.php:33
 msgid "CW"
-msgstr ""
+msgstr "CW"
 
 #: application/views/awards/pl_polska/index.php:216
 #: application/views/awards/pl_polska/index.php:357
 #: application/views/awards/waip/index.php:118
 msgid "DIGI"
-msgstr ""
+msgstr "DIGI"
 
 #: application/views/awards/pl_polska/index.php:247
 #: application/views/awards/pl_polska/index.php:319
 msgid "Total voivodeships"
-msgstr ""
+msgstr "Totalt antall voivodskap"
 
 #: application/views/awards/pl_polska/index.php:261
 #: application/views/awards/pl_polska/index.php:333
 msgid "Bravo! You are entitled to"
-msgstr ""
+msgstr "Bra! Du er berettiget til"
 
 #: application/views/awards/pl_polska/index.php:261
 #: application/views/awards/pl_polska/index.php:333
 msgid "category award!"
-msgstr ""
+msgstr "kategoripris!"
 
 #: application/views/awards/pl_polska/index.php:351
 msgid "Award Category:"
-msgstr ""
+msgstr "Priskategori:"
 
 #: application/views/awards/pl_polska/index.php:353
 msgid "Mode Categories"
-msgstr ""
+msgstr "Moduskategorier"
 
 #: application/views/awards/pl_polska/index.php:359
 msgid "Band Categories"
-msgstr ""
+msgstr "Båndkategorier"
 
 #: application/views/awards/pl_polska/index.php:381
 #: application/views/dbtools/index.php:88
@@ -9124,49 +9130,53 @@ msgstr ""
 
 #: application/views/awards/pl_polska/index.php:381
 msgid "Logbook Advanced"
-msgstr ""
+msgstr "Avansert loggbok"
 
 #: application/views/awards/pl_polska/index.php:381
 msgid ""
 "This award uses the State field from your logbook. Ensure this field is "
 "populated for all SP (Poland) contacts."
 msgstr ""
+"Dette diplomet bruker Stat-feltet fra loggboken. Sørg for at dette feltet er "
+"utfylt for alle polske kontakter (SP)."
 
 #: application/views/awards/pl_polska/index.php:381
 msgid "Tip:"
-msgstr ""
+msgstr "Tips:"
 
 #: application/views/awards/pl_polska/index.php:381
 msgid "Use"
-msgstr ""
+msgstr "Bruk"
 
 #: application/views/awards/pl_polska/index.php:381
 msgid "to auto-populate states from Maidenhead locators."
-msgstr ""
+msgstr "for å fylle ut delstater automatisk fra Maidenhead-lokatorer."
 
 #: application/views/awards/pota/index.php:4
 msgid "Error loading POTA map data"
-msgstr ""
+msgstr "Feil ved innlasting av POTA-kartdata"
 
 #: application/views/awards/pota/index.php:5
 msgid "No POTA references worked for these filters."
-msgstr ""
+msgstr "Ingen POTA-referanser fungerte for disse filtrene."
 
 #: application/views/awards/pota/index.php:6
 msgid ""
 "POTA directory not loaded - coordinates missing. Run the update_pota cron "
 "job."
 msgstr ""
+"POTA-katalogen er ikke lastet inn – koordinater mangler. Kjør cron-jobben "
+"update_pota."
 
 #: application/views/awards/pota/index.php:7
 #: application/views/awards/sota/index.php:7
 #: application/views/awards/wwff/index.php:7
 msgid "Not shown (No coordinates)"
-msgstr ""
+msgstr "Vises ikke (ingen koordinater)"
 
 #: application/views/awards/pota/index.php:24
 msgid "POTA Awards"
-msgstr ""
+msgstr "POTA-utmerkelser"
 
 #: application/views/awards/pota/index.php:25
 msgid ""
@@ -9174,6 +9184,10 @@ msgid ""
 "Parks on the Air special event ended. A group of volunteers wanted to "
 "continue the fun beyond the one-year event, and thus, POTA was born."
 msgstr ""
+"Parks on the Air® (POTA) startet tidlig i 2017 da ARRLs spesialarrangement "
+"National Parks on the Air ble avsluttet. En gruppe frivillige ønsket å "
+"fortsette initiativet etter det ett år lange arrangementet, og dermed ble "
+"POTA født."
 
 #: application/views/awards/pota/index.php:26
 msgid ""
@@ -9181,6 +9195,9 @@ msgid ""
 "there are several categories based on the number of parks, geographic areas, "
 "and more."
 msgstr ""
+"POTA fungerer på samme måte som SOTA, med aktivatorer og jegere. For "
+"utmerkelsene finnes det flere kategorier basert på antall parker, "
+"geografiske områder og mer."
 
 #: application/views/awards/pota/index.php:27
 #, php-format
@@ -9189,55 +9206,58 @@ msgid ""
 "For more information about the available awards and categories, please visit "
 "the %s."
 msgstr ""
+"For mer informasjon om tilgjengelige utmerkelser og kategorier, besøk %s."
 
 #: application/views/awards/pota/index.php:28
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
 msgstr ""
+"Felter som brukes for denne utmerkelsen: POTA_REF (må inneholde "
+"parkreferansen)"
 
 #: application/views/awards/pota/index.php:69
 msgid "No award yet"
-msgstr ""
+msgstr "Ingen utmerkelse ennå"
 
 #: application/views/awards/pota/index.php:76
 #, php-format
 msgid "Progress to %s"
-msgstr ""
+msgstr "Fremgang mot %s"
 
 #: application/views/awards/pota/index.php:82
 #, php-format
 msgid "%d more different park(s) for the next award"
-msgstr ""
+msgstr "%d flere ulike parker til neste utmerkelse"
 
 #: application/views/awards/pota/index.php:84
 msgid "You have reached the highest POTA award tier!"
-msgstr ""
+msgstr "Du har nådd det høyeste nivået for POTA-utmerkelser!"
 
 #: application/views/awards/pota/index.php:89
 msgid "Show all tiers"
-msgstr ""
+msgstr "Vis alle nivåer"
 
 #: application/views/awards/pota/index.php:93
 msgid "Advanced Awards"
-msgstr ""
+msgstr "Avanserte utmerkelser"
 
 #: application/views/awards/pota/index.php:93
 msgid "Standard Awards"
-msgstr ""
+msgstr "Standardutmerkelser"
 
 #: application/views/awards/pota/index.php:118
 msgid "POTA Hunter progress"
-msgstr ""
+msgstr "Fremgang for POTA-jeger"
 
 #: application/views/awards/pota/index.php:121
 msgid "different parks hunted"
-msgstr ""
+msgstr "ulike parker jaktet"
 
 #: application/views/awards/pota/index.php:140
 #: application/views/awards/sota/index.php:50
 #: application/views/awards/wwff/index.php:46
 #: application/views/bandmap/list.php:422
 msgid "Apply Filters"
-msgstr ""
+msgstr "Bruk filtre"
 
 #: application/views/awards/pota/index.php:268
 #: application/views/qso/index.php:337 application/views/qso/index.php:621
@@ -9246,26 +9266,26 @@ msgstr ""
 #: application/views/user/edit.php:906 application/views/view_log/qso.php:357
 #: application/views/view_log/qso.php:692
 msgid "POTA Reference(s)"
-msgstr ""
+msgstr "POTA-referanse(r)"
 
 #: application/views/awards/rac/index.php:3
 msgctxt "Canada Province"
 msgid "Province"
-msgstr ""
+msgstr "Provins"
 
 #: application/views/awards/rac/index.php:4
 #: application/views/awards/wap/index.php:5
 #: application/views/awards/wapc/index.php:4
 msgid "Hover over a province"
-msgstr ""
+msgstr "Hold musepekeren over en provins"
 
 #: application/views/awards/rac/index.php:47
 msgid "Show RAC Map"
-msgstr ""
+msgstr "Vis RAC-kart"
 
 #: application/views/awards/sig/index.php:6
 msgid "SIG Information"
-msgstr ""
+msgstr "SIG-informasjon"
 
 #: application/views/awards/sig/index.php:7
 msgid ""
@@ -9273,6 +9293,9 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
+"SIG- eller Special Interest Group-kategorien gjør det mulig å bruke alle "
+"typer «Special Interest Group Award» for diplomer som ikke er implementert i "
+"Wavelog."
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -9280,6 +9303,9 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
 msgstr ""
+"Grunnen til dette er at det vanlige ADIF-formatet bare har noen få dedikerte "
+"felt for visse diplomer. SIG gjør det likevel mulig å bruke og evaluere alle "
+"andre typer markører for interessegrupper."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -9288,34 +9314,37 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
+"I QSO-behandlingen finner du to felt: «SIG» inneholder forkortelsen av "
+"navnet på interessegruppen, som også vises i diplomevalueringen, og «SIG INFO"
+"», som inneholder selve referansen(e). Begge feltene kan tilpasses fritt."
 
 #: application/views/awards/sig/index.php:18
 msgid "View progress of SIG awards"
-msgstr ""
+msgstr "Se fremdriften for SIG-diplomer"
 
 #: application/views/awards/sig/index.php:25
 #: application/views/station_profile/create.php:256
 #: application/views/station_profile/edit.php:278
 msgid "Special Interest Group"
-msgstr ""
+msgstr "Special Interest Group"
 
 #: application/views/awards/sig/index.php:26
 #: application/views/continents/index.php:23
 #: application/views/distances/index.php:10
 #: application/views/timeplotter/index.php:4
 msgid "Number of QSOs"
-msgstr ""
+msgstr "Antall QSO-er"
 
 #: application/views/awards/sig/index.php:27
 msgid "Number of Refs"
-msgstr ""
+msgstr "Antall referanser"
 
 #: application/views/awards/sig/qso_list.php:6
 #: application/views/qslprint/index.php:9
 #: application/views/qslprint/qslprint.php:102
 #: application/views/simplefle/index.php:147
 msgid "QSO List"
-msgstr ""
+msgstr "QSO-liste"
 
 #: application/views/awards/sig/qso_list.php:14
 #: application/views/dbtools/missinggridlist.php:45
@@ -9330,43 +9359,47 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
 msgid "Date/Time"
-msgstr ""
+msgstr "Dato/klokkeslett"
 
 #: application/views/awards/sig/qso_list.php:18
 msgid "RST Sent"
-msgstr ""
+msgstr "Sendt RST"
 
 #: application/views/awards/sig/qso_list.php:19
 msgid "RST Received"
-msgstr ""
+msgstr "Mottatt RST"
 
 #: application/views/awards/sig/qso_list.php:41
 msgid "Export QSOs to ADIF"
-msgstr ""
+msgstr "Eksporter QSO-er til ADIF"
 
 #: application/views/awards/sota/index.php:4
 msgid "Error loading SOTA map data"
-msgstr ""
+msgstr "Feil ved lasting av SOTA-kartdata"
 
 #: application/views/awards/sota/index.php:5
 msgid "No SOTA references worked for these filters."
-msgstr ""
+msgstr "Ingen SOTA-referanser ble kjørt med disse filtrene."
 
 #: application/views/awards/sota/index.php:6
 msgid ""
 "SOTA directory not loaded - coordinates missing. Run the update_sota cron "
 "job."
 msgstr ""
+"SOTA-katalogen er ikke lastet inn - koordinater mangler. Kjør cron-jobben "
+"update_sota."
 
 #: application/views/awards/sota/index.php:24
 msgid "SOTA Awards"
-msgstr ""
+msgstr "SOTA-diplomer"
 
 #: application/views/awards/sota/index.php:25
 msgid ""
 "SOTA (Summits On The Air) is an award scheme for radio amateurs that "
 "encourages portable operation in mountainous areas."
 msgstr ""
+"SOTA (Summits On The Air) er en diplomordning for radioamatører som "
+"oppmuntrer til portabel drift i fjellområder."
 
 #: application/views/awards/sota/index.php:26
 msgid ""
@@ -9378,107 +9411,124 @@ msgid ""
 "trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA "
 "online database."
 msgstr ""
+"Det er fullt operativt i nærmere hundre land over hele verden. Hvert land "
+"har sin egen forening som definerer de anerkjente SOTA-toppene innenfor "
+"foreningen. Hver topp gir aktivatorer og chasere en poengsum basert på "
+"toppens høyde. Det finnes sertifikater for ulike poengsummer, som leder frem "
+"til de prestisjetunge trofeene «Mountain Goat» og «Shack Sloth». En "
+"hedersliste for aktivatorer og chasere vedlikeholdes i SOTAs nettbaserte "
+"database."
 
 #: application/views/awards/sota/index.php:28
 msgid "Fields taken for this Award: SOTA Reference (ADIF: SOTA_REF)"
-msgstr ""
+msgstr "Felt som brukes for dette diplomet: SOTA-referanse (ADIF: SOTA_REF)"
 
 #: application/views/awards/vucc/band.php:7
 msgid "Gridsquare list"
-msgstr ""
+msgstr "Liste over rutenett"
 
 #: application/views/awards/vucc/index.php:6
 msgid "VUCC - VHF/UHF Century Club Award"
-msgstr ""
+msgstr "VUCC – VHF/UHF Century Club-diplom"
 
 #: application/views/awards/vucc/index.php:7
 msgid ""
 "The VHF/UHF Century Club Award is given for a minimum number of worked and "
 "confirmed gridsquares on a desired band."
 msgstr ""
+"VHF/UHF Century Club-diplomet tildeles for et minimum antall kjørte og "
+"bekreftede rutenett på et ønsket bånd."
 
 #: application/views/awards/vucc/index.php:8
 #: application/views/awards/wae/index.php:27
 #, php-format
 msgid "Official information and the rules can be found in this document: %s."
-msgstr ""
+msgstr "Offisiell informasjon og reglene finnes i dette dokumentet: %s."
 
 #: application/views/awards/vucc/index.php:9
 msgid "Only VHF/UHF bands are relevant."
-msgstr ""
+msgstr "Bare VHF/UHF-bånd er relevante."
 
 #: application/views/awards/vucc/index.php:10
 msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
+"Felt som brukes for dette diplomet: Gridsquare og vucc_grids (ADIF: "
+"GRIDSQUARE, VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:19
 msgid "VUCC Gridsquares by Band"
-msgstr ""
+msgstr "VUCC-rutenett etter bånd"
 
 #: application/views/awards/vucc/index.php:27
 msgid "Grids Worked"
-msgstr ""
+msgstr "Kjørte ruter"
 
 #: application/views/awards/vucc/index.php:28
 msgid "Grids Confirmed"
-msgstr ""
+msgstr "Bekreftede ruter"
 
 #: application/views/awards/wab/index.php:14
 msgid "WAB - Worked All Britain Award"
-msgstr ""
+msgstr "WAB – Worked All Britain-diplom"
 
 #: application/views/awards/wab/index.php:15
 msgid ""
 "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham "
 "radio operators to work all the squares in Great Britain."
 msgstr ""
+"WAB (Worked All Britain-ruter) innen amatørradio oppfordrer lisensierte "
+"radioamatører til å kjøre alle rutene i Storbritannia."
 
 #: application/views/awards/wab/index.php:16
 msgid ""
 "May be claimed for having contacted an amateur station located in the "
 "required amount of squares, described on the page linked below."
 msgstr ""
+"Kan søkes om etter å ha hatt kontakt med en amatørradiostasjon i det "
+"nødvendige antallet ruter, som beskrevet på siden nedenfor."
 
 #: application/views/awards/wab/index.php:18
 msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
 msgstr ""
+"Felter som brukes for dette diplomet: SIG (må være 'WAB') og SIG_INFO (skal "
+"inneholde en gyldig WAB-rute)"
 
 #: application/views/awards/wab/index.php:19
 msgid "Total squares"
-msgstr ""
+msgstr "Totalt antall ruter"
 
 #: application/views/awards/wab/index.php:21
 msgid "Squares by DXCC"
-msgstr ""
+msgstr "Ruter etter DXCC"
 
 #: application/views/awards/wab/index.php:22
 #: application/views/awards/wab/index.php:44
 msgid "Go to square"
-msgstr ""
+msgstr "Gå til rute"
 
 #: application/views/awards/wab/index.php:23
 msgid "WAB square not found"
-msgstr ""
+msgstr "WAB-rute ikke funnet"
 
 #: application/views/awards/wab/index.php:34
 msgid "View a map of worked / confirmed WAB squares"
-msgstr ""
+msgstr "Vis et kart over kjørte / bekreftede WAB-ruter"
 
 #: application/views/awards/wab/index.php:43
 msgid "WAB square"
-msgstr ""
+msgstr "WAB-rute"
 
 #: application/views/awards/wab/index.php:171
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #: application/views/awards/wab/list.php:6
 msgid "WAB Square"
-msgstr ""
+msgstr "WAB-rute"
 
 #: application/views/awards/wab/list.php:37
 #: application/views/contesting/manager/export_cbr.php:222
@@ -9546,7 +9596,7 @@ msgstr "Nei"
 
 #: application/views/awards/wab/list.php:37
 msgid "Q = QSL card, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog"
-msgstr ""
+msgstr "Q = QSL-kort, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog"
 
 #: application/views/awards/wac/index.php:8
 msgid ""
@@ -9554,32 +9604,38 @@ msgid ""
 "Continents award is issued for working and confirming all six continents. "
 "These are North America, South America, Oceania, Asia, Europe and Africa."
 msgstr ""
+"Sponset av International Amateur Radio Union (IARU) Worked All Continents-"
+"diplomet tildeles for å ha kjørt og bekreftet kontakt med alle seks "
+"kontinentene. Disse er Nord-Amerika, Sør-Amerika, Oseania, Asia, Europa og "
+"Afrika."
 
 #: application/views/awards/wac/index.php:11
 msgid ""
 "Fields taken for this Award: Continent (ADIF tag 'CONT'). Must contain a "
 "valid continent-abbreviation!"
 msgstr ""
+"Felt som brukes for dette diplomet: Kontinent (ADIF-taggen «CONT»). Må "
+"inneholde en gyldig kontinentforkortelse!"
 
 #: application/views/awards/wac/index.php:13
 msgid "Awards - Worked All Continents (WAC)"
-msgstr ""
+msgstr "Diplomer – Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:20
 msgid "View progress of WAC awards"
-msgstr ""
+msgstr "Se fremdriften for WAC-diplomer"
 
 #: application/views/awards/wac/index.php:27
 msgid "Show QSO with QSL Type"
-msgstr ""
+msgstr "Vis QSO med QSL-type"
 
 #: application/views/awards/wac/index.php:232
 msgid "No QSOS found matching the criteria for this award!"
-msgstr ""
+msgstr "Ingen QSO-er funnet som oppfyller kriteriene for dette diplomet!"
 
 #: application/views/awards/wae/index.php:24
 msgid "WAE Award"
-msgstr ""
+msgstr "WAE-diplom"
 
 #: application/views/awards/wae/index.php:25
 msgid ""
@@ -9587,6 +9643,9 @@ msgid ""
 "contacts with amateur radio stations in European countries and on islands "
 "listed in the WAE country list on different bands."
 msgstr ""
+"Det eldste og mest anerkjente av alle DARC-diplomer tildeles for kontakter "
+"med amatørradiostasjoner i europeiske land og på øyer som står oppført i WAE-"
+"landlisten, på forskjellige bånd."
 
 #: application/views/awards/wae/index.php:26
 msgid ""
@@ -9594,22 +9653,25 @@ msgid ""
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
 "I, WAE TOP and the WAE Trophy."
 msgstr ""
+"WAE-diplomet utstedes i følgende modi: CW, SSB, telefoni, RTTY, FT8, digital "
+"og blandet modus. Det utstedes i fem klasser: WAE III, WAE II, WAE I, WAE "
+"TOP og WAE-trofeet."
 
 #: application/views/awards/wae/index.php:28
 msgid "Fields taken for this Award: Region, DXCC"
-msgstr ""
+msgstr "Felt som brukes for dette diplomet: Region, DXCC"
 
 #: application/views/awards/wae/index.php:37
 msgid "View progress of WAE awards"
-msgstr ""
+msgstr "Se fremdriften for WAE-diplomer"
 
 #: application/views/awards/wae/index.php:223
 msgid "WAE Name"
-msgstr ""
+msgstr "WAE-navn"
 
 #: application/views/awards/waip/index.php:7
 msgid "WAIP Award"
-msgstr ""
+msgstr "WAIP-diplom"
 
 #: application/views/awards/waip/index.php:8
 msgid ""
@@ -9617,6 +9679,9 @@ msgid ""
 "stations operating from Italian provinces. Italy has over 100 provinces, "
 "making this a challenging and prestigious award."
 msgstr ""
+"WAIP-diplomet (Worked All Italian Provinces) tildeles for kontakter med "
+"stasjoner som opererer fra italienske provinser. Italia har over 100 "
+"provinser, noe som gjør dette til et utfordrende og prestisjefylt diplom."
 
 #: application/views/awards/waip/index.php:9
 msgid ""
@@ -9625,21 +9690,28 @@ msgid ""
 "Requirements: COL_STATE (2-letter province code), COL_DXCC=248 (Italy) or "
 "225 (Sardinia), QSL card confirmation only. No satellite contacts allowed."
 msgstr ""
+"Diplomkategorier: PHONE (SSB/AM/FM/SSTV), CW, DIGI (RTTY/PSK/FT8/osv.) og "
+"individuelle bånd. Alle provinser må bekreftes via QSL-kort. Krav: COL_STATE "
+"(2-bokstavers provinskode), COL_DXCC=248 (Italia) eller 225 (Sardinia), kun "
+"bekreftelse med QSL-kort. Ingen satellittkontakter er tillatt."
 
 #: application/views/awards/waip/index.php:10
 msgid ""
 "Province codes are 2-letter abbreviations (e.g., RM=Roma, MI=Milano, "
 "NA=Napoli). See Italian provincial award references for complete list."
 msgstr ""
+"Provinskoder er forkortelser på 2 bokstaver (f.eks. RM=Roma, MI=Milano, "
+"NA=Napoli). Se referanser til italienske provinsdiplomer for en fullstendig "
+"liste."
 
 #: application/views/awards/waip/index.php:11
 #, php-format
 msgid "For more information about the WAIP award, visit: %s"
-msgstr ""
+msgstr "For mer informasjon om WAIP-diplomet, besøk: %s"
 
 #: application/views/awards/waip/index.php:11
 msgid "WAIP Award Information"
-msgstr ""
+msgstr "WAIP-diplominformasjon"
 
 #: application/views/awards/waip/index.php:22
 msgid ""
@@ -9647,49 +9719,54 @@ msgid ""
 "QSL card confirmations are accepted. Green = Confirmed, Orange = Worked but "
 "not confirmed."
 msgstr ""
+"Dette diplomet viser status for kontakt og bekreftelse av italienske "
+"provinser. Kun bekreftelser med QSL-kort godtas. Grønn = Bekreftet, oransje "
+"= Kontakt opprettet, men ikke bekreftet."
 
 #: application/views/awards/waip/index.php:31
 msgid "Award Progress"
-msgstr ""
+msgstr "Diplomfremdrift"
 
 #: application/views/awards/waip/index.php:33
 msgid "Progress towards working all Italian provinces:"
-msgstr ""
+msgstr "Fremdrift mot å kontakte alle italienske provinser:"
 
 #: application/views/awards/waip/index.php:39
 #: application/views/awards/waip/index.php:93
 msgid "By Mode Category"
-msgstr ""
+msgstr "Etter moduskategori"
 
 #: application/views/awards/waip/index.php:113
 #: application/views/awards/waip/index.php:171
 #: application/views/awards/wap/index.php:167
 #: application/views/awards/wapc/index.php:182
 msgid "Province"
-msgstr ""
+msgstr "Provins"
 
 #: application/views/awards/waip/index.php:236
 msgid "No QSOs found matching the criteria for the WAIP award!"
-msgstr ""
+msgstr "Ingen QSOer funnet som oppfyller kriteriene for WAIP-diplomet!"
 
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
 msgid "Prefecture"
-msgstr ""
+msgstr "Prefektur"
 
 #: application/views/awards/waja/index.php:4
 msgid "Hover over a prefecture"
-msgstr ""
+msgstr "Hold musepekeren over en prefektur"
 
 #: application/views/awards/waja/index.php:26
 msgid "WAJA - Worked All Japan prefectures Award"
-msgstr ""
+msgstr "WAJA – Worked All Japan-prefekturdiplom"
 
 #: application/views/awards/waja/index.php:27
 msgid ""
 "WAJA, Worked All Japan prefectures in Amateur Radio, encourages licensed ham "
 "radio operators to work all the prefectures in Japan."
 msgstr ""
+"WAJA, Worked All Japan-prefekturer innen amatørradio, oppmuntrer lisensierte "
+"radioamatører til å ha kontakt med alle prefekturene i Japan."
 
 #: application/views/awards/waja/index.php:28
 msgid ""
@@ -9698,30 +9775,36 @@ msgid ""
 "QSL cards should be arranged in order of WAJA (HAJA) reference number, "
 "however names of prefectures may be omitted."
 msgstr ""
+"Kan søkes om etter å ha hatt kontakt med (hørt) og mottatt et QSL-kort fra "
+"en amatørstasjon i hver av Japans 47 prefekturer. En liste over QSL-kortene "
+"bør ordnes etter WAJA- (HAJA-)referansenummer, men navnene på prefekturene "
+"kan utelates."
 
 #: application/views/awards/waja/index.php:30
 msgid ""
 "Fields taken for this Award: DXCC (Japan) and STATE (Must contain a valid "
 "prefecture!)"
 msgstr ""
+"Felt som brukes for dette diplomet: DXCC (Japan) og STATE (må inneholde et "
+"gyldig prefektur!)"
 
 #: application/views/awards/waja/index.php:54
 msgid "Show WAJA Map"
-msgstr ""
+msgstr "Vis WAJA-kart"
 
 #: application/views/awards/waja/index.php:173
 #: application/views/timeline/index.php:282
 msgid "Prefecture"
-msgstr ""
+msgstr "Prefektur"
 
 #: application/views/awards/wap/index.php:4
 msgctxt "The Netherlands Province"
 msgid "Province"
-msgstr ""
+msgstr "Provins"
 
 #: application/views/awards/wap/index.php:24
 msgid "VRZA WAP Award"
-msgstr ""
+msgstr "VRZA WAP-diplom"
 
 #: application/views/awards/wap/index.php:25
 msgid ""
@@ -9733,6 +9816,13 @@ msgid ""
 "Amateurs). Both organizations are active in organizing events, contests, and "
 "training, and they represent Dutch amateurs nationally and internationally."
 msgstr ""
+"Nederland strekker seg omtrent 300 km fra nord til sør og rundt 200 km fra "
+"øst til vest. Av landets 18 millioner innbyggere er rundt 11 500 lisensierte "
+"radioamatører. De største organisasjonene for radioamatører i Nederland er "
+"VERON (Vereniging voor Experimenteel Radio Onderzoek in Nederland) og VRZA "
+"(Vereniging voor Radio Zend Amateurs). Begge organisasjonene er aktive i "
+"organiseringen av arrangementer, tester og opplæring, og de representerer "
+"nederlandske radioamatører nasjonalt og internasjonalt."
 
 #: application/views/awards/wap/index.php:26
 msgid ""
@@ -9742,31 +9832,38 @@ msgid ""
 "encourages operators to engage with a diverse range of stations across the "
 "country, promoting both national connectivity and operational skill."
 msgstr ""
+"VRZA (Vereniging voor Radio Zend Amateurs) tilbyr WAP-diplomet (Worked All "
+"Provinces) til radioamatører som har bekreftede forbindelser med stasjoner i "
+"hver av Nederlands tolv provinser. Dette diplomet oppmuntrer operatører til "
+"å komme i kontakt med et mangfold av stasjoner over hele landet, og fremmer "
+"både nasjonal tilknytning og operatørferdigheter."
 
 #: application/views/awards/wap/index.php:27
 #, php-format
 msgctxt "uses 'here'"
 msgid "Information about the WAP Awards and its rules can be found %s."
-msgstr ""
+msgstr "Informasjon om WAP-diplomene og reglene for dem finner du %s."
 
 #: application/views/awards/wap/index.php:28
 msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Felt som brukes for dette diplomet: DXCC (må være Nederland) og STATE (må "
+"inneholde en gyldig delstatsforkortelse!)"
 
 #: application/views/awards/wap/index.php:52
 msgid "Show WAP Map"
-msgstr ""
+msgstr "Vis WAP-kart"
 
 #: application/views/awards/wapc/index.php:3
 msgctxt "China Province"
 msgid "Province"
-msgstr ""
+msgstr "Provins"
 
 #: application/views/awards/wapc/index.php:26
 msgid "WAPC - Worked All Provinces of China"
-msgstr ""
+msgstr "WAPC – Worked All Provinces of China"
 
 #: application/views/awards/wapc/index.php:27
 msgid ""
@@ -9775,12 +9872,18 @@ msgid ""
 "municipalities, autonomous regions, and special administrative regions of "
 "China, fostering a deeper understanding of China."
 msgstr ""
+"WAPC-diplomet, utstedt av Mulan DX Club, har som mål å fremme kommunikasjon "
+"mellom radioamatører over hele verden og operatører i alle provinser, "
+"kommuner, autonome regioner og spesielle administrative regioner i Kina, og "
+"dermed bidra til en dypere forståelse av Kina."
 
 #: application/views/awards/wapc/index.php:28
 msgid ""
 "The award can be earned through long-term accumulation of contacts or "
 "achieved in a single effort during the annual WAPC Contest."
 msgstr ""
+"Diplomet kan oppnås gjennom langsiktig oppsamling av kontakter eller i én "
+"enkelt innsats under den årlige WAPC Contest."
 
 #: application/views/awards/wapc/index.php:30
 msgid ""
@@ -9788,28 +9891,31 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
+"Felt som brukes for dette diplomet: DXCC (må være ett av China/318, HongKong/"
+"321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/506) og "
+"gyldig State (ADIF: DXCC og STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
-msgstr ""
+msgstr "Vis WAPC-kart"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
 msgid "State"
-msgstr ""
+msgstr "Delstat"
 
 #: application/views/awards/was/index.php:4
 msgid "Hover over a state"
-msgstr ""
+msgstr "Hold musepekeren over en delstat"
 
 #: application/views/awards/was/index.php:5
 #: application/views/awards/was/index.php:179
 msgid "inc."
-msgstr ""
+msgstr "inkl."
 
 #: application/views/awards/was/index.php:27
 msgid "WAS Award"
-msgstr ""
+msgstr "WAS-diplom"
 
 #: application/views/awards/was/index.php:28
 msgid ""
@@ -9818,6 +9924,10 @@ msgid ""
 "101st year, they have redesigned the certificates and the program in hopes "
 "of streamlining and improving the award program."
 msgstr ""
+"ARRLs mest populære diplom er Worked All States-diplomet. Tusenvis på "
+"tusenvis av diplomer har blitt utstedt til radioamatører over hele verden. I "
+"ARRLs 101. år har de redesignet sertifikatene og programmet i håp om å "
+"effektivisere og forbedre diplomprogrammet."
 
 #: application/views/awards/was/index.php:29
 msgid ""
@@ -9827,26 +9937,34 @@ msgid ""
 "possessions must be members of ARRL to apply for a WAS. Applicants from "
 "outside the U.S. are exempt from this requirement."
 msgstr ""
+"WAS-diplomet (Worked All States) er tilgjengelig for alle radioamatører over "
+"hele verden som sender inn dokumentasjon med skriftlig bekreftelse på "
+"forbindelser med hver av de 50 delstatene i USA. Radioamatører i USA og USAs "
+"besittelser må være medlemmer av ARRL for å søke om WAS. Søkere utenfor USA "
+"er unntatt fra dette kravet."
 
 #: application/views/awards/was/index.php:30
 #, php-format
 msgctxt "uses 'here'"
 msgid "All information and rules for the ARRL WAS Award can be found %s."
-msgstr ""
+msgstr "All informasjon og alle regler for ARRLs WAS-diplom finner du %s."
 
 #: application/views/awards/was/index.php:31
 msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
+"Felter som brukes for dette diplomet: DXCC (må være én av U.S.A., Alaska "
+"eller Hawaii) og STATE (må inneholde en gyldig forkortelse for en amerikansk "
+"delstat!)"
 
 #: application/views/awards/was/index.php:55
 msgid "Show WAS Map"
-msgstr ""
+msgstr "Vis WAS-kart"
 
 #: application/views/awards/wpx/index.php:10
 msgid "View progress of WPX awards"
-msgstr ""
+msgstr "Se fremdriften for WPX-diplomer"
 
 #: application/views/awards/wpx/wpx_details.php:21
 #: application/views/calltester/comparison_result.php:78
@@ -9860,25 +9978,27 @@ msgstr ""
 #: application/views/simplefle/index.php:78
 #: application/views/zonechecker/result.php:65
 msgid "QSO Date"
-msgstr ""
+msgstr "QSO-dato"
 
 #: application/views/awards/wwff/index.php:4
 msgid "Error loading WWFF map data"
-msgstr ""
+msgstr "Feil ved lasting av WWFF-kartdata"
 
 #: application/views/awards/wwff/index.php:5
 msgid "No WWFF references worked for these filters."
-msgstr ""
+msgstr "Ingen WWFF-referanser fungerte for disse filtrene."
 
 #: application/views/awards/wwff/index.php:6
 msgid ""
 "WWFF directory not loaded - coordinates missing. Run the update_wwff cron "
 "job."
 msgstr ""
+"WWFF-katalogen er ikke lastet inn – koordinater mangler. Kjør cron-jobben "
+"update_wwff."
 
 #: application/views/awards/wwff/index.php:20
 msgid "WWFF - World Wide Flora and Fauna Award"
-msgstr ""
+msgstr "WWFF – World Wide Flora and Fauna Award"
 
 #: application/views/awards/wwff/index.php:21
 msgid ""
@@ -9886,6 +10006,9 @@ msgid ""
 "radio operators to leave their shacks and operate portable in Protected "
 "Flora & Fauna areas (PFF) worldwide."
 msgstr ""
+"WWFF, World Wide Flora and Fauna in Amateur Radio, oppfordrer lisensierte "
+"radioamatører til å forlate shackene sine og operere portabelt i vernede "
+"flora- og faunaområder (PFF) over hele verden."
 
 #: application/views/awards/wwff/index.php:22
 msgid ""
@@ -9893,44 +10016,49 @@ msgid ""
 "registered in the WWFF Directory. Hunters and Activators can apply for "
 "colorful awards, both globally and nationally."
 msgstr ""
+"Mer enn 26 000 vernede flora- og faunaområder (PFF) over hele verden er "
+"allerede registrert i WWFF-katalogen. Jegere og aktivatorer kan søke om "
+"fargerike diplomer, både globalt og nasjonalt."
 
 #: application/views/awards/wwff/index.php:24
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
-msgstr ""
+msgstr "Felt som brukes for dette diplomet: WWFF (ADIF: WWFF_REF)"
 
 #: application/views/awards/wwff/index.php:52
 msgid "Press ''Apply'' to update the table"
-msgstr ""
+msgstr "Trykk på «Bruk» for å oppdatere tabellen"
 
 #: application/views/azimuthal/index.php:16
 msgid ""
 "No gridsquare is set for your active station location, so the map cannot be "
 "centered."
 msgstr ""
+"Det er ikke angitt noen rutenettlokasjon for den aktive stasjonsposisjonen "
+"din, så kartet kan ikke sentreres."
 
 #: application/views/azimuthal/index.php:24
 msgid "Azimuthal map centered on your active station location"
-msgstr ""
+msgstr "Azimutkart sentrert på den aktive stasjonsposisjonen din"
 
 #: application/views/azimuthal/index.php:29
 msgid "Projection"
-msgstr ""
+msgstr "Projeksjon"
 
 #: application/views/azimuthal/index.php:30
 msgid "Azimuthal Equidistant"
-msgstr ""
+msgstr "Azimutal ekvidistant"
 
 #: application/views/azimuthal/index.php:31
 msgid "Lambert Equal-Area"
-msgstr ""
+msgstr "Lambert likeareal"
 
 #: application/views/azimuthal/index.php:34
 msgid "Distance rings"
-msgstr ""
+msgstr "Avstandsringer"
 
 #: application/views/azimuthal/index.php:43
 msgid "Maidenhead fields"
-msgstr ""
+msgstr "Maidenhead-felter"
 
 #: application/views/azimuthal/index.php:48
 msgid "CQ zones"
@@ -9963,69 +10091,77 @@ msgstr ""
 msgid ""
 "It's recommended to create backups on a regular basis to protect your data."
 msgstr ""
+"Det anbefales å opprette sikkerhetskopier regelmessig for å beskytte dataene "
+"dine."
 
 #: application/views/backup/main.php:19
 msgid "Backup ADIF data"
-msgstr ""
+msgstr "Sikkerhetskopier ADIF-data"
 
 #: application/views/backup/main.php:20
 msgid "Backup Notes"
-msgstr ""
+msgstr "Sikkerhetskopier notater"
 
 #: application/views/backup/notes_view.php:7
 msgid ""
 "The backup of your notes completed successfully. The output can be found at"
 msgstr ""
+"Sikkerhetskopieringen av notatene dine ble fullført. Resultatet finnes på"
 
 #: application/views/backup/notes_view.php:9
 msgid "You could automate this process by making it a cronjob."
-msgstr ""
+msgstr "Du kan automatisere denne prosessen ved å gjøre den til en cronjob."
 
 #: application/views/backup/notes_view.php:13
 msgid ""
 "Something went wrong during the backup process. Check that the backup folder "
 "exists and is writeable by your web server user / group."
 msgstr ""
+"Noe gikk galt under sikkerhetskopieringen. Kontroller at "
+"sikkerhetskopimappen finnes, og at webserverbrukeren/-gruppen har "
+"skrivetilgang."
 
 #: application/views/bandmap/list.php:16
 msgid "Click to prepare logging."
-msgstr ""
+msgstr "Klikk for å klargjøre logging."
 
 #: application/views/bandmap/list.php:16 application/views/bandmap/list.php:137
 msgid "to tune frequency"
-msgstr ""
+msgstr "å stille inn frekvens"
 
 #: application/views/bandmap/list.php:19
 msgid "Pop-up Blocked"
-msgstr ""
+msgstr "Popup blokkert"
 
 #: application/views/bandmap/list.php:20 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
 msgstr ""
+"Popup ble blokkert! Tillat popup-vinduer for dette nettstedet permanent."
 
 #: application/views/bandmap/list.php:21
 msgid "CAT Connection Required"
-msgstr ""
+msgstr "CAT-tilkobling kreves"
 
 #: application/views/bandmap/list.php:22
 msgid "Enable CAT connection to tune the radio"
-msgstr ""
+msgstr "Aktiver CAT-tilkobling for å stille inn radioen"
 
 #: application/views/bandmap/list.php:23 application/views/bandmap/list.php:424
 msgid "Clear Filters"
-msgstr ""
+msgstr "Tøm filtre"
 
 #: application/views/bandmap/list.php:24
 msgid "Band filter preserved (band lock is active)"
-msgstr ""
+msgstr "Båndfilter bevart (båndlås er aktiv)"
 
 #: application/views/bandmap/list.php:26
 msgid "Radio set to None - CAT connection disabled"
-msgstr ""
+msgstr "Radio satt til Ingen – CAT-tilkobling deaktivert"
 
 #: application/views/bandmap/list.php:27
+#, fuzzy
 msgid "Radio Tuned"
-msgstr ""
+msgstr "Radio innstilt"
 
 #: application/views/bandmap/list.php:28
 msgid "Tuned to"
@@ -10033,152 +10169,155 @@ msgstr ""
 
 #: application/views/bandmap/list.php:29
 msgid "Tuning Failed"
-msgstr ""
+msgstr "Tuning mislyktes"
 
 #: application/views/bandmap/list.php:30
 msgid "Failed to tune radio to frequency"
-msgstr ""
+msgstr "Kunne ikke stille radioen inn på frekvensen"
 
 #: application/views/bandmap/list.php:31
 msgid "QSO Prepared"
-msgstr ""
+msgstr "QSO klargjort"
 
 #: application/views/bandmap/list.php:33
 msgid "sent to logging form"
-msgstr ""
+msgstr "sendt til loggføringsskjemaet"
 
 #: application/views/bandmap/list.php:34 application/views/bandmap/list.php:238
 msgid "CAT Connection"
-msgstr ""
+msgstr "CAT-tilkobling"
 
 #: application/views/bandmap/list.php:35 application/views/bandmap/list.php:237
 msgid "Click to enable CAT connection"
-msgstr ""
+msgstr "Klikk for å aktivere CAT-tilkobling"
 
 #: application/views/bandmap/list.php:36
 msgid "CAT following radio - Click to disable"
-msgstr ""
+msgstr "CAT følger radioen – klikk for å deaktivere"
 
 #: application/views/bandmap/list.php:37 application/views/bandmap/list.php:240
 msgid "Click to enable band lock (requires CAT connection)"
-msgstr ""
+msgstr "Klikk for å aktivere båndlås (krever CAT-tilkobling)"
 
 #: application/views/bandmap/list.php:38
 msgid "Band lock active - Click to disable"
-msgstr ""
+msgstr "Båndlås aktiv – klikk for å deaktivere"
 
 #: application/views/bandmap/list.php:39
 msgid "Band Lock"
-msgstr ""
+msgstr "Båndlås"
 
 #: application/views/bandmap/list.php:40
 msgid "Band lock enabled - band filter will track radio band"
-msgstr ""
+msgstr "Båndlås aktivert – båndfilteret følger radiobåndet"
 
 #: application/views/bandmap/list.php:41
 msgid "Band filter changed to"
-msgstr ""
+msgstr "Båndfilter endret til"
 
 #: application/views/bandmap/list.php:42
 msgid "by transceiver"
-msgstr ""
+msgstr "etter transceiver"
 
 #: application/views/bandmap/list.php:43
 msgid "Frequency filter set to"
-msgstr ""
+msgstr "Frekvensfilter satt til"
 
 #: application/views/bandmap/list.php:44
 msgid "Frequency outside known bands - showing all bands"
-msgstr ""
+msgstr "Frekvens utenfor kjente bånd – viser alle bånd"
 
 #: application/views/bandmap/list.php:45
 #: application/views/contesting/logger/components/radio.php:30
 msgid "Waiting for radio data..."
-msgstr ""
+msgstr "Venter på radiodata..."
 
 #: application/views/bandmap/list.php:46
 msgid "My Favorites"
-msgstr ""
+msgstr "Mine favoritter"
 
 #: application/views/bandmap/list.php:47
 msgid "Failed to load favorites"
-msgstr ""
+msgstr "Kunne ikke laste inn favoritter"
 
 #: application/views/bandmap/list.php:48
 msgid "Modes applied. Band filter preserved (CAT connection is active)"
-msgstr ""
+msgstr "Modus tildelt. Båndfilteret er beholdt (CAT-tilkoblingen er aktiv)"
 
 #: application/views/bandmap/list.php:49
 msgid "Applied your favorite bands and modes"
-msgstr ""
+msgstr "Favorittbånd og -moduser er brukt"
 
 #: application/views/bandmap/list.php:52 application/views/bandmap/list.php:323
 #: application/views/bandmap/list.php:492
 msgid "My Submodes"
-msgstr ""
+msgstr "Mine undermoduser"
 
 #: application/views/bandmap/list.php:53
 msgid "Submode filter enabled"
-msgstr ""
+msgstr "Filter for sub-modus aktivert"
 
 #: application/views/bandmap/list.php:54
 msgid "Submode filter disabled - showing all"
-msgstr ""
+msgstr "Under-modusfilter deaktivert – viser alle"
 
 #: application/views/bandmap/list.php:55
 msgid "Required submodes"
-msgstr ""
+msgstr "Påkrevde undermoduser"
 
 #: application/views/bandmap/list.php:56
 msgid "Configure in User Settings - Modes"
-msgstr ""
+msgstr "Konfigurer i brukerinnstillinger - moduser"
 
 #: application/views/bandmap/list.php:57
 msgid "No submodes configured - configure in User Settings - Modes"
 msgstr ""
+"Ingen undermoduser konfigurert - konfigurer i brukerinnstillinger - moduser"
 
 #: application/views/bandmap/list.php:58
 msgid "No submodes enabled in settings - showing all spots"
-msgstr ""
+msgstr "Ingen undermoduser aktivert i innstillingene – viser alle spotter"
 
 #: application/views/bandmap/list.php:59
 msgid "Disabled - no submodes enabled for this mode in User Settings"
 msgstr ""
+"Deaktivert – ingen undermoduser er aktivert for denne modusen i "
+"brukerinnstillingene"
 
 #: application/views/bandmap/list.php:60 application/views/bandmap/list.php:481
 #: application/views/components/dxwaterfall.php:32
 msgid "Toggle CW mode filter"
-msgstr ""
+msgstr "Slå CW-modusfilter av/på"
 
 #: application/views/bandmap/list.php:61 application/views/bandmap/list.php:482
 #: application/views/components/dxwaterfall.php:34
 msgid "Toggle Digital mode filter"
-msgstr ""
+msgstr "Slå digitalmodusfilter av/på"
 
 #: application/views/bandmap/list.php:62 application/views/bandmap/list.php:483
 #: application/views/components/dxwaterfall.php:30
 msgid "Toggle Phone mode filter"
-msgstr ""
+msgstr "Slå telefonmodusfilter av/på"
 
 #: application/views/bandmap/list.php:65 application/views/bandmap/list.php:434
 msgid "Favorites"
-msgstr ""
+msgstr "Favoritter"
 
 #: application/views/bandmap/list.php:66 application/views/bandmap/list.php:437
 msgid "Save Current Filters..."
-msgstr ""
+msgstr "Lagre gjeldende filtre ..."
 
 #: application/views/bandmap/list.php:67
 msgid "Enter a name for this filter preset:"
-msgstr ""
+msgstr "Skriv inn et navn på dette filteroppsettet:"
 
 #: application/views/bandmap/list.php:68
 msgid "Filter preset saved"
-msgstr ""
+msgstr "Filteroppsett lagret"
 
 #: application/views/bandmap/list.php:69
 msgid "Filter preset loaded"
-msgstr ""
+msgstr "Filteroppsett lastet inn"
 
 #: application/views/bandmap/list.php:70
 msgid "Filter preset deleted"
@@ -12723,7 +12862,7 @@ msgstr ""
 
 #: application/views/contesting/manager/components/session_modal.php:149
 msgid "One series per operator"
-msgstr ""
+msgstr "Én serie per operatør"
 
 #: application/views/contesting/manager/components/session_modal.php:151
 msgid ""
@@ -12731,49 +12870,55 @@ msgid ""
 "twice, even when several operators log at the same time. Most contests "
 "expect a single shared series per station."
 msgstr ""
+"Serienumre tildeles av serveren, slik at det samme nummeret aldri brukes to "
+"ganger, selv når flere operatører logger samtidig. De fleste konkurranser "
+"forventer én felles serie per stasjon."
 
 #: application/views/contesting/manager/components/session_modal.php:154
 msgid "Session Notes"
-msgstr ""
+msgstr "Sesjonsnotater"
 
 #: application/views/contesting/manager/components/session_modal.php:155
 msgid "Add any additional information about this session..."
-msgstr ""
+msgstr "Legg til eventuell tilleggsinformasjon om denne økten..."
 
 #: application/views/contesting/manager/components/session_modal.php:156
 msgid "Optional: Any additional details or notes"
-msgstr ""
+msgstr "Valgfritt: Eventuelle ekstra detaljer eller notater"
 
 #: application/views/contesting/manager/components/session_modal.php:162
 msgid "Create Session"
-msgstr ""
+msgstr "Opprett økt"
 
 #: application/views/contesting/manager/components/session_modal.php:162
 msgid "Update Session"
-msgstr ""
+msgstr "Oppdater økt"
 
 #: application/views/contesting/manager/export_cbr.php:27
 #: application/views/contesting/manager/export_edi.php:27
 #, php-format
 msgid "%d QSOs"
-msgstr ""
+msgstr "%d QSO-er"
 
 #: application/views/contesting/manager/export_cbr.php:32
 #: application/views/contesting/manager/export_edi.php:32
 msgid ""
 "This contest session has no QSOs yet. Export will produce an empty file."
 msgstr ""
+"Denne konkurranseøkten har ingen QSOer ennå. Eksporten vil generere en tom "
+"fil."
 
 #: application/views/contesting/manager/export_cbr.php:38
 #: application/views/contesting/manager/export_edi.php:38
 msgid ""
 "You do not have permission to export files. Contact the station officer."
 msgstr ""
+"Du har ikke tillatelse til å eksportere filer. Kontakt stasjonsansvarlig."
 
 #: application/views/contesting/manager/export_cbr.php:46
 #: application/views/interface_assets/header.php:548
 msgid "Cabrillo Export"
-msgstr ""
+msgstr "Cabrillo-eksport"
 
 #: application/views/contesting/manager/export_cbr.php:50
 #: application/views/contesting/manager/export_edi.php:50
@@ -12781,28 +12926,30 @@ msgid ""
 "Settings are saved automatically when you download. Name and e-mail are "
 "taken from your user profile."
 msgstr ""
+"Innstillingene lagres automatisk når du laster ned. Navn og e-post hentes "
+"fra brukerprofilen din."
 
 #: application/views/contesting/manager/export_cbr.php:69
 msgid "Assisted"
-msgstr ""
+msgstr "Med operatørassistanse"
 
 #: application/views/contesting/manager/export_cbr.php:102
 msgid "Light/Laser"
-msgstr ""
+msgstr "Lys/laser"
 
 #: application/views/contesting/manager/export_cbr.php:117
 #: application/views/interface_assets/footer.php:130
 #: application/views/stationsetup/locationlist.php:19
 msgid "Power"
-msgstr ""
+msgstr "Effekt"
 
 #: application/views/contesting/manager/export_cbr.php:129
 msgid "Category (optional)"
-msgstr ""
+msgstr "Kategori (valgfritt)"
 
 #: application/views/contesting/manager/export_cbr.php:148
 msgid "Transmitter"
-msgstr ""
+msgstr "Sender"
 
 #: application/views/contesting/manager/export_cbr.php:161
 #: application/views/contesting/manager/export_cbr.php:162
@@ -12810,34 +12957,36 @@ msgstr ""
 #: application/views/contesting/manager/export_cbr.php:164
 #, php-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d timer"
 
 #: application/views/contesting/manager/export_cbr.php:168
 msgid "Overlay"
-msgstr ""
+msgstr "Overlegg"
 
 #: application/views/contesting/manager/export_cbr.php:185
 #: application/views/logbookadvanced/useroptions.php:271
 msgid "Additional Information"
-msgstr ""
+msgstr "Tilleggsinformasjon"
 
 #: application/views/contesting/manager/export_cbr.php:188
 #: application/views/contesting/manager/export_edi.php:72
 msgid "Club"
-msgstr ""
+msgstr "Klubb"
 
 #: application/views/contesting/manager/export_cbr.php:197
 msgid ""
 "ARRL section for USA/Canada, 'DX' for foreign stations. Required for IARU-"
 "HF, ARRL and CQ contests."
 msgstr ""
+"ARRL-seksjon for USA/Canada, 'DX' for utenlandske stasjoner. Påkrevd for "
+"IARU-HF-, ARRL- og CQ-tester."
 
 #: application/views/contesting/manager/export_cbr.php:203
 #: application/views/contesting/manager/export_edi.php:95
 #: application/views/statistics/index.php:18
 #: application/views/statistics/index.php:116
 msgid "Operators"
-msgstr ""
+msgstr "Operatører"
 
 #: application/views/contesting/manager/export_cbr.php:209
 #: application/views/contesting/manager/export_edi.php:184
@@ -12846,11 +12995,12 @@ msgstr ""
 
 #: application/views/contesting/manager/export_cbr.php:214
 msgid "Certificate"
-msgstr ""
+msgstr "Sertifikat"
 
 #: application/views/contesting/manager/export_cbr.php:217
 msgid "Request a paper certificate from the contest sponsor if eligible."
 msgstr ""
+"Be om et papirsertifikat fra konkurransearrangøren hvis du er kvalifisert."
 
 #: application/views/contesting/manager/export_cbr.php:221
 #: application/views/contesting/manager/export_cbr.php:234
@@ -12915,23 +13065,23 @@ msgstr "Ja"
 
 #: application/views/contesting/manager/export_cbr.php:227
 msgid "Grid in exchange?"
-msgstr ""
+msgstr "Lokator i utvekslingen?"
 
 #: application/views/contesting/manager/export_cbr.php:230
 msgid "Select Yes if the grid square was part of the contest exchange."
-msgstr ""
+msgstr "Velg Ja hvis rutenettet var en del av utvekslingen i konkurransen."
 
 #: application/views/contesting/manager/export_cbr.php:240
 msgid "Use 6-char grid instead of 4-char"
-msgstr ""
+msgstr "Bruk 6-tegns lokator i stedet for 4-tegns"
 
 #: application/views/contesting/manager/export_cbr.php:249
 msgid "Contact & Address"
-msgstr ""
+msgstr "Kontakt og adresse"
 
 #: application/views/contesting/manager/export_cbr.php:262
 msgid "Street Address"
-msgstr ""
+msgstr "Gateadresse"
 
 #: application/views/contesting/manager/export_cbr.php:267
 #: application/views/search/result.php:21
@@ -12942,28 +13092,28 @@ msgstr "By"
 
 #: application/views/contesting/manager/export_cbr.php:272
 msgid "State / Province"
-msgstr ""
+msgstr "Delstat / provins"
 
 #: application/views/contesting/manager/export_cbr.php:277
 msgid "Postal Code"
-msgstr ""
+msgstr "Postnummer"
 
 #: application/views/contesting/manager/export_cbr.php:290
 msgid "Download Cabrillo"
-msgstr ""
+msgstr "Last ned Cabrillo"
 
 #: application/views/contesting/manager/export_edi.php:46
 #: application/views/interface_assets/header.php:550
 msgid "EDI Export"
-msgstr ""
+msgstr "EDI-eksport"
 
 #: application/views/contesting/manager/export_edi.php:57
 msgid "Header data"
-msgstr ""
+msgstr "Topptekstdata"
 
 #: application/views/contesting/manager/export_edi.php:62
 msgid "Sent Exchange"
-msgstr ""
+msgstr "Sendt rapport"
 
 #: application/views/contesting/manager/export_edi.php:65
 msgid ""
@@ -12971,114 +13121,123 @@ msgid ""
 "information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
 "characters."
 msgstr ""
+"Utvekslingen som ble sendt under testen. Kan være hvilken som helst type "
+"informasjon, f.eks. provins, DOK, fylke, delstat, effekt eller navn. Maks. "
+"lengde: 6 tegn."
 
 #: application/views/contesting/manager/export_edi.php:75
 msgid ""
 "Describes the callsign of the radio club where operator(s) are member. E.g. "
 "can be used if points are accumulated to the club."
 msgstr ""
+"Beskriver kallesignalet til radioklubben som operatøren(e) er medlem(mer) "
+"av. Kan for eksempel brukes hvis poeng samles opp for klubben."
 
 #: application/views/contesting/manager/export_edi.php:81
 msgid "Category Operator"
-msgstr ""
+msgstr "Kategori operatør"
 
 #: application/views/contesting/manager/export_edi.php:89
 msgid "Callsign of responsible operator"
-msgstr ""
+msgstr "Kallesignal til ansvarlig operatør"
 
 #: application/views/contesting/manager/export_edi.php:98
 msgid ""
 "List of all operators. Seperated with a semicolon ';'. The responsible "
 "operator is not needed here."
 msgstr ""
+"Liste over alle operatører. Separert med semikolon ';'. Den ansvarlige "
+"operatøren trengs ikke her."
 
 #: application/views/contesting/manager/export_edi.php:109
 msgid "Location and Operator Information"
-msgstr ""
+msgstr "Informasjon om lokasjon og operatør"
 
 #: application/views/contesting/manager/export_edi.php:112
 msgid "Contest Address 1"
-msgstr ""
+msgstr "Konkurranseadresse 1"
 
 #: application/views/contesting/manager/export_edi.php:117
 msgid "Contest Address 2"
-msgstr ""
+msgstr "Konkurranseadresse 2"
 
 #: application/views/contesting/manager/export_edi.php:122
 msgid "Operator Address 1"
-msgstr ""
+msgstr "Operatøradresse 1"
 
 #: application/views/contesting/manager/export_edi.php:127
 msgid "Operator Address 2"
-msgstr ""
+msgstr "Operatøradresse 2"
 
 #: application/views/contesting/manager/export_edi.php:132
 msgid "Operator Address Postalcode"
-msgstr ""
+msgstr "Postnummer for operatøradresse"
 
 #: application/views/contesting/manager/export_edi.php:137
 msgid "Operator Address City"
-msgstr ""
+msgstr "Sted for operatøradresse"
 
 #: application/views/contesting/manager/export_edi.php:142
 msgid "Operator Address Country"
-msgstr ""
+msgstr "Land for operatøradresse"
 
 #: application/views/contesting/manager/export_edi.php:147
 msgid "Operator Phone Number"
-msgstr ""
+msgstr "Operatørens telefonnummer"
 
 #: application/views/contesting/manager/export_edi.php:156
 msgid "Additional Station Description"
-msgstr ""
+msgstr "Ytterligere stasjonsbeskrivelse"
 
 #: application/views/contesting/manager/export_edi.php:159
 msgid "Transmit Equipment Description"
-msgstr ""
+msgstr "Beskrivelse av sendeutstyr"
 
 #: application/views/contesting/manager/export_edi.php:164
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:453
 #: application/views/view_log/qso.php:657
 msgid "Transmit Power (W)"
-msgstr ""
+msgstr "Sendeeffekt (W)"
 
 #: application/views/contesting/manager/export_edi.php:169
 msgid "Receive Equipment Description"
-msgstr ""
+msgstr "Beskrivelse av mottaksutstyr"
 
 #: application/views/contesting/manager/export_edi.php:174
 msgid "Antenna Description"
-msgstr ""
+msgstr "Antennebeskrivelse"
 
 #: application/views/contesting/manager/export_edi.php:179
 msgid "Antenna Height Above Ground (m)"
-msgstr ""
+msgstr "Antนnehøyde over bakken (m)"
 
 #: application/views/contesting/manager/export_edi.php:191
 msgid "Scoring Adjustment and Band Selection"
-msgstr ""
+msgstr "Poengjustering og valg av bånd"
 
 #: application/views/contesting/manager/export_edi.php:195
 msgid "Band multiplicator"
-msgstr ""
+msgstr "Båndmultiplikator"
 
 #: application/views/contesting/manager/export_edi.php:200
 msgid ""
 "The Band multiplicator is usually 1. Only change this if necessary according "
 "to the contest scoring rules."
 msgstr ""
+"Båndmultiplikatoren er vanligvis 1. Endre dette bare hvis det er nødvendig i "
+"henhold til konkurransens poengregler."
 
 #: application/views/contesting/manager/export_edi.php:208
 msgid "Choose Band for export"
-msgstr ""
+msgstr "Velg bånd for eksport"
 
 #: application/views/contesting/manager/export_edi.php:220
 msgid "Download EDI"
-msgstr ""
+msgstr "Last ned EDI"
 
 #: application/views/contesting/manager/import_legacy.php:9
 msgid "Historical Contest QSOs"
-msgstr ""
+msgstr "Historiske konkurranse-QSO-er"
 
 #: application/views/contesting/manager/import_legacy.php:13
 msgid ""
@@ -13086,10 +13245,13 @@ msgid ""
 "linked to a contest session. Select the ones you want to import and click "
 "\"Import Selected\"."
 msgstr ""
+"Følgende konkurransegrupper ble funnet i loggboken din, men er ennå ikke "
+"knyttet til en konkurranseøkt. Velg dem du vil importere, og klikk på «"
+"Importer valgte»."
 
 #: application/views/contesting/manager/import_legacy.php:17
 msgid "How grouping works:"
-msgstr ""
+msgstr "Slik fungerer grupperingen:"
 
 #: application/views/contesting/manager/import_legacy.php:18
 msgid ""
@@ -13099,56 +13261,63 @@ msgid ""
 "as one session, while weekly or monthly contest series are imported as "
 "separate sessions."
 msgstr ""
+"QSO-er grupperes etter konkurranse og stasjon. Påfølgende QSO-er havner i "
+"samme økt hvis det er mindre enn 72 timer mellom dem, eller hvis de faller i "
+"samme ISO-kalenderuke (mandag–søndag). Dette gjør at aktivitetsarrangementer "
+"som varer en hel uke, holdes samlet i én økt, mens ukentlige eller månedlige "
+"konkurranseserier importeres som separate økter."
 
 #: application/views/contesting/manager/import_legacy.php:22
 msgid "Admin mode:"
-msgstr ""
+msgstr "Administratormodus:"
 
 #: application/views/contesting/manager/import_legacy.php:23
 msgid "This will import contests for all users of this instance."
-msgstr ""
+msgstr "Dette importerer konkurranser for alle brukere av denne instansen."
 
 #: application/views/contesting/manager/import_legacy.php:35
 #: application/views/contesting/manager/index.php:29
 msgid "Select all"
-msgstr ""
+msgstr "Velg alle"
 
 #: application/views/contesting/manager/import_legacy.php:37
 msgid "ADIF ID"
-msgstr ""
+msgstr "ADIF-ID"
 
 #: application/views/contesting/manager/import_legacy.php:42
 #: application/views/contesting/manager/index.php:37
 #: application/views/logbookadvanced/attachContest.php:17
 msgid "#QSO"
-msgstr ""
+msgstr "#QSO"
 
 #: application/views/contesting/manager/import_legacy.php:66
 msgid "Unknown → Other"
-msgstr ""
+msgstr "Ukjent → Annet"
 
 #: application/views/contesting/manager/import_legacy.php:77
 msgid "Import Selected"
-msgstr ""
+msgstr "Importer valgte"
 
 #: application/views/contesting/manager/import_legacy.php:99
 msgid "Please select at least one contest to import."
-msgstr ""
+msgstr "Velg minst én contest å importere."
 
 #: application/views/contesting/manager/import_legacy.php:102
 msgid "Are you sure you want to import the selected contest sessions?"
-msgstr ""
+msgstr "Er du sikker på at du vil importere de valgte contestøktene?"
 
 #: application/views/contesting/manager/index.php:17
 #: application/views/interface_assets/header.php:357
 msgid "Contests"
-msgstr ""
+msgstr "Contester"
 
 #: application/views/contesting/manager/index.php:20
 msgid ""
 "Here you can manage your contests, create new, edit or export them in "
 "various formats."
 msgstr ""
+"Her kan du administrere contestene dine, opprette nye, redigere eller "
+"eksportere dem i ulike formater."
 
 #: application/views/contesting/manager/index.php:21
 msgid "Create New Contest"
