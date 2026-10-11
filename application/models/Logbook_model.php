@@ -612,6 +612,8 @@ class Logbook_model extends CI_Model {
 				} elseif ($propagation != '' && $propagation != null) {
 					$sql .= ' AND `COL_PROP_MODE` = ?';
 					$binding[] = $propagation;
+				} elseif (strtoupper($band) == 'ALL') {
+					$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
 				}
 				break;
 			case 'IOTA':
@@ -655,10 +657,16 @@ class Logbook_model extends CI_Model {
 			case 'CQZone':
 				$sql .= ' WHERE `COL_CQZ` = ?';
 				$binding[] = $searchphrase;
+				if (strtoupper($band) == 'ALL') {
+					$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
+				}
 				break;
 			case 'ITUZone':
 				$sql .= ' WHERE `COL_ITUZ` = ?';
 				$binding[] = $searchphrase;
+				if (strtoupper($band) == 'ALL') {
+					$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
+				}
 				break;
 			case 'WAS':
 				$sql .= ' WHERE `COL_STATE` = ?';
