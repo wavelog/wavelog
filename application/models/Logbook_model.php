@@ -55,15 +55,52 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
+	 * Load the worker library on demand
+	 *
+	 * @return bool True if the worker is configured and enabled
+	 */
+	private function worker_enabled() {
+		$this->load->is_loaded('worker') ?: $this->load->library('worker');
+		return $this->worker->is_enabled();
+	}
+
+	/**
 	 * Worker-ready: notify about new qsos for a user
+	 *
+	 * @param int $user_id User (or clubstation) whose QSO topic is notified, 0 is a no-op
+	 * @return void
 	 */
 	private function notify_qso_change($user_id) {
-		if (!$user_id) {
-			return;
-		}
-		$this->load->is_loaded('worker') ?: $this->load->library('worker');
-		if ($this->worker->is_enabled()) {
+		if ($user_id && $this->worker_enabled()) {
 			$this->worker->publish('qso.' . $user_id, ['type' => 'qso_changed']);
+		}
+	}
+
+	/**
+	 * Worker-ready: resolve the contest session a QSO belongs to
+	 *
+	 * Skips the lookup when the worker is disabled, nobody could be notified then.
+	 *
+	 * @param int $qso_id QSO primary key (COL_PRIMARY_KEY)
+	 * @return int Contest session id, 0 if the QSO is not in a session or the worker is off
+	 */
+	private function contest_session_for_notify($qso_id) {
+		if (!$this->worker_enabled()) {
+			return 0;
+		}
+		$this->load->model('contesting_model');
+		return (int) $this->contesting_model->get_linked_contest($qso_id);
+	}
+
+	/**
+	 * Worker-ready: tell an open contest logger to sync after a change outside of it
+	 *
+	 * @param int $contest_session_id From contest_session_for_notify(), 0 is a no-op
+	 * @return void
+	 */
+	private function notify_contest_change($contest_session_id) {
+		if ($contest_session_id && $this->worker_enabled()) {
+			$this->worker->publish('contest_session.' . $contest_session_id, ['type' => 'sync_required']);
 		}
 	}
 
@@ -284,7 +321,8 @@ class Logbook_model extends CI_Model {
 		}
 
 		$qsl_sent = $qso_data['qsl_sent'] ?? 'N';
-		$qsl_rcvd = $qso_data['qsl_rcvd'] ?? 'N';
+		// 'V' is a deprecated import-only QSL Rcvd value (ADIF 3.1.6) — never store it
+		$qsl_rcvd = strtoupper($t = $qso_data['qsl_rcvd'] ?? 'N') === 'V' ? 'Y' : $t;
 		$qslsdate = $qsl_sent == 'N' ? NULL : date('Y-m-d H:i:s');
 		$qslrdate = $qsl_rcvd == 'N' ? NULL : date('Y-m-d H:i:s');
 
@@ -357,7 +395,7 @@ class Logbook_model extends CI_Model {
 			'COL_SIG' => strtoupper(trim($qso_data['sig'] ?? '')) ?? NULL,
 			'COL_SIG_INFO' => strtoupper(trim($qso_data['sig_info'] ?? '')) ?? NULL,
 			'COL_DARC_DOK' => strtoupper(trim($darc_dok ?? '')) ?? NULL,
-			'COL_NOTES' => strtoupper(trim($qso_data['notes'] ?? '')) ?? NULL,
+			'COL_NOTES' => trim($qso_data['notes'] ?? '') ?: NULL,
 			'COL_EMAIL' => $email ?? NULL,
 			'COL_REGION' => $region ?? NULL,
 		);
@@ -653,7 +691,7 @@ class Logbook_model extends CI_Model {
 				$sql .= ' AND (COL_PROP_MODE != "SAT" OR COL_PROP_MODE IS NULL)';
 
 				// Only count allowed bands for Polska Award
-				$bands = array('160M','80M','40M','30M','20M','17M','15M','12M','10M','6M','2M');
+				$bands = array('160m','80m','40m','30m','20m','17m','15m','12m','10m','6m','2m');
 				$sql .= ' AND `COL_BAND` IN ('.implode(',', array_fill(0, count($bands), '?')).')';
 				$binding = array_merge($binding, $bands);
 
@@ -743,7 +781,7 @@ class Logbook_model extends CI_Model {
 				$sql .= ' AND (COL_PROP_MODE != "SAT" OR COL_PROP_MODE IS NULL)';
 
 				// Only count allowed bands for Italian Award
-				$bands = array('160M','80M','40M','30M','20M','17M','15M','12M','10M','6M','2M');
+				$bands = array('160m','80m','40m','30m','20m','17m','15m','12m','10m','6m','2m');
 				$sql .= ' AND `COL_BAND` IN ('.implode(',', array_fill(0, count($bands), '?')).')';
 				$binding = array_merge($binding, $bands);
 
@@ -975,7 +1013,7 @@ class Logbook_model extends CI_Model {
 				$qso = null;
 				$needs_qso_lookup = (
 					$creds && (
-					(isset($creds->ucp) && isset($creds->ucn) && $creds->clublogrealtime == 1) ||
+					(isset($creds->ucp) && isset($creds->ucn) && $creds->clublogignore != 1 && $creds->clublogrealtime == 1) ||
 					(isset($creds->hrdlog_code) && isset($creds->hrdlog_username) && $creds->hrdlogrealtime == 1) ||
 					(isset($creds->qrzapikey) && $creds->qrzrealtime == 1) ||
 					(isset($creds->webadifapikey) && $creds->webadifrealtime == 1)
@@ -986,8 +1024,8 @@ class Logbook_model extends CI_Model {
 					$qso = $this->get_qso($last_id, true)->result();
 				}
 
-				// ClubLog export
-				if ($creds && isset($creds->ucp) && isset($creds->ucn) && (($creds->ucp ?? '') != '') && (($creds->ucn ?? '') != '') && ($creds->clublogrealtime == 1)) {
+			// ClubLog export
+			if ($creds && isset($creds->ucp) && isset($creds->ucn) && (($creds->ucp ?? '') != '') && (($creds->ucn ?? '') != '') && ($creds->clublogignore != 1) && ($creds->clublogrealtime == 1)) {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
@@ -1040,8 +1078,10 @@ class Logbook_model extends CI_Model {
 					}
 				}
 
-				// WebADIF export
-				if ($creds && isset($creds->webadifapikey) && $creds->webadifrealtime == 1) {
+			// WebADIF export
+			if ($creds && isset($creds->webadifapikey) && $creds->webadifrealtime == 1
+				&& ($data['COL_PROP_MODE'] ?? '') == 'SAT'
+				&& ($data['COL_SAT_NAME'] ?? '') == 'QO-100') {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
@@ -1142,7 +1182,7 @@ class Logbook_model extends CI_Model {
 					prof.hrdlog_username, prof.hrdlog_code, prof.hrdlogrealtime,
 					prof.qrzapikey, prof.qrzrealtime,
 					prof.webadifapikey, prof.webadifapiurl, prof.webadifrealtime,
-					prof.clublogrealtime,
+					prof.clublogrealtime, prof.clublogignore,
 					auth.user_clublog_name as ucn, auth.user_clublog_password as ucp
 				FROM station_profile prof
 				INNER JOIN ' . $this->config->item('auth_table') . ' auth ON (auth.user_id = prof.user_id)
@@ -1527,7 +1567,14 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	/* Edit QSO */
+	/**
+	 * Edit a QSO from the posted edit form
+	 *
+	 * Reads all fields from POST (id = COL_PRIMARY_KEY). Notifies the user's
+	 * QSO topic and, if the QSO is in a contest session, the contest logger.
+	 *
+	 * @return array ['success' => bool, 'detail' => string|Exception on failure]
+	 */
 	function edit() {
 		$retvals=[];
 		$retvals['success']=false;
@@ -1632,7 +1679,8 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('qsl_rcvd')) {
-			$qsl_rcvd = $this->input->post('qsl_rcvd',true);
+			// 'V' is a deprecated import-only QSL Rcvd value (ADIF 3.1.6) — never store it
+			$qsl_rcvd = strtoupper($p = $this->input->post('qsl_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$qsl_rcvd = 'N';
 		}
@@ -1644,7 +1692,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('eqsl_rcvd')) {
-			$eqsl_rcvd = $this->input->post('eqsl_rcvd',true);
+			$eqsl_rcvd = strtoupper($p = $this->input->post('eqsl_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$eqsl_rcvd = 'N';
 		}
@@ -1680,7 +1728,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('dcl_rcvd')) {
-			$dcl_rcvd = $this->input->post('dcl_rcvd',true);
+			$dcl_rcvd = strtoupper($p = $this->input->post('dcl_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$dcl_rcvd = 'N';
 		}
@@ -1696,7 +1744,7 @@ class Logbook_model extends CI_Model {
 		if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
 			$lotw_rcvd = 'I';
 		} elseif ($this->input->post('lotw_rcvd')) {
-			$lotw_rcvd = $this->input->post('lotw_rcvd');
+			$lotw_rcvd = strtoupper($p = $this->input->post('lotw_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$lotw_rcvd = 'N';
 		}
@@ -1876,7 +1924,7 @@ class Logbook_model extends CI_Model {
 			'COL_EQSL_QSLSDATE' => $eqslsdate,
 			'COL_EQSL_QSLRDATE' => $eqslrdate,
 			'COL_EQSL_QSL_SENT' => $this->input->post('eqsl_sent'),
-			'COL_EQSL_QSL_RCVD' => $this->input->post('eqsl_rcvd'),
+			'COL_EQSL_QSL_RCVD' => $eqsl_rcvd,
 			'COL_QSLMSG' => $this->input->post('qslmsg'),
 			'COL_QRZCOM_QSO_UPLOAD_DATE' => $qrzsdate,
 			'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qrzrdate,
@@ -1951,6 +1999,7 @@ class Logbook_model extends CI_Model {
 			$this->db->update($this->config->item('table_name'), $data);
 			$retvals['success']=true;
 			$this->notify_qso_change($station_profile->user_id);
+			$this->notify_contest_change($this->contest_session_for_notify($this->input->post('id', true)));
 
 			// Invalidate DXCluster cache for this callsign
 			$this->dxclustercache->invalidate_for_callsign($data['COL_CALL']);
@@ -4697,9 +4746,10 @@ class Logbook_model extends CI_Model {
 		];
 	}
 
-	/* Delete QSO based on the QSO ID */
 	/**
 	 * Delete a QSO (and its OQRS/QSL/eQSL artefacts) after an ownership check.
+	 * Notifies the user's QSO topic and, if the QSO was in a contest session,
+	 * the contest logger.
 	 *
 	 * @param int      $id      QSO primary key (COL_PRIMARY_KEY).
 	 * @param int|null $user_id User to authorise against. Defaults to the
@@ -4711,6 +4761,9 @@ class Logbook_model extends CI_Model {
 			// was just verified, so read it trusted (works without a session too).
 			$qso = $this->get_qso($id, true);
 			$callsign = ($qso !== null && $qso->num_rows() > 0) ? $qso->row()->COL_CALL : null;
+
+			// Look up before the delete, contest_qsos cascades with it
+			$contest_session_id = $this->contest_session_for_notify($id);
 
 			$this->load->model('qsl_model');
 			$this->load->model('eqsl_images');
@@ -4726,6 +4779,7 @@ class Logbook_model extends CI_Model {
 
 			// qso was accessible so notify qso_changed for the current user_id (can also be a clubstation)
 			$this->notify_qso_change($user_id ?? $this->session->userdata('user_id'));
+			$this->notify_contest_change($contest_session_id);
 
 			// Invalidate DXCluster cache for this callsign
 			$this->dxclustercache->invalidate_for_callsign($callsign);
@@ -5528,7 +5582,9 @@ class Logbook_model extends CI_Model {
 			}
 
 			if (isset($record['qsl_rcvd'])) {
-				$input_qsl_rcvd = mb_strimwidth($record['qsl_rcvd'], 0, 1);
+				// 'V' (verified) is a deprecated import-only value of the QSL Rcvd
+				// enumeration (ADIF 3.1.6) — normalize to 'Y' so it never reaches the DB.
+				$input_qsl_rcvd = strtoupper($v = mb_strimwidth($record['qsl_rcvd'], 0, 1)) === 'V' ? 'Y' : $v;
 			} else {
 				$input_qsl_rcvd = "N";
 			}
@@ -5592,7 +5648,7 @@ class Logbook_model extends CI_Model {
 			 * Validate LoTW Fields
 			 */
 			if (isset($record['lotw_qsl_rcvd'])) {
-				$input_lotw_qsl_rcvd = mb_strimwidth($record['lotw_qsl_rcvd'], 0, 1);
+				$input_lotw_qsl_rcvd = strtoupper($v = mb_strimwidth($record['lotw_qsl_rcvd'], 0, 1)) === 'V' ? 'Y' : $v;
 			} else {
 				$input_lotw_qsl_rcvd = NULL;
 			}
@@ -5637,7 +5693,7 @@ class Logbook_model extends CI_Model {
 			 * Validate eQSL Fields
 			 */
 			if (isset($record['eqsl_qsl_rcvd'])) {
-				$input_eqsl_qsl_rcvd = mb_strimwidth($record['eqsl_qsl_rcvd'], 0, 1);
+				$input_eqsl_qsl_rcvd = strtoupper($v = mb_strimwidth($record['eqsl_qsl_rcvd'], 0, 1)) === 'V' ? 'Y' : $v;
 			} else {
 				$input_eqsl_qsl_rcvd = NULL;
 			}
@@ -5845,7 +5901,7 @@ class Logbook_model extends CI_Model {
 				'COL_DCL_QSLSDATE' => $input_dcl_qso_upload_date,
 				'COL_DCL_QSL_SENT' => $input_dcl_qso_upload_status,
 				'COL_DCL_QSLRDATE' => (!empty($record['dcl_qslrdate'])) ? $record['dcl_qslrdate'] : null,
-				'COL_DCL_QSL_RCVD' => (!empty($record['dcl_qsl_rcvd'])) ? $record['dcl_qsl_rcvd'] : null,
+				'COL_DCL_QSL_RCVD' => (!empty($record['dcl_qsl_rcvd'])) ? (strtoupper($record['dcl_qsl_rcvd']) === 'V' ? 'Y' : $record['dcl_qsl_rcvd']) : null,
 				'COL_QSL_RCVD' => $input_qsl_rcvd,
 				'COL_QSL_RCVD_VIA' => $input_qsl_rcvd_via,
 				'COL_QSL_SENT' => $input_qsl_sent,
@@ -6118,11 +6174,11 @@ class Logbook_model extends CI_Model {
 
 		if ($pota_ref != '') {
 			if (substr(strtoupper($call), -2) == "/P") {
-				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE COL_CALL = ? AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND UPPER(COL_BAND) = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
-				$check = $this->db->query($sql, array($call, $time_on, $time_on, strtoupper($band), strtoupper($mode), $logbooks_locations_array));
+				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE COL_CALL = ? AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND COL_BAND = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
+				$check = $this->db->query($sql, array($call, $time_on, $time_on, $band, strtoupper($mode), $logbooks_locations_array));
 			} else {
-				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE (COL_CALL = ? OR COL_CALL = ?) AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND UPPER(COL_BAND) = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
-				$check = $this->db->query($sql, array($call, $call."/P", $time_on, $time_on, strtoupper($band), strtoupper($mode), $logbooks_locations_array));
+				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE (COL_CALL = ? OR COL_CALL = ?) AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND COL_BAND = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
+				$check = $this->db->query($sql, array($call, $call."/P", $time_on, $time_on, $band, strtoupper($mode), $logbooks_locations_array));
 			}
 			if ($check->num_rows() != 1) {
 				return array(2, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td class=\"callsign\">" . $call . "</td><td>" . $band . "</td><td>" . $mode . "</td><td></td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("QSO could not be matched") . "</td></tr>");

@@ -150,6 +150,7 @@
 			// source of truth for every caller (v1 Api::radio() and API v2).
 			$data['mode'] = $this->normalize_mode($data['mode']);
 			$data['mode_rx'] = $this->normalize_mode($data['mode_rx']);
+			$eventdata = array();
 
 			if (($this->config->item('mqtt_server') ?? '') != '') {
 				$h_user=$this->user_model->get_by_id($user_id);
@@ -167,7 +168,7 @@
 					$this->db->where('user_id', $user_id);
 					$this->db->update('cat', $data);
 					if (($this->config->item('mqtt_server') ?? '') != '') {
-                				$this->mh->wl_event('cat/'.$user_id, json_encode(array_merge($data,$eventdata)));
+						$this->mh->wl_event('cat/'.$user_id, json_encode(array_merge($data,$eventdata)));
 					}
 				}
 			} else {
