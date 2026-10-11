@@ -74,7 +74,7 @@ function check_dxcc($result, $custom_date_format) { ?>
 		if ($result) { ?>
 		<div class="form-check form-check-lg border rounded p-3 bg-light h-100">
 				<input class="form-check-input me-2" type="checkbox" id="forceDxccUpdate" />
-				<?= __("Force update even if DXCC is not found, set to none or found as invalid.") ?>
+				<?= __("If checked, 'Check all' and 'Update selected' also include QSOs with DXCC none, not found or invalid") ?>
 			</div>
 		<button type="button" class="mt-2 mb-2 btn btn-sm btn-primary ld-ext-right" id="fixSelectedDxccBtn" onclick="fixDxccSelected(true)">
 			<?= __("Update selected") ?><div class="ld ld-ring ld-spin"></div>
