@@ -227,16 +227,6 @@ class Wab extends CI_Model {
 		return $query;
 	}
 
-	// WAB tool: candidate row count, for recordsTotal / recordsFiltered
-	function count_wab_candidates($station_id = null, $dxcc_ids = null, $search = '', $full_grids = null) {
-		$bindings=[];
-		$sql = "select count(*) as n " . $this->wab_candidates_sql($station_id, $dxcc_ids, $search, $bindings, $full_grids);
-
-		$query = $this->db->query($sql,$bindings);
-
-		return (int)$query->row()->n;
-	}
-
 	/*
 	 * WAB tool: distinct normalized gridsquares among the candidates, so the
 	 * scan summary can be computed per grid instead of per QSO row

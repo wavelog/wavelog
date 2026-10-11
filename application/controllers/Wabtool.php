@@ -44,45 +44,15 @@ class Wabtool extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	/*
-	 * AJAX: one page of gridsquare candidates as DataTables server-side JSON.
-	 * only_full limits rows to "100% matches" (single-square grids);
-	 * wabtool_summary (initial scan) adds a whole-log summary per grid.
-	 */
-	public function scan() {
+	public function table() {
 		set_time_limit(3600);
-		header('Content-Type: application/json');
 
 		$station_id = $this->input->post('station_id', true);
 		$station_id = ($station_id !== null && $station_id !== 'all') ? $station_id : null;
-		$search = $this->postSearchTerm();
-
-		// DataTables server-side parameters
-		$draw = (int)$this->input->post('draw', true);
-		$start = max(0, (int)$this->input->post('start', true));
-		$length = (int)$this->input->post('length', true);
-		if ($length <= 0) {
-			$length = 25;
-		}
-		$length = min($length, 200); // keep one page bounded no matter what the client asks for
-
-		$order = $this->input->post('order', true);
-		$orderCol = is_array($order) && isset($order[0]['column']) ? (int)$order[0]['column'] : 1;
-		$orderDir = is_array($order) && isset($order[0]['dir']) ? strtolower($order[0]['dir']) : 'desc';
 
 		$this->load->model('wab');
 
-		// "100% matches" only: grids whose center resolves to a square and
-		// whose corners all stay inside that same square
-		$full_grids = null;
-		if ((string)$this->input->post('only_full', true) === '1') {
-			$full_grids = $this->fullMatchGrids($station_id);
-		}
-
-		$filtered = $this->wab->count_wab_candidates($station_id, $this->wabDxccIds, $search, $full_grids);
-		$total = ($search === '') ? $filtered : $this->wab->count_wab_candidates($station_id, $this->wabDxccIds, '', $full_grids);
-
-		$query = $this->wab->get_wab_candidates($station_id, $this->wabDxccIds, $search, $orderCol, $orderDir, $length, $start, $full_grids);
+		$full_grids = $this->fullMatchGrids($station_id);
 
 		// Get Date format
 		if ($this->session->userdata('user_date_format')) {
@@ -92,20 +62,7 @@ class Wabtool extends CI_Controller {
 		}
 
 		$rows = array();
-		foreach ($query->result() as $qso) {
-			$grid = strtoupper(substr(trim($qso->col_gridsquare), 0, 8));
-
-			$resolved = $this->resolveGrid($qso->col_gridsquare);
-
-			$square = null;
-			$ambiguous = false;
-			$cornerSquares = array();
-			if ($resolved !== null) {
-				$square = $resolved['square'];
-				$ambiguous = $resolved['ambiguous'];
-				$cornerSquares = $resolved['corner_squares'];
-			}
-
+		foreach ($this->wab->get_wab_candidates($station_id, $this->wabDxccIds, '', 1, 'desc', null, 0, $full_grids)->result() as $qso) {
 			// confirmation letters, one per QSL system:
 			// Q = QSL card, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog
 			$letters = '';
@@ -118,54 +75,21 @@ class Wabtool extends CI_Controller {
 			$rows[] = array(
 				'id' => (int)$qso->col_primary_key,
 				'callsign' => $qso->col_call,
-				'datetime' => date($custom_date_format, strtotime($qso->col_time_on)) . date(' H:i', strtotime($qso->col_time_on)),
-				'band' => $qso->col_band,
-				'sat' => $qso->col_sat_name,
-				'grid' => $grid,
-				'square' => $square,
-				'ambiguous' => $ambiguous,
-				'corner_squares' => array_values($cornerSquares),
+				// sat QSOs: show the satellite instead of the bare 'SAT' band
+				'band' => ($qso->col_sat_name !== null && $qso->col_sat_name !== '') ? $qso->col_sat_name : $qso->col_band,
+				'datetime' => date($custom_date_format . ' H:i', strtotime($qso->col_time_on)),
+				'ts' => strtotime($qso->col_time_on), // ordering key for the client-side sort
+				'grid' => strtoupper(substr(trim($qso->col_gridsquare), 0, 8)),
+				'square' => $this->resolveGrid($qso->col_gridsquare)['square'],
 				'station' => $qso->station_profile_name,
 				'confirmed' => $letters,
 			);
 		}
 
-		$response = array(
-			'draw' => $draw,
-			'recordsTotal' => $total,
-			'recordsFiltered' => $filtered,
-			'data' => $rows,
-		);
-
-		if ($this->input->post('wabtool_summary') !== null) {
-			$summary = array('qsos_scanned' => $total, 'unique_grids' => 0, 'matched' => 0, 'unmatched' => 0, 'ambiguous' => 0);
-			foreach ($this->wab->get_wab_candidate_grids($station_id, $this->wabDxccIds) as $grid) {
-				$summary['unique_grids']++;
-
-				$resolved = $this->resolveGrid($grid);
-
-				if ($resolved === null || $resolved['square'] === null) {
-					$summary['unmatched']++;
-				} else {
-					$summary['matched']++;
-					if ($resolved['ambiguous']) {
-						$summary['ambiguous']++;
-					}
-				}
-			}
-			$response['summary'] = $summary;
-		}
-
-		echo json_encode($response);
+		$this->load->view('wabtool/table', array('rows' => $rows));
 	}
 
-	/*
-	 * AJAX: write the WAB square into the selected QSOs. Squares are always
-	 * recomputed server side; ownership, confirmation state and the empty-SIG
-	 * policy are re-checked. ids is a JSON array of primary keys or the
-	 * literal 'ALL' (candidates enumerated server side, mirroring the scan
-	 * filters, so the client never ships thousands of ids).
-	 */
+
 	public function apply() {
 		set_time_limit(3600);
 		header('Content-Type: application/json');
@@ -178,53 +102,36 @@ class Wabtool extends CI_Controller {
 		}
 
 		$ids = $this->input->post('ids');
-		if (is_string($ids) && $ids !== 'ALL') {
-			$ids = json_decode($ids, true);
-		}
-
-		$skipped = 0;
-
-		if ($ids === 'ALL') {
-			// the candidates query itself enforces ownership, the DXCC
-			// whitelist and the empty-SIG policy
-			$station_id = $this->input->post('station_id', true);
-			$station_id = ($station_id !== null && $station_id !== 'all') ? $station_id : null;
-			$search = $this->postSearchTerm();
-			$only_full = (string)$this->input->post('only_full', true) === '1';
-
-			$qsos = $this->wab->get_wab_candidates($station_id, $this->wabDxccIds, $search);
-
-			$idsBySquare = array();
-			foreach ($qsos->result() as $qso) {
-				$resolved = $this->resolveGrid($qso->col_gridsquare);
-				if ($resolved === null || $resolved['square'] === null || ($only_full && $resolved['ambiguous'])) {
-					$skipped++;
-					continue;
-				}
-				$idsBySquare[$resolved['square']][] = (int)$qso->col_primary_key;
-			}
-		} elseif (is_array($ids) && count($ids) > 0) {
-			$ids = array_values(array_filter(array_unique(array_map('intval', $ids))));
-			if (count($ids) === 0) {
-				echo json_encode(array('error' => __("No QSOs selected")));
-				return;
-			}
-
-			$qsos = $this->wab->get_wab_candidates_by_ids($ids, $user_station_ids, $this->wabDxccIds);
-			$skipped = count($ids) - count($qsos);
-
-			$idsBySquare = array();
-			foreach ($qsos as $qso) {
-				$resolved = $this->resolveGrid($qso->col_gridsquare);
-				if ($resolved === null || $resolved['square'] === null) {
-					$skipped++;
-					continue;
-				}
-				$idsBySquare[$resolved['square']][] = (int)$qso->col_primary_key;
-			}
-		} else {
+		$ids = is_string($ids) ? json_decode($ids, true) : $ids;
+		if (!is_array($ids) || count($ids) === 0) {
 			echo json_encode(array('error' => __("No QSOs selected")));
 			return;
+		}
+
+		$ids = array_values(array_filter(array_unique(array_map('intval', $ids))));
+		if (count($ids) === 0) {
+			echo json_encode(array('error' => __("No QSOs selected")));
+			return;
+		}
+
+		// chunk the fetch the same way as the updates, so "select all
+		// matching" on a huge log never produces one huge IN (...) statement
+		$qsos = array();
+		foreach (array_chunk($ids, 1000) as $chunk) {
+			foreach ($this->wab->get_wab_candidates_by_ids($chunk, $user_station_ids, $this->wabDxccIds) as $qso) {
+				$qsos[] = $qso;
+			}
+		}
+		$skipped = count($ids) - count($qsos);
+
+		$idsBySquare = array();
+		foreach ($qsos as $qso) {
+			$resolved = $this->resolveGrid($qso->col_gridsquare);
+			if ($resolved === null || $resolved['square'] === null) {
+				$skipped++;
+				continue;
+			}
+			$idsBySquare[$resolved['square']][] = (int)$qso->col_primary_key;
 		}
 
 		$updated = 0;
@@ -242,22 +149,10 @@ class Wabtool extends CI_Controller {
 	}
 
 	/*
-	 * The table search term: DataTables posts it as search[value] (an array),
-	 * the bulk apply posts it as a plain string
-	 */
-	private function postSearchTerm() {
-		$search = $this->input->post('search');
-		if (is_array($search)) {
-			$search = (string)($search['value'] ?? '');
-		}
-		return trim((string)$search);
-	}
-
-	/*
 	 * Normalized grids among the candidates that resolve unambiguously to a
 	 * single WAB square (center and all four corners inside it): the
-	 * "100% match" set behind the only_full filter. Ambiguity is a property
-	 * of the grid alone, so this is computed per distinct grid, never per QSO.
+	 * "100% match" set the scan table lists. Ambiguity is a property of the
+	 * grid alone, so this is computed per distinct grid, never per QSO.
 	 */
 	private function fullMatchGrids($station_id) {
 		$full = array();
@@ -270,11 +165,6 @@ class Wabtool extends CI_Controller {
 		return $full;
 	}
 
-	/*
-	 * AJAX: map data for a gridsquare — the grid rectangle plus the outlines
-	 * of the assigned WAB square and any extra squares the grid corners
-	 * fall into
-	 */
 	public function map_data() {
 		header('Content-Type: application/json');
 
@@ -342,13 +232,6 @@ class Wabtool extends CI_Controller {
 	// WAB square geometry
 	// ============================================================================
 
-	/*
-	 * Build a lookup index from the WAB square outlines in wab_geojson.js:
-	 * per square the (closed) ring and bounding box, plus lat/lng bins for
-	 * fast point lookups (the centroid Point features are skipped). The
-	 * compact index is cached across requests; the cache key includes the
-	 * file's mtime and size, so edits to wab_geojson.js invalidate it.
-	 */
 	private function loadWabIndex() {
 		if ($this->wabIndex !== null) {
 			return;
@@ -417,10 +300,7 @@ class Wabtool extends CI_Controller {
 		}
 	}
 
-	/*
-	 * Name of the WAB square containing the given point, or null. Points that
-	 * fall into a sliver between adjacent rings snap to the nearest ring.
-	 */
+
 	private function squareForPoint($lat, $lng) {
 		$this->loadWabIndex();
 

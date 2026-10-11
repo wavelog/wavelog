@@ -1,12 +1,5 @@
-// WAB from Gridsquare tool: batch assign WAB squares from logged gridsquares
-// (functions are prefixed wabtool* because section scripts share the global scope)
-
 var wabtoolTable = null; // DataTables API instance of the preview table
 var wabtoolSelected = {}; // qso id -> 1, rows checked by the user
-var wabtoolAllMatching = false; // apply every matching QSO, not just checked ones
-var wabtoolOnlyFull = true; // only gridsquares fully inside a single WAB square; on by default
-var wabtoolRecordsFiltered = 0; // rows matching the current table filter
-var wabtoolSummaryPending = false; // request the one-time scan summary on the next ajax
 
 function wabtoolEscapeHtml(s) {
 	return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
@@ -14,214 +7,65 @@ function wabtoolEscapeHtml(s) {
 	});
 }
 
-function wabtoolCornerTooltip(cornerSquares) {
-	var squares = (cornerSquares && cornerSquares.length) ? cornerSquares.join(', ') : '';
-	return '<span class="text-warning" data-bs-toggle="tooltip" title="Gridsquare corners fall into: ' + wabtoolEscapeHtml(squares) + '"><i class="fas fa-exclamation-triangle"></i></span>';
-}
-
-function wabtoolRenderSummary(summary) {
-	var html = '';
-	if (summary) {
-		html += '<p class="mb-2">'
-			+ '<strong>' + summary.qsos_scanned + '</strong> QSOs with gridsquare &middot; '
-			+ '<strong>' + summary.unique_grids + '</strong> unique grids &middot; '
-			+ '<strong>' + summary.matched + '</strong> matched to a WAB square';
-		if (summary.ambiguous) {
-			html += ' &middot; <span class="text-warning"><i class="fas fa-exclamation-triangle"></i> ' + summary.ambiguous + ' straddling square boundaries</span>';
-		}
-		if (summary.unmatched) {
-			html += ' &middot; ' + summary.unmatched + ' outside WAB coverage';
-		}
-		html += '</p>';
-	}
-	html += '<button type="button" class="btn btn-sm btn-outline-success mb-2 me-2' + (wabtoolOnlyFull ? ' active' : '') + '" id="wabtoolOnlyFull" aria-pressed="' + wabtoolOnlyFull + '" data-bs-toggle="tooltip" title="Hide gridsquares that straddle a WAB square boundary (or fall outside WAB coverage)">Only 100% matches</button>';
-	html += '<button type="button" class="btn btn-sm btn-outline-primary mb-2" id="wabtoolSelectAllMatching"></button>';
-	$('.wabtool-summary').html(html);
-	$('#wabtoolOnlyFull').tooltip();
-}
-
-function wabtoolUpdateSelectAllButton() {
-	var btn = $('#wabtoolSelectAllMatching');
-	if (!btn.length) {
-		return;
-	}
-	if (wabtoolAllMatching) {
-		btn.text('Clear selection (' + wabtoolRecordsFiltered + ' selected)');
-	} else {
-		var n = wabtoolRecordsFiltered;
-		var what = wabtoolOnlyFull ? ' 100% matching QSOs' : ' matching QSOs';
-		btn.text(n ? 'Select all ' + n + what : 'Select all matching QSOs');
-	}
-}
-
 function wabtoolSyncHeaderCheckbox() {
 	var $rows = $('#wabtoolTable tbody .wabtool-row');
 	$('#wabtoolSelectAll').prop('checked', $rows.length > 0 && $rows.length === $rows.filter(':checked').length);
 }
 
-// Render the preview table shell and let DataTables fetch page 1 itself
-function wabtoolInitTable() {
-	var html = '<div class="wabtool-summary"></div>'
-		+ '<div class="table-responsive"><table class="table table-sm table-striped" id="wabtoolTable">'
-		+ '<thead><tr>'
-		+ '<th style="width: 2rem;"><input type="checkbox" id="wabtoolSelectAll"></th>'
-		+ '<th>Date/Time</th><th>Callsign</th><th>Band</th><th>Grid</th><th>WAB Square</th><th>Station</th><th>Confirmed</th>'
-		+ '</tr></thead><tbody></tbody></table></div>';
-
-	$('.scanresult').html(html);
-
-	wabtoolTable = $('#wabtoolTable').DataTable({
-		serverSide: true,
-		processing: true,
-		ajax: {
-			url: site_url + '/wabtool/scan',
-			type: 'POST',
-			data: function(d) {
-				d.station_id = $('#de').val();
-				if (wabtoolOnlyFull) {
-					d.only_full = 1;
-				}
-				if (wabtoolSummaryPending) {
-					// whole-log summary only on the first load after a scan
-					d.wabtool_summary = 1;
-					wabtoolSummaryPending = false;
-				}
-			}
-		},
-		pageLength: 25,
-		lengthMenu: [10, 25, 50, 100],
-		order: [[1, 'desc']],
-		searchDelay: 400,
-		language: {
-			url: getDataTablesLanguageUrl(),
-		},
-		columns: [
-			{
-				data: null,
-				orderable: false,
-				searchable: false,
-				render: function(data, type, row) {
-					if (type !== 'display') {
-						return '';
-					}
-					if (!row.square) {
-						return ''; // unresolvable rows are never selectable
-					}
-					return '<input type="checkbox" class="wabtool-row" value="' + row.id + '"'
-						+ ((wabtoolAllMatching || wabtoolSelected[row.id]) ? ' checked' : '') + '>';
-				}
-			},
-			{ data: 'datetime', render: wabtoolRenderCell },
-			{
-				data: 'callsign',
-				className: 'callsign',
-				render: function(data, type, row) {
-					if (type !== 'display') {
-						return data;
-					}
-					return '<a href="#" class="wabtool-qso" data-id="' + row.id + '">' + wabtoolEscapeHtml(data) + '</a>';
-				}
-			},
-			{
-				data: 'band',
-				render: function(data, type, row) {
-					if (type !== 'display') {
-						return data;
-					}
-					// sat QSOs: show the satellite instead of the bare 'SAT' band
-					if (row.sat) {
-						return wabtoolEscapeHtml(row.sat);
-					}
-					return wabtoolEscapeHtml(data);
-				}
-			},
-			{ data: 'grid', render: wabtoolRenderCell },
-			{
-				data: 'square',
-				orderable: false,
-				render: function(data, type, row) {
-					if (type !== 'display') {
-						return row.square || '';
-					}
-					var html = row.square
-						? '<span class="badge bg-primary">' + wabtoolEscapeHtml(row.square) + '</span>'
-						: '<span class="text-muted">&mdash;</span>';
-					if (row.square && row.ambiguous) {
-						html += ' ' + wabtoolCornerTooltip(row.corner_squares);
-					}
-					html += ' <a href="#" class="wabtool-map text-muted" data-grid="' + wabtoolEscapeHtml(row.grid) + '" data-bs-toggle="tooltip" title="Show on map"><i class="fas fa-map-marked-alt"></i></a>';
-					return html;
-				}
-			},
-			{ data: 'station', render: wabtoolRenderCell },
-			{
-				data: 'confirmed',
-				orderable: false,
-				searchable: false,
-				render: function(data, type) {
-					if (type !== 'display') {
-						return data || '';
-					}
-					if (!data) {
-						return '<span class="text-muted">&mdash;</span>';
-					}
-					// one badge per letter: Q = QSL card, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog
-					var badges = data.split('').map(function(l) {
-						return '<span class="badge bg-success">' + l + '</span>';
-					}).join(' ');
-					return '<span data-bs-toggle="tooltip" title="Q = QSL card, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog">' + badges + '</span>';
-				}
-			}
-		],
-		createdRow: function(row) {
-			$(row).find('[data-bs-toggle="tooltip"]').tooltip();
-		}
-	});
-
-	// Every ajax response updates the counters, the summary area and the
-	// selection affordances (the one-time summary rides the first response)
-	wabtoolTable.on('xhr', function(e, settings, json) {
-		if (!json || json.error) {
-			return;
-		}
-		wabtoolRecordsFiltered = json.recordsFiltered || 0;
-
-		// the apply button tracks the current filter on every response, not
-		// just the one carrying the summary
-		$('#applyWab').toggleClass('d-none', json.recordsTotal === 0);
-
-		if (json.summary !== undefined) {
-			if (json.recordsTotal > 0) {
-				wabtoolRenderSummary(json.summary);
-			} else if (wabtoolOnlyFull) {
-				// everything was filtered out: keep the summary rendered so
-				// the filter switch stays reachable
-				wabtoolRenderSummary(json.summary);
-				$('.wabtool-summary').prepend('<div class="alert alert-info mb-2">No 100% matching QSOs &mdash; switch off &quot;Only 100% matches&quot; to see all candidates.</div>');
-			} else {
-				$('.wabtool-summary').html('<div class="alert alert-info mb-2">No QSOs found that need a WAB square.</div>');
-			}
-		}
-		wabtoolUpdateSelectAllButton();
-	});
-
-	wabtoolTable.on('draw', function() {
-		wabtoolSyncHeaderCheckbox();
-		$('#startScan').removeClass('running').prop('disabled', false);
-	});
-
-	wabtoolTable.on('error', function() {
-		$('.wabtool-summary').html('<div class="alert alert-danger mb-2">An error occurred while processing the request.</div>');
-		$('#startScan').removeClass('running').prop('disabled', false);
-		$('#applyWab').addClass('d-none');
+// Drawn pages re-render the rows: put the selection state back on the checkboxes
+function wabtoolSyncRowChecks() {
+	$('#wabtoolTable tbody .wabtool-row').each(function() {
+		this.checked = wabtoolSelected[this.value] === 1;
 	});
 }
 
-function wabtoolRenderCell(data, type) {
-	if (type !== 'display') {
-		return data;
+function wabtoolLoadResult() {
+	// release the old table before its markup is replaced
+	if (wabtoolTable !== null) {
+		try { wabtoolTable.destroy(); } catch (e) { /* already gone */ }
+		wabtoolTable = null;
 	}
-	return wabtoolEscapeHtml(data);
+
+	$('.scanresult').load(site_url + '/wabtool/table', {
+		station_id: $('#de').val()
+	}, function(_, textStatus) {
+		// a failed request, or a login-page redirect (expired session), would
+		// leave no result behind
+		if (textStatus !== 'success' || !$('#wabtoolResult').length) {
+			$('.scanresult').html('<div class="alert alert-danger mb-2">An error occurred while processing the request.</div>');
+			$('#startScan').removeClass('running').prop('disabled', false);
+			$('#applyWab').addClass('d-none');
+			return;
+		}
+
+		$('#applyWab').toggleClass('d-none', !$('#wabtoolTable').length);
+
+		if ($('#wabtoolTable').length) {
+			wabtoolTable = $('#wabtoolTable').DataTable({
+				stateSave: true,
+				pageLength: 25,
+				lengthMenu: [10, 25, 50, 100],
+				order: [[1, 'desc']],
+				language: {
+					url: getDataTablesLanguageUrl(),
+				},
+				createdRow: function(row) {
+					$(row).find('[data-bs-toggle="tooltip"]').tooltip();
+				}
+			});
+
+			// redrawn pages lose their checkbox state: restore it
+			wabtoolTable.on('draw', function() {
+				wabtoolSyncRowChecks();
+				wabtoolSyncHeaderCheckbox();
+			});
+		}
+
+		// the table draws synchronously from the served rows, so the load
+		// completing is the moment the scan is done (the first draw happens
+		// during .DataTable(), before any draw handler could observe it)
+		$('#startScan').removeClass('running').prop('disabled', false);
+	});
 }
 
 function wabtoolRenderApplyResult(data) {
@@ -250,20 +94,9 @@ function wabtoolStartScan(clearApplyResult) {
 	}
 	$('#applyWab').addClass('d-none');
 
-	// release the old table before its markup is wiped
-	if (wabtoolTable !== null) {
-		try { wabtoolTable.destroy(); } catch (e) { /* already gone */ }
-		wabtoolTable = null;
-	}
-	$('.scanresult').html('');
-
 	wabtoolSelected = {};
-	wabtoolAllMatching = false;
-	wabtoolOnlyFull = true; // the list opens on "only 100% matches"
-	wabtoolRecordsFiltered = 0;
-	wabtoolSummaryPending = true;
 
-	wabtoolInitTable();
+	wabtoolLoadResult();
 }
 
 // Map popup: grid rectangle + WAB square outline(s)
@@ -371,42 +204,20 @@ function bindWabTool() {
 	});
 
 	$('#applyWab').on('click', function() {
-		var payloadIds, count, searchData;
-		if (wabtoolAllMatching) {
-			// let the server enumerate the matching set; station filter and
-			// table search mirror the scan request
-			payloadIds = 'ALL';
-			count = wabtoolRecordsFiltered;
-			searchData = {
-				ids: payloadIds,
-				station_id: $('#de').val(),
-				search: wabtoolTable !== null ? wabtoolTable.search() : ''
-			};
-			if (wabtoolOnlyFull) {
-				searchData.only_full = 1; // mirror the table filter
-			}
-		} else {
-			var ids = Object.keys(wabtoolSelected);
-			if (!ids.length) {
-				BootstrapDialog.show({
-					type: BootstrapDialog.TYPE_WARNING,
-					message: 'No QSOs selected.',
-					buttons: [{ label: 'OK', action: function(d) { d.close(); } }]
-				});
-				return;
-			}
-			payloadIds = JSON.stringify(ids);
-			count = ids.length;
-			// One JSON string var, not ids[]: arrays post one PHP input var
-			// per row and max_input_vars silently drops the excess, causing
-			// a partial apply
-			searchData = { ids: payloadIds };
+		var ids = Object.keys(wabtoolSelected);
+		if (!ids.length) {
+			BootstrapDialog.show({
+				type: BootstrapDialog.TYPE_WARNING,
+				message: 'No QSOs selected.',
+				buttons: [{ label: 'OK', action: function(d) { d.close(); } }]
+			});
+			return;
 		}
 
 		var btn = $('#applyWab');
 		BootstrapDialog.confirm({
 			title: btn.data('confirm-title'),
-			message: btn.data('confirm-msg') + ' (' + count + ')',
+			message: btn.data('confirm-msg') + ' (' + ids.length + ')',
 			type: BootstrapDialog.TYPE_PRIMARY,
 			closable: true,
 			draggable: true,
@@ -420,7 +231,9 @@ function bindWabTool() {
 					url: site_url + '/wabtool/apply',
 					type: 'POST',
 					dataType: 'json',
-					data: searchData,
+					data: {
+						ids: JSON.stringify(ids)
+					},
 					success: function(data) {
 						wabtoolRenderApplyResult(data);
 						// refresh the preview table, keep the result alert visible
@@ -437,31 +250,22 @@ function bindWabTool() {
 		});
 	});
 
-	// Row checkbox: track per-id selection. Unchecking a row while
-	// "select all matching" is active leaves that mode (everything else
-	// would otherwise still be applied).
+	// Row checkbox: track per-id selection
 	$(document).on('change', '.wabtool-row', function() {
 		var id = $(this).val();
 		if (this.checked) {
 			wabtoolSelected[id] = 1;
 		} else {
-			if (wabtoolAllMatching) {
-				wabtoolAllMatching = false;
-				wabtoolSelected = {};
-				$('.wabtool-row').prop('checked', false);
-			} else {
-				delete wabtoolSelected[id];
-			}
+			delete wabtoolSelected[id];
 		}
 		wabtoolSyncHeaderCheckbox();
-		wabtoolUpdateSelectAllButton();
 	});
 
 	// Header checkbox toggles the selectable rows on the current page only
 	$(document).on('change', '#wabtoolSelectAll', function() {
 		var headerChecked = this.checked;
 		$('#wabtoolTable tbody .wabtool-row').each(function() {
-			$(this).prop('checked', headerChecked);
+			this.checked = headerChecked;
 			var id = $(this).val();
 			if (headerChecked) {
 				wabtoolSelected[id] = 1;
@@ -469,44 +273,12 @@ function bindWabTool() {
 				delete wabtoolSelected[id];
 			}
 		});
-		wabtoolUpdateSelectAllButton();
-	});
-
-	$(document).on('click', '#wabtoolSelectAllMatching', function() {
-		wabtoolAllMatching = !wabtoolAllMatching;
-		if (!wabtoolAllMatching) {
-			wabtoolSelected = {};
-		}
-		$('.wabtool-row').prop('checked', wabtoolAllMatching);
-		wabtoolSyncHeaderCheckbox();
-		wabtoolUpdateSelectAllButton();
-	});
-
-	// "Only 100% matches": refetch the table without gridsquares that
-	// straddle a square boundary. Select-all and the bulk apply follow the
-	// filter, so "select all matching" then selects exactly the 100% matches.
-	$(document).on('click', '#wabtoolOnlyFull', function() {
-		wabtoolOnlyFull = !wabtoolOnlyFull;
-		$(this).toggleClass('active', wabtoolOnlyFull).attr('aria-pressed', String(wabtoolOnlyFull));
-		if (!wabtoolAllMatching) {
-			// rows about to be hidden by the filter must not stay selected
-			wabtoolSelected = {};
-		}
-		if (wabtoolTable !== null) {
-			wabtoolTable.ajax.reload(); // reset paging: the row set changes
-		}
 	});
 
 	// Map popup per preview row (delegated so it survives re-rendering)
 	$(document).on('click', '.wabtool-map', function(e) {
 		e.preventDefault();
 		wabtoolOpenMap($(this).attr('data-grid'));
-	});
-
-	// QSO detail dialog per callsign (delegated so it survives re-rendering)
-	$(document).on('click', '.wabtool-qso', function(e) {
-		e.preventDefault();
-		displayQso($(this).attr('data-id'));
 	});
 }
 
