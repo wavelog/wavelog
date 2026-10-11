@@ -2104,12 +2104,22 @@ class Logbook_model extends CI_Model {
 			$band_addon="COL_PROP_MODE=?";
 		}
 
+		// The R_* flags are per QSO and only pick the row the detail columns
+		// come from. The returned CALL_* flags are aggregated over all QSOs with
+		// this call, otherwise e.g. a confirmed QSO on another band would hide
+		// the worked state on the requested band.
 		$sql="SELECT COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT,
-			CASE WHEN ( (".$qsl_where.") ) THEN 1  ELSE 0 END AS CALL_CNF,
-			CASE WHEN ( (".$qsl_where.") AND ".$band_addon.") THEN 1  ELSE 0 END AS CALL_CNF_BAND,
-			CASE WHEN ( (".$qsl_where.") AND ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_CNF_BAND_MODE,
-			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS CALL_WORKED_BAND,
-			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_WORKED_BAND_MODE
+			MAX(R_CNF) OVER () AS CALL_CNF,
+			MAX(R_CNF_BAND) OVER () AS CALL_CNF_BAND,
+			MAX(R_CNF_BAND_MODE) OVER () AS CALL_CNF_BAND_MODE,
+			MAX(R_WORKED_BAND) OVER () AS CALL_WORKED_BAND,
+			MAX(R_WORKED_BAND_MODE) OVER () AS CALL_WORKED_BAND_MODE
+		FROM (SELECT COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT,
+			CASE WHEN ( (".$qsl_where.") ) THEN 1  ELSE 0 END AS R_CNF,
+			CASE WHEN ( (".$qsl_where.") AND ".$band_addon.") THEN 1  ELSE 0 END AS R_CNF_BAND,
+			CASE WHEN ( (".$qsl_where.") AND ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS R_CNF_BAND_MODE,
+			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS R_WORKED_BAND,
+			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS R_WORKED_BAND_MODE
 		FROM ".$this->config->item('table_name')." WHERE ";
 		$sql.="station_id IN (".$station_ids.") AND COL_CALL = ?";
 		$binding[]=$band;
@@ -2125,7 +2135,7 @@ class Logbook_model extends CI_Model {
 			$binding[]=strtoupper($operator);
 		}
 
-		$sql.=" ORDER BY call_cnf desc, call_worked_band desc, call_cnf_band desc, call_worked_band_mode desc, call_cnf_band_mode desc limit 1";
+		$sql.=") AS calls ORDER BY R_CNF desc, R_WORKED_BAND desc, R_CNF_BAND desc, R_WORKED_BAND_MODE desc, R_CNF_BAND_MODE desc, COL_TIME_ON desc limit 1";
 
 		$query = $this->db->query($sql, $binding);
 		$data = [];
