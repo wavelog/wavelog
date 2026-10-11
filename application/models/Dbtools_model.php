@@ -560,16 +560,16 @@ class Dbtools_model extends CI_Model {
 		$dxccobj = new Dxcc();
 
 		if ($r->num_rows() > 0) { //query dxcc_prefixes
-			$sql = "update " . $this->config->item('table_name') . " set COL_COUNTRY = ?, COL_DXCC = ? where COL_PRIMARY_KEY = ?";
+			$sql = "update " . $this->config->item('table_name') . " set COL_COUNTRY = ?, COL_DXCC = ?, COL_CQZ = ?, COL_CONT = ? where COL_PRIMARY_KEY = ?";
 			$q = $this->db->conn_id->prepare($sql);
 			foreach ($r->result_array() as $row) {
-				$qso_date = $row['COL_TIME_OFF'] == '' ? $row['COL_TIME_ON'] : $row['COL_TIME_OFF'];
+				$qso_date = $row['COL_TIME_ON'];
 				$qso_date = date("Y-m-d", strtotime($qso_date));
 				$dxcc = $dxccobj->dxcc_lookup($row['COL_CALL'], $qso_date);
 				$dxcc['adif'] = (isset($dxcc['adif'])) ? $dxcc['adif'] : 0;
-				$dxcc['entity'] = (isset($dxcc['entity'])) ? $dxcc['entity'] : 'None';
-				if ($dxcc['adif'] != 'Not Found') {
-					$q->execute(array(addslashes(ucwords(strtolower($dxcc['entity']), "- (/")), $dxcc['adif'], $row['COL_PRIMARY_KEY']));
+				$dxcc['entity'] = (isset($dxcc['entity'])) ? $dxcc['entity'] : 'Not Found';
+				if ($dxcc['entity'] != 'Not Found') {
+					$q->execute(array(ucwords(strtolower($dxcc['entity']), "- (/"), $dxcc['adif'], $dxcc['cqz'], $dxcc['cont'], $row['COL_PRIMARY_KEY']));
 					$count++;
 				}
 			}
