@@ -1082,24 +1082,26 @@ class Logbook_model extends CI_Model {
 			if ($creds && isset($creds->webadifapikey) && $creds->webadifrealtime == 1
 				&& ($data['COL_PROP_MODE'] ?? '') == 'SAT'
 				&& ($data['COL_SAT_NAME'] ?? '') == 'QO-100') {
-					if (!$this->load->is_loaded('AdifHelper')) {
-						$this->load->library('AdifHelper');
-					}
-
-					$adif = $this->adifhelper->getAdifLine($qso[0]);
-					$result = $this->push_qso_to_webadif(
-						$creds->webadifapiurl,
-						$creds->webadifapikey,
-						$adif
-					);
-
-					if (($result['status'] ?? '') == 'OK') {
-						$this->mark_webadif_qsos_sent([$last_id]);
-					} else {
-						$this->mark_webadif_qsos_failed([$last_id], $result['message'] ?? 'unknown error');
-						$export_errors[] = ['provider' => 'QO-100 Dx Club', 'message' => $this->sanitize_export_error($result['message'] ?? $result['status'])];
-					}
+				if (!$this->load->is_loaded('AdifHelper')) {
+					$this->load->library('AdifHelper');
 				}
+
+				$adif = $this->adifhelper->getAdifLine($qso[0]);
+				$result = $this->push_qso_to_webadif(
+					$creds->webadifapiurl,
+					$creds->webadifapikey,
+					$adif
+				);
+
+				if (($result['status'] ?? '') == 'OK') {
+					$this->mark_webadif_qsos_sent([$last_id]);
+				} else {
+					if (($result['status'] ?? '') == 'error') {
+						$this->mark_webadif_qsos_failed([$last_id], $result['message'] ?? 'unknown error');
+					}
+					$export_errors[] = ['provider' => 'QO-100 Dx Club', 'message' => $this->sanitize_export_error($result['message'] ?? $result['status'])];
+				}
+			}
 
 				$this->last_export_errors = $export_errors;
 			}
@@ -1306,7 +1308,11 @@ class Logbook_model extends CI_Model {
 	 * @param string $adif   Line with the QSO in the ADIF format, ending with <EOR>.
 	 *
 	 * @return array ['status' => 'OK'] on success (HTTP 200),
-	 *               ['status' => 'error', 'message' => sanitized reason] otherwise.
+	 *               ['status' => 'temp_error', 'message' => sanitized reason] for temporary
+	 *               failures (connection error, timeout, HTTP 408, 429 or 5xx) — the QSO is
+	 *               not marked and will be retried on the next upload,
+	 *               ['status' => 'error', 'message' => sanitized reason] for real rejections
+	 *               (any other non-200 response) — the QSO is marked as rejected.
 	 */
 	function push_qso_to_webadif($url, $apikey, $adif): array {
 
@@ -1341,7 +1347,8 @@ class Logbook_model extends CI_Model {
 		if ($errors !== '') {
 			$message .= ' (' . $errors . ')';
 		}
-		return ['status' => 'error', 'message' => mb_substr($message, 0, 255)];
+		$temp = ($response === 0 || $response === 408 || $response === 429 || $response >= 500);
+		return ['status' => $temp ? 'temp_error' : 'error', 'message' => mb_substr($message, 0, 255)];
 	}
 
 	/*
