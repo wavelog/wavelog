@@ -49,6 +49,9 @@ function wabtoolLoadResult() {
 				language: {
 					url: getDataTablesLanguageUrl(),
 				},
+				columnDefs: [
+					{ orderable: false, targets: 0 },
+				],
 				createdRow: function(row) {
 					$(row).find('[data-bs-toggle="tooltip"]').tooltip();
 				}
@@ -58,6 +61,14 @@ function wabtoolLoadResult() {
 			wabtoolTable.on('draw', function() {
 				wabtoolSyncRowChecks();
 				wabtoolSyncHeaderCheckbox();
+			});
+
+			// Reset checkboxes on change of number of entries being shown
+			wabtoolTable.on('length.dt', function (e, settings, len) {
+				$('#wabtoolTable tbody .wabtool-row').each(function() {
+					var id = $(this).val();
+					delete wabtoolSelected[id];
+				});
 			});
 		}
 
