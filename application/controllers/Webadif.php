@@ -74,7 +74,9 @@ class Webadif extends CI_Controller {
 					$i++;
 				} else {
 					$reason = $result['message'] ?? 'unknown error';
-					$this->logbook_model->mark_webadif_qsos_failed([$qso->COL_PRIMARY_KEY], $reason);
+					if (($result['status'] ?? '') == 'error') {
+						$this->logbook_model->mark_webadif_qsos_failed([$qso->COL_PRIMARY_KEY], $reason);
+					}
 					$errorMessage = 'QO-100 Dx Club upload failed for qso: Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' Reason: ' . $reason;
 					log_message('error', $errorMessage);
 					$errormessages[] = $errorMessage;

@@ -210,10 +210,6 @@ class Update extends CI_Controller {
 		if (!file_exists($lockfilename)) {
 			touch($lockfilename);
 
-			// set the last run in cron table for the correct cron id
-			$this->load->model('cron_model');
-			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
-
 			$this->update_status("Downloading file");
 
 			// give it 10 minutes...
@@ -237,10 +233,7 @@ class Update extends CI_Controller {
 				$gz = gzopen($alt_url, 'r');
 
 				if ($gz === FALSE) {
-					$msg = "FAILED: Could not download dxcc data. Please check your internet connection.";
-					$this->update_status($msg);
-					log_message('error', $msg);
-					exit();
+					$this->_dxcc_update_failed("Could not download dxcc data. Please check your internet connection.", $lockfilename);
 				} else {
 					$msg = "Downloaded data successfully from alternative URL (github).";
 					$this->update_status($msg);
@@ -255,16 +248,12 @@ class Update extends CI_Controller {
 			gzclose($gz);
 
 			if (file_put_contents($this->paths->make_update_path("cty.xml"), $data) === FALSE) {
-				$this->update_status("FAILED: Could not write to cty.xml file");
-				log_message('error', 'DXCC UPDATE FAILED: Could not write to cty.xml file');
-				exit();
+				$this->_dxcc_update_failed("Could not write to cty.xml file", $lockfilename);
 			}
 
 			$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
 			if ($xml_data === false) {
-				$this->update_status("FAILED: Could not parse cty.xml file");
-				log_message('error', 'DXCC UPDATE FAILED: Could not parse cty.xml file');
-				exit();
+				$this->_dxcc_update_failed("Could not parse cty.xml file", $lockfilename);
 			}
 
 			// Build the new data in shadow tables, the live tables stay untouched until the swap
@@ -285,9 +274,7 @@ class Update extends CI_Controller {
 			$this->db->query($sql);
 			$this->db->trans_complete();
 			if ($this->db->trans_status() === false) {
-				$this->update_status("FAILED: Could not import DXCC data");
-				log_message('error', 'DXCC UPDATE FAILED: Could not import DXCC data');
-				exit();
+				$this->_dxcc_update_failed("Could not import DXCC data", $lockfilename);
 			}
 
 			// Atomic swap of all three tables
@@ -306,6 +293,10 @@ class Update extends CI_Controller {
 
 			$this->update_status(__("DONE"));
 
+			// set the last run in cron table for the correct cron id, only after a successful update
+			$this->load->model('cron_model');
+			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
 			echo 'success';
 			unlink($lockfilename);
 		} else {
@@ -322,6 +313,23 @@ class Update extends CI_Controller {
 			}
 		}
 
+	}
+
+	/**
+	 * Abort the DXCC update: report the error, release the lock and answer with HTTP 500
+	 * so the cron runner marks the job as failed instead of healthy.
+	 *
+	 * @param string $msg          Reason of the failure
+	 * @param string $lockfilename Lockfile of the running update
+	 * @return void Never returns
+	 */
+	private function _dxcc_update_failed($msg, $lockfilename) {
+		$this->update_status("FAILED: " . $msg);
+		log_message('error', 'DXCC UPDATE FAILED: ' . $msg);
+		@unlink($lockfilename);
+		$this->output->set_status_header(500);
+		echo 'FAILED: ' . $msg;
+		exit();
 	}
 
 	private function _invalidate_dxcc_cache() {

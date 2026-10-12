@@ -390,8 +390,8 @@ class Statistics extends CI_Controller {
 	public function sat_qsos_ajax() {
 		$this->load->model('stats');
 
-		$sat = str_replace('"', "", $this->input->post("Sat", true));
-		$mode = str_replace('"', "", $this->input->post("Mode", true));
+		$sat = str_replace('"', "", $this->input->post("Sat", true) ?? '');
+		$mode = str_replace('"', "", $this->input->post("Mode", true) ?? '');
 		$dateFrom = $this->input->post("dateFrom", true);
 		$dateTo = $this->input->post("dateTo", true);
 		$data['results'] = $this->stats->sat_qsos($sat,$dateFrom,$dateTo,$mode);

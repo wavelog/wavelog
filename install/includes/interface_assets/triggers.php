@@ -4,6 +4,21 @@
  * Triggers for Ajax Calls
  */
 
+// Strip accidental whitespace from the database fields, e.g. a trailing space in the hostname
+// breaks the DNS lookup. The password is left untouched, spaces may be intended there.
+$trim_db_fields = function ($input) {
+	foreach (['db_hostname', 'db_name', 'db_username'] as $field) {
+		if (isset($input[$field]) && is_string($input[$field])) {
+			$input[$field] = trim($input[$field]);
+		}
+	}
+	return $input;
+};
+$_POST = $trim_db_fields($_POST);
+if (isset($_POST['data']) && is_array($_POST['data'])) {
+	$_POST['data'] = $trim_db_fields($_POST['data']);
+}
+
 // Database Check
 if ($_POST['database_check'] ?? false == true) {
 

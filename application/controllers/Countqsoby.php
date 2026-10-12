@@ -78,17 +78,26 @@ class Countqsoby extends CI_Controller {
             'sota' => __("SOTA Reference"),
             'iota' => __("IOTA Reference"),
             'wwff' => __("WWFF Reference"),
+            'station_profile' => __("Station Location"),
         );
         $type_label = $type_labels[$type] ?? htmlspecialchars((string) $type);
 
-        $group_label = (string) $group;
-        if ($type == 'dxcc') {
-            $this->load->model('logbook_model');
-            $entity = $this->logbook_model->get_entity($group);
-            if (!empty($entity['name'])) {
-                $group_label = ucwords(strtolower($entity['name']), '- (/');
-            }
-        }
+		$group_label = (string) $group;
+		if ($type == 'dxcc') {
+			$this->load->model('logbook_model');
+			$entity = $this->logbook_model->get_entity($group);
+			if (!empty($entity['name'])) {
+				$group_label = ucwords(strtolower($entity['name']), '- (/');
+			}
+		} elseif ($type == 'station_profile') {
+			$station = $this->db->query('SELECT station_profile_name, station_callsign
+				FROM station_profile
+				WHERE station_id = ? AND user_id = ?',
+				array((int) $group, (int) $this->session->userdata('user_id')))->row();
+			if ($station) {
+				$group_label = $station->station_profile_name . ' (' . $station->station_callsign . ')';
+			}
+		}
 
         $data['filter'] = $type_label . " " . htmlspecialchars($group_label) . " " . __("and") . " ";
         $data['filter'] .= ($band == 'All' ? lcfirst(__("Every band (w/o SAT)")) : __("band") . " " . htmlspecialchars((string) $band));

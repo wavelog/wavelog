@@ -298,6 +298,11 @@ class Club_model extends CI_Model {
      */
     function notify_member($user_id, $club_id, $message) {
 
+        if (empty($this->optionslib->get_option('emailAddress'))) {
+            log_message('error', "Club Notification; Can't notify user - Email is not configured.");
+            return false;
+        }
+
         $this->load->library('email');
 
         switch ($message) {

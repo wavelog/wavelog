@@ -63,7 +63,7 @@ class Api_token extends CI_Controller {
 		$token = $this->api_v2_model->create_token($name, $scopes, $expires_at, null, $creator);
 
 		if ($token !== false) {
-			$this->session->set_flashdata('new_api_token', $token);
+			$this->session->set_tempdata('new_api_token', $token, 60);
 			$this->session->set_flashdata('success', __("API Token generated"));
 		} else {
 			$this->session->set_flashdata('error', __("API Token could not be generated"));

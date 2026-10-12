@@ -406,6 +406,14 @@ class User extends CI_Controller {
 		}
 	}
 
+	/**
+	 * Show and process the account settings form of user segment(3).
+	 *
+	 * Admins may edit any user, everyone else only their own account.
+	 * On a clubstation only officers (level 9) get access.
+	 *
+	 * @return void Renders the form or redirects after saving.
+	 */
 	function edit() {
 		if ( ($this->session->userdata('user_id') == '') || ((!$this->user_model->authorize(99)) && ($this->session->userdata('user_id') != $this->uri->segment(3))) ) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		if (!clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
@@ -1111,7 +1119,7 @@ class User extends CI_Controller {
 					$_gridshow = $this->input->post('user_map_gridsquare_show', true);
 					$_gridshow = ($_gridshow === '1' || $_gridshow === 1) ? '1' : '0';
 					$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>$_gridshow), $user_id);
-					$_tile = $this->input->post('user_map_tile_style', true);
+					$_tile = $this->input->post('user_map_tile_style', true) ?? '';
 					$_tile = array_key_exists($_tile, map_style_options()) ? $_tile : 'map-follow';
 					$this->user_options_model->set_option('map_custom','tile',array('style' => $_tile),$user_id);
 				} else {

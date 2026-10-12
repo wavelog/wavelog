@@ -29,6 +29,11 @@ jobs:
       digest: ${{ steps.build.outputs.digest }}
     steps:
     - uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+    - name: Get git describe
+      id: describe
+      run: echo "value=$(git describe --tags)" >> $GITHUB_OUTPUT
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v3
       with:
@@ -50,6 +55,7 @@ jobs:
         platforms: linux/amd64
         outputs: type=image,name=${{ env.REGISTRY }}/${{ needs.prepare.outputs.image_name }},push-by-digest=true,name-canonical=true,push=true
         labels: ${{ steps.meta.outputs.labels }}
+        build-args: GIT_DESCRIBE=${{ steps.describe.outputs.value }}
 
   build-arm64:
     runs-on: ubuntu-24.04-arm
@@ -61,6 +67,11 @@ jobs:
       digest: ${{ steps.build.outputs.digest }}
     steps:
     - uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+    - name: Get git describe
+      id: describe
+      run: echo "value=$(git describe --tags)" >> $GITHUB_OUTPUT
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v3
       with:
@@ -82,6 +93,7 @@ jobs:
         platforms: linux/arm64
         outputs: type=image,name=${{ env.REGISTRY }}/${{ needs.prepare.outputs.image_name }},push-by-digest=true,name-canonical=true,push=true
         labels: ${{ steps.meta.outputs.labels }}
+        build-args: GIT_DESCRIBE=${{ steps.describe.outputs.value }}
 
   build-armv7:
     runs-on: ubuntu-24.04-arm
@@ -93,6 +105,11 @@ jobs:
       digest: ${{ steps.build.outputs.digest }}
     steps:
     - uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+    - name: Get git describe
+      id: describe
+      run: echo "value=$(git describe --tags)" >> $GITHUB_OUTPUT
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v3
       with:
@@ -116,6 +133,7 @@ jobs:
         platforms: linux/arm/v7
         outputs: type=image,name=${{ env.REGISTRY }}/${{ needs.prepare.outputs.image_name }},push-by-digest=true,name-canonical=true,push=true
         labels: ${{ steps.meta.outputs.labels }}
+        build-args: GIT_DESCRIBE=${{ steps.describe.outputs.value }}
 
   merge:
     runs-on: ubuntu-latest
