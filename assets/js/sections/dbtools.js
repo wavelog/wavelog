@@ -679,9 +679,7 @@ function fixDxccSelected() {
 	$('#dxccCheckTable tbody input:checked').each(function () {
 		let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
 		var result = $(this).closest('tr').find("td[id='resultDxcc']").text().trim();
-		if ((result != 'Not Found' && result != '- None -' && result != 'Invalid') || $('#forceDxccUpdate').prop("checked")) {
-			id_list.push(id);
-		}
+		id_list.push(id);
 	});
 
 	if (id_list.length === 0) {
