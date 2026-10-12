@@ -52,7 +52,8 @@
 							</script>
 							<td class='contest_<?php echo $row['id'] ?>'><?php if ($row['active'] == 1) { echo __("Active");} else { echo __("Not Active");};?></td>
 							<td style="text-align: center">
-								<?php if ($row['active'] == 1) {
+								<?php if ($row['id'] == 1) {
+								} else if ($row['active'] == 1) {
 									echo "<button onclick='javascript:deactivateContest(". $row['id'] . ")' class='btn_" . $row['id'] . " btn btn-secondary btn-sm'>" . __("Deactivate") . "</button>";
 								} else {
 									echo "<button onclick='javascript:activateContest(". $row['id'] . ")' class='btn_" . $row['id'] . " btn btn-secondary btn-sm'>" . __("Activate") . "</button>";
@@ -68,7 +69,9 @@
 								<a href="<?php echo site_url('contest_admin/edit')."/".$row['id']; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i> <?= __("Edit"); ?></a>
 							</td>
 							<td>
+								<?php if ($row['id'] != 1) { ?>
 								<a href="javascript:deleteContest('<?php echo $row['id']; ?>', '<?php echo $row['name']; ?>');" class="btn btn-danger btn-sm" ><i class="fas fa-trash-alt"></i> <?= __("Delete"); ?></a>
+								<?php } ?>
 							</td>
 						</tr>
 

@@ -12,7 +12,11 @@ class Qsl extends CI_Controller {
 		if(($this->config->item('disable_qsl') ?? false)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); exit; }
     }
 
-    // Default view when loading controller.
+    /**
+     * List the uploaded QSL cards of the active logbook, paginated
+     *
+     * @return void
+     */
     public function index() {
 
         $this->load->model('qsl_model');
@@ -20,9 +24,31 @@ class Qsl extends CI_Controller {
         $folder_name = $this->paths->getUserdataPath('qsl_card', 'p');
         $data['storage_used'] = $this->genfunctions->sizeFormat($this->genfunctions->folderSize($folder_name));
 
+        // Pagination
+        $this->load->library('pagination');
+        $config['base_url'] = base_url().'index.php/qsl/index/';
+        $config['total_rows'] = $this->qsl_model->count_qsl_list();
+        $config['per_page'] = '25';
+        $config['num_links'] = 6;
+        $config['full_tag_open'] = '';
+        $config['full_tag_close'] = '';
+        $config['cur_tag_open'] = '<strong class="active"><a href="">';
+        $config['cur_tag_close'] = '</a></strong>';
+
+        $this->pagination->initialize($config);
+
         // Render Page
         $data['page_title'] = __("QSL Cards");
-        $data['qslarray'] = $this->qsl_model->getQsoWithQslList();
+
+        $offset = $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+        $data['qslarray'] = $this->qsl_model->getQsoWithQslList($config['per_page'], $offset);
+
+        // Calculate result range for display
+        $total_rows = $config['total_rows'];
+        $per_page = $config['per_page'];
+        $start = $total_rows > 0 ? $offset + 1 : 0;
+        $end = min($offset + $per_page, $total_rows);
+        $data['result_range'] = sprintf(__("Showing %d to %d of %d entries"), $start, $end, $total_rows);
 
 		$footerData = [];
 		$footerData['scripts'] = [
@@ -205,5 +231,33 @@ class Qsl extends CI_Controller {
         $data['qslimages'] = $this->Qsl_model->getQslForQsoId($cleanid);
         $this->load->view('qslcard/qslcarousel', $data);
     }
+
+	/**
+	 * Output a QSL card image, optionally scaled down as thumbnail
+	 *
+	 * @param int $id QSL image id (qsl_images.id)
+	 * @param int|null $width Thumbnail width in px (null for original size)
+	 * @return void
+	 */
+	function image($id, $width = null) {
+		$this->load->model('Qsl_model');
+		$query = $this->Qsl_model->getFilename($id);
+		if (!$query || $query->num_rows() == 0) {
+			show_404();
+		}
+		$filename = basename($query->row()->filename);
+
+		$this->load->library('Genfunctions');
+		$etag = $this->genfunctions->gen_check_etag('wl_qsl_cacher_'.$filename, $width);
+		if ($etag == '0') { // Cached on Client side
+			return;
+		}
+
+		$content = file_get_contents($this->paths->getUserdataPath('qsl_card', 'p') . '/' . $filename);
+		if ($content === false) {
+			show_404();
+		}
+		$this->genfunctions->output_image_with_width($content, $width, $etag);
+	}
 
 }

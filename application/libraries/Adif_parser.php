@@ -136,6 +136,21 @@ class ADIF_Parser
 		$this->data = $string = mb_convert_encoding(file_get_contents($fname), "UTF-8");
 	}
 
+	/**
+	 * Loads ADIF data from a string instead of a file.
+	 *
+	 * Behaves exactly like load_from_file() but skips the file system, so no
+	 * payload has to be written to disk before parsing.
+	 *
+	 * @param string $string Raw ADIF content
+	 *
+	 * @return void
+	 */
+	public function load_from_string($string) //allows the parser to accept a string directly
+	{
+		$this->data = mb_convert_encoding($string, "UTF-8");
+	}
+
 	//the following function does the processing of the array into its key and value pairs
 	public function record_to_array($record)
 {

@@ -40,8 +40,9 @@ class API extends CI_Controller {
 		$data['api_tokens'] = $this->api_v2_model->get_tokens_for_user();
 		$data['token_scopes'] = Api_v2_model::grantable_scope_registry();
 		$data['token_presets'] = Api_v2_model::preset_registry();
-		// One-time reveal: the plaintext token survives exactly one redirect.
-		$data['new_api_token'] = $this->session->flashdata('new_api_token');
+		// One-time reveal: the plaintext token is shown on the next visit of this page only.
+		$data['new_api_token'] = $this->session->tempdata('new_api_token');
+		$this->session->unset_userdata('new_api_token');
 		$data['clubmode'] = $this->session->userdata('clubstation') == 1 ? true : false;
 		$data['page_title'] = __("API");
 
