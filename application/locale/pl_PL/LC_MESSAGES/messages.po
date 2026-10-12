@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-06 15:17+0000\n"
+"POT-Creation-Date: 2026-10-12 10:18+0000\n"
 "PO-Revision-Date: 2026-08-30 21:12+0000\n"
 "Last-Translator: Piotr S <sp9lop@pm.me>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -245,8 +245,9 @@ msgstr "Dukty troposferyczne"
 #: application/controllers/User.php:1911 application/controllers/User.php:1935
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
+#: application/controllers/Wabtool.php:30
 #: application/controllers/Webadif.php:10
-#: application/controllers/Webadif.php:101
+#: application/controllers/Webadif.php:103
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
@@ -1485,7 +1486,8 @@ msgstr "Podmiot WWFF"
 #: application/views/station_profile/edit.php:461
 #: application/views/user/edit.php:403 application/views/user/edit.php:918
 #: application/views/view_log/partial/log_ajax.php:19
-#: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
+#: application/views/view_log/qso.php:9 application/views/wabtool/index.php:18
+#: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:125
 #: application/views/zonechecker/index.php:11
 msgid "Station Location"
@@ -2728,7 +2730,8 @@ msgstr "Odległość"
 #: application/views/user/edit.php:388
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
-#: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/views/visitor/mini.php:184
+#: application/views/wabtool/table.php:19 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
 msgid "Band"
 msgstr "Pasmo"
@@ -3039,7 +3042,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:146
-#: application/models/Logbook_model.php:1600
+#: application/models/Logbook_model.php:1615
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -4390,13 +4393,32 @@ msgstr "Wyszukiwanie publiczne"
 msgid "Export Map"
 msgstr "Eksportuj mapę"
 
-#: application/controllers/Webadif.php:106
-#: application/controllers/Webadif.php:187
+#: application/controllers/Wabtool.php:41
+#: application/views/dbtools/index.php:145
+msgid "WAB from Gridsquare"
+msgstr ""
+
+#: application/controllers/Wabtool.php:100
+msgid "No station locations found"
+msgstr ""
+
+#: application/controllers/Wabtool.php:107
+#: application/controllers/Wabtool.php:113
+msgid "No QSOs selected"
+msgstr ""
+
+#: application/controllers/Wabtool.php:174
+#: application/controllers/Zonechecker.php:483
+msgid "Invalid gridsquare"
+msgstr "Nieprawidłowy lokator"
+
+#: application/controllers/Webadif.php:108
+#: application/controllers/Webadif.php:189
 #: application/views/interface_assets/header.php:586
 msgid "QO-100 Dx Club Upload"
 msgstr "Przesyłanie QO-100 Dx Club"
 
-#: application/controllers/Webadif.php:181
+#: application/controllers/Webadif.php:183
 msgid ""
 "Rejected QSOs were reset. They will be picked up again by the next upload."
 msgstr ""
@@ -4449,10 +4471,6 @@ msgstr "Wyszukiwarka Strefy Lokatora"
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
 msgstr "Dane GeoJSON są niedostępne"
-
-#: application/controllers/Zonechecker.php:483
-msgid "Invalid gridsquare"
-msgstr "Nieprawidłowy lokator"
 
 #: application/libraries/Callbook.php:72
 msgid "Lookup not configured. Please review configuration."
@@ -5155,30 +5173,30 @@ msgstr ""
 msgid "Station not accessible"
 msgstr "Stacja niedostępna"
 
-#: application/models/Logbook_model.php:1044
+#: application/models/Logbook_model.php:1052
 msgid "Realtime upload disabled"
 msgstr ""
 
-#: application/models/Logbook_model.php:1590
+#: application/models/Logbook_model.php:1605
 msgid "Station ID not allowed"
 msgstr "Numer identyfikacyjny stacji nie jest dozwolony"
 
-#: application/models/Logbook_model.php:1595
+#: application/models/Logbook_model.php:1610
 msgid "No Call given"
 msgstr "Nie przyznano znaku"
 
-#: application/models/Logbook_model.php:1671
-#: application/models/Logbook_model.php:1890
+#: application/models/Logbook_model.php:1686
+#: application/models/Logbook_model.php:1905
 msgid "DXCC has to be Numeric"
 msgstr "DXCC musi być numeryczne"
 
-#: application/models/Logbook_model.php:5174
+#: application/models/Logbook_model.php:5189
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Odmienny znak stacji %s podczas importu QSO z %s dla %s: POMINIĘTO"
 
-#: application/models/Logbook_model.php:5182
+#: application/models/Logbook_model.php:5197
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5187,7 +5205,7 @@ msgstr ""
 "Odmienny lokator %s podczas importu QSO z %s dla lokatora stacji %s: "
 "POMINIĘTO"
 
-#: application/models/Logbook_model.php:5198
+#: application/models/Logbook_model.php:5213
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5195,7 +5213,7 @@ msgstr ""
 "Próbowano zaimportować QSO bez prawidłowej daty. To QSO nie zostało "
 "zaimportowane, ponieważ jest nieprawidłowe"
 
-#: application/models/Logbook_model.php:5208
+#: application/models/Logbook_model.php:5223
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5204,7 +5222,7 @@ msgstr ""
 "QSO z %s: Próbowano zaimportować QSO bez podanego pola CALL. To QSO nie "
 "zostało zaimportowane. Jest nieprawidłowe."
 
-#: application/models/Logbook_model.php:5215
+#: application/models/Logbook_model.php:5230
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5213,7 +5231,7 @@ msgstr ""
 "QSO z %s: Próbowano zaimportować QSO z nieprawidłowym polem CALL. To QSO nie "
 "zostało zaimportowane. Nieprawidłowa wartość to '%s'."
 
-#: application/models/Logbook_model.php:5285
+#: application/models/Logbook_model.php:5300
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5222,7 +5240,7 @@ msgstr ""
 "QSO z %s: Pasmo '%s' nie występuje w konfiguracji pasm. To QSO nie zostało "
 "zaimportowane."
 
-#: application/models/Logbook_model.php:5292
+#: application/models/Logbook_model.php:5307
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5231,63 +5249,63 @@ msgstr ""
 "QSO z %s: próbowano zaimportować QSO bez podanego pasma. QSO nie zostało "
 "zaimportowane, ponieważ jest ono nieprawidłowe"
 
-#: application/models/Logbook_model.php:5567
+#: application/models/Logbook_model.php:5582
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate jest nieprawidłowa (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5578
+#: application/models/Logbook_model.php:5593
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate jest nieprawidłowa (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5641
+#: application/models/Logbook_model.php:5656
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date jest nieprawidłowy (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:6017
+#: application/models/Logbook_model.php:6032
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplikat dla"
 
-#: application/models/Logbook_model.php:6084
-#: application/models/Logbook_model.php:6184
+#: application/models/Logbook_model.php:6099
+#: application/models/Logbook_model.php:6199
 msgid "QSO could not be matched"
 msgstr "QSO nie mogło zostać dopasowane"
 
-#: application/models/Logbook_model.php:6092
+#: application/models/Logbook_model.php:6107
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potwierdzone przez LoTW/ClubLog/eQSL/zawody"
 
-#: application/models/Logbook_model.php:6098
+#: application/models/Logbook_model.php:6113
 msgid "confirmed by award manager"
 msgstr "potwierdzone przez award managera"
 
-#: application/models/Logbook_model.php:6102
+#: application/models/Logbook_model.php:6117
 msgid "confirmed by cross-check of DCL data"
 msgstr "potwierdzone przez weryfikację danych DCL"
 
-#: application/models/Logbook_model.php:6106
+#: application/models/Logbook_model.php:6121
 msgid "confirmation pending"
 msgstr "oczekiwanie na potwierdzenie"
 
-#: application/models/Logbook_model.php:6109
+#: application/models/Logbook_model.php:6124
 msgid "unconfirmed"
 msgstr "niepotwierdzone"
 
-#: application/models/Logbook_model.php:6112
+#: application/models/Logbook_model.php:6127
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "nieznany"
 
-#: application/models/Logbook_model.php:6187
+#: application/models/Logbook_model.php:6202
 msgid "POTA reference already in log"
 msgstr "Referencja POTA już znajduje się w dzienniku"
 
-#: application/models/Logbook_model.php:6190
+#: application/models/Logbook_model.php:6205
 msgid "QSO updated"
 msgstr "QSO zaktualizowane"
 
-#: application/models/Logbook_model.php:6611
+#: application/models/Logbook_model.php:6626
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5590,6 +5608,7 @@ msgstr "Różnica"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:1026
 #: application/views/visitor/layout/footer.php:168
+#: application/views/wabtool/index.php:20
 msgid "All"
 msgstr "Wszystkie"
 
@@ -6274,6 +6293,7 @@ msgstr "Nie znaleziono!"
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:620
 #: application/views/visitor/mini.php:183
+#: application/views/wabtool/table.php:18
 #: application/views/widgets/lotw_upload.php:97
 #: application/views/zonechecker/result.php:64
 msgid "Callsign"
@@ -7765,6 +7785,7 @@ msgstr "Aktywacje lokatorów"
 #: application/views/contesting/logger/components/qso-form.php:155
 #: application/views/satellite/skedtable.php:40
 #: application/views/stationsetup/locationlist.php:14
+#: application/views/wabtool/table.php:20
 msgid "Grid"
 msgstr "Lokator"
 
@@ -8086,6 +8107,7 @@ msgstr "%s%% potwierdzonych ogółem"
 #: application/views/interface_assets/footer.php:49
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/wabtool/table.php:23
 msgid "Confirmed"
 msgstr "Potwierdzone"
 
@@ -9686,7 +9708,7 @@ msgstr "Lista QSO"
 #: application/views/map/qso_map.php:31
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
-#: application/views/view_log/qso.php:72
+#: application/views/view_log/qso.php:72 application/views/wabtool/table.php:17
 msgid "Date/Time"
 msgstr "Data/Godzina"
 
@@ -9856,6 +9878,7 @@ msgid "List"
 msgstr "Lista"
 
 #: application/views/awards/wab/list.php:6
+#: application/views/wabtool/table.php:21
 msgid "WAB Square"
 msgstr "Kwadrat WAB"
 
@@ -11742,6 +11765,7 @@ msgstr "Identyfikacja DXCC znaku wywoławczego"
 #: application/views/dbtools/index.php:33
 #: application/views/interface_assets/footer.php:897
 #: application/views/logbookadvanced/index.php:876
+#: application/views/wabtool/index.php:23
 #: application/views/zonechecker/index.php:16
 msgid "Callsign: "
 msgstr "Znak wywoławczy: "
@@ -12879,6 +12903,7 @@ msgstr "Ścieżka"
 #: application/views/view_log/qso.php:692
 #: application/views/view_log/qso.php:699
 #: application/views/view_log/qso.php:704
+#: application/views/wabtool/table.php:22
 msgid "Station"
 msgstr "Stacja"
 
@@ -14897,6 +14922,14 @@ msgstr "Sprawdzaj IOTA względem DXCC"
 #: application/views/dbtools/index.php:135
 msgid "Use Wavelog to check IOTA against DXCC"
 msgstr "Użyj Wavelog do sprawdzenia IOTA względem DXCC"
+
+#: application/views/dbtools/index.php:146
+msgid "Batch assign WAB squares from logged gridsquares"
+msgstr ""
+
+#: application/views/dbtools/index.php:149
+msgid "Open"
+msgstr ""
 
 #: application/views/dbtools/missinggridlist.php:12
 #, php-format
@@ -24855,6 +24888,30 @@ msgstr "Należy podać znak wywoławczy!"
 #: application/views/visitor/punchcard.php:147
 msgid "No QSOs"
 msgstr "Brak QSO"
+
+#: application/views/wabtool/index.php:14
+msgid "Batch Assign WAB from Gridsquare"
+msgstr ""
+
+#: application/views/wabtool/index.php:28
+msgid "Scan Log"
+msgstr ""
+
+#: application/views/wabtool/index.php:31
+msgid "Apply WAB squares"
+msgstr ""
+
+#: application/views/wabtool/index.php:32
+msgid "Write the computed WAB square into the selected QSOs?"
+msgstr ""
+
+#: application/views/wabtool/index.php:33
+msgid "Apply Selected"
+msgstr ""
+
+#: application/views/wabtool/table.php:10
+msgid "No 100% matching QSOs found."
+msgstr ""
 
 #: application/views/webadif/export.php:22
 msgid ""
