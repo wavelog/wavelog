@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-06 15:17+0000\n"
+"POT-Creation-Date: 2026-10-12 06:19+0000\n"
 "PO-Revision-Date: 2026-10-02 07:33+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -237,7 +237,7 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
 #: application/controllers/Webadif.php:10
-#: application/controllers/Webadif.php:101
+#: application/controllers/Webadif.php:103
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
@@ -3038,7 +3038,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:146
-#: application/models/Logbook_model.php:1600
+#: application/models/Logbook_model.php:1615
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -4383,13 +4383,13 @@ msgstr "Offentlig sökning"
 msgid "Export Map"
 msgstr "Exportera karta"
 
-#: application/controllers/Webadif.php:106
-#: application/controllers/Webadif.php:187
+#: application/controllers/Webadif.php:108
+#: application/controllers/Webadif.php:189
 #: application/views/interface_assets/header.php:586
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club Ladda upp"
 
-#: application/controllers/Webadif.php:181
+#: application/controllers/Webadif.php:183
 msgid ""
 "Rejected QSOs were reset. They will be picked up again by the next upload."
 msgstr ""
@@ -5154,30 +5154,30 @@ msgstr "Importerad etikett typ"
 msgid "Station not accessible"
 msgstr "Stationen är inte tillgänglig"
 
-#: application/models/Logbook_model.php:1044
+#: application/models/Logbook_model.php:1052
 msgid "Realtime upload disabled"
 msgstr "Direktuppladdning inaktiverad"
 
-#: application/models/Logbook_model.php:1590
+#: application/models/Logbook_model.php:1605
 msgid "Station ID not allowed"
 msgstr "Stations-ID inte tillåtet"
 
-#: application/models/Logbook_model.php:1595
+#: application/models/Logbook_model.php:1610
 msgid "No Call given"
 msgstr "Ingen anropssignal angiven"
 
-#: application/models/Logbook_model.php:1671
-#: application/models/Logbook_model.php:1890
+#: application/models/Logbook_model.php:1686
+#: application/models/Logbook_model.php:1905
 msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
-#: application/models/Logbook_model.php:5174
+#: application/models/Logbook_model.php:5189
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
-#: application/models/Logbook_model.php:5182
+#: application/models/Logbook_model.php:5197
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5185,7 +5185,7 @@ msgid ""
 msgstr ""
 "Fel lokator %s vid import av QSO med %s för stationslokator %s: HOPPADES ÖVER"
 
-#: application/models/Logbook_model.php:5198
+#: application/models/Logbook_model.php:5213
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5193,7 +5193,7 @@ msgstr ""
 "Du försökte importera ett QSO utan giltigt datum. Detta QSO importerades "
 "inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:5208
+#: application/models/Logbook_model.php:5223
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5202,7 +5202,7 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan en angiven anropssignal. Detta "
 "QSO importerades inte. Det är ogiltigt."
 
-#: application/models/Logbook_model.php:5215
+#: application/models/Logbook_model.php:5230
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5211,7 +5211,7 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO med en ogiltig anropssignal. Detta "
 "QSO importerades inte. Den ogiltiga inmatningen är ' %s'."
 
-#: application/models/Logbook_model.php:5285
+#: application/models/Logbook_model.php:5300
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5220,7 +5220,7 @@ msgstr ""
 "QSO på %s: Bandet '%s' är inte i bandkonfigurationen. Detta QSO importerades "
 "inte."
 
-#: application/models/Logbook_model.php:5292
+#: application/models/Logbook_model.php:5307
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5229,63 +5229,63 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan angivet band. Detta QSO "
 "importerades inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:5567
+#: application/models/Logbook_model.php:5582
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5578
+#: application/models/Logbook_model.php:5593
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5641
+#: application/models/Logbook_model.php:5656
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:6017
+#: application/models/Logbook_model.php:6032
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
-#: application/models/Logbook_model.php:6084
-#: application/models/Logbook_model.php:6184
+#: application/models/Logbook_model.php:6099
+#: application/models/Logbook_model.php:6199
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
-#: application/models/Logbook_model.php:6092
+#: application/models/Logbook_model.php:6107
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
-#: application/models/Logbook_model.php:6098
+#: application/models/Logbook_model.php:6113
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
-#: application/models/Logbook_model.php:6102
+#: application/models/Logbook_model.php:6117
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
-#: application/models/Logbook_model.php:6106
+#: application/models/Logbook_model.php:6121
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
-#: application/models/Logbook_model.php:6109
+#: application/models/Logbook_model.php:6124
 msgid "unconfirmed"
 msgstr "obekräftad"
 
-#: application/models/Logbook_model.php:6112
+#: application/models/Logbook_model.php:6127
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "Okänd"
 
-#: application/models/Logbook_model.php:6187
+#: application/models/Logbook_model.php:6202
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
-#: application/models/Logbook_model.php:6190
+#: application/models/Logbook_model.php:6205
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
-#: application/models/Logbook_model.php:6611
+#: application/models/Logbook_model.php:6626
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
