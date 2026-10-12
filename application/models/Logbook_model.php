@@ -2097,45 +2097,35 @@ class Logbook_model extends CI_Model {
 	// clubstation member below officer level cannot read back data from a QSO
 	// another operator made. Defaults to '' = no restriction (v1 behaviour).
 	function call_lookup_result($callsign, $station_ids, $user_default_confirmation, $band, $mode, $operator = '') {
-		$binding=[];
 		$qsl_where = $this->qsl_default_where($user_default_confirmation);
 		$band_addon='COL_BAND=?';
 		if ($band == 'SAT') {
 			$band_addon="COL_PROP_MODE=?";
 		}
 
-		// The R_* flags are per QSO and only pick the row the detail columns
-		// come from. The returned CALL_* flags are aggregated over all QSOs with
-		// this call, otherwise e.g. a confirmed QSO on another band would hide
-		// the worked state on the requested band.
-		$sql="SELECT COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT,
-			MAX(R_CNF) OVER () AS CALL_CNF,
-			MAX(R_CNF_BAND) OVER () AS CALL_CNF_BAND,
-			MAX(R_CNF_BAND_MODE) OVER () AS CALL_CNF_BAND_MODE,
-			MAX(R_WORKED_BAND) OVER () AS CALL_WORKED_BAND,
-			MAX(R_WORKED_BAND_MODE) OVER () AS CALL_WORKED_BAND_MODE
-		FROM (SELECT COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT,
-			CASE WHEN ( (".$qsl_where.") ) THEN 1  ELSE 0 END AS R_CNF,
-			CASE WHEN ( (".$qsl_where.") AND ".$band_addon.") THEN 1  ELSE 0 END AS R_CNF_BAND,
-			CASE WHEN ( (".$qsl_where.") AND ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS R_CNF_BAND_MODE,
-			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS R_WORKED_BAND,
-			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS R_WORKED_BAND_MODE
-		FROM ".$this->config->item('table_name')." WHERE ";
-		$sql.="station_id IN (".$station_ids.") AND COL_CALL = ?";
-		$binding[]=$band;
-		$binding[]=$band;
-		$binding[]=$mode;
-		$binding[]=$band;
-		$binding[]=$band;
-		$binding[]=$mode;
-		$binding[]=$callsign;
-
+		$flags = "CASE WHEN ( (".$qsl_where.") ) THEN 1  ELSE 0 END AS CNF,
+			CASE WHEN ( (".$qsl_where.") AND ".$band_addon.") THEN 1  ELSE 0 END AS CNF_BAND,
+			CASE WHEN ( (".$qsl_where.") AND ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CNF_BAND_MODE,
+			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS WORKED_BAND,
+			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS WORKED_BAND_MODE";
+		$where = " FROM ".$this->config->item('table_name')." WHERE station_id IN (".$station_ids.") AND COL_CALL = ?";
+		$where_binding = [$band, $band, $mode, $band, $band, $mode, $callsign];
 		if ($operator !== null && $operator !== '') {
-			$sql.=" AND upper(COL_OPERATOR) = ?";
-			$binding[]=strtoupper($operator);
+			$where.=" AND upper(COL_OPERATOR) = ?";
+			$where_binding[]=strtoupper($operator);
 		}
 
-		$sql.=") AS calls ORDER BY R_CNF desc, R_WORKED_BAND desc, R_CNF_BAND desc, R_WORKED_BAND_MODE desc, R_CNF_BAND_MODE desc, COL_TIME_ON desc limit 1";
+		// The detail row is picked by its per-QSO flags, the returned CALL_* flags
+		// are aggregated over all QSOs of the call. Otherwise e.g. a confirmed QSO
+		// on another band would hide the worked state on the requested band.
+		$sql="SELECT detail.COL_CALL, detail.COL_NAME, detail.COL_QSL_VIA, detail.COL_GRIDSQUARE, detail.COL_QTH, detail.COL_IOTA, detail.COL_TIME_ON, detail.COL_STATE, detail.COL_CNTY, detail.COL_DXCC, detail.COL_CONT,
+			agg.CALL_CNF, agg.CALL_CNF_BAND, agg.CALL_CNF_BAND_MODE, agg.CALL_WORKED_BAND, agg.CALL_WORKED_BAND_MODE
+		FROM (SELECT COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT, ".$flags.$where."
+			ORDER BY CNF desc, WORKED_BAND desc, CNF_BAND desc, WORKED_BAND_MODE desc, CNF_BAND_MODE desc, COL_TIME_ON desc limit 1) AS detail
+		CROSS JOIN (SELECT MAX(CNF) AS CALL_CNF, MAX(CNF_BAND) AS CALL_CNF_BAND, MAX(CNF_BAND_MODE) AS CALL_CNF_BAND_MODE,
+			MAX(WORKED_BAND) AS CALL_WORKED_BAND, MAX(WORKED_BAND_MODE) AS CALL_WORKED_BAND_MODE
+			FROM (SELECT ".$flags.$where.") AS flags) AS agg";
+		$binding = array_merge($where_binding, $where_binding);
 
 		$query = $this->db->query($sql, $binding);
 		$data = [];
