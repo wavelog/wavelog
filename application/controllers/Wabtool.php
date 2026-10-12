@@ -241,7 +241,7 @@ class Wabtool extends CI_Controller {
 		$this->bins = array();
 		$this->globalBbox = null;
 
-		$this->load->library('geojson');
+		$this->load->is_loaded('geojson') ? : $this->load->library('geojson');
 
 		$geojson = $this->geojson->loadGeoJsonFile('assets/js/sections/wab_geojson.js');
 
@@ -390,7 +390,7 @@ class Wabtool extends CI_Controller {
 			return $this->gridCache[$grid];
 		}
 
-		$this->load->library('geojson');
+		$this->load->is_loaded('geojson') ? : $this->load->library('geojson');
 
 		$result = array(
 			'grid' => $grid,
