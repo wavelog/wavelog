@@ -398,7 +398,7 @@ class cron extends CI_Controller {
 		$error = $response === false ? curl_error($ch) : '';
 		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		if ($response !== false && $http_code >= 400) {
-			$error = 'HTTP ' . $http_code . ': ' . trim(strip_tags($response));
+			$error = 'HTTP ' . $http_code;
 		}
 
 		// invalidate the cache so the job can run next time
