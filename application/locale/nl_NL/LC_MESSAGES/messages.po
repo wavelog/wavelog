@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-12 06:19+0000\n"
+"POT-Creation-Date: 2026-10-12 10:18+0000\n"
 "PO-Revision-Date: 2026-10-01 10:27+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -236,6 +236,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/User.php:1911 application/controllers/User.php:1935
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
+#: application/controllers/Wabtool.php:30
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:103
 #: application/controllers/Zonechecker.php:16
@@ -1481,7 +1482,8 @@ msgstr "WWFF Referentie"
 #: application/views/station_profile/edit.php:461
 #: application/views/user/edit.php:403 application/views/user/edit.php:918
 #: application/views/view_log/partial/log_ajax.php:19
-#: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
+#: application/views/view_log/qso.php:9 application/views/wabtool/index.php:18
+#: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:125
 #: application/views/zonechecker/index.php:11
 msgid "Station Location"
@@ -2722,7 +2724,8 @@ msgstr "Afstand"
 #: application/views/user/edit.php:388
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
-#: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/views/visitor/mini.php:184
+#: application/views/wabtool/table.php:19 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
 msgid "Band"
 msgstr "Band"
@@ -4397,6 +4400,25 @@ msgstr "Openbare zoekopdracht"
 msgid "Export Map"
 msgstr "Kaart exporteren"
 
+#: application/controllers/Wabtool.php:41
+#: application/views/dbtools/index.php:145
+msgid "WAB from Gridsquare"
+msgstr ""
+
+#: application/controllers/Wabtool.php:100
+msgid "No station locations found"
+msgstr ""
+
+#: application/controllers/Wabtool.php:107
+#: application/controllers/Wabtool.php:113
+msgid "No QSOs selected"
+msgstr ""
+
+#: application/controllers/Wabtool.php:174
+#: application/controllers/Zonechecker.php:483
+msgid "Invalid gridsquare"
+msgstr "Ongeldige locatorvak"
+
 #: application/controllers/Webadif.php:108
 #: application/controllers/Webadif.php:189
 #: application/views/interface_assets/header.php:586
@@ -4456,10 +4478,6 @@ msgstr "Locatorvak Zone zoeker"
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
 msgstr "GeoJSON-gegevens niet beschikbaar"
-
-#: application/controllers/Zonechecker.php:483
-msgid "Invalid gridsquare"
-msgstr "Ongeldige locatorvak"
 
 #: application/libraries/Callbook.php:72
 msgid "Lookup not configured. Please review configuration."
@@ -5612,6 +5630,7 @@ msgstr "Verschil"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:1026
 #: application/views/visitor/layout/footer.php:168
+#: application/views/wabtool/index.php:20
 msgid "All"
 msgstr "Alles"
 
@@ -6302,6 +6321,7 @@ msgstr "Niets gevonden!"
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:620
 #: application/views/visitor/mini.php:183
+#: application/views/wabtool/table.php:18
 #: application/views/widgets/lotw_upload.php:97
 #: application/views/zonechecker/result.php:64
 msgid "Callsign"
@@ -7813,6 +7833,7 @@ msgstr "Locatorvak activaties"
 #: application/views/contesting/logger/components/qso-form.php:155
 #: application/views/satellite/skedtable.php:40
 #: application/views/stationsetup/locationlist.php:14
+#: application/views/wabtool/table.php:20
 msgid "Grid"
 msgstr "Vak"
 
@@ -8133,6 +8154,7 @@ msgstr "%s%% totaal bevestigd"
 #: application/views/interface_assets/footer.php:49
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/wabtool/table.php:23
 msgid "Confirmed"
 msgstr "Bevestigd"
 
@@ -9750,7 +9772,7 @@ msgstr "QSO-lijst"
 #: application/views/map/qso_map.php:31
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
-#: application/views/view_log/qso.php:72
+#: application/views/view_log/qso.php:72 application/views/wabtool/table.php:17
 msgid "Date/Time"
 msgstr "Datum/Tijd"
 
@@ -9921,6 +9943,7 @@ msgid "List"
 msgstr "Lijst"
 
 #: application/views/awards/wab/list.php:6
+#: application/views/wabtool/table.php:21
 msgid "WAB Square"
 msgstr "WAB-vierkant"
 
@@ -11802,6 +11825,7 @@ msgstr "Roepnaam DXCC-identificatie"
 #: application/views/dbtools/index.php:33
 #: application/views/interface_assets/footer.php:897
 #: application/views/logbookadvanced/index.php:876
+#: application/views/wabtool/index.php:23
 #: application/views/zonechecker/index.php:16
 msgid "Callsign: "
 msgstr "Roepnaam: "
@@ -12943,6 +12967,7 @@ msgstr "Pad"
 #: application/views/view_log/qso.php:692
 #: application/views/view_log/qso.php:699
 #: application/views/view_log/qso.php:704
+#: application/views/wabtool/table.php:22
 msgid "Station"
 msgstr "Station"
 
@@ -14968,6 +14993,14 @@ msgstr "Controleer IOTA ten opzichte van DXCC"
 #: application/views/dbtools/index.php:135
 msgid "Use Wavelog to check IOTA against DXCC"
 msgstr "Gebruik Wavelog om IOTA tegen DXCC te controleren"
+
+#: application/views/dbtools/index.php:146
+msgid "Batch assign WAB squares from logged gridsquares"
+msgstr ""
+
+#: application/views/dbtools/index.php:149
+msgid "Open"
+msgstr ""
 
 #: application/views/dbtools/missinggridlist.php:12
 #, php-format
@@ -24973,6 +25006,30 @@ msgstr "Voer een roepnaam in!"
 #: application/views/visitor/punchcard.php:147
 msgid "No QSOs"
 msgstr "Geen QSO's"
+
+#: application/views/wabtool/index.php:14
+msgid "Batch Assign WAB from Gridsquare"
+msgstr ""
+
+#: application/views/wabtool/index.php:28
+msgid "Scan Log"
+msgstr ""
+
+#: application/views/wabtool/index.php:31
+msgid "Apply WAB squares"
+msgstr ""
+
+#: application/views/wabtool/index.php:32
+msgid "Write the computed WAB square into the selected QSOs?"
+msgstr ""
+
+#: application/views/wabtool/index.php:33
+msgid "Apply Selected"
+msgstr ""
+
+#: application/views/wabtool/table.php:10
+msgid "No 100% matching QSOs found."
+msgstr ""
 
 #: application/views/webadif/export.php:22
 msgid ""
