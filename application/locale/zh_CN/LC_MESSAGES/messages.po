@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-12 10:18+0000\n"
+"POT-Creation-Date: 2026-10-12 10:21+0000\n"
 "PO-Revision-Date: 2026-10-08 15:28+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -1571,12 +1571,12 @@ msgstr "禁用"
 msgid "Run Now"
 msgstr "立即运行"
 
-#: application/controllers/Cron.php:425
+#: application/controllers/Cron.php:429
 #: application/views/interface_assets/footer.php:45
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:429
+#: application/controllers/Cron.php:433
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1584,7 +1584,7 @@ msgid ""
 msgstr ""
 "上次执行在 %s 秒前。%s请检查你的主计划任务！它应当每分钟运行一次(* * * * *)。"
 
-#: application/controllers/Cron.php:432
+#: application/controllers/Cron.php:436
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1593,7 +1593,7 @@ msgstr ""
 "上次执行是 %s 分钟之前。 %s 你的 计划任务似乎没有配置好，%s 它应当设置为每分"
 "钟执行 (* * * * *)。"
 
-#: application/controllers/Cron.php:437 application/views/cron/index.php:43
+#: application/controllers/Cron.php:441 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "未运行"
@@ -3933,111 +3933,111 @@ msgstr "正在准备 DXCC 例外名单： "
 msgid "Preparing DXCC Prefixes: "
 msgstr "正在准备 DXCC 前缀： "
 
-#: application/controllers/Update.php:307
+#: application/controllers/Update.php:294
 msgid "DONE"
 msgstr "完成"
 
-#: application/controllers/Update.php:359
+#: application/controllers/Update.php:367
 msgid "Updating..."
 msgstr "更新中…"
 
-#: application/controllers/Update.php:362
+#: application/controllers/Update.php:370
 msgid "Dxcc Entities:"
 msgstr "DXCC 实体："
 
-#: application/controllers/Update.php:363
+#: application/controllers/Update.php:371
 msgid "Dxcc Exceptions:"
 msgstr "DXCC 例外："
 
-#: application/controllers/Update.php:364
+#: application/controllers/Update.php:372
 msgid "Dxcc Prefixes:"
 msgstr "DXCC 前缀："
 
-#: application/controllers/Update.php:395
+#: application/controllers/Update.php:403
 msgid "SCP Update complete. Result: "
 msgstr "SCP 更新已完成。结果为： "
 
-#: application/controllers/Update.php:397
+#: application/controllers/Update.php:405
 msgid "SCP Update failed. Result: "
 msgstr "SCP 更新失败。结果为： "
 
-#: application/controllers/Update.php:434
+#: application/controllers/Update.php:442
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTW 用户更新完成。结果为： "
 
-#: application/controllers/Update.php:436
+#: application/controllers/Update.php:444
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTW 用户更新失败。结果为： "
 
-#: application/controllers/Update.php:471
+#: application/controllers/Update.php:479
 msgid "DOK Update complete. Result: "
 msgstr "DOK 更新完成。结果为： "
 
-#: application/controllers/Update.php:473
+#: application/controllers/Update.php:481
 msgid "DOK Update failed. Result: "
 msgstr "DOK 更新失败。结果为： "
 
-#: application/controllers/Update.php:506
+#: application/controllers/Update.php:514
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA 更新完成。结果为： "
 
-#: application/controllers/Update.php:508
+#: application/controllers/Update.php:516
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA 更新失败。结果为： "
 
-#: application/controllers/Update.php:541
+#: application/controllers/Update.php:549
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF 更新成功。结果为： "
 
-#: application/controllers/Update.php:543
+#: application/controllers/Update.php:551
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF 更新失败。结果为： "
 
-#: application/controllers/Update.php:577
+#: application/controllers/Update.php:585
 msgid "HAMqsl Update complete. Result: "
 msgstr "HAMqsl 更新完成。结果： "
 
-#: application/controllers/Update.php:579
+#: application/controllers/Update.php:587
 msgid "HAMqsl Update failed. Result: "
 msgstr "HAMqsl 更新失败。结果： "
 
-#: application/controllers/Update.php:612
+#: application/controllers/Update.php:620
 msgid "POTA Update complete. Result: "
 msgstr "POTA 更新完成。结果为： "
 
-#: application/controllers/Update.php:614
+#: application/controllers/Update.php:622
 msgid "POTA Update failed. Result: "
 msgstr "POTA 更新失败。结果为： "
 
-#: application/controllers/Update.php:663
+#: application/controllers/Update.php:671
 msgid "POTA boundaries update complete. Result: "
 msgstr "POTA 边界更新完成。结果为： "
 
-#: application/controllers/Update.php:665
+#: application/controllers/Update.php:673
 msgid "POTA boundaries update failed. Result: "
 msgstr "POTA 边界更新失败。结果为： "
 
-#: application/controllers/Update.php:682
+#: application/controllers/Update.php:690
 msgid "TLE Update complete. Result: "
 msgstr "TLE 更新完成。结果为： "
 
-#: application/controllers/Update.php:684
+#: application/controllers/Update.php:692
 msgid "TLE Update failed. Result: "
 msgstr "TLE 更新失败。结果为： "
 
-#: application/controllers/Update.php:711
+#: application/controllers/Update.php:719
 msgid "LoTW SAT Update"
 msgstr "LoTW 卫星数据更新"
 
-#: application/controllers/Update.php:739
+#: application/controllers/Update.php:747
 msgid "Update of Hams of Note"
 msgstr "Hams of Note 更新"
 
-#: application/controllers/Update.php:779
+#: application/controllers/Update.php:787
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCC 网格文件更新完成。结果： "
 
-#: application/controllers/Update.php:781
+#: application/controllers/Update.php:789
 msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC 网格文件更新失败。结果： "
 

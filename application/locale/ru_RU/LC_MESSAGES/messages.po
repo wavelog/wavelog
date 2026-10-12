@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-12 10:18+0000\n"
+"POT-Creation-Date: 2026-10-12 10:21+0000\n"
 "PO-Revision-Date: 2026-10-09 15:49+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1564,12 +1564,12 @@ msgstr "отключено"
 msgid "Run Now"
 msgstr "Запустить сейчас"
 
-#: application/controllers/Cron.php:425
+#: application/controllers/Cron.php:429
 #: application/views/interface_assets/footer.php:45
 msgid "OK"
 msgstr "ОК"
 
-#: application/controllers/Cron.php:429
+#: application/controllers/Cron.php:433
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1578,7 +1578,7 @@ msgstr ""
 "Последний запуск произошел более %s секунд назад.%sПроверьте ваш основной "
 "cron! Он должен запускаться каждую минуту (* * * * *)."
 
-#: application/controllers/Cron.php:432
+#: application/controllers/Cron.php:436
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1587,7 +1587,7 @@ msgstr ""
 "Последний запуск произошел более %s минут назад.%sПохоже, ваш Mastercron не "
 "работает!%sОн должен запускаться каждую минуту (* * * * *)."
 
-#: application/controllers/Cron.php:437 application/views/cron/index.php:43
+#: application/controllers/Cron.php:441 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Не работает"
@@ -3974,111 +3974,111 @@ msgstr "Подготовка исключений DXCC: "
 msgid "Preparing DXCC Prefixes: "
 msgstr "Подготовка префиксов DXCC: "
 
-#: application/controllers/Update.php:307
+#: application/controllers/Update.php:294
 msgid "DONE"
 msgstr "Готово"
 
-#: application/controllers/Update.php:359
+#: application/controllers/Update.php:367
 msgid "Updating..."
 msgstr "Обновляется..."
 
-#: application/controllers/Update.php:362
+#: application/controllers/Update.php:370
 msgid "Dxcc Entities:"
 msgstr "DXCC:"
 
-#: application/controllers/Update.php:363
+#: application/controllers/Update.php:371
 msgid "Dxcc Exceptions:"
 msgstr "Исключения DXCC:"
 
-#: application/controllers/Update.php:364
+#: application/controllers/Update.php:372
 msgid "Dxcc Prefixes:"
 msgstr "Префиксы DXCC:"
 
-#: application/controllers/Update.php:395
+#: application/controllers/Update.php:403
 msgid "SCP Update complete. Result: "
 msgstr "Обновление SCP завершено. Результат: "
 
-#: application/controllers/Update.php:397
+#: application/controllers/Update.php:405
 msgid "SCP Update failed. Result: "
 msgstr "Обновление SCP не удалось. Результат: "
 
-#: application/controllers/Update.php:434
+#: application/controllers/Update.php:442
 msgid "LoTW Users Update complete. Result: "
 msgstr "Обновление пользователей LoTW завершено. Результат: "
 
-#: application/controllers/Update.php:436
+#: application/controllers/Update.php:444
 msgid "LoTW Users Update failed. Result: "
 msgstr "Обновление пользователей LoTW не удалось. Результат: "
 
-#: application/controllers/Update.php:471
+#: application/controllers/Update.php:479
 msgid "DOK Update complete. Result: "
 msgstr "Обновление DOK завершено. Результат: "
 
-#: application/controllers/Update.php:473
+#: application/controllers/Update.php:481
 msgid "DOK Update failed. Result: "
 msgstr "Обновление DOK не удалось. Результат: "
 
-#: application/controllers/Update.php:506
+#: application/controllers/Update.php:514
 msgid "SOTA Update complete. Result: "
 msgstr "Обновление SOTA завершено. Результат: "
 
-#: application/controllers/Update.php:508
+#: application/controllers/Update.php:516
 msgid "SOTA Update failed. Result: "
 msgstr "Обновление SOTA не удалось. Результат: "
 
-#: application/controllers/Update.php:541
+#: application/controllers/Update.php:549
 msgid "WWFF Update complete. Result: "
 msgstr "Обновление WWFF завершено. Результат: "
 
-#: application/controllers/Update.php:543
+#: application/controllers/Update.php:551
 msgid "WWFF Update failed. Result: "
 msgstr "Обновление WWFF не удалось. Результат: "
 
-#: application/controllers/Update.php:577
+#: application/controllers/Update.php:585
 msgid "HAMqsl Update complete. Result: "
 msgstr "Обновление HAMqsl завершено. Результат: "
 
-#: application/controllers/Update.php:579
+#: application/controllers/Update.php:587
 msgid "HAMqsl Update failed. Result: "
 msgstr "Обновление HAMqsl не удалось. Результат: "
 
-#: application/controllers/Update.php:612
+#: application/controllers/Update.php:620
 msgid "POTA Update complete. Result: "
 msgstr "Обновление POTA завершено. Результат: "
 
-#: application/controllers/Update.php:614
+#: application/controllers/Update.php:622
 msgid "POTA Update failed. Result: "
 msgstr "Обновление POTA не удалось. Результат: "
 
-#: application/controllers/Update.php:663
+#: application/controllers/Update.php:671
 msgid "POTA boundaries update complete. Result: "
 msgstr "Обновление границ POTA завершено. Результат: "
 
-#: application/controllers/Update.php:665
+#: application/controllers/Update.php:673
 msgid "POTA boundaries update failed. Result: "
 msgstr "Обновление границ POTA не удалось. Результат: "
 
-#: application/controllers/Update.php:682
+#: application/controllers/Update.php:690
 msgid "TLE Update complete. Result: "
 msgstr "Обновление TLE завершено. Результат: "
 
-#: application/controllers/Update.php:684
+#: application/controllers/Update.php:692
 msgid "TLE Update failed. Result: "
 msgstr "Обновление TLE не удалось. Результат: "
 
-#: application/controllers/Update.php:711
+#: application/controllers/Update.php:719
 msgid "LoTW SAT Update"
 msgstr "Обновление спутников для LoTW"
 
-#: application/controllers/Update.php:739
+#: application/controllers/Update.php:747
 msgid "Update of Hams of Note"
 msgstr "Обновить \"Заметки о корреспондентах\""
 
-#: application/controllers/Update.php:779
+#: application/controllers/Update.php:787
 msgid "VUCC Grid file update complete. Result: "
 msgstr "Обновление файла квадратов QTH-локатора VUCC завершено. Результат: "
 
-#: application/controllers/Update.php:781
+#: application/controllers/Update.php:789
 msgid "VUCC Grid file update failed. Result: "
 msgstr "Обновление файла квадратов QTH-локатора VUCC не удалось. Результат: "
 

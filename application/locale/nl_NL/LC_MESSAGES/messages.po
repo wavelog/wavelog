@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-12 10:18+0000\n"
+"POT-Creation-Date: 2026-10-12 10:21+0000\n"
 "PO-Revision-Date: 2026-10-01 10:27+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1559,12 +1559,12 @@ msgstr "uitgeschakeld"
 msgid "Run Now"
 msgstr "Nu uitvoeren"
 
-#: application/controllers/Cron.php:425
+#: application/controllers/Cron.php:429
 #: application/views/interface_assets/footer.php:45
 msgid "OK"
 msgstr "Oké"
 
-#: application/controllers/Cron.php:429
+#: application/controllers/Cron.php:433
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1573,7 +1573,7 @@ msgstr ""
 "Laatste uitvoering vond meer dan %s seconden geleden plaats.%sControleer je "
 "master cron! Deze zou elke minuut moeten draaien (* * * * *)."
 
-#: application/controllers/Cron.php:432
+#: application/controllers/Cron.php:436
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1583,7 +1583,7 @@ msgstr ""
 "erop dat je Mastercron niet draait!%s Deze zou elke minuut moeten draaien (* "
 "* * * *)."
 
-#: application/controllers/Cron.php:437 application/views/cron/index.php:43
+#: application/controllers/Cron.php:441 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Draait niet"
@@ -3979,111 +3979,111 @@ msgstr "DXCC uitzonderingen voorbereiden: "
 msgid "Preparing DXCC Prefixes: "
 msgstr "DXCC-prefixen voorbereiden: "
 
-#: application/controllers/Update.php:307
+#: application/controllers/Update.php:294
 msgid "DONE"
 msgstr "KLAAR"
 
-#: application/controllers/Update.php:359
+#: application/controllers/Update.php:367
 msgid "Updating..."
 msgstr "Bijwerken..."
 
-#: application/controllers/Update.php:362
+#: application/controllers/Update.php:370
 msgid "Dxcc Entities:"
 msgstr "Dxcc-entiteiten:"
 
-#: application/controllers/Update.php:363
+#: application/controllers/Update.php:371
 msgid "Dxcc Exceptions:"
 msgstr "Dxcc uitzonderingen:"
 
-#: application/controllers/Update.php:364
+#: application/controllers/Update.php:372
 msgid "Dxcc Prefixes:"
 msgstr "Dxcc-prefixen:"
 
-#: application/controllers/Update.php:395
+#: application/controllers/Update.php:403
 msgid "SCP Update complete. Result: "
 msgstr "SCP-update voltooid. Resultaat: "
 
-#: application/controllers/Update.php:397
+#: application/controllers/Update.php:405
 msgid "SCP Update failed. Result: "
 msgstr "SCP-update mislukt. Resultaat: "
 
-#: application/controllers/Update.php:434
+#: application/controllers/Update.php:442
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTW-gebruikersupdate voltooid. Resultaat: "
 
-#: application/controllers/Update.php:436
+#: application/controllers/Update.php:444
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTW-gebruikersupdate mislukt. Resultaat: "
 
-#: application/controllers/Update.php:471
+#: application/controllers/Update.php:479
 msgid "DOK Update complete. Result: "
 msgstr "DOK-update voltooid. Resultaat: "
 
-#: application/controllers/Update.php:473
+#: application/controllers/Update.php:481
 msgid "DOK Update failed. Result: "
 msgstr "DOK-update mislukt. Resultaat: "
 
-#: application/controllers/Update.php:506
+#: application/controllers/Update.php:514
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA-update voltooid. Resultaat: "
 
-#: application/controllers/Update.php:508
+#: application/controllers/Update.php:516
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA-update mislukt. Resultaat: "
 
-#: application/controllers/Update.php:541
+#: application/controllers/Update.php:549
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF-update voltooid. Resultaat: "
 
-#: application/controllers/Update.php:543
+#: application/controllers/Update.php:551
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF-update mislukt. Resultaat: "
 
-#: application/controllers/Update.php:577
+#: application/controllers/Update.php:585
 msgid "HAMqsl Update complete. Result: "
 msgstr "HAMqsl-update voltooid. Resultaat: "
 
-#: application/controllers/Update.php:579
+#: application/controllers/Update.php:587
 msgid "HAMqsl Update failed. Result: "
 msgstr "HAMqsl-update mislukt. Resultaat: "
 
-#: application/controllers/Update.php:612
+#: application/controllers/Update.php:620
 msgid "POTA Update complete. Result: "
 msgstr "POTA-update voltooid. Resultaat: "
 
-#: application/controllers/Update.php:614
+#: application/controllers/Update.php:622
 msgid "POTA Update failed. Result: "
 msgstr "POTA-update mislukt. Resultaat: "
 
-#: application/controllers/Update.php:663
+#: application/controllers/Update.php:671
 msgid "POTA boundaries update complete. Result: "
 msgstr "POTA-grenzen update voltooid. Resultaat: "
 
-#: application/controllers/Update.php:665
+#: application/controllers/Update.php:673
 msgid "POTA boundaries update failed. Result: "
 msgstr "POTA-grenzen update mislukt. Resultaat: "
 
-#: application/controllers/Update.php:682
+#: application/controllers/Update.php:690
 msgid "TLE Update complete. Result: "
 msgstr "TLE-update voltooid. Resultaat: "
 
-#: application/controllers/Update.php:684
+#: application/controllers/Update.php:692
 msgid "TLE Update failed. Result: "
 msgstr "TLE-update mislukt. Resultaat: "
 
-#: application/controllers/Update.php:711
+#: application/controllers/Update.php:719
 msgid "LoTW SAT Update"
 msgstr "LoTW SAT update"
 
-#: application/controllers/Update.php:739
+#: application/controllers/Update.php:747
 msgid "Update of Hams of Note"
 msgstr "Update van Vermeldenswaardige Radiozendamateurs"
 
-#: application/controllers/Update.php:779
+#: application/controllers/Update.php:787
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCC-vakken bestand update voltooid. Resultaat: "
 
-#: application/controllers/Update.php:781
+#: application/controllers/Update.php:789
 msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC-vakken bestandsupdate mislukt. Resultaat: "
 
