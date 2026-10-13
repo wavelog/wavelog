@@ -271,7 +271,7 @@ function onClickRegion(e) {
     var mode = category;
 
     // Check if category is a band (like 20M, 40M, etc.)
-    var validBands = ['160M', '80M', '40M', '30M', '20M', '17M', '15M', '12M', '10M', '6M', '2M'];
+    var validBands = ['160m', '80m', '40m', '30m', '20m', '17m', '15m', '12m', '10m', '6m', '2m'];
     if (validBands.indexOf(category) !== -1) {
         band = category;
         mode = 'All';

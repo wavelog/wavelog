@@ -309,7 +309,10 @@ class Calendar_model extends CI_Model {
 
 	/**
 	 * Parse DXpedition XML and return all DXpeditions with worked/confirmed status.
-	 * Used by the DX Calendar page.
+	 * Used by the DX Calendar page and the Dashboard card.
+	 *
+	 * Worked/confirmed statuses are fetched in two batched queries
+	 * (Logbook_model::get_status_batch()) instead of one query per item.
 	 */
 	public function get_all_dxpeditions() {
 		$this->load->model('logbook_model');
@@ -334,6 +337,8 @@ class Calendar_model extends CI_Model {
 
 		$dxccobj = new Dxcc();
 		$dxpeds = array();
+		$calls_to_check = array();
+		$dxccs_to_check = array();
 
 		foreach ($rssdata->channel->item as $item) {
 			$dxped = (object)[];
@@ -357,15 +362,16 @@ class Calendar_model extends CI_Model {
 			if (($chk_dxcc['adif'] ?? '') != '') {
 				$chk_dxcc_val = $chk_dxcc['adif'];
 				$dxped->no_dxcc = false;
+				$dxccs_to_check[$chk_dxcc_val] = true;
 			} else {
 				$chk_dxcc_val = -1;
 				$dxped->no_dxcc = true;
 			}
 
-			$dxped->call_wked = $this->logbook_model->check_if_callsign_worked_in_logbook($dxped->call);
-			$dxped->call_cnfmd = $this->logbook_model->check_if_callsign_cnfmd_in_logbook($dxped->call);
-			$dxped->dxcc_wked = $this->logbook_model->check_if_dxcc_worked_in_logbook($chk_dxcc_val);
-			$dxped->dxcc_cnfmd = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($chk_dxcc_val);
+			$dxped->call_wked = false;
+			$dxped->call_cnfmd = false;
+			$dxped->dxcc_wked = false;
+			$dxped->dxcc_cnfmd = false;
 			$dxped->dxcc_adif = $chk_dxcc_val;
 
 			$qslinfo = (string) $descsplit[4];
@@ -379,7 +385,19 @@ class Calendar_model extends CI_Model {
 			$dxped->info = (string) ($descsplit[6] ?? '');
 			$dxped->link = (string) $item->link;
 
+			$calls_to_check[$dxped->call] = true;
+
 			$dxpeds[] = $dxped;
+		}
+
+		$statuses = $this->logbook_model->get_status_batch(array_keys($calls_to_check), array_keys($dxccs_to_check));
+		foreach ($dxpeds as $dxped) {
+			$call_status = $statuses['call'][$dxped->call] ?? [];
+			$dxcc_status = $statuses['dxcc'][$dxped->dxcc_adif] ?? [];
+			$dxped->call_wked = $call_status['wked'] ?? false;
+			$dxped->call_cnfmd = $call_status['cnfmd'] ?? false;
+			$dxped->dxcc_wked = $dxcc_status['wked'] ?? false;
+			$dxped->dxcc_cnfmd = $dxcc_status['cnfmd'] ?? false;
 		}
 
 		return $dxpeds;

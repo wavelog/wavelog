@@ -33,9 +33,12 @@ class Update extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-	/*
-	* Load the DXCC entities
-	*/
+	/**
+	 * Import the DXCC entities from cty.xml into dxcc_entities_new
+	 *
+	 * @param SimpleXMLElement|null $xml_data Parsed cty.xml, loaded from disk if null
+	 * @return int Number of imported entities
+	 */
 	private function dxcc_entities($xml_data = null) {
 
 		// Load XML data if not provided
@@ -65,9 +68,9 @@ class Update extends CI_Controller {
 
 			// Insert in batches for better performance
 			if ($count % $batch_size === 0) {
-				$this->db->insert_batch('dxcc_entities', $a_data);
+				$this->db->insert_batch('dxcc_entities_new', $a_data);
 				$a_data = []; // Clear batch data
-				$this->update_status(__("Preparing DXCC-Entries: ") . $count);
+				$this->update_status(__("Preparing DXCC-Entries: ") . $count, "_new");
 			}
 		}
 
@@ -87,16 +90,19 @@ class Update extends CI_Controller {
 
 		// Insert remaining data
 		if (!empty($a_data)) {
-			$this->db->insert_batch('dxcc_entities', $a_data);
+			$this->db->insert_batch('dxcc_entities_new', $a_data);
 		}
 
-		$this->update_status(); // Final status update
+		$this->update_status("", "_new"); // Final status update
 		return $count;
 	}
 
-	/*
-     * Load the dxcc prefixes
-     */
+	/**
+	 * Import the DXCC exceptions from cty.xml into dxcc_exceptions_new
+	 *
+	 * @param SimpleXMLElement|null $xml_data Parsed cty.xml, loaded from disk if null
+	 * @return int Number of imported exceptions
+	 */
 	private function dxcc_exceptions($xml_data = null) {
 
 		// Load XML data if not provided
@@ -126,24 +132,27 @@ class Update extends CI_Controller {
 
 			// Insert in batches for better performance
 			if ($count % $batch_size === 0) {
-				$this->db->insert_batch('dxcc_exceptions', $a_data);
+				$this->db->insert_batch('dxcc_exceptions_new', $a_data);
 				$a_data = []; // Clear batch data
-				$this->update_status(__("Preparing DXCC Exceptions: ") . $count);
+				$this->update_status(__("Preparing DXCC Exceptions: ") . $count, "_new");
 			}
 		}
 
 		// Insert any remaining records
 		if (!empty($a_data)) {
-			$this->db->insert_batch('dxcc_exceptions', $a_data);
+			$this->db->insert_batch('dxcc_exceptions_new', $a_data);
 		}
 
-		$this->update_status(); // Final status update
+		$this->update_status("", "_new"); // Final status update
 		return $count;
 	}
 
-	/*
-     * Load the dxcc prefixes
-     */
+	/**
+	 * Import the DXCC prefixes from cty.xml into dxcc_prefixes_new
+	 *
+	 * @param SimpleXMLElement|null $xml_data Parsed cty.xml, loaded from disk if null
+	 * @return int Number of imported prefixes
+	 */
 	private function dxcc_prefixes($xml_data = null) {
 
 		// Load XML data if not provided
@@ -173,30 +182,33 @@ class Update extends CI_Controller {
 
 			// Insert in batches to avoid memory overload
 			if ($count % $batch_size === 0) {
-				$this->db->insert_batch('dxcc_prefixes', $a_data);
+				$this->db->insert_batch('dxcc_prefixes_new', $a_data);
 				$a_data = []; // Clear the batch array
-				$this->update_status(__("Preparing DXCC Prefixes: ") . $count);
+				$this->update_status(__("Preparing DXCC Prefixes: ") . $count, "_new");
 			}
 		}
 
 		// Insert any remaining records
 		if (!empty($a_data)) {
-			$this->db->insert_batch('dxcc_prefixes', $a_data);
+			$this->db->insert_batch('dxcc_prefixes_new', $a_data);
 		}
 
-		$this->update_status(); // Clear the status message
+		$this->update_status("", "_new"); // Clear the status message
 		return $count;
 	}
 
-	// Updates the DXCC & Exceptions from the Club Log Cty.xml file.
+	/**
+	 * Update DXCC entities, exceptions and prefixes from the Club Log cty.xml
+	 *
+	 * Data is imported into *_new shadow tables and swapped in atomically with a
+	 * single RENAME TABLE, so the live tables are never empty or partially filled.
+	 *
+	 * @return void Echoes 'success' or 'locked - running'
+	 */
 	public function dxcc() {
 		$lockfilename='/tmp/.update_dxcc_running';
 		if (!file_exists($lockfilename)) {
 			touch($lockfilename);
-
-			// set the last run in cron table for the correct cron id
-			$this->load->model('cron_model');
-			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
 			$this->update_status("Downloading file");
 
@@ -221,10 +233,7 @@ class Update extends CI_Controller {
 				$gz = gzopen($alt_url, 'r');
 
 				if ($gz === FALSE) {
-					$msg = "FAILED: Could not download dxcc data. Please check your internet connection.";
-					$this->update_status($msg);
-					log_message('error', $msg);
-					exit();
+					$this->_dxcc_update_failed("Could not download dxcc data. Please check your internet connection.", $lockfilename);
 				} else {
 					$msg = "Downloaded data successfully from alternative URL (github).";
 					$this->update_status($msg);
@@ -239,32 +248,54 @@ class Update extends CI_Controller {
 			gzclose($gz);
 
 			if (file_put_contents($this->paths->make_update_path("cty.xml"), $data) === FALSE) {
-				$this->update_status("FAILED: Could not write to cty.xml file");
-				log_message('error', 'DXCC UPDATE FAILED: Could not write to cty.xml file');
-				exit();
+				$this->_dxcc_update_failed("Could not write to cty.xml file", $lockfilename);
 			}
 
-			// Clear the tables, ready for new data
-			$this->db->query("TRUNCATE TABLE dxcc_entities");
-			$this->db->query("TRUNCATE TABLE dxcc_exceptions");
-			$this->db->query("TRUNCATE TABLE dxcc_prefixes");
-			$this->update_status();
-
-			// Parse the three sections of the file and update the tables
-			$this->db->trans_start();
 			$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+			if ($xml_data === false) {
+				$this->_dxcc_update_failed("Could not parse cty.xml file", $lockfilename);
+			}
+
+			// Build the new data in shadow tables, the live tables stay untouched until the swap
+			foreach (['dxcc_entities', 'dxcc_exceptions', 'dxcc_prefixes'] as $table) {
+				$this->db->query("DROP TABLE IF EXISTS {$table}_new, {$table}_old");
+				$this->db->query("CREATE TABLE {$table}_new LIKE {$table}");
+			}
+			$this->update_status("", "_new");
+
+			// Parse the three sections of the file and fill the shadow tables
+			$this->db->trans_start();
 			$this->dxcc_exceptions($xml_data);
 			$this->dxcc_entities($xml_data);
 			$this->dxcc_prefixes($xml_data);
-			$sql = "update dxcc_entities
-				join dxcc_temp on dxcc_entities.adif = dxcc_temp.adif
-				set dxcc_entities.ituz = dxcc_temp.ituz;";
+			$sql = "update dxcc_entities_new
+				join dxcc_temp on dxcc_entities_new.adif = dxcc_temp.adif
+				set dxcc_entities_new.ituz = dxcc_temp.ituz;";
 			$this->db->query($sql);
 			$this->db->trans_complete();
+			if ($this->db->trans_status() === false) {
+				$this->_dxcc_update_failed("Could not import DXCC data", $lockfilename);
+			}
+
+			// Atomic swap of all three tables
+			$this->db->query("RENAME TABLE
+				dxcc_entities TO dxcc_entities_old,
+				dxcc_entities_new TO dxcc_entities,
+				dxcc_exceptions TO dxcc_exceptions_old,
+				dxcc_exceptions_new TO dxcc_exceptions,
+				dxcc_prefixes TO dxcc_prefixes_old,
+				dxcc_prefixes_new TO dxcc_prefixes");
+			$this->db->query("DROP TABLE dxcc_entities_old");
+			$this->db->query("DROP TABLE dxcc_exceptions_old");
+			$this->db->query("DROP TABLE dxcc_prefixes_old");
 
 			$this->_invalidate_dxcc_cache();
 
 			$this->update_status(__("DONE"));
+
+			// set the last run in cron table for the correct cron id, only after a successful update
+			$this->load->model('cron_model');
+			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
 			echo 'success';
 			unlink($lockfilename);
@@ -282,6 +313,23 @@ class Update extends CI_Controller {
 			}
 		}
 
+	}
+
+	/**
+	 * Abort the DXCC update: report the error, release the lock and answer with HTTP 500
+	 * so the cron runner marks the job as failed instead of healthy.
+	 *
+	 * @param string $msg          Reason of the failure
+	 * @param string $lockfilename Lockfile of the running update
+	 * @return void Never returns
+	 */
+	private function _dxcc_update_failed($msg, $lockfilename) {
+		$this->update_status("FAILED: " . $msg);
+		log_message('error', 'DXCC UPDATE FAILED: ' . $msg);
+		@unlink($lockfilename);
+		$this->output->set_status_header(500);
+		echo 'FAILED: ' . $msg;
+		exit();
 	}
 
 	private function _invalidate_dxcc_cache() {
@@ -304,7 +352,14 @@ class Update extends CI_Controller {
 		}
 	}
 
-	private function update_status($done=""){
+	/**
+	 * Write the DXCC update progress to updates/status.html
+	 *
+	 * @param string $done   Status message, defaults to "Updating..."
+	 * @param string $suffix Table suffix to count, '_new' while importing, '' for the live tables
+	 * @return void
+	 */
+	private function update_status($done="", $suffix=""){
 
 		if ($done != "Downloading file"){
 			// Check that everything is done?
@@ -312,9 +367,9 @@ class Update extends CI_Controller {
 				$done = __("Updating...");
 			}
 			$html = $done."<br/>";
-			$html .= __("Dxcc Entities:")." ".$this->db->count_all('dxcc_entities')."<br/>";
-			$html .= __("Dxcc Exceptions:")." ".$this->db->count_all('dxcc_exceptions')."<br/>";
-			$html .= __("Dxcc Prefixes:")." ".$this->db->count_all('dxcc_prefixes')."<br/>";
+			$html .= __("Dxcc Entities:")." ".$this->db->count_all('dxcc_entities'.$suffix)."<br/>";
+			$html .= __("Dxcc Exceptions:")." ".$this->db->count_all('dxcc_exceptions'.$suffix)."<br/>";
+			$html .= __("Dxcc Prefixes:")." ".$this->db->count_all('dxcc_prefixes'.$suffix)."<br/>";
 		} else {
 			$html = $done."....<br/>";
 		}

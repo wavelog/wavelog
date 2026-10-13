@@ -55,20 +55,85 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
+	 * Load the worker library on demand
+	 *
+	 * @return bool True if the worker is configured and enabled
+	 */
+	private function worker_enabled() {
+		$this->load->is_loaded('worker') ?: $this->load->library('worker');
+		return $this->worker->is_enabled();
+	}
+
+	/**
 	 * Worker-ready: notify about new qsos for a user
+	 *
+	 * @param int $user_id User (or clubstation) whose QSO topic is notified, 0 is a no-op
+	 * @return void
 	 */
 	private function notify_qso_change($user_id) {
-		if (!$user_id) {
-			return;
-		}
-		$this->load->is_loaded('worker') ?: $this->load->library('worker');
-		if ($this->worker->is_enabled()) {
+		if ($user_id && $this->worker_enabled()) {
 			$this->worker->publish('qso.' . $user_id, ['type' => 'qso_changed']);
 		}
 	}
 
-	/* Add QSO to Logbook */
-	function create_qso($qso_data, $use_custom_date_format = true) {
+	/**
+	 * Worker-ready: resolve the contest session a QSO belongs to
+	 *
+	 * Skips the lookup when the worker is disabled, nobody could be notified then.
+	 *
+	 * @param int $qso_id QSO primary key (COL_PRIMARY_KEY)
+	 * @return int Contest session id, 0 if the QSO is not in a session or the worker is off
+	 */
+	private function contest_session_for_notify($qso_id) {
+		if (!$this->worker_enabled()) {
+			return 0;
+		}
+		$this->load->model('contesting_model');
+		return (int) $this->contesting_model->get_linked_contest($qso_id);
+	}
+
+	/**
+	 * Worker-ready: tell an open contest logger to sync after a change outside of it
+	 *
+	 * @param int $contest_session_id From contest_session_for_notify(), 0 is a no-op
+	 * @return void
+	 */
+	private function notify_contest_change($contest_session_id) {
+		if ($contest_session_id && $this->worker_enabled()) {
+			$this->worker->publish('contest_session.' . $contest_session_id, ['type' => 'sync_required']);
+		}
+	}
+
+	/**
+	 * Normalize a DXCC (ADIF) entity id
+	 *
+	 * COL_DXCC must be a plain digit string. ADIF ingests can deliver values
+	 * with a leading space (e.g. "<DXCC:4> 230" yields " 230"), which breaks
+	 * string comparisons and entity lookups. Trims surrounding whitespace and
+	 * only returns the value if it is purely numeric.
+	 *
+	 * @param string|int|null $dxcc Raw DXCC id from any source (ADIF record, POST, LoTW)
+	 *
+	 * @return string|null Trimmed id if it consists of digits only, NULL otherwise
+	 */
+	private function normalize_dxcc($dxcc) {
+		$dxcc = trim((string)$dxcc);
+		return ($dxcc !== '' && ctype_digit($dxcc)) ? $dxcc : NULL;
+	}
+
+	/**
+	 * Add QSO to Logbook
+	 *
+	 * Creates a single QSO record from the given input array.
+	 *
+	 * @param array $qso_data QSO input data (form fields, contest data, etc.)
+	 * @param bool $use_custom_date_format TRUE: use user's date format, FALSE: use 'Y-m-d' (contesting)
+	 * @param bool $dupe_check TRUE: skip insert and return existing QSO when an exact duplicate
+	 *                         (station, callsign, band, mode, time-on) is already logged. Used to make
+	 *                         retries/backlog replays idempotent. FALSE (default): always insert.
+	 * @return array|false|string Success: array with qso_id, adif, export_errors; false/string on failure
+	 */
+	function create_qso($qso_data, $use_custom_date_format = true, $dupe_check = false) {
 		// Get user-preferred date format
 		if ($use_custom_date_format) {
 			if ($this->session->userdata('user_date_format')) {
@@ -177,6 +242,9 @@ class Logbook_model extends CI_Model {
 			$radio_name = '';
 		}
 
+		// Sanitize user-supplied DXCC id (leading spaces / non-numeric input); NULL triggers the lookup below
+		$qso_data['dxcc_id'] = $this->normalize_dxcc($qso_data['dxcc_id'] ?? NULL);
+
 		// Cache DXCC lookup to avoid calling check_dxcc_table() 4 times if atleast one of these fields is empty
 		$dxcc = NULL;
 		$needs_dxcc_lookup 	= 	empty($qso_data['country']) ||
@@ -273,7 +341,8 @@ class Logbook_model extends CI_Model {
 		}
 
 		$qsl_sent = $qso_data['qsl_sent'] ?? 'N';
-		$qsl_rcvd = $qso_data['qsl_rcvd'] ?? 'N';
+		// 'V' is a deprecated import-only QSL Rcvd value (ADIF 3.1.6) — never store it
+		$qsl_rcvd = strtoupper($t = $qso_data['qsl_rcvd'] ?? 'N') === 'V' ? 'Y' : $t;
 		$qslsdate = $qsl_sent == 'N' ? NULL : date('Y-m-d H:i:s');
 		$qslrdate = $qsl_rcvd == 'N' ? NULL : date('Y-m-d H:i:s');
 
@@ -346,7 +415,7 @@ class Logbook_model extends CI_Model {
 			'COL_SIG' => strtoupper(trim($qso_data['sig'] ?? '')) ?? NULL,
 			'COL_SIG_INFO' => strtoupper(trim($qso_data['sig_info'] ?? '')) ?? NULL,
 			'COL_DARC_DOK' => strtoupper(trim($darc_dok ?? '')) ?? NULL,
-			'COL_NOTES' => strtoupper(trim($qso_data['notes'] ?? '')) ?? NULL,
+			'COL_NOTES' => trim($qso_data['notes'] ?? '') ?: NULL,
 			'COL_EMAIL' => $email ?? NULL,
 			'COL_REGION' => $region ?? NULL,
 		);
@@ -437,6 +506,36 @@ class Logbook_model extends CI_Model {
 			}
 		}
 
+		// Idempotency for retries/backlog replays: if the exact same QSO (station, callsign,
+		// band, mode, time-on) is already in the log, return it instead of inserting again.
+		if ($dupe_check && !empty($station_id) && !empty($datetime)) {
+			$dupe_sql = "SELECT COL_PRIMARY_KEY FROM " . $this->config->item('table_name') . "
+				WHERE station_id = ? AND COL_CALL = ? AND COL_TIME_ON = ?
+				AND COL_BAND = ? AND COL_MODE = ? AND COL_SUBMODE <=> ?";
+			$dupe_query = $this->db->query($dupe_sql, [
+				$station_id,
+				$data['COL_CALL'],
+				$data['COL_TIME_ON'],
+				$data['COL_BAND'],
+				$data['COL_MODE'],
+				$data['COL_SUBMODE'],
+			]);
+			if ($dupe_query->num_rows() > 0) {
+				$dupe_id = $dupe_query->row()->COL_PRIMARY_KEY;
+				$dupe_qso = $this->get_qso($dupe_id, true)->result();
+				if (empty($dupe_qso)) {
+					return false;
+				}
+				$this->load->is_loaded('AdifHelper') ?: $this->load->library('AdifHelper');
+				return [
+					'qso_id' => $dupe_id,
+					'adif' => $this->adifhelper->getAdifLine($dupe_qso[0]),
+					'export_errors' => [],
+					'duplicate' => true,
+				];
+			}
+		}
+
 		$qso_id = $this->add_qso($data, $skipexport = false);
 		if (($this->config->item('mqtt_server') ?? '') != '') {
 			$this->load->model('stations');
@@ -499,179 +598,146 @@ class Logbook_model extends CI_Model {
 	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null, $propagation = null, $datefrom = null, $dateto = null) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$binding = [];
 
-		$this->db->select($this->config->item('table_name').'.*, `station_profile`.*, `dxcc_entities`.*, `lotw_users`.*, `satellite`.`displayname` AS sat_displayname, satellite.name AS sat_name');
-		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
-		$this->db->join('dxcc_entities', 'dxcc_entities.adif = ' . $this->config->item('table_name') . '.COL_DXCC', 'left outer');
-		$this->db->join('lotw_users', 'lotw_users.callsign = ' . $this->config->item('table_name') . '.col_call', 'left outer');
+		$sql = 'SELECT `'.$this->config->item('table_name').'`.*, `station_profile`.*, `dxcc_entities`.*, `lotw_users`.*, `satellite`.`displayname` AS `sat_displayname`, `satellite`.`name` AS `sat_name`';
+		$sql .= ' FROM `'.$this->config->item('table_name').'`';
+		$sql .= ' JOIN `station_profile` ON `station_profile`.`station_id` = `'.$this->config->item('table_name').'`.`station_id`';
+		$sql .= ' LEFT OUTER JOIN `dxcc_entities` ON `dxcc_entities`.`adif` = `'.$this->config->item('table_name').'`.`COL_DXCC`';
+		$sql .= ' LEFT OUTER JOIN `lotw_users` ON `lotw_users`.`callsign` = `'.$this->config->item('table_name').'`.`COL_CALL`';
 		if (isset($sat) || strtoupper($band) == 'ALL' || $band == 'SAT' && ($type == 'VUCC' || $type == 'DXCC' || $type == 'DXCC2')) {
-			$this->db->join('satellite', 'col_prop_mode="SAT" AND col_sat_name = COALESCE(NULLIF(satellite.name, ""), NULLIF(satellite.displayname, ""))', 'left outer');
+			$sql .= ' LEFT OUTER JOIN `satellite` ON `COL_PROP_MODE` = "SAT" AND `COL_SAT_NAME` = COALESCE(NULLIF(satellite.name, ""), NULLIF(satellite.displayname, ""))';
 		}
 		switch ($type) {
 			case 'CALL':
-				$this->db->where('COL_CALL', $searchphrase);
+				$sql .= ' WHERE `COL_CALL` = ?';
+				$binding[] = $searchphrase;
 				break;
 			case 'WAE':
-				$this->db->group_start();
-				$this->db->where("COL_DXCC", $searchphrase);
-				$this->db->or_where("COL_REGION", $searchphrase);
-				$this->db->group_end();
+				$sql .= ' WHERE (`COL_DXCC` = ? OR `COL_REGION` = ? )';
+				$binding[] = $searchphrase;
+				$binding[] = $searchphrase;
 				break;
 			case 'DXCC':
-				$this->db->where('COL_COUNTRY', $searchphrase);
-				if ($band == 'SAT' && $type == 'DXCC') {
-					if ($sat != 'All' && $sat != null) {
-						$this->db->where("COL_SAT_NAME", $sat);
-					}
-					if ($orbit != 'All' && $orbit != null) {
-						$this->db->where("satellite.orbit", $orbit);
-					}
-				}
+				$sql .= ' WHERE `COL_COUNTRY` = ?';
+				$binding[] = $searchphrase;
 				break;
 			case 'DXCC2':
-				$this->db->where('COL_DXCC', $searchphrase);
-				if ($band == 'SAT' && $type == 'DXCC2') {
-					if ($sat != 'All' && $sat != null) {
-						$this->db->where("COL_SAT_NAME", $sat);
-					}
-					if ($orbit != 'All' && $orbit != null) {
-						$this->db->where("satellite.orbit", $orbit);
-					}
-				} else {
-					$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
-				}
+				$sql .= ' WHERE `COL_DXCC` = ?';
+				$binding[] = $searchphrase;
 				if (($propagation ?? '') == 'None') {
-					$this->db->group_start();
-					$this->db->where("COL_PROP_MODE = ''");
-					$this->db->or_where("COL_PROP_MODE is null");
-					$this->db->group_end();
+					$sql .= ' AND (`COL_PROP_MODE` = "" OR `COL_PROP_MODE` IS NULL)';
 				} elseif ($propagation == 'NoSAT') {
-					$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
+					$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
 				} elseif ($propagation != '' && $propagation != null) {
-					$this->db->where("COL_PROP_MODE", $propagation);
+					$sql .= ' AND `COL_PROP_MODE` = ?';
+					$binding[] = $propagation;
+				} elseif (strtoupper($band) == 'ALL') {
+					$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
 				}
 				break;
 			case 'IOTA':
-				$this->db->where('COL_IOTA', $searchphrase);
+				$sql .= ' WHERE `COL_IOTA` = ?';
+				$binding[] = $searchphrase;
 				break;
 			case 'VUCC':
 				if ($searchmode == 'activated') {
-					$this->db->like("station_gridsquare", $searchphrase);
-					if ($band == 'SAT' && $type == 'VUCC') {
-						if ($sat != 'All' && $sat != null) {
-							$this->db->where("COL_SAT_NAME", $sat);
-						}
-						if ($orbit != 'All' && $orbit != null) {
-							$this->db->where("satellite.orbit", $orbit);
-						}
-					}
+					$sql .= ' WHERE `station_gridsquare` LIKE ? ESCAPE "!"';
+					$binding[] = '%'.$searchphrase.'%';
 				} else {
-					$this->db->group_start();
 					// to avoid unnecessary QSO are returned, when a 2-digit GL is provided
 					// see https://github.com/wavelog/wavelog/pull/992
-					$this->db->like("COL_GRIDSQUARE", $searchphrase, 'after');
-					$this->db->or_like("COL_VUCC_GRIDS", $searchphrase, 'after');
+					$sql .= ' WHERE (`COL_GRIDSQUARE` LIKE ? ESCAPE "!"';
+					$binding[] = $searchphrase.'%';
+					$sql .= ' OR `COL_VUCC_GRIDS` LIKE ? ESCAPE "!"';
+					$binding[] = $searchphrase.'%';
 					// in case of the CALL has more than one GL
 					// see https://github.com/wavelog/wavelog/issues/1055
-					$this->db->or_like("COL_GRIDSQUARE", ',' . $searchphrase);
-					$this->db->or_like("COL_VUCC_GRIDS", ',' . $searchphrase);
-					$this->db->group_end();
-					if ($band == 'SAT' && $type == 'VUCC') {
-						if ($sat != 'All' && $sat != null) {
-							$this->db->where("COL_SAT_NAME", $sat);
-						}
-						if ($orbit != 'All' && $orbit != null) {
-							$this->db->where("satellite.orbit", $orbit);
-						}
-					}
+					$sql .= ' OR `COL_GRIDSQUARE` LIKE ? ESCAPE "!"';
+					$binding[] = '%,'.$searchphrase.'%';
+					$sql .= ' OR `COL_VUCC_GRIDS` LIKE ? ESCAPE "!")';
+					$binding[] = '%,'.$searchphrase.'%';
 					if (($propagation ?? '') == 'None') {
-						$this->db->group_start();
-						$this->db->where("COL_PROP_MODE = ''");
-						$this->db->or_where("COL_PROP_MODE is null");
-						$this->db->group_end();
+						$sql .= ' AND (`COL_PROP_MODE` = "" OR `COL_PROP_MODE` IS NULL)';
 					} elseif ($propagation == 'NoSAT') {
-						$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
+						$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
 					} elseif ($propagation != '' && $propagation != null) {
-						$this->db->where("COL_PROP_MODE", $propagation);
+						$sql .= ' AND `COL_PROP_MODE` = ?';
+						$binding[] = $propagation;
 					}
 				}
 				break;
 			case 'SAT':
-				$this->db->where('COL_CALL', $searchphrase);
-				$this->db->where('COL_PROP_MODE', 'SAT');
-				$this->db->where('COL_SAT_NAME', $sat);
+				$sql .= ' WHERE `COL_CALL` = ?';
+				$binding[] = $searchphrase;
+				$sql .= ' AND `COL_PROP_MODE` = "SAT"';
+				$sql .= ' AND `COL_SAT_NAME` = ?';
+				$binding[] = $sat;
 				break;
 			case 'CQZone':
-				$this->db->where('COL_CQZ', $searchphrase);
-				if ($band == 'SAT' && $type == 'CQZone') {
-					if ($sat != 'All' && $sat != null) {
-						$this->db->where("COL_SAT_NAME", $sat);
-					}
-					if ($orbit != 'All' && $orbit != null) {
-						$this->db->where("satellite.orbit", $orbit);
-					}
-				} else {
-					$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
+				$sql .= ' WHERE `COL_CQZ` = ?';
+				$binding[] = $searchphrase;
+				if (strtoupper($band) == 'ALL') {
+					$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
 				}
 				break;
 			case 'ITUZone':
-				$this->db->where('COL_ITUZ', $searchphrase);
-				if ($band == 'SAT' && $type == 'ITUZone') {
-					if ($sat != 'All' && $sat != null) {
-						$this->db->where("COL_SAT_NAME", $sat);
-					}
-					if ($orbit != 'All' && $orbit != null) {
-						$this->db->where("satellite.orbit", $orbit);
-					}
-				} else {
-					$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
+				$sql .= ' WHERE `COL_ITUZ` = ?';
+				$binding[] = $searchphrase;
+				if (strtoupper($band) == 'ALL') {
+					$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
 				}
 				break;
 			case 'WAS':
-				$this->db->where('COL_STATE', $searchphrase);
-				$this->db->where_in('COL_DXCC', ['291', '6', '110']);
+				$sql .= ' WHERE `COL_STATE` = ?';
+				$binding[] = $searchphrase;
+				$sql .= ' AND `COL_DXCC` IN (?,?,?)';
+				$binding = array_merge($binding, array(291, 6, 110));
 				break;
 			case 'WAP':
-				$this->db->where('COL_STATE', $searchphrase);
-				$this->db->where_in('COL_DXCC', ['263']);
+				$sql .= ' WHERE `COL_STATE` = ?';
+				$binding[] = $searchphrase;
+				$sql .= ' AND `COL_DXCC` = 263';
 				break;
 			case 'RAC':
-				$this->db->where('COL_STATE', $searchphrase);
-				$this->db->where_in('COL_DXCC', ['1']);
+				$sql .= ' WHERE `COL_STATE` = ?';
+				$binding[] = $searchphrase;
+				$sql .= ' AND `COL_DXCC` = 1';
 				break;
 			case 'helvetia':
-				$this->db->where('COL_STATE', $searchphrase);
-				$this->db->where_in('COL_DXCC', ['287']);
+				$sql .= ' WHERE `COL_STATE` = ?';
+				$binding[] = $searchphrase;
+				$sql .= ' AND `COL_DXCC` = 287';
 				break;
 			case 'POLSKA':
-				$this->db->where('COL_STATE', $searchphrase);
-				$this->db->where('COL_DXCC', '269');
-				$this->db->where('COL_TIME_ON >=', '1999-01-01 00:00:00');
+				$sql .= ' WHERE `COL_STATE` = ?';
+				$binding[] = $searchphrase;
+				$sql .= ' AND `COL_DXCC` = 269';
+				$sql .= ' AND `COL_TIME_ON` >= "1999-01-01 00:00:00"';
 
 				// Exclude satellite contacts for Polska Award
-				$this->db->group_start();
-				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
-				$this->db->or_where('COL_PROP_MODE IS NULL');
-				$this->db->group_end();
+				$sql .= ' AND (COL_PROP_MODE != "SAT" OR COL_PROP_MODE IS NULL)';
 
 				// Only count allowed bands for Polska Award
-				$this->db->where_in('COL_BAND', ['160M','80M','40M','30M','20M','17M','15M','12M','10M','6M','2M']);
+				$bands = array('160m','80m','40m','30m','20m','17m','15m','12m','10m','6m','2m');
+				$sql .= ' AND `COL_BAND` IN ('.implode(',', array_fill(0, count($bands), '?')).')';
+				$binding = array_merge($binding, $bands);
 
 				// Handle mode categories for Polska Award
 				if (strtoupper($mode) == 'PHONE') {
-					$this->db->group_start();
-					$this->db->where_in('UPPER(COL_MODE)', ['SSB','USB','LSB','AM','FM','SSTV']);
-					$this->db->or_where_in('UPPER(COL_SUBMODE)', ['SSB','USB','LSB','AM','FM','SSTV']);
-					$this->db->group_end();
+					$modes = array('SSB','USB','LSB','AM','FM','SSTV');
+					$sql .= ' AND (UPPER(`COL_MODE`) IN ('.implode(',', array_fill(0, count($modes), '?')).') OR UPPER(`COL_SUBMODE`) IN ('.implode(',', array_fill(0, count($modes), '?')).'))';
+					$binding = array_merge($binding, $modes);
+					$binding = array_merge($binding, $modes);
 					$mode = ''; // Clear mode so it's not processed again later
 				} elseif (strtoupper($mode) == 'DIGI') {
-					$this->db->group_start();
-					$this->db->where_in('UPPER(COL_MODE)', ['RTTY','PSK','PSK31','PSK63','PSK125','PSKR','FSK','FSK441','FT4','FT8','JS8','JT4','JT6M','JT9','JT65','MFSK','OLIVIA','OPERA','PAX','PAX2','PKT','Q15','QRA64','ROS','T10','THOR','THRB','TOR','VARA','WSPR']);
-					$this->db->or_where_in('UPPER(COL_SUBMODE)', ['RTTY','PSK','PSK31','PSK63','PSK125','PSKR','FSK','FSK441','FT4','FT8','JS8','JT4','JT6M','JT9','JT65','MFSK','OLIVIA','OPERA','PAX','PAX2','PKT','Q15','QRA64','ROS','T10','THOR','THRB','TOR','VARA','WSPR']);
-					$this->db->group_end();
+					$digimodes = array('RTTY','PSK','PSK31','PSK63','PSK125','PSKR','FSK','FSK441','FT4','FT8','JS8','JT4','JT6M','JT9','JT65','MFSK','OLIVIA','OPERA','PAX','PAX2','PKT','Q15','QRA64','ROS','T10','THOR','THRB','TOR','VARA','WSPR');
+					$sql .= ' AND (UPPER(`COL_MODE`) IN ('.implode(',', array_fill(0, count($digimodes), '?')).') OR UPPER(`COL_SUBMODE`) IN ('.implode(',', array_fill(0, count($digimodes), '?')).'))';
+					$binding = array_merge($binding, $digimodes);
+					$binding = array_merge($binding, $digimodes);
 					$mode = ''; // Clear mode so it's not processed again later
 				} elseif (strtoupper($mode) == 'CW') {
-					$this->db->where('UPPER(COL_MODE)', 'CW');
+					$sql .= ' AND UPPER(`COL_MODE`) = "CW"';
 					$mode = ''; // Clear mode so it's not processed again later
 				} elseif (strtoupper($mode) == 'MIXED') {
 					$mode = 'All'; // MIXED means all modes
@@ -686,79 +752,82 @@ class Logbook_model extends CI_Model {
 					return substr((string) $ward, 0, 4);
 				}, array_keys($ku_list)));
 				if (in_array($searchphrase, $designated_cities, true)) {
-					$this->db->group_start();
-					$this->db->where('COL_CNTY', $searchphrase);
-					$this->db->or_group_start();
-					$this->db->like('COL_CNTY', $searchphrase, 'after');
-					$this->db->where('CHAR_LENGTH(COL_CNTY) = 6', null, false);
-					$this->db->group_end();
-					$this->db->group_end();
+					$sql .= ' WHERE (`COL_CNTY` = ? OR (`COL_CNTY` LIKE ? ESCAPE "!" AND CHAR_LENGTH(`COL_CNTY`) = 6))';
+					$binding[] = $searchphrase;
+					$binding[] = $searchphrase.'%';
 				} else {
-					$this->db->where('COL_CNTY', $searchphrase);
+					$sql .= ' WHERE `COL_CNTY` = ?';
+					$binding[] = $searchphrase;
 				}
-				$this->db->where('COL_DXCC', '339');
+				$sql .= ' AND `COL_DXCC` = 339';
 				break;
 			case 'JCG':
 				// Unlike JCC, JCG (gun/county) numbers have no "ward of a
 				// designated city" variant, so COL_CNTY is matched directly.
-				$this->db->where('COL_CNTY', $searchphrase);
-				$this->db->where('COL_DXCC', '339');
+				$sql .= ' WHERE `COL_CNTY` = ? AND `COL_DXCC` = 339';
+				$binding[] = $searchphrase;
 				break;
 			case 'SOTA':
-				$this->db->where('COL_SOTA_REF', $searchphrase);
+				$sql .= ' WHERE `COL_SOTA_REF` = ?';
+				$binding[] = $searchphrase;
 				break;
 			case 'WWFF':
-				$this->db->where('COL_WWFF_REF', $searchphrase);
+				$sql .= ' WHERE `COL_WWFF_REF` = ?';
+				$binding[] = $searchphrase;
 				break;
 			case 'POTA':
 				// COL_POTA_REF can hold several comma-separated references
 				// (e.g. "K-1234,K-5678"), so match with FIND_IN_SET. For
 				// single-reference rows this behaves like an equality check.
-				$this->db->where('FIND_IN_SET(' . $this->db->escape($searchphrase) . ', COL_POTA_REF) > 0', null, false);
+				$sql .= ' WHERE FIND_IN_SET(?, `COL_POTA_REF`) > 0';
+				$binding[] = $searchphrase;
 				break;
 			case 'DOK':
-				$this->db->where('COL_DARC_DOK', $searchphrase);
+				$sql .= ' WHERE `COL_DARC_DOK` = ?';
+				$binding[] = $searchphrase;
 				break;
 			case 'WAB':
-				$this->db->where('COL_SIG', 'WAB');
-				$this->db->where('COL_SIG_INFO', $searchphrase);
+				$sql .= ' WHERE `COL_SIG` = "WAB" AND `COL_SIG_INFO` = ?';
+				$binding[] = $searchphrase;
 				break;
 			case 'WAC':
-				$this->db->where('COL_CONT', $searchphrase);
+				$sql .= ' WHERE `COL_CONT` = ?';
+				$binding[] = $searchphrase;
 				break;
 			case 'WAJA':
 				$state = str_pad($searchphrase, 2, '0', STR_PAD_LEFT);
-				$this->db->where('COL_STATE', $state);
-				$this->db->where('COL_DXCC', '339');
+				$sql .= ' WHERE `COL_STATE` = ? AND `COL_DXCC` = 339';
+				$binding[] = $state;
 				break;
 			case 'WAIP':
-				// Exclude satellite contacts for Polska Award
-				$this->db->group_start();
-				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
-				$this->db->or_where('COL_PROP_MODE IS NULL');
-				$this->db->group_end();
+				$sql .= ' WHERE `COL_STATE` = ?';
+				$binding[] = $searchphrase;
+				$sql .= ' AND `COL_DXCC` IN (225, 248)';
+				$sql .= ' AND `COL_TIME_ON` >= "1948-06-02 00:00:00"';
 
-				// Only count allowed bands for Polska Award
-				$this->db->where_in('COL_BAND', ['160M','80M','40M','30M','20M','17M','15M','12M','10M','6M','2M']);
-				$this->db->where('COL_DXCC in (225, 248)');
-				$this->db->where('COL_STATE', $searchphrase);
-				$this->db->where('COL_TIME_ON >=', '1948-06-02 00:00:00');
+				// Exclude satellite contacts for Italian Award
+				$sql .= ' AND (COL_PROP_MODE != "SAT" OR COL_PROP_MODE IS NULL)';
 
-				// Handle mode categories for Polska Award
+				// Only count allowed bands for Italian Award
+				$bands = array('160m','80m','40m','30m','20m','17m','15m','12m','10m','6m','2m');
+				$sql .= ' AND `COL_BAND` IN ('.implode(',', array_fill(0, count($bands), '?')).')';
+				$binding = array_merge($binding, $bands);
+
+				// Handle mode categories for Italian Award
 				if (strtoupper($mode) == 'PHONE') {
-					$this->db->group_start();
-					$this->db->where_in('UPPER(COL_MODE)', ['SSB','USB','LSB','AM','FM','SSTV']);
-					$this->db->or_where_in('UPPER(COL_SUBMODE)', ['SSB','USB','LSB','AM','FM','SSTV']);
-					$this->db->group_end();
+					$modes = array('SSB','USB','LSB','AM','FM','SSTV');
+					$sql .= ' AND (UPPER(`COL_MODE`) IN ('.implode(',', array_fill(0, count($modes), '?')).') OR UPPER(`COL_SUBMODE`) IN ('.implode(',', array_fill(0, count($modes), '?')).'))';
+					$binding = array_merge($binding, $modes);
+					$binding = array_merge($binding, $modes);
 					$mode = ''; // Clear mode so it's not processed again later
 				} elseif (strtoupper($mode) == 'DIGI') {
-					$this->db->group_start();
-					$this->db->where_in('UPPER(COL_MODE)', ['RTTY','PSK','PSK31','PSK63','PSK125','PSKR','FSK','FSK441','FT4','FT8','JS8','JT4','JT6M','JT9','JT65','MFSK','OLIVIA','OPERA','PAX','PAX2','PKT','Q15','QRA64','ROS','T10','THOR','THRB','TOR','VARA','WSPR']);
-					$this->db->or_where_in('UPPER(COL_SUBMODE)', ['RTTY','PSK','PSK31','PSK63','PSK125','PSKR','FSK','FSK441','FT4','FT8','JS8','JT4','JT6M','JT9','JT65','MFSK','OLIVIA','OPERA','PAX','PAX2','PKT','Q15','QRA64','ROS','T10','THOR','THRB','TOR','VARA','WSPR']);
-					$this->db->group_end();
+					$digimodes = array('RTTY','PSK','PSK31','PSK63','PSK125','PSKR','FSK','FSK441','FT4','FT8','JS8','JT4','JT6M','JT9','JT65','MFSK','OLIVIA','OPERA','PAX','PAX2','PKT','Q15','QRA64','ROS','T10','THOR','THRB','TOR','VARA','WSPR');
+					$sql .= ' AND (UPPER(`COL_MODE`) IN ('.implode(',', array_fill(0, count($digimodes), '?')).') OR UPPER(`COL_SUBMODE`) IN ('.implode(',', array_fill(0, count($digimodes), '?')).'))';
+					$binding = array_merge($binding, $digimodes);
+					$binding = array_merge($binding, $digimodes);
 					$mode = ''; // Clear mode so it's not processed again later
 				} elseif (strtoupper($mode) == 'CW') {
-					$this->db->where('UPPER(COL_MODE)', 'CW');
+					$sql .= ' AND UPPER(`COL_MODE`) = "CW"';
 					$mode = ''; // Clear mode so it's not processed again later
 				} elseif (strtoupper($mode) == 'MIXED') {
 					$mode = 'All'; // MIXED means all modes
@@ -766,111 +835,114 @@ class Logbook_model extends CI_Model {
 				break;
 			case 'WAPC':
 				if($searchphrase == 'HK'){
-					$this->db->where('COL_DXCC', '321');
+					$sql .= ' WHERE `COL_DXCC` = 321';
 				}
 				else if($searchphrase == 'MO'){
-					$this->db->where('COL_DXCC', '152');
+					$sql .= ' WHERE `COL_DXCC` = 152';
 				}
 				else if($searchphrase == 'TW'){
-					$this->db->where_in('COL_DXCC', ['386', '505']);
+					$sql .= ' WHERE `COL_DXCC` IN (386,505)';
 				}
 				else if($searchphrase == 'HI'){
-					$this->db->group_start()
-						->group_start()
-							->where('COL_DXCC', '318')
-							->where('COL_STATE', 'HI')
-						->group_end()
-						->or_where('COL_DXCC', '506')
-					->group_end();
+					$sql .= ' WHERE ((`COL_DXCC` = 318 AND `COL_STATE` = "HI") OR `COL_DXCC` = 506)';
 				}
 				else{
-					$this->db->where('COL_STATE', $searchphrase);
-					$this->db->where('COL_DXCC', '318');
+					$sql .= ' WHERE `COL_STATE` = ? AND `COL_DXCC` = 318';
+					$binding[] = $searchphrase;
 				}
 				break;
 			case 'QSLRDATE':
-				$this->db->where('date(COL_QSLRDATE)=date(SYSDATE())');
+				$sql .= ' WHERE date(`COL_QSLRDATE`)=date(SYSDATE())';
 				break;
 			case 'QSLSDATE':
-				$this->db->where('date(COL_QSLSDATE)=date(SYSDATE())');
+				$sql .= ' WHERE date(`COL_QSLSDATE`)=date(SYSDATE())';
 				break;
 			case 'EQSLRDATE':
-				$this->db->where('date(COL_EQSL_QSLRDATE)=date(SYSDATE())');
+				$sql .= ' WHERE date(`COL_EQSL_QSLRDATE`)=date(SYSDATE())';
 				break;
 			case 'EQSLSDATE':
-				$this->db->where('date(COL_EQSL_QSLSDATE)=date(SYSDATE())');
+				$sql .= ' WHERE date(`COL_EQSL_QSLSDATE`)=date(SYSDATE())';
 				break;
 			case 'LOTWRDATE':
-				$this->db->where('date(COL_LOTW_QSLRDATE)=date(SYSDATE())');
+				$sql .= ' WHERE date(`COL_LOTW_QSLRDATE`)=date(SYSDATE())';
 				break;
 			case 'LOTWSDATE':
-				$this->db->where('date(COL_LOTW_QSLSDATE)=date(SYSDATE())');
+				$sql .= ' WHERE date(`COL_LOTW_QSLSDATE`)=date(SYSDATE())';
 				break;
 			case 'QRZRDATE':
-				$this->db->where('date(COL_QRZCOM_QSO_DOWNLOAD_DATE)=date(SYSDATE())');
+				$sql .= ' WHERE date(`COL_QRZCOM_QSO_DOWNLOAD_DATE`)=date(SYSDATE())';
 				break;
 			case 'QRZSDATE':
-				$this->db->where('date(COL_QRZCOM_QSO_UPLOAD_DATE)=date(SYSDATE())');
+				$sql .= ' WHERE date(`COL_QRZCOM_QSO_UPLOAD_DATE`)=date(SYSDATE())';
 				break;
 			case 'CLUBLOGRDATE':
-				$this->db->where('date(COL_CLUBLOG_QSO_DOWNLOAD_DATE)=date(SYSDATE())');
+				$sql .= ' WHERE date(`COL_CLUBLOG_QSO_DOWNLOAD_DATE`)=date(SYSDATE())';
 				break;
 			case 'CLUBLOGSDATE':
-				$this->db->where('date(COL_CLUBLOG_QSO_UPLOAD_DATE)=date(SYSDATE())');
+				$sql .= ' WHERE date(`COL_CLUBLOG_QSO_UPLOAD_DATE`)=date(SYSDATE())';
 				break;
 		}
 
-		$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
+		$sql .= ' AND `'.$this->config->item('table_name').'`.`station_id` IN (' .implode(',', array_fill(0, count($logbooks_locations_array), '?')). ')';
+		$binding = array_merge($binding, array_map('intval', $logbooks_locations_array));
 
 		if (strtolower($band) != 'all') {
 			if ($band != "SAT") {
-				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
-				$this->db->where('COL_BAND', $band);
+				$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
+				$sql .= ' AND `COL_BAND` = ?';
+				$binding[] = $band;
 			} else {
-				$this->db->where('COL_PROP_MODE', "SAT");
+				$sql .= ' AND `COL_PROP_MODE` = "SAT"';
+				if ($sat != 'All' && $sat != null) {
+					$sql .= ' AND `COL_SAT_NAME` = ?';
+					$binding[] = $sat;
+				}
+				if ($orbit != 'All' && $orbit != null) {
+					$sql .= ' AND `satellite`.`orbit` = ?';
+					$binding[] = $orbit;
+				}
 			}
 		}
 
 		if (!empty($qsl)) {
 			$qslfilter = array();
 			if (strpos($qsl, "Q") !== false) {
-				$qslfilter[] = 'COL_QSL_RCVD = "Y"';
+				$qslfilter[] = '`COL_QSL_RCVD` = "Y"';
 			}
 			if (strpos($qsl, "L") !== false) {
-				$qslfilter[] = 'COL_LOTW_QSL_RCVD = "Y"';
+				$qslfilter[] = '`COL_LOTW_QSL_RCVD` = "Y"';
 			}
 			if (strpos($qsl, "E") !== false) {
-				$qslfilter[] = 'COL_EQSL_QSL_RCVD = "Y"';
+				$qslfilter[] = '`COL_EQSL_QSL_RCVD` = "Y"';
 			}
 			if (strpos($qsl, "Z") !== false) {
-				$qslfilter[] = 'COL_QRZCOM_QSO_DOWNLOAD_STATUS = "Y"';
+				$qslfilter[] = '`COL_QRZCOM_QSO_DOWNLOAD_STATUS` = "Y"';
 			}
 			if (strpos($qsl, "C") !== false) {
-				$qslfilter[] = 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS = "Y"';
+				$qslfilter[] = '`COL_CLUBLOG_QSO_DOWNLOAD_STATUS` = "Y"';
 			}
-			$sql = "(" . implode(' OR ', $qslfilter) . ")";	// harmless, because value is checked b4
-			$this->db->where($sql);
+			$sql .= ' AND (' . implode(' OR ', $qslfilter) . ')';
 		}
 
 		if (strtolower($mode) != 'all' && $mode != '') {
-			$this->db->group_start();
-			$this->db->where("COL_MODE", $mode);
-			$this->db->or_where("COL_SUBMODE", $mode);
-			$this->db->group_end();
+			$sql .= ' AND ( `COL_MODE` = ? OR `COL_SUBMODE` = ? )';
+			$binding[] = $mode;
+			$binding[] = $mode;
 		}
 
 		if ($datefrom != null) {
-			$this->db->where('COL_TIME_ON >=', $datefrom . ' 00:00:00');
+			$sql .= ' AND `COL_TIME_ON` >= ?';
+			$binding[] = $datefrom.' 00:00:00';
 		}
 		if ($dateto != null) {
-			$this->db->where('COL_TIME_ON <=', $dateto . ' 23:59:59');
+			$sql .= ' AND `COL_TIME_ON` <= ?';
+			$binding[] = $dateto.' 23:59:59';
 		}
-		$this->db->order_by("COL_TIME_ON", "desc");
-		$this->db->order_by("COL_PRIMARY_KEY", "desc");
+		$sql .= ' ORDER BY `COL_TIME_ON` DESC, `COL_PRIMARY_KEY` DESC';
 
-		$this->db->limit(500);
+		$sql .= ' LIMIT 500';
 
-		return $this->db->get($this->config->item('table_name'));
+		return $this->db->query($sql, $binding);
 	}
 
 
@@ -969,7 +1041,7 @@ class Logbook_model extends CI_Model {
 				$qso = null;
 				$needs_qso_lookup = (
 					$creds && (
-					(isset($creds->ucp) && isset($creds->ucn) && $creds->clublogrealtime == 1) ||
+					(isset($creds->ucp) && isset($creds->ucn) && $creds->clublogignore != 1 && $creds->clublogrealtime == 1) ||
 					(isset($creds->hrdlog_code) && isset($creds->hrdlog_username) && $creds->hrdlogrealtime == 1) ||
 					(isset($creds->qrzapikey) && $creds->qrzrealtime == 1) ||
 					(isset($creds->webadifapikey) && $creds->webadifrealtime == 1)
@@ -980,8 +1052,8 @@ class Logbook_model extends CI_Model {
 					$qso = $this->get_qso($last_id, true)->result();
 				}
 
-				// ClubLog export
-				if ($creds && isset($creds->ucp) && isset($creds->ucn) && (($creds->ucp ?? '') != '') && (($creds->ucn ?? '') != '') && ($creds->clublogrealtime == 1)) {
+			// ClubLog export
+			if ($creds && isset($creds->ucp) && isset($creds->ucn) && (($creds->ucp ?? '') != '') && (($creds->ucn ?? '') != '') && ($creds->clublogignore != 1) && ($creds->clublogrealtime == 1)) {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
@@ -1034,23 +1106,30 @@ class Logbook_model extends CI_Model {
 					}
 				}
 
-				// WebADIF export
-				if ($creds && isset($creds->webadifapikey) && $creds->webadifrealtime == 1) {
-					if (!$this->load->is_loaded('AdifHelper')) {
-						$this->load->library('AdifHelper');
-					}
-
-					$adif = $this->adifhelper->getAdifLine($qso[0]);
-					$result = $this->push_qso_to_webadif(
-						$creds->webadifapiurl,
-						$creds->webadifapikey,
-						$adif
-					);
-
-					if ($result) {
-						$this->mark_webadif_qsos_sent([$last_id]);
-					}
+			// WebADIF export
+			if ($creds && isset($creds->webadifapikey) && $creds->webadifrealtime == 1
+				&& ($data['COL_PROP_MODE'] ?? '') == 'SAT'
+				&& ($data['COL_SAT_NAME'] ?? '') == 'QO-100') {
+				if (!$this->load->is_loaded('AdifHelper')) {
+					$this->load->library('AdifHelper');
 				}
+
+				$adif = $this->adifhelper->getAdifLine($qso[0]);
+				$result = $this->push_qso_to_webadif(
+					$creds->webadifapiurl,
+					$creds->webadifapikey,
+					$adif
+				);
+
+				if (($result['status'] ?? '') == 'OK') {
+					$this->mark_webadif_qsos_sent([$last_id]);
+				} else {
+					if (($result['status'] ?? '') == 'error') {
+						$this->mark_webadif_qsos_failed([$last_id], $result['message'] ?? 'unknown error');
+					}
+					$export_errors[] = ['provider' => 'QO-100 Dx Club', 'message' => $this->sanitize_export_error($result['message'] ?? $result['status'])];
+				}
+			}
 
 				$this->last_export_errors = $export_errors;
 			}
@@ -1133,7 +1212,7 @@ class Logbook_model extends CI_Model {
 					prof.hrdlog_username, prof.hrdlog_code, prof.hrdlogrealtime,
 					prof.qrzapikey, prof.qrzrealtime,
 					prof.webadifapikey, prof.webadifapiurl, prof.webadifrealtime,
-					prof.clublogrealtime,
+					prof.clublogrealtime, prof.clublogignore,
 					auth.user_clublog_name as ucn, auth.user_clublog_password as ucp
 				FROM station_profile prof
 				INNER JOIN ' . $this->config->item('auth_table') . ' auth ON (auth.user_id = prof.user_id)
@@ -1251,9 +1330,19 @@ class Logbook_model extends CI_Model {
 
 	/*
 	 * Function uploads a QSO to WebADIF consumer with the API given.
-	 * $adif contains a line with the QSO in the ADIF format.
+	 *
+	 * @param string $url    URL of the webADIF API endpoint.
+	 * @param string $apikey API key for the webADIF consumer.
+	 * @param string $adif   Line with the QSO in the ADIF format, ending with <EOR>.
+	 *
+	 * @return array ['status' => 'OK'] on success (HTTP 200),
+	 *               ['status' => 'temp_error', 'message' => sanitized reason] for temporary
+	 *               failures (connection error, timeout, HTTP 408, 429 or 5xx) — the QSO is
+	 *               not marked and will be retried on the next upload,
+	 *               ['status' => 'error', 'message' => sanitized reason] for real rejections
+	 *               (any other non-200 response) — the QSO is marked as rejected.
 	 */
-	function push_qso_to_webadif($url, $apikey, $adif): bool {
+	function push_qso_to_webadif($url, $apikey, $adif): array {
 
 		$headers = array(
 			'Content-Type: text/plain',
@@ -1274,10 +1363,20 @@ class Logbook_model extends CI_Model {
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 
-		$content = curl_exec($ch); // TODO: better error handling
+		$content = curl_exec($ch);
 		$errors = curl_error($ch);
 		$response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		return $response === 200;
+
+		if ($response === 200) {
+			return ['status' => 'OK'];
+		}
+
+		$message = 'HTTP ' . $response . ': ' . trim(strip_tags((string)$content));
+		if ($errors !== '') {
+			$message .= ' (' . $errors . ')';
+		}
+		$temp = ($response === 0 || $response === 408 || $response === 429 || $response >= 500);
+		return ['status' => $temp ? 'temp_error' : 'error', 'message' => mb_substr($message, 0, 255)];
 	}
 
 	/*
@@ -1342,10 +1441,71 @@ class Logbook_model extends CI_Model {
 		foreach ($qsoIDs as $qsoID) {
 			$data[] = [
 				'upload_date' => $now,
+				'status' => 'Y',
 				'qso_id' => $qsoID,
 			];
 		}
 		$this->db->insert_batch('webadif', $data);
+		return true;
+	}
+
+	/*
+	 * Function marks QSOs as rejected by the WebADIF consumer.
+	 * The rejection reason is stored for later display. Rejected QSOs carry an
+	 * upload_date, so get_webadif_qsos() does not pick them up again.
+	 *
+	 * @param array  $qsoIDs  Array of unique ids (COL_PRIMARY_KEY) of the QSOs in the logbook.
+	 * @param string $message Sanitized rejection reason from the WebADIF consumer.
+	 *
+	 * @return bool true on success.
+	 */
+	function mark_webadif_qsos_failed(array $qsoIDs, string $message = '') {
+		$data = [];
+		$now = date("Y-m-d H:i:s", strtotime("now"));
+		foreach ($qsoIDs as $qsoID) {
+			$data[] = [
+				'upload_date' => $now,
+				'status' => 'I',
+				'message' => $message,
+				'qso_id' => $qsoID,
+			];
+		}
+		$this->db->insert_batch('webadif', $data);
+		return true;
+	}
+
+	/*
+	 * Function returns the QSOs of a station that were rejected by the WebADIF consumer.
+	 *
+	 * @param int $station_id Station id the QSOs belong to.
+	 *
+	 * @return array List of rejected QSOs with call, datetime and rejection reason.
+	 */
+	function get_webadif_rejected_qsos($station_id) {
+		$sql = 'SELECT qsos.COL_CALL, qsos.COL_TIME_ON, webadif.message
+			FROM ' . $this->config->item('table_name') . ' qsos
+			INNER JOIN webadif ON qsos.COL_PRIMARY_KEY = webadif.qso_id
+			WHERE qsos.station_id = ?
+			AND webadif.status = \'I\'
+			ORDER BY qsos.COL_TIME_ON';
+		$query = $this->db->query($sql, [$station_id]);
+		return $query->result();
+	}
+
+	/*
+	 * Function deletes the rejection markers of a station, so its QSOs are picked
+	 * up again by the next WebADIF upload.
+	 *
+	 * @param int $station_id Station id the rejected QSOs belong to.
+	 *
+	 * @return bool true on success.
+	 */
+	function reset_webadif_rejected_qsos($station_id) {
+		$sql = 'DELETE webadif FROM webadif
+			INNER JOIN ' . $this->config->item('table_name') . ' qsos ON qsos.COL_PRIMARY_KEY = webadif.qso_id
+			WHERE qsos.station_id = ?
+			AND webadif.status = \'I\'';
+		$this->db->query($sql, [$station_id]);
 		return true;
 	}
 
@@ -1442,7 +1602,14 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	/* Edit QSO */
+	/**
+	 * Edit a QSO from the posted edit form
+	 *
+	 * Reads all fields from POST (id = COL_PRIMARY_KEY). Notifies the user's
+	 * QSO topic and, if the QSO is in a contest session, the contest logger.
+	 *
+	 * @return array ['success' => bool, 'detail' => string|Exception on failure]
+	 */
 	function edit() {
 		$retvals=[];
 		$retvals['success']=false;
@@ -1517,8 +1684,8 @@ class Logbook_model extends CI_Model {
 			$srx_string = null;
 		}
 
-		if (is_numeric($this->input->post('dxcc_id'))) {
-			$dxcc=$this->input->post('dxcc_id');
+		$dxcc = $this->normalize_dxcc($this->input->post('dxcc_id'));
+		if ($dxcc !== NULL) {
 			if (stristr($this->input->post('usa_county') ?? '', ',')) {	// Already comma-seperated County?
 				$uscounty = $this->input->post('usa_county');
 			} elseif ($this->input->post('usa_county') && $this->input->post('input_state_edit')) {	// Both filled (and no comma - because that fits one above)
@@ -1547,7 +1714,8 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('qsl_rcvd')) {
-			$qsl_rcvd = $this->input->post('qsl_rcvd',true);
+			// 'V' is a deprecated import-only QSL Rcvd value (ADIF 3.1.6) — never store it
+			$qsl_rcvd = strtoupper($p = $this->input->post('qsl_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$qsl_rcvd = 'N';
 		}
@@ -1559,7 +1727,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('eqsl_rcvd')) {
-			$eqsl_rcvd = $this->input->post('eqsl_rcvd',true);
+			$eqsl_rcvd = strtoupper($p = $this->input->post('eqsl_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$eqsl_rcvd = 'N';
 		}
@@ -1595,7 +1763,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('dcl_rcvd')) {
-			$dcl_rcvd = $this->input->post('dcl_rcvd',true);
+			$dcl_rcvd = strtoupper($p = $this->input->post('dcl_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$dcl_rcvd = 'N';
 		}
@@ -1611,7 +1779,7 @@ class Logbook_model extends CI_Model {
 		if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
 			$lotw_rcvd = 'I';
 		} elseif ($this->input->post('lotw_rcvd')) {
-			$lotw_rcvd = $this->input->post('lotw_rcvd');
+			$lotw_rcvd = strtoupper($p = $this->input->post('lotw_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$lotw_rcvd = 'N';
 		}
@@ -1751,9 +1919,8 @@ class Logbook_model extends CI_Model {
 			$time_off = $time_on;
 		}
 
- 		if (is_numeric($this->input->post('dxcc_id'))) {
-			$dxcc=$this->input->post('dxcc_id');
-		} else {
+		$dxcc = $this->normalize_dxcc($this->input->post('dxcc_id'));
+		if ($dxcc === NULL) {
 			$retvals['detail']=__("DXCC has to be Numeric");
 			return $retvals;
 		}
@@ -1791,7 +1958,7 @@ class Logbook_model extends CI_Model {
 			'COL_EQSL_QSLSDATE' => $eqslsdate,
 			'COL_EQSL_QSLRDATE' => $eqslrdate,
 			'COL_EQSL_QSL_SENT' => $this->input->post('eqsl_sent'),
-			'COL_EQSL_QSL_RCVD' => $this->input->post('eqsl_rcvd'),
+			'COL_EQSL_QSL_RCVD' => $eqsl_rcvd,
 			'COL_QSLMSG' => $this->input->post('qslmsg'),
 			'COL_QRZCOM_QSO_UPLOAD_DATE' => $qrzsdate,
 			'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qrzrdate,
@@ -1866,6 +2033,7 @@ class Logbook_model extends CI_Model {
 			$this->db->update($this->config->item('table_name'), $data);
 			$retvals['success']=true;
 			$this->notify_qso_change($station_profile->user_id);
+			$this->notify_contest_change($this->contest_session_for_notify($this->input->post('id', true)));
 
 			// Invalidate DXCluster cache for this callsign
 			$this->dxclustercache->invalidate_for_callsign($data['COL_CALL']);
@@ -1963,35 +2131,35 @@ class Logbook_model extends CI_Model {
 	// clubstation member below officer level cannot read back data from a QSO
 	// another operator made. Defaults to '' = no restriction (v1 behaviour).
 	function call_lookup_result($callsign, $station_ids, $user_default_confirmation, $band, $mode, $operator = '') {
-		$binding=[];
 		$qsl_where = $this->qsl_default_where($user_default_confirmation);
 		$band_addon='COL_BAND=?';
 		if ($band == 'SAT') {
 			$band_addon="COL_PROP_MODE=?";
 		}
 
-		$sql="SELECT COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT,
-			CASE WHEN ( (".$qsl_where.") ) THEN 1  ELSE 0 END AS CALL_CNF,
-			CASE WHEN ( (".$qsl_where.") AND ".$band_addon.") THEN 1  ELSE 0 END AS CALL_CNF_BAND,
-			CASE WHEN ( (".$qsl_where.") AND ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_CNF_BAND_MODE,
-			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS CALL_WORKED_BAND,
-			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_WORKED_BAND_MODE
-		FROM ".$this->config->item('table_name')." WHERE ";
-		$sql.="station_id IN (".$station_ids.") AND COL_CALL = ?";
-		$binding[]=$band;
-		$binding[]=$band;
-		$binding[]=$mode;
-		$binding[]=$band;
-		$binding[]=$band;
-		$binding[]=$mode;
-		$binding[]=$callsign;
-
+		$flags = "CASE WHEN ( (".$qsl_where.") ) THEN 1  ELSE 0 END AS CNF,
+			CASE WHEN ( (".$qsl_where.") AND ".$band_addon.") THEN 1  ELSE 0 END AS CNF_BAND,
+			CASE WHEN ( (".$qsl_where.") AND ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CNF_BAND_MODE,
+			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS WORKED_BAND,
+			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS WORKED_BAND_MODE";
+		$where = " FROM ".$this->config->item('table_name')." WHERE station_id IN (".$station_ids.") AND COL_CALL = ?";
+		$where_binding = [$band, $band, $mode, $band, $band, $mode, $callsign];
 		if ($operator !== null && $operator !== '') {
-			$sql.=" AND upper(COL_OPERATOR) = ?";
-			$binding[]=strtoupper($operator);
+			$where.=" AND upper(COL_OPERATOR) = ?";
+			$where_binding[]=strtoupper($operator);
 		}
 
-		$sql.=" ORDER BY call_cnf desc, call_worked_band desc, call_cnf_band desc, call_worked_band_mode desc, call_cnf_band_mode desc limit 1";
+		// The detail row is picked by its per-QSO flags, the returned CALL_* flags
+		// are aggregated over all QSOs of the call. Otherwise e.g. a confirmed QSO
+		// on another band would hide the worked state on the requested band.
+		$sql="SELECT detail.COL_CALL, detail.COL_NAME, detail.COL_QSL_VIA, detail.COL_GRIDSQUARE, detail.COL_QTH, detail.COL_IOTA, detail.COL_TIME_ON, detail.COL_STATE, detail.COL_CNTY, detail.COL_DXCC, detail.COL_CONT,
+			agg.CALL_CNF, agg.CALL_CNF_BAND, agg.CALL_CNF_BAND_MODE, agg.CALL_WORKED_BAND, agg.CALL_WORKED_BAND_MODE
+		FROM (SELECT COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT, ".$flags.$where."
+			ORDER BY CNF desc, WORKED_BAND desc, CNF_BAND desc, WORKED_BAND_MODE desc, CNF_BAND_MODE desc, COL_TIME_ON desc limit 1) AS detail
+		CROSS JOIN (SELECT MAX(CNF) AS CALL_CNF, MAX(CNF_BAND) AS CALL_CNF_BAND, MAX(CNF_BAND_MODE) AS CALL_CNF_BAND_MODE,
+			MAX(WORKED_BAND) AS CALL_WORKED_BAND, MAX(WORKED_BAND_MODE) AS CALL_WORKED_BAND_MODE
+			FROM (SELECT ".$flags.$where.") AS flags) AS agg";
+		$binding = array_merge($where_binding, $where_binding);
 
 		$query = $this->db->query($sql, $binding);
 		$data = [];
@@ -3286,6 +3454,60 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
+	 * Get worked/confirmed status for multiple callsigns and DXCC entities
+	 * using two batched, prepared queries instead of one query per value.
+	 *
+	 * Confirmation semantics match check_if_callsign_cnfmd_in_logbook() /
+	 * check_if_dxcc_cnfmd_in_logbook() (qsl_default_where(), incl. the 1=0
+	 * fallback when no default confirmations are set).
+	 *
+	 * @param array $callsigns List of callsigns to check against the log
+	 * @param array $dxccs List of DXCC ADIF ids to check against the log
+	 * @return array ['call' => [callsign => ['wked' => bool, 'cnfmd' => bool]],
+	 *               'dxcc' => [adif => ['wked' => bool, 'cnfmd' => bool]]]
+	 *               Absent key means not worked (wked/cnfmd both false).
+	 */
+	function get_status_batch($callsigns, $dxccs) {
+		$result = ['call' => [], 'dxcc' => []];
+
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if ($logbooks_locations_array[0] === -1) {
+			return $result;
+		}
+
+		$extrawhere = $this->qsl_default_where($this->session->userdata('user_default_confirmation'));
+
+		$table = $this->config->item('table_name');
+		$loc_marks = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
+
+		if (!empty($callsigns)) {
+			$call_marks = implode(',', array_fill(0, count($callsigns), '?'));
+			$sql = "SELECT COL_CALL AS k, MAX(CASE WHEN (" . $extrawhere . ") THEN 1 ELSE 0 END) AS cnf"
+				. " FROM " . $table
+				. " WHERE station_id IN (" . $loc_marks . ") AND COL_CALL IN (" . $call_marks . ")"
+				. " GROUP BY COL_CALL";
+			foreach ($this->db->query($sql, array_merge($logbooks_locations_array, $callsigns))->result() as $row) {
+				$result['call'][$row->k] = ['wked' => true, 'cnfmd' => $row->cnf == 1];
+			}
+		}
+
+		if (!empty($dxccs)) {
+			$dxcc_marks = implode(',', array_fill(0, count($dxccs), '?'));
+			$sql = "SELECT COL_DXCC AS k, MAX(CASE WHEN (" . $extrawhere . ") THEN 1 ELSE 0 END) AS cnf"
+				. " FROM " . $table
+				. " WHERE station_id IN (" . $loc_marks . ") AND COL_DXCC IN (" . $dxcc_marks . ")"
+				. " GROUP BY COL_DXCC";
+			foreach ($this->db->query($sql, array_merge($logbooks_locations_array, $dxccs))->result() as $row) {
+				$result['dxcc'][$row->k] = ['wked' => true, 'cnfmd' => $row->cnf == 1];
+			}
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Batch version - Get statuses for multiple spots in a single query
 	 *
 	 * @param array $spots Array of spots with callsign, dxcc_id, continent
@@ -4558,9 +4780,10 @@ class Logbook_model extends CI_Model {
 		];
 	}
 
-	/* Delete QSO based on the QSO ID */
 	/**
 	 * Delete a QSO (and its OQRS/QSL/eQSL artefacts) after an ownership check.
+	 * Notifies the user's QSO topic and, if the QSO was in a contest session,
+	 * the contest logger.
 	 *
 	 * @param int      $id      QSO primary key (COL_PRIMARY_KEY).
 	 * @param int|null $user_id User to authorise against. Defaults to the
@@ -4572,6 +4795,9 @@ class Logbook_model extends CI_Model {
 			// was just verified, so read it trusted (works without a session too).
 			$qso = $this->get_qso($id, true);
 			$callsign = ($qso !== null && $qso->num_rows() > 0) ? $qso->row()->COL_CALL : null;
+
+			// Look up before the delete, contest_qsos cascades with it
+			$contest_session_id = $this->contest_session_for_notify($id);
 
 			$this->load->model('qsl_model');
 			$this->load->model('eqsl_images');
@@ -4587,6 +4813,7 @@ class Logbook_model extends CI_Model {
 
 			// qso was accessible so notify qso_changed for the current user_id (can also be a clubstation)
 			$this->notify_qso_change($user_id ?? $this->session->userdata('user_id'));
+			$this->notify_contest_change($contest_session_id);
 
 			// Invalidate DXCluster cache for this callsign
 			$this->dxclustercache->invalidate_for_callsign($callsign);
@@ -4712,6 +4939,8 @@ class Logbook_model extends CI_Model {
 			$data['COL_CQZ'] = $cqz;
 		}
 
+		// Sanitize ADIF-supplied DXCC id (" 230" -> "230"); invalid skips the update and keeps the existing COL_DXCC
+		$dxcc = $this->normalize_dxcc($dxcc);
 		if (($dxcc ?? '') != '') {
 			$data['COL_DXCC'] = $dxcc;
 		}
@@ -5165,6 +5394,9 @@ class Logbook_model extends CI_Model {
 		}
 
 		if (!($skip)) {
+			// Sanitize ADIF-supplied DXCC id (" 230" -> "230", garbage -> callsign lookup below)
+			$record['dxcc'] = $this->normalize_dxcc($record['dxcc'] ?? NULL);
+
 			// DXCC id
 			if (isset($record['call'])) {
 				if ($dxccAdif != NULL) {
@@ -5389,7 +5621,9 @@ class Logbook_model extends CI_Model {
 			}
 
 			if (isset($record['qsl_rcvd'])) {
-				$input_qsl_rcvd = mb_strimwidth($record['qsl_rcvd'], 0, 1);
+				// 'V' (verified) is a deprecated import-only value of the QSL Rcvd
+				// enumeration (ADIF 3.1.6) — normalize to 'Y' so it never reaches the DB.
+				$input_qsl_rcvd = strtoupper($v = mb_strimwidth($record['qsl_rcvd'], 0, 1)) === 'V' ? 'Y' : $v;
 			} else {
 				$input_qsl_rcvd = "N";
 			}
@@ -5453,7 +5687,7 @@ class Logbook_model extends CI_Model {
 			 * Validate LoTW Fields
 			 */
 			if (isset($record['lotw_qsl_rcvd'])) {
-				$input_lotw_qsl_rcvd = mb_strimwidth($record['lotw_qsl_rcvd'], 0, 1);
+				$input_lotw_qsl_rcvd = strtoupper($v = mb_strimwidth($record['lotw_qsl_rcvd'], 0, 1)) === 'V' ? 'Y' : $v;
 			} else {
 				$input_lotw_qsl_rcvd = NULL;
 			}
@@ -5498,7 +5732,7 @@ class Logbook_model extends CI_Model {
 			 * Validate eQSL Fields
 			 */
 			if (isset($record['eqsl_qsl_rcvd'])) {
-				$input_eqsl_qsl_rcvd = mb_strimwidth($record['eqsl_qsl_rcvd'], 0, 1);
+				$input_eqsl_qsl_rcvd = strtoupper($v = mb_strimwidth($record['eqsl_qsl_rcvd'], 0, 1)) === 'V' ? 'Y' : $v;
 			} else {
 				$input_eqsl_qsl_rcvd = NULL;
 			}
@@ -5659,7 +5893,7 @@ class Logbook_model extends CI_Model {
 				'COL_MY_COUNTRY_INTL' => (!empty($record['my_country_intl'])) ? $record['my_country_intl'] : null,
 				'COL_MY_CQ_ZONE' => (!empty($record['my_dxcc'])) ? $record['my_dxcc'] : null,
 				'COL_MY_DARC_DOK' => (!empty($record['my_darc_dok'])) ? strtoupper($record['my_darc_dok']) : '',
-				'COL_MY_DXCC' => (!empty($record['my_dxcc'])) ? $record['my_dxcc'] : null,
+				'COL_MY_DXCC' => $this->normalize_dxcc($record['my_dxcc'] ?? NULL),
 				'COL_MY_FISTS' => (!empty($record['my_fists'])) ? $record['my_fists'] : null,
 				'COL_MY_GRIDSQUARE' => (!empty($record['my_gridsquare'])) ? $record['my_gridsquare'] : '',
 				'COL_MY_IOTA' => (!empty($record['my_iota'])) ? $record['my_iota'] : '',
@@ -5706,7 +5940,7 @@ class Logbook_model extends CI_Model {
 				'COL_DCL_QSLSDATE' => $input_dcl_qso_upload_date,
 				'COL_DCL_QSL_SENT' => $input_dcl_qso_upload_status,
 				'COL_DCL_QSLRDATE' => (!empty($record['dcl_qslrdate'])) ? $record['dcl_qslrdate'] : null,
-				'COL_DCL_QSL_RCVD' => (!empty($record['dcl_qsl_rcvd'])) ? $record['dcl_qsl_rcvd'] : null,
+				'COL_DCL_QSL_RCVD' => (!empty($record['dcl_qsl_rcvd'])) ? (strtoupper($record['dcl_qsl_rcvd']) === 'V' ? 'Y' : $record['dcl_qsl_rcvd']) : null,
 				'COL_QSL_RCVD' => $input_qsl_rcvd,
 				'COL_QSL_RCVD_VIA' => $input_qsl_rcvd_via,
 				'COL_QSL_SENT' => $input_qsl_sent,
@@ -5979,11 +6213,11 @@ class Logbook_model extends CI_Model {
 
 		if ($pota_ref != '') {
 			if (substr(strtoupper($call), -2) == "/P") {
-				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE COL_CALL = ? AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND UPPER(COL_BAND) = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
-				$check = $this->db->query($sql, array($call, $time_on, $time_on, strtoupper($band), strtoupper($mode), $logbooks_locations_array));
+				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE COL_CALL = ? AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND COL_BAND = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
+				$check = $this->db->query($sql, array($call, $time_on, $time_on, $band, strtoupper($mode), $logbooks_locations_array));
 			} else {
-				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE (COL_CALL = ? OR COL_CALL = ?) AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND UPPER(COL_BAND) = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
-				$check = $this->db->query($sql, array($call, $call."/P", $time_on, $time_on, strtoupper($band), strtoupper($mode), $logbooks_locations_array));
+				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE (COL_CALL = ? OR COL_CALL = ?) AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND COL_BAND = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
+				$check = $this->db->query($sql, array($call, $call."/P", $time_on, $time_on, $band, strtoupper($mode), $logbooks_locations_array));
 			}
 			if ($check->num_rows() != 1) {
 				return array(2, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td class=\"callsign\">" . $call . "</td><td>" . $band . "</td><td>" . $mode . "</td><td></td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("QSO could not be matched") . "</td></tr>");

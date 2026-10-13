@@ -13,6 +13,7 @@
         var lang_distinct_counts_type_ref = '<?= __("Reference"); ?>';
         var lang_distinct_counts_type_itu = '<?= __("ITU Zone"); ?>';
         var lang_distinct_counts_type_cq = '<?= __("CQ Zone"); ?>';
+        var lang_distinct_counts_type_station_profile = '<?= __("Station Location"); ?>';
         var lang_distinct_counts_deleted_dxcc = '<?= __("Deleted DXCC"); ?>';
     </script>
 
@@ -67,6 +68,7 @@
                             <option value="grid"><?= __("Gridsquare"); ?></option>
                             <option value="itu"><?= __("ITU Zone"); ?></option>
                             <option value="cq"><?= __("CQ Zone"); ?></option>
+                            <option value="station_profile"><?= __("Station Location"); ?></option>
                             <option value="pota"><?= __("POTA Reference"); ?></option>
                             <option value="sota"><?= __("SOTA Reference"); ?></option>
                             <option value="iota"><?= __("IOTA Reference"); ?></option>

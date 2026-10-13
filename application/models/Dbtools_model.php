@@ -9,12 +9,12 @@ class Dbtools_model extends CI_Model {
 		// get all records with no COL_CONT
 		$this->db->trans_start();
 		$sql = "UPDATE " . $this->config->item('table_name') . "
-			JOIN dxcc_entities ON " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif
+			JOIN dxcc_entities ON " . $this->config->item('table_name') . ".col_dxcc = CAST(dxcc_entities.adif AS CHAR)
 			JOIN station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 			SET col_cont = dxcc_entities.cont
 			WHERE (COALESCE(" . $this->config->item('table_name') . ".col_cont, '') = ''  or " . $this->config->item('table_name') . ".col_cont not in ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'))
 			AND station_profile.user_id = ?
-			AND col_dxcc != 0";
+			AND col_dxcc != '0'";
 
 		$bindings[] = $this->session->userdata('user_id');
 
@@ -559,19 +559,19 @@ class Dbtools_model extends CI_Model {
 		$count = 0;
 		$dxccobj = new Dxcc();
 
-		if ($r->num_rows() > 0) { //query dxcc_prefixes
-			$sql = "update " . $this->config->item('table_name') . " set COL_COUNTRY = ?, COL_DXCC = ? where COL_PRIMARY_KEY = ?";
+		if ($r->num_rows() > 0) {
+			$sql = "update " . $this->config->item('table_name') . " join dxcc_entities on dxcc_entities.adif = ? set COL_COUNTRY = ?, COL_DXCC = dxcc_entities.adif, COL_CQZ = dxcc_entities.cqz, COL_ITUZ = dxcc_entities.ituz, COL_CONT = dxcc_entities.cont where COL_PRIMARY_KEY = ?";
 			$q = $this->db->conn_id->prepare($sql);
 			foreach ($r->result_array() as $row) {
-				$qso_date = $row['COL_TIME_OFF'] == '' ? $row['COL_TIME_ON'] : $row['COL_TIME_OFF'];
+				$qso_date = $row['COL_TIME_ON'];
 				$qso_date = date("Y-m-d", strtotime($qso_date));
 				$dxcc = $dxccobj->dxcc_lookup($row['COL_CALL'], $qso_date);
 				$dxcc['adif'] = (isset($dxcc['adif'])) ? $dxcc['adif'] : 0;
-				$dxcc['entity'] = (isset($dxcc['entity'])) ? $dxcc['entity'] : 'None';
-				if ($dxcc['adif'] != 'Not Found') {
-					$q->execute(array(addslashes(ucwords(strtolower($dxcc['entity']), "- (/")), $dxcc['adif'], $row['COL_PRIMARY_KEY']));
-					$count++;
+				if ($dxcc['entity'] == 'Not Found') {
+					$dxcc['entity'] = '';
 				}
+				$q->execute(array($dxcc['adif'], ucwords(strtolower($dxcc['entity']), "- (/"), $row['COL_PRIMARY_KEY']));
+				$count++;
 			}
 		}
 
