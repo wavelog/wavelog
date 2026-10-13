@@ -23,6 +23,9 @@ class Migration_tag_3_2_4 extends CI_Migration {
         $this->db->where('option_name', 'version_dialog');
         $this->db->where('option_value', 'custom_text');
         $this->db->update('options', array('option_value' => 'both'));
+
+		// Force enable 'Other' contest. See commit 3ca96fb82e07b03902707d99b76557a79b198812
+		$this->db->query("UPDATE " . $this->db->dbprefix('contest') . " SET active = 1 WHERE id = 1 AND name = 'Other'");
     }
 
     public function down()
