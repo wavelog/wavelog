@@ -105,6 +105,23 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
+	 * Normalize a DXCC (ADIF) entity id
+	 *
+	 * COL_DXCC must be a plain digit string. ADIF ingests can deliver values
+	 * with a leading space (e.g. "<DXCC:4> 230" yields " 230"), which breaks
+	 * string comparisons and entity lookups. Trims surrounding whitespace and
+	 * only returns the value if it is purely numeric.
+	 *
+	 * @param string|int|null $dxcc Raw DXCC id from any source (ADIF record, POST, LoTW)
+	 *
+	 * @return string|null Trimmed id if it consists of digits only, NULL otherwise
+	 */
+	private function normalize_dxcc($dxcc) {
+		$dxcc = trim((string)$dxcc);
+		return ($dxcc !== '' && ctype_digit($dxcc)) ? $dxcc : NULL;
+	}
+
+	/**
 	 * Add QSO to Logbook
 	 *
 	 * Creates a single QSO record from the given input array.
@@ -224,6 +241,9 @@ class Logbook_model extends CI_Model {
 		} else {
 			$radio_name = '';
 		}
+
+		// Sanitize user-supplied DXCC id (leading spaces / non-numeric input); NULL triggers the lookup below
+		$qso_data['dxcc_id'] = $this->normalize_dxcc($qso_data['dxcc_id'] ?? NULL);
 
 		// Cache DXCC lookup to avoid calling check_dxcc_table() 4 times if atleast one of these fields is empty
 		$dxcc = NULL;
@@ -1664,8 +1684,8 @@ class Logbook_model extends CI_Model {
 			$srx_string = null;
 		}
 
-		if (is_numeric($this->input->post('dxcc_id'))) {
-			$dxcc=$this->input->post('dxcc_id');
+		$dxcc = $this->normalize_dxcc($this->input->post('dxcc_id'));
+		if ($dxcc !== NULL) {
 			if (stristr($this->input->post('usa_county') ?? '', ',')) {	// Already comma-seperated County?
 				$uscounty = $this->input->post('usa_county');
 			} elseif ($this->input->post('usa_county') && $this->input->post('input_state_edit')) {	// Both filled (and no comma - because that fits one above)
@@ -1899,9 +1919,8 @@ class Logbook_model extends CI_Model {
 			$time_off = $time_on;
 		}
 
- 		if (is_numeric($this->input->post('dxcc_id'))) {
-			$dxcc=$this->input->post('dxcc_id');
-		} else {
+		$dxcc = $this->normalize_dxcc($this->input->post('dxcc_id'));
+		if ($dxcc === NULL) {
 			$retvals['detail']=__("DXCC has to be Numeric");
 			return $retvals;
 		}
@@ -4920,6 +4939,8 @@ class Logbook_model extends CI_Model {
 			$data['COL_CQZ'] = $cqz;
 		}
 
+		// Sanitize ADIF-supplied DXCC id (" 230" -> "230"); invalid skips the update and keeps the existing COL_DXCC
+		$dxcc = $this->normalize_dxcc($dxcc);
 		if (($dxcc ?? '') != '') {
 			$data['COL_DXCC'] = $dxcc;
 		}
@@ -5373,6 +5394,9 @@ class Logbook_model extends CI_Model {
 		}
 
 		if (!($skip)) {
+			// Sanitize ADIF-supplied DXCC id (" 230" -> "230", garbage -> callsign lookup below)
+			$record['dxcc'] = $this->normalize_dxcc($record['dxcc'] ?? NULL);
+
 			// DXCC id
 			if (isset($record['call'])) {
 				if ($dxccAdif != NULL) {
@@ -5869,7 +5893,7 @@ class Logbook_model extends CI_Model {
 				'COL_MY_COUNTRY_INTL' => (!empty($record['my_country_intl'])) ? $record['my_country_intl'] : null,
 				'COL_MY_CQ_ZONE' => (!empty($record['my_dxcc'])) ? $record['my_dxcc'] : null,
 				'COL_MY_DARC_DOK' => (!empty($record['my_darc_dok'])) ? strtoupper($record['my_darc_dok']) : '',
-				'COL_MY_DXCC' => (!empty($record['my_dxcc'])) ? $record['my_dxcc'] : null,
+				'COL_MY_DXCC' => $this->normalize_dxcc($record['my_dxcc'] ?? NULL),
 				'COL_MY_FISTS' => (!empty($record['my_fists'])) ? $record['my_fists'] : null,
 				'COL_MY_GRIDSQUARE' => (!empty($record['my_gridsquare'])) ? $record['my_gridsquare'] : '',
 				'COL_MY_IOTA' => (!empty($record['my_iota'])) ? $record['my_iota'] : '',
