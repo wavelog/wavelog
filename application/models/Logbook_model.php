@@ -569,6 +569,11 @@ class Logbook_model extends CI_Model {
 		];
 	}
 
+	/*
+	 * Returns the number of days since last LoTW upload
+	 * input: callsign
+	 * output: number of days or null if table is empty
+	 */
 	public function check_last_lotw($call) {	// Fetch difference in days when $call has last updated LotW
 
 		$sql = "SELECT EXISTS (SELECT 1 FROM lotw_users) AS tbl_count;";
