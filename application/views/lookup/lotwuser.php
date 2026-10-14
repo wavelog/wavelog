@@ -10,6 +10,8 @@ if (isset($lotw_lastupload) && $lotw_lastupload != '') {
 		$lotw_hint = ' lotw_info_yellow';
 	}
 	echo '<a id="lotw_badge" href="https://lotw.arrl.org/lotwuser/act?act='.$callsign.'" target="_blank"><small id="lotw_info" class="badge text-bg-success'.$lotw_hint.'" data-bs-toggle="tooltip" title="' . __("LoTW User") . '">' . __("Yes") . '</small></a> <a id="lotw_badge" href="https://lotw.arrl.org/lotwuser/act?act='.$callsign.'" target="_blank"> ' . __("last upload") . '</a> '.sprintf(_ngettext("%d day ago", "%d days ago",intval($lotw_lastupload)), intval($lotw_lastupload));
+} else if ($lotw_lastupload == null) {
+	echo "<span data-bs-toggle=\"tooltip\" title=\"" . __("LoTW Status Uknown") . "\" class=\"badge text-bg-warning\" style=\"padding-left: 0.2em; padding-right: 0.2em;\">" . __("Unknown") . "</span> <i class=\"fa fa-question-circle\" aria-hidden=\"true\" data-bs-toggle=\"tooltip\" title=\"". __("Table with last LoTW uploads is empty. Please check")."\"></i>";
 } else {
 	echo "<span data-bs-toggle=\"tooltip\" title=\"" . __("No LoTW User") . "\" class=\"badge text-bg-danger\" style=\"padding-left: 0.2em; padding-right: 0.2em;\">" . __("No") . "</span>";
 }
