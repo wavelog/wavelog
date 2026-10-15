@@ -39,10 +39,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-13 13:18+0000\n"
-"PO-Revision-Date: 2026-10-08 15:28+0000\n"
+"PO-Revision-Date: 2026-10-15 18:17+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2837,7 +2837,7 @@ msgstr "上传的文件无效。请上传 Logbook of the World（LoTW）的 .p12
 
 #: application/controllers/Lotw.php:134
 msgid "The uploaded file could not be read."
-msgstr ""
+msgstr "无法读取上传的文件。"
 
 #: application/controllers/Lotw.php:153
 msgid "Certificate Imported."
@@ -2859,6 +2859,9 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"文件 %s 中的证书包含密码，无法处理。%s请确保从 tqsl 应用程序导出 LoTW 证书时"
+"不带密码！%s如需更多信息，请访问 Wavelog Wiki 中的 %sLoTW troubleshooting 页"
+"面%s。"
 
 #: application/controllers/Lotw.php:438
 #, php-format
@@ -2868,6 +2871,9 @@ msgid ""
 "been processed by LoTW yet. For further information please visit the %sLoTW "
 "troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"从文件 %s 中提取证书时发生一般错误。如果文件名包含“key-only”，这通常表示该证"
+"书请求尚未经过 LoTW 处理。如需更多信息，请访问 Wavelog Wiki 中的 %sLoTW "
+"troubleshooting页面%s。"
 
 #: application/controllers/Lotw.php:444
 #, php-format
@@ -2875,6 +2881,8 @@ msgid ""
 "Generic error processing the certificate in file %s. For further information "
 "please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"处理文件 %s 中的证书时发生一般错误。如需更多信息，请访问 Wavelog Wiki 中的 "
+"%sLoTW troubleshooting 页面%s。"
 
 #: application/controllers/Lotw.php:456
 #, php-format
@@ -2883,6 +2891,8 @@ msgid ""
 "further information please visit the %sLoTW troubleshooting page%s in the "
 "Wavelog Wiki."
 msgstr ""
+"从文件 %s 中的证书提取私钥时发生一般错误。如需更多信息，请访问 Wavelog Wiki "
+"中的 %sLoTW troubleshooting 页面%s。"
 
 #: application/controllers/Lotw.php:670
 msgid "LoTW ADIF Information"
@@ -4336,16 +4346,16 @@ msgstr "导出地图"
 #: application/controllers/Wabtool.php:41
 #: application/views/dbtools/index.php:145
 msgid "WAB from Gridsquare"
-msgstr ""
+msgstr "根据网格推断 WAB"
 
 #: application/controllers/Wabtool.php:100
 msgid "No station locations found"
-msgstr ""
+msgstr "未找到台站位置"
 
 #: application/controllers/Wabtool.php:107
 #: application/controllers/Wabtool.php:113
 msgid "No QSOs selected"
-msgstr ""
+msgstr "未选择任何 QSO"
 
 #: application/controllers/Wabtool.php:174
 #: application/controllers/Zonechecker.php:483
@@ -4361,7 +4371,7 @@ msgstr "QO-100 Dx Club 上传"
 #: application/controllers/Webadif.php:183
 msgid ""
 "Rejected QSOs were reset. They will be picked up again by the next upload."
-msgstr ""
+msgstr "已重置被拒绝的 QSO 。下次上传时将再次处理。"
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -4419,11 +4429,11 @@ msgstr "获取呼号簿会话密钥时出错：%s"
 
 #: application/libraries/Callbook.php:74
 msgid "Generic error storing the callbook session key in cache."
-msgstr ""
+msgstr "缓存呼号簿会话密钥时发生一般错误。"
 
 #: application/libraries/Callbook.php:75
 msgid "Generic error reading the cached callbook session key."
-msgstr ""
+msgstr "读取缓存的呼号簿会话密钥时发生一般错误。"
 
 #: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
@@ -4937,7 +4947,7 @@ msgstr "集体台站管理员必须编辑好竞赛。"
 
 #: application/models/Countqsoby_model.php:262
 msgid "Unlinked"
-msgstr ""
+msgstr "未关联"
 
 #: application/models/Dbtools_model.php:118
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
@@ -4946,79 +4956,79 @@ msgstr "VuccGrids 表为空。请先导入 VUCC 网格数据。"
 #: application/models/Debug_model.php:317
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
-msgstr ""
+msgstr "没有可用的适配器——缓存正在无操作的“dummy”驱动程序上运行。"
 
 #: application/models/Debug_model.php:322
 #: application/models/Debug_model.php:370
 msgid "Adapter not supported."
-msgstr ""
+msgstr "不支持此适配器。"
 
 #: application/models/Debug_model.php:351
 #, php-format
 msgid "%s adapter threw an exception: %s"
-msgstr ""
+msgstr "%s 适配器引发异常：%s"
 
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "PHP 扩展 '%s' 未加载。"
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "缓存目录不可写：%s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
-msgstr ""
+msgstr "无法连接 Redis 服务器 - 请检查 application/config/redis.php 中的设置。"
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
-msgstr ""
+msgstr "Memcached 服务器没有响应 - 请检查 application/config/memcached.php 中的设置。"
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
-msgstr ""
+msgstr "APCu 已加载，但无法在此 PHP 接口中使用（apc.enabled=0？）。"
 
 #: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
-msgstr ""
+msgstr "无法写入缓存目录 %s - 请检查权限。"
 
 #: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
-msgstr ""
+msgstr "Redis 写入失败 - 服务器宕机或已达到内存容量限制？"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
-msgstr ""
+msgstr "Memcached 写入失败 - 服务器宕机？"
 
 #: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "APCu 写入失败 - 共享内存已满？"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
-msgstr ""
+msgstr "写入成功但读取失败 - 缓存目录可读吗？"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
-msgstr ""
+msgstr "写入成功但读取失败 - 键是否被 Redis 淘汰？"
 
 #: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "写入成功但读取失败。"
 
 #: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
-msgstr ""
+msgstr "测试键无法删除 - 请检查权限/访问权限。"
 
 #: application/models/Eqslmethods_model.php:270
 msgid "Empty response from eQSL.cc!"
-msgstr ""
+msgstr "eQSL.cc 的响应为空！"
 
 #: application/models/Eqslmethods_model.php:278
 msgid "Your eQSL username and/or password is incorrect."
@@ -6409,11 +6419,11 @@ msgstr "CBR 导入"
 
 #: application/views/adif/import.php:92
 msgid "No active station location. ADIF import is disabled."
-msgstr ""
+msgstr "没有启用的台站位置。ADIF 导入已禁用。"
 
 #: application/views/adif/import.php:93
 msgid "Go to Station Setup"
-msgstr ""
+msgstr "前往台站设置"
 
 #: application/views/adif/import.php:97 application/views/adif/import.php:407
 #: application/views/adif/import.php:430 application/views/api/index.php:22
@@ -14264,7 +14274,7 @@ msgstr "DXCC 检查结果"
 msgid ""
 "If checked, 'Check all' and 'Update selected' also include QSOs with DXCC "
 "none, not found or invalid"
-msgstr ""
+msgstr "如果选中，'全部检查'和'更新所选'也会包括 DXCC 为空、未找到或无效的 QSO"
 
 #: application/views/dbtools/checkresult.php:80
 #: application/views/dbtools/checkresult.php:224
@@ -14274,7 +14284,7 @@ msgstr "更新选中的"
 
 #: application/views/dbtools/checkresult.php:131
 msgid "No incorrect DXCCs were found."
-msgstr ""
+msgstr "未找到错误的 DXCC。"
 
 #: application/views/dbtools/checkresult.php:136
 msgid "Gridsquare Check Results"
@@ -14523,11 +14533,11 @@ msgstr "使用 Wavelog 检查 IOTA 是否符合 DXCC"
 
 #: application/views/dbtools/index.php:146
 msgid "Batch assign WAB squares from logged gridsquares"
-msgstr ""
+msgstr "根据日志中的网格批量填写 WAB 方格"
 
 #: application/views/dbtools/index.php:149
 msgid "Open"
-msgstr ""
+msgstr "打开"
 
 #: application/views/dbtools/missinggridlist.php:12
 #, php-format
@@ -14903,7 +14913,7 @@ msgstr "Wavelog Worker 后端"
 
 #: application/views/debug/index.php:146
 msgid "Worker configuration has changed"
-msgstr ""
+msgstr "Worker 配置已更改"
 
 #: application/views/debug/index.php:147
 #, php-format
@@ -14911,10 +14921,12 @@ msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
+"%s 和 %s 已弃用，将在 Wavelog Worker 1.0.0 中移除。请改为在你的 Worker 配置中"
+"设置 %s。"
 
 #: application/views/debug/index.php:148
 msgid "Everything keeps working until then."
-msgstr ""
+msgstr "在此之前一切都会继续正常运行。"
 
 #: application/views/debug/index.php:154
 msgid "Worker"
@@ -15086,11 +15098,11 @@ msgstr "键数量"
 
 #: application/views/debug/index.php:560
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "往返测试（写入 - 读取 - 删除）"
 
 #: application/views/debug/index.php:567
 msgid "Working"
-msgstr ""
+msgstr "工作中"
 
 #: application/views/debug/index.php:580
 msgid "Cache is working properly. Everything okay!"
@@ -15606,7 +15618,7 @@ msgstr "用户未提供附加信息。"
 
 #: application/views/email/oqrs_request.php:18
 msgid "Requested QSOs"
-msgstr ""
+msgstr "被请求的 QSO"
 
 #: application/views/email/oqrs_request.php:50
 #, php-format
@@ -15627,7 +15639,7 @@ msgstr "QSL 路径"
 
 #: application/views/email/oqrs_request.php:59
 msgid "DX Callsign"
-msgstr ""
+msgstr "对方呼号"
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -24126,27 +24138,27 @@ msgstr "没有 QSO"
 
 #: application/views/wabtool/index.php:14
 msgid "Batch Assign WAB from Gridsquare"
-msgstr ""
+msgstr "根据网格批量填写 WAB"
 
 #: application/views/wabtool/index.php:28
 msgid "Scan Log"
-msgstr ""
+msgstr "扫描日志"
 
 #: application/views/wabtool/index.php:31
 msgid "Apply WAB squares"
-msgstr ""
+msgstr "应用 WAB 网格"
 
 #: application/views/wabtool/index.php:32
 msgid "Write the computed WAB square into the selected QSOs?"
-msgstr ""
+msgstr "要将计算出的 WAB 网格写入选定的 QSO 吗？"
 
 #: application/views/wabtool/index.php:33
 msgid "Apply Selected"
-msgstr ""
+msgstr "应用所选项"
 
 #: application/views/wabtool/table.php:10
 msgid "No 100% matching QSOs found."
-msgstr ""
+msgstr "未找到 100% 匹配的 QSO。"
 
 #: application/views/webadif/export.php:22
 msgid ""
@@ -24216,21 +24228,21 @@ msgstr "QSO 已被标记成导出至 QO-100 Dx Club。"
 
 #: application/views/webadif/rejected.php:3
 msgid "Rejected by QO-100 Dx Club"
-msgstr ""
+msgstr "被 QO-100 Dx Club 拒绝"
 
 #: application/views/webadif/rejected.php:5
 msgid ""
 "These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
 "is not retried automatically."
-msgstr ""
+msgstr "这些 QSO 被 QO-100 Dx Club API 拒绝，不会自动重试上传。"
 
 #: application/views/webadif/rejected.php:11
 msgid "Reason for rejection by QO-100 Dx Club"
-msgstr ""
+msgstr "被 QO-100 Dx Club 拒绝的原因"
 
 #: application/views/webadif/rejected.php:24
 msgid "Retry Upload"
-msgstr ""
+msgstr "重试上传"
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
