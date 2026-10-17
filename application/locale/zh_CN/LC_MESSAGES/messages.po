@@ -38,11 +38,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-13 13:18+0000\n"
+"POT-Creation-Date: 2026-10-17 18:04+0000\n"
 "PO-Revision-Date: 2026-10-15 18:17+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://"
-"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
+"org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4039,15 +4039,19 @@ msgstr "TLE 更新失败。结果为： "
 msgid "LoTW SAT Update"
 msgstr "LoTW 卫星数据更新"
 
-#: application/controllers/Update.php:747
+#: application/controllers/Update.php:745
+msgid "Hams of Note Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:751
 msgid "Update of Hams of Note"
 msgstr "Hams of Note 更新"
 
-#: application/controllers/Update.php:787
+#: application/controllers/Update.php:791
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCC 网格文件更新完成。结果： "
 
-#: application/controllers/Update.php:789
+#: application/controllers/Update.php:793
 msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC 网格文件更新失败。结果： "
 
@@ -4987,7 +4991,8 @@ msgstr "无法连接 Redis 服务器 - 请检查 application/config/redis.php �
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
-msgstr "Memcached 服务器没有响应 - 请检查 application/config/memcached.php 中的设置。"
+msgstr ""
+"Memcached 服务器没有响应 - 请检查 application/config/memcached.php 中的设置。"
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
