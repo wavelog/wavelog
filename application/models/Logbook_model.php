@@ -569,13 +569,25 @@ class Logbook_model extends CI_Model {
 		];
 	}
 
+	/*
+	 * Returns the number of days since last LoTW upload
+	 * input: callsign
+	 * output: number of days or null if table is empty
+	 */
 	public function check_last_lotw($call) {	// Fetch difference in days when $call has last updated LotW
 
-		$sql = "select datediff(now(),lastupload) as DAYS from lotw_users where callsign = ?";	// Use binding to prevent SQL-injection
-		$query = $this->db->query($sql, $call);
-		$row = $query->row();
-		if (isset($row)) {
-			return ($row->DAYS);
+		$sql = "SELECT EXISTS (SELECT 1 FROM lotw_users) AS tbl_count;";
+		$query = $this->db->query($sql);
+		$count = $query->row()->tbl_count;
+		if ($count > 0) {
+			$sql = "select datediff(now(),lastupload) as DAYS from lotw_users where callsign = ?";	// Use binding to prevent SQL-injection
+			$query = $this->db->query($sql, $call);
+			$row = $query->row();
+			if (isset($row)) {
+				return ($row->DAYS);
+			}
+		} else {
+			return null;
 		}
 	}
 
