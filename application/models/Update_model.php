@@ -936,7 +936,7 @@ class Update_model extends CI_Model {
 
 	function update_hams_of_note() {
 		if (($this->optionslib->get_option('hon_url') ?? '') == '') {
-			$file = 'https://api.ham2k.net/data/ham2k/hams-of-note.txt';
+			$file = 'https://ham2k.com/data/hams-of-note.txt';
 		} else {
 			$file = $this->optionslib->get_option('hon_url');
 		}
