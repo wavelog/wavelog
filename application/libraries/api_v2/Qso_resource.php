@@ -66,10 +66,15 @@ class Qso_resource extends Api_v2_resource {
 	 *   ?since_id=   only QSOs with a primary key greater than this (default 0)
 	 *   ?qso_since=  YYYY-MM-DD, oldest QSO date to include (whole day)
 	 *   ?qso_until=  YYYY-MM-DD, newest QSO date to include (whole day)
+	 *   ?dxcc=       comma list of DXCC entity ids (ADIF numbers)
+	 *   ?cqz= / ?ituz= comma list of CQ / ITU zones
+	 *   ?cont=       comma list of continents (AF, AN, AS, EU, NA, OC, SA)
 	 * Pagination: ?page= / ?per_page= (max 5000; default 50 for JSON, 1000 for
 	 *             ADIF), or ?limit= as a shortcut for the newest N QSOs (overrides
 	 *             page/per_page).
 	 * Rendering:  ?format=json (default) | adif.
+	 *             ?fields= comma list of JSON keys to return (id is always
+	 *             included); JSON only.
 	 */
 	public function index() {
 		$format = strtolower(trim((string) $this->param('format', 'json')));
@@ -99,6 +104,15 @@ class Qso_resource extends Api_v2_resource {
 		$since_id    = $this->parse_since_id();
 		$qso_since   = $this->parse_date('qso_since');
 		$qso_until   = $this->parse_date('qso_until');
+		$dxcc        = $this->parse_number_list('dxcc');
+		$cqz         = $this->parse_number_list('cqz');
+		$ituz        = $this->parse_number_list('ituz');
+		$cont        = $this->parse_type_list('cont', ['af', 'an', 'as', 'eu', 'na', 'oc', 'sa']);
+		$fields      = $this->parse_fields();
+
+		if ($is_adif && $fields !== null) {
+			throw new Api_v2_exception('validation_error', 'fields is only supported for format=json', 400);
+		}
 
 		// ADIF sync needs ascending-by-id order (so lastfetchedid advances); the
 		// JSON browse list is newest-first.
@@ -119,7 +133,7 @@ class Qso_resource extends Api_v2_resource {
 		}
 
 		if (empty($station_ids)) {
-			$this->respond_qsos($format, [], $page, 0, $since_id);
+			$this->respond_qsos($format, [], $page, 0, $since_id, $fields);
 			return;
 		}
 
@@ -136,6 +150,10 @@ class Qso_resource extends Api_v2_resource {
 			'since_id'    => $since_id,
 			'qso_since'   => $qso_since,
 			'qso_until'   => $qso_until,
+			'dxcc'        => $dxcc,
+			'cqz'         => $cqz,
+			'ituz'        => $ituz,
+			'cont'        => $cont ? array_map('strtoupper', $cont) : null,
 			'operator'    => $operator,
 		];
 
@@ -148,15 +166,15 @@ class Qso_resource extends Api_v2_resource {
 		);
 
 		$rows = is_object($query) ? $query->result() : [];
-		$this->respond_qsos($format, $rows, $page, $total, $since_id);
+		$this->respond_qsos($format, $rows, $page, $total, $since_id, $fields);
 	}
 
 	/**
 	 * Render the fetched QSO rows in the requested format, with pagination meta.
 	 * JSON returns the QSO objects; ADIF returns { exported, lastfetchedid, adif }
-	 * built from the same rows via AdifHelper.
+	 * built from the same rows via AdifHelper. $fields limits the JSON keys.
 	 */
-	protected function respond_qsos($format, $rows, $page, $total, $since_id) {
+	protected function respond_qsos($format, $rows, $page, $total, $since_id, $fields = null) {
 		$meta = $this->list_meta($page, count($rows), $total);
 
 		if ($format === 'adif') {
@@ -181,7 +199,7 @@ class Qso_resource extends Api_v2_resource {
 
 		$qsos = [];
 		foreach ($rows as $row) {
-			$qsos[] = $this->format_qso($row);
+			$qsos[] = $this->select_fields($this->format_qso($row), $fields);
 		}
 		$this->CI->api_v2_response->respond($qsos, 200, $meta);
 	}
@@ -198,6 +216,53 @@ class Qso_resource extends Api_v2_resource {
 	}
 
 	/**
+	 * Parse a comma list of positive integers (?dxcc=, ?cqz=, ?ituz=), or null
+	 * when absent.
+	 */
+	protected function parse_number_list($key) {
+		$raw = $this->param($key);
+		if ($raw === null) {
+			return null;
+		}
+		$values = [];
+		foreach (explode(',', $raw) as $value) {
+			$value = trim($value);
+			if (!ctype_digit($value)) {
+				throw new Api_v2_exception('validation_error', $key . ' values must be numeric', 400);
+			}
+			$values[] = (int) $value;
+		}
+		return array_values(array_unique($values));
+	}
+
+	/**
+	 * Parse ?fields= into the list of JSON keys to return, or null for all.
+	 */
+	protected function parse_fields() {
+		$allowed = array_merge(
+			array_keys(self::read_only_fields()),
+			array_keys(self::editable_fields()),
+			['confirmed_by']
+		);
+		$fields = $this->parse_type_list('fields', $allowed);
+		return $fields === null ? null : array_values(array_unique(array_merge(['id'], $fields)));
+	}
+
+	/**
+	 * Reduce a formatted QSO to the requested keys, in the requested order.
+	 */
+	protected function select_fields($qso, $fields) {
+		if ($fields === null) {
+			return $qso;
+		}
+		$out = [];
+		foreach ($fields as $key) {
+			$out[$key] = $qso[$key];
+		}
+		return $out;
+	}
+
+	/**
 	 * Parse and validate the ?qsl_filter= query (comma list), or null when absent.
 	 * Mirrors the confirmation types the QSO filter can match on (see
 	 * Logbook_model::_qso_v2_filter_where()); HRDLog is upload-only and has no
@@ -209,10 +274,11 @@ class Qso_resource extends Api_v2_resource {
 
 	/**
 	 * GET /api/v2/qso/{id}
-	 * A single QSO owned by the key holder.
+	 * A single QSO owned by the key holder. Accepts ?fields= like the list.
 	 */
 	public function show($id) {
 		$this->require_numeric_id($id);
+		$fields = $this->parse_fields();
 		$this->CI->load->model('logbook_model');
 
 		// 404 unless the QSO belongs to the key owner.
@@ -227,7 +293,7 @@ class Qso_resource extends Api_v2_resource {
 			throw new Api_v2_exception('not_found', 'QSO not found', 404);
 		}
 
-		$this->CI->api_v2_response->respond($this->format_qso($query->row()));
+		$this->CI->api_v2_response->respond($this->select_fields($this->format_qso($query->row()), $fields));
 	}
 
 	/**
@@ -879,6 +945,14 @@ class Qso_resource extends Api_v2_resource {
 			$qso[$key] = $value;
 		}
 
+		// Confirmation types received for this QSO, e.g. ["lotw", "qsl"]
+		$qso['confirmed_by'] = [];
+		foreach (Logbook_model::CONFIRMATION_COLUMNS as $type => $columns) {
+			if (($row->{$columns['rcvd']} ?? '') === 'Y') {
+				$qso['confirmed_by'][] = $type;
+			}
+		}
+
 		return $qso;
 	}
 
@@ -896,6 +970,10 @@ class Qso_resource extends Api_v2_resource {
 			'submode'    => ['COL_SUBMODE', 'string'],
 			'freq'       => ['COL_FREQ', 'string'],
 			'freq_rx'    => ['COL_FREQ_RX', 'string'],
+			'dxcc'       => ['COL_DXCC', 'integer'],
+			'country'    => ['COL_COUNTRY', 'string'],
+			'cont'       => ['COL_CONT', 'string'],
+			'vucc_grids' => ['COL_VUCC_GRIDS', 'string'],
 		];
 	}
 
