@@ -2568,6 +2568,10 @@ class Logbook_model extends CI_Model {
 	//   since_id     int     COL_PRIMARY_KEY > since_id
 	//   qso_since    string  'Y-m-d' floor on COL_TIME_ON
 	//   qso_until    string  'Y-m-d' ceiling on COL_TIME_ON
+	//   dxcc         int[]   COL_DXCC in the list
+	//   cqz          int[]   COL_CQZ in the list
+	//   ituz         int[]   COL_ITUZ in the list
+	//   cont         array   COL_CONT in the list (AF, AN, AS, EU, NA, OC, SA)
 	//   operator     string  restrict to that COL_OPERATOR
 	//
 	// Unknown keys are ignored, so a caller can hand in its whole filter set even
@@ -2603,6 +2607,13 @@ class Logbook_model extends CI_Model {
 		if (($filters['qso_until'] ?? '') !== '') {
 			$where .= " AND qsos.`COL_TIME_ON` <= ?";
 			$bindings[] = $filters['qso_until'] . ' 23:59:59';
+		}
+
+		foreach (['dxcc' => 'COL_DXCC', 'cqz' => 'COL_CQZ', 'ituz' => 'COL_ITUZ', 'cont' => 'COL_CONT'] as $key => $column) {
+			if (!empty($filters[$key])) {
+				$where .= " AND qsos.`" . $column . "` IN ?";
+				$bindings[] = $filters[$key];
+			}
 		}
 
 		if (($filters['band'] ?? '') !== '') {
