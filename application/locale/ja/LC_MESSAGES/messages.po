@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-13 13:18+0000\n"
+"POT-Creation-Date: 2026-10-17 18:04+0000\n"
 "PO-Revision-Date: 2026-10-14 07:20+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4060,15 +4060,19 @@ msgstr "TLE 更新に失敗しました。結果: "
 msgid "LoTW SAT Update"
 msgstr "LoTW SATアップデート"
 
-#: application/controllers/Update.php:747
+#: application/controllers/Update.php:745
+msgid "Hams of Note Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:751
 msgid "Update of Hams of Note"
 msgstr "注目のハムの最新情報"
 
-#: application/controllers/Update.php:787
+#: application/controllers/Update.php:791
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCCグリッドファイルの更新が完了しました。結果: "
 
-#: application/controllers/Update.php:789
+#: application/controllers/Update.php:793
 msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC グリッドファイルの更新に失敗しました。結果: "
 
@@ -14629,8 +14633,8 @@ msgid ""
 "If checked, 'Check all' and 'Update selected' also include QSOs with DXCC "
 "none, not found or invalid"
 msgstr ""
-"「すべてチェック」と「選択した項目を更新」にチェックを入れると、DXCCが「なし"
-"」、「見つからない」、「無効」のQSOも含まれます"
+"「すべてチェック」と「選択した項目を更新」にチェックを入れると、DXCCが「な"
+"し」、「見つからない」、「無効」のQSOも含まれます"
 
 #: application/views/dbtools/checkresult.php:80
 #: application/views/dbtools/checkresult.php:224
