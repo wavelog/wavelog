@@ -182,6 +182,31 @@ class Debug_model extends CI_Model
 		return (int) $this->db->count_all('cat');
 	}
 
+	// Per-user account data and number of station locations, for the API v2
+	// instance statistics
+	function instance_users() {
+		$sql = "SELECT u.user_id, u.user_callsign, u.user_type, u.clubstation, u.last_seen, u.created_at,
+				COUNT(sp.station_id) AS stations
+			FROM users u
+			LEFT JOIN station_profile sp ON sp.user_id = u.user_id
+			GROUP BY u.user_id
+			ORDER BY u.user_id";
+		return $this->db->query($sql)->result();
+	}
+
+	// QSO counts per user (total, since $today_start, since $month_start) and the
+	// time of the last QSO, in one pass over the QSO table
+	function instance_qso_counts($today_start, $month_start) {
+		$sql = "SELECT sp.user_id, COUNT(*) AS total,
+				SUM(q.COL_TIME_ON >= ?) AS today,
+				SUM(q.COL_TIME_ON >= ?) AS month,
+				MAX(q.COL_TIME_ON) AS last_qso
+			FROM " . $this->config->item('table_name') . " q
+			JOIN station_profile sp ON sp.station_id = q.station_id
+			GROUP BY sp.user_id";
+		return $this->db->query($sql, [$today_start, $month_start])->result();
+	}
+
 	function getMigrationVersion() {
         $this->db->select_max('version');
         $query = $this->db->get('migrations');
