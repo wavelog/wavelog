@@ -949,5 +949,6 @@ $config['internal_tools'] = false;
 //     'statistics'     => ['requests' => 30, 'window' => 60],
 //     'api_v2_auth'    => ['requests' => 10, 'window' => 60],
 //     'api_v2_qso'     => ['requests' => 10, 'window' => 60],
+//     'api_v2_award'   => ['requests' => 10, 'window' => 60],
 //     'default'        => ['requests' => 30, 'window' => 60],
 // ];

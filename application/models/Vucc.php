@@ -10,6 +10,16 @@ class VUCC extends CI_Model
 		$this->logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 	}
 
+	/**
+	 * Overrides the station locations taken from the session, for callers
+	 * without a web session (API v2 award resource)
+	 *
+	 * @param int[] $station_ids
+	 */
+	public function set_location_list($station_ids) {
+		$this->logbooks_locations_array = $station_ids;
+	}
+
     /*
      *  Fetches worked and confirmed gridsquare on each band and total
      */
@@ -406,7 +416,7 @@ class VUCC extends CI_Model
      * Similar approach to CQ model's getCqZoneData()
      * Returns data with band information included for processing
      */
-    private function get_vucc_combined_data_all_bands() {
+    public function get_vucc_combined_data_all_bands() {
         if (!$this->logbooks_locations_array) {
             return ['gridsquare' => [], 'vucc_grids' => []];
         }
@@ -457,7 +467,7 @@ class VUCC extends CI_Model
      * Similar approach to CQ model's getCqZoneData()
      * Returns data with band information included for processing
      */
-    private function get_vucc_combined_data_sat() {
+    public function get_vucc_combined_data_sat() {
         if (!$this->logbooks_locations_array) {
             return ['gridsquare' => [], 'vucc_grids' => []];
         }
