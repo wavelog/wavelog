@@ -705,8 +705,8 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
           <div class="tab-pane fade" id="qsl" role="tabpanel" aria-labelledby="qsl-tab">
 
             <div class="mb-3 row">
-              <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
-              <div class="col-sm-9">
+              <label for="sent" class="col-sm-4 col-form-label"><?= __("Sent"); ?></label>
+              <div class="col-sm-8">
                 <select class="form-select" id="sent" name="qsl_sent">
                   <option value="N" selected="selected"><?= __("No"); ?></option>
                   <option value="Y"><?= __("Yes"); ?></option>
@@ -718,8 +718,8 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
             </div>
 
             <div class="mb-3 row">
-              <label for="sent-method" class="col-sm-3 col-form-label"><?= __("Method"); ?></label>
-              <div class="col-sm-9">
+              <label for="sent-method" class="col-sm-4 col-form-label"><?= __("Sent Method"); ?></label>
+              <div class="col-sm-8">
                 <select class="form-select" id="sent-method" name="qsl_sent_method">
                  <option value="" selected="selected"><?= __("Method"); ?></option>
                  <option value="D"><?= __("Direct"); ?></option>
@@ -731,9 +731,34 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
             </div>
 
             <div class="mb-3 row">
-              <label for="qsl_via" class="col-sm-2 col-form-label"><?= __("Via"); ?></label>
-              <div class="col-sm-10">
+              <label for="qsl_via" class="col-sm-4 col-form-label"><?= __("Sent Via"); ?></label>
+              <div class="col-sm-8">
                 <input type="text" id="qsl_via" class="form-control" name="qsl_via" value="" />
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="qsl_rcvd" class="col-sm-4 col-form-label"><?= __("Received"); ?></label>
+              <div class="col-sm-8">
+                <select class="form-select" id="qsl_rcvd" name="qsl_rcvd">
+                  <option value="N" selected="selected"><?= __("No"); ?></option>
+                  <option value="Y"><?= __("Yes"); ?></option>
+                  <option value="R"><?= __("Requested"); ?></option>
+                  <option value="I"><?= __("Invalid (Ignore)"); ?></option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="qsl_rcvd_method" class="col-sm-4 col-form-label"><?= __("Received Method"); ?></label>
+              <div class="col-sm-8">
+                <select class="form-select" id="qsl_rcvd_method" name="qsl_rcvd_method">
+                  <option value="" selected="selected"><?= __("Method"); ?></option>
+                  <option value="D"><?= __("Direct"); ?></option>
+                  <option value="B"><?= __("Bureau"); ?></option>
+                  <option value="E"><?= __("Electronic"); ?></option>
+                  <option value="M"><?= __("Manager"); ?></option>
+                </select>
               </div>
             </div>
 
