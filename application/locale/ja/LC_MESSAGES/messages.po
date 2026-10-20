@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-04 13:14+0000\n"
-"PO-Revision-Date: 2026-10-02 07:33+0000\n"
+"POT-Creation-Date: 2026-10-17 18:04+0000\n"
+"PO-Revision-Date: 2026-10-14 07:20+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -238,8 +238,9 @@ msgstr "対流圏ダクト"
 #: application/controllers/User.php:1911 application/controllers/User.php:1935
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
+#: application/controllers/Wabtool.php:30
 #: application/controllers/Webadif.php:10
-#: application/controllers/Webadif.php:101
+#: application/controllers/Webadif.php:103
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
@@ -560,9 +561,9 @@ msgstr "DOK"
 #: application/views/countqsoby/index.php:12
 #: application/views/countqsoby/index.php:67 application/views/csv/index.php:58
 #: application/views/dashboard/index.php:416
-#: application/views/dbtools/checkresult.php:153
-#: application/views/dbtools/checkresult.php:236
-#: application/views/dbtools/checkresult.php:312
+#: application/views/dbtools/checkresult.php:155
+#: application/views/dbtools/checkresult.php:238
+#: application/views/dbtools/checkresult.php:314
 #: application/views/dbtools/showStateQsos.php:27
 #: application/views/dbtools/showUpdateResult.php:84
 #: application/views/dbtools/statecheckresult.php:15
@@ -1229,7 +1230,7 @@ msgstr ""
 "コンテストセッションの削除中にエラーが発生しました。もう一度お試しください。"
 
 #: application/controllers/Contesting.php:782
-#: application/models/Contesting_model.php:291
+#: application/models/Contesting_model.php:293
 msgid "Only clubstation officers can delete."
 msgstr "クラブ局 の役員のみが削除できます。"
 
@@ -1327,9 +1328,9 @@ msgstr "交信数をカウントする..."
 #: application/views/countqsoby/index.php:11
 #: application/views/countqsoby/index.php:68
 #: application/views/dashboard/index.php:14
-#: application/views/dbtools/checkresult.php:154
-#: application/views/dbtools/checkresult.php:233
-#: application/views/dbtools/checkresult.php:309
+#: application/views/dbtools/checkresult.php:156
+#: application/views/dbtools/checkresult.php:235
+#: application/views/dbtools/checkresult.php:311
 #: application/views/dbtools/showStateQsos.php:26
 #: application/views/dbtools/showUpdateResult.php:44
 #: application/views/dbtools/showUpdateResult.php:107
@@ -1378,7 +1379,7 @@ msgstr "グリッドスクエア"
 #: application/views/awards/itu/index.php:217
 #: application/views/countqsoby/index.php:14
 #: application/views/countqsoby/index.php:69
-#: application/views/dbtools/checkresult.php:310
+#: application/views/dbtools/checkresult.php:312
 #: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/edit.php:34
 #: application/views/logbookadvanced/index.php:21
@@ -1403,7 +1404,7 @@ msgstr "ITU ゾーン"
 #: application/views/bandmap/list.php:607
 #: application/views/countqsoby/index.php:15
 #: application/views/countqsoby/index.php:70 application/views/csv/index.php:80
-#: application/views/dbtools/checkresult.php:234
+#: application/views/dbtools/checkresult.php:236
 #: application/views/dxatlas/index.php:80
 #: application/views/gridmap/index.php:229 application/views/kml/index.php:65
 #: application/views/logbookadvanced/edit.php:29
@@ -1477,7 +1478,8 @@ msgstr "WWFFリファレンス"
 #: application/views/station_profile/edit.php:461
 #: application/views/user/edit.php:403 application/views/user/edit.php:918
 #: application/views/view_log/partial/log_ajax.php:19
-#: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
+#: application/views/view_log/qso.php:9 application/views/wabtool/index.php:18
+#: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:125
 #: application/views/zonechecker/index.php:11
 msgid "Station Location"
@@ -1553,12 +1555,12 @@ msgstr "無効"
 msgid "Run Now"
 msgstr "今すぐ実行"
 
-#: application/controllers/Cron.php:425
+#: application/controllers/Cron.php:429
 #: application/views/interface_assets/footer.php:45
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:429
+#: application/controllers/Cron.php:433
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1567,7 +1569,7 @@ msgstr ""
 "最後の実行から%s秒以上経過しています。%sマスターのcron設定を確認してくださ"
 "い！1分ごとに実行されるように設定する必要があります（* * * * *）。"
 
-#: application/controllers/Cron.php:432
+#: application/controllers/Cron.php:436
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1576,7 +1578,7 @@ msgstr ""
 "最後の実行から%s分以上経過しています。%sマスタークロンが実行されていないよう"
 "です！%s毎分実行されるべきです（* * * * *）。"
 
-#: application/controllers/Cron.php:437 application/views/cron/index.php:43
+#: application/controllers/Cron.php:441 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "実行されていません"
@@ -2252,8 +2254,8 @@ msgstr "QSL"
 #: application/views/dashboard/index.php:508
 #: application/views/dashboard/index.php:522
 #: application/views/dbtools/checkresult.php:93
-#: application/views/dbtools/checkresult.php:151
-#: application/views/dbtools/checkresult.php:379
+#: application/views/dbtools/checkresult.php:153
+#: application/views/dbtools/checkresult.php:381
 #: application/views/dbtools/missinggridlist.php:59
 #: application/views/gridmap/index.php:182
 #: application/views/logbookadvanced/useroptions.php:136
@@ -2372,10 +2374,10 @@ msgstr "すべてのコールブック検索が失敗したか、結果が提供
 #: application/views/countqsoby/index.php:130
 #: application/views/csv/index.php:42 application/views/dashboard/index.php:5
 #: application/views/dbtools/checkresult.php:92
-#: application/views/dbtools/checkresult.php:150
-#: application/views/dbtools/checkresult.php:231
-#: application/views/dbtools/checkresult.php:307
-#: application/views/dbtools/checkresult.php:378
+#: application/views/dbtools/checkresult.php:152
+#: application/views/dbtools/checkresult.php:233
+#: application/views/dbtools/checkresult.php:309
+#: application/views/dbtools/checkresult.php:380
 #: application/views/dbtools/missinggridlist.php:46
 #: application/views/dbtools/showStateQsos.php:23
 #: application/views/debug/index.php:834
@@ -2518,7 +2520,7 @@ msgstr "国"
 #: application/views/awards/iota/index.php:218
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:53
 #: application/views/dashboard/index.php:9
-#: application/views/dbtools/checkresult.php:382
+#: application/views/dbtools/checkresult.php:384
 #: application/views/interface_assets/header.php:231
 #: application/views/logbookadvanced/edit.php:33
 #: application/views/logbookadvanced/index.php:501
@@ -2664,10 +2666,10 @@ msgstr "距離"
 #: application/views/countqsoby/index.php:78 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:16
 #: application/views/dbtools/checkresult.php:91
-#: application/views/dbtools/checkresult.php:149
-#: application/views/dbtools/checkresult.php:232
-#: application/views/dbtools/checkresult.php:308
-#: application/views/dbtools/checkresult.php:377
+#: application/views/dbtools/checkresult.php:151
+#: application/views/dbtools/checkresult.php:234
+#: application/views/dbtools/checkresult.php:310
+#: application/views/dbtools/checkresult.php:379
 #: application/views/dbtools/missinggridlist.php:47
 #: application/views/dbtools/showStateQsos.php:24
 #: application/views/debug/index.php:835 application/views/dxatlas/index.php:31
@@ -2718,7 +2720,8 @@ msgstr "距離"
 #: application/views/user/edit.php:388
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
-#: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/views/visitor/mini.php:184
+#: application/views/wabtool/table.php:19 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
 msgid "Band"
 msgstr "バンド"
@@ -3044,8 +3047,8 @@ msgstr ""
 "力してください。"
 
 #: application/controllers/Operator.php:30
-#: application/models/Logbook_model.php:109
-#: application/models/Logbook_model.php:1556
+#: application/models/Logbook_model.php:163
+#: application/models/Logbook_model.php:1635
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -3961,111 +3964,115 @@ msgstr "DXCC例外の準備： "
 msgid "Preparing DXCC Prefixes: "
 msgstr "DXCC プレフィックスの準備: "
 
-#: application/controllers/Update.php:307
+#: application/controllers/Update.php:294
 msgid "DONE"
 msgstr "終了"
 
-#: application/controllers/Update.php:359
+#: application/controllers/Update.php:367
 msgid "Updating..."
 msgstr "更新中..."
 
-#: application/controllers/Update.php:362
+#: application/controllers/Update.php:370
 msgid "Dxcc Entities:"
 msgstr "Dxcc エンティティ:"
 
-#: application/controllers/Update.php:363
+#: application/controllers/Update.php:371
 msgid "Dxcc Exceptions:"
 msgstr "Dxcc 例外:"
 
-#: application/controllers/Update.php:364
+#: application/controllers/Update.php:372
 msgid "Dxcc Prefixes:"
 msgstr "Dxcc プレフィックス:"
 
-#: application/controllers/Update.php:395
+#: application/controllers/Update.php:403
 msgid "SCP Update complete. Result: "
 msgstr "SCP 更新が完了しました。結果: "
 
-#: application/controllers/Update.php:397
+#: application/controllers/Update.php:405
 msgid "SCP Update failed. Result: "
 msgstr "SCP 更新に失敗しました。結果: "
 
-#: application/controllers/Update.php:434
+#: application/controllers/Update.php:442
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTWユーザーのアップデートが完了しました。結果: "
 
-#: application/controllers/Update.php:436
+#: application/controllers/Update.php:444
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTWユーザーの更新に失敗しました。結果: "
 
-#: application/controllers/Update.php:471
+#: application/controllers/Update.php:479
 msgid "DOK Update complete. Result: "
 msgstr "DOK 更新が完了しました。結果: "
 
-#: application/controllers/Update.php:473
+#: application/controllers/Update.php:481
 msgid "DOK Update failed. Result: "
 msgstr "DOK 更新が完了しました。結果: "
 
-#: application/controllers/Update.php:506
+#: application/controllers/Update.php:514
 msgid "SOTA Update complete. Result: "
 msgstr "SOTAアップデートが完了しました。結果: "
 
-#: application/controllers/Update.php:508
+#: application/controllers/Update.php:516
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA アップデートに失敗しました。結果: "
 
-#: application/controllers/Update.php:541
+#: application/controllers/Update.php:549
 msgid "WWFF Update complete. Result: "
 msgstr "WWFFアップデートが完了しました。結果: "
 
-#: application/controllers/Update.php:543
+#: application/controllers/Update.php:551
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF アップデートに失敗しました。結果: "
 
-#: application/controllers/Update.php:577
+#: application/controllers/Update.php:585
 msgid "HAMqsl Update complete. Result: "
 msgstr "HAMqsl 更新完了。結果： "
 
-#: application/controllers/Update.php:579
+#: application/controllers/Update.php:587
 msgid "HAMqsl Update failed. Result: "
 msgstr "HAMqsl 更新に失敗しました。結果： "
 
-#: application/controllers/Update.php:612
+#: application/controllers/Update.php:620
 msgid "POTA Update complete. Result: "
 msgstr "POTA 更新が完了しました。結果: "
 
-#: application/controllers/Update.php:614
+#: application/controllers/Update.php:622
 msgid "POTA Update failed. Result: "
 msgstr "POTA 更新に失敗しました。結果: "
 
-#: application/controllers/Update.php:663
+#: application/controllers/Update.php:671
 msgid "POTA boundaries update complete. Result: "
 msgstr "POTA境界の更新が完了しました。結果： "
 
-#: application/controllers/Update.php:665
+#: application/controllers/Update.php:673
 msgid "POTA boundaries update failed. Result: "
 msgstr "POTA境界の更新に失敗しました。結果： "
 
-#: application/controllers/Update.php:682
+#: application/controllers/Update.php:690
 msgid "TLE Update complete. Result: "
 msgstr "TLEアップデートが完了しました。結果: "
 
-#: application/controllers/Update.php:684
+#: application/controllers/Update.php:692
 msgid "TLE Update failed. Result: "
 msgstr "TLE 更新に失敗しました。結果: "
 
-#: application/controllers/Update.php:711
+#: application/controllers/Update.php:719
 msgid "LoTW SAT Update"
 msgstr "LoTW SATアップデート"
 
-#: application/controllers/Update.php:739
+#: application/controllers/Update.php:745
+msgid "Hams of Note Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:751
 msgid "Update of Hams of Note"
 msgstr "注目のハムの最新情報"
 
-#: application/controllers/Update.php:779
+#: application/controllers/Update.php:791
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCCグリッドファイルの更新が完了しました。結果: "
 
-#: application/controllers/Update.php:781
+#: application/controllers/Update.php:793
 msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC グリッドファイルの更新に失敗しました。結果: "
 
@@ -4382,13 +4389,32 @@ msgstr "パブリックサーチ"
 msgid "Export Map"
 msgstr "マップをエクスポート"
 
-#: application/controllers/Webadif.php:106
-#: application/controllers/Webadif.php:187
+#: application/controllers/Wabtool.php:41
+#: application/views/dbtools/index.php:145
+msgid "WAB from Gridsquare"
+msgstr "グリッドスクエアからのWAB"
+
+#: application/controllers/Wabtool.php:100
+msgid "No station locations found"
+msgstr "局の位置情報が検出されませんでした"
+
+#: application/controllers/Wabtool.php:107
+#: application/controllers/Wabtool.php:113
+msgid "No QSOs selected"
+msgstr "交信は選択されていません"
+
+#: application/controllers/Wabtool.php:174
+#: application/controllers/Zonechecker.php:483
+msgid "Invalid gridsquare"
+msgstr "無効なグリッドマス"
+
+#: application/controllers/Webadif.php:108
+#: application/controllers/Webadif.php:189
 #: application/views/interface_assets/header.php:586
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dxクラブアップロード"
 
-#: application/controllers/Webadif.php:181
+#: application/controllers/Webadif.php:183
 msgid ""
 "Rejected QSOs were reset. They will be picked up again by the next upload."
 msgstr ""
@@ -4441,10 +4467,6 @@ msgstr "グリッドスクエアゾーンファインダー"
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
 msgstr "GeoJSONデータが利用できません"
-
-#: application/controllers/Zonechecker.php:483
-msgid "Invalid gridsquare"
-msgstr "無効なグリッドマス"
 
 #: application/libraries/Callbook.php:72
 msgid "Lookup not configured. Please review configuration."
@@ -4631,15 +4653,15 @@ msgstr "ラジオの作成と更新"
 msgid "Delete radios"
 msgstr "ラジオボタンを削除する"
 
-#: application/libraries/api_v2/Station_resource.php:45
+#: application/libraries/api_v2/Station_resource.php:49
 msgid "Read station locations"
 msgstr "局の位置を確認する"
 
-#: application/libraries/api_v2/Station_resource.php:46
+#: application/libraries/api_v2/Station_resource.php:50
 msgid "Create and update station locations"
 msgstr "局の場所を作成および更新する"
 
-#: application/libraries/api_v2/Station_resource.php:47
+#: application/libraries/api_v2/Station_resource.php:51
 msgid "Delete station locations"
 msgstr "局の場所を削除する"
 
@@ -5152,28 +5174,28 @@ msgstr "輸入紙"
 msgid "Imported label type"
 msgstr "輸入ラベルタイプ"
 
-#: application/models/Logbook_model.php:371
+#: application/models/Logbook_model.php:428
 msgid "Station not accessible"
 msgstr "利用できない無線局"
 
-#: application/models/Logbook_model.php:1007
+#: application/models/Logbook_model.php:1072
 msgid "Realtime upload disabled"
 msgstr "リアルタイムアップロードが無効になっています"
 
-#: application/models/Logbook_model.php:1546
+#: application/models/Logbook_model.php:1625
 msgid "Station ID not allowed"
 msgstr "許可されてない無線局ID"
 
-#: application/models/Logbook_model.php:1551
+#: application/models/Logbook_model.php:1630
 msgid "No Call given"
 msgstr "コールなし"
 
-#: application/models/Logbook_model.php:1627
-#: application/models/Logbook_model.php:1846
+#: application/models/Logbook_model.php:1706
+#: application/models/Logbook_model.php:1924
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:5124
+#: application/models/Logbook_model.php:5210
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5181,7 +5203,7 @@ msgstr ""
 "%s との QSO をインポート中に、%s のコールサインが %s と異なるため：スキップさ"
 "れました"
 
-#: application/models/Logbook_model.php:5132
+#: application/models/Logbook_model.php:5218
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5190,7 +5212,7 @@ msgstr ""
 "局位置 %s を持つ %s の QSO をインポート中に、異なる局位置 %s が検出されまし"
 "た：スキップしました"
 
-#: application/models/Logbook_model.php:5148
+#: application/models/Logbook_model.php:5234
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5198,7 +5220,7 @@ msgstr ""
 "有効な日付のないQSOをインポートしようとしました。このQSOはインポートされませ"
 "んでした。無効です"
 
-#: application/models/Logbook_model.php:5158
+#: application/models/Logbook_model.php:5244
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5207,7 +5229,7 @@ msgstr ""
 "交信は %s : コールサインを指定せずにQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です。"
 
-#: application/models/Logbook_model.php:5165
+#: application/models/Logbook_model.php:5251
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5216,7 +5238,7 @@ msgstr ""
 "交信は %s : 無効なコールサインで QSO をインポートしようとしました。この QSO "
 "はインポートされませんでした。無効な入力は '%s '。"
 
-#: application/models/Logbook_model.php:5235
+#: application/models/Logbook_model.php:5321
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5225,7 +5247,7 @@ msgstr ""
 "交信は %s : バンド '%s ' はバンド構成に含まれていません。この交信はインポート"
 "されませんでした。"
 
-#: application/models/Logbook_model.php:5242
+#: application/models/Logbook_model.php:5328
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5234,63 +5256,63 @@ msgstr ""
 "%s でのQSO: バンドが指定されていないQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です"
 
-#: application/models/Logbook_model.php:5517
+#: application/models/Logbook_model.php:5606
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5528
+#: application/models/Logbook_model.php:5617
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5591
+#: application/models/Logbook_model.php:5680
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5967
+#: application/models/Logbook_model.php:6056
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:6034
-#: application/models/Logbook_model.php:6134
+#: application/models/Logbook_model.php:6123
+#: application/models/Logbook_model.php:6223
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:6042
+#: application/models/Logbook_model.php:6131
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:6048
+#: application/models/Logbook_model.php:6137
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:6052
+#: application/models/Logbook_model.php:6141
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:6056
+#: application/models/Logbook_model.php:6145
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:6059
+#: application/models/Logbook_model.php:6148
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:6062
+#: application/models/Logbook_model.php:6151
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:6137
+#: application/models/Logbook_model.php:6226
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
-#: application/models/Logbook_model.php:6140
+#: application/models/Logbook_model.php:6229
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:6561
+#: application/models/Logbook_model.php:6650
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5589,6 +5611,7 @@ msgstr "違い"
 #: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:1026
 #: application/views/visitor/layout/footer.php:168
+#: application/views/wabtool/index.php:20
 msgid "All"
 msgstr "全て"
 
@@ -6240,10 +6263,10 @@ msgstr "何も見つかりません!"
 #: application/views/contesting/logger/components/qso-form.php:148
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:343
 #: application/views/dbtools/checkresult.php:89
-#: application/views/dbtools/checkresult.php:147
-#: application/views/dbtools/checkresult.php:228
-#: application/views/dbtools/checkresult.php:304
-#: application/views/dbtools/checkresult.php:375
+#: application/views/dbtools/checkresult.php:149
+#: application/views/dbtools/checkresult.php:230
+#: application/views/dbtools/checkresult.php:306
+#: application/views/dbtools/checkresult.php:377
 #: application/views/dbtools/showUpdateResult.php:43
 #: application/views/dbtools/showUpdateResult.php:106
 #: application/views/dcl_views/index.php:27
@@ -6279,6 +6302,7 @@ msgstr "何も見つかりません!"
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:620
 #: application/views/visitor/mini.php:183
+#: application/views/wabtool/table.php:18
 #: application/views/widgets/lotw_upload.php:97
 #: application/views/zonechecker/result.php:64
 msgid "Callsign"
@@ -6362,8 +6386,8 @@ msgstr ""
 #: application/views/calltester/call_info.php:55
 #: application/views/contesting/logger/components/qso-form.php:146
 #: application/views/dashboard/index.php:339
-#: application/views/dbtools/checkresult.php:229
-#: application/views/dbtools/checkresult.php:305
+#: application/views/dbtools/checkresult.php:231
+#: application/views/dbtools/checkresult.php:307
 #: application/views/debug/index.php:831
 #: application/views/distancerecords/index.php:20
 #: application/views/eqsl/analysis.php:36
@@ -6411,8 +6435,8 @@ msgstr "日付"
 #: application/views/contesting/logger/components/qso-form.php:147
 #: application/views/contesting/manager/export_cbr.php:158
 #: application/views/dashboard/index.php:341
-#: application/views/dbtools/checkresult.php:230
-#: application/views/dbtools/checkresult.php:306
+#: application/views/dbtools/checkresult.php:232
+#: application/views/dbtools/checkresult.php:308
 #: application/views/debug/index.php:832
 #: application/views/distancerecords/index.php:21
 #: application/views/eqsl/analysis.php:37
@@ -7778,6 +7802,7 @@ msgstr "グリッドアクティベーション"
 #: application/views/contesting/logger/components/qso-form.php:155
 #: application/views/satellite/skedtable.php:40
 #: application/views/stationsetup/locationlist.php:14
+#: application/views/wabtool/table.php:20
 msgid "Grid"
 msgstr "グリッド"
 
@@ -7955,7 +7980,7 @@ msgstr "テーブル"
 #: application/views/dashboard/index.php:308
 #: application/views/dashboard/index.php:323
 #: application/views/dashboard/index.php:393
-#: application/views/dbtools/checkresult.php:156
+#: application/views/dbtools/checkresult.php:158
 #: application/views/logbookadvanced/index.php:897
 #: application/views/logbookadvanced/useroptions.php:7
 #: application/views/statistics/antennaanalytics.php:86
@@ -8096,6 +8121,7 @@ msgstr "%s %%が 全体で確認済み"
 #: application/views/interface_assets/footer.php:49
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/wabtool/table.php:23
 msgid "Confirmed"
 msgstr "確認済み"
 
@@ -9687,7 +9713,7 @@ msgstr "QSOリスト"
 #: application/views/map/qso_map.php:31
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
-#: application/views/view_log/qso.php:72
+#: application/views/view_log/qso.php:72 application/views/wabtool/table.php:17
 msgid "Date/Time"
 msgstr "日付/時刻"
 
@@ -9858,6 +9884,7 @@ msgid "List"
 msgstr "リスト"
 
 #: application/views/awards/wab/list.php:6
+#: application/views/wabtool/table.php:21
 msgid "WAB Square"
 msgstr "WABスクエア"
 
@@ -9865,8 +9892,8 @@ msgstr "WABスクエア"
 #: application/views/contesting/manager/export_cbr.php:222
 #: application/views/contesting/manager/export_cbr.php:233
 #: application/views/dbtools/checkresult.php:107
-#: application/views/dbtools/checkresult.php:166
-#: application/views/dbtools/checkresult.php:393
+#: application/views/dbtools/checkresult.php:168
+#: application/views/dbtools/checkresult.php:395
 #: application/views/logbookadvanced/edit.php:181
 #: application/views/logbookadvanced/edit.php:188
 #: application/views/logbookadvanced/edit.php:196
@@ -10294,8 +10321,8 @@ msgstr "WPXアワードの進捗状況を見る"
 #: application/views/calltester/comparison_result.php:176
 #: application/views/calltester/result.php:52
 #: application/views/dbtools/checkresult.php:90
-#: application/views/dbtools/checkresult.php:148
-#: application/views/dbtools/checkresult.php:376
+#: application/views/dbtools/checkresult.php:150
+#: application/views/dbtools/checkresult.php:378
 #: application/views/oqrs/showrequests.php:91
 #: application/views/simplefle/index.php:78
 #: application/views/zonechecker/result.php:65
@@ -11652,8 +11679,8 @@ msgstr "DXCC クラスでのみ見つかった問題 (ログブック モデル�
 #: application/views/calltester/comparison_result.php:177
 #: application/views/calltester/result.php:53
 #: application/views/dbtools/checkresult.php:94
-#: application/views/dbtools/checkresult.php:152
-#: application/views/dbtools/checkresult.php:380
+#: application/views/dbtools/checkresult.php:154
+#: application/views/dbtools/checkresult.php:382
 #: application/views/zonechecker/result.php:67
 msgid "Station Profile"
 msgstr "無線局プロフィール"
@@ -11720,6 +11747,7 @@ msgstr "コールサインDXCC識別"
 #: application/views/dbtools/index.php:33
 #: application/views/interface_assets/footer.php:897
 #: application/views/logbookadvanced/index.php:876
+#: application/views/wabtool/index.php:23
 #: application/views/zonechecker/index.php:16
 msgid "Callsign: "
 msgstr "コールサイン: "
@@ -12822,8 +12850,8 @@ msgstr "パス"
 #: application/views/contesting/manager/export_cbr.php:132
 #: application/views/contesting/manager/import_legacy.php:39
 #: application/views/contesting/manager/index.php:35
-#: application/views/dbtools/checkresult.php:237
-#: application/views/dbtools/checkresult.php:313
+#: application/views/dbtools/checkresult.php:239
+#: application/views/dbtools/checkresult.php:315
 #: application/views/dbtools/missinggridlist.php:48
 #: application/views/dbtools/showStateQsos.php:28
 #: application/views/logbookadvanced/attachContest.php:15
@@ -12853,6 +12881,7 @@ msgstr "パス"
 #: application/views/view_log/qso.php:692
 #: application/views/view_log/qso.php:699
 #: application/views/view_log/qso.php:704
+#: application/views/wabtool/table.php:22
 msgid "Station"
 msgstr "無線局"
 
@@ -13374,8 +13403,8 @@ msgstr ""
 #: application/views/contesting/manager/export_cbr.php:221
 #: application/views/contesting/manager/export_cbr.php:234
 #: application/views/dbtools/checkresult.php:107
-#: application/views/dbtools/checkresult.php:166
-#: application/views/dbtools/checkresult.php:393
+#: application/views/dbtools/checkresult.php:168
+#: application/views/dbtools/checkresult.php:395
 #: application/views/logbookadvanced/edit.php:180
 #: application/views/logbookadvanced/edit.php:187
 #: application/views/logbookadvanced/edit.php:195
@@ -14599,33 +14628,33 @@ msgstr "更新は、大陸が空欄のQSOに対してのみ大陸を設定しま
 msgid "DXCC Check Results"
 msgstr "DXCCチェック結果"
 
-#: application/views/dbtools/checkresult.php:73
-msgid "Callsigns tested: "
-msgstr "テスト済みのコールサイン: "
-
-#: application/views/dbtools/checkresult.php:74
-msgid "Execution time: "
-msgstr "実行時間: "
-
-#: application/views/dbtools/checkresult.php:75
-msgid "Number of potential QSOs with wrong DXCC: "
-msgstr "間違った DXCC との潜在的な QSO の数: "
+#: application/views/dbtools/checkresult.php:77
+msgid ""
+"If checked, 'Check all' and 'Update selected' also include QSOs with DXCC "
+"none, not found or invalid"
+msgstr ""
+"「すべてチェック」と「選択した項目を更新」にチェックを入れると、DXCCが「な"
+"し」、「見つからない」、「無効」のQSOも含まれます"
 
 #: application/views/dbtools/checkresult.php:80
-#: application/views/dbtools/checkresult.php:222
-#: application/views/dbtools/checkresult.php:298
+#: application/views/dbtools/checkresult.php:224
+#: application/views/dbtools/checkresult.php:300
 msgid "Update selected"
 msgstr "選択した更新"
 
-#: application/views/dbtools/checkresult.php:134
+#: application/views/dbtools/checkresult.php:131
+msgid "No incorrect DXCCs were found."
+msgstr "誤ったDXCCは見つかりませんでした。"
+
+#: application/views/dbtools/checkresult.php:136
 msgid "Gridsquare Check Results"
 msgstr "グリッドスクエア チェック結果"
 
-#: application/views/dbtools/checkresult.php:141
+#: application/views/dbtools/checkresult.php:143
 msgid "These QSOs MAY have incorrect gridsquares."
 msgstr "これらの QSO ではグリッドスクエアが間違っている可能性があります。"
 
-#: application/views/dbtools/checkresult.php:142
+#: application/views/dbtools/checkresult.php:144
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
@@ -14633,25 +14662,25 @@ msgstr ""
 "結果は正しいDXCCに依存します。グリッドスクエアリストはTQSLグリッドスクエア"
 "データベースから取得されます。"
 
-#: application/views/dbtools/checkresult.php:155
+#: application/views/dbtools/checkresult.php:157
 msgid "DXCC Gridsquare"
 msgstr "DXCC グリッドスクエア"
 
-#: application/views/dbtools/checkresult.php:179
+#: application/views/dbtools/checkresult.php:181
 #: application/views/dbtools/index.php:6
 #: application/views/logbookadvanced/index.php:77
 msgid "Show more"
 msgstr "もっと見る"
 
-#: application/views/dbtools/checkresult.php:185
+#: application/views/dbtools/checkresult.php:187
 msgid "View on map"
 msgstr "地図で見る"
 
-#: application/views/dbtools/checkresult.php:210
+#: application/views/dbtools/checkresult.php:212
 msgid "CQ Zone Check Results"
 msgstr "CQゾーンチェック結果"
 
-#: application/views/dbtools/checkresult.php:212
+#: application/views/dbtools/checkresult.php:214
 msgid ""
 "The following QSOs were found to have a different CQ zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
@@ -14659,11 +14688,11 @@ msgstr ""
 "次の QSO は、この DXCC が通常持っているものとは異なる CQ ゾーンを持っているこ"
 "とが判明しました (最大 5000 の QSO が表示されます)。"
 
-#: application/views/dbtools/checkresult.php:217
+#: application/views/dbtools/checkresult.php:219
 msgid "Force update even if DXCC covers multiple CQ zones"
 msgstr "DXCC が複数の CQ ゾーンをカバーしている場合でも強制的に更新する"
 
-#: application/views/dbtools/checkresult.php:218
+#: application/views/dbtools/checkresult.php:220
 msgid ""
 "The update function can only set the main CQ zone which is assigned to the "
 "DXCC. If the DXCC covers multiple CQ zones there is a chance that this is "
@@ -14677,20 +14706,20 @@ msgstr ""
 "このチェックボックスをオンにすると、この設定が上書きされますが、誤ったデータ"
 "が表示される可能性があります。注意してご使用ください!"
 
-#: application/views/dbtools/checkresult.php:235
+#: application/views/dbtools/checkresult.php:237
 msgid "DXCC CQ Zone"
 msgstr "DXCC CQゾーン"
 
-#: application/views/dbtools/checkresult.php:281
-#: application/views/dbtools/checkresult.php:357
+#: application/views/dbtools/checkresult.php:283
+#: application/views/dbtools/checkresult.php:359
 msgid "No incorrect CQ Zones were found."
 msgstr "不正な CQ ゾーンは見つかりませんでした。"
 
-#: application/views/dbtools/checkresult.php:286
+#: application/views/dbtools/checkresult.php:288
 msgid "ITU Zone Check Results"
 msgstr "ITUゾーンチェック結果"
 
-#: application/views/dbtools/checkresult.php:288
+#: application/views/dbtools/checkresult.php:290
 msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
@@ -14698,11 +14727,11 @@ msgstr ""
 "次の QSO は、この DXCC が通常持つ ITU ゾーンとは異なる ITU ゾーンを持つことが"
 "判明しました (最大 5000 件の QSO が表示されます)。"
 
-#: application/views/dbtools/checkresult.php:293
+#: application/views/dbtools/checkresult.php:295
 msgid "Force update even if DXCC covers multiple ITU zones"
 msgstr "DXCC が複数の ITU ゾーンをカバーしている場合でも強制的に更新する"
 
-#: application/views/dbtools/checkresult.php:294
+#: application/views/dbtools/checkresult.php:296
 msgid ""
 "The update function can only set the main ITU zone which is assigned to the "
 "DXCC. If the DXCC covers multiple ITU zones there is a chance that this is "
@@ -14716,19 +14745,19 @@ msgstr ""
 "す。このチェックボックスをオンにすると、この設定が上書きされますが、誤った"
 "データが表示される可能性があります。ご注意ください!"
 
-#: application/views/dbtools/checkresult.php:311
+#: application/views/dbtools/checkresult.php:313
 msgid "DXCC ITU Zone"
 msgstr "DXCC ITUゾーン"
 
-#: application/views/dbtools/checkresult.php:362
+#: application/views/dbtools/checkresult.php:364
 msgid "IOTA Check Results"
 msgstr "IOTAチェック結果"
 
-#: application/views/dbtools/checkresult.php:369
+#: application/views/dbtools/checkresult.php:371
 msgid "These QSOs MAY have an incorrect IOTA reference."
 msgstr "これらの QSO には誤った IOTA 参照がある可能性があります。"
 
-#: application/views/dbtools/checkresult.php:370
+#: application/views/dbtools/checkresult.php:372
 msgid ""
 "Results depends on the correct DXCC, and it will only be checked against "
 "current DXCC. False positive results may occur."
@@ -14736,11 +14765,11 @@ msgstr ""
 "結果は正しいDXCCに依存し、現在のDXCCとのみ照合されます。誤検知が発生する可能"
 "性があります。"
 
-#: application/views/dbtools/checkresult.php:381
+#: application/views/dbtools/checkresult.php:383
 msgid "QSO DXCC"
 msgstr "QSO DXCC"
 
-#: application/views/dbtools/checkresult.php:383
+#: application/views/dbtools/checkresult.php:385
 msgid "IOTA DXCC"
 msgstr "IOTA DXCC"
 
@@ -14873,6 +14902,14 @@ msgstr "IOTAとDXCCを比較する"
 #: application/views/dbtools/index.php:135
 msgid "Use Wavelog to check IOTA against DXCC"
 msgstr "Wavelogを使用してIOTAとDXCCをチェックする"
+
+#: application/views/dbtools/index.php:146
+msgid "Batch assign WAB squares from logged gridsquares"
+msgstr "ログに記録されたグリッドスクエアからWABスクエアを一括割り当てする"
+
+#: application/views/dbtools/index.php:149
+msgid "Open"
+msgstr "開ける"
 
 #: application/views/dbtools/missinggridlist.php:12
 #, php-format
@@ -24754,6 +24791,30 @@ msgstr "コールサインを入力してください！"
 msgid "No QSOs"
 msgstr "交信なし"
 
+#: application/views/wabtool/index.php:14
+msgid "Batch Assign WAB from Gridsquare"
+msgstr "GridsquareからWABを一括割り当てする"
+
+#: application/views/wabtool/index.php:28
+msgid "Scan Log"
+msgstr "スキャンログ"
+
+#: application/views/wabtool/index.php:31
+msgid "Apply WAB squares"
+msgstr "WABスクエアを適用する"
+
+#: application/views/wabtool/index.php:32
+msgid "Write the computed WAB square into the selected QSOs?"
+msgstr "計算されたWABスクエアを選択したQSOに書き込みますか？"
+
+#: application/views/wabtool/index.php:33
+msgid "Apply Selected"
+msgstr "選択した項目を適用する"
+
+#: application/views/wabtool/table.php:10
+msgid "No 100% matching QSOs found."
+msgstr "一致するQSOは見つかりませんでした。"
+
 #: application/views/webadif/export.php:22
 msgid ""
 "Here you can see and upload all QSOs which have not been previously uploaded "
@@ -24989,6 +25050,15 @@ msgstr "Clublog Log を検索"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTWユーザー。最後のアップロードは "
+
+#~ msgid "Callsigns tested: "
+#~ msgstr "テスト済みのコールサイン: "
+
+#~ msgid "Execution time: "
+#~ msgstr "実行時間: "
+
+#~ msgid "Number of potential QSOs with wrong DXCC: "
+#~ msgstr "間違った DXCC との潜在的な QSO の数: "
 
 #~ msgid "Verified (Match)"
 #~ msgstr "検証済み（一致）"

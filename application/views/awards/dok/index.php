@@ -38,8 +38,8 @@
     ?>
     <form class="form" action="<?php echo site_url('awards/dok'); ?>" method="post" enctype="multipart/form-data">
         <div class="mb-4 text-center">
-            <div class="dropdown" data-bs-auto-close="outside">
-                <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
+            <div class="dropdown">
+                <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><?= __("Filters") ?></button>
                 <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
                 <button id="button3id" type="button" name="button3id" class="btn btn-sm btn-info" onclick=" window.open('https://dd3ah.de/dokmap/?lat=51.3035&lng=11.1475&zoom=7<?php print implode(',', $doks); ?>','_blank')"><i class="fas fa-globe-americas"></i> <?= __("Map"); ?></button>
 

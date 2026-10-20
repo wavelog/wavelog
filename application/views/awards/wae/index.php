@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="card-body">
         <form class="form" action="<?php echo site_url('awards/wae'); ?>" method="post" enctype="multipart/form-data">
             <div class="mb-4 text-center">
-				<div class="dropdown" data-bs-auto-close="outside">
-					<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
+				<div class="dropdown">
+					<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><?= __("Filters") ?></button>
 					<button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
 
 			<!-- Dropdown Menu with Filter Content -->

@@ -76,7 +76,7 @@
 										<a href="<?php echo html_escape(site_url('api/auth/' . rawurlencode($api_key))); ?>" target="_blank" class="btn btn-primary btn-sm"><?= __("Test"); ?></a>
 
 										<?php
-											$cfnm_delete = sprintf(__("Are you sure you want delete the API Key %s?"), '"' . ($row->description ?: __("<noname>")) . '"');
+											$cfnm_delete = sprintf(html_entity_decode(__("Are you sure you want delete the API Key %s?"), ENT_QUOTES, 'UTF-8'), '"' . ($row->description ?: html_entity_decode(__("<noname>"), ENT_QUOTES, 'UTF-8')) . '"');
 										?>
 										<form method="post" action="<?php echo site_url('api/delete'); ?>" style="display:inline;">
 											<input type="hidden" name="key" value="<?php echo html_escape($api_key); ?>">
@@ -166,7 +166,7 @@
 								<?php } ?>
 								<td>
 									<?php
-										$cfnm_delete_token = sprintf(__("Are you sure you want delete the API Token %s?"), '"' . $row->token_name . '"');
+										$cfnm_delete_token = sprintf(html_entity_decode(__("Are you sure you want delete the API Token %s?"), ENT_QUOTES, 'UTF-8'), '"' . $row->token_name . '"');
 									?>
 									<form method="post" action="<?php echo site_url('api_token/delete'); ?>" style="display:inline;">
 										<input type="hidden" name="id" value="<?php echo (int) $row->id; ?>">
