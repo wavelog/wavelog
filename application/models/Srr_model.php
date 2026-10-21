@@ -4,6 +4,15 @@ class Srr_model extends CI_Model {
 
 	private $api_url = 'https://award.srr.ru/api/v1';
 
+	// Number of QSOs sent in the first request of an upload
+	private $probe_size = 10;
+
+	// Number of requests sent at the same time, 0 = all at once
+	private $max_parallel = 0;
+
+	// Minutes after the upload until QSOs in the SRR inbox are verified
+	private $verify_after = 15;
+
 	/**
 	 * Returns the stored SRR API key of a user
 	 *
@@ -153,6 +162,10 @@ class Srr_model extends CI_Model {
 	/**
 	 * Uploads all not yet uploaded QSOs of a station profile to SRR.
 	 *
+	 * A first request with a few QSOs checks that SRR accepts them, then all other
+	 * QSOs are sent in requests of 100 QSOs at the same time. QSOs which SRR did not
+	 * process yet (inbox) are stored and verified later by verify_pending().
+	 *
 	 * QSOs on 2m and above need a PROP_MODE. If there are QSOs without one,
 	 * nothing is uploaded and the QSOs are returned (status "propmode") so the
 	 * user can decide. The RDA district of each QSO (MY_CNTY) is checked against
@@ -165,7 +178,7 @@ class Srr_model extends CI_Model {
 	 * @param bool $propmode_los Send QSOs on 2m and above without PROP_MODE with PROP_MODE LOS
 	 * @param bool $interactive FALSE (cron): skip QSOs instead of returning them for a dialog
 	 * @param bool $without_rda Send QSOs without a valid RDA without MY_CNTY
-	 * @return array status, infomessage, errormessages and the QSOs for the dialogs (qsos, rda_qsos)
+	 * @return array status, infomessage, errormessages, the number of uploaded QSOs (uploaded) and the QSOs for the dialogs (qsos, rda_qsos)
 	 */
 	function upload_station($station_profile, $key, $propmode_los = false, $interactive = true, $without_rda = false) {
 		$result = array('status' => 'OK', 'infomessage' => '', 'errormessages' => array(), 'qsos' => array());
@@ -269,40 +282,82 @@ class Srr_model extends CI_Model {
 
 		$uploaded = 0;
 		$failed = 0;
-		foreach (array_chunk($upload_qsos, 100) as $chunk) {
-			$records = $this->build_records($chunk);
+		$result['uploaded'] = 0;
 
-			$response = $this->post_qsos($records, $key);
-			if ($response['error'] != '') {
-				$result['status'] = 'Error';
-				$result['errormessages'][] = $station_text.__("Upload Failed")." - ".$response['error'];
-				break;
-			}
+		// A first small request checks that SRR accepts our QSOs before all others are sent
+		$probe = array_slice($upload_qsos, 0, $this->probe_size);
+		$chunks = array_chunk(array_slice($upload_qsos, $this->probe_size), 100);
+		$upload_qsos = '';
 
-			$qso_errors = array();
-			foreach (($response['data']->validation_errors ?? array()) as $validation_error) {
-				$qso_errors[$validation_error->index] = $validation_error->message;
-			}
+		$response = $this->post_qsos($this->build_records($probe), $key);
+		if ($response['error'] != '') {
+			$result['status'] = 'Error';
+			$result['errormessages'][] = $station_text.__("Upload Failed")." - ".$response['error'];
+			return $result;
+		}
 
-			foreach (($response['data']->process->errors ?? array()) as $process_error) {
-				// A duplicate means the QSO is already known by SRR
-				if (strpos($process_error->message ?? '', 'Duplicate entry') !== 0) {
-					$qso_errors[$process_error->index] = $process_error->message;
-				}
-			}
+		$marked = $this->mark_chunk($probe, $response['data'], $station_text);
+		$uploaded += $marked['uploaded'];
+		$failed += $marked['failed'];
+		$result['errormessages'] = array_merge($result['errormessages'], $marked['errormessages']);
 
-			foreach ($chunk as $index => $qso) {
-				if (isset($qso_errors[$index])) {
-					$this->Logbook_model->mark_srr_sent($qso->COL_PRIMARY_KEY, 'I');
-					$result['errormessages'][] = $station_text.$qso->COL_CALL." ".date('Y-m-d H:i', strtotime($qso->COL_TIME_ON))." ".$qso->COL_BAND." - ".$qso_errors[$index];
-					$failed++;
+		if (($marked['uploaded'] == 0) && (count($chunks) > 0)) {
+			$result['status'] = 'Error';
+			$result['errormessages'][] = $station_text.__("All test QSOs were rejected by SRR, the remaining QSOs were not uploaded.");
+			return $result;
+		}
+
+		// All other QSOs are sent in requests of 100 QSOs at the same time
+		$mh = curl_multi_init();
+		$active_handles = array();
+		$queue_index = 0;
+		$queue_count = count($chunks);
+		$max_parallel = ($this->max_parallel > 0) ? $this->max_parallel : $queue_count;
+
+		while ($queue_index < $queue_count && count($active_handles) < $max_parallel) {
+			$ch = $this->srr_handle('POST', '/qso', $key, $this->qso_payload($this->build_records($chunks[$queue_index])));
+			curl_multi_add_handle($mh, $ch);
+			$active_handles[(int)$ch] = array('ch' => $ch, 'chunk' => $queue_index);
+			$queue_index++;
+		}
+
+		while (count($active_handles) > 0) {
+			curl_multi_exec($mh, $running);
+
+			while ($info = curl_multi_info_read($mh)) {
+				$ch = $info['handle'];
+				$chunk = $chunks[$active_handles[(int)$ch]['chunk']];
+				unset($active_handles[(int)$ch]);
+				curl_multi_remove_handle($mh, $ch);
+
+				$response = $this->post_result($this->srr_response($ch, curl_multi_getcontent($ch), $info['result']));
+				if ($response['error'] != '') {
+					// The QSOs of this request stay not uploaded and are sent next time
+					$result['status'] = 'Error';
+					$result['errormessages'][] = $station_text.__("Upload Failed")." - ".$response['error'];
 				} else {
-					$this->Logbook_model->mark_srr_sent($qso->COL_PRIMARY_KEY);
-					$uploaded++;
+					$marked = $this->mark_chunk($chunk, $response['data'], $station_text);
+					$uploaded += $marked['uploaded'];
+					$failed += $marked['failed'];
+					$result['errormessages'] = array_merge($result['errormessages'], $marked['errormessages']);
 				}
+
+				if ($queue_index < $queue_count) {
+					$new_ch = $this->srr_handle('POST', '/qso', $key, $this->qso_payload($this->build_records($chunks[$queue_index])));
+					curl_multi_add_handle($mh, $new_ch);
+					$active_handles[(int)$new_ch] = array('ch' => $new_ch, 'chunk' => $queue_index);
+					$queue_index++;
+				}
+			}
+
+			if (count($active_handles) > 0) {
+				curl_multi_select($mh, 1.0);
 			}
 		}
 
+		curl_multi_close($mh);
+
+		$result['uploaded'] = $uploaded;
 		$result['infomessage'] = $station_text.__("Upload Successful")." ".$uploaded." QSOs";
 		if ($failed > 0) {
 			$result['infomessage'] .= ", ".sprintf(__("%d QSO(s) rejected by SRR and marked as invalid"), $failed);
@@ -343,16 +398,13 @@ class Srr_model extends CI_Model {
 			$qslsince = $this->srr_last_qsl_rcvd_date($user_id);
 		}
 
-		// The export contains all QSOs of the SRR account, so one request for the own and one for each delegated callsign is enough
-		$callsigns = array();
-		if (isset($me->callsigns[0]->callsign)) {
-			$callsigns[] = $me->callsigns[0]->callsign;
+		// QSOs which SRR did not process during the upload are verified first
+		$verified = $this->verify_pending($user_id, $key, $me);
+		if ($verified != '') {
+			$verified .= "<br>";
 		}
-		foreach (($me->delegated_callsigns ?? array()) as $delegated) {
-			if (($delegated->callsign ?? '') != '') {
-				$callsigns[] = $delegated->callsign;
-			}
-		}
+
+		$callsigns = $this->srr_callsigns($me);
 
 		$updated = 0;
 		$known = 0;
@@ -361,7 +413,7 @@ class Srr_model extends CI_Model {
 		foreach ($callsigns as $callsign) {
 			$result = $this->srr_request('GET', '/qso/export?callsign='.urlencode($callsign).'&source=all&qslsince='.$qslsince, $key);
 			if ($result['error'] != '' || $result['httpcode'] != 200) {
-				return $callsign.": ".__("Download failed")." - ".($result['error'] != '' ? $result['error'] : __("HTTP Code").": ".$result['httpcode']);
+				return $verified.$callsign.": ".__("Download failed")." - ".($result['error'] != '' ? $result['error'] : __("HTTP Code").": ".$result['httpcode']);
 			}
 
 			$parser = new ADIF_Parser();
@@ -396,7 +448,7 @@ class Srr_model extends CI_Model {
 			}
 		}
 
-		$r = sprintf(__("%d confirmation(s) downloaded from SRR, %d already known, %d QSO(s) not found in the logbook."), $updated, $known, $not_found);
+		$r = $verified.sprintf(__("%d confirmation(s) downloaded from SRR, %d already known, %d QSO(s) not found in the logbook."), $updated, $known, $not_found);
 		if ($table != '') {
 			$r .= '<table class="table table-sm table-striped mt-2"><thead><tr><th>'.__("Station callsign").'</th><th>'.__("Date").'</th><th>'.__("Callsign").'</th><th>'.__("Band").'</th><th>'.__("Mode").'</th><th>'.__("RDA").'</th><th>'.__("QSL Date").'</th></tr></thead><tbody>'.$table.'</tbody></table>';
 		}
@@ -415,6 +467,168 @@ class Srr_model extends CI_Model {
 			WHERE station_profile.user_id = ?";
 		$query = $this->db->query($sql, array($user_id));
 		return $query->row()->MAXDATE ?? '19000101';
+	}
+
+	/**
+	 * Stores uploaded QSOs which SRR accepted but did not process yet (inbox)
+	 *
+	 * @param array $qso_ids QSO primary keys
+	 * @return void
+	 */
+	function add_pending($qso_ids) {
+		if (empty($qso_ids)) {
+			return;
+		}
+		$bindings = array();
+		$upload_date = date("Y-m-d H:i:s");
+		foreach ($qso_ids as $qso_id) {
+			$bindings[] = $qso_id;
+			$bindings[] = $upload_date;
+		}
+		$sql = "INSERT INTO srr_pending (qso_id, upload_date) VALUES ".implode(',', array_fill(0, count($qso_ids), '(?, ?)'))."
+			ON DUPLICATE KEY UPDATE upload_date = VALUES(upload_date)";
+		$this->db->query($sql, $bindings);
+	}
+
+	/**
+	 * Verifies the uploaded QSOs of a user which SRR did not process during the upload (inbox).
+	 * QSOs found in the SRR export stay uploaded, QSOs not found are marked as invalid.
+	 * Only QSOs uploaded more than verify_after minutes ago are checked.
+	 *
+	 * @param int $user_id User id
+	 * @param string $key SRR API key
+	 * @param object $me SRR user from get_srr_me()
+	 * @return string Result message, empty if there was nothing to verify
+	 */
+	function verify_pending($user_id, $key, $me) {
+		$this->load->model('Logbook_model');
+		$this->load->model('Stations');
+		if (!$this->load->is_loaded('adif_parser')) {
+			$this->load->library('adif_parser');
+		}
+
+		// QSOs which were deleted or set to another SRR state in the meantime need no verification
+		$sql = "DELETE srr_pending FROM srr_pending
+			LEFT OUTER JOIN " . $this->config->item('table_name') . " qsos ON qsos.COL_PRIMARY_KEY = srr_pending.qso_id
+			WHERE qsos.COL_PRIMARY_KEY IS NULL OR coalesce(qsos.COL_SRR_QSL_SENT, '') <> 'Y'";
+		$this->db->query($sql);
+
+		$sql = "SELECT srr_pending.qso_id, qsos.COL_CALL, qsos.COL_TIME_ON, qsos.COL_BAND
+			FROM srr_pending
+			INNER JOIN " . $this->config->item('table_name') . " qsos ON qsos.COL_PRIMARY_KEY = srr_pending.qso_id
+			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
+			WHERE station_profile.user_id = ? AND srr_pending.upload_date <= ?
+			ORDER BY qsos.COL_TIME_ON";
+		$rows = $this->db->query($sql, array($user_id, date("Y-m-d H:i:s", time() - $this->verify_after * 60)))->result();
+
+		$callsigns = $this->srr_callsigns($me);
+		if (empty($rows) || empty($callsigns)) {
+			return '';
+		}
+
+		$pending = array();
+		foreach ($rows as $row) {
+			$pending[$row->qso_id] = $row;
+		}
+		$from = date('Ymd', strtotime($rows[0]->COL_TIME_ON));
+		$to = date('Ymd', strtotime($rows[count($rows) - 1]->COL_TIME_ON));
+		$station_ids = $this->Stations->all_station_ids_of_user($user_id);
+
+		$verified_ids = array();
+		foreach ($callsigns as $callsign) {
+			$result = $this->srr_request('GET', '/qso/export?callsign='.urlencode($callsign).'&source=all&from='.$from.'&to='.$to, $key);
+			if ($result['error'] != '' || $result['httpcode'] != 200) {
+				return $callsign.": ".__("Verification of the uploaded QSOs failed")." - ".($result['error'] != '' ? $result['error'] : __("HTTP Code").": ".$result['httpcode']);
+			}
+
+			$parser = new ADIF_Parser();
+			$parser->feed($result['raw']);
+			while ($record = $parser->get_record()) {
+				$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
+				$status = $this->Logbook_model->import_check($time_on, $record['call'], strtolower($record['band']), $record['mode'], $record['prop_mode'] ?? '', $record['sat_name'] ?? '', $record['station_callsign'], $station_ids);
+				if (($status[0] == "Found") && isset($pending[$status[1]])) {
+					$verified_ids[] = $status[1];
+					unset($pending[$status[1]]);
+				}
+			}
+		}
+
+		$r = sprintf(__("%d uploaded QSO(s) verified on SRR, %d not found and marked as invalid."), count($verified_ids), count($pending));
+		foreach ($pending as $qso_id => $qso) {
+			$this->Logbook_model->mark_srr_sent($qso_id, 'I');
+			$r .= "<br>".$qso->COL_CALL." ".date('Y-m-d H:i', strtotime($qso->COL_TIME_ON))." ".$qso->COL_BAND." - ".__("not found on SRR after processing. Please check the API requests in your SRR panel.");
+		}
+
+		$this->db->where_in('qso_id', array_merge($verified_ids, array_keys($pending)));
+		$this->db->delete('srr_pending');
+
+		return $r;
+	}
+
+	/**
+	 * Marks the QSOs of one request by the SRR response. QSOs with an error are
+	 * marked as invalid, all others as uploaded. If SRR did not process all
+	 * accepted QSOs yet (inbox), the uploaded QSOs are stored for a later verification.
+	 *
+	 * @param array $chunk QSO rows of the request
+	 * @param object $data Decoded SRR response
+	 * @param string $station_text Prefix for the error messages
+	 * @return array uploaded, failed and errormessages
+	 */
+	private function mark_chunk($chunk, $data, $station_text) {
+		$result = array('uploaded' => 0, 'failed' => 0, 'errormessages' => array());
+
+		$qso_errors = array();
+		foreach (($data->validation_errors ?? array()) as $validation_error) {
+			$qso_errors[$validation_error->index] = $validation_error->message;
+		}
+
+		foreach (($data->process->errors ?? array()) as $process_error) {
+			// A duplicate means the QSO is already known by SRR
+			if (strpos($process_error->message ?? '', 'Duplicate entry') !== 0) {
+				$qso_errors[$process_error->index] = $process_error->message;
+			}
+		}
+
+		$uploaded_ids = array();
+		foreach ($chunk as $index => $qso) {
+			if (isset($qso_errors[$index])) {
+				$this->Logbook_model->mark_srr_sent($qso->COL_PRIMARY_KEY, 'I');
+				$result['errormessages'][] = $station_text.$qso->COL_CALL." ".date('Y-m-d H:i', strtotime($qso->COL_TIME_ON))." ".$qso->COL_BAND." - ".$qso_errors[$index];
+				$result['failed']++;
+			} else {
+				$this->Logbook_model->mark_srr_sent($qso->COL_PRIMARY_KEY);
+				$uploaded_ids[] = $qso->COL_PRIMARY_KEY;
+				$result['uploaded']++;
+			}
+		}
+
+		if ((int)($data->process->processed ?? 0) < (int)($data->accepted ?? count($chunk))) {
+			$this->add_pending($uploaded_ids);
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Returns the own and the delegated callsigns of the SRR account.
+	 * The SRR export of a callsign contains all QSOs of the SRR account,
+	 * so one request for the own and one for each delegated callsign is enough.
+	 *
+	 * @param object $me SRR user from get_srr_me()
+	 * @return array Callsigns
+	 */
+	private function srr_callsigns($me) {
+		$callsigns = array();
+		if (isset($me->callsigns[0]->callsign)) {
+			$callsigns[] = $me->callsigns[0]->callsign;
+		}
+		foreach (($me->delegated_callsigns ?? array()) as $delegated) {
+			if (($delegated->callsign ?? '') != '') {
+				$callsigns[] = $delegated->callsign;
+			}
+		}
+		return $callsigns;
 	}
 
 	/**
@@ -457,12 +671,29 @@ class Srr_model extends CI_Model {
 	 * @return array error (empty on success) and the decoded response (data)
 	 */
 	private function post_qsos($records, $key) {
-		$payload = array(
+		return $this->post_result($this->srr_request('POST', '/qso', $key, $this->qso_payload($records)));
+	}
+
+	/**
+	 * Builds the request body for POST /qso
+	 *
+	 * @param array $records QSOs from build_records()
+	 * @return array
+	 */
+	private function qso_payload($records) {
+		return array(
 			'logger' => array('name' => 'Wavelog', 'version' => $this->optionslib->get_option('version')),
 			'qsos' => $records,
 		);
-		$result = $this->srr_request('POST', '/qso', $key, $payload);
+	}
 
+	/**
+	 * Checks the result of a POST /qso request
+	 *
+	 * @param array $result Result from srr_request() or srr_response()
+	 * @return array error (empty on success) and the decoded response (data)
+	 */
+	private function post_result($result) {
 		$error = '';
 		if ($result['error'] != '') {
 			$error = $result['error'];
@@ -496,6 +727,21 @@ class Srr_model extends CI_Model {
 	 * @return array httpcode, error (curl error), raw (response body) and data (decoded JSON)
 	 */
 	private function srr_request($method, $path, $key, $payload = null) {
+		$ch = $this->srr_handle($method, $path, $key, $payload);
+		$response = curl_exec($ch);
+		return $this->srr_response($ch, $response, curl_errno($ch));
+	}
+
+	/**
+	 * Prepares a request to the SRR API
+	 *
+	 * @param string $method GET or POST
+	 * @param string $path API path incl. query string
+	 * @param string $key SRR API key
+	 * @param array|null $payload Data sent as JSON on POST
+	 * @return CurlHandle
+	 */
+	private function srr_handle($method, $path, $key, $payload = null) {
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->api_url.$path);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -511,11 +757,21 @@ class Srr_model extends CI_Model {
 			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
 		}
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		return $ch;
+	}
 
-		$response = curl_exec($ch);
+	/**
+	 * Evaluates a finished request to the SRR API
+	 *
+	 * @param CurlHandle $ch The handle of the request
+	 * @param string|false $response Response body
+	 * @param int $errno curl error number
+	 * @return array httpcode, error (curl error), raw (response body) and data (decoded JSON)
+	 */
+	private function srr_response($ch, $response, $errno) {
 		$error = '';
-		if (curl_errno($ch)) {
-			$error = curl_strerror(curl_errno($ch))." (".curl_errno($ch).")";
+		if ($errno) {
+			$error = curl_strerror($errno)." (".$errno.")";
 		}
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 

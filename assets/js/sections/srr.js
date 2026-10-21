@@ -31,6 +31,9 @@ function ExportSrr(station_id, propmode_los, without_rda) {
 			if (data.status == 'OK') {
 				$("#export").append('<div class="alert alert-success" role="alert">' + data.infomessage + '</div>');
 			}
+			if (data.uploaded > 0) {
+				AcceptedSrr();
+			}
 
 			if (data.hasOwnProperty("errormessages") && data.errormessages.length > 0) {
 				$("#export").append(
@@ -111,6 +114,24 @@ function PropmodeSrr(station_id, without_rda, qsos) {
 			}
 		}, {
 			label: lang_srr_propmode_cancel,
+			action: function(dialogItself) {
+				dialogItself.close();
+			}
+		}]
+	});
+}
+
+function AcceptedSrr() {
+	BootstrapDialog.show({
+		title: lang_srr_accepted_title,
+		type: BootstrapDialog.TYPE_INFO,
+		size: BootstrapDialog.SIZE_NORMAL,
+		cssClass: 'srr-accepted-dialog',
+		nl2br: false,
+		message: '<p>' + lang_srr_accepted_message + '</p>',
+		buttons: [{
+			label: lang_general_word_ok,
+			cssClass: 'btn-primary',
 			action: function(dialogItself) {
 				dialogItself.close();
 			}
