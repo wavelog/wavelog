@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-17 18:04+0000\n"
-"PO-Revision-Date: 2026-10-12 20:11+0000\n"
+"PO-Revision-Date: 2026-10-19 13:17+0000\n"
 "Last-Translator: Lars Granheim <lb3qj.lars@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/nb_NO/>\n"
@@ -499,7 +499,7 @@ msgstr "API-nøkkel har blitt slettet"
 #: application/views/logbookadvanced/edit.php:27
 #: application/views/qso/edit_ajax.php:36
 msgid "Awards"
-msgstr "Priser"
+msgstr "Utmerkelser"
 
 #: application/controllers/Awards.php:100
 #: application/controllers/Awards.php:209
@@ -528,7 +528,7 @@ msgstr "Priser"
 #: application/controllers/Awards.php:3209
 #, php-format
 msgid "Awards - %s"
-msgstr "Priser - %s"
+msgstr "Utmerkelser - %s"
 
 #: application/controllers/Awards.php:100
 #: application/views/awards/dok/index.php:173
@@ -584,11 +584,11 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:391
 msgid "Awards - WAPC"
-msgstr "Priser – WAPC"
+msgstr "Utmerkelser – WAPC"
 
 #: application/controllers/Awards.php:471
 msgid "Awards - WAJA"
-msgstr "Priser - WAJA"
+msgstr "Utmerkelser - WAJA"
 
 #: application/controllers/Awards.php:524 application/views/bands/index.php:54
 #: application/views/interface_assets/header.php:273
@@ -793,7 +793,7 @@ msgstr "Loggvisning - kommuner"
 
 #: application/controllers/Awards.php:1556
 msgid "Awards - "
-msgstr "Priser - "
+msgstr "Utmerkelser - "
 
 #: application/controllers/Awards.php:1575
 #: application/controllers/Awards.php:1611
@@ -910,7 +910,7 @@ msgstr "Azimuthal kart"
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:363
 msgid "Backup"
-msgstr "Backup"
+msgstr "Sikkerhetskopi"
 
 #: application/controllers/Backup.php:89
 msgid "Notes - Backup"
@@ -1815,11 +1815,11 @@ msgstr ""
 
 #: application/controllers/Eqsl.php:424
 msgid "Failed to download eQSL image"
-msgstr ""
+msgstr "Kunne ikke laste ned eQSL-bilde"
 
 #: application/controllers/Eqsl.php:434 application/controllers/Eqsl.php:524
 msgid "Not enough free disk space to store the eQSL card"
-msgstr ""
+msgstr "Ikke nok ledig diskplass til å lagre eQSL-kortet"
 
 #: application/controllers/Eqsl.php:458
 msgid "Failed to load cached eQSL image"
@@ -2928,11 +2928,11 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:395 application/views/qso/index.php:113
 #: application/views/view_log/qso.php:14 application/views/view_log/qso.php:712
 msgid "Notes"
-msgstr ""
+msgstr "Notater"
 
 #: application/controllers/Notes.php:70
 msgid "Add Notes"
-msgstr ""
+msgstr "Legg til notater"
 
 #: application/controllers/Notes.php:96
 #: application/views/contesting/manager/import_legacy.php:43
@@ -3646,7 +3646,7 @@ msgstr ""
 #: application/views/interface_assets/header.php:535
 #: application/views/interface_assets/header.php:683
 msgid "Station Setup"
-msgstr ""
+msgstr "Stasjonsoppsett"
 
 #: application/controllers/Stationsetup.php:75
 #: application/controllers/Stationsetup.php:93
@@ -4193,10 +4193,12 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
+"Stasjon er opprettet! Velkommen til Wavelog! For å fullføre "
+"stasjonsoppsettet, klikk %sher%s."
 
 #: application/controllers/User.php:1569
 msgid "Station setup failed! Please set up your station manually."
-msgstr ""
+msgstr "Stasjonsoppsettet mislyktes! Konfigurer stasjonen manuelt."
 
 #: application/controllers/User.php:1586
 msgid "Password Reset is disabled on the Demo!"
@@ -5247,7 +5249,7 @@ msgstr ""
 
 #: application/models/Note.php:65 application/models/Note.php:96
 msgid "In Contacts category, the titles of the notes need to be unique."
-msgstr ""
+msgstr "I kategorien Kontakter må titlene på notatene være unike."
 
 #: application/models/Qslpostcard_model.php:442
 msgctxt "QSL Card Designer; No mailable address found"
@@ -6390,7 +6392,7 @@ msgstr ""
 
 #: application/views/adif/import.php:93
 msgid "Go to Station Setup"
-msgstr ""
+msgstr "Gå til stasjonsoppsett"
 
 #: application/views/adif/import.php:97 application/views/adif/import.php:407
 #: application/views/adif/import.php:430 application/views/api/index.php:22
@@ -13766,7 +13768,7 @@ msgstr ""
 
 #: application/views/dashboard/index.php:186
 msgid "You have made no QSOs today; time to turn on the radio!"
-msgstr ""
+msgstr "Du har ingen QSO-er hittil i dag – på tide å slå på radioen!"
 
 #: application/views/dashboard/index.php:195
 msgid "Attention: you need to set an active station location."
@@ -13813,7 +13815,7 @@ msgstr ""
 
 #: application/views/dashboard/index.php:246
 msgid "QSOs this year"
-msgstr ""
+msgstr "QSO-er sålangt i år"
 
 #: application/views/dashboard/index.php:256
 msgid "QSOs this month"
@@ -13838,7 +13840,7 @@ msgstr[1] ""
 #: application/views/statistics/index.php:119
 #: application/views/statistics/index.php:164
 msgid "Unique callsigns"
-msgstr ""
+msgstr "Unike kallesignaler"
 
 #: application/views/dashboard/index.php:369
 msgid "View QSO"
@@ -14386,6 +14388,8 @@ msgid ""
 "Warning. This tool can be dangerous to your data, and should only be used if "
 "you know what you are doing."
 msgstr ""
+"Advarsel. Disse valgene endrer alle dataene dine og bør bare brukes hvis du "
+"vet hva du gjør."
 
 #: application/views/dbtools/index.php:24
 msgid "Data Repair Tools"
@@ -15606,7 +15610,7 @@ msgstr ""
 #: application/views/eqsl/tools.php:15
 #: application/views/interface_assets/header.php:320
 msgid "Tools"
-msgstr ""
+msgstr "Verktøy"
 
 #: application/views/eqsl/analysis.php:20
 #: application/views/eqsl/download.php:20 application/views/eqsl/export.php:19
@@ -15752,7 +15756,7 @@ msgstr ""
 #: application/views/eqslcard/index.php:14
 #: application/views/interface_assets/header.php:126
 msgid "View eQSL Cards"
-msgstr ""
+msgstr "Vis eQSL-kort"
 
 #: application/views/eqslcard/index.php:39
 #: application/views/qslcard/index.php:38
@@ -15991,7 +15995,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:69
 msgid "Error loading notes"
-msgstr ""
+msgstr "Feil ved lasting av notater"
 
 #: application/views/interface_assets/footer.php:70
 msgid "Sorting"
@@ -16032,11 +16036,11 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:79
 msgid "No notes were found"
-msgstr ""
+msgstr "Ingen notater funnet"
 
 #: application/views/interface_assets/footer.php:80
 msgid "No notes for this callsign"
-msgstr ""
+msgstr "Ingen notater for dette kallesignalet"
 
 #: application/views/interface_assets/footer.php:81
 msgid "Callsign Note"
@@ -16895,7 +16899,7 @@ msgstr "Sletting mislyktes"
 #: application/views/labeldesigner/designer.php:54
 #: application/views/qslpostcard/designer.php:41
 msgid "Template deleted successfully!"
-msgstr "Malen ble slettet."
+msgstr "Malen ble slettet!"
 
 #: application/views/labeldesigner/designer.php:55
 #: application/views/qslpostcard/designer.php:42
@@ -19393,7 +19397,7 @@ msgstr ""
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
 msgid "Your Notes"
-msgstr ""
+msgstr "Notatene dine"
 
 #: application/views/notes/add.php:14 application/views/notes/edit.php:15
 #: application/views/notes/main.php:14 application/views/notes/main.php:46
@@ -19413,6 +19417,9 @@ msgid ""
 "store information about QSO partners. These notes are private and are not "
 "shared with other users nor exported to external services."
 msgstr ""
+"Kontakter er en spesiell notatkategori som brukes på ulike steder i Wavelog "
+"til å lagre informasjon om QSO-partnere. Disse notatene er private og deles "
+"ikke med andre brukere eller eksporteres til eksterne tjenester."
 
 #: application/views/notes/add.php:61 application/views/notes/edit.php:56
 msgid "Note Contents"
@@ -19429,7 +19436,7 @@ msgstr ""
 
 #: application/views/notes/main.php:53
 msgid "Search notes (min. 3 chars)"
-msgstr ""
+msgstr "Søk i notater (min. 3 tegn)"
 
 #: application/views/notes/main.php:54
 msgid "Reset search"
@@ -19742,7 +19749,7 @@ msgstr ""
 
 #: application/views/options/version_dialog.php:21
 msgid "Only Release Notes"
-msgstr ""
+msgstr "Kun versjonsinformasjon"
 
 #: application/views/options/version_dialog.php:24
 msgid "Only Custom Text"
@@ -19750,7 +19757,7 @@ msgstr ""
 
 #: application/views/options/version_dialog.php:27
 msgid "Release Notes and Custom Text"
-msgstr ""
+msgstr "Versjonsinformasjon og egendefinert tekst"
 
 #: application/views/options/version_dialog.php:32
 msgid ""
@@ -19758,6 +19765,10 @@ msgid ""
 "the dialog after he read it. Select if you want to show only release notes "
 "(fetched from github), only custom text or both."
 msgstr ""
+"Versjonsinformasjonen vises for alle brukere. Brukeren kan lukke "
+"dialogboksen etter å ha lest den. Velg om du bare vil vise "
+"versjonsinformasjon (hentet fra GitHub), bare egendefinert tekst eller begge "
+"deler."
 
 #: application/views/options/version_dialog.php:36
 msgid "Version Info Custom Text"
@@ -20833,13 +20844,15 @@ msgstr ""
 
 #: application/views/qso/index.php:777
 msgid "Callsign Notes"
-msgstr ""
+msgstr "Kallesignal notater"
 
 #: application/views/qso/index.php:778
 msgid ""
 "Store private information about your QSO partner. These notes are never "
 "shared or exported to external services."
 msgstr ""
+"Lagre privat informasjon om QSO-partneren din. Disse notatene deles eller "
+"eksporteres aldri til eksterne tjenester."
 
 #: application/views/qso/index.php:827
 msgid "Winkey"
@@ -21595,7 +21608,7 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:49
 msgid "Notes:"
-msgstr ""
+msgstr "Notater:"
 
 #: application/views/simplefle/syntax_help.php:53
 msgid "Operator Name:"
@@ -21680,7 +21693,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:74
 msgctxt "Station Location Setup"
 msgid "Home QTH"
-msgstr ""
+msgstr "Hjemme-QTH"
 
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:74
@@ -22914,7 +22927,7 @@ msgstr ""
 
 #: application/views/user/edit.php:575
 msgid "Show notes in the main menu."
-msgstr ""
+msgstr "Vis notater i hovedmenyen."
 
 #: application/views/user/edit.php:588
 msgid "Quicklog Field"
@@ -23070,6 +23083,9 @@ msgid ""
 "This switches the display of the KPI statistics (Total QSOs, QSOs this year/"
 "month/today, Current Streak, Unique callsigns) on the dashboard."
 msgstr ""
+"Dette slår visningen av KPI-statistikken (Totalt antall QSO-er, QSO-er dette "
+"året/måneden/i dag, Pågående rekke, Unike kallesignaler) på eller av på "
+"dashbordet."
 
 #: application/views/user/edit.php:877
 msgid "Show Fields on QSO Tab"

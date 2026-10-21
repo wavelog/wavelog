@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-17 18:04+0000\n"
-"PO-Revision-Date: 2026-10-13 11:02+0000\n"
+"POT-Creation-Date: 2026-10-13 13:18+0000\n"
+"PO-Revision-Date: 2026-10-18 07:09+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -4062,18 +4062,17 @@ msgstr "TLE-uppdatering misslyckades. Resultat: "
 msgid "LoTW SAT Update"
 msgstr "LoTW SAT-uppdatering"
 
-#: application/controllers/Update.php:745
-msgid "Hams of Note Update failed. Result: "
-msgstr ""
-
+#: application/controllers/Update.php:747
 #: application/controllers/Update.php:751
 msgid "Update of Hams of Note"
 msgstr "Uppdatering av Hams of Note"
 
+#: application/controllers/Update.php:787
 #: application/controllers/Update.php:791
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCC-lokatorfiluppdatering slutförd. Resultat: "
 
+#: application/controllers/Update.php:789
 #: application/controllers/Update.php:793
 msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC-lokatorfiluppdatering misslyckades. Resultat: "
@@ -5354,7 +5353,7 @@ msgstr "Kontakter"
 #: application/views/statistics/index.php:86
 #: application/views/user/edit.php:221
 msgid "General"
-msgstr "General"
+msgstr "Allmänt"
 
 #: application/models/Note.php:9
 msgid "Antennas"
@@ -10256,8 +10255,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -14420,7 +14419,7 @@ msgstr "Soldata och vågutbredning"
 #: application/views/dashboard/solar_data.php:7
 #, php-format
 msgid "Last update at %s."
-msgstr "Senaste uppdateringen kl. %s."
+msgstr "Senaste uppdatering %s."
 
 #: application/views/dashboard/solar_data.php:12
 msgid "Data provided by HAMqsl."
@@ -14648,6 +14647,8 @@ msgid ""
 "If checked, 'Check all' and 'Update selected' also include QSOs with DXCC "
 "none, not found or invalid"
 msgstr ""
+"Om markerad låt 'Kontrollera alla' och 'Uppdatera valda' även inkludera QSOs "
+"med DXCC som saknas, inte hittats eller är ogiltiga"
 
 #: application/views/dbtools/checkresult.php:80
 #: application/views/dbtools/checkresult.php:224
@@ -14657,7 +14658,7 @@ msgstr "Uppdatera valda"
 
 #: application/views/dbtools/checkresult.php:131
 msgid "No incorrect DXCCs were found."
-msgstr ""
+msgstr "Inga felaktiga DXCC hittades."
 
 #: application/views/dbtools/checkresult.php:136
 msgid "Gridsquare Check Results"
@@ -18227,8 +18228,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/detachContest.php:6
 #, php-format
@@ -23377,8 +23378,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -25114,6 +25115,10 @@ msgstr "Clublog Loggsökning"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW-användare. Senaste uppladdningen var "
+
+#: application/controllers/Update.php:745
+msgid "Hams of Note Update failed. Result: "
+msgstr "Uppdateringen av Hams of Note misslyckades. Resultat: "
 
 #~ msgid "Callsigns tested: "
 #~ msgstr "Anropssignaler testade: "

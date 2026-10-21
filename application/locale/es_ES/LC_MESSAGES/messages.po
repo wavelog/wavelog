@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-17 18:04+0000\n"
-"PO-Revision-Date: 2026-09-19 10:21+0000\n"
-"Last-Translator: Lars Granheim <lb3qj.lars@gmail.com>\n"
+"PO-Revision-Date: 2026-10-19 13:17+0000\n"
+"Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/es/>\n"
 "Language: es_ES\n"
@@ -262,7 +262,7 @@ msgstr "Estadísticas Acumuladas"
 #: application/views/achievements/index.php:76
 #: application/views/interface_assets/header.php:192
 msgid "Achievements"
-msgstr ""
+msgstr "Logros"
 
 #: application/controllers/Activated_gridmap.php:12
 #: application/views/activated_gridmap/index.php:6
@@ -610,7 +610,7 @@ msgstr "JCC"
 #: application/controllers/Awards.php:612 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:275
 msgid "JCG"
-msgstr ""
+msgstr "JCG"
 
 #: application/controllers/Awards.php:662 application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:208
@@ -858,31 +858,31 @@ msgstr "WAIP"
 
 #: application/controllers/Awards.php:2683
 msgid "England"
-msgstr ""
+msgstr "Inglaterra"
 
 #: application/controllers/Awards.php:2684
 msgid "Isle of Man"
-msgstr ""
+msgstr "Isla de Man"
 
 #: application/controllers/Awards.php:2685
 msgid "Northern Ireland"
-msgstr ""
+msgstr "Irlanda del Norte"
 
 #: application/controllers/Awards.php:2686
 msgid "Jersey"
-msgstr ""
+msgstr "Jersey"
 
 #: application/controllers/Awards.php:2687
 msgid "Scotland"
-msgstr ""
+msgstr "Escocia"
 
 #: application/controllers/Awards.php:2688
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernsey"
 
 #: application/controllers/Awards.php:2689
 msgid "Wales"
-msgstr ""
+msgstr "Gales"
 
 #: application/controllers/Awards.php:2905
 #: application/views/awards/wac/index.php:7
@@ -2849,10 +2849,12 @@ msgid ""
 "The uploaded file is invalid. Please upload a Logbook of the World .p12 "
 "certificate file."
 msgstr ""
+"El archivo subido no es válido. Sube un archivo de certificado .p12 de "
+"Logbook of the World."
 
 #: application/controllers/Lotw.php:134
 msgid "The uploaded file could not be read."
-msgstr ""
+msgstr "No se pudo leer el archivo subido."
 
 #: application/controllers/Lotw.php:153
 msgid "Certificate Imported."
@@ -2874,6 +2876,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"El certificado encontrado en el archivo %s contiene una contraseña que no "
+"puede ser procesada. %s Por favor asegúrese de que exporto el certificado de "
+"la aplicación tqsl sin contraseña!%s Para mas información por favor visite "
+"el sitio %sLoTW FAQ%s en la Wiki de Wavelog."
 
 #: application/controllers/Lotw.php:438
 #, php-format
@@ -2883,6 +2889,11 @@ msgid ""
 "been processed by LoTW yet. For further information please visit the %sLoTW "
 "troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Error genérico al extraer el certificado del archivo %s. Si el nombre del "
+"archivo contiene «key-only», normalmente se trata de una solicitud de "
+"certificado que aún no ha sido procesada por LoTW. Para obtener más "
+"información, visita la %spágina de solución de problemas de LoTW%s en la "
+"Wiki de Wavelog."
 
 #: application/controllers/Lotw.php:444
 #, php-format
@@ -2890,6 +2901,9 @@ msgid ""
 "Generic error processing the certificate in file %s. For further information "
 "please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Error genérico al procesar el certificado del archivo %s. Para obtener más "
+"información, visita la %spágina de solución de problemas de LoTW%s en la "
+"Wiki de Wavelog."
 
 #: application/controllers/Lotw.php:456
 #, php-format
@@ -2898,6 +2912,9 @@ msgid ""
 "further information please visit the %sLoTW troubleshooting page%s in the "
 "Wavelog Wiki."
 msgstr ""
+"Error genérico al procesar el certificado del archivo %s. Para obtener más "
+"información, visita la %spágina de solución de problemas de LoTW%s en la "
+"Wiki de Wavelog."
 
 #: application/controllers/Lotw.php:670
 msgid "LoTW ADIF Information"
@@ -3610,14 +3627,15 @@ msgstr "No hay preajustes disponibles"
 #: application/controllers/Satellite.php:651
 msgid "Generic error posting to hams.at. Please check the input values."
 msgstr ""
+"Error genérico al publicar en hams.at. Comprueba los valores introducidos."
 
 #: application/controllers/Satellite.php:655
 msgid "Error authenticating to hams.at. Please check API key."
-msgstr ""
+msgstr "Error al autenticarse en hams.at. Comprueba la clave de API."
 
 #: application/controllers/Satellite.php:659
 msgid "Generic error posting to hams.at. Please try again later."
-msgstr ""
+msgstr "Error genérico al publicar en hams.at. Inténtalo de nuevo más tarde."
 
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
@@ -4075,7 +4093,7 @@ msgstr "Actualización de LoTW SAT"
 
 #: application/controllers/Update.php:745
 msgid "Hams of Note Update failed. Result: "
-msgstr ""
+msgstr "La actualización de Hams of Note ha fallado. Resultado: "
 
 #: application/controllers/Update.php:751
 msgid "Update of Hams of Note"
@@ -4411,16 +4429,16 @@ msgstr "Exportar mapa"
 #: application/controllers/Wabtool.php:41
 #: application/views/dbtools/index.php:145
 msgid "WAB from Gridsquare"
-msgstr ""
+msgstr "WAB desde cuadrícula"
 
 #: application/controllers/Wabtool.php:100
 msgid "No station locations found"
-msgstr ""
+msgstr "No se encontraron ubicaciones de estaciones"
 
 #: application/controllers/Wabtool.php:107
 #: application/controllers/Wabtool.php:113
 msgid "No QSOs selected"
-msgstr ""
+msgstr "No se han seleccionado QSOs"
 
 #: application/controllers/Wabtool.php:174
 #: application/controllers/Zonechecker.php:483
@@ -4437,6 +4455,8 @@ msgstr "Subida del Club Dx QO-100"
 msgid ""
 "Rejected QSOs were reset. They will be picked up again by the next upload."
 msgstr ""
+"Los QSOs rechazados se restablecieron. Se volverán a incluir en la próxima "
+"carga."
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -4500,11 +4520,12 @@ msgstr ""
 
 #: application/libraries/Callbook.php:74
 msgid "Generic error storing the callbook session key in cache."
-msgstr ""
+msgstr "Error genérico al almacenar en caché la clave de sesión del callbook."
 
 #: application/libraries/Callbook.php:75
 msgid "Generic error reading the cached callbook session key."
 msgstr ""
+"Error genérico al leer la clave de sesión del callbook almacenada en caché."
 
 #: application/libraries/Callbook.php:244
 msgid "QRZCQ Error"
@@ -4691,16 +4712,16 @@ msgstr "Leer estadísticas"
 #, php-format
 msgid "%s day"
 msgid_plural "%s days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s día"
+msgstr[1] "%s días"
 
 #: application/models/Achievements_model.php:172
 msgid "Longest streak"
-msgstr ""
+msgstr "Racha más larga"
 
 #: application/models/Achievements_model.php:173
 msgid "Current streak"
-msgstr ""
+msgstr "Racha actual"
 
 #: application/models/Achievements_model.php:174
 #: application/models/Achievements_model.php:196
@@ -4711,120 +4732,120 @@ msgstr "Objetivo"
 
 #: application/models/Achievements_model.php:177
 msgid "Reached on"
-msgstr ""
+msgstr "Alcanzado el"
 
 #: application/models/Achievements_model.php:181
 #, php-format
 msgid "%d Day Streak"
-msgstr ""
+msgstr "Racha de %d días"
 
 #: application/models/Achievements_model.php:185
 #, php-format
 msgid "%s / %s day"
 msgid_plural "%s / %s days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s / %s día"
+msgstr[1] "%s / %s días"
 
 #: application/models/Achievements_model.php:195
 msgid "QSOs in log"
-msgstr ""
+msgstr "QSOs en el registro"
 
 #: application/models/Achievements_model.php:196
 #: application/models/Achievements_model.php:203
 #, php-format
 msgid "%s QSO"
 msgid_plural "%s QSOs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s QSO"
+msgstr[1] "%s QSOs"
 
 #: application/models/Achievements_model.php:199
 msgid "Unlocked on"
-msgstr ""
+msgstr "Desbloqueado el"
 
 #: application/models/Achievements_model.php:207
 #, php-format
 msgid "%s / %s QSO"
 msgid_plural "%s / %s QSOs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s / %s QSO"
+msgstr[1] "%s / %s QSOs"
 
 #: application/models/Achievements_model.php:237
 msgid "QSOs in classic digimodes"
-msgstr ""
+msgstr "QSOs en modos digitales clásicos"
 
 #: application/models/Achievements_model.php:239
 #: application/models/Achievements_model.php:356
 #: application/models/Achievements_model.php:389
 msgid "First QSO on"
-msgstr ""
+msgstr "Primer QSO en"
 
 #: application/models/Achievements_model.php:242
 msgid "Top classic mode"
-msgstr ""
+msgstr "Modo clásico principal"
 
 #: application/models/Achievements_model.php:245
 msgid "First CW QSO"
-msgstr ""
+msgstr "Primer QSO de CW"
 
 #: application/models/Achievements_model.php:247
 msgid "First SSB QSO"
-msgstr ""
+msgstr "Primer QSO de SSB"
 
 #: application/models/Achievements_model.php:249
 msgid "First FT8 QSO"
-msgstr ""
+msgstr "Primer QSO de FT8"
 
 #: application/models/Achievements_model.php:251
 msgid "First Classic Digimode QSO"
-msgstr ""
+msgstr "Primer QSO de modo digital clásico"
 
 #: application/models/Achievements_model.php:252
 msgid "Triple Threat"
-msgstr ""
+msgstr "Triple amenaza"
 
 #: application/models/Achievements_model.php:253
 #, php-format
 msgid "%s / 3 mode"
 msgid_plural "%s / 3 modes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s / 3 modo"
+msgstr[1] "%s / 3 modos"
 
 #: application/models/Achievements_model.php:255
 msgid "Worked modes"
-msgstr ""
+msgstr "Modos trabajados"
 
 #: application/models/Achievements_model.php:256
 msgid "Missing modes"
-msgstr ""
+msgstr "Modos faltantes"
 
 #: application/models/Achievements_model.php:272
 msgid "First LoTW Confirmation"
-msgstr ""
+msgstr "Primera confirmación de LoTW"
 
 #: application/models/Achievements_model.php:273
 msgid "Confirmed on"
-msgstr ""
+msgstr "Confirmado el"
 
 #: application/models/Achievements_model.php:291
 msgid "CW and SSB QSOs"
-msgstr ""
+msgstr "QSOs de CW y SSB"
 
 #: application/models/Achievements_model.php:292
 msgid "FT8 and FT4 QSOs"
-msgstr ""
+msgstr "QSOs de FT8 y FT4"
 
 #: application/models/Achievements_model.php:293
 msgid "Current ratio"
-msgstr ""
+msgstr "Ratio corriente"
 
 #: application/models/Achievements_model.php:294
 msgid "Needed ratio"
-msgstr ""
+msgstr "Ratio necesario"
 
 #: application/models/Achievements_model.php:299
 #, php-format
 msgid "Total: %s QSOs"
-msgstr ""
+msgstr "Total: %s QSOs"
 
 #: application/models/Achievements_model.php:303
 #: application/views/awards/counties/index.php:195
@@ -4846,96 +4867,96 @@ msgstr "Realizados"
 
 #: application/models/Achievements_model.php:306
 msgid "Classic digimodes"
-msgstr ""
+msgstr "Modos digitales clásicos"
 
 #: application/models/Achievements_model.php:310
 #, php-format
 msgid "HF: %s/%s"
-msgstr ""
+msgstr "HF: %s/%s"
 
 #: application/models/Achievements_model.php:311
 #, php-format
 msgid "WARC: %s/%s"
-msgstr ""
+msgstr "WARC: %s/%s"
 
 #: application/models/Achievements_model.php:312
 #, php-format
 msgid "SAT: %s"
-msgstr ""
+msgstr "SAT: %s"
 
 #: application/models/Achievements_model.php:314
 #, php-format
 msgid "First confirmation: %s"
-msgstr ""
+msgstr "Primera confirmación: %s"
 
 #: application/models/Achievements_model.php:314
 msgid "No LoTW confirmation yet"
-msgstr ""
+msgstr "Aún no hay confirmación de LoTW"
 
 #: application/models/Achievements_model.php:316
 msgid "CW and SSB versus FT8 and FT4"
-msgstr ""
+msgstr "CW y SSB frente a FT8 y FT4"
 
 #: application/models/Achievements_model.php:319
 msgid "Streak"
-msgstr ""
+msgstr "Racha"
 
 #: application/models/Achievements_model.php:320
 msgid "Volume"
-msgstr ""
+msgstr "Volumen"
 
 #: application/models/Achievements_model.php:324
 msgid "Classic Mode Ratio"
-msgstr ""
+msgstr "Proporción del modo clásico"
 
 #: application/models/Achievements_model.php:353
 msgid "QSOs in this mode"
-msgstr ""
+msgstr "QSOs en este modo"
 
 #: application/models/Achievements_model.php:371
 msgid "Bands worked"
-msgstr ""
+msgstr "Bandas trabajadas"
 
 #: application/models/Achievements_model.php:372
 msgid "Missing bands"
-msgstr ""
+msgstr "Bandas faltantes"
 
 #: application/models/Achievements_model.php:373
 msgid "Range"
-msgstr ""
+msgstr "Rango"
 
 #: application/models/Achievements_model.php:376
 msgid "Completed on"
-msgstr ""
+msgstr "Completado el"
 
 #: application/models/Achievements_model.php:379
 #, php-format
 msgid "%s / %s band"
 msgid_plural "%s / %s bands"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s / %s banda"
+msgstr[1] "%s / %s bandas"
 
 #: application/models/Achievements_model.php:387
 msgid "SAT QSOs"
-msgstr ""
+msgstr "QSOs por satélite"
 
 #: application/models/Achievements_model.php:392
 msgid "Different satellites"
-msgstr ""
+msgstr "Satélites diferentes"
 
 #: application/models/Achievements_model.php:398
 #, php-format
 msgid "Longest streak: %s day"
 msgid_plural "Longest streak: %s days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Racha más larga: %s día"
+msgstr[1] "Racha más larga: %s días"
 
 #: application/models/Achievements_model.php:400
 #, php-format
 msgid "Current streak: %s day"
 msgid_plural "Current streak: %s days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Racha actual: %s día"
+msgstr[1] "Racha actual: %s días"
 
 #: application/models/Achievements_model.php:407
 #: application/views/visitor/mini.php:214
@@ -4945,7 +4966,7 @@ msgstr "Todavía no hay QSOs"
 #: application/models/Achievements_model.php:410
 #: application/models/Achievements_model.php:412
 msgid "classic"
-msgstr ""
+msgstr "clásico"
 
 #: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
@@ -5026,7 +5047,7 @@ msgstr "Los oficiales deben editar los concursos."
 
 #: application/models/Countqsoby_model.php:262
 msgid "Unlinked"
-msgstr ""
+msgstr "Desvinculado"
 
 #: application/models/Dbtools_model.php:118
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
@@ -5038,78 +5059,92 @@ msgstr ""
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
 msgstr ""
+"No hay ningún adaptador operativo disponible; la caché se está ejecutando "
+"con el controlador «dummy» sin operación."
 
 #: application/models/Debug_model.php:322
 #: application/models/Debug_model.php:370
 msgid "Adapter not supported."
-msgstr ""
+msgstr "Adaptador no compatible."
 
 #: application/models/Debug_model.php:351
 #, php-format
 msgid "%s adapter threw an exception: %s"
-msgstr ""
+msgstr "El adaptador %s lanzó una excepción: %s"
 
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "La extensión de PHP '%s' no está cargada."
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "El directorio de caché no permite escritura: %s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
+"No se puede acceder al servidor Redis; comprueba la configuración en "
+"application/config/redis.php."
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Ningún servidor Memcached respondió; comprueba la configuración en "
+"application/config/memcached.php."
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
+"APCu está cargado, pero no se puede utilizar en esta interfaz de PHP (¿"
+"apc.enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
 msgstr ""
+"No se puede escribir en el directorio de caché %s; comprueba los permisos."
 
 #: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
-msgstr ""
+msgstr "Error al escribir en Redis; ¿servidor caído o se alcanzó maxmemory?"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
-msgstr ""
+msgstr "Error al escribir en Memcached; ¿servidor caído?"
 
 #: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "Error de escritura en APCu; ¿memoria compartida llena?"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
 msgstr ""
+"La escritura se realizó correctamente, pero la lectura falló; ¿se puede leer "
+"el directorio de caché?"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
 msgstr ""
+"La escritura se realizó correctamente, pero la lectura falló; ¿Redis ha "
+"expulsado la clave?"
 
 #: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "La escritura se realizó correctamente, pero la lectura falló."
 
 #: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
 msgstr ""
+"No se pudo eliminar la clave de prueba; comprueba los permisos y el acceso."
 
 #: application/models/Eqslmethods_model.php:270
 msgid "Empty response from eQSL.cc!"
-msgstr ""
+msgstr "¡Respuesta vacía de eQSL.cc!"
 
 #: application/models/Eqslmethods_model.php:278
 msgid "Your eQSL username and/or password is incorrect."
@@ -5193,7 +5228,7 @@ msgstr "Estación no accesible"
 
 #: application/models/Logbook_model.php:1072
 msgid "Realtime upload disabled"
-msgstr ""
+msgstr "Carga en tiempo real desactivada"
 
 #: application/models/Logbook_model.php:1625
 msgid "Station ID not allowed"
@@ -5745,41 +5780,43 @@ msgid ""
 "No station locations are linked to your active logbook. Trophies need at "
 "least one linked station location."
 msgstr ""
+"No hay ubicaciones de estación vinculadas a tu libro de guardia activo. Los "
+"trofeos necesitan al menos una ubicación de estación vinculada."
 
 #: application/views/achievements/index.php:78
 msgid "QSO filter"
-msgstr ""
+msgstr "Filtro de QSO"
 
 #: application/views/achievements/index.php:79
 msgid "All QSOs"
-msgstr ""
+msgstr "Todos los QSO"
 
 #: application/views/achievements/index.php:80
 msgid "Confirmed only"
-msgstr ""
+msgstr "Solo confirmados"
 
 #: application/views/achievements/index.php:80
 msgid "Count only QSOs confirmed by LoTW or paper card"
-msgstr ""
+msgstr "Contar solo los QSO confirmados por LoTW o tarjeta en papel"
 
 #: application/views/achievements/index.php:83
 #, php-format
 msgid "You have unlocked %s of %s trophies."
-msgstr ""
+msgstr "Has desbloqueado %s de %s trofeos."
 
 #: application/views/achievements/index.php:85
 #, php-format
 msgid "Cached data as of %s"
-msgstr ""
+msgstr "Datos en caché a fecha de %s"
 
 #: application/views/achievements/index.php:126
 #: application/views/achievements/index.php:191
 msgid "Unlocked"
-msgstr ""
+msgstr "Desbloqueado"
 
 #: application/views/achievements/index.php:145
 msgid "Trophy"
-msgstr ""
+msgstr "Trofeo"
 
 #: application/views/achievements/index.php:146
 #: application/views/activationplanner/index.php:30
@@ -5807,7 +5844,7 @@ msgstr "Cerrar"
 
 #: application/views/achievements/index.php:191
 msgid "Locked"
-msgstr ""
+msgstr "Bloqueado"
 
 #: application/views/activated_gridmap/index.php:10
 #: application/views/interface_assets/header.php:168
@@ -6527,10 +6564,12 @@ msgstr "Importación CBR"
 #: application/views/adif/import.php:92
 msgid "No active station location. ADIF import is disabled."
 msgstr ""
+"No hay una ubicación activa de la estación. La importación de ADIF está "
+"desactivada."
 
 #: application/views/adif/import.php:93
 msgid "Go to Station Setup"
-msgstr ""
+msgstr "Ir a la configuración de la estación"
 
 #: application/views/adif/import.php:97 application/views/adif/import.php:407
 #: application/views/adif/import.php:430 application/views/api/index.php:22
@@ -9308,7 +9347,7 @@ msgstr ""
 
 #: application/views/awards/jcg/index.php:11
 msgid "JCG - Japan Century Gun/County Award"
-msgstr ""
+msgstr "JCG - Premio Japan Century Gun/County"
 
 #: application/views/awards/jcg/index.php:12
 msgid ""
@@ -9317,30 +9356,39 @@ msgid ""
 "received a QSL card from an amateur station located in each of a number of "
 "different guns of Japan."
 msgstr ""
+"Premio complementario al JCG que abarca los gun (condados) de Japón y "
+"entidades rurales equivalentes, en lugar de ciudades. Se obtiene al haber "
+"contactado (escuchado) y recibido una tarjeta QSL de una estación de "
+"radioaficionado situada en cada uno de varios gun diferentes de Japón."
 
 #: application/views/awards/jcg/index.php:13
 msgid ""
 "A list of QSL cards should be arranged in order of JCG reference number, "
 "however names of gun may be omitted."
 msgstr ""
+"La lista de tarjetas QSL debe ordenarse según el número de referencia JCG; "
+"no obstante, pueden omitirse los nombres de los gun."
 
 #: application/views/awards/jcg/index.php:15
 msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "JCG reference!)"
 msgstr ""
+"Campos utilizados para este premio: DXCC (Japón) y condado (¡debe contener "
+"una referencia JCG válida!)"
 
 #: application/views/awards/jcg/index.php:39
 msgid "Show JCG Map"
-msgstr ""
+msgstr "Mostrar mapa JCG"
 
 #: application/views/awards/jcg/index.php:183
 msgid "JCG progress"
-msgstr ""
+msgstr "Progreso de JCG"
 
 #: application/views/awards/jcg/index.php:199
 msgid "No worked or confirmed JCG slots match the current filters."
 msgstr ""
+"Ningún slot JCG trabajado o confirmado coincide con los filtros actuales."
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
@@ -9915,28 +9963,28 @@ msgstr ""
 
 #: application/views/awards/wab/index.php:19
 msgid "Total squares"
-msgstr ""
+msgstr "Cuadrículas totales"
 
 #: application/views/awards/wab/index.php:21
 msgid "Squares by DXCC"
-msgstr ""
+msgstr "Cuadrículas por DXCC"
 
 #: application/views/awards/wab/index.php:22
 #: application/views/awards/wab/index.php:44
 msgid "Go to square"
-msgstr ""
+msgstr "Ir a la cuadrícula"
 
 #: application/views/awards/wab/index.php:23
 msgid "WAB square not found"
-msgstr ""
+msgstr "Cuadrícula WAB no encontrada"
 
 #: application/views/awards/wab/index.php:34
 msgid "View a map of worked / confirmed WAB squares"
-msgstr ""
+msgstr "Ver un mapa de las cuadrículas WAB trabajadas / confirmadas"
 
 #: application/views/awards/wab/index.php:43
 msgid "WAB square"
-msgstr ""
+msgstr "cuadrícula WAB"
 
 #: application/views/awards/wab/index.php:171
 msgid "List"
@@ -10013,7 +10061,7 @@ msgstr "No"
 
 #: application/views/awards/wab/list.php:37
 msgid "Q = QSL card, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog"
-msgstr ""
+msgstr "Q = tarjeta QSL, L = LoTW, E = eQSL, Z = QRZ.com, C = Clublog"
 
 #: application/views/awards/wac/index.php:8
 msgid ""
@@ -12608,7 +12656,7 @@ msgstr "Sincronizado"
 
 #: application/views/contesting/logger/components/qso-form.php:36
 msgid "QSO could not be saved:"
-msgstr ""
+msgstr "No se pudo guardar el QSO:"
 
 #: application/views/contesting/logger/components/qso-form.php:37
 msgid "Delete this QSO?"
@@ -13124,12 +13172,13 @@ msgstr "Abajo"
 
 #: application/views/contesting/logger/index.php:143
 msgid "Clear Call on QSY"
-msgstr ""
+msgstr "Borrar indicativo al hacer QSY"
 
 #: application/views/contesting/logger/index.php:143
 msgid ""
 "Clears the callsign field when the frequency changes by more than 500 Hz"
 msgstr ""
+"Borra el campo del indicativo cuando la frecuencia cambia en más de 500 Hz"
 
 #: application/views/contesting/logger/index.php:176
 msgid "Current Operator:"
@@ -14394,7 +14443,7 @@ msgstr "Solicitadas"
 #: application/views/dashboard/index.php:519
 #: application/views/dashboard/index.php:522
 msgid "Awaiting Confirmation"
-msgstr ""
+msgstr "Esperando confirmación"
 
 #: application/views/dashboard/index.php:548
 #: application/views/dashboard/index.php:583
@@ -14757,6 +14806,8 @@ msgid ""
 "If checked, 'Check all' and 'Update selected' also include QSOs with DXCC "
 "none, not found or invalid"
 msgstr ""
+"Si se marca, «Comprobar todo» y «Actualizar seleccionados» también incluyen "
+"los QSO sin DXCC, con DXCC no encontrado o no válido"
 
 #: application/views/dbtools/checkresult.php:80
 #: application/views/dbtools/checkresult.php:224
@@ -14766,7 +14817,7 @@ msgstr "Actualizar seleccionado"
 
 #: application/views/dbtools/checkresult.php:131
 msgid "No incorrect DXCCs were found."
-msgstr ""
+msgstr "No se encontraron DXCC incorrectos."
 
 #: application/views/dbtools/checkresult.php:136
 msgid "Gridsquare Check Results"
@@ -15020,7 +15071,7 @@ msgstr "Utiliza la búsqueda en el callbook para establecer el cuadrante"
 
 #: application/views/dbtools/index.php:126
 msgid "Lookup"
-msgstr ""
+msgstr "Buscar"
 
 #: application/views/dbtools/index.php:134
 msgid "Check IOTA against DXCC"
@@ -15032,44 +15083,44 @@ msgstr "Usa Wavelog para verificar IOTA contra DXCC"
 
 #: application/views/dbtools/index.php:146
 msgid "Batch assign WAB squares from logged gridsquares"
-msgstr ""
+msgstr "Asignar por lotes cuadrados WAB a partir de las cuadrículas registradas"
 
 #: application/views/dbtools/index.php:149
 msgid "Open"
-msgstr ""
+msgstr "Abrir"
 
 #: application/views/dbtools/missinggridlist.php:12
 #, php-format
 msgid "%s QSO(s) selected"
-msgstr ""
+msgstr "%s QSO(s) seleccionados"
 
 #: application/views/dbtools/missinggridlist.php:13
 #, php-format
 msgid "%s QSO(s) remaining"
-msgstr ""
+msgstr "%s QSO(s) restantes"
 
 #: application/views/dbtools/missinggridlist.php:14
 #, php-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Actualizado: %s"
 
 #: application/views/dbtools/missinggridlist.php:15
 #, php-format
 msgid "Not found: %s"
-msgstr ""
+msgstr "No encontrado: %s"
 
 #: application/views/dbtools/missinggridlist.php:16
 #, php-format
 msgid "Errors: %s"
-msgstr ""
+msgstr "Errores: %s"
 
 #: application/views/dbtools/missinggridlist.php:17
 msgid "Retrieving callbook data..."
-msgstr ""
+msgstr "Recuperando datos del callbook..."
 
 #: application/views/dbtools/missinggridlist.php:18
 msgid "Not found in callbook"
-msgstr ""
+msgstr "No encontrado en el callbook"
 
 #: application/views/dbtools/missinggridlist.php:19
 #: application/views/logbookadvanced/index.php:39
@@ -15080,23 +15131,26 @@ msgstr "Omitido"
 #, php-format
 msgid "Lookup finished: %s gridsquare(s) set, %s not found, %s error(s)."
 msgstr ""
+"Búsqueda finalizada: %s cuadrícula(s) configurada(s), %s no encontrada(s), "
+"%s error(es)."
 
 #: application/views/dbtools/missinggridlist.php:22
 msgid "Lookup cancelled."
-msgstr ""
+msgstr "Búsqueda cancelada."
 
 #: application/views/dbtools/missinggridlist.php:32
 msgid "Only unconfirmed QSOs"
-msgstr ""
+msgstr "Solo QSOs no confirmados"
 
 #: application/views/dbtools/missinggridlist.php:36
 #, php-format
 msgid "Found %s QSO(s) with missing gridsquare."
-msgstr ""
+msgstr "Se encontraron %s QSO(s) sin cuadrícula."
 
 #: application/views/dbtools/missinggridlist.php:37
 msgid "Uncheck the QSOs you want to skip, then start the lookup."
 msgstr ""
+"Desmarca los QSOs que quieras omitir y, a continuación, inicia la búsqueda."
 
 #: application/views/dbtools/missinggridlist.php:50
 #: application/views/view_log/partial/log_ajax.php:129
@@ -15424,7 +15478,7 @@ msgstr "Backend de Trabajo de Wavelog"
 
 #: application/views/debug/index.php:146
 msgid "Worker configuration has changed"
-msgstr ""
+msgstr "La configuración del proceso en segundo plano ha cambiado"
 
 #: application/views/debug/index.php:147
 #, php-format
@@ -15432,10 +15486,12 @@ msgid ""
 "%s and %s are deprecated and will be removed in Wavelog Worker 1.0.0. Please "
 "set %s in your worker config instead."
 msgstr ""
+"%s y %s están obsoletos y se eliminarán en Wavelog Worker 1.0.0. En su "
+"lugar, establece %s en la configuración de tu worker."
 
 #: application/views/debug/index.php:148
 msgid "Everything keeps working until then."
-msgstr ""
+msgstr "Todo seguirá funcionando hasta entonces."
 
 #: application/views/debug/index.php:154
 msgid "Worker"
@@ -15614,11 +15670,11 @@ msgstr "Número de teclas"
 
 #: application/views/debug/index.php:560
 msgid "Round-Trip Test (write - read - delete)"
-msgstr ""
+msgstr "Prueba de ida y vuelta (escribir - leer - eliminar)"
 
 #: application/views/debug/index.php:567
 msgid "Working"
-msgstr ""
+msgstr "En funcionamiento"
 
 #: application/views/debug/index.php:580
 msgid "Cache is working properly. Everything okay!"
@@ -16157,7 +16213,7 @@ msgstr "El usuario no ingresó ningún mensaje adicional."
 
 #: application/views/email/oqrs_request.php:18
 msgid "Requested QSOs"
-msgstr ""
+msgstr "QSOs solicitados"
 
 #: application/views/email/oqrs_request.php:50
 #, php-format
@@ -16178,7 +16234,7 @@ msgstr "Ruta QSL"
 
 #: application/views/email/oqrs_request.php:59
 msgid "DX Callsign"
-msgstr ""
+msgstr "Indicativo DX"
 
 #: application/views/email/oqrs_request.php:65
 msgid ""
@@ -16465,7 +16521,7 @@ msgstr "Rovers por satélite"
 
 #: application/views/hamsat/index.php:18
 msgid "LoTW User. Days since last upload: "
-msgstr ""
+msgstr "Usuario de LoTW. Días desde la última carga: "
 
 #: application/views/hamsat/index.php:29
 #, php-format
@@ -16606,7 +16662,7 @@ msgstr "Colores"
 
 #: application/views/interface_assets/footer.php:57
 msgid "Post"
-msgstr ""
+msgstr "Publicar"
 
 #: application/views/interface_assets/footer.php:58
 #: application/views/qso/edit_ajax.php:198
@@ -16658,7 +16714,7 @@ msgstr "Información del satélite"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Prepare hams.at Activation Posting"
-msgstr ""
+msgstr "Preparar publicación de activación en hams.at"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Error loading notes"
@@ -16737,7 +16793,7 @@ msgstr "QSO con %s por %s fue añadido al libro de registros."
 #: application/views/interface_assets/footer.php:87
 #, php-format
 msgid "Realtime upload failed: %s"
-msgstr ""
+msgstr "Error al cargar en tiempo real: %s"
 
 #: application/views/interface_assets/footer.php:88
 msgid "QSO Added to Backlog"
@@ -21944,31 +22000,31 @@ msgstr ""
 
 #: application/views/satellite/hamsatpost.php:27
 msgid "Pass Time"
-msgstr ""
+msgstr "Hora de paso"
 
 #: application/views/satellite/hamsatpost.php:65
 msgid "Center"
-msgstr ""
+msgstr "Centro"
 
 #: application/views/satellite/hamsatpost.php:68
 msgid "Uplink"
-msgstr ""
+msgstr "Enlace ascendente"
 
 #: application/views/satellite/hamsatpost.php:69
 msgid "Downlink"
-msgstr ""
+msgstr "Enlace descendente"
 
 #: application/views/satellite/hamsatpost.php:117
 msgid "Max 50 characters"
-msgstr ""
+msgstr "Máximo 50 caracteres"
 
 #: application/views/satellite/hamsatpost.php:122
 msgid "Realtime chat enabled"
-msgstr ""
+msgstr "Chat en tiempo real activado"
 
 #: application/views/satellite/hamsatpost.php:126
 msgid "Chat is open until 1 day after the pass ends"
-msgstr ""
+msgstr "El chat está abierto hasta 1 día después de que termine el paso"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
@@ -22057,7 +22113,7 @@ msgstr "Tiempo AOS"
 
 #: application/views/satellite/passtable.php:8
 msgid "TCA Time"
-msgstr ""
+msgstr "Hora TCA"
 
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:46
@@ -23642,7 +23698,7 @@ msgstr "Solo nuevo en el año seleccionado"
 #: application/views/timeline/index.php:392
 #: application/views/timeline/index.php:427
 msgid "Confirmation Date"
-msgstr ""
+msgstr "Fecha de confirmación"
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
@@ -24969,7 +25025,7 @@ msgstr "Elevación de la antena"
 
 #: application/views/view_log/qso.php:284
 msgid "Show all QSOs with this DXCC"
-msgstr ""
+msgstr "Mostrar todos los QSO con este DXCC"
 
 #: application/views/view_log/qso.php:447
 msgid "QSL Card has been sent via the bureau"
@@ -25101,27 +25157,27 @@ msgstr "Sin QSOs"
 
 #: application/views/wabtool/index.php:14
 msgid "Batch Assign WAB from Gridsquare"
-msgstr ""
+msgstr "Asignar WAB por lotes desde la cuadrícula"
 
 #: application/views/wabtool/index.php:28
 msgid "Scan Log"
-msgstr ""
+msgstr "Escanear registro"
 
 #: application/views/wabtool/index.php:31
 msgid "Apply WAB squares"
-msgstr ""
+msgstr "Aplicar cuadrados WAB"
 
 #: application/views/wabtool/index.php:32
 msgid "Write the computed WAB square into the selected QSOs?"
-msgstr ""
+msgstr "¿Escribir el cuadrado WAB calculado en los QSO seleccionados?"
 
 #: application/views/wabtool/index.php:33
 msgid "Apply Selected"
-msgstr ""
+msgstr "Aplicar seleccionados"
 
 #: application/views/wabtool/table.php:10
 msgid "No 100% matching QSOs found."
-msgstr ""
+msgstr "No se encontraron QSO con una coincidencia del 100 %."
 
 #: application/views/webadif/export.php:22
 msgid ""
@@ -25203,21 +25259,23 @@ msgstr "Los QSOs están marcados como exportados al QO-100 Dx Club."
 
 #: application/views/webadif/rejected.php:3
 msgid "Rejected by QO-100 Dx Club"
-msgstr ""
+msgstr "Rechazado por QO-100 Dx Club"
 
 #: application/views/webadif/rejected.php:5
 msgid ""
 "These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
 "is not retried automatically."
 msgstr ""
+"Estos QSO fueron rechazados por la API de QO-100 Dx Club y su carga no se "
+"reintenta automáticamente."
 
 #: application/views/webadif/rejected.php:11
 msgid "Reason for rejection by QO-100 Dx Club"
-msgstr ""
+msgstr "Motivo del rechazo por QO-100 Dx Club"
 
 #: application/views/webadif/rejected.php:24
 msgid "Retry Upload"
-msgstr ""
+msgstr "Reintentar carga"
 
 #: application/views/widgets/lotw_upload.php:88
 msgid "Last LoTW Uploads"
