@@ -629,7 +629,6 @@
                                                         <option value="Y" <?php if ($qso->COL_SRR_QSL_RCVD == "Y") echo "selected=\"selected\""; ?>><?= __("Yes"); ?></option>
                                                         <option value="R" <?php if ($qso->COL_SRR_QSL_RCVD == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
                                                         <option value="I" <?php if ($qso->COL_SRR_QSL_RCVD == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
-                                                        <option value="V" <?php if ($qso->COL_SRR_QSL_RCVD == "V") echo "selected=\"selected\""; ?>><?= __("Verified (Match)"); ?></option>
                                                     </select>
                                                 </div>
                                             </div>

@@ -1786,7 +1786,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('srr_rcvd')) {
-			$srr_rcvd = $this->input->post('srr_rcvd',true);
+			$srr_rcvd = strtoupper($p = $this->input->post('srr_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$srr_rcvd = 'N';
 		}
@@ -6001,7 +6001,7 @@ class Logbook_model extends CI_Model {
 				'COL_SRR_QSLSDATE' => $input_srr_qso_upload_date,
 				'COL_SRR_QSL_SENT' => $input_srr_qso_upload_status,
 				'COL_SRR_QSLRDATE' => (!empty($record['srr_qslrdate'])) ? $record['srr_qslrdate'] : null,
-				'COL_SRR_QSL_RCVD' => (!empty($record['srr_qsl_rcvd'])) ? $record['srr_qsl_rcvd'] : null,
+				'COL_SRR_QSL_RCVD' => (!empty($record['srr_qsl_rcvd'])) ? (strtoupper($record['srr_qsl_rcvd']) === 'V' ? 'Y' : $record['srr_qsl_rcvd']) : null,
 				'COL_QSL_RCVD' => $input_qsl_rcvd,
 				'COL_QSL_RCVD_VIA' => $input_qsl_rcvd_via,
 				'COL_QSL_SENT' => $input_qsl_sent,
