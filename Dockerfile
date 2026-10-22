@@ -1,4 +1,4 @@
-FROM php:8.5-apache-trixie
+FROM php:8.5.12-apache-trixie
 
 # we always need this env var, otherwise wavelog can't work properly in a docker environment
 ENV CI_ENV=docker
