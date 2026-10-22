@@ -86,5 +86,5 @@
 				</div>
 			</div>
 		</div>
-		<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'solarOptsMenu','target_id'=>'solar-card']); ?>
+		<?php if (clubaccess_check(9)) { $this->load->view('dashboard/_options_menu', ['menu_id'=>'solarOptsMenu','target_id'=>'solar-card']); } ?>
 		<?php } ?>
