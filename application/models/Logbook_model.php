@@ -1938,6 +1938,15 @@ class Logbook_model extends CI_Model {
 			$srrrdate = $qso->COL_SRR_QSLRDATE;
 		}
 
+		// The SRR states were changed by the user. The dialog shows an empty state as "N".
+		$srr_modified = false;
+		if (($qso->COL_SRR_QSL_SENT ?? '') != $srr_sent) {
+			$srr_modified = true;
+		}
+		if ((($qso->COL_SRR_QSL_RCVD ?? '') == '' ? 'N' : $qso->COL_SRR_QSL_RCVD) != $srr_rcvd) {
+			$srr_modified = true;
+		}
+
 		if (is_numeric($this->input->post('distance')) && $this->input->post('distance') == 0) {
 			$distance = 0;
 		} elseif (($this->input->post('distance')) && (is_numeric($this->input->post('distance')))) {
@@ -2070,6 +2079,11 @@ class Logbook_model extends CI_Model {
 			$data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] = 'M';
 		}
 
+		$old_srr = ($qso->COL_SRR_QSL_SENT ?? '');
+		if (($old_srr == 'I' || $old_srr == 'Y') && $clublog_relevant_update && !$srr_modified) {	// Update only to "M" if uploaded before or Invalid (may be correct after update)
+			$data['COL_SRR_QSL_SENT'] = 'M';
+		}
+
 		$this->db->where('COL_PRIMARY_KEY', $this->input->post('id'));
 		$data = $this->sanitize_utf8($data);
 		try {
@@ -2115,6 +2129,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where('COL_PRIMARY_KEY', $id);
 		$current_row = $this->db->get($this->config->item('table_name'))->row();
 		$old_clublog = $current_row->COL_CLUBLOG_QSO_UPLOAD_STATUS ?? '';
+		$old_srr = $current_row->COL_SRR_QSL_SENT ?? '';
 		$clublog_relevant_update = $this->has_non_routing_changes($current_row, $data);
 
 		$this->db->where('COL_PRIMARY_KEY', $id);
@@ -2122,6 +2137,10 @@ class Logbook_model extends CI_Model {
 
 		if (($old_clublog == 'I' || $old_clublog == 'Y') && $clublog_relevant_update) {
 			$this->set_clublog_modified($id);
+		}
+
+		if (($old_srr == 'I' || $old_srr == 'Y') && $clublog_relevant_update) {
+			$this->set_srr_modified($id);
 		}
 
 		// Invalidate DXCluster cache for this callsign
@@ -3020,6 +3039,15 @@ class Logbook_model extends CI_Model {
 	 */
 	function set_clublog_modified($qso_id) {
 		$this->set_modified_status($qso_id, 'COL_CLUBLOG_QSO_UPLOAD_STATUS');
+	}
+
+	/**
+	 * Set SRR upload status to 'modified'.
+	 *
+	 * @param int $qso_id  the QSO primary key (COL_PRIMARY_KEY)
+	 */
+	function set_srr_modified($qso_id) {
+		$this->set_modified_status($qso_id, 'COL_SRR_QSL_SENT');
 	}
 
 	/**
