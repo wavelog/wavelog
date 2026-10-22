@@ -1930,7 +1930,7 @@ class Logbook_model extends CI_Model {
 			$srrsdate = $qso->COL_SRR_QSLSDATE;
 		}
 
-		if ($srr_rcvd == 'N' && $qso->COL_SRR_QSL_RCVD != $srr_rcvd) {
+		if ($srr_rcvd == 'N') {
 			$srrrdate = null;
 		} elseif (!$qso->COL_SRR_QSLRDATE || $qso->COL_SRR_QSL_RCVD != $srr_rcvd) {
 			$srrrdate = date('Y-m-d H:i:s');
