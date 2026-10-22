@@ -432,7 +432,7 @@ class Srr_model extends CI_Model {
 				}
 
 				$cnty = strtoupper(trim($record['cnty'] ?? ''));
-				$qso = $this->Logbook_model->get_qso($status[1])->row();
+				$qso = $this->Logbook_model->get_qso($status[1], true)->row();
 				if (($qso->COL_SRR_QSL_RCVD ?? '') == 'Y') {
 					if (($cnty != '') && ($cnty != ($qso->COL_CNTY ?? ''))) {
 						$this->Logbook_model->srr_update_cnty($status[1], $cnty);
