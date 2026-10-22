@@ -10,8 +10,11 @@ class Srr_model extends CI_Model {
 	// Number of requests sent at the same time, 0 = all at once
 	private $max_parallel = 0;
 
-	// Minutes after the upload until QSOs in the SRR inbox are verified
-	private $verify_after = 15;
+	// Minimum minutes after the upload until QSOs in the SRR inbox are verified
+	private $verify_min = 15;
+
+	// QSOs per minute which SRR processes from its inbox (measured), used for the verification time
+	private $srr_rate = 50;
 
 	/**
 	 * Returns the stored SRR API key of a user
@@ -175,10 +178,10 @@ class Srr_model extends CI_Model {
 	 *
 	 * @param object $station_profile Station profile row
 	 * @param string $key SRR API key
-	 * @param bool $propmode_los Send QSOs on 2m and above without PROP_MODE with PROP_MODE LOS
+	 * @param bool $propmode_los Send QSOs on 2m and above without PROP_MODE with PROP_MODE LOS and store it in the QSOs
 	 * @param bool $interactive FALSE (cron): skip QSOs instead of returning them for a dialog
 	 * @param bool $without_rda Send QSOs without a valid RDA without MY_CNTY
-	 * @return array status, infomessage, errormessages, the number of uploaded QSOs (uploaded) and the QSOs for the dialogs (qsos, rda_qsos)
+	 * @return array status, infomessage, errormessages, the number of uploaded QSOs (uploaded), the minutes until the verification (verify_minutes) and the QSOs for the dialogs (qsos, rda_qsos)
 	 */
 	function upload_station($station_profile, $key, $propmode_los = false, $interactive = true, $without_rda = false) {
 		$result = array('status' => 'OK', 'infomessage' => '', 'errormessages' => array(), 'qsos' => array());
@@ -287,6 +290,7 @@ class Srr_model extends CI_Model {
 
 		$uploaded = 0;
 		$failed = 0;
+		$pending_ids = array();
 		$result['uploaded'] = 0;
 
 		// A first small request checks that SRR accepts our QSOs before all others are sent
@@ -304,6 +308,7 @@ class Srr_model extends CI_Model {
 		$marked = $this->mark_chunk($probe, $response['data'], $station_text);
 		$uploaded += $marked['uploaded'];
 		$failed += $marked['failed'];
+		$pending_ids = array_merge($pending_ids, $marked['pending']);
 		$result['errormessages'] = array_merge($result['errormessages'], $marked['errormessages']);
 
 		if (($marked['uploaded'] == 0) && (count($chunks) > 0)) {
@@ -344,6 +349,7 @@ class Srr_model extends CI_Model {
 					$marked = $this->mark_chunk($chunk, $response['data'], $station_text);
 					$uploaded += $marked['uploaded'];
 					$failed += $marked['failed'];
+					$pending_ids = array_merge($pending_ids, $marked['pending']);
 					$result['errormessages'] = array_merge($result['errormessages'], $marked['errormessages']);
 				}
 
@@ -361,6 +367,11 @@ class Srr_model extends CI_Model {
 		}
 
 		curl_multi_close($mh);
+
+		// SRR processes about srr_rate QSOs per minute from its inbox. The QSOs are verified
+		// after this time, rounded up to 5 minutes, but not before verify_min minutes.
+		$result['verify_minutes'] = max($this->verify_min, (int)ceil(count($pending_ids) / $this->srr_rate / 5) * 5);
+		$this->add_pending($pending_ids, $result['verify_minutes']);
 
 		$result['uploaded'] = $uploaded;
 		$result['infomessage'] = $station_text.__("Upload Successful")." ".$uploaded." QSOs";
@@ -478,27 +489,27 @@ class Srr_model extends CI_Model {
 	 * Stores uploaded QSOs which SRR accepted but did not process yet (inbox)
 	 *
 	 * @param array $qso_ids QSO primary keys
+	 * @param int $minutes Minutes until the QSOs are verified
 	 * @return void
 	 */
-	function add_pending($qso_ids) {
-		if (empty($qso_ids)) {
-			return;
+	function add_pending($qso_ids, $minutes) {
+		$verify_date = date("Y-m-d H:i:s", time() + $minutes * 60);
+		foreach (array_chunk($qso_ids, 100) as $chunk) {
+			$bindings = array();
+			foreach ($chunk as $qso_id) {
+				$bindings[] = $qso_id;
+				$bindings[] = $verify_date;
+			}
+			$sql = "INSERT INTO srr_pending (qso_id, verify_date) VALUES ".implode(',', array_fill(0, count($chunk), '(?, ?)'))."
+				ON DUPLICATE KEY UPDATE verify_date = VALUES(verify_date)";
+			$this->db->query($sql, $bindings);
 		}
-		$bindings = array();
-		$upload_date = date("Y-m-d H:i:s");
-		foreach ($qso_ids as $qso_id) {
-			$bindings[] = $qso_id;
-			$bindings[] = $upload_date;
-		}
-		$sql = "INSERT INTO srr_pending (qso_id, upload_date) VALUES ".implode(',', array_fill(0, count($qso_ids), '(?, ?)'))."
-			ON DUPLICATE KEY UPDATE upload_date = VALUES(upload_date)";
-		$this->db->query($sql, $bindings);
 	}
 
 	/**
 	 * Verifies the uploaded QSOs of a user which SRR did not process during the upload (inbox).
 	 * QSOs found in the SRR export stay uploaded, QSOs not found are marked as invalid.
-	 * Only QSOs uploaded more than verify_after minutes ago are checked.
+	 * Only QSOs whose verification time (see upload_station()) has passed are checked.
 	 *
 	 * @param int $user_id User id
 	 * @param string $key SRR API key
@@ -522,9 +533,9 @@ class Srr_model extends CI_Model {
 			FROM srr_pending
 			INNER JOIN " . $this->config->item('table_name') . " qsos ON qsos.COL_PRIMARY_KEY = srr_pending.qso_id
 			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
-			WHERE station_profile.user_id = ? AND srr_pending.upload_date <= ?
+			WHERE station_profile.user_id = ? AND srr_pending.verify_date <= ?
 			ORDER BY qsos.COL_TIME_ON";
-		$rows = $this->db->query($sql, array($user_id, date("Y-m-d H:i:s", time() - $this->verify_after * 60)))->result();
+		$rows = $this->db->query($sql, array($user_id, date("Y-m-d H:i:s")))->result();
 
 		$callsigns = $this->srr_callsigns($me);
 		if (empty($rows) || empty($callsigns)) {
@@ -573,15 +584,15 @@ class Srr_model extends CI_Model {
 	/**
 	 * Marks the QSOs of one request by the SRR response. QSOs with an error are
 	 * marked as invalid, all others as uploaded. If SRR did not process all
-	 * accepted QSOs yet (inbox), the uploaded QSOs are stored for a later verification.
+	 * accepted QSOs yet (inbox), the uploaded QSOs are returned as pending for a later verification.
 	 *
 	 * @param array $chunk QSO rows of the request
 	 * @param object $data Decoded SRR response
 	 * @param string $station_text Prefix for the error messages
-	 * @return array uploaded, failed and errormessages
+	 * @return array uploaded, failed, errormessages and the ids of the pending QSOs (pending)
 	 */
 	private function mark_chunk($chunk, $data, $station_text) {
-		$result = array('uploaded' => 0, 'failed' => 0, 'errormessages' => array());
+		$result = array('uploaded' => 0, 'failed' => 0, 'errormessages' => array(), 'pending' => array());
 
 		$qso_errors = array();
 		foreach (($data->validation_errors ?? array()) as $validation_error) {
@@ -609,7 +620,7 @@ class Srr_model extends CI_Model {
 		}
 
 		if ((int)($data->process->processed ?? 0) < (int)($data->accepted ?? count($chunk))) {
-			$this->add_pending($uploaded_ids);
+			$result['pending'] = $uploaded_ids;
 		}
 
 		return $result;

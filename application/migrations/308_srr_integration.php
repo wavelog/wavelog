@@ -44,7 +44,7 @@ class Migration_srr_integration extends CI_Migration {
 			$this->dbtry("CREATE TABLE `srr_pending` (
 				`id` int(11) NOT NULL AUTO_INCREMENT,
 				`qso_id` int(11) NOT NULL,
-				`upload_date` datetime NOT NULL,
+				`verify_date` datetime NOT NULL,
 				PRIMARY KEY (`id`),
 				UNIQUE KEY `srr_pending_qso_id` (`qso_id`)
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");

@@ -159,5 +159,5 @@
 	var lang_srr_band = "<?= __("Band"); ?>";
 	var lang_srr_mode = "<?= __("Mode"); ?>";
 	var lang_srr_accepted_title = "<?= __("QSOs accepted by SRR"); ?>";
-	var lang_srr_accepted_message = "<?= __("Your QSOs have been accepted by SRR. They will be processed within 10-15 minutes. We recommend downloading the confirmations afterwards."); ?>";
+	var lang_srr_accepted_message = "<?= __("Your QSOs have been accepted by SRR. They will be processed within about %d minutes. We recommend downloading the confirmations afterwards."); ?>";
 </script>
