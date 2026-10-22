@@ -6639,6 +6639,30 @@ class Logbook_model extends CI_Model {
 		return "Updated";
 	}
 
+	/**
+	 * Sets the propagation mode LOS for QSOs without a propagation mode
+	 *
+	 * @param array $qso_ids QSO primary keys
+	 * @return void
+	 */
+	function srr_update_prop_mode_los($qso_ids) {
+		if (empty($qso_ids)) {
+			return;
+		}
+
+		$data = array(
+			'COL_PROP_MODE' => 'LOS',
+		);
+
+		$this->db->where_in('COL_PRIMARY_KEY', $qso_ids);
+		$this->db->group_start();
+		$this->db->where('COL_PROP_MODE', '');
+		$this->db->or_where('COL_PROP_MODE IS NULL');
+		$this->db->group_end();
+
+		$this->db->update($this->config->item('table_name'), $data);
+	}
+
 	function mark_lotw_sent($qso_id) {
 
 		$data = array(

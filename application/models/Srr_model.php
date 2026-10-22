@@ -212,11 +212,13 @@ class Srr_model extends CI_Model {
 
 		// QSOs on 2m and above need a PROP_MODE
 		$upload_qsos = array();
+		$los_ids = array();
 		$skipped = 0;
 		foreach ($qsos as $qso) {
 			if ((($qso->COL_PROP_MODE ?? '') == '') && $this->vhf_or_above($qso)) {
 				if ($propmode_los) {
 					$qso->COL_PROP_MODE = 'LOS';
+					$los_ids[] = $qso->COL_PRIMARY_KEY;
 				} elseif ($interactive) {
 					$result['qsos'][] = array(
 						'call' => $qso->COL_CALL,
@@ -238,6 +240,9 @@ class Srr_model extends CI_Model {
 			$result['status'] = 'propmode';
 			return $result;
 		}
+
+		// The user chose LOS for these QSOs, so it is stored in the QSOs too
+		$this->Logbook_model->srr_update_prop_mode_los($los_ids);
 
 		if ($skipped > 0) {
 			$result['errormessages'][] = $station_text.sprintf(__("%d QSO(s) on 2m and above have no propagation mode and were not uploaded."), $skipped);
