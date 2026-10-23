@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-23 13:35+0000\n"
+"POT-Creation-Date: 2026-10-23 13:42+0000\n"
 "PO-Revision-Date: 2026-10-08 15:28+0000\n"
 "Last-Translator: Michal OM1PU <mprilepok@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3064,7 +3064,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:163
-#: application/models/Logbook_model.php:1638
+#: application/models/Logbook_model.php:1648
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -5013,8 +5013,10 @@ msgstr "Chyba pri pridávaní člena klubu!"
 
 #: application/models/Club_model.php:338 application/views/api/index.php:68
 #: application/views/contesting/logger/components/qso-form.php:35
+#: application/views/lookup/lotwuser.php:14
 #: application/views/satellite/index.php:94
 #: application/views/satellite/satinfo.php:51
+#: application/views/search/result.php:84
 msgid "Unknown"
 msgstr "Neznáme"
 
@@ -5197,37 +5199,37 @@ msgstr ""
 msgid "Station not accessible"
 msgstr "Stanica nie je prístupná"
 
-#: application/models/Logbook_model.php:1075
+#: application/models/Logbook_model.php:1085
 msgid "Realtime upload disabled"
 msgstr ""
 
-#: application/models/Logbook_model.php:1628
+#: application/models/Logbook_model.php:1638
 msgid "Station ID not allowed"
 msgstr "ID stanice nie je povolené"
 
-#: application/models/Logbook_model.php:1633
+#: application/models/Logbook_model.php:1643
 msgid "No Call given"
 msgstr "Nezadaný volací znak"
 
-#: application/models/Logbook_model.php:1709
-#: application/models/Logbook_model.php:1927
+#: application/models/Logbook_model.php:1719
+#: application/models/Logbook_model.php:1937
 msgid "DXCC has to be Numeric"
 msgstr "DXCC musí byť číselné"
 
-#: application/models/Logbook_model.php:5213
+#: application/models/Logbook_model.php:5223
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:5221
+#: application/models/Logbook_model.php:5231
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:5237
+#: application/models/Logbook_model.php:5247
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5235,28 +5237,28 @@ msgstr ""
 "Pokúsil si sa importovať QSO bez platného dátumu. Toto QSO nebolo "
 "importované. Je neplatné"
 
-#: application/models/Logbook_model.php:5247
+#: application/models/Logbook_model.php:5257
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
 msgstr ""
 
-#: application/models/Logbook_model.php:5254
+#: application/models/Logbook_model.php:5264
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5324
+#: application/models/Logbook_model.php:5334
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
 msgstr ""
 
-#: application/models/Logbook_model.php:5331
+#: application/models/Logbook_model.php:5341
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5266,63 +5268,63 @@ msgstr ""
 "nebolo importované. Je neplatnéQSO na %s: Pokúsil si sa importovať QSO bez "
 "uvedeného pásma. Toto QSO nebolo importované. Je neplatné."
 
-#: application/models/Logbook_model.php:5609
+#: application/models/Logbook_model.php:5619
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate je neplatné (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5620
+#: application/models/Logbook_model.php:5630
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate je neplatné (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5683
+#: application/models/Logbook_model.php:5693
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date je neplatné (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:6059
+#: application/models/Logbook_model.php:6069
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicita pre"
 
-#: application/models/Logbook_model.php:6126
-#: application/models/Logbook_model.php:6226
+#: application/models/Logbook_model.php:6136
+#: application/models/Logbook_model.php:6236
 msgid "QSO could not be matched"
 msgstr "QSO nebolo možné spárovať"
 
-#: application/models/Logbook_model.php:6134
+#: application/models/Logbook_model.php:6144
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrdené cez LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:6140
+#: application/models/Logbook_model.php:6150
 msgid "confirmed by award manager"
 msgstr "potvrdené diplomovým manažérom"
 
-#: application/models/Logbook_model.php:6144
+#: application/models/Logbook_model.php:6154
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrdené krížovou kontrolou údajov DCL"
 
-#: application/models/Logbook_model.php:6148
+#: application/models/Logbook_model.php:6158
 msgid "confirmation pending"
 msgstr "potvrdenie čaká"
 
-#: application/models/Logbook_model.php:6151
+#: application/models/Logbook_model.php:6161
 msgid "unconfirmed"
 msgstr "nepotvrdené"
 
-#: application/models/Logbook_model.php:6154
+#: application/models/Logbook_model.php:6164
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "neznáme"
 
-#: application/models/Logbook_model.php:6229
+#: application/models/Logbook_model.php:6239
 msgid "POTA reference already in log"
 msgstr "POTA referencia už v logu"
 
-#: application/models/Logbook_model.php:6232
+#: application/models/Logbook_model.php:6242
 msgid "QSO updated"
 msgstr "QSO aktualizované"
 
-#: application/models/Logbook_model.php:6653
+#: application/models/Logbook_model.php:6663
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -10182,7 +10184,7 @@ msgstr "WAB štvorec"
 #: application/views/logbookadvanced/index.php:734
 #: application/views/logbookadvanced/index.php:742
 #: application/views/logbookadvanced/index.php:751
-#: application/views/lookup/lotwuser.php:14
+#: application/views/lookup/lotwuser.php:16
 #: application/views/qso/edit_ajax.php:429
 #: application/views/qso/edit_ajax.php:462
 #: application/views/qso/edit_ajax.php:489
@@ -10201,7 +10203,7 @@ msgstr "WAB štvorec"
 #: application/views/satellite/index.php:91
 #: application/views/satellite/index.php:104
 #: application/views/satellite/satinfo.php:48
-#: application/views/search/result.php:84
+#: application/views/search/result.php:86
 #: application/views/station_profile/create.php:331
 #: application/views/station_profile/create.php:339
 #: application/views/station_profile/create.php:367
@@ -20026,6 +20028,16 @@ msgid "last upload"
 msgstr "posledné nahratie"
 
 #: application/views/lookup/lotwuser.php:14
+#: application/views/search/result.php:84
+msgid "LoTW Status Unknown"
+msgstr ""
+
+#: application/views/lookup/lotwuser.php:14
+#: application/views/search/result.php:84
+msgid "Table with last LoTW uploads is empty. Please check"
+msgstr ""
+
+#: application/views/lookup/lotwuser.php:16
 msgid "No LoTW User"
 msgstr "Nie je LoTW používateľ"
 
