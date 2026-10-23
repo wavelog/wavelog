@@ -508,7 +508,13 @@
 								<?php if ($this->config->item('special_callsign') && $this->session->userdata('clubstation') == 0) { ?>
 									<?php if (!empty($this->session->userdata('available_clubstations'))) { ?>
 										<li><hr class="dropdown-divider"></li>
+										<?php $clubstation_submenu = count($this->session->userdata('available_clubstations')) > 1; ?>
+										<?php if ($clubstation_submenu) { ?>
+										<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown"><i class="fas fa-exchange-alt"></i> <?= __("Switch to Clubstation"); ?></a>
+											<ul class="submenu submenu-left dropdown-menu">
+										<?php } else { ?>
 										<li><a class="dropdown-item disabled"><?= __("Switch to Clubstation:"); ?></a></li>
+										<?php } ?>
 										<?php foreach ($this->session->userdata('available_clubstations') as $clubstation) { ?>
 											<li>
 												<div class="btn-group w-100" role="group">
@@ -522,6 +528,10 @@
 													<?php } ?>
 												</div>
 											</li>
+										<?php } ?>
+										<?php if ($clubstation_submenu) { ?>
+											</ul>
+										</li>
 										<?php } ?>
 									<?php } else if ($this->session->userdata('user_type') === '99') { ?>
 										<li><hr class="dropdown-divider"></li>
