@@ -762,9 +762,12 @@ class Logbook_model extends CI_Model {
 				$sql .= ' AND `COL_DXCC` = 339';
 				break;
 			case 'JCG':
-				// Unlike JCC, JCG (gun/county) numbers have no "ward of a
-				// designated city" variant, so COL_CNTY is matched directly.
-				$sql .= ' WHERE `COL_CNTY` = ? AND `COL_DXCC` = 339';
+				// Ogasawara-Shicho also includes DXCC 177/192 regardless of CNTY.
+				if ($searchphrase == '10007') {
+					$sql .= ' WHERE ((`COL_CNTY` = ? AND `COL_DXCC` = 339) OR `COL_DXCC` IN (177, 192))';
+				} else {
+					$sql .= ' WHERE `COL_CNTY` = ? AND `COL_DXCC` = 339';
+				}
 				$binding[] = $searchphrase;
 				break;
 			case 'SOTA':
