@@ -3,8 +3,9 @@
 class Activationplanner_model extends CI_Model {
 
 	/*
-	 * WWFF/POTA/SOTA references within $max_km of [$lat, $lng], each tagged with
-	 * its type and great-circle distance (km). Sorted ascending by distance.
+	 * WWFF/POTA/SOTA references + WAB squares within $max_km of [$lat, $lng],
+	 * each tagged with its type and great-circle distance (km). Sorted
+	 * ascending by distance.
 	 */
 	function refs_nearby($lat, $lng, $max_km = 20.0) {
 		$sources = array(
@@ -17,6 +18,9 @@ class Activationplanner_model extends CI_Model {
 			foreach ($this->refs_nearby_in($table, $type, $lat, $lng, $max_km) as $row) {
 				$out[] = $row;
 			}
+		}
+		foreach ($this->wab_squares_nearby($lat, $lng, $max_km) as $row) {
+			$out[] = $row;
 		}
 		usort($out, function ($a, $b) { return $a['dist'] <=> $b['dist']; });
 		return $out;
@@ -51,6 +55,47 @@ class Activationplanner_model extends CI_Model {
 					'type' => $type,
 					'ref'  => $r->reference,
 					'name' => $r->name,
+					'dist' => round($d, 1),
+				);
+			}
+		}
+		return $result;
+	}
+
+	/*
+	 * WAB squares have no DB table — their geometry lives in the same geojson
+	 * the WAB award map draws. Nearby = the square centre points within range
+	 * (same bbox prefilter + haversine as refs_nearby_in).
+	 */
+	private function wab_squares_nearby($lat, $lng, $max_km) {
+		$this->load->library('Geojson');
+		$geojson = $this->geojson->loadGeoJsonFile('assets/js/sections/wab_geojson.js');
+		if (!is_array($geojson) || !isset($geojson['features'])) {
+			return array();
+		}
+
+		$lat_deg = $max_km / 110.0;
+		$lon_deg = $lat_deg / max(0.2, cos(deg2rad(abs($lat))));
+		$result = array();
+		foreach ($geojson['features'] as $f) {
+			if (($f['geometry']['type'] ?? '') !== 'Point') {
+				continue;
+			}
+			$plat = $f['geometry']['coordinates'][1] ?? null;
+			$plng = $f['geometry']['coordinates'][0] ?? null;
+			$name = $f['properties']['name'] ?? null;
+			if ($plat === null || $plng === null || $name === null) {
+				continue;
+			}
+			if (abs($plat - $lat) > $lat_deg || abs($plng - $lng) > $lon_deg) {
+				continue;
+			}
+			$d = $this->haversine_km($lat, $lng, (float) $plat, (float) $plng);
+			if ($d <= $max_km) {
+				$result[] = array(
+					'type' => 'WAB',
+					'ref'  => $name,
+					'name' => null,
 					'dist' => round($d, 1),
 				);
 			}

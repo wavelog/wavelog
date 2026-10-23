@@ -15,6 +15,7 @@
 		potaBoundaryUrl: <?php echo json_encode(site_url('activationplanner/pota_boundary') . '/'); ?>,
 		sotaUrl:    <?php echo json_encode(site_url('activationplanner/sota_directory')); ?>,
 		iotaUrl:    <?php echo json_encode(site_url('activationplanner/iota_directory')); ?>,
+		wabGeojsonUrl: <?php echo json_encode(base_url('assets/js/sections/wab_geojson.js')); ?>,
 		dxccGridUrl: <?php echo json_encode(site_url('activationplanner/dxcc_for_grid')); ?>,
 		refsNearbyUrl: <?php echo json_encode(site_url('activationplanner/refs_nearby')); ?>,
 		satPassUrl: <?php echo json_encode(site_url('satellite/pass')); ?>,
@@ -84,7 +85,7 @@
 						<i class="fas fa-magnifying-glass gl-search-icon"></i>
 						<input type="text" id="glRefSearch" class="gl-search-input form-control form-control-sm"
 							autocomplete="off" spellcheck="false"
-							placeholder="<?= __("Search references…"); ?>" title="<?= __("Search WWFF / POTA / SOTA / IOTA by name or reference — Enter searches place names (OpenStreetMap)"); ?>">
+							placeholder="<?= __("Search references…"); ?>" title="<?= __("Search WWFF / POTA / SOTA / IOTA / WAB by name or reference — Enter searches place names (OpenStreetMap)"); ?>">
 						<div class="gl-search-results" id="glRefSearchResults" hidden></div>
 					</div>
 					<div class="gl-refsrow gl-secondary">
@@ -96,6 +97,7 @@
 								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glPotaDir"><?= __("POTA"); ?><span class="ref-menu-dot ms-auto" style="background:#238b45">P</span></label></li>
 								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glSotaDir"><?= __("SOTA"); ?><span class="ref-menu-dot ms-auto" style="background:#d95f0e">S</span></label></li>
 								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glIotaDir"><?= __("IOTA"); ?><span class="ref-menu-dot ms-auto" style="background:#17a2b8">I</span></label></li>
+								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glWabSquares"><?= __("WAB squares"); ?><span class="ref-menu-dot ms-auto" style="background:#d62728; border-radius:3px"></span></label></li>
 							</ul>
 						</div>
 						<div id="glOverlaysHost" class="gl-secondary"></div>
