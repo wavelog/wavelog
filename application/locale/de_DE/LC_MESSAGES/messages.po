@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-23 13:35+0000\n"
+"POT-Creation-Date: 2026-10-23 13:42+0000\n"
 "PO-Revision-Date: 2026-10-23 13:49+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2863,8 +2863,8 @@ msgid ""
 "The uploaded file is invalid. Please upload a Logbook of the World .p12 "
 "certificate file."
 msgstr ""
-"Die hochgeladene Datei ist ungültig. Bitte lade eine Logbook-of-the-"
-"World .p12 Zertifikatsdatei hoch."
+"Die hochgeladene Datei ist ungültig. Bitte lade eine Logbook-of-the-World ."
+"p12 Zertifikatsdatei hoch."
 
 #: application/controllers/Lotw.php:134
 msgid "The uploaded file could not be read."
@@ -3078,9 +3078,9 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:163
-#: application/models/Logbook_model.php:1638
+#: application/models/Logbook_model.php:1648
 #: application/views/contesting/logger/components/qso-form.php:44
-#: application/views/qso/index.php:40 application/models/Logbook_model.php:1648
+#: application/views/qso/index.php:40
 msgid "Invalid callsign"
 msgstr "Ungültiges Rufzeichen"
 
@@ -3367,8 +3367,8 @@ msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
-"Bitte vergleiche deine aktuelle config.php mit der neuesten "
-"config.sample.php und aktualisiere sie entsprechend."
+"Bitte vergleiche deine aktuelle config.php mit der neuesten config.sample."
+"php und aktualisiere sie entsprechend."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:586
@@ -5032,9 +5032,9 @@ msgstr "Fehler beim Hinzufügen eines Clubmitglieds!"
 
 #: application/models/Club_model.php:338 application/views/api/index.php:68
 #: application/views/contesting/logger/components/qso-form.php:35
+#: application/views/lookup/lotwuser.php:14
 #: application/views/satellite/index.php:94
 #: application/views/satellite/satinfo.php:51
-#: application/views/lookup/lotwuser.php:14
 #: application/views/search/result.php:84
 msgid "Unknown"
 msgstr "Unbekannt"
@@ -5237,29 +5237,23 @@ msgstr "Importierter Labeltyp"
 msgid "Station not accessible"
 msgstr "Station nicht verfügbar"
 
-#: application/models/Logbook_model.php:1075
 #: application/models/Logbook_model.php:1085
 msgid "Realtime upload disabled"
 msgstr "Echtzeit-Upload deaktiviert"
 
-#: application/models/Logbook_model.php:1628
 #: application/models/Logbook_model.php:1638
 msgid "Station ID not allowed"
 msgstr "Stations ID nicht erlaubt"
 
-#: application/models/Logbook_model.php:1633
 #: application/models/Logbook_model.php:1643
 msgid "No Call given"
 msgstr "Kein Rufzeichen angegeben"
 
-#: application/models/Logbook_model.php:1709
-#: application/models/Logbook_model.php:1927
 #: application/models/Logbook_model.php:1719
 #: application/models/Logbook_model.php:1937
 msgid "DXCC has to be Numeric"
 msgstr "DXCC muss numerisch sein"
 
-#: application/models/Logbook_model.php:5213
 #: application/models/Logbook_model.php:5223
 #, php-format
 msgid ""
@@ -5268,7 +5262,6 @@ msgstr ""
 "Abweichendes Stationsrufzeichen %s beim Import des QSO mit %s für %s: "
 "ÜBERSPRUNGEN"
 
-#: application/models/Logbook_model.php:5221
 #: application/models/Logbook_model.php:5231
 #, php-format
 msgid ""
@@ -5278,7 +5271,6 @@ msgstr ""
 "Abweichendes Planquadrat %s beim Import des QSO mit %s für "
 "Stationsplanquadrat %s: ÜBERSPRUNGEN"
 
-#: application/models/Logbook_model.php:5237
 #: application/models/Logbook_model.php:5247
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -5287,7 +5279,6 @@ msgstr ""
 "Du hast versucht, ein QSO mit ungültigem Datum zu importieren. Dieses QSO "
 "wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:5247
 #: application/models/Logbook_model.php:5257
 #, php-format
 msgid ""
@@ -5297,7 +5288,6 @@ msgstr ""
 "QSO bei %s: Du hast versucht, ein QSO ohne jedes Rufzeichen zu importieren. "
 "Dieses QSO wurde nicht importiert. Es ist ungültig."
 
-#: application/models/Logbook_model.php:5254
 #: application/models/Logbook_model.php:5264
 #, php-format
 msgid ""
@@ -5307,7 +5297,6 @@ msgstr ""
 "QSO bei %s: Du hast versucht, ein QSO mit einem ungültigen Rufzeichen zu "
 "importieren. Dieses QSO wurde nicht importiert. Der ungültige Wert ist '%s'."
 
-#: application/models/Logbook_model.php:5324
 #: application/models/Logbook_model.php:5334
 #, php-format
 msgid ""
@@ -5317,7 +5306,6 @@ msgstr ""
 "QSO bei %s: Band '%s' ist nicht in der Bandkonfiguration. Dieses QSO wurde "
 "nicht importiert."
 
-#: application/models/Logbook_model.php:5331
 #: application/models/Logbook_model.php:5341
 #, php-format
 msgid ""
@@ -5327,77 +5315,63 @@ msgstr ""
 "QSO um %s: Du hast versucht, ein QSO ohne Bandinformationen zu importieren. "
 "Dieses QSO wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:5609
 #: application/models/Logbook_model.php:5619
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:5620
 #: application/models/Logbook_model.php:5630
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:5683
 #: application/models/Logbook_model.php:5693
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:6059
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:6069
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
-#: application/models/Logbook_model.php:6126
-#: application/models/Logbook_model.php:6226
 #: application/models/Logbook_model.php:6136
 #: application/models/Logbook_model.php:6236
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
-#: application/models/Logbook_model.php:6134
 #: application/models/Logbook_model.php:6144
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:6140
 #: application/models/Logbook_model.php:6150
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
-#: application/models/Logbook_model.php:6144
 #: application/models/Logbook_model.php:6154
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
-#: application/models/Logbook_model.php:6148
 #: application/models/Logbook_model.php:6158
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
-#: application/models/Logbook_model.php:6151
 #: application/models/Logbook_model.php:6161
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:6154
+#: application/models/Logbook_model.php:6164
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
-#: application/models/Logbook_model.php:6164
 msgid "unknown"
 msgstr "unbekannt"
 
-#: application/models/Logbook_model.php:6229
 #: application/models/Logbook_model.php:6239
 msgid "POTA reference already in log"
 msgstr "POTA Referenz bereits im Log"
 
-#: application/models/Logbook_model.php:6232
 #: application/models/Logbook_model.php:6242
 msgid "QSO updated"
 msgstr "QSO aktualisiert"
 
-#: application/models/Logbook_model.php:6653
+#: application/models/Logbook_model.php:6663
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5410,7 +5384,6 @@ msgstr "QSO aktualisiert"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
-#: application/models/Logbook_model.php:6663
 msgid "Bearing"
 msgstr "Peilung"
 
@@ -10062,7 +10035,7 @@ msgstr "WAB Locator"
 #: application/views/logbookadvanced/index.php:734
 #: application/views/logbookadvanced/index.php:742
 #: application/views/logbookadvanced/index.php:751
-#: application/views/lookup/lotwuser.php:14
+#: application/views/lookup/lotwuser.php:16
 #: application/views/qso/edit_ajax.php:429
 #: application/views/qso/edit_ajax.php:462
 #: application/views/qso/edit_ajax.php:489
@@ -10081,7 +10054,7 @@ msgstr "WAB Locator"
 #: application/views/satellite/index.php:91
 #: application/views/satellite/index.php:104
 #: application/views/satellite/satinfo.php:48
-#: application/views/search/result.php:84
+#: application/views/search/result.php:86
 #: application/views/station_profile/create.php:331
 #: application/views/station_profile/create.php:339
 #: application/views/station_profile/create.php:367
@@ -10097,8 +10070,7 @@ msgstr "WAB Locator"
 #: application/views/stationsetup/locationlist.php:47
 #: application/views/stationsetup/locationlist.php:57
 #: application/views/user/edit.php:694 application/views/user/edit.php:698
-#: application/views/user/edit.php:788 application/views/lookup/lotwuser.php:16
-#: application/views/search/result.php:86
+#: application/views/user/edit.php:788
 msgid "No"
 msgstr "Nein"
 
@@ -16400,8 +16372,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
-"eQSL.cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
+"cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -19888,6 +19860,15 @@ msgid "last upload"
 msgstr "Letzter Upload"
 
 #: application/views/lookup/lotwuser.php:14
+#: application/views/search/result.php:84
+msgid "LoTW Status Unknown"
+msgstr "LoTW-Status unbekannt"
+
+#: application/views/lookup/lotwuser.php:14
+#: application/views/search/result.php:84
+msgid "Table with last LoTW uploads is empty. Please check"
+msgstr "Tabelle mit letzten LoTW-Uploads ist leer. Bitte prüfen"
+
 #: application/views/lookup/lotwuser.php:16
 msgid "No LoTW User"
 msgstr "Kein LoTW-Benutzer"
@@ -20476,8 +20457,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
-"'wavelog@example.com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
+"com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -22571,8 +22552,8 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
-"z.B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
+"B. %s), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
 "wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:23
@@ -23627,9 +23608,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
-"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
-"enthält. Wir verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
+"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
+"verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -25423,16 +25404,6 @@ msgstr "Clublog Logsuche"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW Nutzer. Letzter Upload vom "
-
-#: application/views/lookup/lotwuser.php:14
-#: application/views/search/result.php:84
-msgid "LoTW Status Unknown"
-msgstr "LoTW-Status unbekannt"
-
-#: application/views/lookup/lotwuser.php:14
-#: application/views/search/result.php:84
-msgid "Table with last LoTW uploads is empty. Please check"
-msgstr "Tabelle mit letzten LoTW-Uploads ist leer. Bitte prüfen"
 
 #~ msgid "Callsigns tested: "
 #~ msgstr "Geprüfte Rufzeichen: "
