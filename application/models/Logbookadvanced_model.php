@@ -23,6 +23,7 @@ class Logbookadvanced_model extends CI_Model {
 	 * @return CI_DB_result Query result containing both QSOs of each dupe pair
 	 */
 	public function dupeSearchQuery($searchCriteria, $binding) {
+		$this->dupe_later_ids = [];
 		$order_by = ' ORDER BY col_call';
 
 		// Build dynamic PARTITION BY
