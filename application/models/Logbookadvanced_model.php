@@ -4,6 +4,24 @@ use Wavelog\Dxcc\Dxcc;
 
 class Logbookadvanced_model extends CI_Model {
 
+	/**
+	 * QSO IDs flagged as the newer row of a dupe pair
+	 * (filled by dupeSearchQuery, read via getDupeLaterIds).
+	 *
+	 * @var array
+	 */
+	private $dupe_later_ids = [];
+
+	/**
+	 * Build the duplicate search query: finds pairs of QSOs matching
+	 * the dupe criteria (call plus optional mode/band/satellite/date window)
+	 * and returns both QSOs of each pair.
+	 *
+	 * @param array $searchCriteria Search criteria from the advanced logbook
+	 * @param array $binding        Bound query parameters (user_id)
+	 *
+	 * @return CI_DB_result Query result containing both QSOs of each dupe pair
+	 */
 	public function dupeSearchQuery($searchCriteria, $binding) {
 		$order_by = ' ORDER BY col_call';
 
@@ -91,6 +109,7 @@ class Logbookadvanced_model extends CI_Model {
 
 		$ids2fetch = [];
 		foreach ($id_query->result() as $id) {
+			$this->dupe_later_ids[] = (int)$id->col_primary_key;
 			$ids2fetch[] = $id->col_primary_key;
 			if ($id->prev_primary_key) {
 				$ids2fetch[] = $id->prev_primary_key;
@@ -148,6 +167,16 @@ class Logbookadvanced_model extends CI_Model {
 			$limit
 		";
 		return $this->db->query($sql, $binding);
+	}
+
+	/**
+	 * Get the QSO IDs flagged as the newer row of each dupe pair
+	 * by the last dupeSearchQuery run.
+	 *
+	 * @return array Array of integer QSO IDs
+	 */
+	public function getDupeLaterIds(): array {
+		return $this->dupe_later_ids;
 	}
 
 	private function wildcardPattern($value, $default) {
