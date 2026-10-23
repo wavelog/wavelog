@@ -10,6 +10,7 @@
   var option_map_tile_server_copyright = '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
   var option_map_tile_subdomains = '<?php echo $this->optionslib->get_option('option_map_tile_subdomains') ?? 'abc';?>';
   var lang_general_gridsquares = "<?= __("Gridsquares"); ?>";
+  var lang_general_nightshadow = "<?= _pgettext("Map Options", "Night Shadow"); ?>";
   var lang_general_word_search = "<?= __("Search"); ?>";
 </script>
 
@@ -53,6 +54,7 @@ if ($lang_code !== 'en' && file_exists(FCPATH . "assets/json/datatables_language
 <!-- DATATABLES LANGUAGE END -->
 
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.js') ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Terminator.js') ?>"></script>
     <script id="leafembed" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leafembed.js') ?>" tileUrl="<?php echo $this->optionslib->get_option('map_tile_server');?>"></script>
     <script type="text/javascript">
       $(function () {

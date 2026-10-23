@@ -504,6 +504,7 @@ class User extends CI_Controller {
 			$data['user_map_qsoconfirm_color'] = "#00AA00";
 			$data['user_map_unworked_color'] = "#FF0000";
 			$data['user_map_gridsquare_show'] = "0";
+			$data['user_map_nightshadow_show'] = "0";
 			$data['user_map_tile_style'] = "map-follow";
 		}
 		$data['map_icon_select'] = array(
@@ -1119,12 +1120,16 @@ class User extends CI_Controller {
 					$_gridshow = $this->input->post('user_map_gridsquare_show', true);
 					$_gridshow = ($_gridshow === '1' || $_gridshow === 1) ? '1' : '0';
 					$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>$_gridshow), $user_id);
+					$_nightshadowshow = $this->input->post('user_map_nightshadow_show', true);
+					$_nightshadowshow = ($_nightshadowshow === '1' || $_nightshadowshow === 1) ? '1' : '0';
+					$this->user_options_model->set_option('map_custom','nightshadow',array('show'=>$_nightshadowshow), $user_id);
 					$_tile = $this->input->post('user_map_tile_style', true) ?? '';
 					$_tile = array_key_exists($_tile, map_style_options()) ? $_tile : 'map-follow';
 					$this->user_options_model->set_option('map_custom','tile',array('style' => $_tile),$user_id);
 				} else {
 					$this->user_options_model->del_option('map_custom','icon', null, $user_id);
 					$this->user_options_model->del_option('map_custom','gridsquare', null, $user_id);
+					$this->user_options_model->del_option('map_custom','nightshadow', null, $user_id);
 					$this->user_options_model->del_option('map_custom','tile', null, $user_id);
 				}
 					$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>$this->input->post('user_locations_quickswitch', true)), $user_id);

@@ -51,6 +51,7 @@
     var lang_general_word_not_worked = "<?= __("Not worked"); ?>";
     var lang_general_word_all = "<?= __("All"); ?>";
     var lang_general_gridsquares = "<?= __("Gridsquares"); ?>";
+    var lang_general_nightshadow = "<?= _pgettext("Map Options", "Night Shadow"); ?>";
     var lang_admin_close = "<?= __("Close"); ?>";
     var lang_admin_save = "<?= __("Save"); ?>";
     var lang_admin_clear = "<?= __("Clear"); ?>";
@@ -926,6 +927,7 @@ function showActivatorsMap(call, count, grids, grid_color) {
 
 <?php if ($this->uri->segment(1) == "" || $this->uri->segment(1) == "dashboard" ) { ?>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Terminator.js'); ?>"></script>
     <script id="leafembed" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leafembed.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 
     <script type="text/javascript">
@@ -1074,6 +1076,7 @@ $($('#callsign')).on('keypress',function(e) {
 
 <?php if ($this->uri->segment(1) == "logbook" || $this->uri->segment(1) == "logbookadvanced" || $this->uri->segment(1) == "eqsl" || $this->uri->segment(1) == "generic_qsl" || $this->uri->segment(1) == "activators" || $this->uri->segment(1) == "distances" || $this->uri->segment(1) == "distancerecords" || $this->uri->segment(1) == "timeline" || $this->uri->segment(1) == "callstats" || $this->uri->segment(1) == "statistics" || $this->uri->segment(1) == "countqsoby" || $this->uri->segment(1) == "awards" || $this->uri->segment(1) == "calltester" || $this->uri->segment(1) == "zonechecker" || $this->uri->segment(1) == "qslprint" || $this->uri->segment(1) == "qso" || $this->uri->segment(1) == "dbtools" || $this->uri->segment(1) == "qsl" || $this->uri->segment(1) == "search" || $this->uri->segment(1) == "adif" || $this->uri->segment(1) == "lotw" || $this->uri->segment(1) == "qrz") { ?>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Terminator.js'); ?>"></script>
     <script id="leafembed" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leafembed.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
 <?php if ($this->uri->segment(1) == "logbook" && $this->uri->segment(2) != "view" && $this->optionslib->get_option('logbook_map') != "false") { ?>

@@ -722,6 +722,14 @@
 										</div>
 										<label class="d-block mb-0" for="user_map_gridsquare_show"><?= __("Show Locator"); ?></label>
 									</div>
+									<?php if(!isset($user_map_nightshadow_show)) { $user_map_nightshadow_show='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
+										<input type="hidden" name="user_map_nightshadow_show" value="0">
+										<div class="form-check form-switch mt-1">
+											<input class="form-check-input" type="checkbox" role="switch" id="user_map_nightshadow_show" name="user_map_nightshadow_show" value="1" <?php if ($user_map_nightshadow_show == 1) { echo 'checked'; } ?>>
+										</div>
+										<label class="d-block mb-0" for="user_map_nightshadow_show"><?= _pgettext("Map Options", "Night Shadow"); ?></label>
+									</div>
 								<?php if(!isset($user_map_tile_style)) { $user_map_tile_style = 'map-follow'; } ?>
 								<div class="mb-3">	<!-- Custom Map Tile Style -->
 									<label for="user_map_tile_style"><?= __("Map Tile Style"); ?></label>
