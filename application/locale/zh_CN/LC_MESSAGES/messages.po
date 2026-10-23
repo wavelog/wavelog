@@ -3038,7 +3038,7 @@ msgstr "通讯录中已存在带有此呼号的笔记。请输入一个唯一的
 #: application/models/Logbook_model.php:163
 #: application/models/Logbook_model.php:1635
 #: application/views/contesting/logger/components/qso-form.php:44
-#: application/views/qso/index.php:40
+#: application/views/qso/index.php:40 application/models/Logbook_model.php:1638
 msgid "Invalid callsign"
 msgstr "不合法的呼号"
 
@@ -5087,6 +5087,7 @@ msgstr "HRDlog：无台站配置信息。"
 #: application/views/awards/jcc/index.php:177
 #: application/views/awards/jcg/index.php:155
 #: application/views/awards/jcg/index.php:177
+#: application/models/Jcg_model.php:207 application/models/Jcg_model.php:208
 msgid "Deleted"
 msgstr "已删除"
 
@@ -5107,23 +5108,29 @@ msgid "Station not accessible"
 msgstr "台站不可用"
 
 #: application/models/Logbook_model.php:1072
+#: application/models/Logbook_model.php:1075
 msgid "Realtime upload disabled"
 msgstr "实时上传已禁用"
 
 #: application/models/Logbook_model.php:1625
+#: application/models/Logbook_model.php:1628
 msgid "Station ID not allowed"
 msgstr "集体台站 ID 有误"
 
 #: application/models/Logbook_model.php:1630
+#: application/models/Logbook_model.php:1633
 msgid "No Call given"
 msgstr "未提供呼号"
 
 #: application/models/Logbook_model.php:1706
 #: application/models/Logbook_model.php:1924
+#: application/models/Logbook_model.php:1709
+#: application/models/Logbook_model.php:1927
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
 #: application/models/Logbook_model.php:5210
+#: application/models/Logbook_model.php:5213
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5132,6 +5139,7 @@ msgstr ""
 "为 %s：已跳过"
 
 #: application/models/Logbook_model.php:5218
+#: application/models/Logbook_model.php:5221
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5141,12 +5149,14 @@ msgstr ""
 "为 %s：已跳过"
 
 #: application/models/Logbook_model.php:5234
+#: application/models/Logbook_model.php:5237
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr "导入QSO时使用了无效日期，该QSO未被导入。这是无效的"
 
 #: application/models/Logbook_model.php:5244
+#: application/models/Logbook_model.php:5247
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5154,6 +5164,7 @@ msgid ""
 msgstr "%s的QSO:你尝试导入一个未指定呼号的 QSO，该 QSO 未被导入因为是 无效的。"
 
 #: application/models/Logbook_model.php:5251
+#: application/models/Logbook_model.php:5254
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5161,6 +5172,7 @@ msgid ""
 msgstr "%s的QSO:你尝试导入一个未指定呼号的QSO，该QSO未被导入，无效内容为“%s”。"
 
 #: application/models/Logbook_model.php:5321
+#: application/models/Logbook_model.php:5324
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5168,6 +5180,7 @@ msgid ""
 msgstr "%s的QSO:频段“%s”不在频段配置中。该 QSO 未被导入。"
 
 #: application/models/Logbook_model.php:5328
+#: application/models/Logbook_model.php:5331
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5176,58 +5189,72 @@ msgstr ""
 "在 %s 上的 QSO：你尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
 
 #: application/models/Logbook_model.php:5606
+#: application/models/Logbook_model.php:5609
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:5617
+#: application/models/Logbook_model.php:5620
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:5680
+#: application/models/Logbook_model.php:5683
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
 #: application/models/Logbook_model.php:6056
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:6059
 msgid "Duplicate for"
 msgstr "内容重复"
 
 #: application/models/Logbook_model.php:6123
 #: application/models/Logbook_model.php:6223
+#: application/models/Logbook_model.php:6126
+#: application/models/Logbook_model.php:6226
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
 #: application/models/Logbook_model.php:6131
+#: application/models/Logbook_model.php:6134
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
 #: application/models/Logbook_model.php:6137
+#: application/models/Logbook_model.php:6140
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
 #: application/models/Logbook_model.php:6141
+#: application/models/Logbook_model.php:6144
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
 #: application/models/Logbook_model.php:6145
+#: application/models/Logbook_model.php:6148
 msgid "confirmation pending"
 msgstr "等待确认"
 
 #: application/models/Logbook_model.php:6148
+#: application/models/Logbook_model.php:6151
 msgid "unconfirmed"
 msgstr "未确认"
 
 #: application/models/Logbook_model.php:6151
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:6154
 msgid "unknown"
 msgstr "未知"
 
 #: application/models/Logbook_model.php:6226
+#: application/models/Logbook_model.php:6229
 msgid "POTA reference already in log"
 msgstr "日志中已存在 POTA 编号"
 
 #: application/models/Logbook_model.php:6229
+#: application/models/Logbook_model.php:6232
 msgid "QSO updated"
 msgstr "QSO已上传"
 
@@ -5244,6 +5271,7 @@ msgstr "QSO已上传"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6653
 msgid "Bearing"
 msgstr "方位角"
 
@@ -9447,8 +9475,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -22739,8 +22767,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -26001,8 +26029,8 @@ msgstr "LoTW 用户。最后上传于 "
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
