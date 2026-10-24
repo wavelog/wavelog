@@ -1,4 +1,3 @@
-/* The official P.533/P.372 JavaScript engine runs off the UI thread. */
 'use strict';
 let ready = null;
 const latest = {};
