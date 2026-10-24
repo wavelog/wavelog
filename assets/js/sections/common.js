@@ -952,41 +952,7 @@ function qrbCoordinate(value, isLatitude) {
     return Math.abs(val).toFixed(3) + '° ' + hemisphere;
 }
 
-// Resolve the theme's actual rendered colors so the result card also works
-// with themes that don't define the Bootstrap 5.3 CSS variables.
-function qrbThemeColors() {
-    var fallback = {
-        bg: '#ffffff',
-        text: '#212529',
-        input: '#ffffff',
-        border: 'rgba(0, 0, 0, 0.175)',
-        danger: '#dc3545',
-    };
-    try {
-        var probe = document.createElement('div');
-        probe.style.display = 'none';
-        document.body.appendChild(probe);
-
-        probe.className = 'card';
-        var cardStyle = getComputedStyle(probe);
-        var colors = {
-            bg: cardStyle.backgroundColor || fallback.bg,
-            text: cardStyle.color || fallback.text,
-            border: cardStyle.borderColor || fallback.border,
-            danger: cardStyle.getPropertyValue('--bs-danger').trim() || fallback.danger,
-        };
-
-        probe.className = 'form-control';
-        colors.input = getComputedStyle(probe).backgroundColor || colors.bg;
-
-        probe.remove();
-        return colors;
-    } catch (e) {
-        return fallback;
-    }
-}
-
-function qrbCompassSvg(bearing, colors) {
+function qrbCompassSvg(bearing) {
     var ticks = '';
     for (var angle = 0; angle < 360; angle += 15) {
         var major = angle % 45 === 0;
@@ -996,33 +962,31 @@ function qrbCompassSvg(bearing, colors) {
             + '" y1="' + (60 + inner * Math.sin(rad)).toFixed(1)
             + '" x2="' + (60 + 52 * Math.cos(rad)).toFixed(1)
             + '" y2="' + (60 + 52 * Math.sin(rad)).toFixed(1)
-            + '" style="stroke: ' + colors.text + ';" stroke-width="' + (major ? 2 : 1) + '"'
+            + '" stroke-width="' + (major ? 2 : 1) + '"'
             + (major ? ' opacity="0.8"' : ' opacity="0.45"') + '/>';
     }
 
-    var letterStyle = 'style="fill: ' + colors.text + ';" opacity="0.55"';
-    var nStyle = 'style="fill: ' + colors.danger + ';"';
-
     return '<svg class="qrb-compass" width="132" height="132" viewBox="0 0 120 120" role="img" aria-label="' + Math.round(bearing) + '°">'
-        + '<circle cx="60" cy="60" r="54" style="fill: ' + colors.bg + '; stroke: ' + colors.border + '; stroke-width: 2;"/>'
-        + ticks
-        + '<text x="60" y="24" text-anchor="middle" dominant-baseline="central" ' + nStyle + '>N</text>'
-        + '<text x="96" y="60" text-anchor="middle" dominant-baseline="central" ' + letterStyle + '>E</text>'
-        + '<text x="60" y="96" text-anchor="middle" dominant-baseline="central" ' + letterStyle + '>S</text>'
-        + '<text x="24" y="60" text-anchor="middle" dominant-baseline="central" ' + letterStyle + '>W</text>'
-        + '<g transform="rotate(' + Math.round(bearing) + ' 60 60)">'
-        + '<polygon points="60,32 64.5,60 55.5,60" style="fill: ' + colors.danger + ';"/>'
-        + '<polygon points="60,88 64.5,60 55.5,60" style="fill: ' + colors.text + ';" opacity="0.6"/>'
+        + '<circle cx="60" cy="60" r="54" class="text-body-tertiary" fill="none" stroke="currentColor" stroke-width="2"/>'
+        + '<g class="text-body" stroke="currentColor">' + ticks + '</g>'
+        + '<g fill="currentColor">'
+        + '<text x="60" y="24" text-anchor="middle" dominant-baseline="central" class="text-danger">N</text>'
+        + '<text x="96" y="60" text-anchor="middle" dominant-baseline="central" class="text-body-tertiary">E</text>'
+        + '<text x="60" y="96" text-anchor="middle" dominant-baseline="central" class="text-body-tertiary">S</text>'
+        + '<text x="24" y="60" text-anchor="middle" dominant-baseline="central" class="text-body-tertiary">W</text>'
         + '</g>'
-        + '<circle cx="60" cy="60" r="4" style="fill: ' + colors.text + ';"/>'
-        + '<circle cx="60" cy="60" r="1.5" style="fill: ' + colors.bg + ';"/>'
+        + '<g transform="rotate(' + Math.round(bearing) + ' 60 60)" fill="currentColor">'
+        + '<polygon points="60,32 64.5,60 55.5,60" class="text-danger"/>'
+        + '<polygon points="60,88 64.5,60 55.5,60" class="text-body" opacity="0.6"/>'
+        + '</g>'
+        + '<circle cx="60" cy="60" r="4" class="text-body" fill="currentColor"/>'
         + '</svg>';
 }
 
-function qrbResultChip(locator, latlng, colors) {
-    return '<span class="qrb-chip d-inline-flex align-items-center gap-2 px-2 py-1" style="background-color: ' + colors.input + '; border: 1px solid ' + colors.border + ';">'
+function qrbResultChip(locator, latlng) {
+    return '<span class="qrb-chip d-inline-flex align-items-center gap-2 px-2 py-1 border rounded bg-body">'
         + '<span class="font-monospace fw-bold">' + locator.toUpperCase() + '</span>'
-        + '<span class="small" style="opacity: 0.7;">' + qrbCoordinate(latlng[0], true) + ', ' + qrbCoordinate(latlng[1], false) + '</span>'
+        + '<span class="small text-body-secondary">' + qrbCoordinate(latlng[0], true) + ', ' + qrbCoordinate(latlng[1], false) + '</span>'
         + '</span>';
 }
 
@@ -1046,13 +1010,12 @@ function renderQrbResult(data, locator1, locator2) {
     if (isNaN(reverseBearing)) {
         reverseBearing = (bearing + 180) % 360;
     }
-    var colors = qrbThemeColors();
     var distanceText = distance >= 100
         ? Math.round(distance).toLocaleString()
         : (Math.round(distance * 10) / 10).toLocaleString();
 
     var result = '<div class="d-flex align-items-center gap-4 flex-wrap p-3 flex-grow-1">'
-        + qrbCompassSvg(bearing, colors)
+        + qrbCompassSvg(bearing)
         + '<div class="flex-grow-1">'
         + '<div class="text-body-secondary text-uppercase small fw-semibold mb-1">' + lang_qrbcalc_distance + '</div>'
         + '<div class="fs-1 fw-bold lh-1">' + distanceText + ' <span class="fs-4 fw-normal text-body-secondary">' + data['unit'] + '</span></div>'
@@ -1062,9 +1025,9 @@ function renderQrbResult(data, locator1, locator2) {
         + '</div>'
         + '</div>'
         + '<div class="d-flex align-items-center gap-2 flex-wrap p-3 pt-0">'
-        + qrbResultChip(locator1, data['latlng1'], colors)
+        + qrbResultChip(locator1, data['latlng1'])
         + '<i class="fas fa-arrow-right" style="opacity: 0.7;"></i>'
-        + qrbResultChip(locator2, data['latlng2'], colors)
+        + qrbResultChip(locator2, data['latlng2'])
         + '</div>'
         + '<div class="small text-body-secondary px-3 pb-2">' + data['latlong_info_text'] + '</div>';
 
