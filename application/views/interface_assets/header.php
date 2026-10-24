@@ -321,6 +321,8 @@
 							<ul class="dropdown-menu header-dropdown">
 								<li><a class="dropdown-item" href="<?php echo site_url('bandmap/list'); ?>" title="DX Cluster"><i class="fa fa-tower-broadcast"></i> <?= __("DX Cluster"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('propagation'); ?>"><i class="fas fa-signal"></i> <?= __("Propagation"); ?></a></li>
+								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('dxcalendar'); ?>" title="DX Calendar"><i class="fas fa-calendar"></i> <?= __("DX Calendar"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('contestcalendar'); ?>" title="Contest Calendar"><i class="fas fa-calendar"></i> <?= __("Contest Calendar"); ?></a></li>
