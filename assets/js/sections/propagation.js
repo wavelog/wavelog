@@ -8,9 +8,10 @@
 	const element = id => document.getElementById('prop-' + id);
 	const field = name => form.elements.namedItem(name);
 	const numeric = ['power', 'dxPower', 'gain', 'dxGain', 'ssn'];
-	const savedFields = ['home', 'target', 'mode', 'path', 'noise', 'dxNoise', ...numeric];
+	const savedFields = ['home', 'target', 'mode', 'path', 'noise', 'dxNoise', 'ssnSource', ...numeric];
+	let solar = null;
 	let state = null, dx = null, hours = [], chart = null, map = null, generation = 0;
-	let coverage = null, night = null, homeMarker = null, request = null, renderer = null;
+	let coverage = null, night = null, homeMarker = null, dxMarker = null, request = null, renderer = null;
 	let storageProblem = false;
 	let worker = null, nextId = 0, mapGeneration = 0, worldGeneration = 0;
 	const pending = new Map();
@@ -32,6 +33,10 @@
 						}
 						const job = pending.get(response.id);
 						if (!job) return;
+						if (Number.isFinite(response.progress)) {
+							if (job.type === 'map') element('map-progress').textContent = text.mapLoading + ' ' + response.progress + '%';
+							return;
+						}
 						pending.delete(response.id);
 						updateStatus();
 						if (response.error) job.reject(new Error(text.engineError + ' ' + response.error));
@@ -76,6 +81,72 @@
 		field('time').value = new Date().toISOString().slice(0, 13) + ':00';
 	}
 
+	function solarStatus(message, warning = false) {
+		element('solar-message').textContent = message;
+		element('solar-status').classList.toggle('alert-warning', warning);
+		element('solar-status').classList.toggle('alert-info', !warning);
+	}
+
+	function solarInfo(date) {
+		if (field('ssnSource').value === 'manual') {
+			solarStatus(text.solarManual, true);
+			return;
+		}
+		const month = Number.isFinite(date.getTime()) ? date.toISOString().slice(0, 7) : '';
+		const value = solar && solar.months[month];
+		if (!value || !Number.isInteger(value.ssn) || value.ssn < 1 || value.ssn > 311) {
+			field('ssn').value = '';
+			solarStatus(text.solarMonthMissing + ' ' + month, true);
+			return;
+		}
+		field('ssn').value = value.ssn;
+		solarStatus((value.kind === 'observed' ? text.solarObserved : text.solarPredicted) +
+			' | NOAA SWPC / SILSO V2 | ' + month + ': ' + value.value + ' -> ' + value.ssn +
+			' | ' + text.solarUpdated + ': ' + new Date(solar.updated * 1000).toISOString().slice(0, 16).replace('T', ' ') +
+			(solar.stale ? ' | ' + text.solarStale : ''), solar.stale);
+	}
+
+	async function loadSolar(signal) {
+		if (field('ssnSource').value === 'manual') {
+			solarInfo(new Date(field('time').value + 'Z'));
+			return;
+		}
+		solarStatus(text.solarLoading);
+		if (!solar) {
+			const controller = new AbortController();
+			const abort = () => controller.abort();
+			const timeout = setTimeout(abort, 30000);
+			signal.addEventListener('abort', abort, {once: true});
+			try {
+				const response = await fetch(config.solarUrl, {signal: controller.signal, headers: {Accept: 'application/json'}});
+				if (!response.ok) throw new Error(text.solarUnavailable);
+				const data = await response.json();
+				if (!data.months || typeof data.months !== 'object' || !Number.isInteger(data.updated)) {
+					throw new Error(text.solarUnavailable);
+				}
+				solar = data;
+			} catch (error) {
+				if (signal.aborted) throw error;
+				field('ssn').value = '';
+				solarStatus(text.solarUnavailable, true);
+				throw new Error(text.solarUnavailable);
+			} finally {
+				clearTimeout(timeout);
+				signal.removeEventListener('abort', abort);
+			}
+		}
+		solarInfo(new Date(field('time').value + 'Z'));
+		if (field('ssn').value === '') throw new Error(text.solarMonthMissing);
+	}
+
+	function solarSource() {
+		const manual = field('ssnSource').value === 'manual';
+		field('ssn').readOnly = !manual;
+		field('ssn').required = manual;
+		if (!manual) field('ssn').value = '';
+		solarInfo(new Date(field('time').value + 'Z'));
+	}
+
 	function readState() {
 		let home;
 		try {
@@ -88,6 +159,17 @@
 		for (const name of ['mode', 'path', 'noise', 'dxNoise']) settings[name] = field(name).value;
 		const date = new Date(field('time').value + 'Z');
 		date.setUTCMinutes(0, 0, 0);
+		if (field('ssnSource').value === 'auto' && solar && Number.isFinite(date.getTime())) {
+			settings.solarMonths = {};
+			for (const time of [date, new Date(date.getTime() + 23 * 3600000)]) {
+				const month = time.toISOString().slice(0, 7);
+				const entry = solar.months[month];
+				if (!entry || !Number.isInteger(entry.ssn) || entry.ssn < 1 || entry.ssn > 311) {
+					throw new Error(text.solarMonthMissing + ' ' + month);
+				}
+				settings.solarMonths[month] = entry.ssn;
+			}
+		}
 		try {
 			model.validate(settings, date);
 		} catch (error) {
@@ -113,7 +195,9 @@
 	}
 
 	function selectedTime() {
-		return new Date(state.date.getTime() + Number(element('hour').value) * 3600000);
+		const date = new Date(state.date.getTime() + Number(element('hour').value) * 3600000);
+		solarInfo(date);
+		return date;
 	}
 
 	function cell(parent, tag, content) {
@@ -217,6 +301,10 @@
 	async function drawMap() {
 		if (!state || !element('pane-map').classList.contains('active')) return;
 		const version = ++mapGeneration;
+		element('map-loading').classList.remove('d-none');
+		element('map-progress').textContent = text.mapLoading;
+		element('map').setAttribute('aria-busy', 'true');
+		try {
 		if (!map) {
 			map = L.map(element('map'), {worldCopyJump: true}).setView([20, 0], 2);
 			renderer = L.canvas({padding: 0.5});
@@ -247,7 +335,8 @@
 		coverage = L.layerGroup().addTo(map);
 		night = L.layerGroup().addTo(map);
 		homeMarker = L.circleMarker([state.home.lat, state.home.lng], {radius: 6, color: '#ffffff', fillColor: '#2266ff', fillOpacity: 1})
-			.bindTooltip(field('home').value.trim().toUpperCase()).addTo(map);
+			.bindTooltip(text.homeStation + ': ' + field('home').value.trim().toUpperCase()).addTo(map);
+		drawDxMarker();
 		const index = model.bands.findIndex(band => band.name === element('map-band').value);
 		const direction = element('direction').value;
 		const time = selectedTime();
@@ -266,6 +355,24 @@
 			}
 		}
 		homeMarker.bringToFront();
+		if (dxMarker) dxMarker.bringToFront();
+		} finally {
+			if (version === mapGeneration) {
+				element('map-loading').classList.add('d-none');
+				element('map').setAttribute('aria-busy', 'false');
+			}
+		}
+	}
+
+	function drawDxMarker() {
+		if (!map) return;
+		if (dxMarker) { map.removeLayer(dxMarker); dxMarker = null; }
+		if (!dx) return;
+		const label = document.createElement('span');
+		label.textContent = text.dxStation + ': ' + dx.target + ' / ' + dx.grid;
+		dxMarker = L.circleMarker([dx.lat, dx.lng], {radius: 8, color: '#ffffff', weight: 2, fillColor: '#dc3545', fillOpacity: 1})
+			.bindTooltip(label, {permanent: true, direction: 'top'}).addTo(map);
+		dxMarker.bringToFront();
 	}
 
 	function clearResults() {
@@ -274,12 +381,15 @@
 		hours = [];
 		worldGeneration++;
 		mapGeneration++;
+		element('map-loading').classList.add('d-none');
+		element('map').setAttribute('aria-busy', 'false');
 		drawDx();
 		element('world-table').replaceChildren();
 		element('hour-label').textContent = '';
 		if (coverage) { map.removeLayer(coverage); coverage = null; }
 		if (night) { map.removeLayer(night); night = null; }
 		if (homeMarker) { map.removeLayer(homeMarker); homeMarker = null; }
+		if (dxMarker) { map.removeLayer(dxMarker); dxMarker = null; }
 		if (map) map.closePopup();
 	}
 
@@ -294,6 +404,8 @@
 		element('submit').textContent = text.loading;
 		try {
 			if (!config.dataReady) throw new Error(text.dataMissing);
+			await loadSolar(request.signal);
+			if (token !== generation) return;
 			const next = readState();
 			const target = field('target').value.trim();
 			// World and coverage forecasts do not require a DX target.
@@ -312,6 +424,7 @@
 				if (!response.ok) throw new Error(result.error || text.lookupError);
 				if (!Number.isFinite(result.lat) || !Number.isFinite(result.lng) || typeof result.grid !== 'string') throw new Error(text.lookupError);
 				dx = result;
+				drawDxMarker();
 				await drawDx();
 			}
 		} catch (error) {
@@ -335,7 +448,7 @@
 		const stored = JSON.parse(localStorage.getItem(config.settingsKey) || 'null');
 		if (stored !== null) {
 			if (typeof stored !== 'object' || Array.isArray(stored)) throw new Error('Invalid stored settings');
-			for (const name of savedFields) {
+			for (const name of savedFields.filter(name => name !== 'ssn' || stored.ssnSource === 'manual')) {
 				if (typeof stored[name] === 'string') field(name).value = stored[name];
 			}
 			element('solar-info').append(' ' + text.saved);
@@ -344,7 +457,24 @@
 		storageProblem = true;
 		showError('');
 	}
+	solarSource();
 	form.addEventListener('submit', calculate);
+	element('solar-close').addEventListener('click', () => { element('solar-status').hidden = true; });
+	field('ssnSource').addEventListener('change', () => {
+		solarSource();
+		if (field('ssnSource').value === 'auto') form.requestSubmit();
+		else {
+			++generation;
+			if (request) request.abort();
+			clearResults();
+			element('submit').disabled = false;
+			element('submit').textContent = text.calculate;
+			showError('');
+		}
+	});
+	field('time').addEventListener('change', () => {
+		if (field('ssnSource').value === 'auto') form.requestSubmit();
+	});
 	element('now').addEventListener('click', () => { utcInput(); form.requestSubmit(); });
 	element('chart-band').addEventListener('change', drawChart);
 	const handleMap = () => drawMap().catch(error => showError(error.message));
@@ -358,6 +488,7 @@
 		element('tab-' + name).addEventListener('shown.bs.tab', () => {
 			history.replaceState(null, '', '#' + name);
 			element('time-control').hidden = name === 'dx';
+			if (state) solarInfo(name === 'dx' ? state.date : selectedTime());
 			if (name === 'map') handleMap();
 			if (name === 'dx' && chart) chart.resize();
 		});
@@ -365,4 +496,5 @@
 	const tab = element('tab-' + window.location.hash.slice(1));
 	if (tab) bootstrap.Tab.getOrCreateInstance(tab).show();
 	if (config.dataReady && field('home').value.trim()) form.requestSubmit();
+	else loadSolar(new AbortController().signal).catch(error => showError(error.message));
 })();

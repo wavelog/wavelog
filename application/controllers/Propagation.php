@@ -32,10 +32,32 @@
  * label, charts have gaps, and the coverage map marks those cells red.
  * The reference application's claimed VOACAP accuracy does not apply here.
  *
+ * Automatic R12 input: Cron Manager's "Update propagation smoothed sunspot
+ * numbers (NOAA)" refreshes observed-solar-cycle-indices.json (smoothed_ssn)
+ * and predicted-solar-cycle.json (predicted_ssn) daily from
+ * https://services.swpc.noaa.gov/json/solar-cycle/ .
+ * A validated, atomic snapshot is stored in updates/propagation/solar-cycle.json,
+ * respecting datadir. Observed values take precedence; -1 means unavailable.
+ * The selected month is used independently at every hour, including rollovers.
+ * These are centred 13-month smoothed values, also called R12; observations lag
+ * by six months, so current/future months normally use a prediction.
+ * We use the modern international (SILSO V2) scale without an arbitrary 0.6/0.7
+ * conversion, consistent with the ITU's current circular of basic indices:
+ * https://www.itu.int/en/ITU-R/study-groups/rsg3/Pages/rsg3-indices.aspx
+ * https://www.sidc.be/SILSO/newdataset
+ * This does not claim an exact reconstruction of the old V1 calibration.
+ * Values are rounded to the integer required by the reference engine. Zero or
+ * out-of-range results are unavailable, not silently clamped. Missing values
+ * require an explicit manual override; there is no assumed default of 100.
+ * Data over seven days old is visibly flagged; failed refreshes preserve the
+ * previous snapshot and fail the cron job. Source, month, observed/predicted
+ * status and download time are shown. Manual inputs use the same model scale.
+ *
  * Focused tests: node --test tests/propagation_model.test.js
  *               php tests/propagation_lookup_test.php
  *               php tests/propagation_data_test.php
  *               php tests/propagation_cron_test.php
+ *               php tests/propagation_solar_test.php
  */
 
 class Propagation extends CI_Controller {
@@ -96,6 +118,17 @@ class Propagation extends CI_Controller {
 		header('X-Content-Type-Options: nosniff');
 		if (readfile($path) === false) {
 			log_message('error', 'Cannot read propagation reference file: ' . $path);
+		}
+	}
+
+	public function solar() {
+		$this->load->library('Propagation_solar');
+		try {
+			return $this->output->set_content_type('application/json')
+				->set_output(json_encode($this->propagation_solar->snapshot(), JSON_THROW_ON_ERROR));
+		} catch (RuntimeException $error) {
+			log_message('error', 'Propagation sunspot data unavailable: ' . $error->getMessage());
+			return $this->json_error(__("Smoothed sunspot data is unavailable. Ask an administrator to run 'Update propagation smoothed sunspot numbers (NOAA)' in Cron Manager, or select Manual and enter a value."), 503);
 		}
 	}
 

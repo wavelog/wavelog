@@ -105,6 +105,16 @@
 			!['short', 'long', 'auto'].includes(settings.path)) throw new Error('Invalid mode, noise or path');
 	}
 
+	function settingsAt(settings, date) {
+		if (!settings.solarMonths) return settings;
+		const month = date.toISOString().slice(0, 7);
+		const ssn = settings.solarMonths[month];
+		if (!Number.isInteger(ssn) || ssn < 1 || ssn > 311) {
+			throw new Error('No supported smoothed sunspot value for ' + month);
+		}
+		return {...settings, ssn};
+	}
+
 	function reference(from, to, date, settings, band, longPath, noise) {
 		if (!engine || loadedMonth !== date.getUTCMonth() + 1) throw new Error('P.533 monthly data is not loaded');
 		const code = engine._wl_predict(from.lat, from.lng, to.lat, to.lng, date.getUTCFullYear(),
@@ -132,6 +142,7 @@
 	}
 
 	function predict(from, to, date, settings, selectedBands = bands) {
+		settings = settingsAt(settings, date);
 		validate(settings, date);
 		coordinates(from);
 		coordinates(to);
@@ -172,7 +183,7 @@
 		return 'rgb(' + start.map((value, i) => Math.round(value + (end[i] - value) * fraction)).join(', ') + ')';
 	}
 
-	const api = {bands, thresholds, gridPoint, solarCosine, path, validate, configure, prepare, predict, forecast, quality, signalColor, twoWayMargin};
+	const api = {bands, thresholds, gridPoint, solarCosine, path, validate, configure, prepare, predict, forecast, quality, signalColor, twoWayMargin, settingsAt};
 	if (typeof module === 'object' && module.exports) module.exports = api;
 	else root.PropagationModel = api;
 })(typeof window !== 'undefined' ? window : globalThis);

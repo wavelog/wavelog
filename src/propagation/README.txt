@@ -49,6 +49,20 @@ datadir. Install the data before running builds or numerical tests.
 reference-manifest.json preserves the original logical asset names for source
 provenance; build.py resolves those data entries against the installed directory.
 
+Solar input
+-----------
+The separate daily Cron Manager job "Update propagation smoothed sunspot
+numbers (NOAA)" downloads observed and predicted solar-cycle JSON from
+https://services.swpc.noaa.gov/json/solar-cycle/ and atomically caches a validated
+snapshot in updates/propagation/solar-cycle.json (respecting datadir).
+See application/controllers/Propagation.php for source fields, smoothing and
+scale references. Automatic mode uses the exact forecast month and observed
+values before predictions, including across a month boundary. The modern
+international scale is passed unscaled, following the current ITU circular,
+not claiming an exact reconstruction of legacy V1 calibration. Values are
+rounded, never silently clamped. Missing/unsupported values require manual
+input. Stale caches are labelled, and download failures retain the last cache.
+
 Only ignored .build copies are adapted: the P533 and PathMemory dynamic P372
 loading blocks are removed, the Noise.h loader globals are removed, and
 dll-prefixed routine calls are changed to the same directly linked routines.

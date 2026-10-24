@@ -135,6 +135,25 @@ test('smoothed solar activity changes reference MUF without an invented K correc
 	assert.ok(high[0].muf > low[0].muf);
 });
 
+test('automatic solar input selects each forecast month and never substitutes defaults', async () => {
+	const settings = {...defaults, solarMonths: {'2026-12': 80, '2027-01': 120}};
+	const start = new Date('2026-12-31T23:00:00Z');
+	const result = await model.forecast(home, dx, start, settings);
+	await model.prepare(start);
+	const december = model.predict(home, dx, start, {...defaults, ssn: 80});
+	close(result[0].bands[4].muf, december[4].muf);
+	const next = new Date('2027-01-01T00:00:00Z');
+	await model.prepare(next);
+	const january = model.predict(home, dx, next, {...defaults, ssn: 120});
+	close(result[1].bands[4].muf, january[4].muf);
+	for (const value of [undefined, 0, 312, 10.5, '100']) {
+		assert.throws(() => model.settingsAt({...defaults, solarMonths: {'2027-01': value}}, next));
+	}
+	assert.equal(model.settingsAt(defaults, next), defaults);
+	assert.equal(settings.ssn, 100);
+	await model.prepare(date);
+});
+
 test('quality classification has exact 0 dB and 10 dB boundaries', () => {
 	assert.equal(model.quality(-0.001), 'unlikely');
 	assert.equal(model.quality(0), 'marginal');

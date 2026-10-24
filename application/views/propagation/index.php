@@ -1,5 +1,6 @@
 <style>
 	#prop-map { height: 560px; min-height: 320px; }
+	#prop-map-loading { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 1000; max-width: 80%; }
 	.prop-chart { position: relative; height: 320px; }
 	.prop-table { white-space: nowrap; font-size: .85rem; }
 	.prop-table td, .prop-table th { text-align: center; vertical-align: middle; }
@@ -20,8 +21,12 @@
 		<?= __("Propagation reference data is not installed or is damaged. Ask an administrator to run 'Install and verify ITU-R propagation reference data' in Cron Manager. The initial download is about 137 MB."); ?>
 	</div>
 	<?php } ?>
-	<div class="alert alert-warning" role="status">
-		<?= __("Enter the 12-month smoothed sunspot number appropriate to the prediction month (integer 1-311; some reference equations saturate at 160). The initial value of 100 is an assumption, not a live reading. Daily solar flux and K-index are not inputs to this monthly model. Predictions use the selected UTC hour; minutes are rounded down."); ?>
+	<div id="prop-solar-status" class="alert alert-info alert-dismissible" role="status" aria-live="polite">
+		<span id="prop-solar-message"></span>
+		<button type="button" id="prop-solar-close" class="btn-close" aria-label="<?= __("Close"); ?>"></button>
+	</div>
+	<div class="small text-muted mb-3">
+		<?= __("Automatic solar input uses NOAA monthly smoothed sunspot numbers: observed when available, otherwise predicted. The centred 13-month smoothing is also called R12. Values use the modern international sunspot-number scale without a conversion factor and are rounded to integers for the reference engine (1-311; some equations saturate at 160). Daily solar flux and K-index are not inputs. Predictions use the selected UTC hour; minutes are rounded down."); ?>
 	</div>
 	<form id="prop-form" class="card mb-3">
 		<div class="card-body">
@@ -58,19 +63,26 @@
 			<details class="mt-3">
 				<summary><?= __("Station and solar assumptions"); ?></summary>
 				<div class="row g-3 mt-1">
+					<div class="col-sm-6 col-lg-2">
+						<label for="prop-ssnSource" class="form-label"><?= __("Sunspot data source"); ?></label>
+						<select id="prop-ssnSource" name="ssnSource" class="form-select">
+							<option value="auto"><?= __("Automatic (NOAA)"); ?></option>
+							<option value="manual"><?= __("Manual"); ?></option>
+						</select>
+					</div>
 					<?php
 					$numeric = [
 						'power' => [__("Your power (W)"), $station_power, 1, 5000],
 						'dxPower' => [__("DX power (W)"), 100, 1, 5000],
 						'gain' => [__("Your antenna gain (dBi)"), 0, -20, 30],
 						'dxGain' => [__("DX antenna gain (dBi)"), 0, -20, 30],
-						'ssn' => [__("12-month smoothed sunspot number"), 100, 1, 311],
+						'ssn' => [__("Smoothed sunspot number (R12)"), '', 1, 311],
 					];
 					foreach ($numeric as $name => $field) { ?>
 					<div class="col-sm-6 col-lg-2">
 						<label for="prop-<?= $name; ?>" class="form-label"><?= $field[0]; ?></label>
 						<input type="number" class="form-control" id="prop-<?= $name; ?>" name="<?= $name; ?>"
-							value="<?= $field[1]; ?>" min="<?= $field[2]; ?>" max="<?= $field[3]; ?>" step="<?= $name === 'ssn' ? '1' : 'any'; ?>" required>
+							value="<?= $field[1]; ?>" min="<?= $field[2]; ?>" max="<?= $field[3]; ?>" step="<?= $name === 'ssn' ? '1' : 'any'; ?>" <?= $name === 'ssn' ? 'readonly' : 'required'; ?>>
 					</div>
 					<?php } ?>
 					<?php foreach (['noise' => __("Your noise environment"), 'dxNoise' => __("DX noise environment")] as $name => $label) { ?>
@@ -144,8 +156,14 @@
 					</select>
 				</div>
 			</div>
-			<p><?= __("Coarse 5-degree skywave coverage estimate. Dark shading marks night at the selected time. Click the map to inspect a point."); ?></p>
-			<div id="prop-map"></div>
+			<p><?= __("Coarse 5-degree skywave coverage estimate. Dark shading marks night at the selected time. Blue marks your station; red marks the resolved DX station. Click the map to inspect a point."); ?></p>
+			<div class="position-relative">
+				<div id="prop-map-loading" class="alert alert-info shadow py-2 px-3 d-none" role="status" aria-live="polite">
+					<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+					<span id="prop-map-progress"><?= __("Calculating band coverage..."); ?></span>
+				</div>
+				<div id="prop-map" aria-busy="false"></div>
+			</div>
 		</div>
 	</div>
 	<div class="mt-3" id="prop-time-control" hidden>
@@ -156,13 +174,16 @@
 <script>
 	const propagationConfig = <?= json_encode([
 		'lookupUrl' => site_url('propagation/lookup'),
+		'solarUrl' => site_url('propagation/solar'),
 		'settingsKey' => $settings_key,
 		'workerUrl' => $this->paths->cache_buster('/assets/js/sections/propagation_worker.js'),
 		'modelUrl' => $this->paths->cache_buster('/assets/js/sections/propagation_model.js'),
 		'engineUrl' => $this->paths->cache_buster('/assets/js/propagation/p533-engine.js'),
 		'dataUrl' => site_url('propagation/data') . '?revision=' . $reference_revision,
 		'dataReady' => $reference_ready,
-		'text' => [
+		'text' => array_map(static function ($message) {
+			return html_entity_decode($message, ENT_QUOTES, 'UTF-8');
+		}, [
 			'homeError' => __("Enter a valid Maidenhead locator for your station."),
 			'lookupError' => __("Callsign lookup failed. Please try again or enter a locator."),
 			'storageError' => __("Unable to save or restore propagation settings in this browser."),
@@ -177,8 +198,19 @@
 			'noMode' => __("No supported propagation mode"),
 			'empty' => __("Enter a DX callsign or locator to calculate the next 24 hours."),
 			'good' => __("Favourable"), 'marginal' => __("Marginal"), 'unlikely' => __("Unlikely"),
-			'saved' => __("Saved station assumptions restored. The smoothed sunspot number remains editable."),
-		],
+			'saved' => __("Saved station assumptions restored."),
+			'solarLoading' => __("Loading smoothed sunspot data..."),
+			'solarUnavailable' => __("Smoothed sunspot data is unavailable. Ask an administrator to run 'Update propagation smoothed sunspot numbers (NOAA)' in Cron Manager, or select Manual and enter a value."),
+			'solarMonthMissing' => __("No supported smoothed sunspot value is available for this month. Select Manual and enter an integer from 1 to 311."),
+			'solarObserved' => __("Observed smoothed sunspot number"),
+			'solarPredicted' => __("Predicted smoothed sunspot number"),
+			'solarUpdated' => __("Downloaded (UTC)"),
+			'solarStale' => __("Cached solar data is over seven days old. Ask an administrator to run the NOAA sunspot update in Cron Manager."),
+			'solarManual' => __("Manual sunspot assumption, not automatically retrieved solar data."),
+			'mapLoading' => __("Calculating band coverage..."),
+			'homeStation' => __("Your station"),
+			'dxStation' => __("DX station"),
+		]),
 		'regions' => [
 			[__("Northern Europe"), 60, 15], [__("Southern Europe"), 42, 15],
 			[__("Eastern North America"), 40, -75], [__("Western North America"), 38, -122],

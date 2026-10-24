@@ -111,6 +111,22 @@ foreach ([new InvalidArgumentException('Unknown file'), new RuntimeException('Mi
 	check($controller->output->status === 400, 'Stale reference revision must require a page reload');
 }
 
+$controller = new Propagation();
+$controller->propagation_solar = new class {
+	public $failure = false;
+	public function snapshot() {
+		if ($this->failure) throw new RuntimeException('Test missing solar cache');
+		return ['updated' => 123, 'stale' => false, 'months' => ['2026-10' => ['ssn' => 80, 'value' => 80.1, 'kind' => 'predicted']]];
+	}
+};
+$controller->solar();
+$result = json_decode($controller->output->body, true);
+check($controller->output->status === 200 && $result['months']['2026-10']['ssn'] === 80, 'Solar endpoint must expose cached monthly values');
+check($result['months']['2026-10']['kind'] === 'predicted' && isset($result['updated'], $result['stale']), 'Solar endpoint must include provenance and age');
+$controller->propagation_solar->failure = true;
+$controller->solar();
+check($controller->output->status === 503 && isset(json_decode($controller->output->body, true)['error']), 'Unavailable solar cache must return explicit failure');
+
 CI_Controller::$authorized = false;
 try {
 	new Propagation();

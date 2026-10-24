@@ -44,8 +44,9 @@ async function initialize(config) {
 
 async function execute(job) {
 	const {id, type, payload} = job;
-	const {home, settings} = payload;
+	const {home} = payload;
 	const date = new Date(payload.date);
+	const settings = PropagationModel.settingsAt(payload.settings, date);
 	PropagationModel.validate(settings, date);
 	await PropagationModel.prepare(date);
 	if (type === 'forecast') return PropagationModel.forecast(home, payload.dx, date, settings);
@@ -57,12 +58,16 @@ async function execute(job) {
 		}
 	}
 	const results = [];
+	if (type === 'map') postMessage({id, progress: 0});
 	for (let i = 0; i < points.length; i++) {
 		if (latest[type] !== id) return null;
 		const point = points[i];
 		const bands = type === 'map' ? [payload.band] : PropagationModel.bands;
 		results.push({point, bands: PropagationModel.predict(home, point, date, settings, bands)});
-		if (i % 8 === 7) await new Promise(resolve => setTimeout(resolve, 0));
+		if (i % 8 === 7) {
+			if (type === 'map') postMessage({id, progress: Math.round((i + 1) / points.length * 100)});
+			await new Promise(resolve => setTimeout(resolve, 0));
+		}
 	}
 	return results;
 }
