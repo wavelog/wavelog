@@ -3,6 +3,7 @@
 define('BASEPATH', __DIR__);
 function __($message) { return $message; }
 function redirect($path) { throw new RuntimeException('redirect:' . $path); }
+function log_message($level, $message) {}
 
 #[AllowDynamicProperties]
 class CI_Controller {
@@ -24,7 +25,8 @@ class CI_Controller {
 		};
 		$this->input = new class {
 			public $target = '';
-			public function get($key, $clean) { return $this->target; }
+			public $values = [];
+			public function get($key, $clean) { return $key === 'target' ? $this->target : ($this->values[$key] ?? null); }
 		};
 		$this->output = new class {
 			public $status = 200;
@@ -90,6 +92,23 @@ foreach ([null, [], '', ' ', 'ABC', '<script>', 'A//1', 'A/1/', str_repeat('A', 
 	[$controller, $result] = lookup($invalid);
 	check($controller->output->status === 400 && isset($result['error']), 'Invalid input must return HTTP 400');
 	check($controller->callbook->calls === 0, 'Invalid input must not query remote callbook');
+}
+
+foreach ([new InvalidArgumentException('Unknown file'), new RuntimeException('Missing file')] as $error) {
+	$controller = new Propagation();
+	$controller->propagation_data = new class($error) {
+		private $error;
+		public function __construct($error) { $this->error = $error; }
+		public function revision() { return 'current'; }
+		public function verified_path($name) { throw $this->error; }
+	};
+	$controller->input->values = ['file' => '../private', 'revision' => 'current'];
+	$controller->data();
+	check($controller->output->status === ($error instanceof InvalidArgumentException ? 400 : 503), 'Data errors must have explicit HTTP status');
+	check(isset(json_decode($controller->output->body, true)['error']), 'Data errors must return a JSON message');
+	$controller->input->values['revision'] = 'old';
+	$controller->data();
+	check($controller->output->status === 400, 'Stale reference revision must require a page reload');
 }
 
 CI_Controller::$authorized = false;

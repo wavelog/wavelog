@@ -1,28 +1,41 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
- * Credits:
+ * The propagation tool uses the official ITU-R Study Group 3 P.533/P.372 
+ * reference engine, porteded to JavaScript.
  *
- * The model is inspired by MINIMUF 3.5 (QST 1982) with D. L. Mills' path
- * losses, similar model was also used by DXSpider's sh/muf command,
- * with some corrections:
- * - Beyond 4000 km, the MUF is determined by two control points 2000 km
- *   from the endpoints, as in ITU-R P.533. This prevents a dark region in
- *   the middle of a long path from closing the entire path and gives the
- *   long path its own MUF.
- * - The F2 layer follows the Sun with a delay of approximately one hour.
- * - Above the MUF, the signal falls gradually (130 * (f/MUF - 1)^2 dB,
- *   ITU-R P.533), rather than disappearing.
- * - D-layer absorption and chordal hops on paths longer than 10000 km
- *   are treated as in VOACAP.
+ * Literature:
+ * https://www.itu.int/rec/R-REC-P.533/en
+ * https://www.itu.int/rec/R-REC-P.372/en
+ * https://www.itu.int/rec/R-REC-P.1239/en
+ * 
+ * Reference implementation: https://github.com/ITU-R-Study-Group-3/ITU-R-HF
+ * At commit ID: 82017594a1c6cacfaa7e86954c4ae7b3a5825a3d
+ * 
+ * Inputs are prediction month, UTC hour and 12-month smoothed sunspot number
+ * (integer 1-311; some equations saturate at 160), not daily solar flux or K-index.
+ * The reference monthly ionospheric,
+ * atmospheric-noise and MUF-variability data are installed by the Cron Manager
+ * job "Install and verify ITU-R propagation reference data", not shipped in Git.
+ * The job downloads from a pinned official upstream revision, verifies SHA-256,
+ * and skips valid files. Data resides under paths->make_update_path() in
+ * propagation/<revision>/ (about 137 MB); PHP needs HTTPS access to
+ * raw.githubusercontent.com and write permission there. Run the job manually
+ * for initial setup or let the hourly schedule install/repair missing files.
+ * Browsers load only the required month through the authenticated data endpoint.
+ * P.533 predictions are monthly statistics, not space-weather nowcasts.
+ * Wavelog compares the calculated 2.5 kHz SNR with mode-specific thresholds;
+ * these margins are not probabilities of a successful amateur-radio contact.
+ * Power and fixed effective gains adjust the reference 100 W isotropic result.
+ * The supported amateur bands run from 160 m to 10 m (engine range 1-30 MHz).
+ * No-supported-mode results have no fabricated SNR: tables show an explicit
+ * label, charts have gaps, and the coverage map marks those cells red.
+ * The reference application's claimed VOACAP accuracy does not apply here.
  *
- * For signal levels, the median deviation from VOACAP remains within
- * 3 dB, with a spread of 4-6 dB. This is a monthly median prediction:
- * on good days, signals can be 8-10 dB better. Therefore, a link up to
- * 10 dB below the mode's threshold is considered marginal, not impossible.
- * Sporadic E, TEP openings and current conditions are better indicated by
- * live reception reports, which are therefore always shown alongside
- * the prediction in the reference application.
+ * Focused tests: node --test tests/propagation_model.test.js
+ *               php tests/propagation_lookup_test.php
+ *               php tests/propagation_data_test.php
+ *               php tests/propagation_cron_test.php
  */
 
 class Propagation extends CI_Controller {
@@ -37,6 +50,9 @@ class Propagation extends CI_Controller {
 	}
 
 	public function index() {
+		$this->load->library('Propagation_data');
+		$data['reference_ready'] = $this->propagation_data->is_ready();
+		$data['reference_revision'] = $this->propagation_data->revision();
 		$this->load->model('stations');
 		$station_id = $this->session->userdata('station_profile_id') ?? 0;
 		if (!$this->stations->check_station_is_accessible($station_id)) {
@@ -44,21 +60,11 @@ class Propagation extends CI_Controller {
 		}
 		$station = $station_id ? $this->stations->profile($station_id)->row() : null;
 
-		$this->load->model('Hamqsl_model');
-		$solar = $this->Hamqsl_model->get_solarinformation_array();
-		$solar_node = $this->Hamqsl_model->solarData;
-		if ($solar_node && isset($solar_node->solardata)) {
-			$solar_node = $solar_node->solardata;
-		}
-		$observed = $solar_node && isset($solar_node->updated) ? strtotime((string)$solar_node->updated) : false;
 		$data['page_title'] = __("Propagation");
 		$data['homegrid'] = $station ? strtoupper(explode(',', $station->station_gridsquare ?? '')[0]) : '';
 		$power = $station->station_power ?? null;
 		$data['station_power'] = is_numeric($power) && $power >= 1 && $power <= 5000 ? (float)$power : 100;
-		$data['solar'] = $solar;
-		$data['solar_observed'] = $observed === false ? null : $observed;
-		$data['settings_key'] = 'wavelog.propagation.' . (int)$this->session->userdata('user_id') . '.' . (int)$station_id;
-		$data['solar_modified'] = is_file(FCPATH . 'updates/solarxml.xml') ? filemtime(FCPATH . 'updates/solarxml.xml') : null;
+		$data['settings_key'] = 'wavelog.propagation.p533.' . (int)$this->session->userdata('user_id') . '.' . (int)$station_id;
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('propagation/index', $data);
 		$this->load->view('interface_assets/footer', ['scripts' => [
@@ -66,6 +72,31 @@ class Propagation extends CI_Controller {
 			'assets/js/sections/propagation_model.js',
 			'assets/js/sections/propagation.js',
 		]]);
+	}
+
+	public function data() {
+		$this->load->library('Propagation_data');
+		$revision = $this->input->get('revision', false);
+		if ($revision !== null && $revision !== $this->propagation_data->revision()) {
+			return $this->json_error(__("Propagation reference version changed. Reload this page."), 400);
+		}
+		try {
+			$path = $this->propagation_data->verified_path($this->input->get('file', false));
+		} catch (InvalidArgumentException $error) {
+			log_message('error', $error->getMessage());
+			return $this->json_error(__("Unknown propagation reference file."), 400);
+		} catch (RuntimeException $error) {
+			log_message('error', $error->getMessage());
+			return $this->json_error(__("Propagation reference data is not installed or is damaged. Ask an administrator to run the propagation reference data job in Cron Manager."), 503);
+		}
+		session_write_close();
+		header('Content-Type: application/octet-stream');
+		header('Content-Length: ' . filesize($path));
+		header('Cache-Control: private, max-age=86400');
+		header('X-Content-Type-Options: nosniff');
+		if (readfile($path) === false) {
+			log_message('error', 'Cannot read propagation reference file: ' . $path);
+		}
 	}
 
 	public function lookup() {

@@ -7,11 +7,64 @@
 	const text = config.text;
 	const element = id => document.getElementById('prop-' + id);
 	const field = name => form.elements.namedItem(name);
-	const numeric = ['power', 'dxPower', 'gain', 'dxGain', 'sfi', 'k'];
+	const numeric = ['power', 'dxPower', 'gain', 'dxGain', 'ssn'];
 	const savedFields = ['home', 'target', 'mode', 'path', 'noise', 'dxNoise', ...numeric];
 	let state = null, dx = null, hours = [], chart = null, map = null, generation = 0;
 	let coverage = null, night = null, homeMarker = null, request = null, renderer = null;
 	let storageProblem = false;
+	let worker = null, nextId = 0, mapGeneration = 0, worldGeneration = 0;
+	const pending = new Map();
+
+	function updateStatus() {
+		element('engine-status').textContent = pending.size ? text.engineLoading : '';
+	}
+
+	function engineRequest(type, payload) {
+		return new Promise((resolve, reject) => {
+			try {
+				if (!worker) {
+					worker = new Worker(config.workerUrl);
+					worker.onmessage = event => {
+						const response = event.data;
+						if (response.id === 0 && response.error) {
+							workerFailure(response.error);
+							return;
+						}
+						const job = pending.get(response.id);
+						if (!job) return;
+						pending.delete(response.id);
+						updateStatus();
+						if (response.error) job.reject(new Error(text.engineError + ' ' + response.error));
+						else job.resolve(response.result);
+					};
+					worker.onerror = event => workerFailure(event.message);
+					worker.postMessage({type: 'initialize', config: {modelUrl: config.modelUrl, engineUrl: config.engineUrl, dataUrl: config.dataUrl}});
+				}
+				for (const [id, job] of pending) {
+					if (job.type === type) {
+						job.resolve(null);
+						pending.delete(id);
+					}
+				}
+				const id = ++nextId;
+				pending.set(id, {type, resolve, reject});
+				updateStatus();
+				worker.postMessage({id, type, payload});
+			} catch (error) {
+				workerFailure(error.message);
+				reject(new Error(text.engineError));
+			}
+		});
+	}
+
+	function workerFailure(detail) {
+		if (worker) worker.terminate();
+		worker = null;
+		for (const job of pending.values()) job.reject(new Error(text.engineError + ' ' + detail));
+		pending.clear();
+		updateStatus();
+		showError(text.engineError + ' ' + detail);
+	}
 
 	function showError(message) {
 		const messages = [message, storageProblem ? text.storageError : ''].filter(Boolean);
@@ -20,7 +73,7 @@
 	}
 
 	function utcInput() {
-		field('time').value = new Date().toISOString().slice(0, 16);
+		field('time').value = new Date().toISOString().slice(0, 13) + ':00';
 	}
 
 	function readState() {
@@ -34,11 +87,13 @@
 		for (const name of numeric) settings[name] = field(name).value === '' ? NaN : Number(field(name).value);
 		for (const name of ['mode', 'path', 'noise', 'dxNoise']) settings[name] = field(name).value;
 		const date = new Date(field('time').value + 'Z');
+		date.setUTCMinutes(0, 0, 0);
 		try {
-			model.predict(home, home, date, settings);
+			model.validate(settings, date);
 		} catch (error) {
 			throw new Error(text.calculationError);
 		}
+		field('time').value = date.toISOString().slice(0, 16);
 		return {home, settings, date};
 	}
 
@@ -69,11 +124,12 @@
 	}
 
 	function marginLabel(result) {
-		return Math.round(result.rxMargin) + ' / ' + Math.round(result.txMargin) + (result.longPath ? ' LP' : '');
+		const label = value => value === null ? text.noMode : Math.round(value);
+		return label(result.rxMargin) + ' / ' + label(result.txMargin) + (result.longPath ? ' LP' : '');
 	}
 
 	function resultCell(row, result, onClick) {
-		const margin = Math.min(result.rxMargin, result.txMargin);
+		const margin = result.rxMargin === null || result.txMargin === null ? null : model.twoWayMargin(result);
 		const td = cell(row, 'td', '');
 		td.style.setProperty('--prop-signal-color', model.signalColor(margin));
 		const button = cell(td, 'button', marginLabel(result));
@@ -92,7 +148,7 @@
 		return table.createTBody();
 	}
 
-	function drawDx() {
+	async function drawDx() {
 		element('dx-table').replaceChildren();
 		if (chart) { chart.destroy(); chart = null; }
 		if (!dx || !state) {
@@ -100,7 +156,10 @@
 			return;
 		}
 		element('dx-info').textContent = dx.target + ' / ' + dx.grid + ' (' + dx.source + ')';
-		hours = model.forecast(state.home, dx, state.date, state.settings);
+		const current = state, target = dx;
+		const forecast = await engineRequest('forecast', {...current, dx: target});
+		if (!forecast || current !== state || target !== dx) return;
+		hours = forecast.map(hour => ({...hour, time: new Date(hour.time)}));
 		const body = newTable(element('dx-table'), [text.band, ...hours.map(hour => timeLabel(hour.time))], dx.target + ' (RX / TX dB)');
 		model.bands.forEach((band, index) => {
 			const row = body.insertRow();
@@ -132,13 +191,20 @@
 		});
 	}
 
-	function drawWorld() {
+	async function drawWorld() {
 		if (!state) return;
+		const version = ++worldGeneration;
 		const time = selectedTime();
 		element('hour-label').textContent = timeLabel(time);
+		element('world-table').replaceChildren();
+		const current = state;
+		const predictions = await engineRequest('world', {...current, date: time,
+			points: config.regions.map(([, lat, lng]) => ({lat, lng}))});
+		if (!predictions || version !== worldGeneration || current !== state) return;
 		const body = newTable(element('world-table'), [text.region, ...model.bands.map(band => band.name)], timeLabel(time) + ' (RX / TX dB)');
-		for (const [name, lat, lng] of config.regions) {
-			const results = model.predict(state.home, {lat, lng}, time, state.settings);
+		for (let i = 0; i < config.regions.length; i++) {
+			const name = config.regions[i][0];
+			const results = predictions[i].bands;
 			const row = body.insertRow();
 			cell(row, 'th', name).scope = 'row';
 			results.forEach(result => resultCell(row, result, () => {
@@ -148,23 +214,30 @@
 		}
 	}
 
-	function drawMap() {
+	async function drawMap() {
 		if (!state || !element('pane-map').classList.contains('active')) return;
+		const version = ++mapGeneration;
 		if (!map) {
 			map = L.map(element('map'), {worldCopyJump: true}).setView([20, 0], 2);
 			renderer = L.canvas({padding: 0.5});
 			L.tileLayer(option_map_tile_server, {
 				attribution: option_map_tile_server_copyright, subdomains: option_map_tile_subdomains
 			}).addTo(map);
-			map.on('click', event => {
+			map.on('click', async event => {
 				if (!state) return;
 				const point = {lat: event.latlng.lat, lng: ((event.latlng.lng + 540) % 360) - 180};
 				if (Math.abs(point.lat) > 90) return;
 				const index = model.bands.findIndex(band => band.name === element('map-band').value);
-				const result = model.predict(state.home, point, selectedTime(), state.settings)[index];
-				const popup = document.createElement('span');
-				popup.textContent = point.lat.toFixed(2) + ', ' + point.lng.toFixed(2) + ' | ' + result.band + ' | RX / TX: ' + marginLabel(result) + ' dB';
-				L.popup().setLatLng(event.latlng).setContent(popup).openOn(map);
+				const current = state, currentMap = mapGeneration;
+				try {
+					const result = await engineRequest('point', {...current, point, date: selectedTime(), band: model.bands[index]});
+					if (!result || current !== state || currentMap !== mapGeneration) return;
+					const popup = document.createElement('span');
+					popup.textContent = point.lat.toFixed(2) + ', ' + point.lng.toFixed(2) + ' | ' + result.band + ' | RX / TX: ' + marginLabel(result) + ' dB';
+					L.popup().setLatLng(event.latlng).setContent(popup).openOn(map);
+				} catch (error) {
+					showError(error.message);
+				}
 			});
 		}
 		map.invalidateSize();
@@ -178,17 +251,18 @@
 		const index = model.bands.findIndex(band => band.name === element('map-band').value);
 		const direction = element('direction').value;
 		const time = selectedTime();
-		for (let lat = -87.5; lat < 90; lat += 5) {
-			for (let lng = -177.5; lng < 180; lng += 5) {
-				const point = {lat, lng};
-				const result = model.predict(state.home, point, time, state.settings)[index];
-				const margin = direction === 'rx' ? result.rxMargin : result.txMargin;
-				const bounds = [[lat - 2.5, lng - 2.5], [lat + 2.5, lng + 2.5]];
-				L.rectangle(bounds, {renderer, stroke: false, fillColor: model.signalColor(margin),
-					fillOpacity: 0.45, interactive: false}).addTo(coverage);
-				if (model.solarCosine(point, time) < 0) {
-					L.rectangle(bounds, {renderer, stroke: false, fillColor: '#000000', fillOpacity: 0.18, interactive: false}).addTo(night);
-				}
+		const current = state;
+		const predictions = await engineRequest('map', {...current, date: time, band: model.bands[index]});
+		if (!predictions || version !== mapGeneration || current !== state) return;
+		for (const {point, bands: results} of predictions) {
+			const {lat, lng} = point;
+			const result = results[0];
+			const margin = direction === 'rx' ? result.rxMargin : result.txMargin;
+			const bounds = [[lat - 2.5, lng - 2.5], [lat + 2.5, lng + 2.5]];
+			L.rectangle(bounds, {renderer, stroke: false, fillColor: model.signalColor(margin),
+				fillOpacity: 0.45, interactive: false}).addTo(coverage);
+			if (model.solarCosine(point, time) < 0) {
+				L.rectangle(bounds, {renderer, stroke: false, fillColor: '#000000', fillOpacity: 0.18, interactive: false}).addTo(night);
 			}
 		}
 		homeMarker.bringToFront();
@@ -198,6 +272,8 @@
 		state = null;
 		dx = null;
 		hours = [];
+		worldGeneration++;
+		mapGeneration++;
 		drawDx();
 		element('world-table').replaceChildren();
 		element('hour-label').textContent = '';
@@ -217,12 +293,13 @@
 		element('submit').disabled = true;
 		element('submit').textContent = text.loading;
 		try {
+			if (!config.dataReady) throw new Error(text.dataMissing);
 			const next = readState();
 			const target = field('target').value.trim();
 			// World and coverage forecasts do not require a DX target.
 			state = next;
-			drawWorld();
-			drawMap();
+			await Promise.all([drawWorld(), drawMap()]);
+			if (token !== generation) return;
 			saveSettings();
 			if (target) {
 				const url = new URL(config.lookupUrl, window.location.href);
@@ -235,7 +312,7 @@
 				if (!response.ok) throw new Error(result.error || text.lookupError);
 				if (!Number.isFinite(result.lat) || !Number.isFinite(result.lng) || typeof result.grid !== 'string') throw new Error(text.lookupError);
 				dx = result;
-				drawDx();
+				await drawDx();
 			}
 		} catch (error) {
 			if (error.name !== 'AbortError' && token === generation) {
@@ -254,24 +331,11 @@
 		element(id).value = '20m';
 	}
 	utcInput();
-	const solar = config.solar;
-	const now = Date.now() / 1000;
-	const recent = [solar.modified, solar.observed].every(value => Number.isFinite(value) && now - value >= -3600 && now - value < 6 * 3600);
-	const usable = Number.isFinite(solar.sfi) && solar.sfi >= 50 && solar.sfi <= 400 &&
-		Number.isFinite(solar.k) && solar.k >= 0 && solar.k <= 9;
-	element('solar-warning').classList.toggle('d-none', recent && usable);
-	if (usable) {
-		field('sfi').value = solar.sfi;
-		field('k').value = solar.k;
-		element('solar-info').textContent = text.solar + ': ' + solar.updated;
-	}
 	try {
 		const stored = JSON.parse(localStorage.getItem(config.settingsKey) || 'null');
 		if (stored !== null) {
 			if (typeof stored !== 'object' || Array.isArray(stored)) throw new Error('Invalid stored settings');
 			for (const name of savedFields) {
-				// Fresh cached solar indices take precedence over yesterday's assumptions.
-				if ((name === 'sfi' || name === 'k') && recent && usable) continue;
 				if (typeof stored[name] === 'string') field(name).value = stored[name];
 			}
 			element('solar-info').append(' ' + text.saved);
@@ -283,18 +347,22 @@
 	form.addEventListener('submit', calculate);
 	element('now').addEventListener('click', () => { utcInput(); form.requestSubmit(); });
 	element('chart-band').addEventListener('change', drawChart);
-	element('map-band').addEventListener('change', drawMap);
-	element('direction').addEventListener('change', drawMap);
-	element('hour').addEventListener('input', () => { drawWorld(); drawMap(); });
+	const handleMap = () => drawMap().catch(error => showError(error.message));
+	element('map-band').addEventListener('change', handleMap);
+	element('direction').addEventListener('change', handleMap);
+	element('hour').addEventListener('input', () => {
+		drawWorld().catch(error => showError(error.message));
+		handleMap();
+	});
 	for (const name of ['dx', 'world', 'map']) {
 		element('tab-' + name).addEventListener('shown.bs.tab', () => {
 			history.replaceState(null, '', '#' + name);
 			element('time-control').hidden = name === 'dx';
-			if (name === 'map') drawMap();
+			if (name === 'map') handleMap();
 			if (name === 'dx' && chart) chart.resize();
 		});
 	}
 	const tab = element('tab-' + window.location.hash.slice(1));
 	if (tab) bootstrap.Tab.getOrCreateInstance(tab).show();
-	if (field('home').value.trim()) form.requestSubmit();
+	if (config.dataReady && field('home').value.trim()) form.requestSubmit();
 })();

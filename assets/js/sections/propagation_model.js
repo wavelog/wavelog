@@ -7,8 +7,26 @@
 		['20m', 14.15], ['17m', 18.1], ['15m', 21.2], ['12m', 24.94], ['10m', 28.4]
 	].map(([name, frequency]) => ({name, frequency}));
 	const thresholds = {SSB: 6, CW: -10, FT8: -20, FT4: -17, RTTY: -5};
-	const noiseLevels = {quiet: -125, rural: -118, residential: -108, city: -98};
+	const noiseCategories = {quiet: 3, rural: 2, residential: 1, city: 0};
 	const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+	let engine = null, loadMonth = null, loadedMonth = null;
+
+	function configure(module, loader) {
+		engine = module;
+		loadMonth = loader;
+		loadedMonth = null;
+	}
+
+	async function prepare(date) {
+		if (!engine || !loadMonth) throw new Error('P.533 engine is not initialized');
+		const month = date.getUTCMonth() + 1;
+		if (month !== loadedMonth) {
+			await loadMonth(month);
+			const code = engine._wl_init(month);
+			if (code !== 0) throw new Error('P.533 initialization error ' + code);
+			loadedMonth = month;
+		}
+	}
 
 	function coordinates(point) {
 		if (!point || !Number.isFinite(point.lat) || !Number.isFinite(point.lng) ||
@@ -73,76 +91,79 @@
 
 	function validate(settings, date) {
 		if (!(date instanceof Date) || !Number.isFinite(date.getTime())) throw new Error('Invalid UTC date');
-		const ranges = {power: [1, 5000], dxPower: [1, 5000], gain: [-20, 30], dxGain: [-20, 30], sfi: [50, 400], k: [0, 9]};
+		if (date.getUTCFullYear() < 1900 || date.getUTCFullYear() > 2100) throw new Error('Unsupported prediction year');
+		const ranges = {power: [1, 5000], dxPower: [1, 5000], gain: [-20, 30], dxGain: [-20, 30], ssn: [1, 311]};
 		for (const [key, [min, max]] of Object.entries(ranges)) {
 			if (!Number.isFinite(settings[key]) || settings[key] < min || settings[key] > max) {
 				throw new Error('Invalid setting: ' + key);
 			}
+			if (!Number.isInteger(settings.ssn)) throw new Error('Sunspot number must be an integer');
 		}
 		if (!Object.prototype.hasOwnProperty.call(thresholds, settings.mode) ||
-			!Object.prototype.hasOwnProperty.call(noiseLevels, settings.noise) ||
-			!Object.prototype.hasOwnProperty.call(noiseLevels, settings.dxNoise) ||
+			!Object.prototype.hasOwnProperty.call(noiseCategories, settings.noise) ||
+			!Object.prototype.hasOwnProperty.call(noiseCategories, settings.dxNoise) ||
 			!['short', 'long', 'auto'].includes(settings.path)) throw new Error('Invalid mode, noise or path');
 	}
 
-	function predictPath(from, to, date, settings, longPath) {
-		const route = path(from, to, longPath);
-		const hopLength = route.distance / route.hops;
-		// Secant-law geometry at a virtual F-layer height of 300 km.
-		const halfAngle = hopLength / (2 * radius);
-		const incidence = Math.atan2(radius * Math.sin(halfAngle), radius + 300 - radius * Math.cos(halfAngle));
-		const secant = 1 / Math.cos(incidence);
-		let muf = Infinity, daylight = 0, polar = 0;
-		const lagged = new Date(date.getTime() - 3600000);
-		for (const point of route.points) {
-			const sun = Math.max(0, solarCosine(point, lagged));
-			const activity = Math.max(0, settings.sfi - 65);
-			const critical = (2.5 + activity * 0.012 + (3 + activity * 0.022) * Math.sqrt(sun))
-				* (1 - settings.k * 0.035);
-			muf = Math.min(muf, critical * secant);
-			daylight += Math.max(0, solarCosine(point, date));
-			polar = Math.max(polar, clamp((Math.abs(point.lat) - 50) / 25, 0, 1));
+	function reference(from, to, date, settings, band, longPath, noise) {
+		if (!engine || loadedMonth !== date.getUTCMonth() + 1) throw new Error('P.533 monthly data is not loaded');
+		const code = engine._wl_predict(from.lat, from.lng, to.lat, to.lng, date.getUTCFullYear(),
+			date.getUTCMonth() + 1, date.getUTCHours(), settings.ssn, band.frequency, longPath ? 1 : 0, noiseCategories[noise]);
+		if (code !== 0 && code !== 3004) throw new Error('P.533 prediction error ' + code);
+		const offset = engine._wl_result() / 8;
+		const result = Array.from(engine.HEAPF64.subarray(offset, offset + 5));
+		if (code === 3004 && Number.isFinite(result[3]) && Number.isFinite(result[4])) {
+			return {snr: null, muf: result[3], distance: result[4]};
 		}
-		return bands.map(band => {
-			const f = band.frequency;
-			const aboveMuf = 130 * Math.max(0, f / muf - 1) ** 2;
-			const absorption = daylight * 8 * (10 / f) ** 2;
-			const slant = Math.max(600, Math.hypot(hopLength, 600) * route.hops);
-			const loss = 32.45 + 20 * Math.log10(f) + 20 * Math.log10(slant)
-				+ 20 + 7 * route.hops + absorption + aboveMuf + settings.k * polar * 2;
-			const common = settings.gain + settings.dxGain - loss;
-			// All SNRs and mode thresholds use a common 2.5 kHz reference bandwidth.
-			const noiseCorrection = 20 * Math.log10(14 / f);
-			const tx = 30 + 10 * Math.log10(settings.power) + common - (noiseLevels[settings.dxNoise] + noiseCorrection);
-			const rx = 30 + 10 * Math.log10(settings.dxPower) + common - (noiseLevels[settings.noise] + noiseCorrection);
-			return {band: band.name, frequency: f, tx, rx, txMargin: tx - thresholds[settings.mode],
-				rxMargin: rx - thresholds[settings.mode], muf, distance: route.distance, longPath};
+		if (result.some(value => !Number.isFinite(value))) throw new Error('P.533 returned a non-finite result');
+		return {power: result[0], noise: result[1], snr: result[2], muf: result[3], distance: result[4]};
+	}
+
+	function predictPath(from, to, date, settings, longPath, selectedBands) {
+		return selectedBands.map(band => {
+			const outgoing = reference(from, to, date, settings, band, longPath, settings.dxNoise);
+			const incoming = reference(to, from, date, settings, band, longPath, settings.noise);
+			const gain = settings.gain + settings.dxGain;
+			const tx = outgoing.snr === null ? null : outgoing.snr + 10 * Math.log10(settings.power / 100) + gain;
+			const rx = incoming.snr === null ? null : incoming.snr + 10 * Math.log10(settings.dxPower / 100) + gain;
+			return {band: band.name, frequency: band.frequency, tx, rx, txMargin: tx === null ? null : tx - thresholds[settings.mode],
+				rxMargin: rx === null ? null : rx - thresholds[settings.mode], muf: outgoing.muf, distance: outgoing.distance, longPath};
 		});
 	}
 
-	function predict(from, to, date, settings) {
+	function predict(from, to, date, settings, selectedBands = bands) {
 		validate(settings, date);
-		if (settings.path === 'long') return predictPath(from, to, date, settings, true);
-		const short = predictPath(from, to, date, settings, false);
+		coordinates(from);
+		coordinates(to);
+		if (settings.path === 'long') return predictPath(from, to, date, settings, true, selectedBands);
+		const short = predictPath(from, to, date, settings, false, selectedBands);
 		if (settings.path !== 'auto' || short[0].distance < 6000) return short;
-		const long = predictPath(from, to, date, settings, true);
-		return short.map((result, i) => Math.min(long[i].txMargin, long[i].rxMargin) >
-			Math.min(result.txMargin, result.rxMargin) ? long[i] : result);
+		const long = predictPath(from, to, date, settings, true, selectedBands);
+		return short.map((result, i) => twoWayMargin(long[i]) > twoWayMargin(result) ? long[i] : result);
 	}
 
-	function forecast(from, to, date, settings) {
+	function twoWayMargin(result) {
+		return result.txMargin === null || result.rxMargin === null ? -Infinity : Math.min(result.txMargin, result.rxMargin);
+	}
+
+	async function forecast(from, to, date, settings) {
 		validate(settings, date);
-		return Array.from({length: 24}, (_, hour) => {
+		const result = [];
+		for (let hour = 0; hour < 24; hour++) {
 			const time = new Date(date.getTime() + hour * 3600000);
-			return {time, bands: predict(from, to, time, settings)};
-		});
+			await prepare(time);
+			result.push({time, bands: predict(from, to, time, settings)});
+		}
+		return result;
 	}
 
 	function quality(margin) {
+		if (margin === null) return 'noMode';
 		return margin >= 10 ? 'good' : margin >= 0 ? 'marginal' : 'unlikely';
 	}
 
 	function signalColor(margin) {
+		if (margin === null) return 'rgb(248, 113, 113)';
 		if (!Number.isFinite(margin)) throw new Error('Invalid signal margin');
 		const red = [248, 113, 113], yellow = [250, 204, 21], green = [74, 222, 128];
 		const start = margin < 0 ? red : yellow;
@@ -151,7 +172,7 @@
 		return 'rgb(' + start.map((value, i) => Math.round(value + (end[i] - value) * fraction)).join(', ') + ')';
 	}
 
-	const api = {bands, thresholds, gridPoint, solarCosine, path, predict, forecast, quality, signalColor};
+	const api = {bands, thresholds, gridPoint, solarCosine, path, validate, configure, prepare, predict, forecast, quality, signalColor, twoWayMargin};
 	if (typeof module === 'object' && module.exports) module.exports = api;
 	else root.PropagationModel = api;
 })(typeof window !== 'undefined' ? window : globalThis);

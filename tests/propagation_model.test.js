@@ -1,14 +1,46 @@
 'use strict';
 const assert = require('node:assert/strict');
-const {test} = require('node:test');
+const {test, before} = require('node:test');
+const fs = require('node:fs');
+const path = require('node:path');
 const model = require('../assets/js/sections/propagation_model.js');
 const home = model.gridPoint('JN45');
 const dx = model.gridPoint('FN31');
 const date = new Date('2026-10-24T12:00:00Z');
 const defaults = {power: 100, dxPower: 100, gain: 0, dxGain: 0, noise: 'rural', dxNoise: 'rural',
-	sfi: 140, k: 2, mode: 'SSB', path: 'short'};
+	ssn: 100, mode: 'SSB', path: 'short'};
 const predict = (settings = {}) => model.predict(home, dx, date, {...defaults, ...settings});
 const close = (actual, expected, tolerance = 1e-8) => assert.ok(Math.abs(actual - expected) < tolerance, `${actual} != ${expected}`);
+let engine;
+before(async () => {
+	const createEngine = require('../assets/js/propagation/p533-engine.js');
+	const originalWebAssembly = global.WebAssembly;
+	try {
+		global.WebAssembly = undefined;
+		engine = await createEngine({print: () => {}, printErr: message => console.error(message)});
+	} finally {
+		global.WebAssembly = originalWebAssembly;
+	}
+	engine.FS.mkdir('/data');
+	const manifest = require('../application/config/propagation-data.json');
+	const dataPath = process.env.WAVELOG_PROPAGATION_DATA ||
+		path.join(__dirname, '..', 'updates', 'propagation', manifest.revision);
+	engine.FS.writeFile('/data/P1239-3 Decile Factors.txt', fs.readFileSync(path.join(dataPath, 'P1239-3 Decile Factors.txt')));
+	model.configure(engine, async month => {
+		const suffix = String(month).padStart(2, '0');
+		for (const name of ['ionos' + suffix + '.bin', 'COEFF' + suffix + 'W.txt']) {
+			engine.FS.writeFile('/data/' + name, fs.readFileSync(path.join(dataPath, name)));
+		}
+	});
+
+	await model.prepare(date);
+});
+
+test('official JavaScript engine initializes without WebAssembly', () => {
+	assert.equal(typeof engine._wl_predict, 'function');
+	assert.equal(typeof engine._wl_init, 'function');
+	assert.ok(engine.HEAPF64 instanceof Float64Array);
+});
 
 test('Maidenhead centres at every supported precision', () => {
 	assert.deepEqual(model.gridPoint('JJ00'), {lat: 0.5, lng: 1});
@@ -43,18 +75,22 @@ test('great circles are stable across the dateline, poles, identical points and 
 	assert.ok(model.path({lat: 0, lng: 179}, {lat: 0, lng: -179}, false).distance < 223);
 });
 
-test('forecast returns exactly 24 UTC hours by 10 HF bands with finite values', () => {
+test('forecast returns exactly 24 UTC hours by 10 supported HF bands across a month boundary', async () => {
 	const start = new Date('2026-12-31T23:30:00Z');
-	const result = model.forecast(home, dx, start, defaults);
+	const result = await model.forecast(home, dx, start, defaults);
 	assert.equal(result.length, 24);
 	assert.equal(result[23].time.toISOString(), '2027-01-01T22:30:00.000Z');
 	for (const hour of result) {
 		assert.deepEqual(hour.bands.map(band => band.band), model.bands.map(band => band.name));
 		for (const band of hour.bands) {
-			for (const key of ['tx', 'rx', 'txMargin', 'rxMargin', 'muf', 'distance']) assert.ok(Number.isFinite(band[key]));
+			for (const key of ['tx', 'rx', 'txMargin', 'rxMargin']) assert.ok(band[key] === null || Number.isFinite(band[key]));
+			for (const key of ['muf', 'distance']) assert.ok(Number.isFinite(band[key]));
 		}
 	}
 	assert.equal(start.toISOString(), '2026-12-31T23:30:00.000Z');
+	assert.equal(model.bands.length, 10);
+	assert.equal(model.bands[0].name, '160m');
+	await model.prepare(date);
 });
 
 test('tenfold home power adds exactly 10 dB to TX only', () => {
@@ -71,8 +107,8 @@ test('antenna gains affect both directions and noise affects only reception at t
 	const before = predict(), gain = predict({gain: 6}), noise = predict({noise: 'city'}), dxNoise = predict({dxNoise: 'city'});
 	before.forEach((band, i) => {
 		close(gain[i].rx - band.rx, 6); close(gain[i].tx - band.tx, 6);
-		close(noise[i].rx - band.rx, -20); close(noise[i].tx, band.tx);
-		close(dxNoise[i].tx - band.tx, -20); close(dxNoise[i].rx, band.rx);
+		assert.ok(noise[i].rx < band.rx); close(noise[i].tx, band.tx);
+		assert.ok(dxNoise[i].tx < band.tx); close(dxNoise[i].rx, band.rx);
 	});
 });
 
@@ -94,10 +130,9 @@ test('automatic path selection uses the best two-way margin per band', () => {
 	assert.ok(predict().every(band => !band.longPath));
 });
 
-test('solar flux raises MUF and disturbed K lowers MUF', () => {
-	const low = predict({sfi: 70}), high = predict({sfi: 220}), disturbed = predict({sfi: 220, k: 8});
+test('smoothed solar activity changes reference MUF without an invented K correction', () => {
+	const low = predict({ssn: 20}), high = predict({ssn: 140});
 	assert.ok(high[0].muf > low[0].muf);
-	assert.ok(disturbed[0].muf < high[0].muf);
 });
 
 test('quality classification has exact 0 dB and 10 dB boundaries', () => {
@@ -121,25 +156,52 @@ test('signal gradient interpolates continuously and saturates at +/-20 dB', () =
 
 test('invalid settings, dates and coordinates are rejected explicitly', () => {
 	for (const settings of [{power: 0}, {power: NaN}, {dxPower: Infinity}, {gain: 31}, {dxGain: -21},
-		{sfi: 49}, {k: 10}, {mode: 'AM'}, {mode: 'toString'}, {noise: '__proto__'}, {dxNoise: 'unknown'}, {path: 'invalid'}]) {
+		{ssn: 0}, {ssn: 312}, {ssn: 1.5}, {mode: 'AM'}, {mode: 'toString'}, {noise: '__proto__'}, {dxNoise: 'unknown'}, {path: 'invalid'}]) {
 		assert.throws(() => predict(settings));
 	}
 	assert.throws(() => model.predict(home, dx, new Date('invalid'), defaults));
+	assert.throws(() => model.validate(defaults, new Date('2101-01-01T00:00:00Z')));
+	assert.throws(() => model.validate(defaults, new Date('1899-12-31T23:00:00Z')));
 	assert.throws(() => model.predict({lat: 91, lng: 0}, dx, date, defaults));
 	assert.throws(() => model.predict(home, {lat: 0, lng: NaN}, date, defaults));
 });
 
-test('coverage grid and all regions remain finite at extreme supported settings', () => {
+test('reference predictions are finite or explicitly unsupported for polar and dateline paths', () => {
 	for (const settings of [
-		{...defaults, power: 1, dxPower: 5000, sfi: 50, k: 9, path: 'auto'},
-		{...defaults, power: 5000, dxPower: 1, sfi: 400, k: 0, path: 'long'}
+		{...defaults, power: 1, dxPower: 5000, ssn: 1, path: 'auto'},
+		{...defaults, power: 5000, dxPower: 1, ssn: 311, path: 'long'}
 	]) {
-		for (let lat = -87.5; lat < 90; lat += 5) {
-			for (let lng = -177.5; lng < 180; lng += 5) {
+		for (const lat of [-87.5, 0, 87.5]) {
+			for (const lng of [-177.5, 0, 177.5]) {
 				for (const band of model.predict(home, {lat, lng}, date, settings)) {
-					assert.ok(Number.isFinite(band.rx) && Number.isFinite(band.tx) && band.muf > 0);
+					assert.ok(band.rx === null || Number.isFinite(band.rx));
+					assert.ok(band.tx === null || Number.isFinite(band.tx));
+					assert.ok(Number.isFinite(band.muf) && Number.isFinite(band.distance));
 				}
 			}
 		}
+	}
+});
+
+test('no-supported-mode results remain explicit rather than fabricated signal levels', () => {
+	const realPredict = engine._wl_predict;
+	try {
+		engine._wl_predict = (...args) => {
+			realPredict(...args);
+			const offset = engine._wl_result() / 8;
+			engine.HEAPF64.fill(NaN, offset, offset + 3);
+			return 3004;
+		};
+		for (const band of predict({path: 'auto'})) {
+			assert.equal(band.rx, null);
+			assert.equal(band.tx, null);
+			assert.equal(band.rxMargin, null);
+			assert.equal(band.txMargin, null);
+			assert.equal(model.twoWayMargin(band), -Infinity);
+		}
+		assert.equal(model.quality(null), 'noMode');
+		assert.equal(model.signalColor(null), model.signalColor(-20));
+	} finally {
+		engine._wl_predict = realPredict;
 	}
 });

@@ -11,12 +11,17 @@
 <div class="container-fluid mt-3 mb-4" id="propagation">
 	<h2><?= __("Propagation"); ?></h2>
 	<div class="alert alert-info alert-dismissible fade show" role="alert">
-		<?= __("Approximate HF skywave planning estimates, not measured conditions or a guarantee of contact. This independent model is not MINIMUF or VOACAP and has not been calibrated against either. It excludes sporadic E, ground wave, terrain and real-time reception reports."); ?>
+		<?= __("Monthly median HF planning predictions using the ITU-R P.533 reference engine and P.372 radio noise model. These are statistical estimates, not current measured conditions or a guarantee of contact. Sporadic E, terrain and live reception reports are not included."); ?>
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?= __("Close"); ?>"></button>
 	</div>
 	<div id="prop-error" class="alert alert-danger d-none" role="alert"></div>
-	<div id="prop-solar-warning" class="alert alert-warning d-none" role="status">
-		<?= __("Recent solar data is unavailable. Check the solar flux and K-index below; these are editable assumptions, not live measurements. Wavelog's solar-data cron job supplies the cached values."); ?>
+	<?php if (!$reference_ready) { ?>
+	<div class="alert alert-warning" role="alert">
+		<?= __("Propagation reference data is not installed or is damaged. Ask an administrator to run 'Install and verify ITU-R propagation reference data' in Cron Manager. The initial download is about 137 MB."); ?>
+	</div>
+	<?php } ?>
+	<div class="alert alert-warning" role="status">
+		<?= __("Enter the 12-month smoothed sunspot number appropriate to the prediction month (integer 1-311; some reference equations saturate at 160). The initial value of 100 is an assumption, not a live reading. Daily solar flux and K-index are not inputs to this monthly model. Predictions use the selected UTC hour; minutes are rounded down."); ?>
 	</div>
 	<form id="prop-form" class="card mb-3">
 		<div class="card-body">
@@ -31,7 +36,7 @@
 				</div>
 				<div class="col-sm-6 col-lg-3">
 					<label for="prop-time" class="form-label"><?= __("Start time (UTC)"); ?></label>
-					<input id="prop-time" name="time" type="datetime-local" class="form-control" required>
+					<input id="prop-time" name="time" type="datetime-local" class="form-control" min="1900-01-01T00:00" max="2100-12-31T00:00" step="3600" required>
 				</div>
 				<div class="col-sm-6 col-lg-2">
 					<label for="prop-mode" class="form-label"><?= __("Mode"); ?></label>
@@ -59,14 +64,13 @@
 						'dxPower' => [__("DX power (W)"), 100, 1, 5000],
 						'gain' => [__("Your antenna gain (dBi)"), 0, -20, 30],
 						'dxGain' => [__("DX antenna gain (dBi)"), 0, -20, 30],
-						'sfi' => [__("Solar flux (SFI)"), 100, 50, 400],
-						'k' => [__("K-index"), 2, 0, 9],
+						'ssn' => [__("12-month smoothed sunspot number"), 100, 1, 311],
 					];
 					foreach ($numeric as $name => $field) { ?>
 					<div class="col-sm-6 col-lg-2">
 						<label for="prop-<?= $name; ?>" class="form-label"><?= $field[0]; ?></label>
 						<input type="number" class="form-control" id="prop-<?= $name; ?>" name="<?= $name; ?>"
-							value="<?= $field[1]; ?>" min="<?= $field[2]; ?>" max="<?= $field[3]; ?>" step="any" required>
+							value="<?= $field[1]; ?>" min="<?= $field[2]; ?>" max="<?= $field[3]; ?>" step="<?= $name === 'ssn' ? '1' : 'any'; ?>" required>
 					</div>
 					<?php } ?>
 					<?php foreach (['noise' => __("Your noise environment"), 'dxNoise' => __("DX noise environment")] as $name => $label) { ?>
@@ -82,13 +86,14 @@
 					<?php } ?>
 				</div>
 				<p class="text-muted small mt-2 mb-0">
-					<?= __("Antenna gains are effective gains towards the path, including feeder losses. The DX settings describe an assumed station. Settings are saved in this browser per user and station location; the start time is not saved."); ?>
+					<?= __("Antenna gains are fixed effective gains in dBi, including feeder losses, applied to the reference isotropic-antenna result. Detailed antenna patterns are not modelled. The DX settings describe an assumed station. Settings are saved in this browser per user and station location; the start time is not saved."); ?>
 				</p>
 			</details>
 			<div class="d-flex flex-wrap gap-2 align-items-center mt-3">
 				<button type="submit" class="btn btn-primary" id="prop-submit"><?= __("Calculate"); ?></button>
 				<button type="button" class="btn btn-secondary" id="prop-now"><?= __("Now (UTC)"); ?></button>
 				<span id="prop-solar-info" class="small text-muted"></span>
+				<span id="prop-engine-status" class="small" role="status" aria-live="polite"></span>
 			</div>
 		</div>
 	</form>
@@ -99,7 +104,7 @@
 			<span class="text-center"><?= __("Mode threshold"); ?><br>0 dB</span>
 			<span class="text-end"><?= __("Favourable"); ?><br>&ge; +20 dB</span>
 		</div>
-		<p class="small mt-2 mb-0"><?= __("Estimated margin above the selected mode's SNR threshold. RX: you hear DX. TX: DX hears you."); ?></p>
+		<p class="small mt-2 mb-0"><?= __("Estimated margin above the selected mode's SNR threshold. RX: you hear DX. TX: DX hears you. When the reference engine finds no supported propagation mode, the table shows a label, the chart has a gap and the map cell is red; no signal level is invented."); ?></p>
 	</div>
 	<ul class="nav nav-tabs mb-3" role="tablist">
 		<?php foreach (['dx' => __("Can I work this DX?"), 'world' => __("Bands towards the world"), 'map' => __("Band map")] as $id => $label) { ?>
@@ -152,25 +157,27 @@
 	const propagationConfig = <?= json_encode([
 		'lookupUrl' => site_url('propagation/lookup'),
 		'settingsKey' => $settings_key,
-		'solar' => [
-			'sfi' => isset($solar['solarflux']) && is_numeric($solar['solarflux']) ? (float)$solar['solarflux'] : null,
-			'k' => isset($solar['kindex']) && is_numeric($solar['kindex']) ? (float)$solar['kindex'] : null,
-			'updated' => $solar['updated'] ?? '',
-			'modified' => $solar_modified,
-			'observed' => $solar_observed,
-		],
+		'workerUrl' => $this->paths->cache_buster('/assets/js/sections/propagation_worker.js'),
+		'modelUrl' => $this->paths->cache_buster('/assets/js/sections/propagation_model.js'),
+		'engineUrl' => $this->paths->cache_buster('/assets/js/propagation/p533-engine.js'),
+		'dataUrl' => site_url('propagation/data') . '?revision=' . $reference_revision,
+		'dataReady' => $reference_ready,
 		'text' => [
 			'homeError' => __("Enter a valid Maidenhead locator for your station."),
 			'lookupError' => __("Callsign lookup failed. Please try again or enter a locator."),
 			'storageError' => __("Unable to save or restore propagation settings in this browser."),
 			'calculationError' => __("Unable to calculate the forecast. Check the station settings and UTC date."),
 			'loading' => __("Calculating..."),
+			'engineLoading' => __("Loading monthly reference data and calculating ITU-R P.533 predictions..."),
+			'engineError' => __("The ITU-R propagation engine failed. Check that its JavaScript is installed and run the propagation reference data job in Cron Manager, then try again."),
+			'dataMissing' => __("Propagation reference data is not installed or is damaged. Ask an administrator to run the propagation reference data job in Cron Manager, then reload this page."),
 			'calculate' => __("Calculate"),
 			'region' => __("Region"), 'band' => __("Band"), 'threshold' => __("Mode threshold"),
-			'rx' => __("RX SNR (dB)"), 'tx' => __("TX SNR (dB)"), 'solar' => __("Cached solar data"),
+			'rx' => __("RX SNR (dB)"), 'tx' => __("TX SNR (dB)"),
+			'noMode' => __("No supported propagation mode"),
 			'empty' => __("Enter a DX callsign or locator to calculate the next 24 hours."),
 			'good' => __("Favourable"), 'marginal' => __("Marginal"), 'unlikely' => __("Unlikely"),
-			'saved' => __("Saved station assumptions restored. Solar inputs remain editable."),
+			'saved' => __("Saved station assumptions restored. The smoothed sunspot number remains editable."),
 		],
 		'regions' => [
 			[__("Northern Europe"), 60, 15], [__("Southern Europe"), 42, 15],
