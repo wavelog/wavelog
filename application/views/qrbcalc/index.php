@@ -1,30 +1,3 @@
-<style>
-	.qrb-input {
-		letter-spacing: .08em;
-	}
-
-	.qrb-compass text {
-		font-size: 11px;
-		font-weight: 600;
-	}
-
-	#mapqrb {
-		height: 430px;
-	}
-
-	#mapqrbcontainer {
-		width: 100%;
-		height: 100%;
-	}
-
-	/* Give the two-column layout and the map some room on desktop */
-	@media (min-width: 992px) {
-		.qrb-dialog .modal-lg {
-			max-width: min(1050px, 95vw);
-		}
-	}
-</style>
-
 <div class="row g-4 mb-3">
 	<div class="col-12 col-md-5 col-lg-4">
 		<form onsubmit="calculateQrb(); return false;" class="card card-body shadow-sm h-100">
