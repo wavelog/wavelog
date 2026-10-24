@@ -2764,6 +2764,47 @@ body.map-high-contrast span.grid-text-worked > font { color: rgba(0, 0, 0, 0.4) 
 	font-weight: 600;
 }
 
+/* QRB dialog (>= lg): the map fills the height left below the locator form
+   and result card. Scoped to .qrb-dialog (BootstrapDialog's cssClass on the
+   modal root) so the two-class selectors win over theme .modal-body rules. */
+@media (min-width: 992px) {
+	.qrb-dialog .modal-dialog {
+		height: calc(100vh - 1rem);
+		margin: 0.5rem auto;
+	}
+
+	.qrb-dialog .modal-content {
+		height: 100%;
+	}
+
+	.qrb-dialog .modal-header,
+	.qrb-dialog .modal-footer {
+		flex-shrink: 0;
+	}
+
+	.qrb-dialog .modal-body {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+		min-height: 0;
+		max-height: none;
+		overflow-y: auto;
+	}
+	/* BootstrapDialog wraps the message in .bootstrap-dialog-body inside
+	   .modal-body — both wrappers must flex or the chain breaks. */
+	.qrb-dialog .bootstrap-dialog-body,
+	.qrb-dialog .bootstrap-dialog-message {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+		min-height: 0;
+	}
+	#mapqrb {
+		flex: 1 1 0;
+		min-height: 200px;
+	}
+}
+
 #mapqrb {
 	height: 430px;
 }

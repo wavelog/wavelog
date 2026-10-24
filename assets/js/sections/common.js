@@ -890,52 +890,10 @@ function resetQrbForm(form) {
     $("#mapqrb").hide();
 }
 
-// Size the QRB map to the remaining viewport height below it. Done in JS
-// (instead of pure CSS flex) so theme-specific modal styles can't break it.
+// The map's height comes from CSS (the .qrb-dialog flex rules in general.css).
+// Leaflet caches its container size, so it only needs to be told to re-measure
+// when the dialog opens or the window is resized.
 function sizeQrbMap() {
-    var mapDiv = document.getElementById('mapqrb');
-    if (!mapDiv || mapDiv.offsetParent === null || window.innerWidth < 992) {
-        return;
-    }
-    var content = mapDiv.closest('.modal-content');
-    var dialogEl = mapDiv.closest('.modal-dialog');
-    var modalEl = mapDiv.closest('.modal');
-    var body = mapDiv.closest('.modal-body');
-    if (!content || !dialogEl || !modalEl || !body) {
-        return;
-    }
-    var footer = content.querySelector('.modal-footer');
-    var bodyPadding = parseFloat(getComputedStyle(body).paddingBottom) || 0;
-    var dialogMargin = parseFloat(getComputedStyle(dialogEl).marginBottom) || 0;
-    var mapTop = mapDiv.getBoundingClientRect().top;
-    var modalBottom = modalEl.getBoundingClientRect().bottom;
-    var reserved = (footer ? footer.offsetHeight : 0) + bodyPadding + dialogMargin + 8;
-    var available = modalBottom - mapTop - reserved;
-
-    // Themes cap .modal-body with a max-height (e.g. calc(100vh - 200px)) and let
-    // it scroll internally — the map must fit inside that cap as well, or the
-    // scrollbar simply moves into the modal body
-    var bodyMaxStyle = getComputedStyle(body).maxHeight;
-    var bodyMax = /px$/.test(bodyMaxStyle) ? parseFloat(bodyMaxStyle) : NaN;
-    if (!isNaN(bodyMax)) {
-        var bodyAvail = bodyMax - (mapTop - body.getBoundingClientRect().top) - bodyPadding - 4;
-        available = Math.min(available, bodyAvail);
-    }
-    mapDiv.style.height = Math.max(available, 200) + 'px';
-
-    // Self-correct against the real rendered geometry until neither the modal
-    // body nor the modal itself overflows (scrollHeight is reliable here: the
-    // map is the last in-flow element and carries no bottom margin)
-    var tries = 0;
-    while (mapDiv.offsetHeight > 200 && tries++ < 60) {
-        var bodyOverflows = body.scrollHeight > body.clientHeight + 0.5;
-        var dialogOverflows = dialogEl.getBoundingClientRect().bottom + dialogMargin > modalBottom + 0.5;
-        if (!bodyOverflows && !dialogOverflows) {
-            break;
-        }
-        mapDiv.style.height = (mapDiv.offsetHeight - 4) + 'px';
-    }
-
     if (window.qrbMap) {
         window.qrbMap.invalidateSize();
     }
