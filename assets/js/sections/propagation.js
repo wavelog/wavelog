@@ -85,8 +85,7 @@
 
 	function solarStatus(message, warning = false) {
 		element('solar-message').textContent = message;
-		element('solar-status').classList.toggle('alert-warning', warning);
-		element('solar-status').classList.toggle('alert-info', !warning);
+		element('solar-status').classList.toggle('text-warning', warning);
 	}
 
 	function solarInfo(date) {
@@ -492,7 +491,6 @@
 	}
 	solarSource();
 	form.addEventListener('submit', calculate);
-	element('solar-close').addEventListener('click', () => { element('solar-status').hidden = true; });
 	field('ssnSource').addEventListener('change', () => {
 		solarSource();
 		if (field('ssnSource').value === 'auto') form.requestSubmit();

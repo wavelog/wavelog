@@ -11,23 +11,12 @@
 </style>
 <div class="container-fluid mt-3 mb-4" id="propagation">
 	<h2><?= __("Propagation"); ?></h2>
-	<div class="alert alert-info alert-dismissible fade show" role="alert">
-		<?= __("Monthly median HF planning predictions using the ITU-R P.533 reference engine and P.372 radio noise model. These are statistical estimates, not current measured conditions or a guarantee of contact. Sporadic E, terrain and live reception reports are not included."); ?>
-		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?= __("Close"); ?>"></button>
-	</div>
 	<div id="prop-error" class="alert alert-danger d-none" role="alert"></div>
 	<?php if (!$reference_ready) { ?>
 	<div class="alert alert-warning" role="alert">
 		<?= __("Propagation reference data is not installed or is damaged. Ask an administrator to run 'Install and verify ITU-R propagation reference data' in Cron Manager. The initial download is about 137 MB."); ?>
 	</div>
 	<?php } ?>
-	<div id="prop-solar-status" class="alert alert-info alert-dismissible" role="status" aria-live="polite">
-		<span id="prop-solar-message"></span>
-		<button type="button" id="prop-solar-close" class="btn-close" aria-label="<?= __("Close"); ?>"></button>
-	</div>
-	<div class="small text-muted mb-3">
-		<?= __("Automatic solar input uses NOAA monthly smoothed sunspot numbers: observed when available, otherwise predicted. The centred 13-month smoothing is also called R12. Values use the modern international sunspot-number scale without a conversion factor and are rounded to integers for the reference engine (1-311; some equations saturate at 160). Daily solar flux and K-index are not inputs. Predictions use the selected UTC hour; minutes are rounded down."); ?>
-	</div>
 	<form id="prop-form" class="card mb-3">
 		<div class="card-body">
 			<div class="row g-3">
@@ -169,6 +158,17 @@
 	<div class="mt-3" id="prop-time-control" hidden>
 		<label for="prop-hour" class="form-label"><?= __("World / map forecast time (UTC)"); ?>: <strong id="prop-hour-label"></strong></label>
 		<input type="range" id="prop-hour" class="form-range" min="0" max="23" step="1" value="0">
+	</div>
+	<div class="small text-muted mt-4">
+		<div id="prop-disclaimer" class="mb-2">
+			<?= __("Monthly median HF planning predictions using the ITU-R P.533 reference engine and P.372 radio noise model. These are statistical estimates, not current measured conditions or a guarantee of contact. Sporadic E, terrain and live reception reports are not included."); ?>
+		</div>
+		<div id="prop-solar-status" class="mb-2" role="status" aria-live="polite">
+			<span id="prop-solar-message"></span>
+		</div>
+		<p class="mb-0">
+			<?= __("Automatic solar input uses NOAA monthly smoothed sunspot numbers: observed when available, otherwise predicted. The centred 13-month smoothing is also called R12. Values use the modern international sunspot-number scale without a conversion factor and are rounded to integers for the reference engine (1-311; some equations saturate at 160). Daily solar flux and K-index are not inputs. Predictions use the selected UTC hour; minutes are rounded down."); ?>
+		</p>
 	</div>
 </div>
 <script>
