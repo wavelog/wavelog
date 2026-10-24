@@ -105,6 +105,23 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
+	 * Normalize a DXCC (ADIF) entity id
+	 *
+	 * COL_DXCC must be a plain digit string. ADIF ingests can deliver values
+	 * with a leading space (e.g. "<DXCC:4> 230" yields " 230"), which breaks
+	 * string comparisons and entity lookups. Trims surrounding whitespace and
+	 * only returns the value if it is purely numeric.
+	 *
+	 * @param string|int|null $dxcc Raw DXCC id from any source (ADIF record, POST, LoTW)
+	 *
+	 * @return string|null Trimmed id if it consists of digits only, NULL otherwise
+	 */
+	private function normalize_dxcc($dxcc) {
+		$dxcc = trim((string)$dxcc);
+		return ($dxcc !== '' && ctype_digit($dxcc)) ? $dxcc : NULL;
+	}
+
+	/**
 	 * Add QSO to Logbook
 	 *
 	 * Creates a single QSO record from the given input array.
@@ -224,6 +241,9 @@ class Logbook_model extends CI_Model {
 		} else {
 			$radio_name = '';
 		}
+
+		// Sanitize user-supplied DXCC id (leading spaces / non-numeric input); NULL triggers the lookup below
+		$qso_data['dxcc_id'] = $this->normalize_dxcc($qso_data['dxcc_id'] ?? NULL);
 
 		// Cache DXCC lookup to avoid calling check_dxcc_table() 4 times if atleast one of these fields is empty
 		$dxcc = NULL;
@@ -549,6 +569,13 @@ class Logbook_model extends CI_Model {
 		];
 	}
 
+	public $lotw_table_empty = false;	// set by check_last_lotw() when the lotw_users table is empty
+
+	/*
+	 * Returns the number of days since last LoTW upload
+	 * input: callsign
+	 * output: number of days or null if callsign is not a LoTW user
+	 */
 	public function check_last_lotw($call) {	// Fetch difference in days when $call has last updated LotW
 
 		$sql = "select datediff(now(),lastupload) as DAYS from lotw_users where callsign = ?";	// Use binding to prevent SQL-injection
@@ -557,6 +584,9 @@ class Logbook_model extends CI_Model {
 		if (isset($row)) {
 			return ($row->DAYS);
 		}
+		// No row for this call: distinguish "table empty" from "not a LoTW user"
+		$sql = "SELECT EXISTS (SELECT 1 FROM lotw_users) AS tbl_count;";
+		$this->lotw_table_empty = ($this->db->query($sql)->row()->tbl_count == 0);
 	}
 
 	public function check_station($id) {
@@ -742,9 +772,12 @@ class Logbook_model extends CI_Model {
 				$sql .= ' AND `COL_DXCC` = 339';
 				break;
 			case 'JCG':
-				// Unlike JCC, JCG (gun/county) numbers have no "ward of a
-				// designated city" variant, so COL_CNTY is matched directly.
-				$sql .= ' WHERE `COL_CNTY` = ? AND `COL_DXCC` = 339';
+				// Ogasawara-Shicho also includes DXCC 177/192 regardless of CNTY.
+				if ($searchphrase == '10007') {
+					$sql .= ' WHERE ((`COL_CNTY` = ? AND `COL_DXCC` = 339) OR `COL_DXCC` IN (177, 192))';
+				} else {
+					$sql .= ' WHERE `COL_CNTY` = ? AND `COL_DXCC` = 339';
+				}
 				$binding[] = $searchphrase;
 				break;
 			case 'SOTA':
@@ -1664,8 +1697,8 @@ class Logbook_model extends CI_Model {
 			$srx_string = null;
 		}
 
-		if (is_numeric($this->input->post('dxcc_id'))) {
-			$dxcc=$this->input->post('dxcc_id');
+		$dxcc = $this->normalize_dxcc($this->input->post('dxcc_id'));
+		if ($dxcc !== NULL) {
 			if (stristr($this->input->post('usa_county') ?? '', ',')) {	// Already comma-seperated County?
 				$uscounty = $this->input->post('usa_county');
 			} elseif ($this->input->post('usa_county') && $this->input->post('input_state_edit')) {	// Both filled (and no comma - because that fits one above)
@@ -1899,9 +1932,8 @@ class Logbook_model extends CI_Model {
 			$time_off = $time_on;
 		}
 
- 		if (is_numeric($this->input->post('dxcc_id'))) {
-			$dxcc=$this->input->post('dxcc_id');
-		} else {
+		$dxcc = $this->normalize_dxcc($this->input->post('dxcc_id'));
+		if ($dxcc === NULL) {
 			$retvals['detail']=__("DXCC has to be Numeric");
 			return $retvals;
 		}
@@ -2112,35 +2144,35 @@ class Logbook_model extends CI_Model {
 	// clubstation member below officer level cannot read back data from a QSO
 	// another operator made. Defaults to '' = no restriction (v1 behaviour).
 	function call_lookup_result($callsign, $station_ids, $user_default_confirmation, $band, $mode, $operator = '') {
-		$binding=[];
 		$qsl_where = $this->qsl_default_where($user_default_confirmation);
 		$band_addon='COL_BAND=?';
 		if ($band == 'SAT') {
 			$band_addon="COL_PROP_MODE=?";
 		}
 
-		$sql="SELECT COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT,
-			CASE WHEN ( (".$qsl_where.") ) THEN 1  ELSE 0 END AS CALL_CNF,
-			CASE WHEN ( (".$qsl_where.") AND ".$band_addon.") THEN 1  ELSE 0 END AS CALL_CNF_BAND,
-			CASE WHEN ( (".$qsl_where.") AND ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_CNF_BAND_MODE,
-			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS CALL_WORKED_BAND,
-			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_WORKED_BAND_MODE
-		FROM ".$this->config->item('table_name')." WHERE ";
-		$sql.="station_id IN (".$station_ids.") AND COL_CALL = ?";
-		$binding[]=$band;
-		$binding[]=$band;
-		$binding[]=$mode;
-		$binding[]=$band;
-		$binding[]=$band;
-		$binding[]=$mode;
-		$binding[]=$callsign;
-
+		$flags = "CASE WHEN ( (".$qsl_where.") ) THEN 1  ELSE 0 END AS CNF,
+			CASE WHEN ( (".$qsl_where.") AND ".$band_addon.") THEN 1  ELSE 0 END AS CNF_BAND,
+			CASE WHEN ( (".$qsl_where.") AND ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CNF_BAND_MODE,
+			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS WORKED_BAND,
+			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS WORKED_BAND_MODE";
+		$where = " FROM ".$this->config->item('table_name')." WHERE station_id IN (".$station_ids.") AND COL_CALL = ?";
+		$where_binding = [$band, $band, $mode, $band, $band, $mode, $callsign];
 		if ($operator !== null && $operator !== '') {
-			$sql.=" AND upper(COL_OPERATOR) = ?";
-			$binding[]=strtoupper($operator);
+			$where.=" AND upper(COL_OPERATOR) = ?";
+			$where_binding[]=strtoupper($operator);
 		}
 
-		$sql.=" ORDER BY call_cnf desc, call_worked_band desc, call_cnf_band desc, call_worked_band_mode desc, call_cnf_band_mode desc limit 1";
+		// The detail row is picked by its per-QSO flags, the returned CALL_* flags
+		// are aggregated over all QSOs of the call. Otherwise e.g. a confirmed QSO
+		// on another band would hide the worked state on the requested band.
+		$sql="SELECT detail.COL_CALL, detail.COL_NAME, detail.COL_QSL_VIA, detail.COL_GRIDSQUARE, detail.COL_QTH, detail.COL_IOTA, detail.COL_TIME_ON, detail.COL_STATE, detail.COL_CNTY, detail.COL_DXCC, detail.COL_CONT,
+			agg.CALL_CNF, agg.CALL_CNF_BAND, agg.CALL_CNF_BAND_MODE, agg.CALL_WORKED_BAND, agg.CALL_WORKED_BAND_MODE
+		FROM (SELECT COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT, ".$flags.$where."
+			ORDER BY CNF desc, WORKED_BAND desc, CNF_BAND desc, WORKED_BAND_MODE desc, CNF_BAND_MODE desc, COL_TIME_ON desc limit 1) AS detail
+		CROSS JOIN (SELECT MAX(CNF) AS CALL_CNF, MAX(CNF_BAND) AS CALL_CNF_BAND, MAX(CNF_BAND_MODE) AS CALL_CNF_BAND_MODE,
+			MAX(WORKED_BAND) AS CALL_WORKED_BAND, MAX(WORKED_BAND_MODE) AS CALL_WORKED_BAND_MODE
+			FROM (SELECT ".$flags.$where.") AS flags) AS agg";
+		$binding = array_merge($where_binding, $where_binding);
 
 		$query = $this->db->query($sql, $binding);
 		$data = [];
@@ -4920,6 +4952,8 @@ class Logbook_model extends CI_Model {
 			$data['COL_CQZ'] = $cqz;
 		}
 
+		// Sanitize ADIF-supplied DXCC id (" 230" -> "230"); invalid skips the update and keeps the existing COL_DXCC
+		$dxcc = $this->normalize_dxcc($dxcc);
 		if (($dxcc ?? '') != '') {
 			$data['COL_DXCC'] = $dxcc;
 		}
@@ -5373,6 +5407,9 @@ class Logbook_model extends CI_Model {
 		}
 
 		if (!($skip)) {
+			// Sanitize ADIF-supplied DXCC id (" 230" -> "230", garbage -> callsign lookup below)
+			$record['dxcc'] = $this->normalize_dxcc($record['dxcc'] ?? NULL);
+
 			// DXCC id
 			if (isset($record['call'])) {
 				if ($dxccAdif != NULL) {
@@ -5869,7 +5906,7 @@ class Logbook_model extends CI_Model {
 				'COL_MY_COUNTRY_INTL' => (!empty($record['my_country_intl'])) ? $record['my_country_intl'] : null,
 				'COL_MY_CQ_ZONE' => (!empty($record['my_dxcc'])) ? $record['my_dxcc'] : null,
 				'COL_MY_DARC_DOK' => (!empty($record['my_darc_dok'])) ? strtoupper($record['my_darc_dok']) : '',
-				'COL_MY_DXCC' => (!empty($record['my_dxcc'])) ? $record['my_dxcc'] : null,
+				'COL_MY_DXCC' => $this->normalize_dxcc($record['my_dxcc'] ?? NULL),
 				'COL_MY_FISTS' => (!empty($record['my_fists'])) ? $record['my_fists'] : null,
 				'COL_MY_GRIDSQUARE' => (!empty($record['my_gridsquare'])) ? $record['my_gridsquare'] : '',
 				'COL_MY_IOTA' => (!empty($record['my_iota'])) ? $record['my_iota'] : '',
