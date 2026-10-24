@@ -161,6 +161,20 @@ test('quality classification has exact 0 dB and 10 dB boundaries', () => {
 	assert.equal(model.quality(10), 'good');
 });
 
+test('coverage cache keys include all prediction inputs and the shading day, not the DX target', () => {
+	const band = model.bands[4];
+	const key = model.coverageKey(home, date, defaults, band);
+	assert.equal(model.coverageKey({...home}, new Date(date), {...defaults}, {...band}), key);
+	for (const setting of [{ssn: 80}, {power: 200}, {dxPower: 200}, {gain: 1}, {dxGain: 1},
+		{noise: 'city'}, {dxNoise: 'city'}, {mode: 'CW'}, {path: 'long'}]) {
+		assert.notEqual(model.coverageKey(home, date, {...defaults, ...setting}, band), key);
+	}
+	assert.notEqual(model.coverageKey({...home, lat: home.lat + 1}, date, defaults, band), key);
+	assert.notEqual(model.coverageKey(home, new Date(date.getTime() + 86400000), defaults, band), key);
+	assert.notEqual(model.coverageKey(home, date, defaults, model.bands[5]), key);
+	assert.equal(model.coverageKey(home, date, {...defaults, solarMonths: {'2026-10': 100}}, band), key);
+});
+
 test('signal gradient interpolates continuously and saturates at +/-20 dB', () => {
 	assert.equal(model.signalColor(-100), 'rgb(248, 113, 113)');
 	assert.equal(model.signalColor(-20), 'rgb(248, 113, 113)');

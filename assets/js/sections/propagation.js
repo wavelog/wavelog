@@ -15,6 +15,8 @@
 	let storageProblem = false;
 	let worker = null, nextId = 0, mapGeneration = 0, worldGeneration = 0;
 	const pending = new Map();
+	const mapCache = new Map();
+	let renderedMapKey = null;
 
 	function updateStatus() {
 		element('engine-status').textContent = pending.size ? text.engineLoading : '';
@@ -300,6 +302,23 @@
 
 	async function drawMap() {
 		if (!state || !element('pane-map').classList.contains('active')) return;
+		const current = state;
+		const band = model.bands.find(band => band.name === element('map-band').value);
+		const time = selectedTime();
+		const key = model.coverageKey(current.home, time, current.settings, band);
+		const direction = element('direction').value;
+		if (renderedMapKey === key && coverage) {
+			++mapGeneration;
+			element('map-loading').classList.add('d-none');
+			element('map').setAttribute('aria-busy', 'false');
+			map.invalidateSize();
+			for (const layer of coverage.getLayers()) {
+				const result = layer.propagationResult;
+				layer.setStyle({fillColor: model.signalColor(direction === 'rx' ? result.rxMargin : result.txMargin)});
+			}
+			drawDxMarker();
+			return;
+		}
 		const version = ++mapGeneration;
 		element('map-loading').classList.remove('d-none');
 		element('map-progress').textContent = text.mapLoading;
@@ -329,6 +348,23 @@
 			});
 		}
 		map.invalidateSize();
+		drawDxMarker();
+		let calculation = mapCache.get(key);
+		if (calculation) {
+			mapCache.delete(key);
+			mapCache.set(key, calculation);
+		} else {
+			calculation = engineRequest('map', {...current, date: time, band});
+			mapCache.set(key, calculation);
+			while (mapCache.size > 4) mapCache.delete(mapCache.keys().next().value);
+			calculation.then(result => {
+				if (!result && mapCache.get(key) === calculation) mapCache.delete(key);
+			}, () => {
+				if (mapCache.get(key) === calculation) mapCache.delete(key);
+			});
+		}
+		const predictions = await calculation;
+		if (!predictions || version !== mapGeneration || current !== state) return;
 		if (coverage) map.removeLayer(coverage);
 		if (night) map.removeLayer(night);
 		if (homeMarker) map.removeLayer(homeMarker);
@@ -337,25 +373,21 @@
 		homeMarker = L.circleMarker([state.home.lat, state.home.lng], {radius: 6, color: '#ffffff', fillColor: '#2266ff', fillOpacity: 1})
 			.bindTooltip(text.homeStation + ': ' + field('home').value.trim().toUpperCase()).addTo(map);
 		drawDxMarker();
-		const index = model.bands.findIndex(band => band.name === element('map-band').value);
-		const direction = element('direction').value;
-		const time = selectedTime();
-		const current = state;
-		const predictions = await engineRequest('map', {...current, date: time, band: model.bands[index]});
-		if (!predictions || version !== mapGeneration || current !== state) return;
 		for (const {point, bands: results} of predictions) {
 			const {lat, lng} = point;
 			const result = results[0];
 			const margin = direction === 'rx' ? result.rxMargin : result.txMargin;
 			const bounds = [[lat - 2.5, lng - 2.5], [lat + 2.5, lng + 2.5]];
-			L.rectangle(bounds, {renderer, stroke: false, fillColor: model.signalColor(margin),
+			const rectangle = L.rectangle(bounds, {renderer, stroke: false, fillColor: model.signalColor(margin),
 				fillOpacity: 0.45, interactive: false}).addTo(coverage);
+			rectangle.propagationResult = result;
 			if (model.solarCosine(point, time) < 0) {
 				L.rectangle(bounds, {renderer, stroke: false, fillColor: '#000000', fillOpacity: 0.18, interactive: false}).addTo(night);
 			}
 		}
 		homeMarker.bringToFront();
 		if (dxMarker) dxMarker.bringToFront();
+		renderedMapKey = key;
 		} finally {
 			if (version === mapGeneration) {
 				element('map-loading').classList.add('d-none');
@@ -381,6 +413,7 @@
 		hours = [];
 		worldGeneration++;
 		mapGeneration++;
+		renderedMapKey = null;
 		element('map-loading').classList.add('d-none');
 		element('map').setAttribute('aria-busy', 'false');
 		drawDx();

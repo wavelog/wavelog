@@ -52,6 +52,11 @@
  * Data over seven days old is visibly flagged; failed refreshes preserve the
  * previous snapshot and fail the cron job. Source, month, observed/predicted
  * status and download time are shown. Manual inputs use the same model scale.
+ * The browser caches up to four coverage calculations, keyed by station,
+ * date/hour, band and all link-budget inputs. RX/TX changes reuse both computed
+ * directions; reopening an unchanged map does not rerun the engine. A previous
+ * overlay stays visible under the loading indicator until its replacement is
+ * ready. Cache entries are in-memory only and disappear on page reload.
  *
  * Focused tests: node --test tests/propagation_model.test.js
  *               php tests/propagation_lookup_test.php

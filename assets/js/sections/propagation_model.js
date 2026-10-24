@@ -183,7 +183,14 @@
 		return 'rgb(' + start.map((value, i) => Math.round(value + (end[i] - value) * fraction)).join(', ') + ')';
 	}
 
-	const api = {bands, thresholds, gridPoint, solarCosine, path, validate, configure, prepare, predict, forecast, quality, signalColor, twoWayMargin, settingsAt};
+	function coverageKey(home, date, settings, band) {
+		const selected = settingsAt(settings, date);
+		return JSON.stringify([home.lat, home.lng, date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(),
+			band.frequency, selected.ssn, selected.power, selected.dxPower, selected.gain, selected.dxGain,
+			selected.noise, selected.dxNoise, selected.mode, selected.path]);
+	}
+
+	const api = {bands, thresholds, gridPoint, solarCosine, path, validate, configure, prepare, predict, forecast, quality, signalColor, twoWayMargin, settingsAt, coverageKey};
 	if (typeof module === 'object' && module.exports) module.exports = api;
 	else root.PropagationModel = api;
 })(typeof window !== 'undefined' ? window : globalThis);
