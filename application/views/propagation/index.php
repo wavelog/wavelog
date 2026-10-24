@@ -9,7 +9,7 @@
 	.prop-scale-labels { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; font-size: .85rem; }
 	.prop-table button { color: inherit; background: transparent; border: 0; width: 100%; }
 </style>
-<div class="container-fluid mt-3 mb-4" id="propagation">
+<div class="container px-3 px-lg-4 mt-3 mb-3" id="propagation">
 	<h2><?= __("Propagation"); ?></h2>
 	<div id="prop-error" class="alert alert-danger d-none" role="alert"></div>
 	<?php if (!$reference_ready) { ?>
