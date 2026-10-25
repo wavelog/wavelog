@@ -95,6 +95,9 @@ class Srr extends CI_Controller {
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		ini_set('memory_limit', '-1');
 
+		// The upload waits for SRR, so the session is released to keep other pages usable
+		session_write_close();
+
 		$this->load->model('Srr_model');
 		$this->load->model('Stations');
 
@@ -127,6 +130,9 @@ class Srr extends CI_Controller {
 	 */
 	public function download() {
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		// The download waits for SRR, so the session is released to keep other pages usable
+		session_write_close();
 
 		$this->load->model('Srr_model');
 
