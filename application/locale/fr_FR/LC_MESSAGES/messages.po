@@ -21,7 +21,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-26 20:09+0000\n"
 "PO-Revision-Date: 2026-10-26 21:58+0000\n"
-"Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
+"Last-Translator: Telectroboy <telectroboy@hotmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
 "Language: fr_FR\n"
@@ -267,7 +267,7 @@ msgstr "Statistiques cumulées"
 #: application/views/achievements/index.php:76
 #: application/views/interface_assets/header.php:192
 msgid "Achievements"
-msgstr ""
+msgstr "Accomplissements"
 
 #: application/controllers/Activated_gridmap.php:12
 #: application/views/activated_gridmap/index.php:6
@@ -332,7 +332,7 @@ msgstr "Nombre total de carrés locator travaillés"
 
 #: application/controllers/Activationplanner.php:32
 msgid "CQ Zones"
-msgstr ""
+msgstr "Zones CQ"
 
 #: application/controllers/Activationplanner.php:32
 #: application/controllers/Activationplanner.php:33
@@ -349,12 +349,12 @@ msgstr "Zones ITU"
 
 #: application/controllers/Activationplanner.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "Régions"
 
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:336
 msgid "Activation Planner"
-msgstr ""
+msgstr "Planificateur d'activation"
 
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
@@ -428,13 +428,15 @@ msgstr "Données des POTA importées"
 msgid ""
 "The AMSAT status service is currently unavailable. Please try again later."
 msgstr ""
+"L'état du service AMSAT est actuellement indisponible. S.V.P Essayez plus "
+"tard."
 
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:195
 #: application/views/amsatstatus/index.php:10
 #: application/views/interface_assets/header.php:330
 msgid "AMSAT Satellite Status"
-msgstr ""
+msgstr "Etat des satellites AMSAT"
 
 #: application/controllers/Api.php:47
 msgid "API"
@@ -487,27 +489,27 @@ msgstr "La clé API %s a été supprimée"
 
 #: application/controllers/Api_token.php:36
 msgid "Please provide a token name"
-msgstr ""
+msgstr "S.V.P. Fournissez un nom de token"
 
 #: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
-msgstr ""
+msgstr "S.V.P. Fournissez au moins un cadre"
 
 #: application/controllers/Api_token.php:67
 msgid "API Token generated"
-msgstr ""
+msgstr "Token d'API généré"
 
 #: application/controllers/Api_token.php:69
 msgid "API Token could not be generated"
-msgstr ""
+msgstr "Le Token d'API ne peut pas être généré"
 
 #: application/controllers/Api_token.php:89
 msgid "Invalid API Token"
-msgstr ""
+msgstr "Token d'API non valide"
 
 #: application/controllers/Api_token.php:96
 msgid "API Token has been deleted"
-msgstr ""
+msgstr "Le Token d'API a été supprimé"
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:196
@@ -613,7 +615,7 @@ msgstr "JCC"
 #: application/controllers/Awards.php:614 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:275
 msgid "JCG"
-msgstr ""
+msgstr "JCG"
 
 #: application/controllers/Awards.php:664 application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:208
@@ -861,31 +863,31 @@ msgstr "WAIP"
 
 #: application/controllers/Awards.php:2685
 msgid "England"
-msgstr ""
+msgstr "Angleterre"
 
 #: application/controllers/Awards.php:2686
 msgid "Isle of Man"
-msgstr ""
+msgstr "Ile de Man"
 
 #: application/controllers/Awards.php:2687
 msgid "Northern Ireland"
-msgstr ""
+msgstr "Ireland du Nord"
 
 #: application/controllers/Awards.php:2688
 msgid "Jersey"
-msgstr ""
+msgstr "Jersey"
 
 #: application/controllers/Awards.php:2689
 msgid "Scotland"
-msgstr ""
+msgstr "Ecosse"
 
 #: application/controllers/Awards.php:2690
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernsey"
 
 #: application/controllers/Awards.php:2691
 msgid "Wales"
-msgstr ""
+msgstr "Pays de Galles"
 
 #: application/controllers/Awards.php:2907
 #: application/views/awards/wac/index.php:7
@@ -920,7 +922,7 @@ msgstr "Prix - AMSAT Rover"
 #: application/controllers/Azimuthal.php:14
 #: application/views/interface_assets/header.php:338
 msgid "Azimuthal Map"
-msgstr ""
+msgstr "Carte Azimuthale"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:363
@@ -1056,47 +1058,49 @@ msgstr "L'utilisateur n'a pas pu être retiré du club."
 
 #: application/controllers/Club.php:187 application/controllers/Club.php:256
 msgid "No members selected."
-msgstr ""
+msgstr "Pas de membre sélectionné."
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
-msgstr ""
+msgstr "Aucun des utilisateurs sélectionnés ne sont membres de ce club."
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
 "Cannot proceed: this would remove the last Club Officer. An instance "
 "administrator must perform this action."
 msgstr ""
+"Ne peut pas continuer : ceci retirerait le dernier Chef de Club. Une "
+"instance administrateur doit effectuer cette action."
 
 #: application/controllers/Club.php:209
 msgid "Club member permissions could not be updated."
-msgstr ""
+msgstr "Les permissions de membre du club ne peuvent pas êtres mises à jour."
 
 #: application/controllers/Club.php:213
 msgid "No members were updated."
-msgstr ""
+msgstr "Aucun membre n'a été mis à jour."
 
 #: application/controllers/Club.php:226
 #, php-format
 msgid "%d member updated."
 msgid_plural "%d members updated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d membre mis à jour."
+msgstr[1] "%d membres mis à jour."
 
 #: application/controllers/Club.php:277
 msgid "Users could not be removed from club."
-msgstr ""
+msgstr "Les utilisateurs ne peuvent pas être retirés du club."
 
 #: application/controllers/Club.php:281
 msgid "No members were removed."
-msgstr ""
+msgstr "Aucun membre n'a été retiré."
 
 #: application/controllers/Club.php:285
 #, php-format
 msgid "%d member removed."
 msgid_plural "%d members removed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d membre supprimé."
+msgstr[1] "%d membres supprimés."
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:12 application/controllers/Eqsl.php:13
@@ -1162,7 +1166,7 @@ msgstr "Mettre à jour le concours"
 #: application/controllers/Contest_admin.php:76
 #, php-format
 msgid "Contest %s updated"
-msgstr ""
+msgstr "Le concours %s a été mis à jour"
 
 #: application/controllers/Contestcalendar.php:11
 #: application/views/interface_assets/header.php:326
@@ -1248,18 +1252,20 @@ msgstr "Seuls les responsables du club peuvent supprimer."
 
 #: application/controllers/Contesting.php:790
 msgid "No contest sessions selected."
-msgstr ""
+msgstr "Aucune session de concours sélectionnée."
 
 #: application/controllers/Contesting.php:798
 #, php-format
 msgid "%d contest session deleted."
 msgid_plural "%d contest sessions deleted."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d session de concours supprimée."
+msgstr[1] "%d sessions de concours supprimées."
 
 #: application/controllers/Contesting.php:800
 msgid "There was an error deleting the contest sessions. Please try again."
 msgstr ""
+"Il y a eu une erreur en supprimant les sessions de concours. S.V.P. Essayez "
+"encore."
 
 #: application/controllers/Contesting.php:1016
 msgid "Operator switching is disabled."
@@ -1320,7 +1326,7 @@ msgstr "Continents"
 #: application/views/countqsoby/index.php:211
 #: application/views/interface_assets/header.php:190
 msgid "Count QSOs by..."
-msgstr ""
+msgstr "Compter les QSOs par..."
 
 #: application/controllers/Countqsoby.php:74
 #: application/controllers/Logbook.php:1516
@@ -1442,7 +1448,7 @@ msgstr "Zone CQ"
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:72
 msgid "POTA Reference"
-msgstr ""
+msgstr "Référence POTA"
 
 #: application/controllers/Countqsoby.php:78
 #: application/views/awards/sota/index.php:178
@@ -1506,27 +1512,27 @@ msgstr "Gestion des Cron"
 
 #: application/controllers/Cron.php:176
 msgid "Manual execution of cronjobs is disabled."
-msgstr ""
+msgstr "L'éxécution manual des taches Cron est désactivé."
 
 #: application/controllers/Cron.php:186
 msgid "Cronjob not found."
-msgstr ""
+msgstr "Tâches Cron non trouvées."
 
 #: application/controllers/Cron.php:192
 msgid "Disabled cronjobs cannot be run."
-msgstr ""
+msgstr "Les tâches Cron désactivées ne peuvent pas être exécutées."
 
 #: application/controllers/Cron.php:200
 msgid "Cronjob is already running."
-msgstr ""
+msgstr "Les tâches Cron sont déjà en cours."
 
 #: application/controllers/Cron.php:206
 msgid "Cronjob executed successfully."
-msgstr ""
+msgstr "Tâches Cron exécutées avec succès."
 
 #: application/controllers/Cron.php:210
 msgid "Cronjob execution failed."
-msgstr ""
+msgstr "Echec de l'exécutation des tâches Cron."
 
 #: application/controllers/Cron.php:222 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
@@ -1567,7 +1573,7 @@ msgstr "désactivé"
 #: application/controllers/Cron.php:332 application/views/cron/index.php:81
 #: application/views/cron/index.php:113
 msgid "Run Now"
-msgstr ""
+msgstr "Démarrer Maintenant"
 
 #: application/controllers/Cron.php:429
 #: application/views/interface_assets/footer.php:45
@@ -1610,7 +1616,7 @@ msgstr "Tableau de bord"
 
 #: application/controllers/Dashboard.php:222
 msgid "HF"
-msgstr ""
+msgstr "HF"
 
 #: application/controllers/Dashboard.php:222
 #: application/views/dashboard/index.php:699
@@ -1626,7 +1632,7 @@ msgstr "SAT"
 
 #: application/controllers/Dashboard.php:222
 msgid "VHF+"
-msgstr ""
+msgstr "VHF+"
 
 #: application/controllers/Dayswithqso.php:16
 #: application/views/dayswithqso/index.php:2
@@ -1981,7 +1987,7 @@ msgstr "KML - Export"
 #: application/controllers/Labeldesigner.php:22
 #: application/views/labels/index.php:36
 msgid "Label Designer"
-msgstr ""
+msgstr "Designer d'étiquettes"
 
 #: application/controllers/Labeldesigner.php:114
 #: application/controllers/Labels.php:213
@@ -5034,7 +5040,7 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d) [Original: %s]"
 msgstr ""
-"Importé du carnet de trafic  \n"
+"Importé du carnet de trafic\n"
 "(ADIF: %s, Année: %d) [Original: %s]"
 
 #: application/models/Contesting_import_model.php:221
@@ -5043,7 +5049,7 @@ msgid ""
 "Imported from logbook\n"
 "(ADIF: %s, Year: %d)"
 msgstr ""
-"Importé du carnet de trafic \n"
+"Importé du carnet de trafic\n"
 "(ADIF: %s, Année: %d)"
 
 #: application/models/Contesting_model.php:257
@@ -9835,8 +9841,7 @@ msgstr ""
 
 #: application/views/awards/sota/index.php:28
 msgid "Fields taken for this Award: SOTA Reference (ADIF: SOTA_REF)"
-msgstr ""
-"Domaines pris en compte pour ce diplôme: Référence SOTA (ADIF: SOTA_REF)"
+msgstr "Champs pris en compte pour ce diplôme: Référence SOTA (ADIF: SOTA_REF)"
 
 #: application/views/awards/vucc/band.php:7
 msgid "Gridsquare list"
@@ -12586,7 +12591,7 @@ msgstr "Échec de la recherche DXCC"
 
 #: application/views/contesting/logger/components/qso-form.php:27
 msgid "DXCC: not found"
-msgstr "DXCC: pas trouvé"
+msgstr "DXCC: non trouvé"
 
 #: application/views/contesting/logger/components/qso-form.php:28
 #, php-format
@@ -12938,7 +12943,7 @@ msgstr "Initialisation des systèmes de base..."
 
 #: application/views/contesting/logger/index.php:50
 msgid "Heartbeat Warning"
-msgstr "Alerte aux battements cardiaques"
+msgstr "Alerte Heartbeat"
 
 #: application/views/contesting/logger/index.php:51
 msgid "Heartbeat request took %1 ms (threshold: %2 ms)"
@@ -13019,8 +13024,8 @@ msgstr "Succès"
 msgid ""
 "The worker backend is not reachable. Please check your network connection."
 msgstr ""
-"Le serveur de traitement est inaccessible. Veuillez vérifier votre connexion "
-"réseau."
+"Le service en arrière-plan est inaccessible. Veuillez vérifier votre "
+"connexion réseau."
 
 #: application/views/contesting/logger/index.php:62
 msgid "Connection lost. Trying to reconnect…"
@@ -13363,7 +13368,7 @@ msgstr ""
 
 #: application/views/contesting/manager/components/session_modal.php:154
 msgid "Session Notes"
-msgstr ""
+msgstr "Notes de session"
 
 #: application/views/contesting/manager/components/session_modal.php:155
 msgid "Add any additional information about this session..."
@@ -19755,12 +19760,13 @@ msgstr "Dernier téléchargement"
 #: application/views/lookup/lotwuser.php:14
 #: application/views/search/result.php:84
 msgid "LoTW Status Unknown"
-msgstr ""
+msgstr "Etat LoTW inconnu"
 
 #: application/views/lookup/lotwuser.php:14
 #: application/views/search/result.php:84
 msgid "Table with last LoTW uploads is empty. Please check"
 msgstr ""
+"Le tableau avec les derniers envois vers LoTW est vide. Vérifiez le S.V.P."
 
 #: application/views/lookup/lotwuser.php:16
 msgid "No LoTW User"
@@ -19774,7 +19780,7 @@ msgstr "Cette case de la grille existe dans le(s) DXCC suivant(s) :"
 msgid "No data imported. please check selected date. Must be in the past!"
 msgstr ""
 "Aucune donnée importée. Veuillez vérifier la date sélectionnée. Doit être "
-"dans le passé !"
+"dans le passé !"
 
 #: application/views/lotw/import.php:12
 msgid "Import Options"
