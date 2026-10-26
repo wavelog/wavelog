@@ -730,6 +730,12 @@ class Lotw extends CI_Controller {
 
 				$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($user->user_id)));
 
+				// No QSOs in log, so there is nothing a download could match
+				if ($lotw_last_qsl_date == '2100-01-01') {
+					$result = "No QSOs in log. LoTW download skipped.";
+					continue;
+				}
+
 				$lotw_url = $lotw_base_url."?";
 				$lotw_url .= "login=" . urlencode($user->user_lotw_name);
 				$lotw_url .= "&password=" . urlencode($user->user_lotw_password);
@@ -790,6 +796,11 @@ class Lotw extends CI_Controller {
 			}
 
 			$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($user->user_id)));
+
+			// No QSOs in log, so there is nothing a download could match
+			if ($lotw_last_qsl_date == '2100-01-01') {
+				continue;
+			}
 
 			$lotw_url = $lotw_base_url."?";
 			$lotw_url .= "login=" . urlencode($user->user_lotw_name);
