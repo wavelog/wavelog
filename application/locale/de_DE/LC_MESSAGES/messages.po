@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-26 20:09+0000\n"
-"PO-Revision-Date: 2026-10-23 13:49+0000\n"
-"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
+"PO-Revision-Date: 2026-10-26 20:26+0000\n"
+"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -2996,24 +2996,24 @@ msgstr "Mode %s aktualisiert"
 #: application/controllers/Most_wanted_squares.php:22
 #: application/views/interface_assets/header.php:556
 msgid "Most Wanted Squares"
-msgstr ""
+msgstr "Most Wanted Locators"
 
 #: application/controllers/Most_wanted_squares.php:43
 msgid "Invalid band."
-msgstr ""
+msgstr "Ungültiges Band."
 
 #: application/controllers/Most_wanted_squares.php:48
 #: application/views/most_wanted_squares/index.php:8
 msgid "The active station location has no gridsquare set."
-msgstr ""
+msgstr "Für den aktiven Stationsstandort ist kein Locator festgelegt."
 
 #: application/controllers/Most_wanted_squares.php:53
 msgid "The gridsquare of the active station location is invalid."
-msgstr ""
+msgstr "Der Locator des aktiven Stationsstandorts ist ungültig."
 
 #: application/controllers/Most_wanted_squares.php:90
 msgid "VUCC gridsquare data unavailable."
-msgstr ""
+msgstr "VUCC-Locator-Daten nicht verfügbar."
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -20277,6 +20277,8 @@ msgstr "Erstelle einen Mode"
 msgid ""
 "Export a list of 4-digit gridsquares that have not been worked yet on VHF."
 msgstr ""
+"Eine Liste der 4-stelligen Locator, die auf VHF noch nicht gearbeitet "
+"wurden, exportieren."
 
 #: application/views/most_wanted_squares/index.php:21
 #, php-format
@@ -20284,10 +20286,12 @@ msgid ""
 "The list contains all not worked gridsquares within %d km of the gridsquare "
 "%s of the active station location %s (%s)."
 msgstr ""
+"Die Liste enthält alle noch nicht gearbeiteten Locator innerhalb von %d km "
+"um den Locator %s des aktiven Stationsstandorts %s (%s)."
 
 #: application/views/most_wanted_squares/index.php:34
 msgid "Exclude squares that contain no land"
-msgstr ""
+msgstr "Quadrate ohne Landmasse ausschließen"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
