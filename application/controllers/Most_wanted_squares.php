@@ -8,7 +8,7 @@ class Most_wanted_squares extends CI_Controller {
 	public function index() {
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-		$data['bands'] = $this->get_bands_6m_and_up();
+		$data['bands'] = $this->get_vhf_bands();
 		$data['station_profile'] = $this->stations->profile($this->stations->find_active())->row();
 		$data['radius_km'] = self::RADIUS_KM;
 
@@ -23,7 +23,7 @@ class Most_wanted_squares extends CI_Controller {
 		if (!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$band = $this->input->post('band', true);
-		if (!in_array($band, $this->get_bands_6m_and_up(), true)) { $this->session->set_flashdata('error', __("Invalid band.")); redirect('most_wanted_squares'); }
+		if (!in_array($band, $this->get_vhf_bands(), true)) { $this->session->set_flashdata('error', __("Invalid band.")); redirect('most_wanted_squares'); }
 
 		$station_id = $this->stations->find_active();
 		$homegrid = $this->stations->gridsquare_from_station($station_id);
@@ -96,12 +96,10 @@ class Most_wanted_squares extends CI_Controller {
 	}
 
 	// Returns all bands from 6m (50 MHz) upwards, in order of frequency
-	private function get_bands_6m_and_up() {
+	private function get_vhf_bands() {
 		$this->load->model('bands');
 
-		$this->db->select('band');
-		$this->db->where_in('bandgroup', array('vhf', 'uhf', 'shf'));
-		$result = $this->db->get('bands')->result();
+		$result = $this->db->query("SELECT band FROM bands WHERE bandgroup = 'vhf'")->result();
 
 		$bands = array();
 		foreach ($result as $row) {
