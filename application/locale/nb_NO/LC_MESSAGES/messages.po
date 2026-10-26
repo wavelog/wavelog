@@ -269,6 +269,8 @@ msgstr "Aktivert rutenettkart"
 #: application/views/interface_assets/footer.php:53
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Awards.php:1576
+#: application/controllers/Awards.php:1612
 msgid "Gridsquares"
 msgstr "Rutenett"
 
@@ -328,6 +330,7 @@ msgstr "Soner"
 #: application/controllers/Activationplanner.php:33
 #: application/controllers/Awards.php:2775
 #: application/views/awards/itu/index.php:27
+#: application/controllers/Awards.php:2777
 msgid "ITU Zones"
 msgstr "ITU Soner"
 
@@ -526,6 +529,30 @@ msgstr "Utmerkelser"
 #: application/controllers/Awards.php:2992
 #: application/controllers/Awards.php:3067
 #: application/controllers/Awards.php:3209
+#: application/controllers/Awards.php:211
+#: application/controllers/Awards.php:526
+#: application/controllers/Awards.php:614
+#: application/controllers/Awards.php:664
+#: application/controllers/Awards.php:786
+#: application/controllers/Awards.php:884
+#: application/controllers/Awards.php:984
+#: application/controllers/Awards.php:1154
+#: application/controllers/Awards.php:1216
+#: application/controllers/Awards.php:1278
+#: application/controllers/Awards.php:1340
+#: application/controllers/Awards.php:1425
+#: application/controllers/Awards.php:1458
+#: application/controllers/Awards.php:1597
+#: application/controllers/Awards.php:1803
+#: application/controllers/Awards.php:1954
+#: application/controllers/Awards.php:2005
+#: application/controllers/Awards.php:2585
+#: application/controllers/Awards.php:2777
+#: application/controllers/Awards.php:2907
+#: application/controllers/Awards.php:2981
+#: application/controllers/Awards.php:2994
+#: application/controllers/Awards.php:3069
+#: application/controllers/Awards.php:3211
 #, php-format
 msgid "Awards - %s"
 msgstr "Utmerkelser - %s"
@@ -579,33 +606,40 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/stationsetup/locationlist.php:16
 #: application/views/timeplotter/index.php:21
+#: application/controllers/Awards.php:211
 msgid "DXCC"
 msgstr "DXCC"
 
 #: application/controllers/Awards.php:391
+#: application/controllers/Awards.php:393
 msgid "Awards - WAPC"
 msgstr "Utmerkelser – WAPC"
 
 #: application/controllers/Awards.php:471
+#: application/controllers/Awards.php:473
 msgid "Awards - WAJA"
 msgstr "Utmerkelser - WAJA"
 
 #: application/controllers/Awards.php:524 application/views/bands/index.php:54
 #: application/views/interface_assets/header.php:273
+#: application/controllers/Awards.php:526
 msgid "JCC"
 msgstr "JCC"
 
 #: application/controllers/Awards.php:612 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:275
+#: application/controllers/Awards.php:614
 msgid "JCG"
 msgstr "JCG"
 
 #: application/controllers/Awards.php:662 application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:208
+#: application/controllers/Awards.php:664
 msgid "VUCC"
 msgstr "VUCC"
 
 #: application/controllers/Awards.php:693
+#: application/controllers/Awards.php:695
 msgid "Log View - VUCC"
 msgstr "Loggvisning - VUCC"
 
@@ -619,11 +653,13 @@ msgstr "Loggvisning - VUCC"
 #: application/controllers/Timeline.php:137
 #: application/controllers/Timeline.php:140
 #: application/controllers/Timeline.php:143
+#: application/controllers/Awards.php:746
 msgid "Log View"
 msgstr "Loggvisning"
 
 #: application/controllers/Awards.php:745
 #: application/controllers/Countqsoby.php:102
+#: application/controllers/Awards.php:747
 msgid "and"
 msgstr "og"
 
@@ -644,39 +680,46 @@ msgstr "og"
 #: application/views/awards/wwff/index.php:3
 #: application/views/awards/wwff/index.php:132
 #: application/views/countqsoby/index.php:81
+#: application/controllers/Awards.php:748
 msgid "Every band (w/o SAT)"
 msgstr "Hvert bånd (uten SAT)"
 
 #: application/controllers/Awards.php:746
 #: application/controllers/Countqsoby.php:103
+#: application/controllers/Awards.php:748
 msgid "band"
 msgstr "bånd"
 
 #: application/controllers/Awards.php:749
 #: application/controllers/Countqsoby.php:106
+#: application/controllers/Awards.php:751
 msgid " and satellite "
 msgstr " og satellitt "
 
 #: application/controllers/Awards.php:752
 #: application/controllers/Callstats.php:108
 #: application/controllers/Countqsoby.php:109
+#: application/controllers/Awards.php:754
 msgid " and orbit type "
 msgstr " og banetype "
 
 #: application/controllers/Awards.php:756
 #: application/controllers/Callstats.php:112
 #: application/controllers/Countqsoby.php:113
+#: application/controllers/Awards.php:758
 msgid " and propagation "
 msgstr " og utbredelse "
 
 #: application/controllers/Awards.php:759
 #: application/controllers/Callstats.php:115
 #: application/controllers/Countqsoby.php:116
+#: application/controllers/Awards.php:761
 msgid " and mode "
 msgstr " og modus "
 
 #: application/controllers/Awards.php:762
 #: application/controllers/Countqsoby.php:125
+#: application/controllers/Awards.php:764
 msgid " and "
 msgstr " og "
 
@@ -708,6 +751,7 @@ msgstr " og "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/controllers/Awards.php:786
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -731,6 +775,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Awards.php:884
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -756,66 +801,84 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/controllers/Awards.php:984
 msgid "POTA"
 msgstr "POTA"
 
 #: application/controllers/Awards.php:1152
+#: application/controllers/Awards.php:1154
 msgid "CQ WAZ (Worked All Zones)"
 msgstr "CQ WAZ (Worked All Zones)"
 
 #: application/controllers/Awards.php:1214
 #: application/views/accumulate/index.php:60
 #: application/views/timeline/index.php:52
+#: application/controllers/Awards.php:1216
 msgid "Worked All States (WAS)"
 msgstr "Worked All States (WAS)"
 
 #: application/controllers/Awards.php:1276 application/views/bands/index.php:57
 #: application/views/interface_assets/header.php:239
+#: application/controllers/Awards.php:1278
 msgid "RAC"
 msgstr "RAC"
 
 #: application/controllers/Awards.php:1338 application/views/bands/index.php:52
+#: application/controllers/Awards.php:1340
 msgid "H26"
 msgstr "H26"
 
 #: application/controllers/Awards.php:1423
+#: application/controllers/Awards.php:1425
 msgid "IOTA (Island On The Air)"
 msgstr "IOTA (Island On The Air)"
 
 #: application/controllers/Awards.php:1456
 #: application/views/interface_assets/header.php:307
+#: application/controllers/Awards.php:1458
 msgid "US Counties"
 msgstr "Amerikanske kommuner"
 
 #: application/controllers/Awards.php:1540
+#: application/controllers/Awards.php:1542
 msgid "Log View - Counties"
 msgstr "Loggvisning - kommuner"
 
 #: application/controllers/Awards.php:1556
+#: application/controllers/Awards.php:1558
 msgid "Awards - "
 msgstr "Utmerkelser - "
 
 #: application/controllers/Awards.php:1575
 #: application/controllers/Awards.php:1611
+#: application/controllers/Awards.php:1577
+#: application/controllers/Awards.php:1613
 msgid "Gridsquares worked"
 msgstr "Kjørte ruter"
 
 #: application/controllers/Awards.php:1576
 #: application/controllers/Awards.php:1612
+#: application/controllers/Awards.php:1578
+#: application/controllers/Awards.php:1614
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Ruter bekreftet via LoTW"
 
 #: application/controllers/Awards.php:1577
 #: application/controllers/Awards.php:1613
+#: application/controllers/Awards.php:1579
+#: application/controllers/Awards.php:1615
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Ruter bekreftet med papir-QSL"
 
 #: application/controllers/Awards.php:1578
 #: application/controllers/Awards.php:1614
+#: application/controllers/Awards.php:1580
+#: application/controllers/Awards.php:1616
 msgid "Total Gridsquares worked"
 msgstr "Totalt antall kjørte ruter"
 
 #: application/controllers/Awards.php:1595
+#: application/controllers/Awards.php:1597
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
@@ -828,77 +891,94 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/stationsetup/locationlist.php:26
 #: application/views/user/edit.php:910 application/views/view_log/qso.php:379
 #: application/views/view_log/qso.php:699
+#: application/controllers/Awards.php:1803
 msgid "SIG"
 msgstr "SIG"
 
 #: application/controllers/Awards.php:1820
+#: application/controllers/Awards.php:1822
 msgid "Awards - SIG - "
 msgstr "Utmerkelser - SIG - "
 
 #: application/controllers/Awards.php:1952 application/views/bands/index.php:62
+#: application/controllers/Awards.php:1954
 msgid "WAP"
 msgstr "WAP"
 
 #: application/controllers/Awards.php:2003
 #: application/views/interface_assets/header.php:265
+#: application/controllers/Awards.php:2005
 msgid "WAIP"
 msgstr "WAIP"
 
 #: application/controllers/Awards.php:2683
+#: application/controllers/Awards.php:2685
 msgid "England"
 msgstr "England"
 
 #: application/controllers/Awards.php:2684
+#: application/controllers/Awards.php:2686
 msgid "Isle of Man"
 msgstr "Isle of Man"
 
 #: application/controllers/Awards.php:2685
+#: application/controllers/Awards.php:2687
 msgid "Northern Ireland"
 msgstr "Nord-Irland"
 
 #: application/controllers/Awards.php:2686
+#: application/controllers/Awards.php:2688
 msgid "Jersey"
 msgstr "Jersey"
 
 #: application/controllers/Awards.php:2687
+#: application/controllers/Awards.php:2689
 msgid "Scotland"
 msgstr "Skottland"
 
 #: application/controllers/Awards.php:2688
+#: application/controllers/Awards.php:2690
 msgid "Guernsey"
 msgstr "Guernsey"
 
 #: application/controllers/Awards.php:2689
+#: application/controllers/Awards.php:2691
 msgid "Wales"
 msgstr "Wales"
 
 #: application/controllers/Awards.php:2905
 #: application/views/awards/wac/index.php:7
 #: application/views/interface_assets/header.php:212
+#: application/controllers/Awards.php:2907
 msgid "Worked All Continents (WAC)"
 msgstr "Kjørt alle kontinenter (WAC)"
 
 #: application/controllers/Awards.php:2979
+#: application/controllers/Awards.php:2981
 msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Awards.php:2992
 #: application/views/interface_assets/header.php:222
+#: application/controllers/Awards.php:2994
 msgid "73 on 73"
 msgstr "73 på 73"
 
 #: application/controllers/Awards.php:3067
 #: application/views/awards/wpx/wpx_details.php:19
+#: application/controllers/Awards.php:3069
 msgid "WPX"
 msgstr "WPX"
 
 #: application/controllers/Awards.php:3209
 #: application/views/awards/pl_polska/index.php:41
 #: application/views/interface_assets/header.php:289
+#: application/controllers/Awards.php:3211
 msgid "\"Polska\" Award"
 msgstr "\"Polska\"-diplom"
 
 #: application/controllers/Awards.php:3253
+#: application/controllers/Awards.php:3255
 msgid "Awards - AMSAT Rover"
 msgstr "Diplomer – AMSAT Rover"
 
@@ -2699,6 +2779,7 @@ msgstr "Distanse"
 #: application/views/visitor/mini.php:184
 #: application/views/wabtool/table.php:19 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/views/awards/dxcc/index.php:292
 msgid "Band"
 msgstr "Bånd"
 
@@ -2785,6 +2866,7 @@ msgstr "Operatør"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:289
 #: application/views/view_log/qso.php:644
+#: application/views/awards/dxcc/index.php:466
 msgid "Deleted DXCC"
 msgstr "Slettet DXCC"
 
@@ -2850,8 +2932,8 @@ msgid ""
 "been processed by LoTW yet. For further information please visit the %sLoTW "
 "troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
-"Feil ved uttrekking av sertifikatet fra filen %s. Hvis filnavnet inneholder «"
-"key-only», er dette vanligvis en sertifikatforespørsel som ennå ikke er "
+"Feil ved uttrekking av sertifikatet fra filen %s. Hvis filnavnet inneholder "
+"«key-only», er dette vanligvis en sertifikatforespørsel som ennå ikke er "
 "behandlet av LoTW. Du finner mer informasjon på %sLoTW-feilsøkingssiden%s i "
 "Wavelog-wikien."
 
@@ -4757,6 +4839,8 @@ msgstr ""
 #: application/views/dashboard/index.php:703
 #: application/views/map/qso_map.php:26 application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/awards/dxcc/index.php:293
+#: application/views/awards/dxcc/index.php:366
 msgid "Worked"
 msgstr ""
 
@@ -7931,6 +8015,8 @@ msgstr "%s%% bekreftet totalt"
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
 #: application/views/wabtool/table.php:23
+#: application/views/awards/dxcc/index.php:294
+#: application/views/awards/dxcc/index.php:367
 msgid "Confirmed"
 msgstr "Bekreftet"
 
@@ -7942,6 +8028,8 @@ msgstr "Gjenstående"
 #: application/views/awards/dxcc/index.php:296
 #: application/views/awards/dxcc/index.php:369
 #: application/views/awards/dxcc/progress.php:5
+#: application/views/awards/dxcc/index.php:295
+#: application/views/awards/dxcc/index.php:368
 msgid "Worked Progress"
 msgstr "Arbeidet fremdrift"
 
@@ -7949,6 +8037,8 @@ msgstr "Arbeidet fremdrift"
 #: application/views/awards/dxcc/index.php:297
 #: application/views/awards/dxcc/index.php:370
 #: application/views/awards/dxcc/progress.php:5
+#: application/views/awards/dxcc/index.php:296
+#: application/views/awards/dxcc/index.php:369
 msgid "Confirmed Progress"
 msgstr "Bekreftet fremdrift"
 
@@ -8272,6 +8362,7 @@ msgstr "QSL-kort"
 #: application/views/awards/wac/index.php:134
 #: application/views/awards/wae/index.php:210
 #: application/views/lookup/result.php:28
+#: application/views/awards/dxcc/index.php:438
 msgid "Legend:"
 msgstr ""
 
@@ -8281,6 +8372,7 @@ msgstr ""
 #: application/views/awards/wac/index.php:135
 #: application/views/awards/wae/index.php:211
 #: application/views/lookup/result.php:29
+#: application/views/awards/dxcc/index.php:439
 msgid "(Q)SL-Paper-Card"
 msgstr "(Q)SL-papirkort"
 
@@ -8290,6 +8382,7 @@ msgstr "(Q)SL-papirkort"
 #: application/views/awards/wac/index.php:136
 #: application/views/awards/wae/index.php:212
 #: application/views/lookup/result.php:30
+#: application/views/awards/dxcc/index.php:440
 msgid "(L)oTW"
 msgstr "(L)oTW"
 
@@ -8299,6 +8392,7 @@ msgstr "(L)oTW"
 #: application/views/awards/wac/index.php:137
 #: application/views/awards/wae/index.php:213
 #: application/views/lookup/result.php:31
+#: application/views/awards/dxcc/index.php:441
 msgid "(e)QSL"
 msgstr "(e)QSL"
 
@@ -8308,6 +8402,7 @@ msgstr "(e)QSL"
 #: application/views/awards/wac/index.php:138
 #: application/views/awards/wae/index.php:214
 #: application/views/lookup/result.php:32
+#: application/views/awards/dxcc/index.php:442
 msgid "QR(Z)-\"confirmation\""
 msgstr "QR(Z)-\"bekreftelse\""
 
@@ -8317,6 +8412,7 @@ msgstr "QR(Z)-\"bekreftelse\""
 #: application/views/awards/wac/index.php:139
 #: application/views/awards/wae/index.php:215
 #: application/views/lookup/result.php:33
+#: application/views/awards/dxcc/index.php:443
 msgid "(C)lublog"
 msgstr "(C)lublog"
 
@@ -8326,6 +8422,7 @@ msgstr "(C)lublog"
 #: application/views/awards/wac/index.php:140
 #: application/views/awards/wae/index.php:216
 #: application/views/lookup/result.php:34
+#: application/views/awards/dxcc/index.php:444
 msgid "(W)orked"
 msgstr "(W) Arbeidet"
 
@@ -8343,6 +8440,7 @@ msgstr "(W) Arbeidet"
 #: application/views/awards/wapc/index.php:198
 #: application/views/awards/was/index.php:190
 #: application/views/awards/wpx/index.php:156
+#: application/views/awards/dxcc/index.php:478
 msgid "Summary"
 msgstr "Sammendrag"
 
@@ -8352,6 +8450,8 @@ msgstr "Sammendrag"
 #: application/views/awards/itu/index.php:250
 #: application/views/awards/wac/index.php:181
 #: application/views/awards/wae/index.php:265
+#: application/views/awards/dxcc/index.php:344
+#: application/views/awards/dxcc/index.php:491
 msgid "Total (ex SAT)"
 msgstr "Totalt (uten SAT)"
 
@@ -8370,6 +8470,7 @@ msgstr "Totalt (uten SAT)"
 #: application/views/awards/wapc/index.php:212
 #: application/views/awards/was/index.php:203
 #: application/views/awards/wpx/index.php:181
+#: application/views/awards/dxcc/index.php:501
 msgid "Total worked"
 msgstr "Totalt arbeidet"
 
@@ -8389,6 +8490,7 @@ msgstr "Totalt arbeidet"
 #: application/views/awards/wapc/index.php:219
 #: application/views/awards/was/index.php:210
 #: application/views/awards/wpx/index.php:202
+#: application/views/awards/dxcc/index.php:526
 msgid "Total confirmed"
 msgstr "Totalt bekreftet"
 
@@ -8611,14 +8713,17 @@ msgstr "Oseania"
 #: application/views/awards/dxcc/index.php:277
 #: application/views/awards/waip/index.php:61
 #: application/views/awards/waip/index.php:98
+#: application/views/awards/dxcc/index.php:276
 msgid "By Band"
 msgstr "Etter bånd"
 
 #: application/views/awards/dxcc/index.php:280
+#: application/views/awards/dxcc/index.php:279
 msgid "By Continent"
 msgstr "Etter kontinent"
 
 #: application/views/awards/dxcc/index.php:283
+#: application/views/awards/dxcc/index.php:282
 msgid "By Mode"
 msgstr "Etter modus"
 
@@ -8635,24 +8740,29 @@ msgstr "Etter modus"
 #: application/views/lookup/index.php:4 application/views/qso/award_tabs.php:37
 #: application/views/qso/edit_ajax.php:247 application/views/qso/index.php:490
 #: application/views/view_log/qso.php:296
+#: application/views/awards/dxcc/index.php:365
 msgid "Continent"
 msgstr "Kontinent"
 
 #: application/views/awards/dxcc/index.php:413
+#: application/views/awards/dxcc/index.php:412
 msgid "No continent data available."
 msgstr "Ingen kontinentdata tilgjengelig."
 
 #: application/views/awards/dxcc/index.php:422
 #: application/views/contesting/logger/components/scp.php:52
 #: application/views/debug/index.php:177
+#: application/views/awards/dxcc/index.php:421
 msgid "Loading..."
 msgstr "Laster inn..."
 
 #: application/views/awards/dxcc/index.php:424
+#: application/views/awards/dxcc/index.php:423
 msgid "Loading progress data..."
 msgstr "Laster inn fremdriftsdata..."
 
 #: application/views/awards/dxcc/index.php:451
+#: application/views/awards/dxcc/index.php:450
 msgid "DXCC Name"
 msgstr "DXCC-navn"
 
@@ -8662,14 +8772,17 @@ msgstr "DXCC-navn"
 #: application/views/dbtools/statecheckresult.php:14
 #: application/views/timeline/index.php:237
 #: application/views/timeline/index.php:356
+#: application/views/awards/dxcc/index.php:451
 msgid "Prefix"
 msgstr "Prefiks"
 
 #: application/views/awards/dxcc/index.php:495
+#: application/views/awards/dxcc/index.php:494
 msgid "Slots"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:558
+#: application/views/awards/dxcc/index.php:557
 msgid "No results found for your search criteria. Please try again."
 msgstr ""
 
@@ -9952,9 +10065,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
-"Felt som brukes for dette diplomet: DXCC (må være ett av China/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) og gyldig State (ADIF: DXCC og STATE)"
+"Felt som brukes for dette diplomet: DXCC (må være ett av China/318, HongKong/"
+"321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/506) og "
+"gyldig State (ADIF: DXCC og STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
