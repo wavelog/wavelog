@@ -246,6 +246,8 @@ msgstr "Тропосферное прохождение"
 #: application/controllers/Webadif.php:103
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84
+#: application/controllers/Most_wanted_squares.php:14
+#: application/controllers/Most_wanted_squares.php:38
 msgid "You're not allowed to do that!"
 msgstr "Вы не можете это делать!"
 
@@ -1594,6 +1596,7 @@ msgstr "Не работает"
 
 #: application/controllers/Csv.php:19 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:556
+#: application/views/interface_assets/header.php:558
 msgid "SOTA CSV Export"
 msgstr "Экспорт SOTA в CSV"
 
@@ -2735,6 +2738,7 @@ msgstr "Расстояние"
 #: application/views/visitor/mini.php:184
 #: application/views/wabtool/table.php:19 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/views/most_wanted_squares/index.php:25
 msgid "Band"
 msgstr "Диапазон"
 
@@ -2838,6 +2842,7 @@ msgstr "Быстрый поиск"
 #: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:1106 application/views/visitor/index.php:326
+#: application/views/interface_assets/header.php:594
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -3231,6 +3236,7 @@ msgstr "Недействительный ID станции"
 
 #: application/controllers/Oqrs.php:180
 #: application/views/interface_assets/header.php:577
+#: application/views/interface_assets/header.php:579
 msgid "OQRS Requests"
 msgstr "Запросы OQRS"
 
@@ -3303,6 +3309,7 @@ msgstr ""
 
 #: application/controllers/Qrz.php:297
 #: application/views/interface_assets/header.php:595
+#: application/views/interface_assets/header.php:597
 msgid "QRZ Logbook"
 msgstr "Журнал QRZ"
 
@@ -3357,6 +3364,7 @@ msgstr ""
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:586
+#: application/views/interface_assets/header.php:588
 msgid "QSL Postcard Designer"
 msgstr "Дизайнер QSL карточек"
 
@@ -3427,6 +3435,7 @@ msgstr "Перевод вызова"
 
 #: application/controllers/Radio.php:16
 #: application/views/interface_assets/header.php:609
+#: application/views/interface_assets/header.php:611
 msgid "Hardware Interfaces"
 msgstr "Аппаратные интерфейсы"
 
@@ -3719,6 +3728,8 @@ msgstr "Пожалуйста, проверьте значение QTH-локат
 #: application/views/interface_assets/header.php:503
 #: application/views/interface_assets/header.php:545
 #: application/views/interface_assets/header.php:693
+#: application/views/interface_assets/header.php:695
+#: application/views/most_wanted_squares/index.php:9
 msgid "Station Setup"
 msgstr "Настройка журналов"
 
@@ -3797,6 +3808,7 @@ msgstr "Установить как активный"
 #: application/views/interface_assets/header.php:691
 #: application/views/stationsetup/stationsetup.php:60
 #: application/views/view_log/index.php:6
+#: application/views/interface_assets/header.php:693
 msgid "Active Logbook"
 msgstr "Активный журнал"
 
@@ -4438,6 +4450,7 @@ msgstr "Неверный квадрат QTH-локатора"
 #: application/controllers/Webadif.php:108
 #: application/controllers/Webadif.php:189
 #: application/views/interface_assets/header.php:596
+#: application/views/interface_assets/header.php:598
 msgid "QO-100 Dx Club Upload"
 msgstr "Загрузка в QO-100 Dx Club"
 
@@ -5098,8 +5111,8 @@ msgstr ""
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
-"APCu загружен, но не может быть использован в этом PHP интерфейсе (apc."
-"enabled=0?)."
+"APCu загружен, но не может быть использован в этом PHP интерфейсе "
+"(apc.enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
@@ -12482,6 +12495,7 @@ msgstr "название для ADIF"
 #: application/views/stationsetup/locationlist.php:10
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
+#: application/views/interface_assets/header.php:672
 msgid "Active"
 msgstr "Активный"
 
@@ -13079,6 +13093,7 @@ msgstr "Перезагрузить сейчас"
 #: application/views/contesting/logger/index.php:171
 #: application/views/contesting/logger/index.php:198
 #: application/views/interface_assets/header.php:635
+#: application/views/interface_assets/header.php:637
 msgid "Switch Operator"
 msgstr "Переключить оператора"
 
@@ -13451,6 +13466,7 @@ msgstr ""
 
 #: application/views/contesting/manager/export_cbr.php:46
 #: application/views/interface_assets/header.php:558
+#: application/views/interface_assets/header.php:560
 msgid "Cabrillo Export"
 msgstr "Экспорт Cabrillo"
 
@@ -13637,6 +13653,7 @@ msgstr "Скачать Cabrillo"
 
 #: application/views/contesting/manager/export_edi.php:46
 #: application/views/interface_assets/header.php:560
+#: application/views/interface_assets/header.php:562
 msgid "EDI Export"
 msgstr "Экспорт EDI"
 
@@ -14148,6 +14165,7 @@ msgstr "Все, кроме репитера"
 
 #: application/views/csv/index.php:114 application/views/dxatlas/index.php:113
 #: application/views/kml/index.php:98 application/views/qslprint/index.php:65
+#: application/views/most_wanted_squares/index.php:37
 msgid "Export"
 msgstr "Экспорт"
 
@@ -17019,6 +17037,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:226
 #: application/views/interface_assets/header.php:623
 #: application/views/options/tabs.php:37
+#: application/views/interface_assets/header.php:625
 msgid "Version Info"
 msgstr "Информация о версии"
 
@@ -17440,91 +17459,112 @@ msgid "Other Export Options"
 msgstr "Другие варианты экспорта"
 
 #: application/views/interface_assets/header.php:582
+#: application/views/interface_assets/header.php:584
 msgid "QSL Queue"
 msgstr "Очередь QSL"
 
 #: application/views/interface_assets/header.php:583
+#: application/views/interface_assets/header.php:585
 msgid "Labels"
 msgstr "Наклейки"
 
 #: application/views/interface_assets/header.php:590
+#: application/views/interface_assets/header.php:592
 msgid "Third-Party Services"
 msgstr "Сторонние сервисы"
 
 #: application/views/interface_assets/header.php:593
+#: application/views/interface_assets/header.php:595
 msgid "eQSL Import / Export"
 msgstr "импорт / экспорт eQSL"
 
 #: application/views/interface_assets/header.php:594
+#: application/views/interface_assets/header.php:596
 msgid "HRDLog Logbook"
 msgstr "Журнал HRDLog"
 
 #: application/views/interface_assets/header.php:597
+#: application/views/interface_assets/header.php:599
 msgid "Clublog Import / Export"
 msgstr "Импорт / Экспорт из Clublog"
 
 #: application/views/interface_assets/header.php:600
+#: application/views/interface_assets/header.php:602
 msgid "DCL Export"
 msgstr "Экспорт DCL"
 
 #: application/views/interface_assets/header.php:608
+#: application/views/interface_assets/header.php:610
 msgid "API Keys"
 msgstr "Ключи API"
 
 #: application/views/interface_assets/header.php:613
+#: application/views/interface_assets/header.php:615
 msgid "Internal tools"
 msgstr "Внутренние инструменты"
 
 #: application/views/interface_assets/header.php:615
+#: application/views/interface_assets/header.php:617
 msgid "Callsign DXCC checker"
 msgstr "Проверка DXCC для позывного"
 
 #: application/views/interface_assets/header.php:616
+#: application/views/interface_assets/header.php:618
 msgid "GeoJSON QSO Map"
 msgstr "Карта QSO в формате GeoJSON"
 
 #: application/views/interface_assets/header.php:617
+#: application/views/interface_assets/header.php:619
 msgid "Gridsquare Zone checker"
 msgstr "Проверка значения зоны по квадрату QTH-локатора"
 
 #: application/views/interface_assets/header.php:624
 #: application/views/logbookadvanced/index.php:918
+#: application/views/interface_assets/header.php:626
 msgid "Help"
 msgstr "Помощь"
 
 #: application/views/interface_assets/header.php:625
+#: application/views/interface_assets/header.php:627
 msgid "Forum"
 msgstr "Форум"
 
 #: application/views/interface_assets/header.php:629
+#: application/views/interface_assets/header.php:631
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Прекратить выдавать себя за другого и переключиться обратно на %s"
 
 #: application/views/interface_assets/header.php:630
+#: application/views/interface_assets/header.php:632
 #, php-format
 msgid "Switch back to %s"
 msgstr "Переключиться обратно на %s"
 
 #: application/views/interface_assets/header.php:637
+#: application/views/interface_assets/header.php:639
 msgid "Logout"
 msgstr "Выход"
 
 #: application/views/interface_assets/header.php:643
+#: application/views/interface_assets/header.php:645
 msgid "Station locations and logbooks"
 msgstr "Профили QTH и журналы"
 
 #: application/views/interface_assets/header.php:645
+#: application/views/interface_assets/header.php:647
 msgid "Select a Location"
 msgstr "Выберите профиль QTH"
 
 #: application/views/interface_assets/header.php:693
+#: application/views/interface_assets/header.php:695
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Не видите нужных профилей QTH? Перейдите в \"Настройки журналов\" и добавьте "
 "их в избранное"
 
 #: application/views/interface_assets/header.php:730
+#: application/views/interface_assets/header.php:732
 msgid "Extras"
 msgstr "Дополнения"
 
@@ -23557,8 +23597,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -23928,8 +23969,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:484
 msgid ""
@@ -25335,6 +25376,44 @@ msgstr "Поиск лога на Clublog"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "Пользователь LoTW. Последняя загрузка была "
+
+#: application/controllers/Most_wanted_squares.php:22
+#: application/views/interface_assets/header.php:556
+msgid "Most Wanted Squares"
+msgstr ""
+
+#: application/controllers/Most_wanted_squares.php:43
+msgid "Invalid band."
+msgstr ""
+
+#: application/controllers/Most_wanted_squares.php:48
+#: application/views/most_wanted_squares/index.php:8
+msgid "The active station location has no gridsquare set."
+msgstr ""
+
+#: application/controllers/Most_wanted_squares.php:53
+msgid "The gridsquare of the active station location is invalid."
+msgstr ""
+
+#: application/controllers/Most_wanted_squares.php:90
+msgid "VUCC gridsquare data unavailable."
+msgstr ""
+
+#: application/views/most_wanted_squares/index.php:16
+msgid ""
+"Export a list of 4-digit gridsquares that have not been worked yet on VHF."
+msgstr ""
+
+#: application/views/most_wanted_squares/index.php:21
+#, php-format
+msgid ""
+"The list contains all not worked gridsquares within %d km of the gridsquare "
+"%s of the active station location %s (%s)."
+msgstr ""
+
+#: application/views/most_wanted_squares/index.php:34
+msgid "Exclude squares that contain no land"
+msgstr ""
 
 #~ msgid "Callsigns tested: "
 #~ msgstr "Проверено позывных: "

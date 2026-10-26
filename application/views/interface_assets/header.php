@@ -553,6 +553,8 @@
 
 										<li><a class="dropdown-item" href="<?php echo site_url('dxatlas'); ?>" title="DX Atlas Gridsquare Export"><i class="fas fa-sync"></i> <?= __("DX Atlas Gridsquare Export"); ?></a></li>
 
+										<li><a class="dropdown-item" href="<?php echo site_url('most_wanted_squares'); ?>" title="Most Wanted Squares Export"><i class="fas fa-sync"></i> <?= __("Most Wanted Squares") . ' (MMMonVHF)'; ?></a></li>
+
 										<li><a class="dropdown-item" href="<?php echo site_url('csv'); ?>" title="SOTA CSV Export"><i class="fas fa-sync"></i> <?= __("SOTA CSV Export"); ?></a></li>
 
 										<li><a class="dropdown-item" href="<?php echo site_url('contesting'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?= __("Cabrillo Export"); ?></a></li>

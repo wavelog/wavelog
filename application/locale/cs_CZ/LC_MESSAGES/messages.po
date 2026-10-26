@@ -242,6 +242,8 @@ msgstr "Troposférické vedení"
 #: application/controllers/Webadif.php:103
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84
+#: application/controllers/Most_wanted_squares.php:14
+#: application/controllers/Most_wanted_squares.php:38
 msgid "You're not allowed to do that!"
 msgstr "Přístup odepřen!"
 
@@ -1583,6 +1585,7 @@ msgstr "Není spuštěno"
 
 #: application/controllers/Csv.php:19 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:556
+#: application/views/interface_assets/header.php:558
 msgid "SOTA CSV Export"
 msgstr "Export SOTA CSV"
 
@@ -2721,6 +2724,7 @@ msgstr "Vzdálenost"
 #: application/views/visitor/mini.php:184
 #: application/views/wabtool/table.php:19 application/views/widgets/qsos.php:21
 #: application/views/zonechecker/result.php:69
+#: application/views/most_wanted_squares/index.php:25
 msgid "Band"
 msgstr "Pásmo"
 
@@ -2824,6 +2828,7 @@ msgstr "Rychlé vyhledání"
 #: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:1106 application/views/visitor/index.php:326
+#: application/views/interface_assets/header.php:594
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -3214,6 +3219,7 @@ msgstr "Neplatný slug stanice"
 
 #: application/controllers/Oqrs.php:180
 #: application/views/interface_assets/header.php:577
+#: application/views/interface_assets/header.php:579
 msgid "OQRS Requests"
 msgstr "OQRS požadavky"
 
@@ -3286,6 +3292,7 @@ msgstr ""
 
 #: application/controllers/Qrz.php:297
 #: application/views/interface_assets/header.php:595
+#: application/views/interface_assets/header.php:597
 msgid "QRZ Logbook"
 msgstr "QRZ deník"
 
@@ -3340,6 +3347,7 @@ msgstr ""
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:586
+#: application/views/interface_assets/header.php:588
 msgid "QSL Postcard Designer"
 msgstr "Návrhář QSL pohlednic"
 
@@ -3410,6 +3418,7 @@ msgstr "Přenos značky"
 
 #: application/controllers/Radio.php:16
 #: application/views/interface_assets/header.php:609
+#: application/views/interface_assets/header.php:611
 msgid "Hardware Interfaces"
 msgstr "Hardwarové rozhraní"
 
@@ -3698,6 +3707,8 @@ msgstr "Zkontrolujte prosím hodnotu lokátoru (%s)"
 #: application/views/interface_assets/header.php:503
 #: application/views/interface_assets/header.php:545
 #: application/views/interface_assets/header.php:693
+#: application/views/interface_assets/header.php:695
+#: application/views/most_wanted_squares/index.php:9
 msgid "Station Setup"
 msgstr "Nastavení stanoviště"
 
@@ -3776,6 +3787,7 @@ msgstr "Nastavit jako aktivní deník"
 #: application/views/interface_assets/header.php:691
 #: application/views/stationsetup/stationsetup.php:60
 #: application/views/view_log/index.php:6
+#: application/views/interface_assets/header.php:693
 msgid "Active Logbook"
 msgstr "Aktivní deník"
 
@@ -4413,6 +4425,7 @@ msgstr "Neplatný lokátor"
 #: application/controllers/Webadif.php:108
 #: application/controllers/Webadif.php:189
 #: application/views/interface_assets/header.php:596
+#: application/views/interface_assets/header.php:598
 msgid "QO-100 Dx Club Upload"
 msgstr "Nahrání do QO-100 DX Club"
 
@@ -10240,9 +10253,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
-"Pole použitá pro tento diplom: DXCC (musí být jedno z Čína/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 nebo Scarborough "
-"Reef/506) a platný State (ADIF: DXCC a STATE)"
+"Pole použitá pro tento diplom: DXCC (musí být jedno z Čína/318, HongKong/"
+"321, Macao/152, Taiwan/386, Pratas Isl./505 nebo Scarborough Reef/506) a "
+"platný State (ADIF: DXCC a STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -12350,6 +12363,7 @@ msgstr "Název ADIF"
 #: application/views/stationsetup/locationlist.php:10
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
+#: application/views/interface_assets/header.php:672
 msgid "Active"
 msgstr "Aktivní"
 
@@ -12941,6 +12955,7 @@ msgstr "Načíst znovu"
 #: application/views/contesting/logger/index.php:171
 #: application/views/contesting/logger/index.php:198
 #: application/views/interface_assets/header.php:635
+#: application/views/interface_assets/header.php:637
 msgid "Switch Operator"
 msgstr "Přepnout operátora"
 
@@ -13307,6 +13322,7 @@ msgstr "Nemáte oprávnění exportovat soubory. Kontaktujte funkcionáře stani
 
 #: application/views/contesting/manager/export_cbr.php:46
 #: application/views/interface_assets/header.php:558
+#: application/views/interface_assets/header.php:560
 msgid "Cabrillo Export"
 msgstr "Export Cabrillo"
 
@@ -13494,6 +13510,7 @@ msgstr "Stáhnout Cabrillo"
 
 #: application/views/contesting/manager/export_edi.php:46
 #: application/views/interface_assets/header.php:560
+#: application/views/interface_assets/header.php:562
 msgid "EDI Export"
 msgstr "Export EDI"
 
@@ -13999,6 +14016,7 @@ msgstr "Vše kromě Repeateru"
 
 #: application/views/csv/index.php:114 application/views/dxatlas/index.php:113
 #: application/views/kml/index.php:98 application/views/qslprint/index.php:65
+#: application/views/most_wanted_squares/index.php:37
 msgid "Export"
 msgstr "Exportovat"
 
@@ -16829,6 +16847,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:226
 #: application/views/interface_assets/header.php:623
 #: application/views/options/tabs.php:37
+#: application/views/interface_assets/header.php:625
 msgid "Version Info"
 msgstr "Informace o verzi"
 
@@ -17250,91 +17269,112 @@ msgid "Other Export Options"
 msgstr "Další možnosti exportu"
 
 #: application/views/interface_assets/header.php:582
+#: application/views/interface_assets/header.php:584
 msgid "QSL Queue"
 msgstr "Fronta QSL"
 
 #: application/views/interface_assets/header.php:583
+#: application/views/interface_assets/header.php:585
 msgid "Labels"
 msgstr "Štítky"
 
 #: application/views/interface_assets/header.php:590
+#: application/views/interface_assets/header.php:592
 msgid "Third-Party Services"
 msgstr "Služby třetích stran"
 
 #: application/views/interface_assets/header.php:593
+#: application/views/interface_assets/header.php:595
 msgid "eQSL Import / Export"
 msgstr "eQSL import / export"
 
 #: application/views/interface_assets/header.php:594
+#: application/views/interface_assets/header.php:596
 msgid "HRDLog Logbook"
 msgstr "Deník HRDLog"
 
 #: application/views/interface_assets/header.php:597
+#: application/views/interface_assets/header.php:599
 msgid "Clublog Import / Export"
 msgstr "Import / Export Clublog"
 
 #: application/views/interface_assets/header.php:600
+#: application/views/interface_assets/header.php:602
 msgid "DCL Export"
 msgstr "Export DCL"
 
 #: application/views/interface_assets/header.php:608
+#: application/views/interface_assets/header.php:610
 msgid "API Keys"
 msgstr "API klíče"
 
 #: application/views/interface_assets/header.php:613
+#: application/views/interface_assets/header.php:615
 msgid "Internal tools"
 msgstr "Interní nástroje"
 
 #: application/views/interface_assets/header.php:615
+#: application/views/interface_assets/header.php:617
 msgid "Callsign DXCC checker"
 msgstr "Kontrola DXCC značky"
 
 #: application/views/interface_assets/header.php:616
+#: application/views/interface_assets/header.php:618
 msgid "GeoJSON QSO Map"
 msgstr "Mapa QSO GeoJSON"
 
 #: application/views/interface_assets/header.php:617
+#: application/views/interface_assets/header.php:619
 msgid "Gridsquare Zone checker"
 msgstr "Kontrola zóny lokátoru"
 
 #: application/views/interface_assets/header.php:624
 #: application/views/logbookadvanced/index.php:918
+#: application/views/interface_assets/header.php:626
 msgid "Help"
 msgstr "Nápověda"
 
 #: application/views/interface_assets/header.php:625
+#: application/views/interface_assets/header.php:627
 msgid "Forum"
 msgstr "Fórum"
 
 #: application/views/interface_assets/header.php:629
+#: application/views/interface_assets/header.php:631
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Zastavit zastupování a přepnout zpět na %s"
 
 #: application/views/interface_assets/header.php:630
+#: application/views/interface_assets/header.php:632
 #, php-format
 msgid "Switch back to %s"
 msgstr "Přepnout zpět na %s"
 
 #: application/views/interface_assets/header.php:637
+#: application/views/interface_assets/header.php:639
 msgid "Logout"
 msgstr "Odhlásit se"
 
 #: application/views/interface_assets/header.php:643
+#: application/views/interface_assets/header.php:645
 msgid "Station locations and logbooks"
 msgstr "Umístění stanic a deníky"
 
 #: application/views/interface_assets/header.php:645
+#: application/views/interface_assets/header.php:647
 msgid "Select a Location"
 msgstr "Vybrat umístění"
 
 #: application/views/interface_assets/header.php:693
+#: application/views/interface_assets/header.php:695
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Chybí vám zde umístění stanic? Přejděte do Nastavení stanoviště a označte je "
 "jako oblíbená"
 
 #: application/views/interface_assets/header.php:730
+#: application/views/interface_assets/header.php:732
 msgid "Extras"
 msgstr "Doplňky"
 
@@ -20088,8 +20128,9 @@ msgstr "Motiv"
 #: application/views/options/appearance.php:24
 msgid "Global Theme Choice, this is used when users arent logged in."
 msgstr ""
-"Globální volba motivu, která se používá, když uživatelé nejsou přihlášeni."
-"Globální volba motivu, která se používá, když uživatelé nejsou přihlášeni."
+"Globální volba motivu, která se používá, když uživatelé nejsou "
+"přihlášeni.Globální volba motivu, která se používá, když uživatelé nejsou "
+"přihlášeni."
 
 #: application/views/options/appearance.php:28
 msgid "Logbook Map"
@@ -20215,8 +20256,8 @@ msgstr "Emailová adresa"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"E-mailová adresa, ze které jsou e-maily odesílány, např. 'wavelog@example."
-"com'"
+"E-mailová adresa, ze které jsou e-maily odesílány, např. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -23678,8 +23719,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Zobrazit profilový obrázek partnera z QSO záznamu z profilu qrz.com/hamqth."
-"com v sekci protokolu QSO."
+"Zobrazit profilový obrázek partnera z QSO záznamu z profilu qrz.com/"
+"hamqth.com v sekci protokolu QSO."
 
 #: application/views/user/edit.php:484
 msgid ""
@@ -25070,6 +25111,44 @@ msgstr "Vyhledávání v logu Clublog"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "Uživatel LoTW. Poslední nahrání bylo "
+
+#: application/controllers/Most_wanted_squares.php:22
+#: application/views/interface_assets/header.php:556
+msgid "Most Wanted Squares"
+msgstr ""
+
+#: application/controllers/Most_wanted_squares.php:43
+msgid "Invalid band."
+msgstr ""
+
+#: application/controllers/Most_wanted_squares.php:48
+#: application/views/most_wanted_squares/index.php:8
+msgid "The active station location has no gridsquare set."
+msgstr ""
+
+#: application/controllers/Most_wanted_squares.php:53
+msgid "The gridsquare of the active station location is invalid."
+msgstr ""
+
+#: application/controllers/Most_wanted_squares.php:90
+msgid "VUCC gridsquare data unavailable."
+msgstr ""
+
+#: application/views/most_wanted_squares/index.php:16
+msgid ""
+"Export a list of 4-digit gridsquares that have not been worked yet on VHF."
+msgstr ""
+
+#: application/views/most_wanted_squares/index.php:21
+#, php-format
+msgid ""
+"The list contains all not worked gridsquares within %d km of the gridsquare "
+"%s of the active station location %s (%s)."
+msgstr ""
+
+#: application/views/most_wanted_squares/index.php:34
+msgid "Exclude squares that contain no land"
+msgstr ""
 
 #~ msgid "Callsigns tested: "
 #~ msgstr "Testované značky: "
