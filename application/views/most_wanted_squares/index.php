@@ -1,10 +1,10 @@
 <div class="container">
 	<br>
-	<h2><?= __("Most Wanted Squares"); ?></h2>
+	<h2><?= __("Most Wanted Squares") . ' (MMMonVHF)'; ?></h2>
 
 	<div class="card">
 		<div class="card-header">
-			<?= __("Export a list of 4-digit gridsquares that have not been worked yet."); ?>
+			<?= __("Export a list of 4-digit gridsquares that have not been worked yet on VHF."); ?>
 		</div>
 
 		<?php if (empty($station_profile->station_gridsquare)) { ?>
