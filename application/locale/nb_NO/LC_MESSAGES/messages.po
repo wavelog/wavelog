@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-23 13:42+0000\n"
-"PO-Revision-Date: 2026-10-26 07:28+0000\n"
+"PO-Revision-Date: 2026-10-26 20:10+0000\n"
 "Last-Translator: Lars Granheim <lb3qj.lars@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/nb/>\n"
@@ -6033,11 +6033,11 @@ msgstr ""
 
 #: application/views/activationplanner/index.php:41
 msgid "Create station location"
-msgstr ""
+msgstr "Opprett stasjonslokasjon"
 
 #: application/views/activationplanner/index.php:42
 msgid "References in this grid"
-msgstr ""
+msgstr "Referanser i denne ruten"
 
 #: application/views/activationplanner/index.php:43
 #: application/views/calltester/call_info.php:30
@@ -6630,44 +6630,50 @@ msgstr ""
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
+"Bruk alltid kallesignalet til den innloggede kontoen som operatørkallesignal "
+"ved import"
 
 #: application/views/adif/import.php:196
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
 msgstr ""
+"Merk QSO-er som lastet opp (Funksjonen laster IKKE opp QSO-er til disse "
+"tjenestene!)"
 
 #: application/views/adif/import.php:203
 msgid "Mark imported QSOs as uploaded to LoTW"
-msgstr ""
+msgstr "Merk importerte QSO-er som lastet opp til LoTW"
 
 #: application/views/adif/import.php:205 application/views/adif/import.php:213
 #: application/views/adif/import.php:223 application/views/adif/import.php:231
 #: application/views/adif/import.php:241 application/views/adif/import.php:249
 msgid "Select if ADIF being imported does not contain this information."
 msgstr ""
+"Velges hvis ADIF-filen som importeres, ikke inneholder denne informasjonen."
 
 #: application/views/adif/import.php:211
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
-msgstr ""
+msgstr "Merk importerte QSO-er som lastet opp til eQSL-loggboken"
 
 #: application/views/adif/import.php:221
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
-msgstr ""
+msgstr "Merk importerte QSO-er som lastet opp til HRDLog.net-loggboken"
 
 #: application/views/adif/import.php:229
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
-msgstr ""
+msgstr "Merk importerte QSO-er som lastet opp til QRZ-loggboken"
 
 #: application/views/adif/import.php:239
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
-msgstr ""
+msgstr "Merk importerte QSO-er som lastet opp til Clublog-loggboken"
 
 #: application/views/adif/import.php:247
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
-msgstr ""
+msgstr "Merk importerte QSO-er som lastet opp til DCL-loggboken"
 
 #: application/views/adif/import.php:252
+#, fuzzy
 msgid "Toggle all checkboxes"
-msgstr ""
+msgstr "Slå av/på alle avmerkingsbokser"
 
 #: application/views/adif/import.php:258 application/views/adif/import.php:390
 #: application/views/adif/import.php:412 application/views/adif/import.php:456
@@ -6675,17 +6681,20 @@ msgstr ""
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
-msgstr ""
+msgstr "Last opp"
 
 #: application/views/adif/import.php:268
 msgid "Take your logbook file anywhere!"
-msgstr ""
+msgstr "Ta med deg loggbokfilen overalt!"
 
 #: application/views/adif/import.php:269
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
 msgstr ""
+"Eksportering av ADIF-filer lar deg importere kontakter til "
+"tredjepartsapplikasjoner som LoTW og Awards, eller bare for å ta vare på en "
+"sikkerhetskopi."
 
 #: application/views/adif/import.php:270
 #, php-format
@@ -6694,11 +6703,14 @@ msgid ""
 "If you need more filtering, you can use %sthe Advanced Logbook%s to filter "
 "and export!"
 msgstr ""
+"Hvis du trenger mer filtrering, kan du bruke %sden avanserte loggboken%s til "
+"å filtrere og eksportere!"
 
 #: application/views/adif/import.php:275
 #: application/views/search/lotw_unconfirmed.php:24
 msgid "All is limited to station locations linked to active logbook"
 msgstr ""
+"Alt er begrenset til stasjonslokasjoner knyttet til den aktive loggboken"
 
 #: application/views/adif/import.php:296
 #: application/views/clublog/export.php:73 application/views/csv/index.php:104
@@ -6707,7 +6719,7 @@ msgstr ""
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
 #: application/views/qrz/export.php:99 application/views/webadif/export.php:107
 msgid "From date"
-msgstr ""
+msgstr "Fra dato"
 
 #: application/views/adif/import.php:300 application/views/csv/index.php:109
 #: application/views/dxatlas/index.php:108
@@ -6715,35 +6727,35 @@ msgstr ""
 #: application/views/qrz/export.php:104
 #: application/views/webadif/export.php:112
 msgid "To date"
-msgstr ""
+msgstr "Til dato"
 
 #: application/views/adif/import.php:311
 msgid "Export options"
-msgstr ""
+msgstr "Eksportalternativer"
 
 #: application/views/adif/import.php:319
 msgid "Mark exported QSOs as already uploaded to LoTW"
-msgstr ""
+msgstr "Merk eksporterte QSO-er som allerede lastet opp til LoTW"
 
 #: application/views/adif/import.php:328
 msgid "Export QSOs not uploaded to LoTW"
-msgstr ""
+msgstr "Eksporter QSO-er som ikke er lastet opp til LoTW"
 
 #: application/views/adif/import.php:335
 msgid "Export QSOs"
-msgstr ""
+msgstr "Eksporter QSO-er"
 
 #: application/views/adif/import.php:340
 msgid "Export Satellite-Only QSOs"
-msgstr ""
+msgstr "Eksporter kun satellitt-QSO-er"
 
 #: application/views/adif/import.php:341
 msgid "Export All Satellite QSOs"
-msgstr ""
+msgstr "Eksporter alle satellitt-QSO-er"
 
 #: application/views/adif/import.php:343
 msgid "Export All Satellite QSOs Confirmed on LoTW"
-msgstr ""
+msgstr "Eksporter alle satellitt-QSO-er bekreftet på LoTW"
 
 #: application/views/adif/import.php:359
 #, php-format
@@ -6753,6 +6765,10 @@ msgid ""
 "List). The downloaded ADIF file can be uploaded here in order to update QSOs "
 "with DOK info."
 msgstr ""
+"Gå til %s og eksporter loggboken din med bekreftede DOK-er. For å fremskynde "
+"prosessen kan du velge å laste ned bare DL-QSO-er (dvs. skrive inn «DL» i "
+"prefikslisten). Den nedlastede ADIF-filen kan lastes opp her for å oppdatere "
+"QSO-er med DOK-informasjon."
 
 #: application/views/adif/import.php:359
 #, php-format
@@ -6760,26 +6776,33 @@ msgid ""
 "More information regarding the confirmation status in DCL can be found on "
 "the %sDCL Confluence page%s."
 msgstr ""
+"Du finner mer informasjon om bekreftelsesstatusen i DCL på %sDCL Confluence-"
+"siden%s."
 
 #: application/views/adif/import.php:366
 msgid "Only import DOK data from QSOs confirmed on DCL."
-msgstr ""
+msgstr "Importer bare DOK-data fra QSO-er som er bekreftet på DCL."
 
 #: application/views/adif/import.php:368
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
 msgstr ""
+"Fjern avmerkingen hvis du også vil oppdatere DOK med data fra ubekreftede "
+"QSO-er i DCL."
 
 #: application/views/adif/import.php:375
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr ""
+"Overskriver eksisterende DOK i loggen med DCL (hvis den er forskjellig)."
 
 #: application/views/adif/import.php:377
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
 msgstr ""
+"Hvis valgt vil Wavelog tvinge overskriving av eksisterende DOK med DOK fra "
+"DCL-loggen."
 
 #: application/views/adif/import.php:384
 msgid "Ignore QSOs that cannot be matched."
