@@ -94,7 +94,9 @@ class Most_wanted_squares extends CI_Controller {
 		$not_worked = array_values(array_diff($in_range, $worked));
 		sort($not_worked);
 
-		$filecontent = implode("\r\n", $not_worked) . "\r\n";
+		$filecontent = "[Squares]";
+		$filecontent .= implode("\r\n", $not_worked) . "\r\n";
+		$filecontent .= "[End of file]";
 
 		header('Content-Type: text/plain');
 		header('Content-Length: ' . strlen($filecontent));
