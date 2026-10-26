@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-23 13:42+0000\n"
-"PO-Revision-Date: 2026-10-18 07:09+0000\n"
+"PO-Revision-Date: 2026-10-24 18:17+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.8.1\n"
+"X-Generator: Weblate 2026.10.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -1483,7 +1483,7 @@ msgstr "WWFFリファレンス"
 #: application/views/webadif/export.php:125
 #: application/views/zonechecker/index.php:11
 msgid "Station Location"
-msgstr "局の所在地"
+msgstr "無線局の所在地"
 
 #: application/controllers/Cron.php:37
 #: application/views/interface_assets/header.php:367
@@ -1670,7 +1670,7 @@ msgstr "アップロード成功"
 
 #: application/controllers/Dcl.php:201
 msgid "No Station Profiles found to upload to DCL"
-msgstr "DCL にアップロードする無線局プロファイルが見つかりません"
+msgstr "DCL にアップロードする無線局のプロファイルが見つかりません"
 
 #: application/controllers/Dcl.php:217
 msgid "Key(s) Deleted."
@@ -1776,8 +1776,7 @@ msgstr "%d 件中 %d 件から %d 件を表示中"
 
 #: application/controllers/Eqsl.php:81 application/controllers/Eqsl.php:176
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
-"eQSLのニックネーム( アカウント名)が無線局プロファイルで定義されていません！"
+msgstr "eQSLのニックネーム( アカウント名)が無線局のプロファイルで定義されていません！"
 
 #: application/controllers/Eqsl.php:104 application/controllers/Eqsl.php:195
 msgid "You have not defined your eQSL.cc credentials!"
@@ -1943,7 +1942,7 @@ msgstr "SSO設定エラー。エラーログを確認してください。"
 
 #: application/controllers/Hrdlog.php:74 application/controllers/Hrdlog.php:75
 msgid "HRD Log upload for this station is disabled."
-msgstr "この局の HRD ログのアップロードは無効です。"
+msgstr "この無線局の HRD ログのアップロードは無効です。"
 
 #: application/controllers/Hrdlog.php:97
 #, php-format
@@ -3214,7 +3213,7 @@ msgstr "無効な無線局ID"
 
 #: application/controllers/Oqrs.php:105
 msgid "Invalid station slug"
-msgstr "局名に無効な文字が有る"
+msgstr "無線局名に無効な文字が有る"
 
 #: application/controllers/Oqrs.php:180
 #: application/views/interface_assets/header.php:577
@@ -3664,7 +3663,7 @@ msgstr "空のログブック"
 #: application/controllers/Station.php:37
 #: application/controllers/Stationsetup.php:251
 msgid "Create Station Location"
-msgstr "局の所在地を作成する"
+msgstr "無線局の所在地を作成する"
 
 #: application/controllers/Station.php:74
 #: application/controllers/Station.php:99 application/controllers/User.php:270
@@ -3674,16 +3673,16 @@ msgstr "無効なセキュリティトークン"
 
 #: application/controllers/Station.php:88
 msgid "Edit Station Location: "
-msgstr "局の所在地を編集: "
+msgstr "無線局の所在地を編集: "
 
 #: application/controllers/Station.php:105
 #, php-format
 msgid "Station Location %s updated"
-msgstr "局の位置 %s が 更新されました"
+msgstr "無線局の位置 %s が 更新されました"
 
 #: application/controllers/Station.php:124
 msgid "Duplicate Station Location:"
-msgstr "重複している局の所在地:"
+msgstr "重複している無線局の所在地:"
 
 #: application/controllers/Station.php:236
 #: application/controllers/User.php:1558 application/controllers/User.php:1811
@@ -3851,7 +3850,7 @@ msgstr[0] "QSO"
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:220
 msgid "Are you sure you want to delete all QSOs within this station profile?"
-msgstr "この局プロファイル内のすべての QSO を削除してもよろしいですか?"
+msgstr "この無線局プロファイル内のすべての QSO を削除してもよろしいですか?"
 
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:170
@@ -3874,8 +3873,8 @@ msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
 "within this station profile."
 msgstr ""
-"無線局プロファイルを削除してもよろしいですか? %s '? これにより、この局プロ"
-"ファイル内のすべての QSO が削除されます。"
+"無線局プロファイルを削除してもよろしいですか? %s '? これにより、この無線局"
+"プロファイル内のすべての QSO が削除されます。"
 
 #: application/controllers/Stationsetup.php:421
 #: application/views/qso/edit_ajax.php:221
@@ -3892,7 +3891,7 @@ msgstr "エクスポートマップのオプションを編集"
 
 #: application/controllers/Stationsetup.php:526
 msgid "Station location list"
-msgstr "局の所在地一覧"
+msgstr "無線局の所在地一覧"
 
 #: application/controllers/Statistics.php:21
 #: application/views/contesting/logger/components/statistics.php:4
@@ -4231,7 +4230,7 @@ msgstr "無線局のコールサイン"
 #: application/views/station_profile/edit.php:99
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
-msgstr "DXCC局"
+msgstr "DXCC無線局"
 
 #: application/controllers/User.php:1543
 msgid "Station CQ Zone"
@@ -4396,7 +4395,7 @@ msgstr "グリッドスクエアからのWAB"
 
 #: application/controllers/Wabtool.php:100
 msgid "No station locations found"
-msgstr "局の位置情報が検出されませんでした"
+msgstr "無線局の位置情報が検出されませんでした"
 
 #: application/controllers/Wabtool.php:107
 #: application/controllers/Wabtool.php:113
@@ -4655,15 +4654,15 @@ msgstr "ラジオボタンを削除する"
 
 #: application/libraries/api_v2/Station_resource.php:49
 msgid "Read station locations"
-msgstr "局の位置を確認する"
+msgstr "無線局の位置を確認する"
 
 #: application/libraries/api_v2/Station_resource.php:50
 msgid "Create and update station locations"
-msgstr "局の場所を作成および更新する"
+msgstr "無線局の場所を作成および更新する"
 
 #: application/libraries/api_v2/Station_resource.php:51
 msgid "Delete station locations"
-msgstr "局の場所を削除する"
+msgstr "無線局の場所を削除する"
 
 #: application/libraries/api_v2/Statistic_resource.php:49
 msgid "Read statistics"
@@ -5144,11 +5143,11 @@ msgstr ""
 #: application/models/Hrdlog_model.php:22
 msgid ""
 "HRDlog: QSOs have been uploaded to hrdlog.net for the station callsign: "
-msgstr "HRDlog: 局コールサインの QSO が hrdlog.net にアップロードされました: "
+msgstr "HRDlog: 無線局コールサインの QSO が hrdlog.net にアップロードされました: "
 
 #: application/models/Hrdlog_model.php:25
 msgid "HRDlog: No QSOs found to upload for the station callsign: "
-msgstr "HRDlog: 局のコールサインにアップロードする QSO が見つかりません: "
+msgstr "HRDlog: 無線局のコールサインにアップロードする QSO が見つかりません: "
 
 #: application/models/Hrdlog_model.php:31
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
@@ -5211,8 +5210,8 @@ msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
-"局位置 %s を持つ %s の QSO をインポート中に、異なる局位置 %s が検出されまし"
-"た：スキップしました"
+"無線局位置 %s を持つ %s の QSO をインポート中に、異なる無線局位置 %s が検出さ"
+"れました：スキップしました"
 
 #: application/models/Logbook_model.php:5247
 msgid ""
@@ -6054,7 +6053,7 @@ msgstr "位置情報のリクエストがタイムアウトしました。"
 
 #: application/views/activationplanner/index.php:41
 msgid "Create station location"
-msgstr "局の場所を作成する"
+msgstr "無線局の場所を作成する"
 
 #: application/views/activationplanner/index.php:42
 msgid "References in this grid"
@@ -6621,7 +6620,7 @@ msgstr "危険"
 
 #: application/views/adif/import.php:166
 msgid "Ignore Station callsign on import"
-msgstr "インポート時に本局のコールサインを無視する"
+msgstr "インポート時に無線局のコールサインを無視する"
 
 #: application/views/adif/import.php:168
 #, php-format
@@ -6630,20 +6629,20 @@ msgid ""
 "regardless if they match to the chosen station-location."
 msgstr ""
 "選択された場合、WavelogはADIFから%sall%sのQSOをインポートしようとします。選択"
-"された局の位置と一致するかどうかに関わらず、すべてのQSOが対象となります。"
+"された局無線の位置と一致するかどうかに関わらず、すべてのQSOが対象となります。"
 
 #: application/views/adif/import.php:173
 msgid "Ignore grid check on import"
-msgstr "インポート時に本局のグリッドを無視する"
+msgstr "インポート時に無線局のグリッドを無視する"
 
 #: application/views/adif/import.php:175
 msgid ""
 "If selected, Wavelog will try to import QSOs even if the MY_GRIDSQUARE field "
 "in ADIF records does not match the locator of the chosen station-location."
 msgstr ""
-"このオプションを選択した場合、Wavelogは、ADIFレコードのMY_GRIDSQUAREフィール"
-"ドが選択した局の位置のロケーターと一致しない場合でも、QSOをインポートしようと"
-"します。"
+"このオプションを選択した場合、Wavelogは、ADIFレコードのMY_GRIDSQUARE"
+"フィールドが選択した無線局の位置のロケーターと一致しない場合でも、QSOを"
+"インポートしようとします。"
 
 #: application/views/adif/import.php:185
 msgid ""
@@ -6726,7 +6725,7 @@ msgstr ""
 #: application/views/adif/import.php:275
 #: application/views/search/lotw_unconfirmed.php:24
 msgid "All is limited to station locations linked to active logbook"
-msgstr "すべてはアクティブなログブックにリンクされた局の場所に限定されます"
+msgstr "すべてはアクティブなログブックにリンクされた無線局の場所に限定されます"
 
 #: application/views/adif/import.php:296
 #: application/views/clublog/export.php:73 application/views/csv/index.php:104
@@ -7638,8 +7637,8 @@ msgid ""
 "The AMSAT Rover Award is granted to stations who achieve a combined 25 "
 "points using satellite grid activations."
 msgstr ""
-"MSATローバーアワードは、衛星グリッドアクティベーションを利用して合計25ポイン"
-"トを獲得した局に授与されます。"
+"MSATローバーアワードは、衛星グリッドアクティベーションを利用して合計25"
+"ポイントを獲得した無線局に授与されます。"
 
 #: application/views/awards/amsat_rover/index.php:23
 msgid "Official rules"
@@ -7650,12 +7649,12 @@ msgid ""
 "Please set your home grid square in your station profile to calculate grid "
 "activations correctly."
 msgstr ""
-"グリッドアクティベーションを正しく計算するために、局プロファイルでホームグ"
-"リッドスクエアを設定してください。"
+"グリッドアクティベーションを正しく計算するために、無線局プロファイルで"
+"ホームグリッドスクエアを設定してください。"
 
 #: application/views/awards/amsat_rover/index.php:31
 msgid "Go to Station Profile"
-msgstr "局プロフィールへ"
+msgstr "無線局プロフィールへ"
 
 #: application/views/awards/amsat_rover/index.php:39
 #: application/views/awards/counties/index.php:68
@@ -11288,7 +11287,7 @@ msgstr "サブモード"
 
 #: application/views/bandmap/list.php:566
 msgid "DX Station"
-msgstr "DX局"
+msgstr "DX無線局"
 
 #: application/views/bandmap/list.php:570
 #: application/views/bandmap/list.php:609
@@ -12104,7 +12103,7 @@ msgstr "プロフィール名"
 #: application/views/oqrs/showrequests.php:96
 #: application/views/qrz/export.php:40 application/views/webadif/export.php:42
 msgid "Station callsign"
-msgstr "局のコールサイン"
+msgstr "無線局のコールサイン"
 
 #: application/views/clublog/export.php:36
 #: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
@@ -13082,7 +13081,7 @@ msgstr "終了日時: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:15
 msgid "Station: "
-msgstr "局： "
+msgstr "無線局： "
 
 #: application/views/contesting/manager/components/confirm_delete.php:19
 msgid "Also delete all QSOs logged in this session from the logbook"
@@ -13164,11 +13163,11 @@ msgstr "セッションはいつ終了すべきですか？"
 
 #: application/views/contesting/manager/components/session_modal.php:65
 msgid "Please select a station"
-msgstr "局を選択してください"
+msgstr "無線局を選択してください"
 
 #: application/views/contesting/manager/components/session_modal.php:81
 msgid "Choose one of your stations"
-msgstr "いずれかの局を選択してください"
+msgstr "いずれかの無線局を選択してください"
 
 #: application/views/contesting/manager/components/session_modal.php:84
 msgid "Exchange Fields"
@@ -13313,7 +13312,7 @@ msgstr ""
 #: application/views/contesting/manager/export_edi.php:38
 msgid ""
 "You do not have permission to export files. Contact the station officer."
-msgstr "ファイルのエクスポート権限がありません。局担当に連絡してください。"
+msgstr "ファイルのエクスポート権限がありません。無線局担当に連絡してください。"
 
 #: application/views/contesting/manager/export_cbr.php:46
 #: application/views/interface_assets/header.php:558
@@ -13588,7 +13587,7 @@ msgstr "オペレーターの電話番号"
 
 #: application/views/contesting/manager/export_edi.php:156
 msgid "Additional Station Description"
-msgstr "追加の局説明"
+msgstr "追加の無線局説明"
 
 #: application/views/contesting/manager/export_edi.php:159
 msgid "Transmit Equipment Description"
@@ -14120,8 +14119,7 @@ msgstr ""
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %shere%s to do it."
-msgstr ""
-"局の所在地が設定されていません。%shere%s をクリックして設定してください。"
+msgstr "無線局の所在地が設定されていません。%shere%s をクリックして設定してください。"
 
 #: application/views/dashboard/index.php:147
 #, php-format
@@ -14137,8 +14135,8 @@ msgid ""
 "Your active station location is not linked to your active station logbook. "
 "Click %shere%s to do it."
 msgstr ""
-"アクティブな局の所在地がアクティブな無線局ログブックにリンクされていません。"
-"リンクするには%shere%sをクリックしてください。"
+"アクティブな無線局の所在地がアクティブな無線局ログブックにリンクされていませ"
+"ん。リンクするには%shere%sをクリックしてください。"
 
 #: application/views/dashboard/index.php:165
 #, php-format
@@ -14169,7 +14167,7 @@ msgstr "今日は QSO がありませんでした。無線をオンにしまし�
 
 #: application/views/dashboard/index.php:195
 msgid "Attention: you need to set an active station location."
-msgstr "注意: アクティブな局の所在地を設定する必要があります。"
+msgstr "注意: アクティブな無線局の所在地を設定する必要があります。"
 
 #: application/views/dashboard/index.php:202
 msgid ""
@@ -14819,7 +14817,7 @@ msgstr "データ修復ツール"
 
 #: application/views/dbtools/index.php:30
 msgid "All Station Locations"
-msgstr "全ての局の所在地"
+msgstr "全ての無線局の所在地"
 
 #: application/views/dbtools/index.php:44
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
@@ -15010,7 +15008,7 @@ msgstr "これらの QSO を更新できませんでした:"
 #: application/views/search/lotw_unconfirmed.php:28
 #: application/views/statistics/antennaanalytics.php:104
 msgid "Station location"
-msgstr "局の所在地"
+msgstr "無線局の所在地"
 
 #: application/views/dbtools/showUpdateResult.php:46
 #: application/views/dbtools/showUpdateResult.php:109
@@ -15640,7 +15638,7 @@ msgstr[0] ""
 
 #: application/views/debug/index.php:861
 msgid "Please mark QSOs and reassign them to an existing station location:"
-msgstr "QSO をマークし、既存の局の所在地に再割り当てしてください:"
+msgstr "QSO をマークし、既存の無線局の所在地に再割り当てしてください:"
 
 #: application/views/debug/index.php:869
 msgctxt "Stationlocation"
@@ -16222,7 +16220,7 @@ msgstr ""
 
 #: application/views/eqsl/import.php:35
 msgid "Choose Station(location) eQSL File belongs to:"
-msgstr "局(所在地)を選択してください eQSL ファイルが属する場所:"
+msgstr "無線局(所在地)を選択してください eQSL ファイルが属する場所:"
 
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
@@ -16384,8 +16382,8 @@ msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
 msgstr ""
-"有効なHRDlog設定を持つ局の所在地が見つかりません。局の所在地設定でHRDlog認証"
-"情報を確認してください!"
+"有効なHRDlog設定を持つ無線局の所在地が見つかりません。無線局の所在地設定で"
+"HRDlog認証情報を確認してください!"
 
 #: application/views/hrdlog/export.php:74 application/views/qrz/export.php:96
 #: application/views/webadif/export.php:104
@@ -17233,7 +17231,7 @@ msgstr "バンドエッジ"
 
 #: application/views/interface_assets/header.php:513
 msgid "Switch to Clubstation"
-msgstr ""
+msgstr "クラブステーションに切り替える"
 
 #: application/views/interface_assets/header.php:516
 msgid "Switch to Clubstation:"
@@ -17333,7 +17331,7 @@ msgstr "ログアウト"
 
 #: application/views/interface_assets/header.php:643
 msgid "Station locations and logbooks"
-msgstr "局の位置と記録簿"
+msgstr "無線局の位置と記録簿"
 
 #: application/views/interface_assets/header.php:645
 msgid "Select a Location"
@@ -17368,7 +17366,7 @@ msgstr "日時"
 #: application/views/labeldesigner/designer.php:9
 #: application/views/qslpostcard/designer.php:8
 msgid "Station & Equipment"
-msgstr "局と設備"
+msgstr "無線局と設備"
 
 #: application/views/labeldesigner/designer.php:10
 #: application/views/qslpostcard/designer.php:9
@@ -18969,7 +18967,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:75
 msgid "Mark dupes (keep oldest)"
-msgstr ""
+msgstr "重複ファイルには印を付ける（最も古いものを残す）"
 
 #: application/views/logbookadvanced/index.php:85
 msgid "You need to select exactly 2 QSOs to merge!"
@@ -19301,7 +19299,7 @@ msgstr "列 ネット"
 
 #: application/views/logbookadvanced/index.php:838
 msgid "Sent (Bureau)"
-msgstr "送信（局）"
+msgstr "送信（無線局）"
 
 #: application/views/logbookadvanced/index.php:839
 msgid "Sent (Direct)"
@@ -19325,7 +19323,7 @@ msgstr "未受信"
 
 #: application/views/logbookadvanced/index.php:846
 msgid "Received (Bureau)"
-msgstr "受領（局）"
+msgstr "受領（無線局）"
 
 #: application/views/logbookadvanced/index.php:847
 msgid "Received (Direct)"
@@ -19631,12 +19629,12 @@ msgstr "最終アップロード"
 #: application/views/lookup/lotwuser.php:14
 #: application/views/search/result.php:84
 msgid "LoTW Status Unknown"
-msgstr ""
+msgstr "LoTWの状態は不明です"
 
 #: application/views/lookup/lotwuser.php:14
 #: application/views/search/result.php:84
 msgid "Table with last LoTW uploads is empty. Please check"
-msgstr ""
+msgstr "最新のLoTWアップロードの表が空です。ご確認ください"
 
 #: application/views/lookup/lotwuser.php:16
 msgid "No LoTW User"
@@ -20457,7 +20455,7 @@ msgstr "コールサインを入力してください"
 
 #: application/views/oqrs/index.php:27
 msgid "This search will search in all station locations where OQRS is active."
-msgstr "この検索では、OQRS がアクティブなすべての局の所在地を検索します。"
+msgstr "この検索では、OQRS がアクティブなすべての無線局の所在地を検索します。"
 
 #: application/views/oqrs/index.php:54
 msgid "Select station"
@@ -20976,7 +20974,8 @@ msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
 "on the same band and mode."
 msgstr ""
-"列%sは、同じバンドとモードで同じ局に過去に送信されたQSLの数を示しています。"
+"列%sは、同じバンドとモードで同じ無線局に過去に送信されたQSLの数を示しています"
+"。"
 
 #: application/views/qslprint/qslprint.php:45
 #: application/views/qslprint/qsolist.php:17
@@ -21301,7 +21300,7 @@ msgstr "受信方法"
 
 #: application/views/qso/edit_ajax.php:511 application/views/qso/index.php:741
 msgid "Get the default message for eQSL, for this station."
-msgstr "この局の eQSL のデフォルト メッセージを取得します。"
+msgstr "この無線局の eQSL のデフォルト メッセージを取得します。"
 
 #: application/views/qso/edit_ajax.php:523
 msgid "Note: Not editable. Only displayed here."
@@ -21936,7 +21935,7 @@ msgstr "LoTWでのQSOは未確認"
 
 #: application/views/search/filter.php:31 application/views/search/main.php:23
 msgid "Search is limited to station locations linked to active logbook"
-msgstr "検索対象は、アクティブなログブックにリンクされた局の場所に限定されます"
+msgstr "検索対象は、アクティブなログブックにリンクされた無線局の場所に限定されます"
 
 #: application/views/search/filter.php:40
 msgid "Save query"
@@ -22210,8 +22209,8 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
-"新しい拠点から交信を開始する場合、まず新しい「%s 局の場所 %s」を作成してくだ"
-"さい"
+"新しい拠点から交信を開始する場合、まず新しい「%s 無線局の場所 %s」を作成して"
+"ください"
 
 #: application/views/simplefle/index.php:117
 msgid "e.g. OK2CQR"
@@ -22275,10 +22274,10 @@ msgid ""
 "QRG in MHz, e.g., %s), mode, and time. After the time, you provide the first "
 "QSO, which is essentially the callsign."
 msgstr ""
-"まず、左側のフォームに日付、局コールサイン、オペレーターコールサインを記入し"
-"てください。主なデータには、バンド（またはMHz単位のQRG、例： %s ）、モード、"
-"および時間を指定します。時間の後に、最初の交信（実質的にはコールサイン）を指"
-"定します。"
+"まず、左側のフォームに日付、無線局コールサイン、オペレーターコールサインを記"
+"入してください。主なデータには、バンド（またはMHz単位のQRG、例： %s ）、"
+"モード、および時間を指定します。時間の後に、最初の交信（実質的には"
+"コールサイン）を指定します。"
 
 #: application/views/simplefle/syntax_help.php:23
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -22454,7 +22453,7 @@ msgstr "無線局の所在地の短縮名。例: %s"
 #: application/views/station_profile/create.php:62
 #: application/views/station_profile/edit.php:79
 msgid "Station callsign. For example: 4W7EST/P"
-msgstr "局のコールサイン。例：4W7EST/P"
+msgstr "無線局のコールサイン。例：4W7EST/P"
 
 #: application/views/station_profile/create.php:65
 #: application/views/station_profile/edit.php:82
@@ -22469,7 +22468,7 @@ msgstr "デフォルトの電力（ワット単位）。CAT によって上書�
 #: application/views/station_profile/create.php:92
 #: application/views/station_profile/edit.php:114
 msgid "Station DXCC entity. For example: Bolivia"
-msgstr "局のDXCCエンティティ。例：ボリビア"
+msgstr "無線局のDXCCエンティティ。例：ボリビア"
 
 #: application/views/station_profile/create.php:98
 #: application/views/station_profile/edit.php:120
@@ -22484,7 +22483,7 @@ msgstr "都市（例：オスロ）"
 #: application/views/station_profile/create.php:109
 #: application/views/station_profile/edit.php:131
 msgid "Station state. Applies to certain countries only."
-msgstr "局の状態。一部の国にのみ適用されます。"
+msgstr "無線局の状態。一部の国にのみ適用されます。"
 
 #: application/views/station_profile/create.php:116
 #: application/views/station_profile/edit.php:138
@@ -22656,8 +22655,8 @@ msgid ""
 "Define a default message that will be populated and sent for each QSO for "
 "this station location."
 msgstr ""
-"この局の所在地の各 QSO に対して入力され送信されるデフォルトのメッセージを定義"
-"します。"
+"この無線局の所在地の各 QSO に対して入力され送信されるデフォルトのメッセージを"
+"定義します。"
 
 #: application/views/station_profile/create.php:297
 #: application/views/station_profile/edit.php:319
@@ -22838,7 +22837,7 @@ msgstr "エクスポート 地図を表示する"
 
 #: application/views/stationsetup/linkedlocations.php:13
 msgid "Select Available Station Locations"
-msgstr "利用可能な局の所在地を選択"
+msgstr "利用可能な無線局の所在地を選択"
 
 #: application/views/stationsetup/linkedlocations.php:25
 msgid "Link Location"
@@ -22851,11 +22850,11 @@ msgstr "プロフィール名"
 
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
-msgstr "局の所在地のリンクを解除"
+msgstr "無線局の所在地のリンクを解除"
 
 #: application/views/stationsetup/locationlist.php:3
 msgid "Limited to station locations linked to active logbook"
-msgstr "アクティブなログブックにリンクされた局の場所に限定されます"
+msgstr "アクティブなログブックにリンクされた無線局の場所に限定されます"
 
 #: application/views/stationsetup/locationlist.php:11
 msgid "QSO Count"
@@ -22930,11 +22929,11 @@ msgstr "リンクされた所在地を編集"
 
 #: application/views/stationsetup/stationsetup.php:9
 msgid "Create a New Station Logbook"
-msgstr "新しい局ログブックを作成する"
+msgstr "新しい無線局ログブックを作成する"
 
 #: application/views/stationsetup/stationsetup.php:10
 msgid "Create a New Station Location"
-msgstr "新しい局の場所を作成する"
+msgstr "新しい無線局の場所を作成する"
 
 #: application/views/stationsetup/stationsetup.php:33
 msgid ""
@@ -22943,9 +22942,10 @@ msgid ""
 "analytics. Great for when you're operating in multiple locations but they "
 "are part of the same DXCC or VUCC Circle."
 msgstr ""
-"無線局ログブックでは局の所在地をグループ化できます。これにより、ログブックの"
-"分析まで、1回のセッションにおける全所在地を確認可能です。複数の所在地で運用し"
-"ているが、それらが同一のDXCCまたはVUCCサークルに属する場合に最適です。"
+"無線局ログブックでは無線局の所在地をグループ化できます。これにより、"
+"ログブックの分析まで、1回のセッションにおける全所在地を確認可能です。複数の所"
+"在地で運用しているが、それらが同一のDXCCまたはVUCCサークルに属する場合に最適"
+"です。"
 
 #: application/views/stationsetup/stationsetup.php:47
 msgid "Visitor Site"
@@ -22953,13 +22953,13 @@ msgstr "訪問者サイト"
 
 #: application/views/stationsetup/stationsetup.php:122
 msgid "Station Locations"
-msgstr "局の所在地"
+msgstr "無線局の所在地"
 
 #: application/views/stationsetup/stationsetup.php:126
 msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
-msgstr "局の所在地は、自分の QTH、友人の QTH、移動局の運用場所を定義します。"
+msgstr "無線局の所在地は、自分の QTH、友人の QTH、移動局の運用場所を定義します。"
 
 #: application/views/stationsetup/stationsetup.php:127
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
@@ -22979,12 +22979,12 @@ msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
 msgstr ""
-"「リンク」列には、局の所在地が上で選択したアクティブ ログブックにリンクされて"
-"いるかどうかが表示されます。"
+"「リンク」列には、無線局の所在地が上で選択したアクティブ ログブックにリンクさ"
+"れているかどうかが表示されます。"
 
 #: application/views/stationsetup/stationsetup.php:132
 msgid "Create a Station Location"
-msgstr "局の所在地を作成する"
+msgstr "無線局の所在地を作成する"
 
 #: application/views/stationsetup/stationsetup.php:132
 msgid "Show only locations from the active logbook"
@@ -23003,8 +23003,8 @@ msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
 msgstr ""
-"注意：アクティブな局の位置を設定する必要があります。コールサイン > 局の位置か"
-"ら選択してください。"
+"注意：アクティブな無線局の位置を設定する必要があります。コールサイン > 無線局"
+"の位置から選択してください。"
 
 #: application/views/stationsetup/stationsetup.php:144
 msgid ""
@@ -23530,7 +23530,7 @@ msgstr "苗字（ラストネーム）"
 
 #: application/views/user/edit.php:175
 msgid "Ham Radio"
-msgstr "無線局"
+msgstr "アマチュア無線局"
 
 #: application/views/user/edit.php:179
 msgid "Special/Club Callsign"
@@ -23610,11 +23610,11 @@ msgstr "列5を選択（ログブックのみ）"
 
 #: application/views/user/edit.php:412
 msgid "Station Location Options"
-msgstr "局の設置場所オプション"
+msgstr "無線局の設置場所オプション"
 
 #: application/views/user/edit.php:421
 msgid "Only show station locations linked to active logbook"
-msgstr "アクティブなログブックにリンクされている局の場所のみを表示します"
+msgstr "アクティブなログブックにリンクされている無線局の場所のみを表示します"
 
 #: application/views/user/edit.php:431
 msgid "QSO Logging Options"
@@ -23770,7 +23770,7 @@ msgstr ""
 
 #: application/views/user/edit.php:611
 msgid "Station Locations Quickswitch"
-msgstr "局の所在地クイックスイッチ"
+msgstr "無線局の所在地クイックスイッチ"
 
 #: application/views/user/edit.php:612
 msgid ""
@@ -23946,20 +23946,20 @@ msgid ""
 "When this is on, all station locations with OQRS active, will be searched at "
 "once."
 msgstr ""
-"これをオンにすると、OQRS がアクティブなすべての局の所在地が一度に検索されま"
-"す。"
+"これをオンにすると、OQRS がアクティブなすべての無線局の所在地が一度に検索され"
+"ます。"
 
 #: application/views/user/edit.php:960
 msgid "Show station location name in grouped search results"
-msgstr "グループ化された検索結果に局の所在地名を表示する"
+msgstr "グループ化された検索結果に無線局の所在地名を表示する"
 
 #: application/views/user/edit.php:961
 msgid ""
 "If grouped search is ON, you can decide if the name of the station location "
 "shall be shown in the results table."
 msgstr ""
-"グループ検索がオンの場合、結果テーブルに局の所在地の名前を表示するかどうかを"
-"決定できます。"
+"グループ検索がオンの場合、結果テーブルに無線局の所在地の名前を表示するかどう"
+"かを決定できます。"
 
 #: application/views/user/edit.php:972
 msgid "Automatic OQRS matching"
@@ -23988,7 +23988,7 @@ msgstr "OQRS経由で提供されるQSLカード送付方法"
 
 #: application/views/user/edit.php:992
 msgid "Bureau and Direct"
-msgstr "局と直轄"
+msgstr "無線局と直轄"
 
 #: application/views/user/edit.php:993
 msgid "Bureau only"
@@ -24423,9 +24423,9 @@ msgid ""
 "Location. You can find more information about how Station Locations and "
 "Logbooks work in our %sWiki here%s!"
 msgstr ""
-"QSOsの記録を開始する前に、まず最初に局の所在地を設定する必要があります。局の"
-"所在地とログブックの仕組みについては、当社の%sWiki%sで詳細をご確認いただけま"
-"す！"
+"QSOsの記録を開始する前に、まず最初に無線局の所在地を設定する必要があります。"
+"無線局の所在地とログブックの仕組みについては、当社の%sWiki%sで詳細をご確認い"
+"ただけます！"
 
 #: application/views/user/modals/first_login_wizard.php:22
 msgid ""
@@ -24629,7 +24629,7 @@ msgstr "再度表示しない"
 #: application/views/view_log/index.php:6
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
-msgstr "このログブックにリンクされている局所在地のすべてのQSOを表示します"
+msgstr "このログブックにリンクされている無線局の所在地すべてのQSOを表示します"
 
 #: application/views/view_log/partial/log_ajax.php:448
 #: application/views/view_log/partial/log_ajax.php:505
@@ -24725,7 +24725,7 @@ msgstr "QSLカードを受け取りました"
 
 #: application/views/view_log/qso.php:481
 msgid "This station uses LoTW."
-msgstr "この局はLoTWを使用しています。"
+msgstr "この無線局はLoTWを使用しています。"
 
 #: application/views/view_log/qso.php:486
 #: application/views/view_log/qso.php:496
