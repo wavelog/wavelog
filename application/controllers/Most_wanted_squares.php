@@ -22,7 +22,7 @@ class Most_wanted_squares extends CI_Controller {
 	public function export() {
 		if (!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-		$band = $this->security->xss_clean($this->input->post('band'));
+		$band = $this->input->post('band', true);
 		if (!in_array($band, $this->get_bands_6m_and_up(), true)) { $this->session->set_flashdata('error', __("Invalid band.")); redirect('most_wanted_squares'); }
 
 		$station_id = $this->stations->find_active();
@@ -67,7 +67,7 @@ class Most_wanted_squares extends CI_Controller {
 		}
 
 		// Optionally keep only squares that are listed for a DXCC entity in the vuccgrids table (open water is not listed there)
-		if ($this->input->post('exclude_wet') !== null) {
+		if ($this->input->post('exclude_wet', true) !== null) {
 			$vucc_grids = $this->get_vucc_grid_set();
 			if (empty($vucc_grids)) { $this->session->set_flashdata('error', __("VUCC gridsquare data unavailable.")); redirect('most_wanted_squares'); }
 			$in_range = array_filter($in_range, function ($grid) use ($vucc_grids) { return isset($vucc_grids[$grid]); });
