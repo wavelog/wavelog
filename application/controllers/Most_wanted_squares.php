@@ -5,6 +5,11 @@ class Most_wanted_squares extends CI_Controller {
 	// Radius around the active station location in kilometers
 	const RADIUS_KM = 2500;
 
+	/**
+	 * Shows the export form with the VHF bands and the active station location
+	 *
+	 * @return void
+	 */
 	public function index() {
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
@@ -21,6 +26,14 @@ class Most_wanted_squares extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
+	/**
+	 * Sends a text file with all 4-digit gridsquares within RADIUS_KM of the active station location
+	 * that have not been worked yet on the posted band
+	 *
+	 * POST: band (required), exclude_wet (optional, skips squares without land)
+	 *
+	 * @return void
+	 */
 	public function export() {
 		if (!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
