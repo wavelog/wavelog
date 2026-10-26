@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-26 07:27+0000\n"
+"POT-Creation-Date: 2026-10-26 20:09+0000\n"
 "PO-Revision-Date: 2026-10-19 13:17+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -192,8 +192,10 @@ msgstr "Canalizzazioni troposferiche"
 #: application/controllers/Lotw.php:386 application/controllers/Lotw.php:424
 #: application/controllers/Lotw.php:897 application/controllers/Lotw.php:983
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
-#: application/controllers/Mode.php:14 application/controllers/Notes.php:9
-#: application/controllers/Operator.php:12
+#: application/controllers/Mode.php:14
+#: application/controllers/Most_wanted_squares.php:14
+#: application/controllers/Most_wanted_squares.php:38
+#: application/controllers/Notes.php:9 application/controllers/Operator.php:12
 #: application/controllers/Options.php:13 application/controllers/Oqrs.php:12
 #: application/controllers/Oqrs.php:459 application/controllers/Qrbcalc.php:12
 #: application/controllers/Qrz.php:28 application/controllers/Qrz.php:293
@@ -1591,7 +1593,7 @@ msgid "Not running"
 msgstr "Non attivo"
 
 #: application/controllers/Csv.php:19 application/views/csv/index.php:3
-#: application/views/interface_assets/header.php:556
+#: application/views/interface_assets/header.php:558
 msgid "SOTA CSV Export"
 msgstr "Esporta CSV SOTA"
 
@@ -2696,6 +2698,7 @@ msgstr "Distanza"
 #: application/views/logbookadvanced/qslcarousel.php:33
 #: application/views/logbookadvanced/useroptions.php:64
 #: application/views/map/qso_map.php:32
+#: application/views/most_wanted_squares/index.php:25
 #: application/views/oqrs/notinlogform.php:12
 #: application/views/oqrs/qsolist.php:10 application/views/oqrs/request.php:19
 #: application/views/oqrs/request_grouped.php:13
@@ -2830,7 +2833,7 @@ msgid "Quick Lookup"
 msgstr "Ricerca rapida"
 
 #: application/controllers/Lotw.php:68 application/controllers/Lotw.php:99
-#: application/views/interface_assets/header.php:592
+#: application/views/interface_assets/header.php:594
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
@@ -2967,6 +2970,28 @@ msgstr "Modifica modo"
 #, php-format
 msgid "Mode %s updated"
 msgstr "Modo %s aggiornato"
+
+#: application/controllers/Most_wanted_squares.php:22
+#: application/views/interface_assets/header.php:556
+msgid "Most Wanted Squares"
+msgstr ""
+
+#: application/controllers/Most_wanted_squares.php:43
+msgid "Invalid band."
+msgstr ""
+
+#: application/controllers/Most_wanted_squares.php:48
+#: application/views/most_wanted_squares/index.php:8
+msgid "The active station location has no gridsquare set."
+msgstr ""
+
+#: application/controllers/Most_wanted_squares.php:53
+msgid "The gridsquare of the active station location is invalid."
+msgstr ""
+
+#: application/controllers/Most_wanted_squares.php:90
+msgid "VUCC gridsquare data unavailable."
+msgstr ""
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -3226,7 +3251,7 @@ msgid "Invalid station slug"
 msgstr "Slug della stazione non valido"
 
 #: application/controllers/Oqrs.php:180
-#: application/views/interface_assets/header.php:577
+#: application/views/interface_assets/header.php:579
 msgid "OQRS Requests"
 msgstr "Richieste OQRS"
 
@@ -3295,7 +3320,7 @@ msgstr ""
 "negative si trovano a ovest di Greenwich."
 
 #: application/controllers/Qrz.php:297
-#: application/views/interface_assets/header.php:595
+#: application/views/interface_assets/header.php:597
 msgid "QRZ Logbook"
 msgstr "Registro QRZ"
 
@@ -3349,7 +3374,7 @@ msgstr ""
 "php e aggiornalo di conseguenza."
 
 #: application/controllers/Qslpostcard.php:34
-#: application/views/interface_assets/header.php:586
+#: application/views/interface_assets/header.php:588
 msgid "QSL Postcard Designer"
 msgstr "Designer di cartoline QSL"
 
@@ -3419,7 +3444,7 @@ msgid "Call Transfer"
 msgstr "Trasferisci nominativo"
 
 #: application/controllers/Radio.php:16
-#: application/views/interface_assets/header.php:609
+#: application/views/interface_assets/header.php:611
 msgid "Hardware Interfaces"
 msgstr "Interfacce hardware"
 
@@ -3712,7 +3737,8 @@ msgstr "Prego verifica il locatore (%s)"
 #: application/views/azimuthal/index.php:17
 #: application/views/interface_assets/header.php:503
 #: application/views/interface_assets/header.php:545
-#: application/views/interface_assets/header.php:693
+#: application/views/interface_assets/header.php:695
+#: application/views/most_wanted_squares/index.php:9
 msgid "Station Setup"
 msgstr "Impostazioni stazione"
 
@@ -3788,7 +3814,7 @@ msgid "Set as Active Logbook"
 msgstr "Imposta come registro attivo"
 
 #: application/controllers/Stationsetup.php:288
-#: application/views/interface_assets/header.php:691
+#: application/views/interface_assets/header.php:693
 #: application/views/stationsetup/stationsetup.php:60
 #: application/views/view_log/index.php:6
 msgid "Active Logbook"
@@ -4436,7 +4462,7 @@ msgstr "Griglia non valida"
 
 #: application/controllers/Webadif.php:108
 #: application/controllers/Webadif.php:189
-#: application/views/interface_assets/header.php:596
+#: application/views/interface_assets/header.php:598
 msgid "QO-100 Dx Club Upload"
 msgstr "Caricamento QO-100 Dx Club"
 
@@ -12466,7 +12492,7 @@ msgstr "Nome ADIF"
 #: application/views/contest_admin/edit.php:43
 #: application/views/contest_admin/edit.php:46
 #: application/views/debug/index.php:515 application/views/debug/index.php:526
-#: application/views/interface_assets/header.php:670
+#: application/views/interface_assets/header.php:672
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -13068,7 +13094,7 @@ msgstr "Ricarica ora"
 #: application/views/contesting/logger/index.php:104
 #: application/views/contesting/logger/index.php:171
 #: application/views/contesting/logger/index.php:198
-#: application/views/interface_assets/header.php:635
+#: application/views/interface_assets/header.php:637
 msgid "Switch Operator"
 msgstr "Cambia operatore"
 
@@ -13444,7 +13470,7 @@ msgstr ""
 "stazione."
 
 #: application/views/contesting/manager/export_cbr.php:46
-#: application/views/interface_assets/header.php:558
+#: application/views/interface_assets/header.php:560
 msgid "Cabrillo Export"
 msgstr "Esporta Cabrillo"
 
@@ -13630,7 +13656,7 @@ msgid "Download Cabrillo"
 msgstr "Scarica Cabrillo"
 
 #: application/views/contesting/manager/export_edi.php:46
-#: application/views/interface_assets/header.php:560
+#: application/views/interface_assets/header.php:562
 msgid "EDI Export"
 msgstr "Esporta EDI"
 
@@ -14140,7 +14166,9 @@ msgid "All but Repeater"
 msgstr "Tutti tranne ripetitori"
 
 #: application/views/csv/index.php:114 application/views/dxatlas/index.php:113
-#: application/views/kml/index.php:98 application/views/qslprint/index.php:65
+#: application/views/kml/index.php:98
+#: application/views/most_wanted_squares/index.php:37
+#: application/views/qslprint/index.php:65
 msgid "Export"
 msgstr "Esporta"
 
@@ -16997,7 +17025,7 @@ msgstr ""
 "istruzioni di configurazione."
 
 #: application/views/interface_assets/footer.php:226
-#: application/views/interface_assets/header.php:623
+#: application/views/interface_assets/header.php:625
 #: application/views/options/tabs.php:37
 msgid "Version Info"
 msgstr "Informazioni sulla versione"
@@ -17422,92 +17450,92 @@ msgstr "Nessun club/stazione disponibile"
 msgid "Other Export Options"
 msgstr "Altre opzioni di esportazione"
 
-#: application/views/interface_assets/header.php:582
+#: application/views/interface_assets/header.php:584
 msgid "QSL Queue"
 msgstr "Coda QSL"
 
-#: application/views/interface_assets/header.php:583
+#: application/views/interface_assets/header.php:585
 msgid "Labels"
 msgstr "Etichette"
 
-#: application/views/interface_assets/header.php:590
+#: application/views/interface_assets/header.php:592
 msgid "Third-Party Services"
 msgstr "Servizi di terze parti"
 
-#: application/views/interface_assets/header.php:593
+#: application/views/interface_assets/header.php:595
 msgid "eQSL Import / Export"
 msgstr "Importazione / Esportazione eQSL"
 
-#: application/views/interface_assets/header.php:594
+#: application/views/interface_assets/header.php:596
 msgid "HRDLog Logbook"
 msgstr "Registro HRDLog"
 
-#: application/views/interface_assets/header.php:597
+#: application/views/interface_assets/header.php:599
 msgid "Clublog Import / Export"
 msgstr "Importazione / Esportazione Clublog"
 
-#: application/views/interface_assets/header.php:600
+#: application/views/interface_assets/header.php:602
 msgid "DCL Export"
 msgstr "Esportazione DCL"
 
-#: application/views/interface_assets/header.php:608
+#: application/views/interface_assets/header.php:610
 msgid "API Keys"
 msgstr "Chiavi API"
 
-#: application/views/interface_assets/header.php:613
+#: application/views/interface_assets/header.php:615
 msgid "Internal tools"
 msgstr "Strumenti interni"
 
-#: application/views/interface_assets/header.php:615
+#: application/views/interface_assets/header.php:617
 msgid "Callsign DXCC checker"
 msgstr "Controlla DXCC nominativi"
 
-#: application/views/interface_assets/header.php:616
+#: application/views/interface_assets/header.php:618
 msgid "GeoJSON QSO Map"
 msgstr "Mappa QSO GeoJSON"
 
-#: application/views/interface_assets/header.php:617
+#: application/views/interface_assets/header.php:619
 msgid "Gridsquare Zone checker"
 msgstr "Controlla locatori"
 
-#: application/views/interface_assets/header.php:624
+#: application/views/interface_assets/header.php:626
 #: application/views/logbookadvanced/index.php:918
 msgid "Help"
 msgstr "Aiuto"
 
-#: application/views/interface_assets/header.php:625
+#: application/views/interface_assets/header.php:627
 msgid "Forum"
 msgstr "Forum"
 
-#: application/views/interface_assets/header.php:629
+#: application/views/interface_assets/header.php:631
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Smetti di impersonare e torna a %s"
 
-#: application/views/interface_assets/header.php:630
+#: application/views/interface_assets/header.php:632
 #, php-format
 msgid "Switch back to %s"
 msgstr "Torna a %s"
 
-#: application/views/interface_assets/header.php:637
+#: application/views/interface_assets/header.php:639
 msgid "Logout"
 msgstr "Disconnetti"
 
-#: application/views/interface_assets/header.php:643
+#: application/views/interface_assets/header.php:645
 msgid "Station locations and logbooks"
 msgstr "Posizioni delle stazioni e dei logbooks"
 
-#: application/views/interface_assets/header.php:645
+#: application/views/interface_assets/header.php:647
 msgid "Select a Location"
 msgstr "Seleziona una posizione"
 
-#: application/views/interface_assets/header.php:693
+#: application/views/interface_assets/header.php:695
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Non trovi le posizioni delle stazioni? Vai alle impostazioni della stazione "
 "e aggiungile ai preferiti"
 
-#: application/views/interface_assets/header.php:730
+#: application/views/interface_assets/header.php:732
 msgid "Extras"
 msgstr "Extra"
 
@@ -20202,6 +20230,22 @@ msgstr "Sotto-modo"
 #: application/views/mode/index.php:88
 msgid "Create a Mode"
 msgstr "Crea un modo"
+
+#: application/views/most_wanted_squares/index.php:16
+msgid ""
+"Export a list of 4-digit gridsquares that have not been worked yet on VHF."
+msgstr ""
+
+#: application/views/most_wanted_squares/index.php:21
+#, php-format
+msgid ""
+"The list contains all not worked gridsquares within %d km of the gridsquare "
+"%s of the active station location %s (%s)."
+msgstr ""
+
+#: application/views/most_wanted_squares/index.php:34
+msgid "Exclude squares that contain no land"
+msgstr ""
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
