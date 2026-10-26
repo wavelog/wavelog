@@ -569,6 +569,13 @@ class Logbook_model extends CI_Model {
 		];
 	}
 
+	public $lotw_table_empty = false;	// set by check_last_lotw() when the lotw_users table is empty
+
+	/*
+	 * Returns the number of days since last LoTW upload
+	 * input: callsign
+	 * output: number of days or null if callsign is not a LoTW user
+	 */
 	public function check_last_lotw($call) {	// Fetch difference in days when $call has last updated LotW
 
 		$sql = "select datediff(now(),lastupload) as DAYS from lotw_users where callsign = ?";	// Use binding to prevent SQL-injection
@@ -577,6 +584,9 @@ class Logbook_model extends CI_Model {
 		if (isset($row)) {
 			return ($row->DAYS);
 		}
+		// No row for this call: distinguish "table empty" from "not a LoTW user"
+		$sql = "SELECT EXISTS (SELECT 1 FROM lotw_users) AS tbl_count;";
+		$this->lotw_table_empty = ($this->db->query($sql)->row()->tbl_count == 0);
 	}
 
 	public function check_station($id) {
@@ -762,9 +772,12 @@ class Logbook_model extends CI_Model {
 				$sql .= ' AND `COL_DXCC` = 339';
 				break;
 			case 'JCG':
-				// Unlike JCC, JCG (gun/county) numbers have no "ward of a
-				// designated city" variant, so COL_CNTY is matched directly.
-				$sql .= ' WHERE `COL_CNTY` = ? AND `COL_DXCC` = 339';
+				// Ogasawara-Shicho also includes DXCC 177/192 regardless of CNTY.
+				if ($searchphrase == '10007') {
+					$sql .= ' WHERE ((`COL_CNTY` = ? AND `COL_DXCC` = 339) OR `COL_DXCC` IN (177, 192))';
+				} else {
+					$sql .= ' WHERE `COL_CNTY` = ? AND `COL_DXCC` = 339';
+				}
 				$binding[] = $searchphrase;
 				break;
 			case 'SOTA':
