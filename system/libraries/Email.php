@@ -923,7 +923,7 @@ class CI_Email {
 	protected function _get_message_id()
 	{
 		$from = str_replace(array('>', '<'), '', $this->_headers['Return-Path']);
-		return '<'.date('YmdHis').'.'.bin2hex(random_bytes(16)).strstr($from, '@').'>';
+		return '<'.gmdate('YmdHis').'.'.bin2hex(random_bytes(16)).strstr($from, '@').'>';
 	}
 
 	// --------------------------------------------------------------------
