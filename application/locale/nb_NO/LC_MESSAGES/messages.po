@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-26 20:09+0000\n"
-"PO-Revision-Date: 2026-10-26 20:10+0000\n"
+"PO-Revision-Date: 2026-10-26 21:58+0000\n"
 "Last-Translator: Lars Granheim <lb3qj.lars@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/nb/>\n"
@@ -1696,11 +1696,11 @@ msgstr ""
 
 #: application/controllers/Debug.php:266
 msgid "Wavelog was updated successfully!"
-msgstr ""
+msgstr "Wavelog ble oppdatert!"
 
 #: application/controllers/Debug.php:284
 msgid "Selfupdate() not available. Check the Error Log."
-msgstr ""
+msgstr "Selfupdate() er ikke tilgjengelig. Sjekk feilloggen."
 
 #: application/controllers/Debug.php:343
 msgid ""
@@ -1708,17 +1708,20 @@ msgid ""
 "seems right you can delete the folders 'assets/qslcard' and 'images/"
 "eqsl_card_images'."
 msgstr ""
+"Filoverføringen var vellykket, men kontroller også manuelt. Hvis alt ser "
+"riktig ut, kan du slette mappene 'assets/qslcard' og 'images/"
+"eqsl_card_images'."
 
 #: application/controllers/Debug.php:346
 msgid "File Migration failed. Please check the Error Log."
-msgstr ""
+msgstr "Filoverføringen mislyktes. Sjekk feilloggen."
 
 #: application/controllers/Distancerecords.php:68
 #: application/controllers/Distancerecords.php:87
 #: application/views/distancerecords/index.php:6
 #: application/views/interface_assets/header.php:174
 msgid "Satellite Distance Records"
-msgstr ""
+msgstr "Satellittdistanse-rekorder"
 
 #: application/controllers/Distances.php:16
 #: application/views/distances/index.php:3
@@ -1726,31 +1729,31 @@ msgstr ""
 #: application/views/distances/index.php:18
 #: application/views/interface_assets/header.php:172
 msgid "Distances Worked"
-msgstr ""
+msgstr "Kjørte avstander"
 
 #: application/controllers/Distances.php:88
 #: application/views/distances/index.php:13
 msgid "QSOs with"
-msgstr ""
+msgstr "QSOer med"
 
 #: application/controllers/Distances.php:88
 msgid "and band"
-msgstr ""
+msgstr "og bånd"
 
 #: application/controllers/Distances.php:88
 msgid "and propagation"
-msgstr ""
+msgstr "og utbredelse"
 
 #: application/controllers/Dxatlas.php:18
 #: application/views/interface_assets/header.php:554
 msgid "DX Atlas Gridsquare Export"
-msgstr ""
+msgstr "DX Atlas-rutenetteksport"
 
 #: application/controllers/Dxcalendar.php:8
 #: application/views/dxcalendar/index.php:7
 #: application/views/interface_assets/header.php:324
 msgid "DX Calendar"
-msgstr ""
+msgstr "DX-kalender"
 
 #: application/controllers/Eqsl.php:45
 #: application/views/dashboard/_options_menu.php:18
@@ -1759,49 +1762,49 @@ msgstr ""
 #: application/views/eqslcard/index.php:3 application/views/user/edit.php:855
 #: application/views/visitor/index.php:308
 msgid "eQSL Cards"
-msgstr ""
+msgstr "eQSL-kort"
 
 #: application/controllers/Eqsl.php:55 application/controllers/Qsl.php:51
 #, php-format
 msgid "Showing %d to %d of %d entries"
-msgstr ""
+msgstr "Viser %d til %d av %d oppføringer"
 
 #: application/controllers/Eqsl.php:81 application/controllers/Eqsl.php:176
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
+msgstr "eQSL-kallenavn i stasjonsprofiler er ikke definert!"
 
 #: application/controllers/Eqsl.php:104 application/controllers/Eqsl.php:195
 msgid "You have not defined your eQSL.cc credentials!"
-msgstr ""
+msgstr "Du har ikke angitt eQSL.cc-påloggingsinformasjonen din!"
 
 #: application/controllers/Eqsl.php:144
 msgid "eQSL Import"
-msgstr ""
+msgstr "eQSL-import"
 
 #: application/controllers/Eqsl.php:154
 msgid "eQSL Import Information"
-msgstr ""
+msgstr "Informasjon om eQSL-import"
 
 #: application/controllers/Eqsl.php:183
 msgid "eQSL QSO Upload"
-msgstr ""
+msgstr "Last opp eQSL-QSO"
 
 #: application/controllers/Eqsl.php:216
 msgid "User/Pass wrong for eQSL"
-msgstr ""
+msgstr "Feil brukernavn/passord for eQSL"
 
 #: application/controllers/Eqsl.php:220
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
+msgstr "Ingen eQSL QTH-kallenavn: %s"
 
 #: application/controllers/Eqsl.php:343
 msgid "QSO not found or not accessible"
-msgstr ""
+msgstr "QSO ikke funnet eller ikke tilgjengelig"
 
 #: application/controllers/Eqsl.php:361
 msgid "User not found"
-msgstr ""
+msgstr "Bruker ikke funnet"
 
 #: application/controllers/Eqsl.php:370
 msgid "eQSL password not configured for this user"
@@ -1809,11 +1812,11 @@ msgstr "eQSL-passordet er ikke konfigurert for denne brukeren"
 
 #: application/controllers/Eqsl.php:387
 msgid "Failed to fetch eQSL image data"
-msgstr ""
+msgstr "Kunne ikke hente bildedata fra eQSL"
 
 #: application/controllers/Eqsl.php:406
 msgid "eQSL image not available"
-msgstr ""
+msgstr "eQSL-bilde ikke tilgjengelig"
 
 #: application/controllers/Eqsl.php:424
 msgid "Failed to download eQSL image"
@@ -1825,77 +1828,78 @@ msgstr "Ikke nok ledig diskplass til å lagre eQSL-kortet"
 
 #: application/controllers/Eqsl.php:458
 msgid "Failed to load cached eQSL image"
-msgstr ""
+msgstr "Kunne ikke laste inn eQSL-bilde"
 
 #: application/controllers/Eqsl.php:541
 msgid "eQSL Tools"
-msgstr ""
+msgstr "eQSL-verktøy"
 
 #: application/controllers/Eqsl.php:570
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr ""
+"Begrenset til de første 150 QSO-ene for denne forespørselen. Kjør på nytt."
 
 #: application/controllers/Eqsl.php:576
 msgid " / Errors: "
-msgstr ""
+msgstr " / Feil: "
 
 #: application/controllers/Eqsl.php:576
 msgid "Successfully downloaded: "
-msgstr ""
+msgstr "Lastet ned: "
 
 #: application/controllers/Eqsl.php:583
 msgid "eQSL rate limit reached. Please wait before running again."
-msgstr ""
+msgstr "eQSL-grensen er nådd. Vent før du kjører på nytt."
 
 #: application/controllers/Eqsl.php:595
 msgid "eQSL Card Image Download"
-msgstr ""
+msgstr "Nedlasting av eQSL-bilder"
 
 #: application/controllers/Eqsl.php:618
 msgid "All eQSLs marked as uploaded"
-msgstr ""
+msgstr "Alle eQSL-er er merket som lastet opp"
 
 #: application/controllers/Errors.php:22
 #: application/views/errors/html/error_404.php:6
 msgid "Page Not Found"
-msgstr ""
+msgstr "Siden ble ikke funnet"
 
 #: application/controllers/Errors.php:23
 #: application/views/errors/html/error_404.php:7
 msgid "QRZ? ... no reply."
-msgstr ""
+msgstr "QRZ? ... ikke noe svar."
 
 #: application/controllers/Errors.php:24
 #: application/views/errors/html/error_404.php:8
 msgid "Nobody is transmitting on this frequency."
-msgstr ""
+msgstr "Ingen sender på denne frekvensen."
 
 #: application/controllers/Generic_qsl.php:17
 #: application/views/awards/amsat_rover/index.php:43
 msgid "Confirmations"
-msgstr ""
+msgstr "Bekreftelser"
 
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:166
 msgid "Gridsquare Map"
-msgstr ""
+msgstr "Gridsquare-kart"
 
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:535
 msgid "Total gridsquares worked"
-msgstr ""
+msgstr "Totalt antall kjørte ruter"
 
 #: application/controllers/Hamsat.php:58
 msgid "Hamsat - Satellite Roving"
-msgstr ""
+msgstr "Hamsat – satellittroving"
 
 #: application/controllers/Header_auth.php:26
 msgid "SSO Authentication is disabled."
-msgstr ""
+msgstr "SSO-autentisering er deaktivert."
 
 #: application/controllers/Header_auth.php:40
 msgid "SSO Authentication is disabled. Check your configuration."
-msgstr ""
+msgstr "SSO-autentisering er deaktivert. Sjekk konfigurasjonen din."
 
 #: application/controllers/Header_auth.php:92
 msgid "Sorry. This instance is currently in maintenance mode."
@@ -2029,47 +2033,47 @@ msgstr ""
 
 #: application/controllers/Labels.php:80 application/controllers/Labels.php:537
 msgid "Top Margin"
-msgstr ""
+msgstr "Toppmarg"
 
 #: application/controllers/Labels.php:81 application/controllers/Labels.php:538
 msgid "Left Margin"
-msgstr ""
+msgstr "Venstremarg"
 
 #: application/controllers/Labels.php:82 application/controllers/Labels.php:539
 msgid "QSLs Horizontally"
-msgstr ""
+msgstr "QSL-er horisontalt"
 
 #: application/controllers/Labels.php:83 application/controllers/Labels.php:540
 msgid "QSLs Vertically"
-msgstr ""
+msgstr "QSL-er vertikalt"
 
 #: application/controllers/Labels.php:84 application/controllers/Labels.php:541
 msgid "Horizontal Space"
-msgstr ""
+msgstr "Horisontal plass"
 
 #: application/controllers/Labels.php:85 application/controllers/Labels.php:542
 msgid "Vertical Space"
-msgstr ""
+msgstr "Vertikal plass"
 
 #: application/controllers/Labels.php:86 application/controllers/Labels.php:543
 msgid "Label width"
-msgstr ""
+msgstr "Etikettbredde"
 
 #: application/controllers/Labels.php:87 application/controllers/Labels.php:544
 msgid "Label height"
-msgstr ""
+msgstr "Etiketthøyde"
 
 #: application/controllers/Labels.php:88 application/controllers/Labels.php:545
 msgid "Size of Font"
-msgstr ""
+msgstr "Skriftstørrelse"
 
 #: application/controllers/Labels.php:89 application/controllers/Labels.php:546
 msgid "Number of QSOs on label"
-msgstr ""
+msgstr "Antall QSO-er på etiketten"
 
 #: application/controllers/Labels.php:114
 msgid "Create Paper Type"
-msgstr ""
+msgstr "Opprett papirtype"
 
 #: application/controllers/Labels.php:118
 #: application/controllers/Labels.php:599
