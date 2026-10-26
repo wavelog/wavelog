@@ -36,7 +36,7 @@ class Most_wanted_squares extends CI_Controller {
 		if ($home === false) { $this->session->set_flashdata('error', __("The gridsquare of the active station location is invalid.")); redirect('most_wanted_squares'); }
 
 		// Worked gridsquares of the active station location on the selected band (any QSO, incl. VUCC multi-grids, satellite excluded)
-		$this->load->model('dxatlas_model');
+		$this->load->is_loaded('dxatlas_model') ?: $this->load->model('dxatlas_model');
 
 		$worked = array();
 		foreach ($this->dxatlas_model->get_grids($station_id, $band, 'All', 'All', 'All', 'All', '', '', 'none', 'single') as $row) {
