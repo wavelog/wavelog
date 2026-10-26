@@ -303,6 +303,7 @@ class Lotw extends CI_Controller {
 
 				//Set the URL
 				curl_setopt($ch, CURLOPT_URL, $url);
+				curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 
 				//Set the HTTP request to POST
 				curl_setopt($ch, CURLOPT_POST, true);
@@ -738,6 +739,7 @@ class Lotw extends CI_Controller {
 
 				$ch = curl_init();
 					curl_setopt($ch, CURLOPT_URL, $lotw_url);
+					curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 					$content = curl_exec($ch);
@@ -813,6 +815,7 @@ class Lotw extends CI_Controller {
 				$entry = $queue[$queue_index];
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_URL, $entry['url']);
+				curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 				curl_multi_add_handle($mh, $ch);
@@ -870,6 +873,7 @@ class Lotw extends CI_Controller {
 						$entry = $queue[$queue_index];
 						$new_ch = curl_init();
 						curl_setopt($new_ch, CURLOPT_URL, $entry['url']);
+						curl_setopt($new_ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 						curl_setopt($new_ch, CURLOPT_RETURNTRANSFER, true);
 						curl_setopt($new_ch, CURLOPT_CONNECTTIMEOUT, 30);
 						curl_multi_add_handle($mh, $new_ch);
@@ -945,6 +949,7 @@ class Lotw extends CI_Controller {
 
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $lotw_url);
+			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 20);
@@ -1038,6 +1043,7 @@ class Lotw extends CI_Controller {
 
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $lotw_url);
+			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 			$content = curl_exec($ch);
@@ -1254,6 +1260,7 @@ class Lotw extends CI_Controller {
 		$url = 'https://lotw.arrl.org/lotw/crl?serial='.$serial;
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 		
