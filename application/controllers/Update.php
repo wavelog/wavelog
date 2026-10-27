@@ -569,6 +569,38 @@ class Update extends CI_Controller {
 
 	}
 
+	public function update_propagation() {
+		set_time_limit(0);
+		$this->load->library('Propagation_data');
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run('update_update_propagation');
+		try {
+			$count = $this->propagation_data->install();
+			return $this->output->set_content_type('text/plain')
+				->set_output('DONE: Propagation reference data verified; downloaded ' . $count . ' files.');
+		} catch (RuntimeException $error) {
+			log_message('error', 'Propagation reference update failed: ' . $error->getMessage());
+			return $this->output->set_status_header(503)->set_content_type('text/plain')
+				->set_output('FAILED: ' . $error->getMessage());
+		}
+	}
+
+	public function update_propagation_solar() {
+		set_time_limit(90);
+		$this->load->library('Propagation_solar');
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run('update_update_propagation_solar');
+		try {
+			$count = $this->propagation_solar->refresh();
+			return $this->output->set_content_type('text/plain')
+				->set_output('DONE: NOAA smoothed sunspot data updated; ' . $count . ' months.');
+		} catch (RuntimeException $error) {
+			log_message('error', 'Propagation solar update failed: ' . $error->getMessage());
+			return $this->output->set_status_header(503)->set_content_type('text/plain')
+				->set_output('FAILED: ' . $error->getMessage());
+		}
+	}
+
 	/*
      * Pulls the solarxml.php data from hamqsl
      */
