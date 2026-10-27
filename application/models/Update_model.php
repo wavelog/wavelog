@@ -622,6 +622,13 @@ class Update_model extends CI_Model {
 
         $url = 'https://lotw.arrl.org/lotw-user-activity.csv';
 
+        // Timestamp of the file we last imported completely. Only ask LoTW whether the file has changed
+        // since then if the table still holds that import
+        $last_modified = (int)($this->optionslib->get_option('lotw_users_last_modified') ?? 0);
+        if ($last_modified > 0 && $this->db->limit(1)->get('lotw_users')->num_rows() == 0) {
+            $last_modified = 0;
+        }
+
         $f = fopen('php://temp', 'w+');
         if ($f === FALSE) {
            return "Something went wrong creating the temporary LoTW users file";
@@ -631,10 +638,22 @@ class Update_model extends CI_Model {
         curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog LoTW Updater');
         curl_setopt($ch, CURLOPT_URL,$url);
         curl_setopt($ch, CURLOPT_FILE, $f);
+        curl_setopt($ch, CURLOPT_ENCODING, '');    // accept a compressed transfer; curl decompresses it
+        curl_setopt($ch, CURLOPT_FILETIME, true);
+        if ($last_modified > 0) {
+            curl_setopt($ch, CURLOPT_TIMECONDITION, CURL_TIMECOND_IFMODSINCE);
+            curl_setopt($ch, CURLOPT_TIMEVALUE, $last_modified);
+        }
         curl_exec($ch);
-        if (curl_getinfo($ch, CURLINFO_HTTP_CODE) != 200) {
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        if ($http_code == 304) {
+           fclose($f);
+           return "Records unchanged: LoTW users file not modified since " . gmdate('Y-m-d H:i', $last_modified) . " UTC. Update skipped.";
+        }
+        if ($http_code != 200) {
            return "Something went wrong with fetching the LoTW users file";
         }
+        $file_time = curl_getinfo($ch, CURLINFO_FILETIME);
         rewind($f);
         if (count(fgetcsv($f, 1000, ",", '"', '\\')) == 1) {
            fclose($f);
@@ -642,6 +661,8 @@ class Update_model extends CI_Model {
         }
 
         rewind($f);
+        // Forget the old timestamp until the new import has completed
+        $this->optionslib->update('lotw_users_last_modified', '0');
  		$this->db->query("TRUNCATE TABLE lotw_users");
         $i = 0;
         $data = fgetcsv($f, 1000, ",", '"', '\\');
@@ -661,6 +682,10 @@ class Update_model extends CI_Model {
 		if (isset($lotwdata) && count($lotwdata) > 0) {
         	$this->db->insert_batch('lotw_users', $lotwdata);
 		}
+
+        if ($file_time > 0) {
+            $this->optionslib->update('lotw_users_last_modified', (string)$file_time);
+        }
 
         $mtime = microtime();
         $mtime = explode(" ", $mtime);
