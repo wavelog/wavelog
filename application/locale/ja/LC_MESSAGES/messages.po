@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-26 21:57+0000\n"
-"PO-Revision-Date: 2026-10-24 18:17+0000\n"
+"PO-Revision-Date: 2026-10-27 06:41+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -2966,24 +2966,24 @@ msgstr "モード %s が 更新されました"
 #: application/controllers/Most_wanted_squares.php:22
 #: application/views/interface_assets/header.php:556
 msgid "Most Wanted Squares"
-msgstr ""
+msgstr "Most Wanted Squares"
 
 #: application/controllers/Most_wanted_squares.php:43
 msgid "Invalid band."
-msgstr ""
+msgstr "無効なバンドです。"
 
 #: application/controllers/Most_wanted_squares.php:48
 #: application/views/most_wanted_squares/index.php:8
 msgid "The active station location has no gridsquare set."
-msgstr ""
+msgstr "アクティブな無線局の位置にはグリッドスクエアが設定されていません。"
 
 #: application/controllers/Most_wanted_squares.php:53
 msgid "The gridsquare of the active station location is invalid."
-msgstr ""
+msgstr "稼働中の観測地点のグリッド座標が無効です。"
 
 #: application/controllers/Most_wanted_squares.php:90
 msgid "VUCC gridsquare data unavailable."
-msgstr ""
+msgstr "VUCCグリッドスクエアデータは利用できません。"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -20044,7 +20044,7 @@ msgstr "モードを作成する"
 #: application/views/most_wanted_squares/index.php:16
 msgid ""
 "Export a list of 4-digit gridsquares that have not been worked yet on VHF."
-msgstr ""
+msgstr "VHFでまだ作業されていない4桁のグリッドマス目のリストをエクスポートします。"
 
 #: application/views/most_wanted_squares/index.php:21
 #, php-format
@@ -20052,10 +20052,15 @@ msgid ""
 "The list contains all not worked gridsquares within %d km of the gridsquare "
 "%s of the active station location %s (%s)."
 msgstr ""
+"リストには、以下の範囲で作業されていないグリッドマスがすべて含まれています。 "
+"%d km グリッドスクエアの\n"
+"%s アクティブステーション位置の\n"
+"%s (\n"
+"%s )。"
 
 #: application/views/most_wanted_squares/index.php:34
 msgid "Exclude squares that contain no land"
-msgstr ""
+msgstr "土地を含まないマス目は除外する"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
