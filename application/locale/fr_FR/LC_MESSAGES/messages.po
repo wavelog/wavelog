@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-26 20:09+0000\n"
-"PO-Revision-Date: 2026-10-26 21:58+0000\n"
+"PO-Revision-Date: 2026-10-27 20:37+0000\n"
 "Last-Translator: Telectroboy <telectroboy@hotmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
@@ -2009,11 +2009,11 @@ msgstr "Le modèle JSON n'est pas valide"
 
 #: application/controllers/Labeldesigner.php:125
 msgid "Template has no elements"
-msgstr ""
+msgstr "Le modèle n'a pas d'élément"
 
 #: application/controllers/Labeldesigner.php:131
 msgid "Label type not found"
-msgstr ""
+msgstr "Type d'étiquette non trouvé"
 
 #: application/controllers/Labeldesigner.php:136
 #: application/controllers/Labels.php:225
@@ -2041,6 +2041,8 @@ msgid ""
 "The label type of this template no longer exists. Please select another one "
 "before exporting."
 msgstr ""
+"Le type d'étiquette de ce modèle n'existe plus. S.V.P. sélectionnez en un "
+"autre avant d'exporter."
 
 #: application/controllers/Labels.php:39 application/views/labels/index.php:31
 msgid "QSL Card Labels"
@@ -2862,10 +2864,12 @@ msgid ""
 "The uploaded file is invalid. Please upload a Logbook of the World .p12 "
 "certificate file."
 msgstr ""
+"Le fichier envoyé n'est pas valide. S.V.P. envoyez un fichier certificat "
+".p12 provenant de LoTW."
 
 #: application/controllers/Lotw.php:134
 msgid "The uploaded file could not be read."
-msgstr ""
+msgstr "Le fichier envoyé est illisible."
 
 #: application/controllers/Lotw.php:153
 msgid "Certificate Imported."
@@ -2887,6 +2891,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Le certificat contenu dans le fichier %s comporte un mot de passe et ne peut "
+"donc pas être traité. %s Veuillez vous assurer d'exporter le certificat LoTW "
+"depuis l'application TQSL sans mot de passe ! %s Pour plus d'informations, "
+"veuillez consulter la %s page de dépannage LoTW %s sur le wiki de Wavelog."
 
 #: application/controllers/Lotw.php:438 application/controllers/Lotw.php:439
 #, php-format
@@ -2896,6 +2904,11 @@ msgid ""
 "been processed by LoTW yet. For further information please visit the %sLoTW "
 "troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Erreur générique lors de l'extraction du certificat depuis le fichier %s. Si "
+"le nom du fichier contient « key-only », il s'agit généralement d'une "
+"demande de certificat qui n'a pas encore été traitée par LoTW. Pour plus "
+"d'informations, veuillez consulter la %s page de dépannage LoTW %s sur le "
+"wiki de Wavelog."
 
 #: application/controllers/Lotw.php:444 application/controllers/Lotw.php:445
 #, php-format
@@ -2903,6 +2916,9 @@ msgid ""
 "Generic error processing the certificate in file %s. For further information "
 "please visit the %sLoTW troubleshooting page%s in the Wavelog Wiki."
 msgstr ""
+"Erreur générique lors du traitement du certificat contenu dans le fichier "
+"%s. Pour plus d'informations, veuillez consulter la %s page de dépannage "
+"LoTW %s sur le wiki de Wavelog."
 
 #: application/controllers/Lotw.php:456 application/controllers/Lotw.php:457
 #, php-format
@@ -2970,29 +2986,29 @@ msgstr "Modifier le mode"
 #: application/controllers/Mode.php:76
 #, php-format
 msgid "Mode %s updated"
-msgstr ""
+msgstr "Mode %s mis à jour"
 
 #: application/controllers/Most_wanted_squares.php:22
 #: application/views/interface_assets/header.php:556
 msgid "Most Wanted Squares"
-msgstr ""
+msgstr "Carré Locator les plus demandés"
 
 #: application/controllers/Most_wanted_squares.php:43
 msgid "Invalid band."
-msgstr ""
+msgstr "Bande non valide."
 
 #: application/controllers/Most_wanted_squares.php:48
 #: application/views/most_wanted_squares/index.php:8
 msgid "The active station location has no gridsquare set."
-msgstr ""
+msgstr "La position de la station active n'a pas de carré locator réglé."
 
 #: application/controllers/Most_wanted_squares.php:53
 msgid "The gridsquare of the active station location is invalid."
-msgstr ""
+msgstr "Le carré locator de la station active n'est pas valide."
 
 #: application/controllers/Most_wanted_squares.php:90
 msgid "VUCC gridsquare data unavailable."
-msgstr ""
+msgstr "Données Carré locator VUCC non disponible."
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -3893,7 +3909,7 @@ msgstr "Station active"
 msgid "QSO"
 msgid_plural "QSOs"
 msgstr[0] "QSO"
-msgstr[1] "QSO"
+msgstr[1] "QSOs"
 
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:220
