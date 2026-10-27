@@ -39,10 +39,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-26 21:57+0000\n"
-"PO-Revision-Date: 2026-10-23 13:21+0000\n"
+"PO-Revision-Date: 2026-10-27 06:41+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2960,24 +2960,24 @@ msgstr "模式 %s 已更新"
 #: application/controllers/Most_wanted_squares.php:22
 #: application/views/interface_assets/header.php:556
 msgid "Most Wanted Squares"
-msgstr ""
+msgstr "最稀缺网格"
 
 #: application/controllers/Most_wanted_squares.php:43
 msgid "Invalid band."
-msgstr ""
+msgstr "无效频段。"
 
 #: application/controllers/Most_wanted_squares.php:48
 #: application/views/most_wanted_squares/index.php:8
 msgid "The active station location has no gridsquare set."
-msgstr ""
+msgstr "当前台站位置未设置网格。"
 
 #: application/controllers/Most_wanted_squares.php:53
 msgid "The gridsquare of the active station location is invalid."
-msgstr ""
+msgstr "当前台站位置的网格无效。"
 
 #: application/controllers/Most_wanted_squares.php:90
 msgid "VUCC gridsquare data unavailable."
-msgstr ""
+msgstr "VUCC 网格数据不可用。"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -7392,9 +7392,7 @@ msgstr "此 Wavelog 实例的 API v2 默认URL 是"
 msgid ""
 "On Clubstations the API Tokens are personal and not shared. Clubstation "
 "users can only see their own tokens."
-msgstr ""
-"在俱乐部台站中，API令牌是个人专属的，不会共享。俱乐部台站用户只能查看自己的令"
-"牌。"
+msgstr "在集体台站中，API令牌是个人专属的，不会共享。集体台站用户只能查看自己的令牌。"
 
 #: application/views/api/index.php:138
 msgid "Expires"
@@ -16840,7 +16838,7 @@ msgstr "频段边界"
 
 #: application/views/interface_assets/header.php:513
 msgid "Switch to Clubstation"
-msgstr ""
+msgstr "切换到集体台站"
 
 #: application/views/interface_assets/header.php:516
 msgid "Switch to Clubstation:"
@@ -18537,7 +18535,7 @@ msgstr "您确定要修复所有缺少 DXCC 信息的 QSO 吗？此操作无法�
 
 #: application/views/logbookadvanced/index.php:75
 msgid "Mark dupes (keep oldest)"
-msgstr ""
+msgstr "标记重复项（保留最早的）"
 
 #: application/views/logbookadvanced/index.php:85
 msgid "You need to select exactly 2 QSOs to merge!"
@@ -19187,12 +19185,12 @@ msgstr "上次上传"
 #: application/views/lookup/lotwuser.php:14
 #: application/views/search/result.php:84
 msgid "LoTW Status Unknown"
-msgstr ""
+msgstr "LoTW 状态未知"
 
 #: application/views/lookup/lotwuser.php:14
 #: application/views/search/result.php:84
 msgid "Table with last LoTW uploads is empty. Please check"
-msgstr ""
+msgstr "最近 LoTW 上传记录表为空。请检查"
 
 #: application/views/lookup/lotwuser.php:16
 msgid "No LoTW User"
@@ -19559,7 +19557,7 @@ msgstr "创建模式"
 #: application/views/most_wanted_squares/index.php:16
 msgid ""
 "Export a list of 4-digit gridsquares that have not been worked yet on VHF."
-msgstr ""
+msgstr "导出一份在 VHF 上尚未通联过的 4 位网格方格列表。"
 
 #: application/views/most_wanted_squares/index.php:21
 #, php-format
@@ -19567,10 +19565,12 @@ msgid ""
 "The list contains all not worked gridsquares within %d km of the gridsquare "
 "%s of the active station location %s (%s)."
 msgstr ""
+"列表包含当前台站所在网格 %d 公里范围内所有未通联过的网格；当前网格 %s，当前台"
+"站位置 %s（%s）。"
 
 #: application/views/most_wanted_squares/index.php:34
 msgid "Exclude squares that contain no land"
-msgstr ""
+msgstr "排除不包含陆地的网格"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
@@ -21099,7 +21099,7 @@ msgid ""
 "you. This allows you to have a default radio that is automatically selected "
 "when you log in, while still being able to use other radios if you want."
 msgstr ""
-"作为俱乐部台操作员，你可以为自己设置默认电台。登录时会自动选中该电台，同时也"
+"作为集体台站操作员，你可以为自己设置默认电台。登录时会自动选中该电台，同时也"
 "可按需使用其他电台。"
 
 #: application/views/radio/index.php:29
