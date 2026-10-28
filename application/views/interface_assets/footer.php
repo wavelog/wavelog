@@ -315,18 +315,6 @@ function stopImpersonate_modal() {
     <script src="<?php echo $this->paths->cache_buster('/assets/js/cronstrue.min.js'); ?>"async></script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "options") { ?>
-    <script>
-        $('#sendTestMailButton').click(function() {
-            $.ajax({
-                url: base_url + 'index.php/options/sendTestMail',
-                type: 'POST',
-            });
-        });
-
-    </script>
-<?php } ?>
-
 <?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "iota") ) { ?>
     <script id="iotamapjs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/iotamap.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
