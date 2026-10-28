@@ -676,7 +676,7 @@ class Lotw extends CI_Controller {
 					return $tableheaders.$table;
 				}
 			} else {
-				echo "Downloaded LoTW report contains no matches.";
+				echo __("Downloaded LoTW report contains no matches.");
 			}
 		}
 	}
@@ -723,187 +723,187 @@ class Lotw extends CI_Controller {
 					$station_ids=$this->Stations->all_station_ids_of_user($user->user_id);
 					if ($station_ids == '') { continue; }
 
-				if ($user->user_lotw_password == '') {
-					$result = "You have not defined your ARRL LoTW credentials!";
-					continue;
-				}
-
-				$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($user->user_id)));
-
-				// No QSOs in log, so there is nothing a download could match
-				if ($lotw_last_qsl_date == date('Y-m-d', strtotime($this->config->item('lotw_download_skip_date')))) {
-					$result = "No QSOs in log. LoTW download skipped.";
-					continue;
-				}
-
-				$lotw_url = $lotw_base_url."?";
-				$lotw_url .= "login=" . urlencode($user->user_lotw_name);
-				$lotw_url .= "&password=" . urlencode($user->user_lotw_password);
-				$lotw_url .= "&qso_query=1&qso_qsl='yes'&qso_qsldetail='yes'&qso_mydetail='yes'";
-				$lotw_url .= "&qso_qslsince=";
-				$lotw_url .= "$lotw_last_qsl_date";
-
-				$ch = curl_init();
-					curl_setopt($ch, CURLOPT_URL, $lotw_url);
-					curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-					curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-					$content = curl_exec($ch);
-					$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-					if(curl_errno($ch)) {
-						$result = "LoTW download failed for user ".$user->user_lotw_name.": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
-						continue;
-					} else if ($http_code !== 200) {
-						$result = "LoTW download failed for user ".$user->user_lotw_name.": unexpected HTTP status ".$http_code.".";
-						log_message('error', 'LoTW download failed for user '.$user->user_name.': unexpected HTTP status '.$http_code);
-						continue;
-					} else if(str_contains(substr($content,0 , 6000),"Username/password incorrect</I>")) {
-						$result = "LoTW download failed for user ".$user->user_lotw_name.": Username/password incorrect";
-						log_message('error', 'LoTW download failed for user '.$user->user_name.': Username/password incorrect');
-						if ($this->Lotw_model->remove_lotw_credentials($user->user_id)) {
-							log_message('error', 'LoTW credentials deleted for user '.$user->user_name);
-						} else {
-							log_message('error', 'Deleting LoTW credentials for user '.$user->user_name.' failed');
-						}
-						continue;
-					} else if (str_contains(substr($content, 0, 6000),"Page Request Limit!</B>")) {
-						$result = "LoTW download hit a rate limit for user ".$user->user_lotw_name;
-						log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
+					if ($user->user_lotw_password == '') {
+						$result = __("You have not defined your ARRL LoTW credentials!");
 						continue;
 					}
-				if (substr($content, 0, 39) != "ARRL Logbook of the World Status Report") {
-					$result = "Downloaded LoTW report for user ".$user->user_lotw_name." is invalid. Check your credentials.";
-					log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_name);
-					continue;
-				}
 
-				$result = $this->loadFromString($content, $station_ids, false);
-			}
-			return $result;
-			} else {
+					$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($user->user_id)));
 
-			// Multi-user mode (sync_user_id == null): parallel download via curl_multi only triggered by cron - so message-return is omitted
-			// Pass 1: collect eligible users and prepare download queue
-			$max_parallel = 5;
-			$queue = array();
+					// No QSOs in log, so there is nothing a download could match
+					if ($lotw_last_qsl_date == date('Y-m-d', strtotime($this->config->item('lotw_download_skip_date')))) {
+						$result = __("No QSOs in log. LoTW download skipped.");
+						continue;
+					}
 
-			foreach ($query->result() as $user) {
-				$station_ids = $this->Stations->all_station_ids_of_user($user->user_id);
-				if ($station_ids == '') { continue; }
+					$lotw_url = $lotw_base_url."?";
+					$lotw_url .= "login=" . urlencode($user->user_lotw_name);
+					$lotw_url .= "&password=" . urlencode($user->user_lotw_password);
+					$lotw_url .= "&qso_query=1&qso_qsl='yes'&qso_qsldetail='yes'&qso_mydetail='yes'";
+					$lotw_url .= "&qso_qslsince=";
+					$lotw_url .= "$lotw_last_qsl_date";
 
-			if ($user->user_lotw_password == '') {
-				continue;
-			}
-
-			$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($user->user_id)));
-
-			// No QSOs in log, so there is nothing a download could match
-			if ($lotw_last_qsl_date == date('Y-m-d', strtotime($this->config->item('lotw_download_skip_date')))) {
-				continue;
-			}
-
-			$lotw_url = $lotw_base_url."?";
-			$lotw_url .= "login=" . urlencode($user->user_lotw_name);
-			$lotw_url .= "&password=" . urlencode($user->user_lotw_password);
-			$lotw_url .= "&qso_query=1&qso_qsl='yes'&qso_qsldetail='yes'&qso_mydetail='yes'";
-			$lotw_url .= "&qso_qslsince=";
-			$lotw_url .= "$lotw_last_qsl_date";
-
-			$queue[] = array(
-				'url'         => $lotw_url,
-				'user'        => $user,
-				'station_ids' => $station_ids,
-			);
-			}
-
-			// Download in batches of $max_parallel, process completed ones before next batch
-			$mh = curl_multi_init();
-			$active_handles = array(); // maps curl resource id => queue entry + handle
-			$queue_index = 0;
-
-			// Seed initial batch
-			while ($queue_index < count($queue) && count($active_handles) < $max_parallel) {
-				$entry = $queue[$queue_index];
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $entry['url']);
-				curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-				curl_multi_add_handle($mh, $ch);
-				$active_handles[(int)$ch] = array_merge($entry, array('ch' => $ch));
-				log_message('debug', 'LoTW parallel download started for UID '.$entry['user']->user_id.' ('.$entry['user']->user_lotw_name.')');
-				$queue_index++;
-			}
-
-			// Process downloads as they complete, refill slots from queue
-			while (count($active_handles) > 0) {
-				curl_multi_exec($mh, $running);
-
-				// Check for completed handles
-				while ($info = curl_multi_info_read($mh)) {
-					$ch = $info['handle'];
-					$dl = $active_handles[(int)$ch];
-					unset($active_handles[(int)$ch]);
-
-				$user        = $dl['user'];
-				$station_ids = $dl['station_ids'];
-
-					$errno = curl_errno($ch);
-					log_message('debug', 'LoTW parallel download finished for UID '.$user->user_id.' ('.$user->user_lotw_name.')'.($errno ? ' with error: '.curl_strerror($errno) : ''));
-					if ($errno) {
-						log_message('error', 'LoTW download failed for user '.$user->user_name.': '.curl_strerror($errno));
-						curl_multi_remove_handle($mh, $ch);
-					} else {
+					$ch = curl_init();
+						curl_setopt($ch, CURLOPT_URL, $lotw_url);
+						curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+						$content = curl_exec($ch);
 						$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-						$content = curl_multi_getcontent($ch);
-						curl_multi_remove_handle($mh, $ch);
-
-						if ($http_code !== 200) {
-							log_message('error', 'LoTW download failed for user '.$user->user_name.': unexpected HTTP status '.$http_code);
-						} else if (str_contains(substr($content, 0, 6000), "Username/password incorrect</I>")) {
+						if(curl_errno($ch)) {
+							$result = sprintf(__("LoTW download failed for user %s: %s (%s)."), $user->user_lotw_name, curl_strerror(curl_errno($ch)), curl_errno($ch));
+							continue;
+						} else if ($http_code !== 200) {
+							$result = sprintf(__("LoTW download failed for user %s: unexpected HTTP status %s."), $user->user_lotw_name, $http_code);
+							log_message('error', 'LoTW download failed for user '.$user->user_lotw_name.': unexpected HTTP status '.$http_code);
+							continue;
+						} else if(str_contains(substr($content,0 , 6000),"Username/password incorrect</I>")) {
+							$result = sprintf(__("LoTW download failed for user %s: Username/password incorrect"), $user->user_lotw_name);
 							log_message('error', 'LoTW download failed for user '.$user->user_name.': Username/password incorrect');
 							if ($this->Lotw_model->remove_lotw_credentials($user->user_id)) {
 								log_message('error', 'LoTW credentials deleted for user '.$user->user_name);
 							} else {
 								log_message('error', 'Deleting LoTW credentials for user '.$user->user_name.' failed');
 							}
-						} else if (str_contains(substr($content, 0, 6000), "Page Request Limit!</B>")) {
-							log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
-						} else {
-						if (substr($content, 0, 39) != "ARRL Logbook of the World Status Report") {
-							log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_name);
-						} else {
-							log_message('debug', 'LoTW parallel download passing to loadFromString for UID '.$user->user_id.' ('.$user->user_lotw_name.')');
-							$this->loadFromString($content, $station_ids, false);
+							continue;
+						} else if (str_contains(substr($content, 0, 6000),"Page Request Limit!</B>")) {
+							$result = sprintf(__("LoTW download hit a rate limit for user %s"), $user->user_lotw_name);
+							log_message('error', 'LoTW download hit a rate limit for user '.$user->user_lotw_name);
+							continue;
 						}
+					if (substr($content, 0, 39) != "ARRL Logbook of the World Status Report") {
+						$result = sprintf(__("Downloaded LoTW report for user %s is invalid. Check your credentials."), $user->user_lotw_name);
+						log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_lotw_name);
+						continue;
+					}
+
+					$result = $this->loadFromString($content, $station_ids, false);
+				}
+				return $result;
+			} else {
+
+				// Multi-user mode (sync_user_id == null): parallel download via curl_multi only triggered by cron - so message-return is omitted
+				// Pass 1: collect eligible users and prepare download queue
+				$max_parallel = 5;
+				$queue = array();
+
+				foreach ($query->result() as $user) {
+					$station_ids = $this->Stations->all_station_ids_of_user($user->user_id);
+					if ($station_ids == '') { continue; }
+
+					if ($user->user_lotw_password == '') {
+						continue;
+					}
+
+					$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($user->user_id)));
+
+					// No QSOs in log, so there is nothing a download could match
+					if ($lotw_last_qsl_date == date('Y-m-d', strtotime($this->config->item('lotw_download_skip_date')))) {
+						continue;
+					}
+
+					$lotw_url = $lotw_base_url."?";
+					$lotw_url .= "login=" . urlencode($user->user_lotw_name);
+					$lotw_url .= "&password=" . urlencode($user->user_lotw_password);
+					$lotw_url .= "&qso_query=1&qso_qsl='yes'&qso_qsldetail='yes'&qso_mydetail='yes'";
+					$lotw_url .= "&qso_qslsince=";
+					$lotw_url .= "$lotw_last_qsl_date";
+
+					$queue[] = array(
+						'url'         => $lotw_url,
+						'user'        => $user,
+						'station_ids' => $station_ids,
+					);
+				}
+
+				// Download in batches of $max_parallel, process completed ones before next batch
+				$mh = curl_multi_init();
+				$active_handles = array(); // maps curl resource id => queue entry + handle
+				$queue_index = 0;
+
+				// Seed initial batch
+				while ($queue_index < count($queue) && count($active_handles) < $max_parallel) {
+					$entry = $queue[$queue_index];
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_URL, $entry['url']);
+					curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+					curl_multi_add_handle($mh, $ch);
+					$active_handles[(int)$ch] = array_merge($entry, array('ch' => $ch));
+					log_message('debug', 'LoTW parallel download started for UID '.$entry['user']->user_id.' ('.$entry['user']->user_lotw_name.')');
+					$queue_index++;
+				}
+
+				// Process downloads as they complete, refill slots from queue
+				while (count($active_handles) > 0) {
+					curl_multi_exec($mh, $running);
+
+					// Check for completed handles
+					while ($info = curl_multi_info_read($mh)) {
+						$ch = $info['handle'];
+						$dl = $active_handles[(int)$ch];
+						unset($active_handles[(int)$ch]);
+
+					$user        = $dl['user'];
+					$station_ids = $dl['station_ids'];
+
+						$errno = curl_errno($ch);
+						log_message('debug', 'LoTW parallel download finished for UID '.$user->user_id.' ('.$user->user_lotw_name.')'.($errno ? ' with error: '.curl_strerror($errno) : ''));
+						if ($errno) {
+							log_message('error', 'LoTW download failed for user '.$user->user_name.': '.curl_strerror($errno));
+							curl_multi_remove_handle($mh, $ch);
+						} else {
+							$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+							$content = curl_multi_getcontent($ch);
+							curl_multi_remove_handle($mh, $ch);
+
+							if ($http_code !== 200) {
+								log_message('error', 'LoTW download failed for user '.$user->user_name.': unexpected HTTP status '.$http_code);
+							} else if (str_contains(substr($content, 0, 6000), "Username/password incorrect</I>")) {
+								log_message('error', 'LoTW download failed for user '.$user->user_name.': Username/password incorrect');
+								if ($this->Lotw_model->remove_lotw_credentials($user->user_id)) {
+									log_message('error', 'LoTW credentials deleted for user '.$user->user_name);
+								} else {
+									log_message('error', 'Deleting LoTW credentials for user '.$user->user_name.' failed');
+								}
+							} else if (str_contains(substr($content, 0, 6000), "Page Request Limit!</B>")) {
+								log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
+							} else {
+							if (substr($content, 0, 39) != "ARRL Logbook of the World Status Report") {
+								log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_name);
+							} else {
+								log_message('debug', 'LoTW parallel download passing to loadFromString for UID '.$user->user_id.' ('.$user->user_lotw_name.')');
+								$this->loadFromString($content, $station_ids, false);
+							}
+							}
+						}
+
+						// Refill slot from queue
+						if ($queue_index < count($queue)) {
+							$entry = $queue[$queue_index];
+							$new_ch = curl_init();
+							curl_setopt($new_ch, CURLOPT_URL, $entry['url']);
+							curl_setopt($new_ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
+							curl_setopt($new_ch, CURLOPT_RETURNTRANSFER, true);
+							curl_setopt($new_ch, CURLOPT_CONNECTTIMEOUT, 30);
+							curl_multi_add_handle($mh, $new_ch);
+							$active_handles[(int)$new_ch] = array_merge($entry, array('ch' => $new_ch));
+							log_message('debug', 'LoTW parallel download started for UID '.$entry['user']->user_id.' ('.$entry['user']->user_lotw_name.')');
+							$queue_index++;
 						}
 					}
 
-					// Refill slot from queue
-					if ($queue_index < count($queue)) {
-						$entry = $queue[$queue_index];
-						$new_ch = curl_init();
-						curl_setopt($new_ch, CURLOPT_URL, $entry['url']);
-						curl_setopt($new_ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
-						curl_setopt($new_ch, CURLOPT_RETURNTRANSFER, true);
-						curl_setopt($new_ch, CURLOPT_CONNECTTIMEOUT, 30);
-						curl_multi_add_handle($mh, $new_ch);
-						$active_handles[(int)$new_ch] = array_merge($entry, array('ch' => $new_ch));
-						log_message('debug', 'LoTW parallel download started for UID '.$entry['user']->user_id.' ('.$entry['user']->user_lotw_name.')');
-						$queue_index++;
+					if (count($active_handles) > 0) {
+						curl_multi_select($mh, 1.0);
 					}
 				}
 
-				if (count($active_handles) > 0) {
-					curl_multi_select($mh, 1.0);
-				}
-			}
-
-			curl_multi_close($mh);
-			return $result;
+				curl_multi_close($mh);
+				return $result;
 			} // end else (multi-user parallel mode)
 		} else {
-			return "No LoTW User details found to carry out matches.";
+			return __("No LoTW User details found to carry out matches.");
 		}
 	}
 
