@@ -337,6 +337,7 @@ class User extends CI_Controller {
 				$this->input->post('user_dxwaterfall_enable') ?? 'N',
 				$this->input->post('user_qso_show_map') ?? 1,
 				$this->input->post('last_lotw_upload_widget_enabled'),
+				$this->input->post('clublog_oqrs_sync') ?? '0',
 				$this->input->post('user_callbook_prefill', true) ?? 'default',
 				$this->input->post('clubstation') == '1' ? true : false)
 			) {
