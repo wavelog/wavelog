@@ -303,6 +303,7 @@ class Lotw extends CI_Controller {
 
 				//Set the URL
 				curl_setopt($ch, CURLOPT_URL, $url);
+				curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 
 				//Set the HTTP request to POST
 				curl_setopt($ch, CURLOPT_POST, true);
@@ -729,6 +730,12 @@ class Lotw extends CI_Controller {
 
 				$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($user->user_id)));
 
+				// No QSOs in log, so there is nothing a download could match
+				if ($lotw_last_qsl_date == date('Y-m-d', strtotime($this->config->item('lotw_download_skip_date')))) {
+					$result = "No QSOs in log. LoTW download skipped.";
+					continue;
+				}
+
 				$lotw_url = $lotw_base_url."?";
 				$lotw_url .= "login=" . urlencode($user->user_lotw_name);
 				$lotw_url .= "&password=" . urlencode($user->user_lotw_password);
@@ -738,6 +745,7 @@ class Lotw extends CI_Controller {
 
 				$ch = curl_init();
 					curl_setopt($ch, CURLOPT_URL, $lotw_url);
+					curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 					$content = curl_exec($ch);
@@ -789,6 +797,11 @@ class Lotw extends CI_Controller {
 
 			$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($user->user_id)));
 
+			// No QSOs in log, so there is nothing a download could match
+			if ($lotw_last_qsl_date == date('Y-m-d', strtotime($this->config->item('lotw_download_skip_date')))) {
+				continue;
+			}
+
 			$lotw_url = $lotw_base_url."?";
 			$lotw_url .= "login=" . urlencode($user->user_lotw_name);
 			$lotw_url .= "&password=" . urlencode($user->user_lotw_password);
@@ -813,6 +826,7 @@ class Lotw extends CI_Controller {
 				$entry = $queue[$queue_index];
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_URL, $entry['url']);
+				curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 				curl_multi_add_handle($mh, $ch);
@@ -870,6 +884,7 @@ class Lotw extends CI_Controller {
 						$entry = $queue[$queue_index];
 						$new_ch = curl_init();
 						curl_setopt($new_ch, CURLOPT_URL, $entry['url']);
+						curl_setopt($new_ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 						curl_setopt($new_ch, CURLOPT_RETURNTRANSFER, true);
 						curl_setopt($new_ch, CURLOPT_CONNECTTIMEOUT, 30);
 						curl_multi_add_handle($mh, $new_ch);
@@ -945,6 +960,7 @@ class Lotw extends CI_Controller {
 
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $lotw_url);
+			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 20);
@@ -1038,6 +1054,7 @@ class Lotw extends CI_Controller {
 
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $lotw_url);
+			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 			$content = curl_exec($ch);
@@ -1254,6 +1271,7 @@ class Lotw extends CI_Controller {
 		$url = 'https://lotw.arrl.org/lotw/crl?serial='.$serial;
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 		

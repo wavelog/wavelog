@@ -139,6 +139,17 @@
 						</button>
 					</div>
 				</div>
+				<div class="col-md-6 col-xl-4 d-flex">
+					<div class="border rounded p-2 w-100 d-flex justify-content-between align-items-center gap-2">
+						<div>
+							<h6 class="mb-1"><?= __("WAB from Gridsquare") ?></h6>
+							<p class="mb-0 small text-muted"><?= __("Batch assign WAB squares from logged gridsquares") ?></p>
+						</div>
+						<a href="<?php echo site_url('wabtool'); ?>" class="btn btn-sm btn-success flex-shrink-0">
+							<i class="fas fa-wrench"></i> <?= __("Open") ?>
+						</a>
+					</div>
+				</div>
 			</div>
 
 			<div class="result"></div>

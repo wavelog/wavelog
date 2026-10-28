@@ -55,16 +55,70 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
+	 * Load the worker library on demand
+	 *
+	 * @return bool True if the worker is configured and enabled
+	 */
+	private function worker_enabled() {
+		$this->load->is_loaded('worker') ?: $this->load->library('worker');
+		return $this->worker->is_enabled();
+	}
+
+	/**
 	 * Worker-ready: notify about new qsos for a user
+	 *
+	 * @param int $user_id User (or clubstation) whose QSO topic is notified, 0 is a no-op
+	 * @return void
 	 */
 	private function notify_qso_change($user_id) {
-		if (!$user_id) {
-			return;
-		}
-		$this->load->is_loaded('worker') ?: $this->load->library('worker');
-		if ($this->worker->is_enabled()) {
+		if ($user_id && $this->worker_enabled()) {
 			$this->worker->publish('qso.' . $user_id, ['type' => 'qso_changed']);
 		}
+	}
+
+	/**
+	 * Worker-ready: resolve the contest session a QSO belongs to
+	 *
+	 * Skips the lookup when the worker is disabled, nobody could be notified then.
+	 *
+	 * @param int $qso_id QSO primary key (COL_PRIMARY_KEY)
+	 * @return int Contest session id, 0 if the QSO is not in a session or the worker is off
+	 */
+	private function contest_session_for_notify($qso_id) {
+		if (!$this->worker_enabled()) {
+			return 0;
+		}
+		$this->load->model('contesting_model');
+		return (int) $this->contesting_model->get_linked_contest($qso_id);
+	}
+
+	/**
+	 * Worker-ready: tell an open contest logger to sync after a change outside of it
+	 *
+	 * @param int $contest_session_id From contest_session_for_notify(), 0 is a no-op
+	 * @return void
+	 */
+	private function notify_contest_change($contest_session_id) {
+		if ($contest_session_id && $this->worker_enabled()) {
+			$this->worker->publish('contest_session.' . $contest_session_id, ['type' => 'sync_required']);
+		}
+	}
+
+	/**
+	 * Normalize a DXCC (ADIF) entity id
+	 *
+	 * COL_DXCC must be a plain digit string. ADIF ingests can deliver values
+	 * with a leading space (e.g. "<DXCC:4> 230" yields " 230"), which breaks
+	 * string comparisons and entity lookups. Trims surrounding whitespace and
+	 * only returns the value if it is purely numeric.
+	 *
+	 * @param string|int|null $dxcc Raw DXCC id from any source (ADIF record, POST, LoTW)
+	 *
+	 * @return string|null Trimmed id if it consists of digits only, NULL otherwise
+	 */
+	private function normalize_dxcc($dxcc) {
+		$dxcc = trim((string)$dxcc);
+		return ($dxcc !== '' && ctype_digit($dxcc)) ? $dxcc : NULL;
 	}
 
 	/**
@@ -188,6 +242,9 @@ class Logbook_model extends CI_Model {
 			$radio_name = '';
 		}
 
+		// Sanitize user-supplied DXCC id (leading spaces / non-numeric input); NULL triggers the lookup below
+		$qso_data['dxcc_id'] = $this->normalize_dxcc($qso_data['dxcc_id'] ?? NULL);
+
 		// Cache DXCC lookup to avoid calling check_dxcc_table() 4 times if atleast one of these fields is empty
 		$dxcc = NULL;
 		$needs_dxcc_lookup 	= 	empty($qso_data['country']) ||
@@ -284,7 +341,8 @@ class Logbook_model extends CI_Model {
 		}
 
 		$qsl_sent = $qso_data['qsl_sent'] ?? 'N';
-		$qsl_rcvd = $qso_data['qsl_rcvd'] ?? 'N';
+		// 'V' is a deprecated import-only QSL Rcvd value (ADIF 3.1.6) — never store it
+		$qsl_rcvd = strtoupper($t = $qso_data['qsl_rcvd'] ?? 'N') === 'V' ? 'Y' : $t;
 		$qslsdate = $qsl_sent == 'N' ? NULL : date('Y-m-d H:i:s');
 		$qslrdate = $qsl_rcvd == 'N' ? NULL : date('Y-m-d H:i:s');
 
@@ -357,7 +415,7 @@ class Logbook_model extends CI_Model {
 			'COL_SIG' => strtoupper(trim($qso_data['sig'] ?? '')) ?? NULL,
 			'COL_SIG_INFO' => strtoupper(trim($qso_data['sig_info'] ?? '')) ?? NULL,
 			'COL_DARC_DOK' => strtoupper(trim($darc_dok ?? '')) ?? NULL,
-			'COL_NOTES' => strtoupper(trim($qso_data['notes'] ?? '')) ?? NULL,
+			'COL_NOTES' => trim($qso_data['notes'] ?? '') ?: NULL,
 			'COL_EMAIL' => $email ?? NULL,
 			'COL_REGION' => $region ?? NULL,
 		);
@@ -511,6 +569,13 @@ class Logbook_model extends CI_Model {
 		];
 	}
 
+	public $lotw_table_empty = false;	// set by check_last_lotw() when the lotw_users table is empty
+
+	/*
+	 * Returns the number of days since last LoTW upload
+	 * input: callsign
+	 * output: number of days or null if callsign is not a LoTW user
+	 */
 	public function check_last_lotw($call) {	// Fetch difference in days when $call has last updated LotW
 
 		$sql = "select datediff(now(),lastupload) as DAYS from lotw_users where callsign = ?";	// Use binding to prevent SQL-injection
@@ -519,6 +584,9 @@ class Logbook_model extends CI_Model {
 		if (isset($row)) {
 			return ($row->DAYS);
 		}
+		// No row for this call: distinguish "table empty" from "not a LoTW user"
+		$sql = "SELECT EXISTS (SELECT 1 FROM lotw_users) AS tbl_count;";
+		$this->lotw_table_empty = ($this->db->query($sql)->row()->tbl_count == 0);
 	}
 
 	public function check_station($id) {
@@ -574,6 +642,8 @@ class Logbook_model extends CI_Model {
 				} elseif ($propagation != '' && $propagation != null) {
 					$sql .= ' AND `COL_PROP_MODE` = ?';
 					$binding[] = $propagation;
+				} elseif (strtoupper($band) == 'ALL') {
+					$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
 				}
 				break;
 			case 'IOTA':
@@ -617,10 +687,16 @@ class Logbook_model extends CI_Model {
 			case 'CQZone':
 				$sql .= ' WHERE `COL_CQZ` = ?';
 				$binding[] = $searchphrase;
+				if (strtoupper($band) == 'ALL') {
+					$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
+				}
 				break;
 			case 'ITUZone':
 				$sql .= ' WHERE `COL_ITUZ` = ?';
 				$binding[] = $searchphrase;
+				if (strtoupper($band) == 'ALL') {
+					$sql .= ' AND (`COL_PROP_MODE` != "SAT" OR `COL_PROP_MODE` IS NULL)';
+				}
 				break;
 			case 'WAS':
 				$sql .= ' WHERE `COL_STATE` = ?';
@@ -653,7 +729,7 @@ class Logbook_model extends CI_Model {
 				$sql .= ' AND (COL_PROP_MODE != "SAT" OR COL_PROP_MODE IS NULL)';
 
 				// Only count allowed bands for Polska Award
-				$bands = array('160M','80M','40M','30M','20M','17M','15M','12M','10M','6M','2M');
+				$bands = array('160m','80m','40m','30m','20m','17m','15m','12m','10m','6m','2m');
 				$sql .= ' AND `COL_BAND` IN ('.implode(',', array_fill(0, count($bands), '?')).')';
 				$binding = array_merge($binding, $bands);
 
@@ -696,9 +772,12 @@ class Logbook_model extends CI_Model {
 				$sql .= ' AND `COL_DXCC` = 339';
 				break;
 			case 'JCG':
-				// Unlike JCC, JCG (gun/county) numbers have no "ward of a
-				// designated city" variant, so COL_CNTY is matched directly.
-				$sql .= ' WHERE `COL_CNTY` = ? AND `COL_DXCC` = 339';
+				// Ogasawara-Shicho also includes DXCC 177/192 regardless of CNTY.
+				if ($searchphrase == '10007') {
+					$sql .= ' WHERE ((`COL_CNTY` = ? AND `COL_DXCC` = 339) OR `COL_DXCC` IN (177, 192))';
+				} else {
+					$sql .= ' WHERE `COL_CNTY` = ? AND `COL_DXCC` = 339';
+				}
 				$binding[] = $searchphrase;
 				break;
 			case 'SOTA':
@@ -743,7 +822,7 @@ class Logbook_model extends CI_Model {
 				$sql .= ' AND (COL_PROP_MODE != "SAT" OR COL_PROP_MODE IS NULL)';
 
 				// Only count allowed bands for Italian Award
-				$bands = array('160M','80M','40M','30M','20M','17M','15M','12M','10M','6M','2M');
+				$bands = array('160m','80m','40m','30m','20m','17m','15m','12m','10m','6m','2m');
 				$sql .= ' AND `COL_BAND` IN ('.implode(',', array_fill(0, count($bands), '?')).')';
 				$binding = array_merge($binding, $bands);
 
@@ -975,7 +1054,7 @@ class Logbook_model extends CI_Model {
 				$qso = null;
 				$needs_qso_lookup = (
 					$creds && (
-					(isset($creds->ucp) && isset($creds->ucn) && $creds->clublogrealtime == 1) ||
+					(isset($creds->ucp) && isset($creds->ucn) && $creds->clublogignore != 1 && $creds->clublogrealtime == 1) ||
 					(isset($creds->hrdlog_code) && isset($creds->hrdlog_username) && $creds->hrdlogrealtime == 1) ||
 					(isset($creds->qrzapikey) && $creds->qrzrealtime == 1) ||
 					(isset($creds->webadifapikey) && $creds->webadifrealtime == 1)
@@ -986,8 +1065,8 @@ class Logbook_model extends CI_Model {
 					$qso = $this->get_qso($last_id, true)->result();
 				}
 
-				// ClubLog export
-				if ($creds && isset($creds->ucp) && isset($creds->ucn) && (($creds->ucp ?? '') != '') && (($creds->ucn ?? '') != '') && ($creds->clublogrealtime == 1)) {
+			// ClubLog export
+			if ($creds && isset($creds->ucp) && isset($creds->ucn) && (($creds->ucp ?? '') != '') && (($creds->ucn ?? '') != '') && ($creds->clublogignore != 1) && ($creds->clublogrealtime == 1)) {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
@@ -1040,26 +1119,30 @@ class Logbook_model extends CI_Model {
 					}
 				}
 
-				// WebADIF export
-				if ($creds && isset($creds->webadifapikey) && $creds->webadifrealtime == 1) {
-					if (!$this->load->is_loaded('AdifHelper')) {
-						$this->load->library('AdifHelper');
-					}
-
-					$adif = $this->adifhelper->getAdifLine($qso[0]);
-					$result = $this->push_qso_to_webadif(
-						$creds->webadifapiurl,
-						$creds->webadifapikey,
-						$adif
-					);
-
-					if (($result['status'] ?? '') == 'OK') {
-						$this->mark_webadif_qsos_sent([$last_id]);
-					} else {
-						$this->mark_webadif_qsos_failed([$last_id], $result['message'] ?? 'unknown error');
-						$export_errors[] = ['provider' => 'QO-100 Dx Club', 'message' => $this->sanitize_export_error($result['message'] ?? $result['status'])];
-					}
+			// WebADIF export
+			if ($creds && isset($creds->webadifapikey) && $creds->webadifrealtime == 1
+				&& ($data['COL_PROP_MODE'] ?? '') == 'SAT'
+				&& ($data['COL_SAT_NAME'] ?? '') == 'QO-100') {
+				if (!$this->load->is_loaded('AdifHelper')) {
+					$this->load->library('AdifHelper');
 				}
+
+				$adif = $this->adifhelper->getAdifLine($qso[0]);
+				$result = $this->push_qso_to_webadif(
+					$creds->webadifapiurl,
+					$creds->webadifapikey,
+					$adif
+				);
+
+				if (($result['status'] ?? '') == 'OK') {
+					$this->mark_webadif_qsos_sent([$last_id]);
+				} else {
+					if (($result['status'] ?? '') == 'error') {
+						$this->mark_webadif_qsos_failed([$last_id], $result['message'] ?? 'unknown error');
+					}
+					$export_errors[] = ['provider' => 'QO-100 Dx Club', 'message' => $this->sanitize_export_error($result['message'] ?? $result['status'])];
+				}
+			}
 
 				$this->last_export_errors = $export_errors;
 			}
@@ -1142,7 +1225,7 @@ class Logbook_model extends CI_Model {
 					prof.hrdlog_username, prof.hrdlog_code, prof.hrdlogrealtime,
 					prof.qrzapikey, prof.qrzrealtime,
 					prof.webadifapikey, prof.webadifapiurl, prof.webadifrealtime,
-					prof.clublogrealtime,
+					prof.clublogrealtime, prof.clublogignore,
 					auth.user_clublog_name as ucn, auth.user_clublog_password as ucp
 				FROM station_profile prof
 				INNER JOIN ' . $this->config->item('auth_table') . ' auth ON (auth.user_id = prof.user_id)
@@ -1266,7 +1349,11 @@ class Logbook_model extends CI_Model {
 	 * @param string $adif   Line with the QSO in the ADIF format, ending with <EOR>.
 	 *
 	 * @return array ['status' => 'OK'] on success (HTTP 200),
-	 *               ['status' => 'error', 'message' => sanitized reason] otherwise.
+	 *               ['status' => 'temp_error', 'message' => sanitized reason] for temporary
+	 *               failures (connection error, timeout, HTTP 408, 429 or 5xx) — the QSO is
+	 *               not marked and will be retried on the next upload,
+	 *               ['status' => 'error', 'message' => sanitized reason] for real rejections
+	 *               (any other non-200 response) — the QSO is marked as rejected.
 	 */
 	function push_qso_to_webadif($url, $apikey, $adif): array {
 
@@ -1301,7 +1388,8 @@ class Logbook_model extends CI_Model {
 		if ($errors !== '') {
 			$message .= ' (' . $errors . ')';
 		}
-		return ['status' => 'error', 'message' => mb_substr($message, 0, 255)];
+		$temp = ($response === 0 || $response === 408 || $response === 429 || $response >= 500);
+		return ['status' => $temp ? 'temp_error' : 'error', 'message' => mb_substr($message, 0, 255)];
 	}
 
 	/*
@@ -1527,7 +1615,14 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	/* Edit QSO */
+	/**
+	 * Edit a QSO from the posted edit form
+	 *
+	 * Reads all fields from POST (id = COL_PRIMARY_KEY). Notifies the user's
+	 * QSO topic and, if the QSO is in a contest session, the contest logger.
+	 *
+	 * @return array ['success' => bool, 'detail' => string|Exception on failure]
+	 */
 	function edit() {
 		$retvals=[];
 		$retvals['success']=false;
@@ -1602,8 +1697,8 @@ class Logbook_model extends CI_Model {
 			$srx_string = null;
 		}
 
-		if (is_numeric($this->input->post('dxcc_id'))) {
-			$dxcc=$this->input->post('dxcc_id');
+		$dxcc = $this->normalize_dxcc($this->input->post('dxcc_id'));
+		if ($dxcc !== NULL) {
 			if (stristr($this->input->post('usa_county') ?? '', ',')) {	// Already comma-seperated County?
 				$uscounty = $this->input->post('usa_county');
 			} elseif ($this->input->post('usa_county') && $this->input->post('input_state_edit')) {	// Both filled (and no comma - because that fits one above)
@@ -1632,7 +1727,8 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('qsl_rcvd')) {
-			$qsl_rcvd = $this->input->post('qsl_rcvd',true);
+			// 'V' is a deprecated import-only QSL Rcvd value (ADIF 3.1.6) — never store it
+			$qsl_rcvd = strtoupper($p = $this->input->post('qsl_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$qsl_rcvd = 'N';
 		}
@@ -1644,7 +1740,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('eqsl_rcvd')) {
-			$eqsl_rcvd = $this->input->post('eqsl_rcvd',true);
+			$eqsl_rcvd = strtoupper($p = $this->input->post('eqsl_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$eqsl_rcvd = 'N';
 		}
@@ -1680,7 +1776,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('dcl_rcvd')) {
-			$dcl_rcvd = $this->input->post('dcl_rcvd',true);
+			$dcl_rcvd = strtoupper($p = $this->input->post('dcl_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$dcl_rcvd = 'N';
 		}
@@ -1696,7 +1792,7 @@ class Logbook_model extends CI_Model {
 		if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
 			$lotw_rcvd = 'I';
 		} elseif ($this->input->post('lotw_rcvd')) {
-			$lotw_rcvd = $this->input->post('lotw_rcvd');
+			$lotw_rcvd = strtoupper($p = $this->input->post('lotw_rcvd', true)) === 'V' ? 'Y' : $p;
 		} else {
 			$lotw_rcvd = 'N';
 		}
@@ -1836,9 +1932,8 @@ class Logbook_model extends CI_Model {
 			$time_off = $time_on;
 		}
 
- 		if (is_numeric($this->input->post('dxcc_id'))) {
-			$dxcc=$this->input->post('dxcc_id');
-		} else {
+		$dxcc = $this->normalize_dxcc($this->input->post('dxcc_id'));
+		if ($dxcc === NULL) {
 			$retvals['detail']=__("DXCC has to be Numeric");
 			return $retvals;
 		}
@@ -1876,7 +1971,7 @@ class Logbook_model extends CI_Model {
 			'COL_EQSL_QSLSDATE' => $eqslsdate,
 			'COL_EQSL_QSLRDATE' => $eqslrdate,
 			'COL_EQSL_QSL_SENT' => $this->input->post('eqsl_sent'),
-			'COL_EQSL_QSL_RCVD' => $this->input->post('eqsl_rcvd'),
+			'COL_EQSL_QSL_RCVD' => $eqsl_rcvd,
 			'COL_QSLMSG' => $this->input->post('qslmsg'),
 			'COL_QRZCOM_QSO_UPLOAD_DATE' => $qrzsdate,
 			'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qrzrdate,
@@ -1951,6 +2046,7 @@ class Logbook_model extends CI_Model {
 			$this->db->update($this->config->item('table_name'), $data);
 			$retvals['success']=true;
 			$this->notify_qso_change($station_profile->user_id);
+			$this->notify_contest_change($this->contest_session_for_notify($this->input->post('id', true)));
 
 			// Invalidate DXCluster cache for this callsign
 			$this->dxclustercache->invalidate_for_callsign($data['COL_CALL']);
@@ -2048,35 +2144,35 @@ class Logbook_model extends CI_Model {
 	// clubstation member below officer level cannot read back data from a QSO
 	// another operator made. Defaults to '' = no restriction (v1 behaviour).
 	function call_lookup_result($callsign, $station_ids, $user_default_confirmation, $band, $mode, $operator = '') {
-		$binding=[];
 		$qsl_where = $this->qsl_default_where($user_default_confirmation);
 		$band_addon='COL_BAND=?';
 		if ($band == 'SAT') {
 			$band_addon="COL_PROP_MODE=?";
 		}
 
-		$sql="SELECT COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT,
-			CASE WHEN ( (".$qsl_where.") ) THEN 1  ELSE 0 END AS CALL_CNF,
-			CASE WHEN ( (".$qsl_where.") AND ".$band_addon.") THEN 1  ELSE 0 END AS CALL_CNF_BAND,
-			CASE WHEN ( (".$qsl_where.") AND ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_CNF_BAND_MODE,
-			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS CALL_WORKED_BAND,
-			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_WORKED_BAND_MODE
-		FROM ".$this->config->item('table_name')." WHERE ";
-		$sql.="station_id IN (".$station_ids.") AND COL_CALL = ?";
-		$binding[]=$band;
-		$binding[]=$band;
-		$binding[]=$mode;
-		$binding[]=$band;
-		$binding[]=$band;
-		$binding[]=$mode;
-		$binding[]=$callsign;
-
+		$flags = "CASE WHEN ( (".$qsl_where.") ) THEN 1  ELSE 0 END AS CNF,
+			CASE WHEN ( (".$qsl_where.") AND ".$band_addon.") THEN 1  ELSE 0 END AS CNF_BAND,
+			CASE WHEN ( (".$qsl_where.") AND ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CNF_BAND_MODE,
+			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS WORKED_BAND,
+			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS WORKED_BAND_MODE";
+		$where = " FROM ".$this->config->item('table_name')." WHERE station_id IN (".$station_ids.") AND COL_CALL = ?";
+		$where_binding = [$band, $band, $mode, $band, $band, $mode, $callsign];
 		if ($operator !== null && $operator !== '') {
-			$sql.=" AND upper(COL_OPERATOR) = ?";
-			$binding[]=strtoupper($operator);
+			$where.=" AND upper(COL_OPERATOR) = ?";
+			$where_binding[]=strtoupper($operator);
 		}
 
-		$sql.=" ORDER BY call_cnf desc, call_worked_band desc, call_cnf_band desc, call_worked_band_mode desc, call_cnf_band_mode desc limit 1";
+		// The detail row is picked by its per-QSO flags, the returned CALL_* flags
+		// are aggregated over all QSOs of the call. Otherwise e.g. a confirmed QSO
+		// on another band would hide the worked state on the requested band.
+		$sql="SELECT detail.COL_CALL, detail.COL_NAME, detail.COL_QSL_VIA, detail.COL_GRIDSQUARE, detail.COL_QTH, detail.COL_IOTA, detail.COL_TIME_ON, detail.COL_STATE, detail.COL_CNTY, detail.COL_DXCC, detail.COL_CONT,
+			agg.CALL_CNF, agg.CALL_CNF_BAND, agg.CALL_CNF_BAND_MODE, agg.CALL_WORKED_BAND, agg.CALL_WORKED_BAND_MODE
+		FROM (SELECT COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT, ".$flags.$where."
+			ORDER BY CNF desc, WORKED_BAND desc, CNF_BAND desc, WORKED_BAND_MODE desc, CNF_BAND_MODE desc, COL_TIME_ON desc limit 1) AS detail
+		CROSS JOIN (SELECT MAX(CNF) AS CALL_CNF, MAX(CNF_BAND) AS CALL_CNF_BAND, MAX(CNF_BAND_MODE) AS CALL_CNF_BAND_MODE,
+			MAX(WORKED_BAND) AS CALL_WORKED_BAND, MAX(WORKED_BAND_MODE) AS CALL_WORKED_BAND_MODE
+			FROM (SELECT ".$flags.$where.") AS flags) AS agg";
+		$binding = array_merge($where_binding, $where_binding);
 
 		$query = $this->db->query($sql, $binding);
 		$data = [];
@@ -4697,9 +4793,10 @@ class Logbook_model extends CI_Model {
 		];
 	}
 
-	/* Delete QSO based on the QSO ID */
 	/**
 	 * Delete a QSO (and its OQRS/QSL/eQSL artefacts) after an ownership check.
+	 * Notifies the user's QSO topic and, if the QSO was in a contest session,
+	 * the contest logger.
 	 *
 	 * @param int      $id      QSO primary key (COL_PRIMARY_KEY).
 	 * @param int|null $user_id User to authorise against. Defaults to the
@@ -4711,6 +4808,9 @@ class Logbook_model extends CI_Model {
 			// was just verified, so read it trusted (works without a session too).
 			$qso = $this->get_qso($id, true);
 			$callsign = ($qso !== null && $qso->num_rows() > 0) ? $qso->row()->COL_CALL : null;
+
+			// Look up before the delete, contest_qsos cascades with it
+			$contest_session_id = $this->contest_session_for_notify($id);
 
 			$this->load->model('qsl_model');
 			$this->load->model('eqsl_images');
@@ -4726,6 +4826,7 @@ class Logbook_model extends CI_Model {
 
 			// qso was accessible so notify qso_changed for the current user_id (can also be a clubstation)
 			$this->notify_qso_change($user_id ?? $this->session->userdata('user_id'));
+			$this->notify_contest_change($contest_session_id);
 
 			// Invalidate DXCluster cache for this callsign
 			$this->dxclustercache->invalidate_for_callsign($callsign);
@@ -4851,6 +4952,8 @@ class Logbook_model extends CI_Model {
 			$data['COL_CQZ'] = $cqz;
 		}
 
+		// Sanitize ADIF-supplied DXCC id (" 230" -> "230"); invalid skips the update and keeps the existing COL_DXCC
+		$dxcc = $this->normalize_dxcc($dxcc);
 		if (($dxcc ?? '') != '') {
 			$data['COL_DXCC'] = $dxcc;
 		}
@@ -4928,7 +5031,7 @@ class Logbook_model extends CI_Model {
 		$row = $query->row();
 
 		if ($row->QSOS == 0) {
-			return '2100-01-01 00:00:00.000';	// No QSO in Log, set since to future, otherwise this user blocks download
+			return $this->config->item('lotw_download_skip_date'); // No QSO in Log, set since to future, otherwise this user blocks download
 		}
 		if ($row->MAXDATE != null) {
 			return $row->MAXDATE;
@@ -5304,6 +5407,9 @@ class Logbook_model extends CI_Model {
 		}
 
 		if (!($skip)) {
+			// Sanitize ADIF-supplied DXCC id (" 230" -> "230", garbage -> callsign lookup below)
+			$record['dxcc'] = $this->normalize_dxcc($record['dxcc'] ?? NULL);
+
 			// DXCC id
 			if (isset($record['call'])) {
 				if ($dxccAdif != NULL) {
@@ -5528,7 +5634,9 @@ class Logbook_model extends CI_Model {
 			}
 
 			if (isset($record['qsl_rcvd'])) {
-				$input_qsl_rcvd = mb_strimwidth($record['qsl_rcvd'], 0, 1);
+				// 'V' (verified) is a deprecated import-only value of the QSL Rcvd
+				// enumeration (ADIF 3.1.6) — normalize to 'Y' so it never reaches the DB.
+				$input_qsl_rcvd = strtoupper($v = mb_strimwidth($record['qsl_rcvd'], 0, 1)) === 'V' ? 'Y' : $v;
 			} else {
 				$input_qsl_rcvd = "N";
 			}
@@ -5592,7 +5700,7 @@ class Logbook_model extends CI_Model {
 			 * Validate LoTW Fields
 			 */
 			if (isset($record['lotw_qsl_rcvd'])) {
-				$input_lotw_qsl_rcvd = mb_strimwidth($record['lotw_qsl_rcvd'], 0, 1);
+				$input_lotw_qsl_rcvd = strtoupper($v = mb_strimwidth($record['lotw_qsl_rcvd'], 0, 1)) === 'V' ? 'Y' : $v;
 			} else {
 				$input_lotw_qsl_rcvd = NULL;
 			}
@@ -5637,7 +5745,7 @@ class Logbook_model extends CI_Model {
 			 * Validate eQSL Fields
 			 */
 			if (isset($record['eqsl_qsl_rcvd'])) {
-				$input_eqsl_qsl_rcvd = mb_strimwidth($record['eqsl_qsl_rcvd'], 0, 1);
+				$input_eqsl_qsl_rcvd = strtoupper($v = mb_strimwidth($record['eqsl_qsl_rcvd'], 0, 1)) === 'V' ? 'Y' : $v;
 			} else {
 				$input_eqsl_qsl_rcvd = NULL;
 			}
@@ -5798,7 +5906,7 @@ class Logbook_model extends CI_Model {
 				'COL_MY_COUNTRY_INTL' => (!empty($record['my_country_intl'])) ? $record['my_country_intl'] : null,
 				'COL_MY_CQ_ZONE' => (!empty($record['my_dxcc'])) ? $record['my_dxcc'] : null,
 				'COL_MY_DARC_DOK' => (!empty($record['my_darc_dok'])) ? strtoupper($record['my_darc_dok']) : '',
-				'COL_MY_DXCC' => (!empty($record['my_dxcc'])) ? $record['my_dxcc'] : null,
+				'COL_MY_DXCC' => $this->normalize_dxcc($record['my_dxcc'] ?? NULL),
 				'COL_MY_FISTS' => (!empty($record['my_fists'])) ? $record['my_fists'] : null,
 				'COL_MY_GRIDSQUARE' => (!empty($record['my_gridsquare'])) ? $record['my_gridsquare'] : '',
 				'COL_MY_IOTA' => (!empty($record['my_iota'])) ? $record['my_iota'] : '',
@@ -5845,7 +5953,7 @@ class Logbook_model extends CI_Model {
 				'COL_DCL_QSLSDATE' => $input_dcl_qso_upload_date,
 				'COL_DCL_QSL_SENT' => $input_dcl_qso_upload_status,
 				'COL_DCL_QSLRDATE' => (!empty($record['dcl_qslrdate'])) ? $record['dcl_qslrdate'] : null,
-				'COL_DCL_QSL_RCVD' => (!empty($record['dcl_qsl_rcvd'])) ? $record['dcl_qsl_rcvd'] : null,
+				'COL_DCL_QSL_RCVD' => (!empty($record['dcl_qsl_rcvd'])) ? (strtoupper($record['dcl_qsl_rcvd']) === 'V' ? 'Y' : $record['dcl_qsl_rcvd']) : null,
 				'COL_QSL_RCVD' => $input_qsl_rcvd,
 				'COL_QSL_RCVD_VIA' => $input_qsl_rcvd_via,
 				'COL_QSL_SENT' => $input_qsl_sent,
@@ -6118,11 +6226,11 @@ class Logbook_model extends CI_Model {
 
 		if ($pota_ref != '') {
 			if (substr(strtoupper($call), -2) == "/P") {
-				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE COL_CALL = ? AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND UPPER(COL_BAND) = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
-				$check = $this->db->query($sql, array($call, $time_on, $time_on, strtoupper($band), strtoupper($mode), $logbooks_locations_array));
+				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE COL_CALL = ? AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND COL_BAND = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
+				$check = $this->db->query($sql, array($call, $time_on, $time_on, $band, strtoupper($mode), $logbooks_locations_array));
 			} else {
-				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE (COL_CALL = ? OR COL_CALL = ?) AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND UPPER(COL_BAND) = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
-				$check = $this->db->query($sql, array($call, $call."/P", $time_on, $time_on, strtoupper($band), strtoupper($mode), $logbooks_locations_array));
+				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE (COL_CALL = ? OR COL_CALL = ?) AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND COL_BAND = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
+				$check = $this->db->query($sql, array($call, $call."/P", $time_on, $time_on, $band, strtoupper($mode), $logbooks_locations_array));
 			}
 			if ($check->num_rows() != 1) {
 				return array(2, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td class=\"callsign\">" . $call . "</td><td>" . $band . "</td><td>" . $mode . "</td><td></td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("QSO could not be matched") . "</td></tr>");

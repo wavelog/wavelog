@@ -350,6 +350,7 @@ class Header_auth extends CI_Controller {
             $mapped['user_dxwaterfall_enable']                ?? '',
             $mapped['user_qso_show_map']                      ?? '',
             $mapped['last_lotw_upload_widget_enabled']        ?? '',
+            $mapped['user_clublog_oqrs_sync']                 ?? '0',
             $mapped['user_callbook_prefill']                  ?? 'default',
             0,                                                   // clubstation
             $external_identifier,                                // external_account

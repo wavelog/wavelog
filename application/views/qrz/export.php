@@ -72,7 +72,7 @@
 
 				<form class="form" action="<?php echo site_url('qrz/import_qrz'); ?>" method="post" enctype="multipart/form-data">
             				<?php if (($next_run_down ?? '') != '') { echo "<p>".__("The next automatic Download from QRZ-QSLs will happen at: ").$next_run_down."</p>"; } ?>
-					<p><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("If no startdate is given then the QSLs after last confirmation will be downloaded/updated!"); ?></p>
+					<p><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("If no start date is given then the QSLs after last confirmation will be downloaded/updated!"); ?></p>
 					<div class="row">
 						<div class="col-md-2">
 							<label for="from"><?= __("From date") . ": " ?></label>

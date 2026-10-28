@@ -337,6 +337,7 @@ class User extends CI_Controller {
 				$this->input->post('user_dxwaterfall_enable') ?? 'N',
 				$this->input->post('user_qso_show_map') ?? 1,
 				$this->input->post('last_lotw_upload_widget_enabled'),
+				$this->input->post('clublog_oqrs_sync') ?? '0',
 				$this->input->post('user_callbook_prefill', true) ?? 'default',
 				$this->input->post('clubstation') == '1' ? true : false)
 			) {
@@ -406,6 +407,14 @@ class User extends CI_Controller {
 		}
 	}
 
+	/**
+	 * Show and process the account settings form of user segment(3).
+	 *
+	 * Admins may edit any user, everyone else only their own account.
+	 * On a clubstation only officers (level 9) get access.
+	 *
+	 * @return void Renders the form or redirects after saving.
+	 */
 	function edit() {
 		if ( ($this->session->userdata('user_id') == '') || ((!$this->user_model->authorize(99)) && ($this->session->userdata('user_id') != $this->uri->segment(3))) ) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		if (!clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
@@ -1017,6 +1026,7 @@ class User extends CI_Controller {
 			$data['user_quick_theme_switcher'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'quick_theme_switcher'), $this->uri->segment(3))->row()->option_value ?? 'true');
 			$data['user_dashboard_last_qso_count'] = ($this->user_options_model->get_options('dashboard', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? DASHBOARD_DEFAULT_QSOS_COUNT);
 			$data['user_qso_page_last_qso_count'] = ($this->user_options_model->get_options('qso_tab', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? QSO_PAGE_DEFAULT_QSOS_COUNT);
+			$data['clublog_oqrs_sync'] = ($this->user_options_model->get_options('clublog', array('option_name'=>'oqrs_sync', 'option_key' => 'enabled'), $this->uri->segment(3))->row()->option_value ?? '0');
 
 			$data['on_air_widget_enabled'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'enabled'), $this->uri->segment(3))->row()->option_value ?? "false");
 			$data['on_air_widget_display_last_seen'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'display_last_seen'), $this->uri->segment(3))->row()->option_value ?? "false");
@@ -1111,7 +1121,7 @@ class User extends CI_Controller {
 					$_gridshow = $this->input->post('user_map_gridsquare_show', true);
 					$_gridshow = ($_gridshow === '1' || $_gridshow === 1) ? '1' : '0';
 					$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>$_gridshow), $user_id);
-					$_tile = $this->input->post('user_map_tile_style', true);
+					$_tile = $this->input->post('user_map_tile_style', true) ?? '';
 					$_tile = array_key_exists($_tile, map_style_options()) ? $_tile : 'map-follow';
 					$this->user_options_model->set_option('map_custom','tile',array('style' => $_tile),$user_id);
 				} else {
