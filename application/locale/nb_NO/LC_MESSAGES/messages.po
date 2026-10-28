@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-28 07:31+0000\n"
+"POT-Creation-Date: 2026-10-28 10:28+0000\n"
 "PO-Revision-Date: 2026-10-28 06:11+0000\n"
 "Last-Translator: Lars Granheim <lb3qj.lars@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.wavelog.org/projects/"
@@ -2885,6 +2885,47 @@ msgstr ""
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF-informasjon"
 
+#: application/controllers/Lotw.php:679
+msgid "Downloaded LoTW report contains no matches."
+msgstr ""
+
+#: application/controllers/Lotw.php:727 application/controllers/Lotw.php:1030
+msgid "You have not defined your ARRL LoTW credentials!"
+msgstr "Du har ikke angitt ARRL LoTW-påloggingsopplysninger!"
+
+#: application/controllers/Lotw.php:735
+msgid "No QSOs in log. LoTW download skipped."
+msgstr ""
+
+#: application/controllers/Lotw.php:754
+#, php-format
+msgid "LoTW download failed for user %s: %s (%s)."
+msgstr ""
+
+#: application/controllers/Lotw.php:757
+#, php-format
+msgid "LoTW download failed for user %s: unexpected HTTP status %s."
+msgstr ""
+
+#: application/controllers/Lotw.php:761
+#, php-format
+msgid "LoTW download failed for user %s: Username/password incorrect"
+msgstr ""
+
+#: application/controllers/Lotw.php:770
+#, php-format
+msgid "LoTW download hit a rate limit for user %s"
+msgstr ""
+
+#: application/controllers/Lotw.php:775
+#, php-format
+msgid "Downloaded LoTW report for user %s is invalid. Check your credentials."
+msgstr ""
+
+#: application/controllers/Lotw.php:906
+msgid "No LoTW User details found to carry out matches."
+msgstr ""
+
 #: application/controllers/Lotw.php:970
 msgid "Connection to LoTW failed."
 msgstr "Tilkoblingen til LoTW mislyktes."
@@ -2913,10 +2954,6 @@ msgstr "Ingen LoTW påloggingsopplysninger oppgitt."
 #: application/controllers/Lotw.php:1005
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF-import"
-
-#: application/controllers/Lotw.php:1030
-msgid "You have not defined your ARRL LoTW credentials!"
-msgstr "Du har ikke angitt ARRL LoTW-påloggingsopplysninger!"
 
 #: application/controllers/Map.php:56
 msgid "QSO Map"
