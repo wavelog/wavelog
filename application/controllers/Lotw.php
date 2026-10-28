@@ -676,7 +676,7 @@ class Lotw extends CI_Controller {
 					return $tableheaders.$table;
 				}
 			} else {
-				echo "Downloaded LoTW report contains no matches.";
+				echo __("Downloaded LoTW report contains no matches.");
 			}
 		}
 	}
@@ -724,7 +724,7 @@ class Lotw extends CI_Controller {
 					if ($station_ids == '') { continue; }
 
 				if ($user->user_lotw_password == '') {
-					$result = "You have not defined your ARRL LoTW credentials!";
+					$result = __("You have not defined your ARRL LoTW credentials!");
 					continue;
 				}
 
@@ -732,7 +732,7 @@ class Lotw extends CI_Controller {
 
 				// No QSOs in log, so there is nothing a download could match
 				if ($lotw_last_qsl_date == date('Y-m-d', strtotime($this->config->item('lotw_download_skip_date')))) {
-					$result = "No QSOs in log. LoTW download skipped.";
+					$result = __("No QSOs in log. LoTW download skipped.");
 					continue;
 				}
 
@@ -751,14 +751,14 @@ class Lotw extends CI_Controller {
 					$content = curl_exec($ch);
 					$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 					if(curl_errno($ch)) {
-						$result = "LoTW download failed for user ".$user->user_lotw_name.": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+						$result = sprintf(__("LoTW download failed for user %s: %s (%s)."), $user->user_lotw_name, curl_strerror(curl_errno($ch)), curl_errno($ch));
 						continue;
 					} else if ($http_code !== 200) {
-						$result = "LoTW download failed for user ".$user->user_lotw_name.": unexpected HTTP status ".$http_code.".";
+						$result = sprintf(__("LoTW download failed for user %s: unexpected HTTP status %s."), $user->user_name, $http_code);
 						log_message('error', 'LoTW download failed for user '.$user->user_name.': unexpected HTTP status '.$http_code);
 						continue;
 					} else if(str_contains(substr($content,0 , 6000),"Username/password incorrect</I>")) {
-						$result = "LoTW download failed for user ".$user->user_lotw_name.": Username/password incorrect";
+						$result = sprintf(__("LoTW download failed for user %s: Username/password incorrect"), $user->user_lotw_name);
 						log_message('error', 'LoTW download failed for user '.$user->user_name.': Username/password incorrect');
 						if ($this->Lotw_model->remove_lotw_credentials($user->user_id)) {
 							log_message('error', 'LoTW credentials deleted for user '.$user->user_name);
@@ -767,12 +767,12 @@ class Lotw extends CI_Controller {
 						}
 						continue;
 					} else if (str_contains(substr($content, 0, 6000),"Page Request Limit!</B>")) {
-						$result = "LoTW download hit a rate limit for user ".$user->user_lotw_name;
+						$result = sprintf(__("LoTW download hit a rate limit for user %s"), $user->user_lotw_name);
 						log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
 						continue;
 					}
 				if (substr($content, 0, 39) != "ARRL Logbook of the World Status Report") {
-					$result = "Downloaded LoTW report for user ".$user->user_lotw_name." is invalid. Check your credentials.";
+					$result = sprintf(__("Downloaded LoTW report for user %s is invalid. Check your credentials."), $user->user_lotw_name);
 					log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_name);
 					continue;
 				}
@@ -903,7 +903,7 @@ class Lotw extends CI_Controller {
 			return $result;
 			} // end else (multi-user parallel mode)
 		} else {
-			return "No LoTW User details found to carry out matches.";
+			return __("No LoTW User details found to carry out matches.");
 		}
 	}
 
