@@ -572,16 +572,14 @@ class Clublog_model extends CI_Model
 		$via_raw = strtolower(($record['qsl_via'] ?? '') . ' ' . ($record['app_clublog_qsl_via'] ?? ''));
 		$via = str_contains($via_raw, 'direct') ? 'D' : 'B';
 
-		$this->db->set('COL_QSL_SENT', 'R');
-		$this->db->set('COL_QSLSDATE', date('Y-m-d H:i:s'));
-		$this->db->set('COL_QSL_SENT_VIA', $via);
-		$this->db->where('COL_CALL', $record['call']);
-		$this->db->where("date_format(COL_TIME_ON, '%Y-%m-%d %H:%i') = ", $date . ' ' . $time);
-		$this->db->where("replace(replace(COL_BAND,'cm',''),'m','')", $band);
-		$this->db->where('COL_STATION_CALLSIGN', $station_callsign);
-		$this->db->where_in('station_id', $station_ids);
-		$this->db->where("coalesce(COL_QSL_SENT,'') not in ('Y','R')");
-		$this->db->update($this->config->item('table_name'));
+		$placeholders = implode(',', array_fill(0, count($station_ids), '?'));
+		$sql = "UPDATE " . $this->config->item('table_name') . " SET COL_QSL_SENT = 'R', COL_QSLSDATE = ?, COL_QSL_SENT_VIA = ?
+			WHERE COL_CALL = ? AND date_format(COL_TIME_ON, '%Y-%m-%d %H:%i') = ? AND replace(replace(COL_BAND,'cm',''),'m','') = ? AND COL_STATION_CALLSIGN = ? AND station_id IN (" . $placeholders . ") AND coalesce(COL_QSL_SENT,'') not in ('Y','R')";
+		$bindings = array_merge(
+			array(date('Y-m-d H:i:s'), $via, $record['call'], $date . ' ' . $time, $band, $station_callsign),
+			$station_ids
+		);
+		$this->db->query($sql, $bindings);
 
 		if (!$this->db->affected_rows()) {
 			log_message('info', 'Clublog OQRS request for ' . $record['call'] . ' at ' . $date . ' ' . $time . ' ' . $record['band'] . ' matched no QSO or the QSO was already sent/requested.');
