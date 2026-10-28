@@ -495,24 +495,26 @@ class Clublog_model extends CI_Model
 			curl_close($request);
 
 			$u = strtoupper((string)$response);
-			if ($response === false || $httpcode != 200 || (!str_contains($u, '<EOH>') && !str_contains($u, '<EOR>'))) {
+			if ($response === false || $httpcode != 200 || (trim($u) !== '' && !str_contains($u, '<EOH>') && !str_contains($u, '<EOR>'))) {
 				log_message('error', 'Clublog OQRS fetch failed for ' . $station_row->station_callsign . ' (HTTP ' . $httpcode . '): ' . substr((string)$response, 0, 200));
 				$errors[] = $station_row->station_callsign;
 				$ok = false;
 				continue;
 			}
 
-			$parser = new ADIF_Parser();
-			$parser->load_from_string($response);
-			$parser->initialize();
-			while ($record = $parser->get_record()) {
-				if (isset($record['call'], $record['qso_date'])) {
-					$fetched++;
-					$line = $this->oqrs_mark_requested($record, $station_row->station_callsign, $station_ids);
-					if ($line !== null) {
-						$marked[] = $line;
-					} else {
-						$skipped++;
+			if (trim($u) !== '') {
+				$parser = new ADIF_Parser();
+				$parser->load_from_string($response);
+				$parser->initialize();
+				while ($record = $parser->get_record()) {
+					if (isset($record['call'], $record['qso_date'])) {
+						$fetched++;
+						$line = $this->oqrs_mark_requested($record, $station_row->station_callsign, $station_ids);
+						if ($line !== null) {
+							$marked[] = $line;
+						} else {
+							$skipped++;
+						}
 					}
 				}
 			}
