@@ -1025,6 +1025,7 @@ class User extends CI_Controller {
 			$data['user_quick_theme_switcher'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'quick_theme_switcher'), $this->uri->segment(3))->row()->option_value ?? 'true');
 			$data['user_dashboard_last_qso_count'] = ($this->user_options_model->get_options('dashboard', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? DASHBOARD_DEFAULT_QSOS_COUNT);
 			$data['user_qso_page_last_qso_count'] = ($this->user_options_model->get_options('qso_tab', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? QSO_PAGE_DEFAULT_QSOS_COUNT);
+			$data['clublog_oqrs_sync'] = ($this->user_options_model->get_options('clublog', array('option_name'=>'oqrs_sync', 'option_key' => 'enabled'), $this->uri->segment(3))->row()->option_value ?? '0');
 
 			$data['on_air_widget_enabled'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'enabled'), $this->uri->segment(3))->row()->option_value ?? "false");
 			$data['on_air_widget_display_last_seen'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'display_last_seen'), $this->uri->segment(3))->row()->option_value ?? "false");

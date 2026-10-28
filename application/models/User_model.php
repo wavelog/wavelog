@@ -435,6 +435,7 @@ class User_Model extends CI_Model {
 					['qso_db_search_priority', 'enable',      'boolean',                       $fields['user_qso_db_search_priority'] ?? 'Y'],
 					['dxwaterfall','enable',                  'boolean',                       $fields['user_dxwaterfall_enable']     ?? 'N'],
 					['widget',     'last_lotw_upload',        'enabled',                       $fields['last_lotw_upload_widget_enabled']           ?? 'false'],
+					['clublog',    'oqrs_sync',               'enabled',                       (($fields['clublog_oqrs_sync'] ?? '0') == "1" ? 1 : 0)],
 				];
 
 				foreach ($user_options as [$type, $name, $key, $value]) {
