@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-28 05:09+0000\n"
-"PO-Revision-Date: 2026-10-26 20:10+0000\n"
+"POT-Creation-Date: 2026-10-26 20:09+0000\n"
+"PO-Revision-Date: 2026-10-28 06:11+0000\n"
 "Last-Translator: Lars Granheim <lb3qj.lars@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/nb/>\n"
@@ -184,8 +184,8 @@ msgstr "Troposfærisk kanalisering"
 #: application/controllers/Logbookadvanced.php:15
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:117
-#: application/controllers/Lotw.php:387 application/controllers/Lotw.php:425
-#: application/controllers/Lotw.php:912 application/controllers/Lotw.php:999
+#: application/controllers/Lotw.php:386 application/controllers/Lotw.php:424
+#: application/controllers/Lotw.php:897 application/controllers/Lotw.php:983
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14
 #: application/controllers/Most_wanted_squares.php:14
@@ -239,7 +239,10 @@ msgstr "Troposfærisk kanalisering"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:103
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Lotw.php:387
+#: application/controllers/Lotw.php:425 application/controllers/Lotw.php:901
+#: application/controllers/Lotw.php:988 application/controllers/Lotw.php:912
+#: application/controllers/Lotw.php:999
 msgid "You're not allowed to do that!"
 msgstr ""
 
@@ -1696,11 +1699,11 @@ msgstr ""
 
 #: application/controllers/Debug.php:266
 msgid "Wavelog was updated successfully!"
-msgstr ""
+msgstr "Wavelog ble oppdatert!"
 
 #: application/controllers/Debug.php:284
 msgid "Selfupdate() not available. Check the Error Log."
-msgstr ""
+msgstr "Selfupdate() er ikke tilgjengelig. Sjekk feilloggen."
 
 #: application/controllers/Debug.php:343
 msgid ""
@@ -1708,17 +1711,20 @@ msgid ""
 "seems right you can delete the folders 'assets/qslcard' and 'images/"
 "eqsl_card_images'."
 msgstr ""
+"Filoverføringen var vellykket, men kontroller også manuelt. Hvis alt ser "
+"riktig ut, kan du slette mappene 'assets/qslcard' og 'images/"
+"eqsl_card_images'."
 
 #: application/controllers/Debug.php:346
 msgid "File Migration failed. Please check the Error Log."
-msgstr ""
+msgstr "Filoverføringen mislyktes. Sjekk feilloggen."
 
 #: application/controllers/Distancerecords.php:68
 #: application/controllers/Distancerecords.php:87
 #: application/views/distancerecords/index.php:6
 #: application/views/interface_assets/header.php:174
 msgid "Satellite Distance Records"
-msgstr ""
+msgstr "Satellittdistanse-rekorder"
 
 #: application/controllers/Distances.php:16
 #: application/views/distances/index.php:3
@@ -1726,31 +1732,31 @@ msgstr ""
 #: application/views/distances/index.php:18
 #: application/views/interface_assets/header.php:172
 msgid "Distances Worked"
-msgstr ""
+msgstr "Kjørte avstander"
 
 #: application/controllers/Distances.php:88
 #: application/views/distances/index.php:13
 msgid "QSOs with"
-msgstr ""
+msgstr "QSOer med"
 
 #: application/controllers/Distances.php:88
 msgid "and band"
-msgstr ""
+msgstr "og bånd"
 
 #: application/controllers/Distances.php:88
 msgid "and propagation"
-msgstr ""
+msgstr "og utbredelse"
 
 #: application/controllers/Dxatlas.php:18
 #: application/views/interface_assets/header.php:554
 msgid "DX Atlas Gridsquare Export"
-msgstr ""
+msgstr "DX Atlas-rutenetteksport"
 
 #: application/controllers/Dxcalendar.php:8
 #: application/views/dxcalendar/index.php:7
 #: application/views/interface_assets/header.php:324
 msgid "DX Calendar"
-msgstr ""
+msgstr "DX-kalender"
 
 #: application/controllers/Eqsl.php:45
 #: application/views/dashboard/_options_menu.php:18
@@ -1759,49 +1765,49 @@ msgstr ""
 #: application/views/eqslcard/index.php:3 application/views/user/edit.php:855
 #: application/views/visitor/index.php:308
 msgid "eQSL Cards"
-msgstr ""
+msgstr "eQSL-kort"
 
 #: application/controllers/Eqsl.php:55 application/controllers/Qsl.php:51
 #, php-format
 msgid "Showing %d to %d of %d entries"
-msgstr ""
+msgstr "Viser %d til %d av %d oppføringer"
 
 #: application/controllers/Eqsl.php:81 application/controllers/Eqsl.php:176
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
+msgstr "eQSL-kallenavn i stasjonsprofiler er ikke definert!"
 
 #: application/controllers/Eqsl.php:104 application/controllers/Eqsl.php:195
 msgid "You have not defined your eQSL.cc credentials!"
-msgstr ""
+msgstr "Du har ikke angitt eQSL.cc-påloggingsinformasjonen din!"
 
 #: application/controllers/Eqsl.php:144
 msgid "eQSL Import"
-msgstr ""
+msgstr "eQSL-import"
 
 #: application/controllers/Eqsl.php:154
 msgid "eQSL Import Information"
-msgstr ""
+msgstr "Informasjon om eQSL-import"
 
 #: application/controllers/Eqsl.php:183
 msgid "eQSL QSO Upload"
-msgstr ""
+msgstr "Last opp eQSL-QSO"
 
 #: application/controllers/Eqsl.php:216
 msgid "User/Pass wrong for eQSL"
-msgstr ""
+msgstr "Feil brukernavn/passord for eQSL"
 
 #: application/controllers/Eqsl.php:220
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
+msgstr "Ingen eQSL QTH-kallenavn: %s"
 
 #: application/controllers/Eqsl.php:343
 msgid "QSO not found or not accessible"
-msgstr ""
+msgstr "QSO ikke funnet eller ikke tilgjengelig"
 
 #: application/controllers/Eqsl.php:361
 msgid "User not found"
-msgstr ""
+msgstr "Bruker ikke funnet"
 
 #: application/controllers/Eqsl.php:370
 msgid "eQSL password not configured for this user"
@@ -1809,11 +1815,11 @@ msgstr "eQSL-passordet er ikke konfigurert for denne brukeren"
 
 #: application/controllers/Eqsl.php:387
 msgid "Failed to fetch eQSL image data"
-msgstr ""
+msgstr "Kunne ikke hente bildedata fra eQSL"
 
 #: application/controllers/Eqsl.php:406
 msgid "eQSL image not available"
-msgstr ""
+msgstr "eQSL-bilde ikke tilgjengelig"
 
 #: application/controllers/Eqsl.php:424
 msgid "Failed to download eQSL image"
@@ -1825,77 +1831,78 @@ msgstr "Ikke nok ledig diskplass til å lagre eQSL-kortet"
 
 #: application/controllers/Eqsl.php:458
 msgid "Failed to load cached eQSL image"
-msgstr ""
+msgstr "Kunne ikke laste inn eQSL-bilde"
 
 #: application/controllers/Eqsl.php:541
 msgid "eQSL Tools"
-msgstr ""
+msgstr "eQSL-verktøy"
 
 #: application/controllers/Eqsl.php:570
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr ""
+"Begrenset til de første 150 QSO-ene for denne forespørselen. Kjør på nytt."
 
 #: application/controllers/Eqsl.php:576
 msgid " / Errors: "
-msgstr ""
+msgstr " / Feil: "
 
 #: application/controllers/Eqsl.php:576
 msgid "Successfully downloaded: "
-msgstr ""
+msgstr "Lastet ned: "
 
 #: application/controllers/Eqsl.php:583
 msgid "eQSL rate limit reached. Please wait before running again."
-msgstr ""
+msgstr "eQSL-grensen er nådd. Vent før du kjører på nytt."
 
 #: application/controllers/Eqsl.php:595
 msgid "eQSL Card Image Download"
-msgstr ""
+msgstr "Nedlasting av eQSL-bilder"
 
 #: application/controllers/Eqsl.php:618
 msgid "All eQSLs marked as uploaded"
-msgstr ""
+msgstr "Alle eQSL-er er merket som lastet opp"
 
 #: application/controllers/Errors.php:22
 #: application/views/errors/html/error_404.php:6
 msgid "Page Not Found"
-msgstr ""
+msgstr "Siden ble ikke funnet"
 
 #: application/controllers/Errors.php:23
 #: application/views/errors/html/error_404.php:7
 msgid "QRZ? ... no reply."
-msgstr ""
+msgstr "QRZ? ... ikke noe svar."
 
 #: application/controllers/Errors.php:24
 #: application/views/errors/html/error_404.php:8
 msgid "Nobody is transmitting on this frequency."
-msgstr ""
+msgstr "Ingen sender på denne frekvensen."
 
 #: application/controllers/Generic_qsl.php:17
 #: application/views/awards/amsat_rover/index.php:43
 msgid "Confirmations"
-msgstr ""
+msgstr "Bekreftelser"
 
 #: application/controllers/Gridmap.php:12
 #: application/views/interface_assets/header.php:166
 msgid "Gridsquare Map"
-msgstr ""
+msgstr "Gridsquare-kart"
 
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:535
 msgid "Total gridsquares worked"
-msgstr ""
+msgstr "Totalt antall kjørte ruter"
 
 #: application/controllers/Hamsat.php:58
 msgid "Hamsat - Satellite Roving"
-msgstr ""
+msgstr "Hamsat – satellittroving"
 
 #: application/controllers/Header_auth.php:26
 msgid "SSO Authentication is disabled."
-msgstr ""
+msgstr "SSO-autentisering er deaktivert."
 
 #: application/controllers/Header_auth.php:40
 msgid "SSO Authentication is disabled. Check your configuration."
-msgstr ""
+msgstr "SSO-autentisering er deaktivert. Sjekk konfigurasjonen din."
 
 #: application/controllers/Header_auth.php:92
 msgid "Sorry. This instance is currently in maintenance mode."
@@ -2029,47 +2036,47 @@ msgstr ""
 
 #: application/controllers/Labels.php:80 application/controllers/Labels.php:537
 msgid "Top Margin"
-msgstr ""
+msgstr "Toppmarg"
 
 #: application/controllers/Labels.php:81 application/controllers/Labels.php:538
 msgid "Left Margin"
-msgstr ""
+msgstr "Venstremarg"
 
 #: application/controllers/Labels.php:82 application/controllers/Labels.php:539
 msgid "QSLs Horizontally"
-msgstr ""
+msgstr "QSL-er horisontalt"
 
 #: application/controllers/Labels.php:83 application/controllers/Labels.php:540
 msgid "QSLs Vertically"
-msgstr ""
+msgstr "QSL-er vertikalt"
 
 #: application/controllers/Labels.php:84 application/controllers/Labels.php:541
 msgid "Horizontal Space"
-msgstr ""
+msgstr "Horisontal plass"
 
 #: application/controllers/Labels.php:85 application/controllers/Labels.php:542
 msgid "Vertical Space"
-msgstr ""
+msgstr "Vertikal plass"
 
 #: application/controllers/Labels.php:86 application/controllers/Labels.php:543
 msgid "Label width"
-msgstr ""
+msgstr "Etikettbredde"
 
 #: application/controllers/Labels.php:87 application/controllers/Labels.php:544
 msgid "Label height"
-msgstr ""
+msgstr "Etiketthøyde"
 
 #: application/controllers/Labels.php:88 application/controllers/Labels.php:545
 msgid "Size of Font"
-msgstr ""
+msgstr "Skriftstørrelse"
 
 #: application/controllers/Labels.php:89 application/controllers/Labels.php:546
 msgid "Number of QSOs on label"
-msgstr ""
+msgstr "Antall QSO-er på etiketten"
 
 #: application/controllers/Labels.php:114
 msgid "Create Paper Type"
-msgstr ""
+msgstr "Opprett papirtype"
 
 #: application/controllers/Labels.php:118
 #: application/controllers/Labels.php:599
@@ -2157,7 +2164,7 @@ msgstr ""
 #: application/views/logbookadvanced/useroptions.php:4
 #: application/views/view_log/index.php:2
 msgid "Logbook"
-msgstr ""
+msgstr "Loggbok"
 
 #: application/controllers/Logbook.php:840
 #: application/controllers/Logbook.php:855
@@ -2828,11 +2835,11 @@ msgstr "Sertifikat importert."
 msgid "Certificate Updated."
 msgstr "Sertifikat oppdatert."
 
-#: application/controllers/Lotw.php:393
+#: application/controllers/Lotw.php:392 application/controllers/Lotw.php:393
 msgid "Certificate Deleted."
 msgstr "Sertifikat slettet."
 
-#: application/controllers/Lotw.php:437
+#: application/controllers/Lotw.php:436 application/controllers/Lotw.php:437
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
@@ -2845,7 +2852,7 @@ msgstr ""
 "passord!%s Du finner mer informasjon på %sLoTW-feilsøkingssiden%s i Wavelog-"
 "wikien."
 
-#: application/controllers/Lotw.php:439
+#: application/controllers/Lotw.php:438 application/controllers/Lotw.php:439
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
@@ -2858,7 +2865,7 @@ msgstr ""
 "behandlet av LoTW. Du finner mer informasjon på %sLoTW-feilsøkingssiden%s i "
 "Wavelog-wikien."
 
-#: application/controllers/Lotw.php:445
+#: application/controllers/Lotw.php:444 application/controllers/Lotw.php:445
 #, php-format
 msgid ""
 "Generic error processing the certificate in file %s. For further information "
@@ -2867,7 +2874,7 @@ msgstr ""
 "Feil ved behandling av sertifikatet i filen %s. Du finner mer informasjon på "
 "%sLoTW-feilsøkingssiden%s i Wavelog-wikien."
 
-#: application/controllers/Lotw.php:457
+#: application/controllers/Lotw.php:456 application/controllers/Lotw.php:457
 #, php-format
 msgid ""
 "Generic error extracting the private key from certificate in file %s. For "
@@ -2877,39 +2884,47 @@ msgstr ""
 "Feil ved uttrekking av den private nøkkelen fra sertifikatet i filen %s. Du "
 "finner mer informasjon på %sLoTW-feilsøkingssiden%s i Wavelog-wikien."
 
-#: application/controllers/Lotw.php:671
+#: application/controllers/Lotw.php:670 application/controllers/Lotw.php:671
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF-informasjon"
 
+#: application/controllers/Lotw.php:954 application/controllers/Lotw.php:959
 #: application/controllers/Lotw.php:970
 msgid "Connection to LoTW failed."
 msgstr "Tilkoblingen til LoTW mislyktes."
 
+#: application/controllers/Lotw.php:959 application/controllers/Lotw.php:964
 #: application/controllers/Lotw.php:975
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "Innlogging til LoTW mislyktes for brukeren %s: %s."
 
+#: application/controllers/Lotw.php:959 application/controllers/Lotw.php:964
 #: application/controllers/Lotw.php:975
 msgid "Username/password incorrect"
 msgstr "Brukernavn/passord er feil"
 
+#: application/controllers/Lotw.php:962 application/controllers/Lotw.php:967
 #: application/controllers/Lotw.php:978
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW er for øyeblikket ikke tilgjengelig. Prøv igjen senere."
 
+#: application/controllers/Lotw.php:966 application/controllers/Lotw.php:971
 #: application/controllers/Lotw.php:982
 msgid "LoTW login OK!"
 msgstr "LoTW pålogging OK!"
 
+#: application/controllers/Lotw.php:972 application/controllers/Lotw.php:977
 #: application/controllers/Lotw.php:988
 msgid "No LoTW credentials provided."
 msgstr "Ingen LoTW påloggingsopplysninger oppgitt."
 
+#: application/controllers/Lotw.php:989 application/controllers/Lotw.php:994
 #: application/controllers/Lotw.php:1005
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF-import"
 
+#: application/controllers/Lotw.php:1014 application/controllers/Lotw.php:1019
 #: application/controllers/Lotw.php:1030
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Du har ikke angitt ARRL LoTW-påloggingsopplysninger!"
@@ -2926,7 +2941,7 @@ msgstr "QSO-kart"
 #: application/views/statistics/qsltable.php:111
 #: application/views/usermode/index.php:25
 msgid "Modes"
-msgstr ""
+msgstr "Modus"
 
 #: application/controllers/Mode.php:61
 msgid "Edit Mode"
@@ -2940,24 +2955,24 @@ msgstr "Modus %s er oppdatert"
 #: application/controllers/Most_wanted_squares.php:22
 #: application/views/interface_assets/header.php:556
 msgid "Most Wanted Squares"
-msgstr ""
+msgstr "Mest ettertraktede ruter"
 
 #: application/controllers/Most_wanted_squares.php:43
 msgid "Invalid band."
-msgstr ""
+msgstr "Ugyldig bånd."
 
 #: application/controllers/Most_wanted_squares.php:48
 #: application/views/most_wanted_squares/index.php:8
 msgid "The active station location has no gridsquare set."
-msgstr ""
+msgstr "Den aktive stasjonsplasseringen har ikke angitt noe lokatorrute."
 
 #: application/controllers/Most_wanted_squares.php:53
 msgid "The gridsquare of the active station location is invalid."
-msgstr ""
+msgstr "Lokatorruten til den aktive stasjonsplasseringen er ugyldig."
 
 #: application/controllers/Most_wanted_squares.php:90
 msgid "VUCC gridsquare data unavailable."
-msgstr ""
+msgstr "VUCC-lokatorrutedata er ikke tilgjengelig."
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -2989,42 +3004,44 @@ msgid ""
 "Duplicate note title for this category and user - not allowed for Contacts "
 "category."
 msgstr ""
+"Duplikat av merknadstittel for denne kategorien og brukeren – ikke tillatt "
+"for Kontakt-kategorien."
 
 #: application/controllers/Notes.php:283
 msgid "Not found or not allowed"
-msgstr ""
+msgstr "Ikke funnet eller ikke tillatt"
 
 #: application/controllers/Notes.php:298
 msgid "Not found"
-msgstr ""
+msgstr "Ikke funnet"
 
 #: application/controllers/Notes.php:314
 msgid "Category and title are required"
-msgstr ""
+msgstr "Kategori og tittel er obligatorisk"
 
 #: application/controllers/Notes.php:327
 msgid "Note not found or not allowed"
-msgstr ""
+msgstr "Merknad ikke funnet eller ikke tillatt"
 
 #: application/controllers/Notes.php:334
 msgid "Note deleted"
-msgstr ""
+msgstr "Merknad slettet"
 
 #: application/controllers/Notes.php:338
 msgid "Note updated"
-msgstr ""
+msgstr "Merknad oppdatert"
 
 #: application/controllers/Notes.php:343
 msgid "Cannot create empty note"
-msgstr ""
+msgstr "Kan ikke opprette tom merknad"
 
 #: application/controllers/Notes.php:351
 msgid "A note with this callsign already exists"
-msgstr ""
+msgstr "Det finnes allerede en merknad med dette kallesignalet"
 
 #: application/controllers/Notes.php:361
 msgid "Note created"
-msgstr ""
+msgstr "Merknad opprettet"
 
 #: application/controllers/Notes.php:374 application/controllers/Notes.php:397
 #, php-format
@@ -3032,12 +3049,16 @@ msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
 msgstr ""
+"Tittelen på kontaktnotatet må bare være et kallesignal, uten prefiks/"
+"suffiks. Forslag: %s"
 
 #: application/controllers/Notes.php:380 application/controllers/Notes.php:405
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
 msgstr ""
+"Det finnes allerede en merknad med dette kallesignalet i kontaktene dine. "
+"Angi et unikt kallesignal."
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:163
@@ -3045,7 +3066,7 @@ msgstr ""
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
-msgstr ""
+msgstr "Ugyldig kallesignal"
 
 #: application/controllers/Options.php:25
 #: application/controllers/Options.php:41
@@ -3068,12 +3089,12 @@ msgstr ""
 #: application/views/options/radios.php:2
 #: application/views/options/version_dialog.php:2
 msgid "Wavelog Options"
-msgstr ""
+msgstr "Wavelog-alternativer"
 
 #: application/controllers/Options.php:26
 #: application/controllers/Options.php:42 application/views/options/tabs.php:7
 msgid "Appearance"
-msgstr ""
+msgstr "Utseende"
 
 #: application/controllers/Options.php:61
 #: application/controllers/Options.php:69
@@ -3081,34 +3102,34 @@ msgstr ""
 #: application/controllers/Options.php:85
 #: application/controllers/Options.php:93
 msgid "Options saved"
-msgstr ""
+msgstr "Alternativene er lagret"
 
 #: application/controllers/Options.php:104
 #: application/controllers/Options.php:116
 #: application/views/options/tabs.php:32
 msgid "Hams Of Note"
-msgstr ""
+msgstr "Kjente radioamatører"
 
 #: application/controllers/Options.php:132
 msgid "Hams-Of-Note URL changed to "
-msgstr ""
+msgstr "Hams-Of-Note-nettadressen er endret til "
 
 #: application/controllers/Options.php:170
 msgid "de continent changed to "
-msgstr ""
+msgstr "kontinent endret til "
 
 #: application/controllers/Options.php:175
 msgid "Maximum age of spots changed to "
-msgstr ""
+msgstr "Maksimal alder for spots endret til "
 
 #: application/controllers/Options.php:180
 msgid "DXCluster Cache URL changed to "
-msgstr ""
+msgstr "DXCluster Cache-URL endret til "
 
 #: application/controllers/Options.php:190
 #: application/controllers/Options.php:202
 msgid "Radio Settings"
-msgstr ""
+msgstr "Radioinnstillinger"
 
 #: application/controllers/Options.php:224
 msgid "Radio Timeout Warning changed to "
@@ -3203,7 +3224,7 @@ msgstr ""
 
 #: application/controllers/Oqrs.php:82
 msgid "Invalid Station ID"
-msgstr ""
+msgstr "Ugyldig stasjons-ID"
 
 #: application/controllers/Oqrs.php:105
 msgid "Invalid station slug"
@@ -3212,82 +3233,84 @@ msgstr ""
 #: application/controllers/Oqrs.php:180
 #: application/views/interface_assets/header.php:579
 msgid "OQRS Requests"
-msgstr ""
+msgstr "OQRS-forespørsler"
 
 #: application/controllers/Oqrs.php:286
 #: application/views/oqrs/notinlogform.php:2
 #: application/views/oqrs/request.php:2
 #: application/views/oqrs/request_grouped.php:2
 msgid "Please enter a valid date."
-msgstr ""
+msgstr "Angi en gyldig dato."
 
 #: application/controllers/Oqrs.php:291
 msgid "Please enter a valid time."
-msgstr ""
+msgstr "Angi et gyldig klokkeslett."
 
 #: application/controllers/Oqrs.php:444
 msgid "QSO match deleted successfully."
-msgstr ""
+msgstr "QSO-treffet ble slettet."
 
 #: application/controllers/Oqrs.php:454
 msgid "QSO match added successfully."
-msgstr ""
+msgstr "QSO-treff lagt til."
 
 #: application/controllers/Qrbcalc.php:16
 msgid "QRB Calculator"
-msgstr ""
+msgstr "QRB-kalkulator"
 
 #: application/controllers/Qrbcalc.php:48
 #: application/controllers/Qrbcalc.php:49
 #, php-format
 msgid "Latitude: %s, Longitude: %s"
-msgstr ""
+msgstr "Breddegrad: %s, Lengdegrad: %s"
 
 #: application/controllers/Qrbcalc.php:53
 #, php-format
 msgid "The distance between %s and %s is %s mile."
 msgid_plural "The distance between %s and %s is %s miles."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Avstanden mellom %s og %s er %s mil."
+msgstr[1] "Avstanden mellom %s og %s er %s mil."
 
 #: application/controllers/Qrbcalc.php:56
 #, php-format
 msgid "The distance between %s and %s is %s nautical mile."
 msgid_plural "The distance between %s and %s is %s nautical miles."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Avstanden mellom %s og %s er %s nautiske mil."
+msgstr[1] "Avstanden mellom %s og %s er %s nautiske mil."
 
 #: application/controllers/Qrbcalc.php:59
 #: application/controllers/Qrbcalc.php:62
 #, php-format
 msgid "The distance between %s and %s is %s kilometer."
 msgid_plural "The distance between %s and %s is %s kilometers."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Avstanden mellom %s og %s er %s kilometer."
+msgstr[1] "Avstanden mellom %s og %s er %s kilometer."
 
 #: application/controllers/Qrbcalc.php:68
 #, php-format
 msgid "The bearing is %s."
-msgstr ""
+msgstr "Peilingen er %s."
 
 #: application/controllers/Qrbcalc.php:74
 msgid ""
 "Negative latitudes are south of the equator, negative longitudes are west of "
 "Greenwich."
 msgstr ""
+"Negative breddegrader ligger sør for ekvator, negative lengdegrader ligger "
+"vest for Greenwich."
 
 #: application/controllers/Qrz.php:297
 #: application/views/interface_assets/header.php:597
 msgid "QRZ Logbook"
-msgstr ""
+msgstr "QRZ Loggbok"
 
 #: application/controllers/Qrz.php:382
 msgid "QRZ QSL Import"
-msgstr ""
+msgstr "QRZ QSL-import"
 
 #: application/controllers/Qrz.php:443
 msgid "QRZ ADIF Information"
-msgstr ""
+msgstr "QRZ ADIF-informasjon"
 
 #: application/controllers/Qsl.php:41
 #: application/views/dashboard/_options_menu.php:17
@@ -3299,55 +3322,59 @@ msgstr ""
 #: application/views/visitor/index.php:272
 #: application/views/visitor/index.php:285
 msgid "QSL Cards"
-msgstr ""
+msgstr "QSL-kort"
 
 #: application/controllers/Qsl.php:65
 msgid "Upload QSL Cards"
-msgstr ""
+msgstr "Last opp QSL-kort"
 
 #: application/controllers/Qsl.php:121 application/controllers/Qsl.php:170
 msgid "Not enough free disk space to store the QSL card."
-msgstr ""
+msgstr "Det er ikke nok ledig diskplass til å lagre QSL-kortet."
 
 #: application/controllers/Qsl.php:138 application/controllers/Qsl.php:187
 #: application/controllers/Qslpostcard.php:89
 msgid "The uploaded file is not a valid image."
-msgstr ""
+msgstr "Den opplastede filen er ikke et gyldig bilde."
 
 #: application/controllers/Qslpostcard.php:29
 msgid ""
 "QSL Postcard Designer is unavailable because the 'userdata' config option is "
 "not set. Your config is outdated."
 msgstr ""
+"QSL-postkortdesigner er utilgjengelig fordi konfigurasjonsalternativet "
+"«userdata» ikke er angitt. Konfigurasjonen er utdatert."
 
 #: application/controllers/Qslpostcard.php:30
 msgid ""
 "Please compare your current config.php with the latest config.sample.php and "
 "update accordingly."
 msgstr ""
+"Sammenlign gjeldende config.php med den nyeste config.sample.php, og "
+"oppdater deretter."
 
 #: application/controllers/Qslpostcard.php:34
 #: application/views/interface_assets/header.php:588
 msgid "QSL Postcard Designer"
-msgstr ""
+msgstr "QSL-postkortdesigner"
 
 #: application/controllers/Qslpostcard.php:64
 msgid "Not enough free disk space to store the QSL Background."
-msgstr ""
+msgstr "Ikke nok ledig diskplass til å lagre QSL-bakgrunnen."
 
 #: application/controllers/Qslpostcard.php:226
 msgid "QSL Postcard PDF failed: "
-msgstr ""
+msgstr "QSL-postkort-PDF mislyktes: "
 
 #: application/controllers/Qslpostcard.php:231
 #: application/views/qslpostcard/printqueue.php:2
 msgid "Print QSL Postcards"
-msgstr ""
+msgstr "Skriv ut QSL-kort"
 
 #: application/controllers/Qslpostcard.php:262
 #: application/controllers/Qslpostcard.php:331
 msgid "No QSOs found for postcard printing"
-msgstr ""
+msgstr "Ingen QSOs funnet for utskrift av postkort"
 
 #: application/controllers/Qslpostcard.php:277
 msgid "QSL Postcard Queue PDF failed: "
@@ -3356,61 +3383,61 @@ msgstr ""
 #: application/controllers/Qslpostcard.php:294
 #: application/views/qslpostcard/printqueue_selected.php:2
 msgid "Print Selected QSL Postcards"
-msgstr ""
+msgstr "Skriv ut valgte QSL-kort"
 
 #: application/controllers/Qslpostcard.php:324
 msgid "No selected QSO IDs were provided"
-msgstr ""
+msgstr "Ingen valgte QSO-ID-er ble angitt"
 
 #: application/controllers/Qslpostcard.php:349
 msgid "Selected QSL Postcard PDF failed: "
-msgstr ""
+msgstr "Valgt QSL-kort til PDF mislyktes: "
 
 #: application/controllers/Qslprint.php:42
 msgid "Print Requested QSLs"
-msgstr ""
+msgstr "Skriv ut forespurte QSL-er"
 
 #: application/controllers/Qso.php:170
 msgid "Add QSO"
-msgstr ""
+msgstr "Legg til QSO"
 
 #: application/controllers/Qso.php:229
 msgid "QSO could not be saved"
-msgstr ""
+msgstr "QSO kunne ikke lagres"
 
 #: application/controllers/Qso.php:838 application/controllers/Qso.php:861
 #, php-format
 msgid "Please check value for gridsquare (%s)"
-msgstr ""
+msgstr "Sjekk verdien for rutenettkoordinat (%s)"
 
 #: application/controllers/Qso.php:850
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
-msgstr ""
+msgstr "Sjekk verdien for VUCC-rutenettkoordinat (%s)"
 
 #: application/controllers/Qso.php:879
 msgid "You have to be logged in to access this URL."
-msgstr ""
+msgstr "Du må være logget inn for å få tilgang til denne URL-en."
 
 #: application/controllers/Qso.php:885
 msgid "Call Transfer"
-msgstr ""
+msgstr "Overføring av kallesignal"
 
 #: application/controllers/Radio.php:16
 #: application/views/interface_assets/header.php:611
 msgid "Hardware Interfaces"
-msgstr ""
+msgstr "Maskinvaregrensesnitt"
 
 #: application/controllers/Radio.php:51 application/views/bandmap/list.php:25
 #: application/views/contesting/logger/components/radio.php:9
 #: application/views/contesting/logger/components/radio.php:50
 #: application/views/qso/index.php:417 application/views/view_log/qso.php:664
 msgid "Radio"
-msgstr ""
+msgstr "Radio"
 
 #: application/controllers/Radio.php:57
 msgid "Timestamp"
-msgstr ""
+msgstr "Tidsstempel"
 
 #: application/controllers/Radio.php:59
 #: application/views/logbookadvanced/index.php:906
@@ -3419,7 +3446,7 @@ msgstr ""
 #: application/views/simplefle/index.php:185
 #: application/views/stationsetup/exportmapoptions.php:5
 msgid "Options"
-msgstr ""
+msgstr "Alternativer"
 
 #: application/controllers/Radio.php:60
 #: application/views/contesting/logger/components/winkeyer.php:52
@@ -3427,28 +3454,28 @@ msgstr ""
 #: application/views/debug/index.php:412 application/views/qso/index.php:831
 #: application/views/satellite/pass.php:119
 msgid "Settings"
-msgstr ""
+msgstr "Innstillinger"
 
 #: application/controllers/Radio.php:66
 msgid "WebSocket"
-msgstr ""
+msgstr "WebSocket"
 
 #: application/controllers/Radio.php:72 application/controllers/Radio.php:134
 msgid "Default (click to release)"
-msgstr ""
+msgstr "Standard (klikk for å frigjøre)"
 
 #: application/controllers/Radio.php:74 application/controllers/Radio.php:136
 msgid "Set as default radio"
-msgstr ""
+msgstr "Angi som standardradio"
 
 #: application/controllers/Radio.php:89
 msgid "UNKNOWN"
-msgstr ""
+msgstr "UKJENT"
 
 #: application/controllers/Radio.php:128 application/views/bandmap/list.php:251
 #: application/views/qso/index.php:422 application/views/radio/index.php:3
 msgid "last updated"
-msgstr ""
+msgstr "sist oppdatert"
 
 #: application/controllers/Radio.php:138
 #: application/controllers/Stationsetup.php:401
@@ -3470,7 +3497,7 @@ msgstr ""
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
 msgid "Edit"
-msgstr ""
+msgstr "Rediger"
 
 #: application/controllers/Radio.php:139
 #: application/controllers/Stationsetup.php:414
@@ -3507,31 +3534,31 @@ msgstr ""
 #: application/views/user/index.php:228 application/views/view_log/qso.php:727
 #: application/views/view_log/qso.php:735
 msgid "Delete"
-msgstr ""
+msgstr "Slett"
 
 #: application/controllers/Radio.php:146
 msgid "WebSocket is currently default (click to release)"
-msgstr ""
+msgstr "WebSocket er standard for øyeblikket (klikk for å frigi)"
 
 #: application/controllers/Radio.php:148
 msgid "Set WebSocket as default radio"
-msgstr ""
+msgstr "Angi WebSocket som standard radio"
 
 #: application/controllers/Radio.php:152
 msgid "No CAT interfaced radios found."
-msgstr ""
+msgstr "Fant ingen radioer med CAT-grensesnitt."
 
 #: application/controllers/Radio.php:153
 msgid "You can still set the WebSocket option as your default radio."
-msgstr ""
+msgstr "Du kan fortsatt angi WebSocket-alternativet som standardradio."
 
 #: application/controllers/Radio.php:170 application/views/radio/index.php:2
 msgid "Edit CAT Settings"
-msgstr ""
+msgstr "Rediger CAT-innstillinger"
 
 #: application/controllers/Radio.php:221
 msgid "Radio removed successfully"
-msgstr ""
+msgstr "Radioen ble fjernet"
 
 #: application/controllers/Satellite.php:40 application/models/Note.php:10
 #: application/views/amsatstatus/index.php:74
@@ -3541,64 +3568,64 @@ msgstr ""
 #: application/views/statistics/index.php:158
 #: application/views/statistics/qsltable.php:120
 msgid "Satellites"
-msgstr ""
+msgstr "Satellitter"
 
 #: application/controllers/Satellite.php:49
 msgid "Create Satellite"
-msgstr ""
+msgstr "Opprett satellitt"
 
 #: application/controllers/Satellite.php:75
 msgid "Edit Satellite"
-msgstr ""
+msgstr "Rediger satellitt"
 
 #: application/controllers/Satellite.php:201
 #: application/views/interface_assets/header.php:332
 msgid "Satellite Flightpath"
-msgstr ""
+msgstr "Satellittbane"
 
 #: application/controllers/Satellite.php:272
 msgid "Satellite pass"
-msgstr ""
+msgstr "Satellittpassering"
 
 #: application/controllers/Satellite.php:331
 msgid "Failed to save pass settings!"
-msgstr ""
+msgstr "Kunne ikke lagre innstillingene for passering!"
 
 #: application/controllers/Satellite.php:334
 msgid "Pass settings saved!"
-msgstr ""
+msgstr "Innstillingene for passering er lagret!"
 
 #: application/controllers/Satellite.php:347
 msgid "No settings found!"
-msgstr ""
+msgstr "Ingen innstillinger funnet!"
 
 #: application/controllers/Satellite.php:361
 msgid "Failed to delete pass settings!"
-msgstr ""
+msgstr "Kunne ikke slette innstillingene for passering!"
 
 #: application/controllers/Satellite.php:363
 msgid "Pass settings deleted!"
-msgstr ""
+msgstr "Innstillingene for passering er slettet!"
 
 #: application/controllers/Satellite.php:373
 msgid "Saved Pass Settings"
-msgstr ""
+msgstr "Lagrede passeringsinnstillinger"
 
 #: application/controllers/Satellite.php:390
 msgid "No presets available"
-msgstr ""
+msgstr "Ingen forhåndsinnstillinger tilgjengelig"
 
 #: application/controllers/Satellite.php:651
 msgid "Generic error posting to hams.at. Please check the input values."
-msgstr ""
+msgstr "Generisk feil ved publisering til hams.at. Kontroller inndataverdiene."
 
 #: application/controllers/Satellite.php:655
 msgid "Error authenticating to hams.at. Please check API key."
-msgstr ""
+msgstr "Feil ved autentisering mot hams.at. Kontroller API-nøkkelen."
 
 #: application/controllers/Satellite.php:659
 msgid "Generic error posting to hams.at. Please try again later."
-msgstr ""
+msgstr "Generisk feil ved publisering til hams.at. Prøv igjen senere."
 
 #: application/controllers/Search.php:13 application/views/bandmap/list.php:579
 #: application/views/continents/index.php:54
@@ -3625,18 +3652,20 @@ msgstr "Søk"
 
 #: application/controllers/Search.php:24
 msgid "Search & Filter Logbook"
-msgstr ""
+msgstr "Søk og filtrer i loggboken"
 
 #: application/controllers/Search.php:60
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
 msgstr ""
+"QSOs ubekreftet på LoTW, men kallesignalet har lastet opp til LoTW etter QSO-"
+"datoen"
 
 #: application/controllers/Simplefle.php:29
 #: application/views/interface_assets/header.php:140
 msgid "Simple Fast Log Entry"
-msgstr ""
+msgstr "Enkel rask loggføring"
 
 #: application/controllers/Staticmap.php:206
 #: application/controllers/Visitor.php:73
@@ -3647,37 +3676,37 @@ msgstr ""
 #: application/controllers/Visitor.php:630
 #: application/controllers/Widgets.php:63
 msgid "Empty Logbook"
-msgstr ""
+msgstr "Tom loggbok"
 
 #: application/controllers/Station.php:37
 #: application/controllers/Stationsetup.php:251
 msgid "Create Station Location"
-msgstr ""
+msgstr "Opprett stasjonslokasjon"
 
 #: application/controllers/Station.php:74
 #: application/controllers/Station.php:99 application/controllers/User.php:270
 #: application/controllers/User.php:1045 application/controllers/User.php:1257
 msgid "Invalid security token"
-msgstr ""
+msgstr "Ugyldig sikkerhetstoken"
 
 #: application/controllers/Station.php:88
 msgid "Edit Station Location: "
-msgstr ""
+msgstr "Rediger stasjonslokasjon: "
 
 #: application/controllers/Station.php:105
 #, php-format
 msgid "Station Location %s updated"
-msgstr ""
+msgstr "Stasjonslokasjon %s oppdatert"
 
 #: application/controllers/Station.php:124
 msgid "Duplicate Station Location:"
-msgstr ""
+msgstr "Duplikat av stasjonslokasjon:"
 
 #: application/controllers/Station.php:236
 #: application/controllers/User.php:1558 application/controllers/User.php:1811
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr ""
+msgstr "Kontroller verdien for lokator (%s)"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/azimuthal/index.php:17
@@ -3693,7 +3722,7 @@ msgstr "Stasjonsoppsett"
 #: application/controllers/Stationsetup.php:437
 #: application/controllers/Stationsetup.php:451
 msgid "Not allowed"
-msgstr ""
+msgstr "Ikke tillatt"
 
 #: application/controllers/Stationsetup.php:97
 #: application/controllers/Stationsetup.php:111
@@ -3714,24 +3743,24 @@ msgstr ""
 #: application/views/widgets/on_air.php:190
 #: application/views/widgets/on_air.php:249
 msgid "Error"
-msgstr ""
+msgstr "Feil"
 
 #: application/controllers/Stationsetup.php:184
 #: application/views/stationsetup/stationsetup.php:34
 msgid "Create Station Logbook"
-msgstr ""
+msgstr "Opprett stasjonsloggbok"
 
 #: application/controllers/Stationsetup.php:191
 msgid "Edit container name"
-msgstr ""
+msgstr "Rediger containernavn"
 
 #: application/controllers/Stationsetup.php:206
 msgid "Edit linked locations"
-msgstr ""
+msgstr "Rediger tilknyttede steder"
 
 #: application/controllers/Stationsetup.php:215
 msgid "Edit visitor site"
-msgstr ""
+msgstr "Rediger besøkendes nettsted"
 
 #: application/controllers/Stationsetup.php:237
 msgid "Error. Link is already in use!"
@@ -10185,7 +10214,7 @@ msgstr ""
 #: application/views/azimuthal/index.php:65
 #: application/views/statistics/antennaanalytics.php:97
 msgid "Azimuthal map"
-msgstr ""
+msgstr "Azimuthal kart"
 
 #: application/views/backup/main.php:17
 msgid ""

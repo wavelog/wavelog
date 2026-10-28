@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-28 05:09+0000\n"
-"PO-Revision-Date: 2026-10-23 13:21+0000\n"
+"POT-Creation-Date: 2026-10-26 21:57+0000\n"
+"PO-Revision-Date: 2026-10-27 06:41+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -216,7 +216,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:117
 #: application/controllers/Lotw.php:387 application/controllers/Lotw.php:425
-#: application/controllers/Lotw.php:912 application/controllers/Lotw.php:999
+#: application/controllers/Lotw.php:901 application/controllers/Lotw.php:988
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14
 #: application/controllers/Most_wanted_squares.php:14
@@ -270,7 +270,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:103
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Lotw.php:912
+#: application/controllers/Lotw.php:999
 msgid "You're not allowed to do that!"
 msgstr "请不要这样操作！"
 
@@ -2901,36 +2902,36 @@ msgstr ""
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF 信息"
 
-#: application/controllers/Lotw.php:970
+#: application/controllers/Lotw.php:959 application/controllers/Lotw.php:970
 msgid "Connection to LoTW failed."
 msgstr "连接到 LoTW 失败。"
 
-#: application/controllers/Lotw.php:975
+#: application/controllers/Lotw.php:964 application/controllers/Lotw.php:975
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW 用户 %s 登录失败：%s。"
 
-#: application/controllers/Lotw.php:975
+#: application/controllers/Lotw.php:964 application/controllers/Lotw.php:975
 msgid "Username/password incorrect"
 msgstr "用户名/密码不正确"
 
-#: application/controllers/Lotw.php:978
+#: application/controllers/Lotw.php:967 application/controllers/Lotw.php:978
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW当前不可用。请稍后再试。"
 
-#: application/controllers/Lotw.php:982
+#: application/controllers/Lotw.php:971 application/controllers/Lotw.php:982
 msgid "LoTW login OK!"
 msgstr "LoTW 登录成功！"
 
-#: application/controllers/Lotw.php:988
+#: application/controllers/Lotw.php:977 application/controllers/Lotw.php:988
 msgid "No LoTW credentials provided."
 msgstr "没有提供 LoTW 证书。"
 
-#: application/controllers/Lotw.php:1005
+#: application/controllers/Lotw.php:994 application/controllers/Lotw.php:1005
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF 导入"
 
-#: application/controllers/Lotw.php:1030
+#: application/controllers/Lotw.php:1019 application/controllers/Lotw.php:1030
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
@@ -2960,24 +2961,24 @@ msgstr "模式 %s 已更新"
 #: application/controllers/Most_wanted_squares.php:22
 #: application/views/interface_assets/header.php:556
 msgid "Most Wanted Squares"
-msgstr ""
+msgstr "最稀缺网格"
 
 #: application/controllers/Most_wanted_squares.php:43
 msgid "Invalid band."
-msgstr ""
+msgstr "无效频段。"
 
 #: application/controllers/Most_wanted_squares.php:48
 #: application/views/most_wanted_squares/index.php:8
 msgid "The active station location has no gridsquare set."
-msgstr ""
+msgstr "当前台站位置未设置网格。"
 
 #: application/controllers/Most_wanted_squares.php:53
 msgid "The gridsquare of the active station location is invalid."
-msgstr ""
+msgstr "当前台站位置的网格无效。"
 
 #: application/controllers/Most_wanted_squares.php:90
 msgid "VUCC gridsquare data unavailable."
-msgstr ""
+msgstr "VUCC 网格数据不可用。"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:154
@@ -7393,8 +7394,7 @@ msgid ""
 "On Clubstations the API Tokens are personal and not shared. Clubstation "
 "users can only see their own tokens."
 msgstr ""
-"在俱乐部台站中，API令牌是个人专属的，不会共享。俱乐部台站用户只能查看自己的令"
-"牌。"
+"在集体台站中，API令牌是个人专属的，不会共享。集体台站用户只能查看自己的令牌。"
 
 #: application/views/api/index.php:138
 msgid "Expires"
@@ -16840,7 +16840,7 @@ msgstr "频段边界"
 
 #: application/views/interface_assets/header.php:513
 msgid "Switch to Clubstation"
-msgstr ""
+msgstr "切换到集体台站"
 
 #: application/views/interface_assets/header.php:516
 msgid "Switch to Clubstation:"
@@ -18537,7 +18537,7 @@ msgstr "您确定要修复所有缺少 DXCC 信息的 QSO 吗？此操作无法�
 
 #: application/views/logbookadvanced/index.php:75
 msgid "Mark dupes (keep oldest)"
-msgstr ""
+msgstr "标记重复项（保留最早的）"
 
 #: application/views/logbookadvanced/index.php:85
 msgid "You need to select exactly 2 QSOs to merge!"
@@ -19187,12 +19187,12 @@ msgstr "上次上传"
 #: application/views/lookup/lotwuser.php:14
 #: application/views/search/result.php:84
 msgid "LoTW Status Unknown"
-msgstr ""
+msgstr "LoTW 状态未知"
 
 #: application/views/lookup/lotwuser.php:14
 #: application/views/search/result.php:84
 msgid "Table with last LoTW uploads is empty. Please check"
-msgstr ""
+msgstr "最近 LoTW 上传记录表为空。请检查"
 
 #: application/views/lookup/lotwuser.php:16
 msgid "No LoTW User"
@@ -19559,7 +19559,7 @@ msgstr "创建模式"
 #: application/views/most_wanted_squares/index.php:16
 msgid ""
 "Export a list of 4-digit gridsquares that have not been worked yet on VHF."
-msgstr ""
+msgstr "导出一份在 VHF 上尚未通联过的 4 位网格方格列表。"
 
 #: application/views/most_wanted_squares/index.php:21
 #, php-format
@@ -19567,10 +19567,12 @@ msgid ""
 "The list contains all not worked gridsquares within %d km of the gridsquare "
 "%s of the active station location %s (%s)."
 msgstr ""
+"列表包含当前台站所在网格 %d 公里范围内所有未通联过的网格；当前网格 %s，当前台"
+"站位置 %s（%s）。"
 
 #: application/views/most_wanted_squares/index.php:34
 msgid "Exclude squares that contain no land"
-msgstr ""
+msgstr "排除不包含陆地的网格"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
@@ -21099,7 +21101,7 @@ msgid ""
 "you. This allows you to have a default radio that is automatically selected "
 "when you log in, while still being able to use other radios if you want."
 msgstr ""
-"作为俱乐部台操作员，你可以为自己设置默认电台。登录时会自动选中该电台，同时也"
+"作为集体台站操作员，你可以为自己设置默认电台。登录时会自动选中该电台，同时也"
 "可按需使用其他电台。"
 
 #: application/views/radio/index.php:29
