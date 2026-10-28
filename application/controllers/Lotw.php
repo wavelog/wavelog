@@ -754,8 +754,8 @@ class Lotw extends CI_Controller {
 							$result = sprintf(__("LoTW download failed for user %s: %s (%s)."), $user->user_lotw_name, curl_strerror(curl_errno($ch)), curl_errno($ch));
 							continue;
 						} else if ($http_code !== 200) {
-							$result = sprintf(__("LoTW download failed for user %s: unexpected HTTP status %s."), $user->user_name, $http_code);
-							log_message('error', 'LoTW download failed for user '.$user->user_name.': unexpected HTTP status '.$http_code);
+							$result = sprintf(__("LoTW download failed for user %s: unexpected HTTP status %s."), $user->user_lotw_name, $http_code);
+							log_message('error', 'LoTW download failed for user '.$user->user_lotw_name.': unexpected HTTP status '.$http_code);
 							continue;
 						} else if(str_contains(substr($content,0 , 6000),"Username/password incorrect</I>")) {
 							$result = sprintf(__("LoTW download failed for user %s: Username/password incorrect"), $user->user_lotw_name);
@@ -768,12 +768,12 @@ class Lotw extends CI_Controller {
 							continue;
 						} else if (str_contains(substr($content, 0, 6000),"Page Request Limit!</B>")) {
 							$result = sprintf(__("LoTW download hit a rate limit for user %s"), $user->user_lotw_name);
-							log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
+							log_message('error', 'LoTW download hit a rate limit for user '.$user->user_lotw_name);
 							continue;
 						}
 					if (substr($content, 0, 39) != "ARRL Logbook of the World Status Report") {
 						$result = sprintf(__("Downloaded LoTW report for user %s is invalid. Check your credentials."), $user->user_lotw_name);
-						log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_name);
+						log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_lotw_name);
 						continue;
 					}
 
