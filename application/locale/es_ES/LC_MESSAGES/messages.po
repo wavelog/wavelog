@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-26 21:57+0000\n"
+"POT-Creation-Date: 2026-10-28 05:09+0000\n"
 "PO-Revision-Date: 2026-10-19 13:17+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -196,7 +196,7 @@ msgstr "Ducting troposférico"
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:117
 #: application/controllers/Lotw.php:387 application/controllers/Lotw.php:425
-#: application/controllers/Lotw.php:901 application/controllers/Lotw.php:988
+#: application/controllers/Lotw.php:912 application/controllers/Lotw.php:999
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14
 #: application/controllers/Most_wanted_squares.php:14
@@ -2923,36 +2923,36 @@ msgstr ""
 msgid "LoTW ADIF Information"
 msgstr "Información ADIF de LoTW"
 
-#: application/controllers/Lotw.php:959
+#: application/controllers/Lotw.php:970
 msgid "Connection to LoTW failed."
 msgstr "Falló la conexión a LoTW."
 
-#: application/controllers/Lotw.php:964
+#: application/controllers/Lotw.php:975
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "Error de inicio de sesión en LoTW para el usuario %s: %s."
 
-#: application/controllers/Lotw.php:964
+#: application/controllers/Lotw.php:975
 msgid "Username/password incorrect"
 msgstr "Nombre de usuario/contraseña incorrectos"
 
-#: application/controllers/Lotw.php:967
+#: application/controllers/Lotw.php:978
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW no está disponible actualmente. Inténtalo de nuevo más tarde."
 
-#: application/controllers/Lotw.php:971
+#: application/controllers/Lotw.php:982
 msgid "LoTW login OK!"
 msgstr "¡Inicio de sesión en LoTW correcto!"
 
-#: application/controllers/Lotw.php:977
+#: application/controllers/Lotw.php:988
 msgid "No LoTW credentials provided."
 msgstr "No se proporcionaron credenciales de LoTW."
 
-#: application/controllers/Lotw.php:994
+#: application/controllers/Lotw.php:1005
 msgid "LoTW ADIF Import"
 msgstr "Importación ADIF de LoTW"
 
-#: application/controllers/Lotw.php:1019
+#: application/controllers/Lotw.php:1030
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "¡No has definido tus credenciales de ARRL LoTW!"
 
@@ -5128,8 +5128,8 @@ msgstr ""
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
-"APCu está cargado, pero no se puede utilizar en esta interfaz de PHP (¿apc."
-"enabled=0?)."
+"APCu está cargado, pero no se puede utilizar en esta interfaz de PHP "
+"(¿apc.enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
@@ -10392,9 +10392,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
-"Campos tomados para este Premio: DXCC (Debe ser uno de China/318, "
-"HongKong/321, Macao/152, Taiwán/386, Islas Pratas/505 o Arrecife "
-"Scarborough/506) y Estado válido (ADIF: DXCC y STATE)"
+"Campos tomados para este Premio: DXCC (Debe ser uno de China/318, HongKong/"
+"321, Macao/152, Taiwán/386, Islas Pratas/505 o Arrecife Scarborough/506) y "
+"Estado válido (ADIF: DXCC y STATE)"
 
 #: application/views/awards/wapc/index.php:55
 msgid "Show WAPC Map"
@@ -10459,8 +10459,8 @@ msgid ""
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
 "Campos tomados para este premio: DXCC (Debe ser uno de EE.UU., Alaska o "
-"Hawái) y ESTADO (¡Debe contener una abreviatura válida de un estado de EE."
-"UU.!)"
+"Hawái) y ESTADO (¡Debe contener una abreviatura válida de un estado de "
+"EE.UU.!)"
 
 #: application/views/awards/was/index.php:55
 msgid "Show WAS Map"
@@ -15586,8 +15586,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Ve a tu carpeta application/config y compara config.sample.php con tu config."
-"php"
+"Ve a tu carpeta application/config y compara config.sample.php con tu "
+"config.php"
 
 #: application/views/debug/index.php:258
 #, php-format
@@ -23679,8 +23679,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nueva carpeta en 'assets/css/' y sube un archivo 'bootstrap.min."
-"css' que contenga reglas de estilo básicas. Usamos los temas de %s"
+"Crea una nueva carpeta en 'assets/css/' y sube un archivo "
+"'bootstrap.min.css' que contenga reglas de estilo básicas. Usamos los temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -23729,8 +23730,8 @@ msgid ""
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
 "Haz clic aquí en 'Agregar un tema' y escribe los datos necesarios. Escribe "
-"los nombres de archivo para los logotipos %ssin%s la extensión de archivo '."
-"png'"
+"los nombres de archivo para los logotipos %ssin%s la extensión de archivo "
+"'.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
