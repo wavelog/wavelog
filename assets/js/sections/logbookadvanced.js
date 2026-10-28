@@ -6,6 +6,7 @@ let inStateFixing = false;
 let stateFixStats = {fixed: 0, skipped: 0, fixedDxcc: new Set(), skippedDxcc: new Set(), skipReasons: new Set(), skippedDetails: []};
 let lastChecked = null;
 let silentReset = false;
+let markDupesAfterLoad = false;
 const filterDefaults = {};
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -276,7 +277,7 @@ function loadQSOTable(rows) {
 			responsive: false,
 			ordering: true,
 			order: [],
-			scrollY: window.innerHeight - $('#searchForm').innerHeight() - 250,
+			scrollY: window.innerHeight - $('#searchForm').innerHeight() - 150,
 			scrollCollapse: true,
 			paging: false,
 			language: language,
@@ -530,6 +531,15 @@ function loadQSOTable(rows) {
 				lastChecked = this;
 			});
 		});
+
+		if (markDupesAfterLoad) {
+			markDupesAfterLoad = false;
+			rows.forEach(function (qso) {
+				if (qso.isdupe) {
+					selectQsoID(qso.qsoID);
+				}
+			});
+		}
 	};
 
 	if (langUrl) {
@@ -1861,6 +1871,21 @@ $(document).ready(function () {
 								$('#dupeband').val($('#band_check').is(':checked') ? "Y" : "N");
 								$('#dupesat').val($('#satellite_check').is(':checked') ? "Y" : "N");
 								$('#dupedateval').val($('#dupe_time').length ? $('#dupe_time').val() * 60 : '1800');
+								dupeSearch();
+							}
+						},
+						{
+							label: lang_gen_advanced_logbook_mark_dupes + ' <div class="ld ld-ring ld-spin"></div>',
+							cssClass: 'btn btn-sm btn-warning ld-ext-right',
+							id: 'markDupesButton',
+							action: function (dialogItself) {
+								dialogItself.close();
+								$('#dupedate').val($('#date_check').is(':checked') ? "Y" : "N");
+								$('#dupemode').val($('#mode_check').is(':checked') ? "Y" : "N");
+								$('#dupeband').val($('#band_check').is(':checked') ? "Y" : "N");
+								$('#dupesat').val($('#satellite_check').is(':checked') ? "Y" : "N");
+								$('#dupedateval').val($('#dupe_time').length ? $('#dupe_time').val() * 60 : '1800');
+								markDupesAfterLoad = true;
 								dupeSearch();
 							}
 						},

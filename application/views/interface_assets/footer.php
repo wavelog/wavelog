@@ -2385,7 +2385,7 @@ $('#sats').change(function(){
     </script>
     <?php if ($this->uri->segment(1) == "qsl") {
         $qsl_eqsl_table = '.qsltable';
-        $qsl_eqsl_info = 'true';
+        $qsl_eqsl_info = 'false'; // Server-side pagination, hide DataTables info
     } else if ($this->uri->segment(1) == "generic_qsl") {
         $qsl_eqsl_table = '.qsltable';
         $qsl_eqsl_info = 'true';

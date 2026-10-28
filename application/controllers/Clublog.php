@@ -73,6 +73,7 @@ class Clublog extends CI_Controller
 					log_message("Error","We're blocked by Clublog. Stopping Download!");
 					break;
 				}
+				$this->clublog_model->oqrsUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password);
 			}
 		} else {
 			$r = __("No user has configured Clublog.");
@@ -162,6 +163,7 @@ class Clublog extends CI_Controller
 			if (!empty($users)) {
 				foreach ($users as $user) {
 					$r = $this->clublog_model->downloadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password, $clublog_last_date);
+					$r .= $this->clublog_model->oqrsUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password, $clublog_last_date);
 				}
 			} else {
 				$r = __("No user has configured Clublog.");

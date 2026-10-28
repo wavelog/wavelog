@@ -194,6 +194,7 @@ class Awards extends CI_Controller {
 				unset($dxcclist[0]);
 			}
 			$dxcc_result = $this->dxcc->get_dxcc_array($dxcclist, $bands, $postdata, $location_list);
+			$data['total_dxcc_entities'] = $this->dxcc->countDxccEntities($postdata);
 			// Extract bands data and summary from the result
 			$data['dxcc_array'] = ($dxcc_result && isset($dxcc_result['matrix'])) ? $dxcc_result['matrix'] : null;
 			$data['dxcc_summary'] = ($dxcc_result && isset($dxcc_result['summary'])) ? $dxcc_result['summary'] : null;
@@ -203,6 +204,7 @@ class Awards extends CI_Controller {
 			$data['dxcc_array'] = null;
 			$data['dxcc_summary'] = null;
 			$data['dxcc_continent_summary'] = null;
+			$data['total_dxcc_entities'] = $this->dxcc->countDxccEntities($postdata);
 		}
 
 		// Render Page
@@ -3128,7 +3130,7 @@ class Awards extends CI_Controller {
 		// Define valid bands for Polska award (per PZK rules)
 		// https://awards.pzk.org.pl/polish-awards/polska.html
 		// SAT is explicitly excluded (no satellite/repeater contacts allowed)
-		$data['worked_bands'] = array('160M', '80M', '40M', '30M', '20M', '17M', '15M', '12M', '10M', '6M', '2M');
+		$data['worked_bands'] = array('160m', '80m', '40m', '30m', '20m', '17m', '15m', '12m', '10m', '6m', '2m');
 
 		if($this->input->method() === 'post') {
 			$postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
@@ -3183,7 +3185,7 @@ class Awards extends CI_Controller {
 
 			// Calculate award classes for each band
 			$data['polska_classes_bands'] = array();
-			$valid_bands = array('160M', '80M', '40M', '30M', '20M', '17M', '15M', '12M', '10M', '6M', '2M');
+			$valid_bands = array('160m', '80m', '40m', '30m', '20m', '17m', '15m', '12m', '10m', '6m', '2m');
 			foreach ($valid_bands as $band) {
 				$postdata_temp = $postdata;
 				$postdata_temp['band'] = $band;

@@ -553,7 +553,7 @@ class QsoFormComponent {
 		}
 
 		try {
-			const resp = await fetch(base_url + 'contesting/delete_qso', {
+			const resp = await fetch(base_url + 'index.php/contesting/delete_qso', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ contest_session_id: sessionId, qso_id: serverId }),
@@ -912,6 +912,7 @@ class QsoFormComponent {
 				updated.date = data.time_on.split(' ')[0];
 			}
 			this.dataStore.set(`qso.${qso.tmpId}`, updated);
+			this.dataStore.emit('qso_updated', updated);
 
 			// No need to guard against a self-resync: the next check_sync may return this
 			// QSO again, but applyDelta() upserts by serverId and is idempotent.
@@ -972,7 +973,11 @@ class QsoFormComponent {
 		const entryHz = Math.round(parseFloat(v) * 1000);
 		const fullBand = rc.frequencyToBand(entryHz);
 		const offHz = (curHz !== null) ? Math.floor(curHz / 1e6) * 1e6 + entryHz : null;
-		const newHz = fullBand ? entryHz : ((offHz !== null && rc.frequencyToBand(offHz) === rc.frequencyToBand(curHz)) ? offHz : null);
+		const offHz2 = (curHz !== null) ? Math.floor(curHz / 1e5) * 1e5 + entryHz : null;
+		const curBand = rc.frequencyToBand(curHz);
+		const newHz = fullBand ? entryHz
+			: ((offHz !== null && rc.frequencyToBand(offHz) === curBand) ? offHz
+			: ((offHz2 !== null && rc.frequencyToBand(offHz2) === curBand) ? offHz2 : null));
 		if (newHz) {
 			el.value = '';
 			el.focus();
@@ -1764,6 +1769,7 @@ class QsoFormComponent {
 			const qso = this._mapServerQso(sq, tmpId);
 
 			dataStore.setLocal(key, qso);
+			dataStore.emit('qso_updated', qso);
 			this._advanceWatermark(sq.last_modified_ms, qso.serverId);
 
 			// Render only this row instead of rebuilding the whole table — the delta

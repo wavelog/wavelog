@@ -155,7 +155,7 @@ class Qslprint_model extends CI_Model {
 	function open_qso_list($callsign) {
 		$binding = [];
 
-		$sql = "SELECT log.COL_QSL_SENT, log.COL_QSLRDATE, log.COL_QSL_RCVD, log.COL_QSL_RCVD_VIA, log.COL_QSLSDATE, log.COL_QSL_VIA, log.COL_QSL_SENT_VIA,
+		$sql = "SELECT log.COL_EQSL_QSLSDATE, log.COL_EQSL_QSLRDATE, log.COL_EQSL_QSL_SENT, log.COL_EQSL_QSL_RCVD, log.COL_QSL_SENT, log.COL_QSLRDATE, log.COL_QSL_RCVD, log.COL_QSL_RCVD_VIA, log.COL_QSLSDATE, log.COL_QSL_VIA, log.COL_QSL_SENT_VIA,
 			log.COL_LOTW_QSL_SENT, log.COL_LOTW_QSLSDATE, log.COL_LOTW_QSL_RCVD, log.COL_LOTW_QSLRDATE,
 			log.COL_PRIMARY_KEY, log.COL_DXCC, log.COL_CALL, log.COL_SAT_NAME, log.COL_SAT_MODE, log.COL_BAND_RX, log.COL_FREQ,
 			log.COL_FREQ_RX, log.COL_TIME_ON, log.COL_MODE, log.COL_RST_SENT, log.COL_RST_RCVD,

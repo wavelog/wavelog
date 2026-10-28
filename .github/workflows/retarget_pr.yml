@@ -18,6 +18,14 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
+          BODY: |
+            Pull requests must target the `dev` branch. Please change the base branch of this PR to `dev` and make sure your branch is based on `dev`, otherwise the diff may contain unrelated changes and could cause merge conflicts.
+
+            **How to change the base branch:**
+            1. Click the **Edit** button next to the PR title (top right).
+            2. Click on the base branch dropdown (`master`) right below the title and select `dev`.
+            3. Confirm the change.
+
         run: |
           # gh pr edit "$PR" --repo "$REPO" --base dev
-          gh pr comment "$PR" --repo "$REPO" --body "Pull requests must target the \`dev\` branch. Please change the base branch of this PR to \`dev\` and make sure your branch is based on \`dev\`, otherwise the diff may contain unrelated changes and could cause merge conflicts."
+          gh pr comment "$PR" --repo "$REPO" --body "$BODY"
