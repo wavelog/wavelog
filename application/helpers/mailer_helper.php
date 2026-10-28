@@ -65,7 +65,7 @@ if (!function_exists('mailer_send')) {
 			return array('success' => TRUE, 'error' => '');
 		}
 
-		$error = trim(str_replace('<br />', "\n", $CI->email->print_debugger(array())));
+		$error = trim(strip_tags(str_replace('<br />', "\n", $CI->email->print_debugger(array()))));
 
 		log_message('error', 'Mailer: sending "'.$view.'" failed: '.$error);
 

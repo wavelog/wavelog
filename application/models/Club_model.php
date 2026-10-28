@@ -303,7 +303,7 @@ class Club_model extends CI_Model {
             return false;
         }
 
-        $this->load->library('email');
+        $this->load->helper('mailer');
 
         switch ($message) {
             case 'new_member':
@@ -317,21 +317,6 @@ class Club_model extends CI_Model {
                 return false;
         }
 
-        $config = [
-            'protocol' => $this->optionslib->get_option('emailProtocol'),
-            'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
-            'smtp_host' => $this->optionslib->get_option('smtpHost'),
-            'smtp_port' => $this->optionslib->get_option('smtpPort'),
-            'smtp_user' => $this->optionslib->get_option('smtpUsername'),
-            'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
-            'crlf' => "\r\n",
-            'newline' => "\r\n"
-        ];
-        if (!$this->email->initialize($config)) {
-            log_message('error', "Club Notification; Can't notify user - Email can't be initialized.");
-            return false;
-        }
-
         $user = $this->user_model->get_by_id($user_id)->row();
         $club = $this->user_model->get_by_id($club_id)->row();
         $permission = $this->get_permission_noui($club_id, $user_id);
@@ -341,14 +326,9 @@ class Club_model extends CI_Model {
         $mail_data['club_callsign'] = $club->user_callsign;
         $mail_data['permission_level'] = $permission_level;
 
-        $message = $this->email->load($view, $mail_data, $user->user_language);
+        $result = mailer_send($view, $user->user_email, $mail_data, $user->user_language);
 
-        $this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
-        $this->email->to($user->user_email);
-        $this->email->subject($message['subject']);
-        $this->email->message($message['body']);
-
-        return $this->email->send();
+        return $result['success'];
     }
 
     /**

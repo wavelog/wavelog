@@ -292,9 +292,6 @@ class Options extends CI_Controller {
 			if ($smtpTimeout_value < 5 || $smtpTimeout_value > 120) {
 				$smtpTimeout_value = 30;
 			}
-			// Options_model::update() reports FALSE when it has to create the row instead
-			// of updating it. Create it up front so the return value stays meaningful.
-			$this->optionslib->update('smtpTimeout', $smtpTimeout_value);
 			$smtpTimeoutupdate = $this->optionslib->update('smtpTimeout', $smtpTimeout_value);
 
 			// Update smtpUsername choice within the options system
