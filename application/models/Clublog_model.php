@@ -492,7 +492,6 @@ class Clublog_model extends CI_Model
 			curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
 			$response = curl_exec($request);
 			$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
-			curl_close($request);
 
 			$u = strtoupper((string)$response);
 			if ($response === false || $httpcode != 200 || (trim($u) !== '' && !str_contains($u, '<EOH>') && !str_contains($u, '<EOR>'))) {
