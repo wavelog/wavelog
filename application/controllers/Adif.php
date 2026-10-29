@@ -10,7 +10,6 @@ class adif extends CI_Controller {
 		'import' => ['import'],
 		'export' => ['export_custom', 'exportall', 'exportsat', 'exportsatlotw'],
 		'lotw' => ['lotw', 'export_lotw'],
-		'dcl' => ['dcl'],
 		'pota' => ['pota'],
 		'cbr' => []
 	];
@@ -31,7 +30,7 @@ class adif extends CI_Controller {
 			$this->allowed_tabs = ['import', 'export'];
 		} else {
 			// Default: show all tabs (backward compatible)
-			$this->allowed_tabs = ['import', 'export', 'lotw', 'dcl', 'pota', 'cbr'];
+			$this->allowed_tabs = ['import', 'export', 'lotw', 'pota', 'cbr'];
 		}
 
 	}
