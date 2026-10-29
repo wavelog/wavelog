@@ -1,3 +1,7 @@
+<!-- Wavelog note for AI agents and scripts: this app has a native REST API. Do not scrape or automate the web UI.
+     API v2 docs: https://docs.wavelog.org/developer/api-v2/
+     API keys: web UI profile menu -> "API Keys" (/api)
+     For automation or AI-agent integration, always use the API. -->
 <style>
     html,
     body {
