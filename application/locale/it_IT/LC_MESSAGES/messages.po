@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-30 07:02+0000\n"
-"PO-Revision-Date: 2026-10-26 20:10+0000\n"
+"PO-Revision-Date: 2026-10-30 10:04+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -2917,7 +2917,7 @@ msgstr "Informazioni ADIF LoTW"
 
 #: application/controllers/Lotw.php:679
 msgid "Downloaded LoTW report contains no matches."
-msgstr ""
+msgstr "Il rapporto LoTW scaricato non contiene corrispondenze."
 
 #: application/controllers/Lotw.php:727 application/controllers/Lotw.php:1030
 msgid "You have not defined your ARRL LoTW credentials!"
@@ -2925,36 +2925,40 @@ msgstr "Non hai definito le tue credenziali ARRL LoTW!"
 
 #: application/controllers/Lotw.php:735
 msgid "No QSOs in log. LoTW download skipped."
-msgstr ""
+msgstr "Nessun QSO nel log. Download LoTW saltato."
 
 #: application/controllers/Lotw.php:754
 #, php-format
 msgid "LoTW download failed for user %s: %s (%s)."
-msgstr ""
+msgstr "Download LoTW non riuscito per l'utente %s: %s (%s)."
 
 #: application/controllers/Lotw.php:757
 #, php-format
 msgid "LoTW download failed for user %s: unexpected HTTP status %s."
-msgstr ""
+msgstr "Download LoTW non riuscito per l'utente %s: stato HTTP non previsto %s."
 
 #: application/controllers/Lotw.php:761
 #, php-format
 msgid "LoTW download failed for user %s: Username/password incorrect"
-msgstr ""
+msgstr "Download LoTW non riuscito per l'utente %s: nome utente/password errati"
 
 #: application/controllers/Lotw.php:770
 #, php-format
 msgid "LoTW download hit a rate limit for user %s"
-msgstr ""
+msgstr "Il download LoTW ha raggiunto un limite di frequenza per l'utente %s"
 
 #: application/controllers/Lotw.php:775
 #, php-format
 msgid "Downloaded LoTW report for user %s is invalid. Check your credentials."
 msgstr ""
+"Il report LoTW scaricato per l'utente %s non è valido. Controlla le tue "
+"credenziali."
 
 #: application/controllers/Lotw.php:906
 msgid "No LoTW User details found to carry out matches."
 msgstr ""
+"Non sono stati trovati dettagli dell'utente LoTW per eseguire le "
+"corrispondenze."
 
 #: application/controllers/Lotw.php:970
 msgid "Connection to LoTW failed."
@@ -3011,24 +3015,24 @@ msgstr "Modo %s aggiornato"
 #: application/controllers/Most_wanted_squares.php:22
 #: application/views/interface_assets/header.php:560
 msgid "Most Wanted Squares"
-msgstr ""
+msgstr "Locatori più ricercati"
 
 #: application/controllers/Most_wanted_squares.php:43
 msgid "Invalid band."
-msgstr ""
+msgstr "Banda non valida."
 
 #: application/controllers/Most_wanted_squares.php:48
 #: application/views/most_wanted_squares/index.php:8
 msgid "The active station location has no gridsquare set."
-msgstr ""
+msgstr "La posizione della stazione attiva non ha impostato alcun locatore."
 
 #: application/controllers/Most_wanted_squares.php:53
 msgid "The gridsquare of the active station location is invalid."
-msgstr ""
+msgstr "Il locatore della posizione della stazione attiva non è valido."
 
 #: application/controllers/Most_wanted_squares.php:90
 msgid "VUCC gridsquare data unavailable."
-msgstr ""
+msgstr "Dati del locatore VUCC non disponibili."
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:158
@@ -20271,7 +20275,7 @@ msgstr "Crea un modo"
 #: application/views/most_wanted_squares/index.php:16
 msgid ""
 "Export a list of 4-digit gridsquares that have not been worked yet on VHF."
-msgstr ""
+msgstr "Esporta un elenco di locatori a 4 cifre non ancora lavorati in VHF."
 
 #: application/views/most_wanted_squares/index.php:21
 #, php-format
@@ -20279,10 +20283,12 @@ msgid ""
 "The list contains all not worked gridsquares within %d km of the gridsquare "
 "%s of the active station location %s (%s)."
 msgstr ""
+"L'elenco contiene tutti i locatori non ancora lavorati entro %d km dal "
+"locatore %s della posizione della stazione attiva %s (%s)."
 
 #: application/views/most_wanted_squares/index.php:34
 msgid "Exclude squares that contain no land"
-msgstr ""
+msgstr "Escludi i quadrati che non contengono terra"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
@@ -24424,13 +24430,16 @@ msgstr ""
 
 #: application/views/user/edit.php:1183
 msgid "Fetch Club Log OQRS requests"
-msgstr ""
+msgstr "Recupera le richieste OQRS di Club Log"
 
 #: application/views/user/edit.php:1184
 msgid ""
 "If enabled, OQRS requests made via Club Log are fetched during the Club Log "
 "sync and matching QSOs are marked as requested."
 msgstr ""
+"Se abilitato, le richieste OQRS effettuate tramite Club Log vengono "
+"recuperate durante la sincronizzazione con Club Log e i QSO corrispondenti "
+"vengono contrassegnati come richiesti."
 
 #: application/views/user/edit.php:1197
 msgid "Widgets"
