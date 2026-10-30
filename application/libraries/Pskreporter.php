@@ -52,13 +52,18 @@ class Pskreporter {
 	/**
 	 * Build the complete IPFIX datagram for one QSO report.
 	 *
-	 * Layout: header, receiver template descriptor (3 fields), sender
-	 * template descriptor (6 fields incl. senderLocator), receiver
-	 * information record, one sender information record.
+	 * Layout: header, receiver template descriptor (3 fields, or 4 fields
+	 * with antennaInformation for satellite QSOs), sender template
+	 * descriptor (6 fields incl. senderLocator), receiver information
+	 * record, one sender information record.
+	 *
+	 * Satellite QSOs carry the satellite name in antennaInformation
+	 * ("via AO-7") — the protocol has no dedicated satellite field, and
+	 * this string is shown on the map marker hover.
 	 *
 	 * @param object $qso QSO row as returned by Logbook_model::get_qso()
 	 *                    (joins station_profile, so station_callsign /
-	 *                    station_gridsquare / pskreporterrealtime included).
+	 *                    station_gridsquare included).
 	 * @param string $software decodingSoftware string (e.g. "Wavelog 3.2.4").
 	 * @return string Binary datagram.
 	 */
@@ -71,11 +76,25 @@ class Pskreporter {
 		$mode = strtoupper(trim((string) ($qso->COL_SUBMODE ?: $qso->COL_MODE)));
 		$timestamp = strtotime((string) $qso->COL_TIME_ON);
 
-		// Receiver information record: callsign, locator, decodingSoftware.
+		// Satellite detection: named satellite preferred, prop_mode fallback.
+		$sat_name = trim((string) ($qso->COL_SAT_NAME ?? ''));
+		if ($sat_name !== '') {
+			$antenna_information = 'via ' . $sat_name;
+		} elseif (strtoupper(trim((string) ($qso->COL_PROP_MODE ?? ''))) === 'SAT') {
+			$antenna_information = 'via satellite';
+		} else {
+			$antenna_information = null;
+		}
+
+		// Receiver information record: callsign, locator, decodingSoftware
+		// and, for satellite QSOs, antennaInformation.
 		// Length field includes header and padding (see spec example).
 		$receiver_data = $this->varstring($receiver_callsign);
 		$receiver_data .= $receiver_locator ? $this->varstring($receiver_locator) : "\x00";
 		$receiver_data .= $this->varstring($software);
+		if ($antenna_information !== null) {
+			$receiver_data .= $this->varstring($antenna_information);
+		}
 		$receiver_record = $this->pad4("\x99\x92\x00\x00" . $receiver_data);
 		$receiver_record[2] = pack('n', strlen($receiver_record))[0];
 		$receiver_record[3] = pack('n', strlen($receiver_record))[1];
@@ -93,12 +112,21 @@ class Pskreporter {
 		$sender_record[2] = pack('n', strlen($sender_record))[0];
 		$sender_record[3] = pack('n', strlen($sender_record))[1];
 
-		// Receiver record format descriptor (callsign, locator, decodingSoftware)
-		$template_receiver = hex2bin('00030024' . '999200030001'
-			. '8002FFFF0000768F'
-			. '8004FFFF0000768F'
-			. '8008FFFF0000768F'
-			. '0000');
+		// Receiver record format descriptor: 3 fields (callsign, locator,
+		// decodingSoftware), or the documented 4-field variant with
+		// antennaInformation for satellite QSOs.
+		$template_receiver = $antenna_information === null
+			? hex2bin('00030024' . '999200030001'
+				. '8002FFFF0000768F'
+				. '8004FFFF0000768F'
+				. '8008FFFF0000768F'
+				. '0000')
+			: hex2bin('0003002C' . '999200040001'
+				. '8002FFFF0000768F'
+				. '8004FFFF0000768F'
+				. '8008FFFF0000768F'
+				. '8009FFFF0000768F'
+				. '0000');
 
 		// Sender record format descriptor (callsign, freq, mode,
 		// informationSource, senderLocator, flowStartSeconds)
