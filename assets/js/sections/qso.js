@@ -342,6 +342,12 @@ $("#qso_input").off('submit').on('submit', function (e) {
 		return false;
 	}
 
+	if (_cs.length >= 3 && !deferredLookupSubmit && lastLookupCallsign !== _cs) {
+		deferredLookupSubmit = true;
+		$('#callsign').trigger('focusout');   // starts lookup, disables #saveQso
+		return false;
+	}
+
 	var _submit = true;
 	if ((typeof qso_manual !== "undefined") && (qso_manual == "1")) {
 		if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
@@ -854,6 +860,22 @@ var referenceSequence = 0;
 // Track last lookup to prevent duplicate calls
 var lastLookupCallsign = null;
 var lookupInProgress = false;
+
+var deferredLookupSubmit = false;
+
+$(document).on('callsignLookupComplete', function () {
+	if (!deferredLookupSubmit) return;
+	var _cs = $("#callsign").val().trim().toUpperCase();
+	if (_cs.length >= 3 && lastLookupCallsign !== _cs) {
+		if (lookupInProgress) return;          // stale lookup still running, wait for its event
+		$('#callsign').trigger('focusout');    // lookup for current call; its complete event re-enters here
+		return;
+	}
+	deferredLookupSubmit = false;
+	if (_cs.length >= 3 && lastLookupCallsign === _cs) {
+		$("#qso_input").trigger('submit');     // resubmit, now with lookup data
+	}
+});
 
 // Helper function to populate reference fields after callsign lookup completes
 // Uses Map-based storage to prevent race conditions
@@ -1398,7 +1420,7 @@ function reset_fields() {
 
 	lastLookupCallsign = null;
 	lookupInProgress = false;
-
+	deferredLookupSubmit = false;
 	$('#locator_info').text("");
 	$('#lotw_support').text("");
 	$('#lotw_support').removeClass();
@@ -2202,6 +2224,8 @@ $("#callsign").on("focusout", function () {
 			setTimeout(function() {
 				$('#saveQso').prop('disabled', false);
 				$('#fetch_status').hide();
+				// Also notify listeners on failure/abort so a deferred submit resumes
+				$(document).trigger('callsignLookupComplete');
 			}, 300);
 
 			// Reset lookup in progress flag
