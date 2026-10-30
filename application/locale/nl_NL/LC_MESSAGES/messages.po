@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-30 07:02+0000\n"
-"PO-Revision-Date: 2026-10-27 06:41+0000\n"
+"PO-Revision-Date: 2026-10-31 13:49+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -2914,7 +2914,7 @@ msgstr "LoTW ADIF Informatie"
 
 #: application/controllers/Lotw.php:679
 msgid "Downloaded LoTW report contains no matches."
-msgstr ""
+msgstr "Het gedownloade LoTW-rapport bevat geen overeenkomsten."
 
 #: application/controllers/Lotw.php:727 application/controllers/Lotw.php:1030
 msgid "You have not defined your ARRL LoTW credentials!"
@@ -2922,36 +2922,39 @@ msgstr "Je hebt je ARRL LoTW-gegevens niet gedefinieerd!"
 
 #: application/controllers/Lotw.php:735
 msgid "No QSOs in log. LoTW download skipped."
-msgstr ""
+msgstr "Geen QSO's in het logboek. LoTW-download overgeslagen."
 
 #: application/controllers/Lotw.php:754
 #, php-format
 msgid "LoTW download failed for user %s: %s (%s)."
-msgstr ""
+msgstr "LoTW-download mislukt voor gebruiker %s: %s (%s)."
 
 #: application/controllers/Lotw.php:757
 #, php-format
 msgid "LoTW download failed for user %s: unexpected HTTP status %s."
-msgstr ""
+msgstr "LoTW-download mislukt voor gebruiker %s: onverwachte HTTP-status %s."
 
 #: application/controllers/Lotw.php:761
 #, php-format
 msgid "LoTW download failed for user %s: Username/password incorrect"
 msgstr ""
+"LoTW-download mislukt voor gebruiker %s: gebruikersnaam/wachtwoord onjuist"
 
 #: application/controllers/Lotw.php:770
 #, php-format
 msgid "LoTW download hit a rate limit for user %s"
-msgstr ""
+msgstr "LoTW-download voor gebruiker %s is tegen een snelheidslimiet aangelopen"
 
 #: application/controllers/Lotw.php:775
 #, php-format
 msgid "Downloaded LoTW report for user %s is invalid. Check your credentials."
 msgstr ""
+"Het gedownloade LoTW-rapport voor gebruiker %s is ongeldig. Controleer je "
+"inloggegevens."
 
 #: application/controllers/Lotw.php:906
 msgid "No LoTW User details found to carry out matches."
-msgstr ""
+msgstr "Geen LoTW-gebruikersgegevens gevonden om overeenkomsten uit te voeren."
 
 #: application/controllers/Lotw.php:970
 msgid "Connection to LoTW failed."
@@ -24355,13 +24358,16 @@ msgstr ""
 
 #: application/views/user/edit.php:1183
 msgid "Fetch Club Log OQRS requests"
-msgstr ""
+msgstr "Club Log OQRS-aanvragen ophalen"
 
 #: application/views/user/edit.php:1184
 msgid ""
 "If enabled, OQRS requests made via Club Log are fetched during the Club Log "
 "sync and matching QSOs are marked as requested."
 msgstr ""
+"Indien ingeschakeld, worden OQRS-aanvragen via Club Log opgehaald tijdens de "
+"Club Log-synchronisatie en worden overeenkomende QSO's gemarkeerd als "
+"aangevraagd."
 
 #: application/views/user/edit.php:1197
 msgid "Widgets"
