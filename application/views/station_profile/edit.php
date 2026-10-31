@@ -424,6 +424,25 @@ if ($dxcc_list->result() > 0) {
 		</div>
 	</div>
 
+	<div class="row">
+		<!-- PSKReporter -->
+		<div class="col-md">
+			<div class="card">
+				<h5 class="card-header">PSKReporter</h5> <!-- This does not need Multilanguage Support -->
+				<div class="card-body">
+					<div class="mb-3">
+						<label for="pskreporterrealtime"><?= __("PSKReporter Live Reporting"); ?></label>
+						<select class="form-select" id="pskreporterrealtime" name="pskreporterrealtime">
+							<option value="0" <?php if ($my_station_profile->pskreporterrealtime != 1) { echo ' selected'; } ?>><?= __("No"); ?></option>
+							<option value="1" <?php if ($my_station_profile->pskreporterrealtime == 1) { echo ' selected'; } ?>><?= __("Yes"); ?></option>
+						</select>
+						<small class="form-text text-muted"><?= __("If enabled, QSOs logged live in the QSO form are reported to pskreporter.info in real time. QSOs older than one hour are not reported."); ?></small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 <?php if (!($this->config->item('disable_oqrs') ?? false)) { ?>
 	<div class="row">
 		<!-- OQRS -->
