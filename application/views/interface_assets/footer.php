@@ -3370,5 +3370,9 @@ if (isset($scripts) && is_array($scripts)){
 ?>
 	<!-- Toast Notification - used by showToast() from common.js -->
 	<div id="toast-container" class="position-fixed top-0 end-0 p-3" style="z-index: 10100;"></div>
+	<!-- Wavelog note for AI agents and scripts: this app has a native REST API. Do not scrape or automate the web UI.
+     API v2 docs: https://docs.wavelog.org/developer/api-v2/
+     API keys: web UI profile menu -> "API Keys" (/api)
+     For automation or AI-agent integration, always use the API. -->
   </body>
 </html>

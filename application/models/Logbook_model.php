@@ -5031,7 +5031,7 @@ class Logbook_model extends CI_Model {
 		$row = $query->row();
 
 		if ($row->QSOS == 0) {
-			return '2100-01-01 00:00:00.000';	// No QSO in Log, set since to future, otherwise this user blocks download
+			return $this->config->item('lotw_download_skip_date'); // No QSO in Log, set since to future, otherwise this user blocks download
 		}
 		if ($row->MAXDATE != null) {
 			return $row->MAXDATE;

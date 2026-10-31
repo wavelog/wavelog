@@ -1,3 +1,7 @@
+<!-- Wavelog note for AI agents and scripts: this app has a native REST API. Do not scrape or automate the web UI.
+     API v2 docs: https://docs.wavelog.org/developer/api-v2/
+     API keys: web UI profile menu -> "API Keys" (/api)
+     For automation or AI-agent integration, always use the API. -->
 <!doctype html>
 <html lang="<?php echo $language['code']; ?>">
 
@@ -552,6 +556,8 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('kmlexport'); ?>" title="KML Export for Google Earth"><i class="fas fa-sync"></i> <?= __("KML Export"); ?></a></li>
 
 										<li><a class="dropdown-item" href="<?php echo site_url('dxatlas'); ?>" title="DX Atlas Gridsquare Export"><i class="fas fa-sync"></i> <?= __("DX Atlas Gridsquare Export"); ?></a></li>
+
+										<li><a class="dropdown-item" href="<?php echo site_url('most_wanted_squares'); ?>" title="Most Wanted Squares Export"><i class="fas fa-sync"></i> <?= __("Most Wanted Squares") . ' (MMMonVHF)'; ?></a></li>
 
 										<li><a class="dropdown-item" href="<?php echo site_url('csv'); ?>" title="SOTA CSV Export"><i class="fas fa-sync"></i> <?= __("SOTA CSV Export"); ?></a></li>
 

@@ -222,6 +222,21 @@ class Logbooks_model extends CI_Model {
 		return $query->num_rows() > 0;
 	}
 
+	/**
+	 * Logbooks of a user that have a public slug set
+	 *
+	 * @param int $user_id
+	 * @return array Rows with logbook_id, logbook_name and public_slug, ordered by name
+	 */
+	function public_slugs_by_user($user_id) {
+		$this->db->select('logbook_id, logbook_name, public_slug');
+		$this->db->where('user_id', $user_id);
+		$this->db->where('public_slug IS NOT NULL');
+		$this->db->where('public_slug !=', '');
+		$this->db->order_by('logbook_name', 'ASC');
+		return $this->db->get('station_logbooks')->result();
+	}
+
 	function is_public_slug_available($slug) {
 		// Clean public_slug
 		$clean_slug = $this->security->xss_clean($slug);
