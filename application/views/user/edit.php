@@ -1185,6 +1185,12 @@
 											} else if (!isset($user_add)) { ?>
 										<?php } ?>
 									</div>
+
+									<div class="mb-3 form-check form-switch">
+										<input class="form-check-input" type="checkbox" role="switch" id="clublog_oqrs_sync" name="clublog_oqrs_sync" value="1" <?php if (($clublog_oqrs_sync ?? '0') == 1) { echo 'checked'; } ?>>
+										<label class="form-check-label" for="clublog_oqrs_sync"><?= __("Fetch Club Log OQRS requests"); ?></label>
+										<small class="form-text text-muted d-block"><?= __("If enabled, OQRS requests made via Club Log are fetched during the Club Log sync and matching QSOs are marked as requested."); ?></small>
+									</div>
 								</div>
 							</div>
 						</div>

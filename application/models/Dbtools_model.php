@@ -436,7 +436,10 @@ class Dbtools_model extends CI_Model {
 		$callbook = $this->callbook->getCallbookData($row->col_call);
 
 		if (isset($callbook)) {
-			if (isset($callbook['error'])) {
+			if (!empty($callbook['error'])) {
+				if (stripos($callbook['error'], 'not found') !== false) {
+					return ['status' => 'notfound'];
+				}
 				log_message('error', "Error: " . $callbook['error']);
 				return ['status' => 'error', 'message' => $callbook['error']];
 			}

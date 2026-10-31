@@ -89,7 +89,7 @@ class Callstats_model extends CI_Model {
 	function get_max_qsos() {
 
 		if (!$this->logbooks_locations_array) {
-			return array();
+			return 0;
 		}
 
 		$location_list = "'" . implode("','", $this->logbooks_locations_array) . "'";

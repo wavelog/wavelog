@@ -171,16 +171,28 @@ class Logbookadvanced extends CI_Controller {
 		);
 	}
 
+	/**
+	 * Run the advanced logbook search and return the matching QSOs as JSON.
+	 * For duplicate searches, each QSO gets an 'isdupe' flag marking the
+	 * newer row of a dupe pair (candidate for deletion, keep-oldest).
+	 *
+	 * @return void Prints a JSON array of QSO objects
+	 */
 	public function search() {
 		$this->load->model('logbookadvanced_model');
 
 		$searchCriteria = $this->mapParameters();
+		$results = $this->logbookadvanced_model->searchQsos($searchCriteria);
+		$dupeLaterIds = ($searchCriteria['dupes'] ?? '') !== '' ? $this->logbookadvanced_model->getDupeLaterIds() : [];
 		$qsos = [];
 
-		foreach ($this->logbookadvanced_model->searchQsos($searchCriteria) as $qso) {
+		foreach ($results as $qso) {
 			$qsoArray = $qso->toArray();
 			$flag = $this->dxccflag->get($qso->getDXCCId());
 			$qsoArray['flag'] = $this->flag_html($flag);
+			if ($dupeLaterIds !== []) {
+				$qsoArray['isdupe'] = in_array($qso->getQsoID(), $dupeLaterIds);
+			}
 			$qsos[] = $qsoArray;
 		}
 
