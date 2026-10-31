@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-30 07:02+0000\n"
+"POT-Creation-Date: 2026-10-31 13:49+0000\n"
 "PO-Revision-Date: 2026-10-28 19:55+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -233,10 +233,10 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/User.php:61 application/controllers/User.php:108
 #: application/controllers/User.php:125 application/controllers/User.php:148
 #: application/controllers/User.php:419 application/controllers/User.php:420
-#: application/controllers/User.php:1223 application/controllers/User.php:1241
-#: application/controllers/User.php:1287 application/controllers/User.php:1539
-#: application/controllers/User.php:1677 application/controllers/User.php:1897
-#: application/controllers/User.php:1913 application/controllers/User.php:1937
+#: application/controllers/User.php:1228 application/controllers/User.php:1246
+#: application/controllers/User.php:1292 application/controllers/User.php:1544
+#: application/controllers/User.php:1682 application/controllers/User.php:1902
+#: application/controllers/User.php:1918 application/controllers/User.php:1942
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
 #: application/controllers/Wabtool.php:30
@@ -547,7 +547,7 @@ msgstr "Diplom - %s"
 #: application/views/lookup/index.php:14
 #: application/views/qso/award_tabs.php:41
 #: application/views/qso/edit_ajax.php:387 application/views/qso/index.php:365
-#: application/views/qso/index.php:647 application/views/user/edit.php:914
+#: application/views/qso/index.php:647 application/views/user/edit.php:922
 #: application/views/view_log/qso.php:414
 msgid "DOK"
 msgstr "DOK"
@@ -832,7 +832,7 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/qso/edit_ajax.php:378 application/views/qso/index.php:349
 #: application/views/qso/index.php:633
 #: application/views/stationsetup/locationlist.php:26
-#: application/views/user/edit.php:910 application/views/view_log/qso.php:379
+#: application/views/user/edit.php:918 application/views/view_log/qso.php:379
 #: application/views/view_log/qso.php:699
 msgid "SIG"
 msgstr "SIG"
@@ -1130,8 +1130,8 @@ msgstr "Ingen användare har konfigurerat Clublog."
 #: application/views/station_profile/create.php:325
 #: application/views/station_profile/edit.php:348
 #: application/views/timeline/index.php:77
-#: application/views/update/index.php:16 application/views/user/edit.php:757
-#: application/views/user/edit.php:1076
+#: application/views/update/index.php:16 application/views/user/edit.php:765
+#: application/views/user/edit.php:1084
 #: application/views/view_log/partial/log_ajax.php:160
 #: application/views/view_log/qso.php:519
 #: application/views/view_log/qso.php:524
@@ -1260,7 +1260,7 @@ msgid "Access denied"
 msgstr "Åtkomst nekad"
 
 #: application/controllers/Contesting.php:1054
-#: application/controllers/User.php:1495
+#: application/controllers/User.php:1500
 msgid "Incorrect username or password!"
 msgstr "Fel användarnamn eller lösenord!"
 
@@ -1434,7 +1434,7 @@ msgstr "POTA-referens"
 #: application/views/qso/index.php:313 application/views/qso/index.php:595
 #: application/views/station_profile/create.php:215
 #: application/views/station_profile/edit.php:237
-#: application/views/user/edit.php:898 application/views/view_log/qso.php:343
+#: application/views/user/edit.php:906 application/views/view_log/qso.php:343
 #: application/views/view_log/qso.php:678
 msgid "SOTA Reference"
 msgstr "SOTA-referens"
@@ -1444,7 +1444,7 @@ msgstr "SOTA-referens"
 #: application/views/qso/index.php:297 application/views/qso/index.php:578
 #: application/views/station_profile/create.php:189
 #: application/views/station_profile/edit.php:211
-#: application/views/user/edit.php:894 application/views/view_log/qso.php:336
+#: application/views/user/edit.php:902 application/views/view_log/qso.php:336
 #: application/views/view_log/qso.php:671
 msgid "IOTA Reference"
 msgstr "IOTA-referens"
@@ -1455,7 +1455,7 @@ msgstr "IOTA-referens"
 #: application/views/qso/index.php:325 application/views/qso/index.php:608
 #: application/views/station_profile/create.php:229
 #: application/views/station_profile/edit.php:251
-#: application/views/user/edit.php:902 application/views/view_log/qso.php:350
+#: application/views/user/edit.php:910 application/views/view_log/qso.php:350
 #: application/views/view_log/qso.php:685
 msgid "WWFF Reference"
 msgstr "WWFF-referens"
@@ -1474,7 +1474,7 @@ msgstr "WWFF-referens"
 #: application/views/search/search_result_ajax.php:18
 #: application/views/station_profile/create.php:432
 #: application/views/station_profile/edit.php:461
-#: application/views/user/edit.php:403 application/views/user/edit.php:918
+#: application/views/user/edit.php:403 application/views/user/edit.php:926
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:9 application/views/wabtool/index.php:18
 #: application/views/webadif/export.php:75
@@ -1643,7 +1643,7 @@ msgstr "DCL-nyckelimport"
 #: application/views/logbookadvanced/useroptions.php:148
 #: application/views/qso/edit_ajax.php:420
 #: application/views/search/search_result_ajax.php:127
-#: application/views/user/edit.php:758 application/views/user/edit.php:1084
+#: application/views/user/edit.php:766 application/views/user/edit.php:1092
 #: application/views/view_log/partial/log_ajax.php:163
 #: application/views/view_log/qso.php:529
 #: application/views/view_log/qso.php:534
@@ -1763,7 +1763,7 @@ msgstr "DX Kalender"
 #: application/views/dashboard/_options_menu.php:20
 #: application/views/dashboard/index.php:601
 #: application/views/dashboard/index.php:604
-#: application/views/eqslcard/index.php:3 application/views/user/edit.php:855
+#: application/views/eqslcard/index.php:3 application/views/user/edit.php:863
 #: application/views/visitor/index.php:308
 msgid "eQSL Cards"
 msgstr "eQSL-kort"
@@ -1913,7 +1913,7 @@ msgid "User not found."
 msgstr "Användare hittades inte."
 
 #: application/controllers/Header_auth.php:114
-#: application/controllers/User.php:1485
+#: application/controllers/User.php:1490
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
@@ -2205,7 +2205,7 @@ msgstr "Loggbok"
 #: application/views/countqsoby/index.php:164
 #: application/views/dashboard/index.php:418
 #: application/views/gridmap/index.php:174
-#: application/views/interface_assets/footer.php:114
+#: application/views/interface_assets/footer.php:115
 #: application/views/logbookadvanced/index.php:977
 #: application/views/logbookadvanced/useroptions.php:124
 #: application/views/oqrs/qsolist.php:12
@@ -2213,8 +2213,8 @@ msgstr "Loggbok"
 #: application/views/qslprint/qsolist.php:16
 #: application/views/qslprint/qsolist.php:19
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:117
-#: application/views/timeline/index.php:65 application/views/user/edit.php:753
-#: application/views/user/edit.php:1042 application/views/visitor/mini.php:187
+#: application/views/timeline/index.php:65 application/views/user/edit.php:761
+#: application/views/user/edit.php:1050 application/views/visitor/mini.php:187
 msgid "QSL"
 msgstr "QSL"
 
@@ -2266,8 +2266,8 @@ msgstr "QSL"
 #: application/views/satellite/satinfo.php:13
 #: application/views/search/search_result_ajax.php:301
 #: application/views/search/search_result_ajax.php:316
-#: application/views/timeline/index.php:69 application/views/user/edit.php:754
-#: application/views/user/edit.php:854 application/views/user/edit.php:1052
+#: application/views/timeline/index.php:69 application/views/user/edit.php:762
+#: application/views/user/edit.php:862 application/views/user/edit.php:1060
 #: application/views/view_log/qso.php:485
 #: application/views/view_log/qso.php:490
 #: application/views/visitor/index.php:273
@@ -2314,8 +2314,8 @@ msgstr "LoTW"
 #: application/views/search/search_result_ajax.php:276
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:299
-#: application/views/timeline/index.php:73 application/views/user/edit.php:755
-#: application/views/user/edit.php:1060 application/views/user/edit.php:1134
+#: application/views/timeline/index.php:73 application/views/user/edit.php:763
+#: application/views/user/edit.php:1068 application/views/user/edit.php:1142
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -2386,7 +2386,7 @@ msgstr "Alla callbook-sökningar misslyckades eller gav inga resultat."
 #: application/views/eqslcard/index.php:33
 #: application/views/gridmap/index.php:138
 #: application/views/hamsat/index.php:40
-#: application/views/interface_assets/footer.php:129
+#: application/views/interface_assets/footer.php:130
 #: application/views/kml/index.php:31
 #: application/views/logbookadvanced/dupesearchdialog.php:34
 #: application/views/logbookadvanced/edit.php:17
@@ -2788,7 +2788,7 @@ msgstr "Operatör"
 #: application/views/countqsoby/index.php:17 application/views/csv/index.php:65
 #: application/views/dashboard/index.php:30
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:841
+#: application/views/interface_assets/footer.php:842
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:390
 #: application/views/lookup/index.php:47
@@ -2823,7 +2823,7 @@ msgstr "Snabb uppslagning"
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
-#: application/views/user/edit.php:1106 application/views/visitor/index.php:326
+#: application/views/user/edit.php:1114 application/views/visitor/index.php:326
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -3366,7 +3366,7 @@ msgstr "QRZ ADIF-information"
 #: application/views/dashboard/index.php:522
 #: application/views/dashboard/index.php:536
 #: application/views/dashboard/index.php:539
-#: application/views/qslcard/index.php:3 application/views/user/edit.php:853
+#: application/views/qslcard/index.php:3 application/views/user/edit.php:861
 #: application/views/visitor/index.php:272
 #: application/views/visitor/index.php:285
 msgid "QSL Cards"
@@ -3533,8 +3533,8 @@ msgstr "senast uppdaterad"
 #: application/views/contesting/logger/components/qso-form.php:39
 #: application/views/contesting/manager/index.php:72
 #: application/views/cron/index.php:80
-#: application/views/interface_assets/footer.php:701
-#: application/views/interface_assets/footer.php:710
+#: application/views/interface_assets/footer.php:702
+#: application/views/interface_assets/footer.php:711
 #: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:893
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
@@ -3557,11 +3557,11 @@ msgstr "Redigera"
 #: application/views/contest_admin/add.php:73
 #: application/views/contesting/logger/components/qso-form.php:40
 #: application/views/contesting/manager/index.php:79
-#: application/views/interface_assets/footer.php:72
-#: application/views/interface_assets/footer.php:2692
-#: application/views/interface_assets/footer.php:2710
-#: application/views/interface_assets/footer.php:2729
-#: application/views/interface_assets/footer.php:2747
+#: application/views/interface_assets/footer.php:73
+#: application/views/interface_assets/footer.php:2695
+#: application/views/interface_assets/footer.php:2713
+#: application/views/interface_assets/footer.php:2732
+#: application/views/interface_assets/footer.php:2750
 #: application/views/labeldesigner/designer.php:413
 #: application/views/labeldesigner/designer.php:452
 #: application/views/labels/index.php:50 application/views/labels/index.php:86
@@ -3695,7 +3695,7 @@ msgstr "Allmänt fel vid postning till hams.at. Vänligen försök igen senare."
 #: application/views/search/lotw_unconfirmed.php:36
 #: application/views/search/main.php:4 application/views/search/main.php:12
 #: application/views/search/main.php:31
-#: application/views/visitor/layout/footer.php:13
+#: application/views/visitor/layout/footer.php:14
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
 msgid "Search"
@@ -3736,7 +3736,7 @@ msgstr "Skapa stationsplats"
 
 #: application/controllers/Station.php:72
 #: application/controllers/Station.php:96 application/controllers/User.php:270
-#: application/controllers/User.php:1047 application/controllers/User.php:1259
+#: application/controllers/User.php:1048 application/controllers/User.php:1264
 msgid "Invalid security token"
 msgstr "Ogiltig säkerhetstoken"
 
@@ -3754,7 +3754,7 @@ msgid "Duplicate Station Location:"
 msgstr "Duplicera stationsplats:"
 
 #: application/controllers/Station.php:266
-#: application/controllers/User.php:1560 application/controllers/User.php:1813
+#: application/controllers/User.php:1565 application/controllers/User.php:1818
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "Kontrollera värdet för Lokatorrutan (%s)"
@@ -4210,33 +4210,33 @@ msgstr "Kan inte ändras. Hantera detta genom din identitetsleverantör."
 msgid "Edit User"
 msgstr "Redigera användare"
 
-#: application/controllers/User.php:1152 application/controllers/User.php:1155
+#: application/controllers/User.php:1157 application/controllers/User.php:1160
 #, php-format
 msgid "User %s edited"
 msgstr "Användare %s redigerad"
 
-#: application/controllers/User.php:1226
+#: application/controllers/User.php:1231
 msgid "Profile"
 msgstr "Profil"
 
-#: application/controllers/User.php:1249
+#: application/controllers/User.php:1254
 #: application/views/club/permissions.php:375
 msgid "Delete User"
 msgstr "Radera användare"
 
-#: application/controllers/User.php:1265
+#: application/controllers/User.php:1270
 msgid "User deleted"
 msgstr "Användaren raderad"
 
-#: application/controllers/User.php:1268
+#: application/controllers/User.php:1273
 msgid "Could not delete user!"
 msgstr "Kunde inte ta bort användare!"
 
-#: application/controllers/User.php:1268
+#: application/controllers/User.php:1273
 msgid "Database error:"
 msgstr "Databasfel:"
 
-#: application/controllers/User.php:1342
+#: application/controllers/User.php:1347
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
@@ -4244,22 +4244,22 @@ msgstr ""
 "Grattis! Wavelog installerades framgångsrikt. Du kan nu logga in för första "
 "gången."
 
-#: application/controllers/User.php:1380
+#: application/controllers/User.php:1385
 msgid "This is not allowed!"
 msgstr "Det här är inte tillåtet!"
 
-#: application/controllers/User.php:1417 application/controllers/User.php:1430
+#: application/controllers/User.php:1422 application/controllers/User.php:1435
 msgid "Login failed. Try again."
 msgstr "Inloggning misslyckades. Försök igen."
 
-#: application/controllers/User.php:1438
+#: application/controllers/User.php:1443
 #: application/views/interface_assets/header.php:443
 #: application/views/user/login.php:84
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Logga in"
 
-#: application/controllers/User.php:1488
+#: application/controllers/User.php:1493
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
@@ -4267,7 +4267,7 @@ msgstr ""
 "Ditt konto är låst på grund av för många misslyckade inloggningsförsök. "
 "Vänligen återställ ditt lösenord."
 
-#: application/controllers/User.php:1492
+#: application/controllers/User.php:1497
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -4277,18 +4277,18 @@ msgstr ""
 "meddelande visas oväntat eller fortsätter att visas, vänligen kontakta en "
 "administratör. Endast administratörer får för närvarande logga in."
 
-#: application/controllers/User.php:1519
+#: application/controllers/User.php:1524
 #, php-format
 msgid "User %s logged out."
 msgstr "Användare %s loggade ut."
 
-#: application/controllers/User.php:1542
+#: application/controllers/User.php:1547
 #: application/views/oqrs/request_grouped.php:19
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "Stationsnamn"
 
-#: application/controllers/User.php:1543 application/views/debug/index.php:836
+#: application/controllers/User.php:1548 application/views/debug/index.php:836
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:60
 #: application/views/station_profile/edit.php:77
@@ -4298,27 +4298,27 @@ msgstr "Stationsnamn"
 msgid "Station Callsign"
 msgstr "Stationsanropssignal"
 
-#: application/controllers/User.php:1544
+#: application/controllers/User.php:1549
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:99
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "Station DXCC"
 
-#: application/controllers/User.php:1545
+#: application/controllers/User.php:1550
 msgid "Station CQ Zone"
 msgstr "Station CQ-zon"
 
-#: application/controllers/User.php:1546
+#: application/controllers/User.php:1551
 msgid "Station ITU Zone"
 msgstr "Station ITU-zon"
 
-#: application/controllers/User.php:1547
+#: application/controllers/User.php:1552
 #: application/views/user/modals/first_login_wizard.php:93
 msgid "Station Locator"
 msgstr "Stationens Lokatorsruta"
 
-#: application/controllers/User.php:1568
+#: application/controllers/User.php:1573
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -4327,36 +4327,36 @@ msgstr ""
 "Station framgångsrikt skapad! Välkommen till Wavelog! För att slutföra dina "
 "stationsinställningar, klicka %shär%s."
 
-#: application/controllers/User.php:1571
+#: application/controllers/User.php:1576
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
 "Stationsinställningar misslyckades! Vänligen ställ in din station manuellt."
 
-#: application/controllers/User.php:1588
+#: application/controllers/User.php:1593
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Återställning av lösenord är inaktiverad i demomod!"
 
-#: application/controllers/User.php:1602
+#: application/controllers/User.php:1607
 msgid "Forgot Password"
 msgstr "Glömt lösenord"
 
-#: application/controllers/User.php:1652
+#: application/controllers/User.php:1657
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "E-postinställningarna är felaktiga."
 
-#: application/controllers/User.php:1656 application/controllers/User.php:1661
+#: application/controllers/User.php:1661 application/controllers/User.php:1666
 msgid "Password Reset Processed."
 msgstr "Lösenordsåterställning utförd."
 
-#: application/controllers/User.php:1767
+#: application/controllers/User.php:1772
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Återställ lösenord"
 
-#: application/controllers/User.php:1787
+#: application/controllers/User.php:1792
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
@@ -4364,13 +4364,13 @@ msgstr ""
 "Kunde inte använda detta användarnamn. Vänligen försök med ett annat än "
 "\"%s\"."
 
-#: application/controllers/User.php:1796
+#: application/controllers/User.php:1801
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
 msgstr "Kunde inte använda denna e-post. Försök med en annan adress än \"%s\"."
 
-#: application/controllers/User.php:1835
+#: application/controllers/User.php:1840
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -4379,7 +4379,7 @@ msgstr ""
 "Du kan för närvarande inte utge dig för att vara en annan användare. Du "
 "behöver ändra %s till %s i din config.php!"
 
-#: application/controllers/User.php:1846
+#: application/controllers/User.php:1851
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -4388,15 +4388,15 @@ msgstr ""
 "Du kan för närvarande inte utge dig för att vara en annan användare. Ändra "
 "först encryption_key i din config.php-fil!"
 
-#: application/controllers/User.php:1853
+#: application/controllers/User.php:1858
 msgid "Invalid Hash"
 msgstr "Ogiltig hash"
 
-#: application/controllers/User.php:1866
+#: application/controllers/User.php:1871
 msgid "The impersonation hash is too old. Please try again."
 msgstr "Imitationshashen är för gammal. Försök igen."
 
-#: application/controllers/User.php:1873
+#: application/controllers/User.php:1878
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -4404,15 +4404,15 @@ msgstr ""
 "Du kan inte utge dig för att vara en annan användare när du inte är inloggad "
 "som källanvändaren"
 
-#: application/controllers/User.php:1879
+#: application/controllers/User.php:1884
 msgid "There was a problem with your session. Please try again."
 msgstr "Det uppstod ett problem med din session. Försök igen."
 
-#: application/controllers/User.php:1886
+#: application/controllers/User.php:1891
 msgid "The requested user to impersonate does not exist"
 msgstr "Den begärda användaren att utge dig för existerar inte"
 
-#: application/controllers/User.php:1907
+#: application/controllers/User.php:1912
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -4420,13 +4420,13 @@ msgstr ""
 "Kunde inte fastställa rätt behörighetsnivå för klubbstationen. Försök igen "
 "efter att ha loggat in på nytt."
 
-#: application/controllers/User.php:1948 application/controllers/User.php:1960
-#: application/controllers/User.php:1966 application/controllers/User.php:1975
-#: application/controllers/User.php:1983
+#: application/controllers/User.php:1953 application/controllers/User.php:1965
+#: application/controllers/User.php:1971 application/controllers/User.php:1980
+#: application/controllers/User.php:1988
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "Oj.. Något gick fel. Försök logga in igen."
 
-#: application/controllers/User.php:1989
+#: application/controllers/User.php:1994
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -4434,7 +4434,7 @@ msgstr ""
 "Möjligheten att återvända snabbt har inaktiverats efter att säkerhetshashen "
 "har gått ut. Logga in igen."
 
-#: application/controllers/User.php:2005
+#: application/controllers/User.php:2010
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -5421,7 +5421,7 @@ msgid "Contacts"
 msgstr "Kontakter"
 
 #: application/models/Note.php:8
-#: application/views/interface_assets/footer.php:118
+#: application/views/interface_assets/footer.php:119
 #: application/views/qso/index.php:103
 #: application/views/statistics/index.php:86
 #: application/views/user/edit.php:221
@@ -5630,8 +5630,8 @@ msgstr "Skillnad"
 #: application/views/gridmap/index.php:141
 #: application/views/gridmap/index.php:155
 #: application/views/interface_assets/footer.php:52
-#: application/views/interface_assets/footer.php:1575
-#: application/views/interface_assets/footer.php:1714
+#: application/views/interface_assets/footer.php:1578
+#: application/views/interface_assets/footer.php:1717
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -5679,8 +5679,8 @@ msgstr "Skillnad"
 #: application/views/timeplotter/index.php:41
 #: application/views/timeplotter/index.php:53
 #: application/views/timeplotter/index.php:63
-#: application/views/user/edit.php:1026
-#: application/views/visitor/layout/footer.php:168
+#: application/views/user/edit.php:1034
+#: application/views/visitor/layout/footer.php:170
 #: application/views/wabtool/index.php:20
 msgid "All"
 msgstr "Alla"
@@ -5849,7 +5849,7 @@ msgstr "Trofé"
 #: application/views/contesting/manager/components/confirm_delete.php:6
 #: application/views/contesting/manager/components/session_modal.php:12
 #: application/views/contesting/manager/index.php:124
-#: application/views/interface_assets/footer.php:54
+#: application/views/interface_assets/footer.php:55
 #: application/views/logbookadvanced/index.php:55
 #: application/views/simplefle/index.php:21
 #: application/views/user/modals/more_actions_modal.php:51
@@ -5977,7 +5977,7 @@ msgstr "Bekräftelse"
 #: application/views/awards/wpx/index.php:45
 #: application/views/awards/wwff/index.php:116
 #: application/views/countqsoby/index.php:188
-#: application/views/gridmap/index.php:198 application/views/user/edit.php:1068
+#: application/views/gridmap/index.php:198 application/views/user/edit.php:1076
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -6227,9 +6227,9 @@ msgstr "Gå"
 #: application/views/awards/wwff/index.php:66
 #: application/views/countqsoby/index.php:44
 #: application/views/gridmap/index.php:54
-#: application/views/interface_assets/footer.php:56
+#: application/views/interface_assets/footer.php:57
 #: application/views/logbookadvanced/index.php:359
-#: application/views/qso/index.php:757 application/views/user/edit.php:1412
+#: application/views/qso/index.php:757 application/views/user/edit.php:1420
 msgid "Clear"
 msgstr "Rensa"
 
@@ -6679,8 +6679,8 @@ msgstr ""
 
 #: application/views/adif/import.php:166 application/views/adif/import.php:173
 #: application/views/interface_assets/footer.php:34
-#: application/views/interface_assets/footer.php:661
-#: application/views/interface_assets/footer.php:2459
+#: application/views/interface_assets/footer.php:662
+#: application/views/interface_assets/footer.php:2462
 msgid "DANGER"
 msgstr "FARA"
 
@@ -7302,7 +7302,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:916
 #: application/views/oqrs/showrequests.php:75
 #: application/views/qrbcalc/index.php:19
-#: application/views/search/filter.php:37 application/views/user/edit.php:922
+#: application/views/search/filter.php:37 application/views/user/edit.php:930
 msgid "Reset"
 msgstr "Återställ"
 
@@ -7358,8 +7358,8 @@ msgstr "Enkelt namn för att beskriva vad du använder detta API till."
 #: application/views/contest_admin/edit.php:55
 #: application/views/contesting/logger/components/qso-form.php:38
 #: application/views/cron/edit.php:73
-#: application/views/interface_assets/footer.php:55
-#: application/views/interface_assets/footer.php:696
+#: application/views/interface_assets/footer.php:56
+#: application/views/interface_assets/footer.php:697
 #: application/views/labeldesigner/designer.php:101
 #: application/views/logbookadvanced/index.php:56
 #: application/views/operator/index.php:32
@@ -8525,7 +8525,7 @@ msgstr "Visa ej kontaktade"
 #: application/views/awards/iota/index.php:91
 #: application/views/awards/itu/index.php:120
 #: application/views/awards/wac/index.php:31
-#: application/views/interface_assets/footer.php:2438
+#: application/views/interface_assets/footer.php:2441
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
@@ -9696,7 +9696,7 @@ msgstr "Tillämpa filter"
 #: application/views/qso/index.php:337 application/views/qso/index.php:621
 #: application/views/station_profile/create.php:243
 #: application/views/station_profile/edit.php:265
-#: application/views/user/edit.php:906 application/views/view_log/qso.php:357
+#: application/views/user/edit.php:914 application/views/view_log/qso.php:357
 #: application/views/view_log/qso.php:692
 msgid "POTA Reference(s)"
 msgstr "POTA-referens(er)"
@@ -10024,7 +10024,7 @@ msgstr "WAB-ruta"
 #: application/views/stationsetup/locationlist.php:47
 #: application/views/stationsetup/locationlist.php:57
 #: application/views/user/edit.php:694 application/views/user/edit.php:698
-#: application/views/user/edit.php:788
+#: application/views/user/edit.php:796
 msgid "No"
 msgstr "Nej"
 
@@ -11836,7 +11836,7 @@ msgstr "Anropssignal DXCC-identifiering"
 
 #: application/views/calltester/index.php:16
 #: application/views/dbtools/index.php:33
-#: application/views/interface_assets/footer.php:897
+#: application/views/interface_assets/footer.php:898
 #: application/views/logbookadvanced/index.php:877
 #: application/views/wabtool/index.php:23
 #: application/views/zonechecker/index.php:16
@@ -12784,7 +12784,7 @@ msgid "Time window"
 msgstr "Tidsfönster"
 
 #: application/views/contesting/logger/components/winkeyer.php:4
-#: application/views/user/edit.php:1355
+#: application/views/user/edit.php:1363
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
@@ -13094,13 +13094,13 @@ msgstr "Höger"
 
 #: application/views/contesting/logger/index.php:136
 #: application/views/dashboard/_options_menu.php:12
-#: application/views/user/edit.php:800
+#: application/views/user/edit.php:808
 msgid "Top"
 msgstr "Topp"
 
 #: application/views/contesting/logger/index.php:137
 #: application/views/dashboard/_options_menu.php:12
-#: application/views/user/edit.php:801
+#: application/views/user/edit.php:809
 msgid "Bottom"
 msgstr "Botten"
 
@@ -13423,7 +13423,7 @@ msgid "Light/Laser"
 msgstr "Ljus/Laser"
 
 #: application/views/contesting/manager/export_cbr.php:117
-#: application/views/interface_assets/footer.php:130
+#: application/views/interface_assets/footer.php:131
 #: application/views/stationsetup/locationlist.php:19
 msgid "Power"
 msgstr "Effekt"
@@ -13543,7 +13543,7 @@ msgstr "Begär ett pappersdiplom från tävlingsarrangören om du är berättiga
 #: application/views/station_profile/edit.php:445
 #: application/views/stationsetup/locationlist.php:49
 #: application/views/stationsetup/locationlist.php:59
-#: application/views/user/edit.php:1251
+#: application/views/user/edit.php:1259
 msgid "Yes"
 msgstr "Ja"
 
@@ -13928,7 +13928,7 @@ msgstr "Identifierare"
 #: application/views/station_profile/edit.php:336
 #: application/views/stationsetup/stationsetup.php:104
 #: application/views/user/edit.php:551 application/views/user/edit.php:552
-#: application/views/user/edit.php:1214 application/views/user/edit.php:1294
+#: application/views/user/edit.php:1222 application/views/user/edit.php:1302
 msgid "Enabled"
 msgstr "Aktiverad"
 
@@ -14102,42 +14102,42 @@ msgstr "Exportera"
 
 #: application/views/dashboard/_options_menu.php:12
 #: application/views/dashboard/_options_menu.php:15
-#: application/views/user/edit.php:802
+#: application/views/user/edit.php:810
 msgid "Off"
 msgstr "Av"
 
 #: application/views/dashboard/_options_menu.php:15
-#: application/views/user/edit.php:786
+#: application/views/user/edit.php:794
 msgid "Map at left"
 msgstr "Kartan till vänster"
 
 #: application/views/dashboard/_options_menu.php:15
-#: application/views/user/edit.php:787
+#: application/views/user/edit.php:795
 msgid "Map at right"
 msgstr "Karta till höger"
 
 #: application/views/dashboard/_options_menu.php:15
-#: application/views/user/edit.php:785
+#: application/views/user/edit.php:793
 msgid "Map on top"
 msgstr "Karta överst"
 
 #: application/views/dashboard/_options_menu.php:17
 #: application/views/dashboard/index.php:485
 #: application/views/dashboard/index.php:488
-#: application/views/user/edit.php:852 application/views/visitor/index.php:262
+#: application/views/user/edit.php:860 application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
 msgstr "DXCC-fördelning"
 
 #: application/views/dashboard/_options_menu.php:18
 #: application/views/dashboard/index.php:691
 #: application/views/dashboard/index.php:694
-#: application/views/user/edit.php:858
+#: application/views/user/edit.php:866
 msgid "VUCC-Grids"
 msgstr "VUCC-Lokatorrutor"
 
 #: application/views/dashboard/_options_menu.php:22
 #: application/views/dashboard/index.php:664
-#: application/views/user/edit.php:857 application/views/user/edit.php:1160
+#: application/views/user/edit.php:865 application/views/user/edit.php:1168
 msgid "Club Log"
 msgstr "Club Log"
 
@@ -14152,13 +14152,13 @@ msgstr "KPI-statistik"
 #: application/views/dashboard/_options_menu.php:33
 #: application/views/dashboard/index.php:409
 #: application/views/dashboard/index.php:412
-#: application/views/user/edit.php:838
+#: application/views/user/edit.php:846
 msgid "Active Expeditions"
 msgstr "Aktiva Expeditioner"
 
 #: application/views/dashboard/_options_menu.php:36
 #: application/views/dashboard/index.php:456
-#: application/views/user/edit.php:848
+#: application/views/user/edit.php:856
 msgid "Active Contests"
 msgstr "Aktiva tävlingar"
 
@@ -16359,10 +16359,10 @@ msgid "QSL Date"
 msgstr "QSL-datum"
 
 #: application/views/eqslcard/index.php:68
-#: application/views/interface_assets/footer.php:2693
-#: application/views/interface_assets/footer.php:2711
-#: application/views/interface_assets/footer.php:2730
-#: application/views/interface_assets/footer.php:2748
+#: application/views/interface_assets/footer.php:2696
+#: application/views/interface_assets/footer.php:2714
+#: application/views/interface_assets/footer.php:2733
+#: application/views/interface_assets/footer.php:2751
 #: application/views/qslcard/index.php:72
 #: application/views/statistics/antennaanalytics.php:85
 #: application/views/view_log/qso.php:728
@@ -16548,29 +16548,35 @@ msgstr "Varning! Är du säker på att du vill ta bort QSO med "
 msgid "Colors"
 msgstr "Färger"
 
-#: application/views/interface_assets/footer.php:57
+#: application/views/interface_assets/footer.php:54
+#: application/views/user/edit.php:731
+#: application/views/visitor/layout/footer.php:13
+msgid "Night Shadow"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:58
 msgid "Post"
 msgstr "Posta"
 
-#: application/views/interface_assets/footer.php:58
+#: application/views/interface_assets/footer.php:59
 #: application/views/qso/edit_ajax.php:198
 #: application/views/qso/edit_ajax.php:551
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr "Utbredningstyp stöds inte av LoTW. LoTW QSL-fält inaktiverade."
 
-#: application/views/interface_assets/footer.php:59
+#: application/views/interface_assets/footer.php:60
 msgid "No states for this DXCC available"
 msgstr "Inga stater för denna DXCC tillgängliga"
 
-#: application/views/interface_assets/footer.php:60
+#: application/views/interface_assets/footer.php:61
 msgid "Compute QRB and QTF"
 msgstr "Beräkna QRB och QTF"
 
-#: application/views/interface_assets/footer.php:61
+#: application/views/interface_assets/footer.php:62
 msgid "Error in locators. Please check."
 msgstr "Fel i lokator. Vänligen kontrollera."
 
-#: application/views/interface_assets/footer.php:62
+#: application/views/interface_assets/footer.php:63
 msgid ""
 "At least one of the locators is empty. Calculation not possible. Possibly "
 "missing locator in station location. Please check."
@@ -16578,42 +16584,42 @@ msgstr ""
 "Minst en av lokatorerna är tom. Beräkning är inte möjlig. Möjligen saknas "
 "lokator i stationplatsen. Kontrollera, tack."
 
-#: application/views/interface_assets/footer.php:63
+#: application/views/interface_assets/footer.php:64
 #: application/views/user/index.php:20 application/views/user/index.php:144
 msgid "Refresh List"
 msgstr "Uppdatera lista"
 
-#: application/views/interface_assets/footer.php:64
+#: application/views/interface_assets/footer.php:65
 msgid "Please Wait ..."
 msgstr "Vänligen vänta ..."
 
-#: application/views/interface_assets/footer.php:65
+#: application/views/interface_assets/footer.php:66
 msgctxt ""
 "Word for country states that are deprecated but kept for legacy reasons."
 msgid "deprecated"
 msgstr "Föråldrad"
 
-#: application/views/interface_assets/footer.php:66
+#: application/views/interface_assets/footer.php:67
 msgid "Satellite Information"
 msgstr "Satellitinformation"
 
-#: application/views/interface_assets/footer.php:67
+#: application/views/interface_assets/footer.php:68
 msgid "Prepare hams.at Activation Posting"
 msgstr "Förbered hams.at aktiveringsinlägg"
 
-#: application/views/interface_assets/footer.php:69
+#: application/views/interface_assets/footer.php:70
 msgid "Error loading notes"
 msgstr "Fel vid inläsning av anteckningar"
 
-#: application/views/interface_assets/footer.php:70
+#: application/views/interface_assets/footer.php:71
 msgid "Sorting"
 msgstr "Sortering"
 
-#: application/views/interface_assets/footer.php:71
+#: application/views/interface_assets/footer.php:72
 msgid "Duplication is disabled for Contacts notes"
 msgstr "Duplicering är inaktiverad för kontaktsanteckningar"
 
-#: application/views/interface_assets/footer.php:73
+#: application/views/interface_assets/footer.php:74
 #: application/views/labeldesigner/designer.php:410
 #: application/views/labeldesigner/designer.php:426
 #: application/views/qslpostcard/designer.php:318
@@ -16621,221 +16627,221 @@ msgstr "Duplicering är inaktiverad för kontaktsanteckningar"
 msgid "Duplicate"
 msgstr "Duplicera"
 
-#: application/views/interface_assets/footer.php:74
+#: application/views/interface_assets/footer.php:75
 #: application/views/notes/view.php:48
 msgid "Delete Note"
 msgstr "Radera anteckning"
 
-#: application/views/interface_assets/footer.php:75
+#: application/views/interface_assets/footer.php:76
 msgid "Duplicate Note"
 msgstr "Duplicera Anteckning"
 
-#: application/views/interface_assets/footer.php:76
+#: application/views/interface_assets/footer.php:77
 msgid "Delete this note?"
 msgstr "Radera den här anteckningen?"
 
-#: application/views/interface_assets/footer.php:77
+#: application/views/interface_assets/footer.php:78
 msgid "Duplicate this note?"
 msgstr "Duplicera denna anteckning?"
 
-#: application/views/interface_assets/footer.php:78
+#: application/views/interface_assets/footer.php:79
 msgid "Duplication Disabled"
 msgstr "Duplicering inaktiverad"
 
-#: application/views/interface_assets/footer.php:79
+#: application/views/interface_assets/footer.php:80
 msgid "No notes were found"
 msgstr "Inga anteckningar hittades"
 
-#: application/views/interface_assets/footer.php:80
+#: application/views/interface_assets/footer.php:81
 msgid "No notes for this callsign"
 msgstr "Inga anteckningar för denna anropssignal"
 
-#: application/views/interface_assets/footer.php:81
+#: application/views/interface_assets/footer.php:82
 msgid "Callsign Note"
 msgstr "Anropssignalanteckning"
 
-#: application/views/interface_assets/footer.php:82
+#: application/views/interface_assets/footer.php:83
 msgid "Note deleted successfully"
 msgstr "Anteckning raderad framgångsrikt"
 
-#: application/views/interface_assets/footer.php:83
+#: application/views/interface_assets/footer.php:84
 msgid "Note created successfully"
 msgstr "Anteckning skapad framgångsrikt"
 
-#: application/views/interface_assets/footer.php:84
+#: application/views/interface_assets/footer.php:85
 msgid "Note saved successfully"
 msgstr "Anteckning sparad framgångsrikt"
 
-#: application/views/interface_assets/footer.php:85
+#: application/views/interface_assets/footer.php:86
 msgid "Error saving note"
 msgstr "Fel vid sparande av anteckning"
 
-#: application/views/interface_assets/footer.php:86
+#: application/views/interface_assets/footer.php:87
 #, php-format
 msgid "QSO with %s by %s was added to logbook."
 msgstr "QSO med %s av %s lades till i loggboken."
 
-#: application/views/interface_assets/footer.php:87
+#: application/views/interface_assets/footer.php:88
 #, php-format
 msgid "Realtime upload failed: %s"
 msgstr "Direktuppladdning misslyckades: %s"
 
-#: application/views/interface_assets/footer.php:88
+#: application/views/interface_assets/footer.php:89
 msgid "QSO Added to Backlog"
 msgstr "QSO tillagd i eftersläpningen"
 
-#: application/views/interface_assets/footer.php:89
+#: application/views/interface_assets/footer.php:90
 #, php-format
 msgid "Send email to %s"
 msgstr "Skicka e-post till %s"
 
-#: application/views/interface_assets/footer.php:90
+#: application/views/interface_assets/footer.php:91
 msgid ""
 "Callsign was already worked and confirmed in the past on this band and mode!"
 msgstr ""
 "Anropssignal har redan kontaktats och bekräftats tidigare på det här bandet "
 "och trafiksättet!"
 
-#: application/views/interface_assets/footer.php:91
+#: application/views/interface_assets/footer.php:92
 msgid "Callsign was already worked in the past on this band and mode!"
 msgstr ""
 "Anropssignal har redan kontaktats tidigare på detta band och trafiksätt!"
 
-#: application/views/interface_assets/footer.php:92
+#: application/views/interface_assets/footer.php:93
 msgid "New Callsign!"
 msgstr "Ny anropssignal!"
 
-#: application/views/interface_assets/footer.php:93
+#: application/views/interface_assets/footer.php:94
 msgid "Grid was already worked and confirmed in the past"
 msgstr "Lokatorrutan har redan kontaktats och bekräftats tidigare"
 
-#: application/views/interface_assets/footer.php:94
+#: application/views/interface_assets/footer.php:95
 msgid "Grid was already worked in the past"
 msgstr "Lokatorrutan har redan kontaktats"
 
-#: application/views/interface_assets/footer.php:95
+#: application/views/interface_assets/footer.php:96
 msgid "New grid!"
 msgstr "Ny lokatorruta!"
 
-#: application/views/interface_assets/footer.php:96
+#: application/views/interface_assets/footer.php:97
 msgid "Are you sure to delete Fav?"
 msgstr "Är du säker på att du vill ta bort Fav?"
 
-#: application/views/interface_assets/footer.php:97
+#: application/views/interface_assets/footer.php:98
 msgid ""
 "DXCC was already worked and confirmed in the past on this band and mode!"
 msgstr ""
 "DXCC har redan kontaktats och bekräftats tidigare på det här bandet och "
 "trafiksättet!"
 
-#: application/views/interface_assets/footer.php:98
+#: application/views/interface_assets/footer.php:99
 msgid "DXCC was already worked in the past on this band and mode!"
 msgstr "DXCC har redan tidigare kontaktats på detta band och trafiksätt!"
 
-#: application/views/interface_assets/footer.php:99
+#: application/views/interface_assets/footer.php:100
 msgid "New DXCC, not worked on this band and mode!"
 msgstr "Nytt DXCC, ej kontaktats på detta band och trafiksätt!"
 
-#: application/views/interface_assets/footer.php:100
+#: application/views/interface_assets/footer.php:101
 #, php-format
 msgid "Lookup %s info on %s"
 msgstr "Leta upp %s-information på %s"
 
-#: application/views/interface_assets/footer.php:101
+#: application/views/interface_assets/footer.php:102
 #, php-format
 msgid "Lookup %s summit info on %s"
 msgstr "Leta upp %s SOTA info på %s"
 
-#: application/views/interface_assets/footer.php:102
+#: application/views/interface_assets/footer.php:103
 #, php-format
 msgid "Lookup %s reference info on %s"
 msgstr "Leta upp %s referensinformation på %s"
 
-#: application/views/interface_assets/footer.php:103
+#: application/views/interface_assets/footer.php:104
 msgid "Error loading bearing!"
 msgstr "Fel vid inläsning av riktning!"
 
-#: application/views/interface_assets/footer.php:104
+#: application/views/interface_assets/footer.php:105
 msgid "Aliases"
 msgstr "Aliasnamn"
 
-#: application/views/interface_assets/footer.php:105
+#: application/views/interface_assets/footer.php:106
 msgid "Previously"
 msgstr "Tidigare"
 
-#: application/views/interface_assets/footer.php:106
+#: application/views/interface_assets/footer.php:107
 msgid "Born"
 msgstr "Född"
 
-#: application/views/interface_assets/footer.php:107
+#: application/views/interface_assets/footer.php:108
 msgid "years old"
 msgstr "år gammal"
 
-#: application/views/interface_assets/footer.php:108
+#: application/views/interface_assets/footer.php:109
 msgid "License"
 msgstr "Licens"
 
-#: application/views/interface_assets/footer.php:109
+#: application/views/interface_assets/footer.php:110
 msgid "from"
 msgstr "från"
 
-#: application/views/interface_assets/footer.php:110
+#: application/views/interface_assets/footer.php:111
 msgid "years"
 msgstr "år"
 
-#: application/views/interface_assets/footer.php:111
+#: application/views/interface_assets/footer.php:112
 msgid "expired on"
 msgstr "utgånget den"
 
-#: application/views/interface_assets/footer.php:112
+#: application/views/interface_assets/footer.php:113
 msgid "Website"
 msgstr "Webbplats"
 
-#: application/views/interface_assets/footer.php:113
+#: application/views/interface_assets/footer.php:114
 msgid "Local time"
 msgstr "Lokal tid"
 
-#: application/views/interface_assets/footer.php:115
+#: application/views/interface_assets/footer.php:116
 msgid "View location on Google Maps (Satellite)"
 msgstr "Visa plats på Google Maps (satellit)"
 
-#: application/views/interface_assets/footer.php:116
+#: application/views/interface_assets/footer.php:117
 msgid "Novice"
 msgstr "Nybörjare"
 
-#: application/views/interface_assets/footer.php:117
+#: application/views/interface_assets/footer.php:118
 msgid "Technician"
 msgstr "Technician"
 
-#: application/views/interface_assets/footer.php:119
+#: application/views/interface_assets/footer.php:120
 #: application/views/interface_assets/header.php:124
 msgid "Advanced"
 msgstr "Avancerad"
 
-#: application/views/interface_assets/footer.php:120
+#: application/views/interface_assets/footer.php:121
 msgid "Extra"
 msgstr "Extra"
 
-#: application/views/interface_assets/footer.php:121
+#: application/views/interface_assets/footer.php:122
 msgid "Gridsquare Formatting"
 msgstr "Lokatorruta Formatering"
 
-#: application/views/interface_assets/footer.php:122
+#: application/views/interface_assets/footer.php:123
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
 "Ange flera (4-siffriga) lokatorrutor separerade med kommatecken. Till "
 "exempel: IO77,IO78"
 
-#: application/views/interface_assets/footer.php:123
+#: application/views/interface_assets/footer.php:124
 msgid "live"
 msgstr "live"
 
-#: application/views/interface_assets/footer.php:124
+#: application/views/interface_assets/footer.php:125
 msgid "polling"
 msgstr "polling"
 
-#: application/views/interface_assets/footer.php:125
+#: application/views/interface_assets/footer.php:126
 msgid ""
 "Note: Periodic polling is slow. When operating locally, WebSockets are a "
 "more convenient way to control your radio in real-time."
@@ -16843,82 +16849,82 @@ msgstr ""
 "Observera: Periodisk polling är långsam. När du arbetar lokalt så är "
 "WebSockets ett mer bekvämt sätt att styra din radio i realtid."
 
-#: application/views/interface_assets/footer.php:126
+#: application/views/interface_assets/footer.php:127
 msgid "TX"
 msgstr "TX"
 
-#: application/views/interface_assets/footer.php:127
+#: application/views/interface_assets/footer.php:128
 msgid "RX"
 msgstr "RX"
 
-#: application/views/interface_assets/footer.php:128
+#: application/views/interface_assets/footer.php:129
 msgid "TX/RX"
 msgstr "TX/RX"
 
-#: application/views/interface_assets/footer.php:131
+#: application/views/interface_assets/footer.php:132
 msgid "Radio connection error"
 msgstr "Radio anslutningsfel"
 
-#: application/views/interface_assets/footer.php:132
+#: application/views/interface_assets/footer.php:133
 msgid "Connection lost, please select another radio."
 msgstr "Anslutningen bröts, välj en annan radio."
 
-#: application/views/interface_assets/footer.php:133
+#: application/views/interface_assets/footer.php:134
 msgid "Radio connection timeout"
 msgstr "Radioanslutning timeout"
 
-#: application/views/interface_assets/footer.php:134
+#: application/views/interface_assets/footer.php:135
 msgid "Data is stale, please select another radio."
 msgstr "Data är gammal, välj en annan radio."
 
-#: application/views/interface_assets/footer.php:135
+#: application/views/interface_assets/footer.php:136
 msgid "You're not logged in. Please log in."
 msgstr "Du är inte inloggad. Logga in."
 
-#: application/views/interface_assets/footer.php:136
+#: application/views/interface_assets/footer.php:137
 msgid "Radio Tuning Failed"
 msgstr "Radiotuning misslyckades"
 
-#: application/views/interface_assets/footer.php:137
+#: application/views/interface_assets/footer.php:138
 msgid "Failed to tune radio to"
 msgstr "Kunde inte ställa in radion på"
 
-#: application/views/interface_assets/footer.php:138
+#: application/views/interface_assets/footer.php:139
 msgid "CAT interface not responding. Please check your radio connection."
 msgstr "CAT-gränssnittet svarar inte. Kontrollera din radiouppkoppling."
 
-#: application/views/interface_assets/footer.php:139
+#: application/views/interface_assets/footer.php:140
 msgid "No CAT URL configured for this radio"
 msgstr "Ingen CAT URL är konfigurerad för denna radio"
 
-#: application/views/interface_assets/footer.php:140
+#: application/views/interface_assets/footer.php:141
 msgid "WebSocket Radio"
 msgstr "WebSocket Radio"
 
-#: application/views/interface_assets/footer.php:141
+#: application/views/interface_assets/footer.php:142
 msgid "Location is fetched from provided gridsquare"
 msgstr "Platsen beräknas från angiven lokatorruta"
 
-#: application/views/interface_assets/footer.php:142
+#: application/views/interface_assets/footer.php:143
 msgid "Location is fetched from DXCC coordinates (no gridsquare provided)"
 msgstr "Platsen beräknas från DXCC-koordinater (ingen lokatorruta angiven)"
 
-#: application/views/interface_assets/footer.php:143
+#: application/views/interface_assets/footer.php:144
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr ""
 "Platsen kunde inte fastställas eftersom lokatorn inte är angiven och DXCC är "
 "-NONE-"
 
-#: application/views/interface_assets/footer.php:144
+#: application/views/interface_assets/footer.php:145
 msgid "Error saving operator callsign. Please try again."
 msgstr "Fel vid sparande av operatörens anropssignal. Försök igen."
 
-#: application/views/interface_assets/footer.php:147
+#: application/views/interface_assets/footer.php:148
 msgid "Working without CAT connection"
 msgstr "Arbeta utan CAT-anslutning"
 
-#: application/views/interface_assets/footer.php:148
+#: application/views/interface_assets/footer.php:149
 msgid ""
 "CAT connection is currently disabled. Enable CAT connection to work in "
 "online mode with your radio."
@@ -16926,7 +16932,7 @@ msgstr ""
 "CAT-anslutningen är för närvarande inaktiverad. Aktivera CAT-anslutningen "
 "för att arbeta i online läge med din radio."
 
-#: application/views/interface_assets/footer.php:149
+#: application/views/interface_assets/footer.php:150
 msgid ""
 "To connect your radio to Wavelog, visit the Wavelog Wiki for setup "
 "instructions."
@@ -16934,87 +16940,87 @@ msgstr ""
 "För att ansluta din radio till Wavelog, besök Wavelog Wiki för "
 "installationsinstruktioner."
 
-#: application/views/interface_assets/footer.php:226
+#: application/views/interface_assets/footer.php:227
 #: application/views/interface_assets/header.php:629
 #: application/views/options/tabs.php:37
 msgid "Version Info"
 msgstr "Versionsinformation"
 
-#: application/views/interface_assets/footer.php:279
-#: application/views/interface_assets/footer.php:294
+#: application/views/interface_assets/footer.php:280
+#: application/views/interface_assets/footer.php:295
 msgid "Failed to load the modal. Please try again."
 msgstr "Det gick inte att ladda modalen. Försök igen."
 
-#: application/views/interface_assets/footer.php:551
+#: application/views/interface_assets/footer.php:552
 msgid "Description:"
 msgstr "Beskrivning:"
 
-#: application/views/interface_assets/footer.php:554
+#: application/views/interface_assets/footer.php:555
 msgid "Query description"
 msgstr "Frågebeskrivning"
 
-#: application/views/interface_assets/footer.php:570
+#: application/views/interface_assets/footer.php:571
 msgid "Your query has been saved!"
 msgstr "Din förfrågan har sparats!"
 
-#: application/views/interface_assets/footer.php:572
+#: application/views/interface_assets/footer.php:573
 #: application/views/search/filter.php:43
 msgid "Edit queries"
 msgstr "Redigera frågor"
 
-#: application/views/interface_assets/footer.php:574
+#: application/views/interface_assets/footer.php:575
 msgid "Stored queries:"
 msgstr "Lagrade frågor:"
 
-#: application/views/interface_assets/footer.php:579
+#: application/views/interface_assets/footer.php:580
 #: application/views/search/filter.php:57
 msgid "Run Query"
 msgstr "Kör fråga"
 
-#: application/views/interface_assets/footer.php:591
-#: application/views/interface_assets/footer.php:727
-#: application/views/interface_assets/footer.php:797
+#: application/views/interface_assets/footer.php:592
+#: application/views/interface_assets/footer.php:728
+#: application/views/interface_assets/footer.php:798
 msgid "Stored Queries"
 msgstr "Lagrade frågor"
 
-#: application/views/interface_assets/footer.php:596
-#: application/views/interface_assets/footer.php:802
+#: application/views/interface_assets/footer.php:597
+#: application/views/interface_assets/footer.php:803
 msgid "You need to make a query before you search!"
 msgstr "Du måste göra en förfrågan innan du söker!"
 
-#: application/views/interface_assets/footer.php:617
-#: application/views/interface_assets/footer.php:754
+#: application/views/interface_assets/footer.php:618
+#: application/views/interface_assets/footer.php:755
 #: application/views/search/filter.php:76
 msgid "Export to ADIF"
 msgstr "Exportera till ADIF"
 
-#: application/views/interface_assets/footer.php:618
-#: application/views/interface_assets/footer.php:755
+#: application/views/interface_assets/footer.php:619
+#: application/views/interface_assets/footer.php:756
 #: application/views/search/main.php:32
 msgid "Open in the Advanced Logbook"
 msgstr "Öppna i den avancerade loggboken"
 
-#: application/views/interface_assets/footer.php:662
+#: application/views/interface_assets/footer.php:663
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr "Varning! Är du säker på att du vill ta bort denna sparade fråga?"
 
-#: application/views/interface_assets/footer.php:676
+#: application/views/interface_assets/footer.php:677
 msgid "The stored query has been deleted!"
 msgstr "Den sparade frågan har raderats!"
 
-#: application/views/interface_assets/footer.php:685
+#: application/views/interface_assets/footer.php:686
 msgid "The stored query could not be deleted. Please try again!"
 msgstr "Den sparade frågan kunde inte raderas. Försök igen!"
 
-#: application/views/interface_assets/footer.php:711
+#: application/views/interface_assets/footer.php:712
 msgid "The query description has been updated!"
 msgstr "Frågebeskrivningen har uppdaterats!"
 
-#: application/views/interface_assets/footer.php:715
+#: application/views/interface_assets/footer.php:716
 msgid "Something went wrong with the save. Please try again!"
 msgstr "Något gick fel med sparandet. Försök igen!"
 
-#: application/views/interface_assets/footer.php:844
+#: application/views/interface_assets/footer.php:845
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -17024,15 +17030,15 @@ msgstr ""
 "vilken DXCC som är korrekt för denna specifika plats. Om du är säker, "
 "ignorera denna varning."
 
-#: application/views/interface_assets/footer.php:898
+#: application/views/interface_assets/footer.php:899
 msgid "Count: "
 msgstr "Antal: "
 
-#: application/views/interface_assets/footer.php:899
+#: application/views/interface_assets/footer.php:900
 msgid "Grids: "
 msgstr "Lokatorrutor: "
 
-#: application/views/interface_assets/footer.php:1141
+#: application/views/interface_assets/footer.php:1144
 #: application/views/logbookadvanced/index.php:13
 #: application/views/map/qso_map.php:7
 #: application/views/satellite/flightpath.php:11
@@ -17040,90 +17046,90 @@ msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Lokatorrutor"
 
-#: application/views/interface_assets/footer.php:1351
+#: application/views/interface_assets/footer.php:1354
 msgid "Location Lookup failed. Please check browser console."
 msgstr "Platssökning misslyckades. Vänligen kontrollera webbläsarkonsolen."
 
-#: application/views/interface_assets/footer.php:1502
-#: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1505
 #: application/views/interface_assets/footer.php:1509
-#: application/views/interface_assets/footer.php:1646
-#: application/views/interface_assets/footer.php:1650
+#: application/views/interface_assets/footer.php:1512
+#: application/views/interface_assets/footer.php:1649
 #: application/views/interface_assets/footer.php:1653
+#: application/views/interface_assets/footer.php:1656
 msgid "grid square"
 msgstr "lokatorruta"
 
-#: application/views/interface_assets/footer.php:1509
-#: application/views/interface_assets/footer.php:1653
+#: application/views/interface_assets/footer.php:1512
+#: application/views/interface_assets/footer.php:1656
 msgid "Total count"
 msgstr "Totalt antal"
 
-#: application/views/interface_assets/footer.php:2440
+#: application/views/interface_assets/footer.php:2443
 msgid "QSL Card for "
 msgstr "QSL-kort för "
 
-#: application/views/interface_assets/footer.php:2460
+#: application/views/interface_assets/footer.php:2463
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Varning! Är du säker på att du vill ta bort detta QSL-kort?"
 
-#: application/views/interface_assets/footer.php:2500
+#: application/views/interface_assets/footer.php:2503
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr "eQSL-kort"
 
-#: application/views/interface_assets/footer.php:2502
+#: application/views/interface_assets/footer.php:2505
 msgid "eQSL Card for "
 msgstr "eQSL-kort för "
 
-#: application/views/interface_assets/footer.php:2704
-#: application/views/interface_assets/footer.php:2741
+#: application/views/interface_assets/footer.php:2707
+#: application/views/interface_assets/footer.php:2744
 #: application/views/view_log/qso.php:726
 msgid "QSL image file"
 msgstr "QSL-bildfil"
 
-#: application/views/interface_assets/footer.php:2723
+#: application/views/interface_assets/footer.php:2726
 msgid "Front QSL Card"
 msgstr "Framsida av QSL-kort"
 
-#: application/views/interface_assets/footer.php:2759
+#: application/views/interface_assets/footer.php:2762
 msgid "Back QSL Card"
 msgstr "Baksidan av QSL-kort"
 
-#: application/views/interface_assets/footer.php:2763
+#: application/views/interface_assets/footer.php:2766
 msgid "The QSL card upload could not be completed."
 msgstr "QSL-kortuppladdningen kunde inte slutföras."
 
-#: application/views/interface_assets/footer.php:2763
+#: application/views/interface_assets/footer.php:2766
 #: application/views/qslpostcard/designer.php:31
 msgid "Upload failed"
 msgstr "Uppladdning misslyckades"
 
-#: application/views/interface_assets/footer.php:2771
-#: application/views/interface_assets/footer.php:2796
+#: application/views/interface_assets/footer.php:2774
+#: application/views/interface_assets/footer.php:2799
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Lägg till ytterligare QSOs på ett QSL-kort"
 
-#: application/views/interface_assets/footer.php:2807
+#: application/views/interface_assets/footer.php:2810
 msgid "Something went wrong. Please try again!"
 msgstr "Något gick fel. Försök igen!"
 
-#: application/views/interface_assets/footer.php:2893
+#: application/views/interface_assets/footer.php:2896
 msgid "US Counties for state"
 msgstr "USAs counties för delstaten"
 
-#: application/views/interface_assets/footer.php:2941
+#: application/views/interface_assets/footer.php:2944
 msgid "Worked counties for state:"
 msgstr "Kontaktade counties för staten:"
 
-#: application/views/interface_assets/footer.php:2942
+#: application/views/interface_assets/footer.php:2945
 msgid "Confirmed counties for state:"
 msgstr "Bekräftade counties per delstat:"
 
-#: application/views/interface_assets/footer.php:2943
+#: application/views/interface_assets/footer.php:2946
 msgid "Counties in state:"
 msgstr "Counties i delstaten:"
 
-#: application/views/interface_assets/footer.php:2944
+#: application/views/interface_assets/footer.php:2947
 msgid "Needed counties for state:"
 msgstr "Nödvändiga counties för delstaten:"
 
@@ -19497,7 +19503,7 @@ msgstr "De"
 #: application/views/logbookadvanced/index.php:986
 #: application/views/logbookadvanced/useroptions.php:142
 #: application/views/qso/edit_ajax.php:414
-#: application/views/timeline/index.php:81 application/views/user/edit.php:756
+#: application/views/timeline/index.php:81 application/views/user/edit.php:764
 msgid "QRZ"
 msgstr "QRZ"
 
@@ -19517,7 +19523,7 @@ msgstr "QSL Meddelande (R)"
 #: application/views/qso/edit_ajax.php:382 application/views/qso/index.php:356
 #: application/views/qso/index.php:639
 #: application/views/stationsetup/locationlist.php:27
-#: application/views/user/edit.php:910 application/views/view_log/qso.php:395
+#: application/views/user/edit.php:918 application/views/view_log/qso.php:395
 #: application/views/view_log/qso.php:704
 msgid "SIG Info"
 msgstr "SIG Info"
@@ -22777,7 +22783,7 @@ msgstr "Stationens specialintressegruppinfo (t.ex. DA/NW-357)."
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:299
-#: application/views/user/edit.php:1134
+#: application/views/user/edit.php:1142
 #, php-format
 msgid "Trouble? Check the %swiki%s."
 msgstr "Problem? Kolla %swiki%s."
@@ -23986,50 +23992,50 @@ msgstr "(Färg för ej kontaktade zoner)"
 msgid "Show Locator"
 msgstr "Visa lokator"
 
-#: application/views/user/edit.php:727
+#: application/views/user/edit.php:735
 msgid "Map Tile Style"
 msgstr "Kart ruta stil"
 
-#: application/views/user/edit.php:734
+#: application/views/user/edit.php:742
 msgid ""
 "Choose the map tile rendering method; this will override the theme settings."
 msgstr ""
 "Välj metod för kartrutans rendering; detta kommer att åsidosätta "
 "temainställningarna."
 
-#: application/views/user/edit.php:746
+#: application/views/user/edit.php:754
 msgid "Previous QSL Type"
 msgstr "Tidigare QSL-typ"
 
-#: application/views/user/edit.php:750
+#: application/views/user/edit.php:758
 msgid "Select the type of QSL to show in the previous QSOs section."
 msgstr "Välj den typ av QSL som ska visas i föregående QSO-avsnitt."
 
-#: application/views/user/edit.php:767
+#: application/views/user/edit.php:775
 msgid "Dashboard Settings"
 msgstr "Instrumentpanelinställningar"
 
-#: application/views/user/edit.php:771
+#: application/views/user/edit.php:779
 msgid "Select the number of latest QSOs to be displayed on dashboard."
 msgstr "Välj antalet senaste QSOs som ska visas på instrumentpanelen."
 
-#: application/views/user/edit.php:778
+#: application/views/user/edit.php:786
 msgid "Choose the number of latest QSOs to be displayed on dashboard."
 msgstr "Välj antalet senaste QSOs som ska visas på instrumentpanelen."
 
-#: application/views/user/edit.php:782
+#: application/views/user/edit.php:790
 msgid "Show Dashboard Map"
 msgstr "Visa instrumentpanelkarta"
 
-#: application/views/user/edit.php:790
+#: application/views/user/edit.php:798
 msgid "Choose whether to show map on dashboard or not"
 msgstr "Välj om kartan ska visas på instrumentpanelen eller inte"
 
-#: application/views/user/edit.php:798
+#: application/views/user/edit.php:806
 msgid "Dashboard solar and propagation data"
 msgstr "Instrumentpanel för sol- och vågutbredningsdata"
 
-#: application/views/user/edit.php:804
+#: application/views/user/edit.php:812
 msgid ""
 "Show solar and propagation data on the dashboard above the active "
 "expeditions cards (Top), at the bottom of the dashboard (Bottom), or hide it "
@@ -24039,21 +24045,21 @@ msgstr ""
 "aktuella expeditioner (Topp), längst ner på instrumentpanelen (Nedan) eller "
 "dölj den (Av)."
 
-#: application/views/user/edit.php:814
+#: application/views/user/edit.php:822
 msgid "Dashboard Notification Banner"
 msgstr "Instrumentpanelens notifikations fält"
 
-#: application/views/user/edit.php:815
+#: application/views/user/edit.php:823
 msgid "This allows to disable the global notification banner on the dashboard."
 msgstr ""
 "Detta gör det möjligt att inaktivera det globala notifikations fältet på "
 "instrumentpanelen."
 
-#: application/views/user/edit.php:826
+#: application/views/user/edit.php:834
 msgid "Dashboard KPI statistics"
 msgstr "Dashboard KPI-statistik"
 
-#: application/views/user/edit.php:827
+#: application/views/user/edit.php:835
 msgid ""
 "This switches the display of the KPI statistics (Total QSOs, QSOs this year/"
 "month/today, Current Streak, Unique callsigns) on the dashboard."
@@ -24061,39 +24067,39 @@ msgstr ""
 "Detta ändrar visning av KPI-statistik (Totalt antal QSOs, QSOs per år/månad/"
 "idag, Aktuell svit, Unika anropssignaler) på instrumentpanelen."
 
-#: application/views/user/edit.php:877
+#: application/views/user/edit.php:885
 msgid "Show Fields on QSO Tab"
 msgstr "Visa fält på QSO-fliken"
 
-#: application/views/user/edit.php:886
+#: application/views/user/edit.php:894
 msgid "Show map at QSO-Window"
 msgstr "Visa karta vid QSO-fönster"
 
-#: application/views/user/edit.php:891
+#: application/views/user/edit.php:899
 msgid ""
 "The enabled items will be shown on the QSO tab rather than the General tab."
 msgstr ""
 "De aktiverade objekten kommer att visas på QSO-fliken istället för på den "
 "allmänna fliken."
 
-#: application/views/user/edit.php:933
+#: application/views/user/edit.php:941
 msgid "Online QSL request (OQRS) settings"
 msgstr "Inställningar för online QSL-förfrågan (OQRS)"
 
-#: application/views/user/edit.php:937
+#: application/views/user/edit.php:945
 msgid "Global text"
 msgstr "Global text"
 
-#: application/views/user/edit.php:939
+#: application/views/user/edit.php:947
 msgid ""
 "This text is an optional text that can be displayed on top of the OQRS page."
 msgstr "Denna text är en valfri text som kan visas överst på OQRS-sidan."
 
-#: application/views/user/edit.php:948
+#: application/views/user/edit.php:956
 msgid "Grouped search"
 msgstr "Grupperad sökning"
 
-#: application/views/user/edit.php:949
+#: application/views/user/edit.php:957
 msgid ""
 "When this is on, all station locations with OQRS active, will be searched at "
 "once."
@@ -24101,11 +24107,11 @@ msgstr ""
 "När detta är på kommer alla stationsplatser med OQRS aktiv att sökas på en "
 "gång."
 
-#: application/views/user/edit.php:960
+#: application/views/user/edit.php:968
 msgid "Show station location name in grouped search results"
 msgstr "Visa stationsplatsens namn i grupperade sökresultat"
 
-#: application/views/user/edit.php:961
+#: application/views/user/edit.php:969
 msgid ""
 "If grouped search is ON, you can decide if the name of the station location "
 "shall be shown in the results table."
@@ -24113,11 +24119,11 @@ msgstr ""
 "Om grupperad sökning är PÅ kan du bestämma om namnet på stationens plats ska "
 "visas i resultatlistan."
 
-#: application/views/user/edit.php:972
+#: application/views/user/edit.php:980
 msgid "Automatic OQRS matching"
 msgstr "Automatisk OQRS-matchning"
 
-#: application/views/user/edit.php:973
+#: application/views/user/edit.php:981
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
@@ -24126,32 +24132,32 @@ msgstr ""
 "kommer att försöka matcha inkommande förfrågningar med befintliga loggar "
 "automatiskt."
 
-#: application/views/user/edit.php:984
+#: application/views/user/edit.php:992
 msgid "Automatic OQRS matching for direct requests"
 msgstr "Automatisk OQRS-matchning för direkta förfrågningar"
 
-#: application/views/user/edit.php:985
+#: application/views/user/edit.php:993
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
 "Om detta är på, kommer automatisk OQRS-matchning för direktförfrågan att ske."
 
-#: application/views/user/edit.php:990
+#: application/views/user/edit.php:998
 msgid "QSL delivery methods offered via OQRS"
 msgstr "QSL-leveransmetoder tillgängliga via OQRS"
 
-#: application/views/user/edit.php:992
+#: application/views/user/edit.php:1000
 msgid "Bureau and Direct"
 msgstr "Byrå och Direkt"
 
-#: application/views/user/edit.php:993
+#: application/views/user/edit.php:1001
 msgid "Bureau only"
 msgstr "Endast via byrån"
 
-#: application/views/user/edit.php:994
+#: application/views/user/edit.php:1002
 msgid "Direct only"
 msgstr "Endast Direkt"
 
-#: application/views/user/edit.php:996
+#: application/views/user/edit.php:1004
 msgid ""
 "Restrict which QSL delivery methods requesters can choose on your public "
 "OQRS page."
@@ -24159,55 +24165,55 @@ msgstr ""
 "Begränsa vilka QSL-leveransmetoder som förfrågare kan välja mellan på din "
 "offentliga OQRS-sida."
 
-#: application/views/user/edit.php:1012
+#: application/views/user/edit.php:1020
 msgid "Default Values"
 msgstr "Standardvärden"
 
-#: application/views/user/edit.php:1020
+#: application/views/user/edit.php:1028
 msgid "Settings for Default Band and Confirmation"
 msgstr "Inställningar för standardband och bekräftelse"
 
-#: application/views/user/edit.php:1023
+#: application/views/user/edit.php:1031
 msgid "Default Band"
 msgstr "Standard Band"
 
-#: application/views/user/edit.php:1033
+#: application/views/user/edit.php:1041
 msgid "Default QSL-Methods"
 msgstr "Standard-QSL-metoder"
 
-#: application/views/user/edit.php:1098
+#: application/views/user/edit.php:1106
 msgid "Third Party Services"
 msgstr "Tredjepartstjänster"
 
-#: application/views/user/edit.php:1109
+#: application/views/user/edit.php:1117
 msgid "Logbook of The World (LoTW) Username"
 msgstr "Logbook of The World (LoTW) Användarnamn"
 
-#: application/views/user/edit.php:1115
+#: application/views/user/edit.php:1123
 msgid "Logbook of The World (LoTW) Password"
 msgstr "Logbook of The World (LoTW) Lösenord"
 
-#: application/views/user/edit.php:1119
+#: application/views/user/edit.php:1127
 msgid "Test Login"
 msgstr "Testa inloggning"
 
-#: application/views/user/edit.php:1137
+#: application/views/user/edit.php:1145
 msgid "eQSL.cc Username"
 msgstr "eQSL.cc Användarnamn"
 
-#: application/views/user/edit.php:1143
+#: application/views/user/edit.php:1151
 msgid "eQSL.cc Password"
 msgstr "eQSL.cc Lösenord"
 
-#: application/views/user/edit.php:1163
+#: application/views/user/edit.php:1171
 msgid "Club Log Email"
 msgstr "Club Log E-post"
 
-#: application/views/user/edit.php:1169
+#: application/views/user/edit.php:1177
 msgid "Club Log Password"
 msgstr "Club Log Lösenord"
 
-#: application/views/user/edit.php:1174
+#: application/views/user/edit.php:1182
 #, php-format
 msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
@@ -24217,11 +24223,11 @@ msgstr ""
 "att använda Clublog i Wavelog. Besök %sdin Clublog-inställningssida%s för "
 "att göra det."
 
-#: application/views/user/edit.php:1183
+#: application/views/user/edit.php:1191
 msgid "Fetch Club Log OQRS requests"
 msgstr "Hämta Club Log OQRS-förfrågningar"
 
-#: application/views/user/edit.php:1184
+#: application/views/user/edit.php:1192
 msgid ""
 "If enabled, OQRS requests made via Club Log are fetched during the Club Log "
 "sync and matching QSOs are marked as requested."
@@ -24229,15 +24235,15 @@ msgstr ""
 "Om aktiverad hämta OQRS-förfrågningar som gjorts via Club Log under Club Log-"
 "synkroniseringen och markera matchande QSOs som begärda."
 
-#: application/views/user/edit.php:1197
+#: application/views/user/edit.php:1205
 msgid "Widgets"
 msgstr "Widgets"
 
-#: application/views/user/edit.php:1205
+#: application/views/user/edit.php:1213
 msgid "On-Air widget"
 msgstr "On-Air widget"
 
-#: application/views/user/edit.php:1216
+#: application/views/user/edit.php:1224
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
@@ -24245,16 +24251,16 @@ msgstr ""
 "Observera: För att använda denna widget måste du ha minst en CAT-radio "
 "konfigurerad och fungerande."
 
-#: application/views/user/edit.php:1220 application/views/user/edit.php:1298
+#: application/views/user/edit.php:1228 application/views/user/edit.php:1306
 #, php-format
 msgid "If enabled, widget will be available at %s."
 msgstr "När den är aktiverad kommer widgeten att vara tillgänglig på %s."
 
-#: application/views/user/edit.php:1232
+#: application/views/user/edit.php:1240
 msgid "Display \"Last seen\" time"
 msgstr "Visa \"Senast sedd\" tid"
 
-#: application/views/user/edit.php:1233
+#: application/views/user/edit.php:1241
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
@@ -24262,25 +24268,25 @@ msgstr ""
 "Denna inställning styr om tiden för 'Senast sedd' visas i widgeten eller "
 "inte."
 
-#: application/views/user/edit.php:1243
+#: application/views/user/edit.php:1251
 msgid "Display radio name"
 msgstr "Visa radionamn"
 
-#: application/views/user/edit.php:1244
+#: application/views/user/edit.php:1252
 msgid ""
 "This setting controls whether the radio's name is displayed in the widget or "
 "not."
 msgstr "Denna inställning styr om radions namn visas i widgeten eller inte."
 
-#: application/views/user/edit.php:1248
+#: application/views/user/edit.php:1256
 msgid "Display only most recently updated radio"
 msgstr "Visa endast den senast uppdaterade radion"
 
-#: application/views/user/edit.php:1252
+#: application/views/user/edit.php:1260
 msgid "No, show all radios"
 msgstr "Nej, visa alla radioapparater"
 
-#: application/views/user/edit.php:1254
+#: application/views/user/edit.php:1262
 msgid ""
 "If you have multiple CAT radios configured, this setting controls whether "
 "the widget should display all on-air radios of the user, or just the most "
@@ -24292,55 +24298,55 @@ msgstr ""
 "uppdaterade. Om du bara har en radio så har den här inställningen ingen "
 "effekt."
 
-#: application/views/user/edit.php:1264
+#: application/views/user/edit.php:1272
 msgid "QSOs widget"
 msgstr "QSO-widget"
 
-#: application/views/user/edit.php:1273
+#: application/views/user/edit.php:1281
 msgid "Display exact QSO time"
 msgstr "Visa exakt QSO-tid"
 
-#: application/views/user/edit.php:1274
+#: application/views/user/edit.php:1282
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
 msgstr ""
 "Denna inställning styr om exakt QSO-tid ska visas i QSO-widgeten eller inte."
 
-#: application/views/user/edit.php:1285
+#: application/views/user/edit.php:1293
 msgid "Last LoTW Upload widget"
 msgstr "Senaste LoTW Uppladdningswidget"
 
-#: application/views/user/edit.php:1314
+#: application/views/user/edit.php:1322
 msgid "Miscellaneous"
 msgstr "Diverse"
 
-#: application/views/user/edit.php:1322
+#: application/views/user/edit.php:1330
 msgid "AMSAT Status Upload"
 msgstr "AMSAT Statusuppladdning"
 
-#: application/views/user/edit.php:1331
+#: application/views/user/edit.php:1339
 msgid "Upload status of SAT QSOs to"
 msgstr "Ladda upp status för SAT QSOs till"
 
-#: application/views/user/edit.php:1341
+#: application/views/user/edit.php:1349
 msgid "Mastodonserver"
 msgstr "Mastodonserver"
 
-#: application/views/user/edit.php:1344
+#: application/views/user/edit.php:1352
 msgid "URL of Mastodonserver"
 msgstr "URL till Mastodonserver"
 
-#: application/views/user/edit.php:1346
+#: application/views/user/edit.php:1354
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "Huvud-URL för din Mastodon-server, t.ex. %s"
 
-#: application/views/user/edit.php:1364
+#: application/views/user/edit.php:1372
 msgid "Winkeyer Features Enabled"
 msgstr "Winkeyer-funktioner aktiverade"
 
-#: application/views/user/edit.php:1365
+#: application/views/user/edit.php:1373
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
@@ -24349,25 +24355,25 @@ msgstr ""
 "Winkeyer-stöd i Wavelog är mycket experimentellt. Läs först wikin på %s "
 "innan du aktiverar."
 
-#: application/views/user/edit.php:1377
+#: application/views/user/edit.php:1385
 msgid "Hams.at"
 msgstr "Hams.at"
 
-#: application/views/user/edit.php:1380
+#: application/views/user/edit.php:1388
 msgid "Private Feed Key"
 msgstr "Privat nyckel"
 
-#: application/views/user/edit.php:1382
+#: application/views/user/edit.php:1390
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "Se din profil på %s."
 
-#: application/views/user/edit.php:1391
+#: application/views/user/edit.php:1399
 msgid "Show Workable Passes Only"
 msgstr "Visa endast användbara passeringar"
 
-#: application/views/user/edit.php:1392
+#: application/views/user/edit.php:1400
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -24375,15 +24381,15 @@ msgstr ""
 "Om aktiverad visar endast användbara pass baserat på lokatorrutan som anges "
 "i ditt hams.at-konto. Kräver att privat nyckel är konfigurerad."
 
-#: application/views/user/edit.php:1405
+#: application/views/user/edit.php:1413
 msgid "Save Account"
 msgstr "Spara kontoändringar"
 
-#: application/views/user/edit.php:1411
+#: application/views/user/edit.php:1419
 msgid "Search settings"
 msgstr "Sökinställningar"
 
-#: application/views/user/edit.php:1413
+#: application/views/user/edit.php:1421
 msgid "No settings match your search."
 msgstr "Inga inställningar matchar din sökning."
 
@@ -24954,15 +24960,15 @@ msgstr "eQSL-bild"
 msgid "QSOs Breakdown"
 msgstr "QSOs-fördelning"
 
-#: application/views/visitor/layout/footer.php:234
+#: application/views/visitor/layout/footer.php:236
 msgid "Filter Results"
 msgstr "Filtrera resultat"
 
-#: application/views/visitor/layout/footer.php:240
+#: application/views/visitor/layout/footer.php:242
 msgid "CSV"
 msgstr "CSV"
 
-#: application/views/visitor/layout/footer.php:248
+#: application/views/visitor/layout/footer.php:250
 msgid "Clear Filter"
 msgstr "Rensa filter"
 
