@@ -51,7 +51,7 @@
     var lang_general_word_not_worked = "<?= __("Not worked"); ?>";
     var lang_general_word_all = "<?= __("All"); ?>";
     var lang_general_gridsquares = "<?= __("Gridsquares"); ?>";
-    var lang_general_nightshadow = "<?= _pgettext("Map Options", "Night Shadow"); ?>";
+    var lang_general_nightshadow = "<?= __("Night Shadow"); ?>";
     var lang_admin_close = "<?= __("Close"); ?>";
     var lang_admin_save = "<?= __("Save"); ?>";
     var lang_admin_clear = "<?= __("Clear"); ?>";

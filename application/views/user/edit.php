@@ -728,19 +728,19 @@
 										<div class="form-check form-switch mt-1">
 											<input class="form-check-input" type="checkbox" role="switch" id="user_map_nightshadow_show" name="user_map_nightshadow_show" value="1" <?php if ($user_map_nightshadow_show == 1) { echo 'checked'; } ?>>
 										</div>
-										<label class="d-block mb-0" for="user_map_nightshadow_show"><?= _pgettext("Map Options", "Night Shadow"); ?></label>
+										<label class="d-block mb-0" for="user_map_nightshadow_show"><?= __("Night Shadow"); ?></label>
 									</div>
-								<?php if(!isset($user_map_tile_style)) { $user_map_tile_style = 'map-follow'; } ?>
-								<div class="mb-3">	<!-- Custom Map Tile Style -->
-									<label for="user_map_tile_style"><?= __("Map Tile Style"); ?></label>
-									<?php $styles = map_style_options(); $current = $user_map_tile_style ?? 'map-follow'; ?>
-										<select class="form-select"	id="user_map_tile_style" name="user_map_tile_style" >
-											<?php foreach ($styles as $slug => $label): ?>
-												<option value="<?= html_escape($slug); ?>" <?= $current == $slug ? 'selected' : ''; ?> ><?= html_escape($label); ?></option>
-											<?php endforeach; ?>
-										</select>
-								    <small class="form-text text-muted"><?= __("Choose the map tile rendering method; this will override the theme settings."); ?></small>
-								</div>
+									<?php if(!isset($user_map_tile_style)) { $user_map_tile_style = 'map-follow'; } ?>
+									<div class="mb-3">	<!-- Custom Map Tile Style -->
+										<label for="user_map_tile_style"><?= __("Map Tile Style"); ?></label>
+										<?php $styles = map_style_options(); $current = $user_map_tile_style ?? 'map-follow'; ?>
+											<select class="form-select"	id="user_map_tile_style" name="user_map_tile_style" >
+												<?php foreach ($styles as $slug => $label): ?>
+													<option value="<?= html_escape($slug); ?>" <?= $current == $slug ? 'selected' : ''; ?> ><?= html_escape($label); ?></option>
+												<?php endforeach; ?>
+											</select>
+										<small class="form-text text-muted"><?= __("Choose the map tile rendering method; this will override the theme settings."); ?></small>
+									</div>
 								</div>
 							</div>
 						</div>

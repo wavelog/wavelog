@@ -10,7 +10,7 @@
   var option_map_tile_server_copyright = '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
   var option_map_tile_subdomains = '<?php echo $this->optionslib->get_option('option_map_tile_subdomains') ?? 'abc';?>';
   var lang_general_gridsquares = "<?= __("Gridsquares"); ?>";
-  var lang_general_nightshadow = "<?= _pgettext("Map Options", "Night Shadow"); ?>";
+  var lang_general_nightshadow = "<?= __("Night Shadow"); ?>";
   var lang_general_word_search = "<?= __("Search"); ?>";
 </script>
 
