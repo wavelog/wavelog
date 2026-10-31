@@ -890,9 +890,6 @@ function resetQrbForm(form) {
     $("#mapqrb").hide();
 }
 
-// The map's height comes from CSS (the .qrb-dialog flex rules in general.css).
-// Leaflet caches its container size, so it only needs to be told to re-measure
-// when the dialog opens or the window is resized.
 function sizeQrbMap() {
     if (window.qrbMap) {
         window.qrbMap.invalidateSize();
@@ -1397,8 +1394,6 @@ function set_map_height(extra_height = 0) {
     // console.log('#gridsquare_map: ' + gridsquareMapHeight);
 }
 
-// Bounds [[south, west], [north, east]] of a locator's 4-char grid square.
-// Returns null for anything that isn't at least a valid 4-char locator.
 function qrbGridSquareBounds(locator) {
     var loc = String(locator || '').trim().toUpperCase();
     if (!/^[A-R]{2}[0-9]{2}/.test(loc)) {
@@ -1409,9 +1404,6 @@ function qrbGridSquareBounds(locator) {
     return [[lat, lon], [lat + 1, lon + 2]];
 }
 
-// Highlight the locator squares and dim the surrounding grid labels — the same
-// treatment the Activation Planner's two-grid QRB view uses (the .gl-dim-labels
-// class and its CSS live in general.css and are shared with the planner).
 function qrbHighlightSquares(map, locator1, locator2) {
     var container = map.getContainer();
     if (container) {
