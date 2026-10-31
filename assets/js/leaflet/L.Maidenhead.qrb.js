@@ -63,9 +63,6 @@ L.MaidenheadQrb = L.LayerGroup.extend({
 			for (var lat = bottom; lat < top; lat += unit) {
 				var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
 
-				// Draw cell borders + label (once per cell) at every zoom level
-				// except 3-4, where the field overlay below takes over to keep
-				// the world view light and fast.
 				if (zoom < 3 || zoom > 4) {
 					this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.color, weight: 1, fill:false, interactive: false}));
 					this.addLayer(this._getLabel(lon+unit-(unit/lcor),lat+(unit/2)+(unit/lcor*c), map));
