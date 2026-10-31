@@ -228,7 +228,7 @@ function echo_table_header_col($name) {
 
 <?php if (!empty($dashboard_show_kpi_stats)) : ?>
 <!-- KPI Stat Cards -->
-<div class="container dashboard px-3 px-lg-4 mt-3 mb-3" id="kpi-cards" title="<?= __("Right-click for options"); ?>">
+<div class="container dashboard px-3 px-lg-4 mt-3 mb-3" id="kpi-cards"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 	<div class="row g-3">
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
@@ -303,7 +303,7 @@ function echo_table_header_col($name) {
 	<!-- Map -->
 		<?php if($dashboard_map == "Y") { ?>
 		<div class="col-12 map-breakout">
-			<div class="card" id="map-card" title="<?= __("Right-click for options"); ?>">
+			<div class="card" id="map-card"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 				<div class="card-header py-2">
 					<h6 class="mb-0"><i class="fas fa-map-marked-alt"></i> <?= __("Map"); ?></h6>
 				</div>
@@ -318,7 +318,7 @@ function echo_table_header_col($name) {
 	<div class="col-12 col-lg-8">
 
 		<?php if($dashboard_map == "map_at_left") { ?>
-		<div class="card mb-3" id="map-card" title="<?= __("Right-click for options"); ?>">
+		<div class="card mb-3" id="map-card"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-map-marked-alt"></i> <?= __("Map"); ?></h6>
 			</div>
@@ -388,7 +388,7 @@ function echo_table_header_col($name) {
 	<!-- Right column: cards -->
 	<div class="col-12 col-lg-4">
 		<?php if($dashboard_map == "map_at_right") { ?>
-		<div class="card mb-3" id="map-card" title="<?= __("Right-click for options"); ?>">
+		<div class="card mb-3" id="map-card"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-map-marked-alt"></i> <?= __("Map"); ?></h6>
 			</div>
@@ -404,7 +404,7 @@ function echo_table_header_col($name) {
 
 			<?php if (($dashboard_solar ?? 'N') === 'top') { $this->load->view('dashboard/solar_data'); } ?>
 			<?php if (!empty($active_dxpeditions) && $active_dxpeditions !== false) { ?>
-			<div class="card mb-3" id="dxpeditions-card" title="<?= __("Right-click for options"); ?>">
+			<div class="card mb-3" id="dxpeditions-card"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 				<div class="card-header py-2">
 					<h6 class="mb-0"><i class="fas fa-broadcast-tower"></i> <?= __("Active Expeditions"); ?> <a href="<?php echo site_url('dxcalendar'); ?>" aria-label="<?= __("Active Expeditions"); ?>"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></h6>
 				</div>
@@ -451,7 +451,7 @@ function echo_table_header_col($name) {
 		<?php } ?>
 
 			<?php if (!empty($active_contests) && $active_contests !== false) { ?>
-			<div class="card mb-3" id="contests-card" title="<?= __("Right-click for options"); ?>">
+			<div class="card mb-3" id="contests-card"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 				<div class="card-header py-2">
 					<h6 class="mb-0"><i class="fas fa-trophy"></i> <?= __("Active Contests"); ?> <a href="<?php echo site_url('contestcalendar'); ?>" aria-label="<?= __("Active Contests"); ?>"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></h6>
 				</div>
@@ -480,7 +480,7 @@ function echo_table_header_col($name) {
 			<?php $this->load->view('dashboard/_options_menu', ['menu_id'=>'contestsOptsMenu','target_id'=>'contests-card']); ?>
 		<?php } ?>
 		<?php if (!empty($dashboard_show_dxcc)) { ?>
-		<div class="card mb-3" id="dxcc-card" title="<?= __("Right-click for options"); ?>">
+		<div class="card mb-3" id="dxcc-card"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-globe-europe"></i> <?= __("DXCCs Breakdown"); ?> <a href="<?php echo site_url('awards/dxcc'); ?>" aria-label="<?= __("DXCCs Breakdown"); ?>"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></h6>
 			</div>
@@ -531,7 +531,7 @@ function echo_table_header_col($name) {
 		<?php } ?>
 
 		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) && !empty($dashboard_show_qslcards)) { ?>
-		<div class="card mb-3" id="qsl-card" title="<?= __("Right-click for options"); ?>">
+		<div class="card mb-3" id="qsl-card"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-envelope"></i> <?= __("QSL Cards"); ?></h6>
 			</div>
@@ -566,7 +566,7 @@ function echo_table_header_col($name) {
 		<?php } ?>
 
 		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false)) && !empty($dashboard_show_lotw)) { ?>
-		<div class="card mb-3" id="lotw-card" title="<?= __("Right-click for options"); ?>">
+		<div class="card mb-3" id="lotw-card"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-list"></i> <?= _pgettext("Probably no translation needed as this is a name.","Logbook of the World"); ?></h6>
 			</div>
@@ -596,7 +596,7 @@ function echo_table_header_col($name) {
 		<?php } ?>
 
 		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) && !empty($dashboard_show_eqsl)) { ?>
-		<div class="card mb-3" id="eqsl-card" title="<?= __("Right-click for options"); ?>">
+		<div class="card mb-3" id="eqsl-card"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-address-card"></i> <?= __("eQSL Cards"); ?></h6>
 			</div>
@@ -626,7 +626,7 @@ function echo_table_header_col($name) {
 		<?php } ?>
 
 		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false)) && !empty($dashboard_show_qrz)) { ?>
-		<div class="card mb-3" id="qrz-card" title="<?= __("Right-click for options"); ?>">
+		<div class="card mb-3" id="qrz-card"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-list"></i> QRZ.com</h6>
 			</div>
@@ -656,7 +656,7 @@ function echo_table_header_col($name) {
 		<?php } ?>
 
 		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false)) && !empty($dashboard_show_clublog)) { ?>
-		<div class="card mb-3" id="clublog-card" title="<?= __("Right-click for options"); ?>">
+		<div class="card mb-3" id="clublog-card"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-list"></i> Club Log</h6>
 			</div>
@@ -686,7 +686,7 @@ function echo_table_header_col($name) {
 		<?php } ?>
 
 		<?php if(((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) && !empty($dashboard_show_vucc)) { ?>
-		<div class="card mb-3" id="vucc-card" title="<?= __("Right-click for options"); ?>">
+		<div class="card mb-3" id="vucc-card"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-globe-europe"></i> <?= __("VUCC-Grids"); ?> <a href="<?php echo site_url('awards/vucc'); ?>" aria-label="<?= __("VUCC-Grids"); ?>"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></h6>
 			</div>

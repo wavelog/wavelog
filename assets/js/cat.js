@@ -526,7 +526,8 @@ $(document).ready(function() {
     }
 
     /**
-     * Send QSO data via WebSocket when CAT is enabled via WebSocket
+     * Send QSO data via WebSocket when a WebSocket connection is open
+     * (WebSocket radio or the hybrid connection next to a polling radio)
      * This allows external systems (e.g., WLGate, external logging services) to receive logged QSOs in real-time
      * @param {object} qsoData - QSO data object with fields from the QSO form
      * @returns {boolean} - true if sent via WebSocket, false otherwise
@@ -534,11 +535,6 @@ $(document).ready(function() {
     function sendQSOViaWebSocket(qsoData) {
         // Only send if WebSocket is connected and enabled
         if (!websocket || !websocketEnabled || websocket.readyState !== WebSocket.OPEN) {
-            return false;
-        }
-
-        // Only send for WebSocket radio ('ws')
-        if ($(".radios option:selected").val() != 'ws') {
             return false;
         }
 

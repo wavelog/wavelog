@@ -120,7 +120,7 @@ class Activators_model extends CI_Model
       $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if ($logbooks_locations_array[0] === -1) {
-         return array();
+         return 0;
       }
 
       $location_list = "'" . implode("','", $logbooks_locations_array) . "'";

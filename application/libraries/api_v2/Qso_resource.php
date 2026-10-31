@@ -20,9 +20,11 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * stored value. There is deliberately no PUT: Wavelog is the source of truth, so
  * an API client should never be able to blank fields it simply did not know
  * about - a client wanting a full overwrite can send every field explicitly.
- * PATCH touches only the field whitelist in editable_fields(): QSL/LoTW/eQSL
- * bookkeeping, DXCC/country recalculation and the MY_* station refs are
- * deliberately out of scope here.
+ * PATCH touches only the field whitelist in editable_fields(). Of the QSL
+ * bookkeeping only the QSL sent status (qsl_sent, qsl_sent_via, qslsdate) is
+ * writable, so a client that sends cards can mark them as sent; LoTW/eQSL
+ * status, QSL received, DXCC/country recalculation and the MY_* station refs
+ * are deliberately out of scope here.
  *
  * Unit note: the JSON API speaks Hz throughout - POST (single and bulk), PATCH
  * and GET all take and return freq/freq_rx in Hz. Unit suffixes are accepted on
@@ -729,6 +731,34 @@ class Qso_resource extends Api_v2_resource {
 			}
 		}
 
+		// QSL sent: ADIF enumerations. Marking it 'Y' without a date stamps
+		// today, like the web UI's "mark as sent" (paperqsl_update_sent()).
+		$enums = ['qsl_sent' => ['Y', 'N', 'R', 'Q', 'I'], 'qsl_sent_via' => ['B', 'D', 'E', 'M']];
+		foreach ($enums as $key => $allowed) {
+			if (array_key_exists($key, $body) && $body[$key] !== null && $body[$key] !== ''
+				&& !in_array(strtoupper(trim((string) $body[$key])), $allowed, true)) {
+				throw new Api_v2_exception('validation_error', 'Invalid ' . $key . ' value', 400, ['field' => $key, 'allowed' => $allowed]);
+			}
+		}
+		if (array_key_exists('qslsdate', $body)) {
+			if ($body['qslsdate'] === null || $body['qslsdate'] === '') {
+				$data['COL_QSLSDATE'] = null;
+			} else {
+				$date = DateTime::createFromFormat('Y-m-d', (string) $body['qslsdate']);
+				if ($date === false || $date->format('Y-m-d') !== $body['qslsdate']) {
+					throw new Api_v2_exception('validation_error', 'qslsdate must be a valid date', 400, ['field' => 'qslsdate', 'format' => 'YYYY-MM-DD']);
+				}
+				$data['COL_QSLSDATE'] = $body['qslsdate'] . ' 00:00:00';
+			}
+		} elseif (array_key_exists('qsl_sent', $body) && strtoupper(trim((string) $body['qsl_sent'])) === 'Y') {
+			$data['COL_QSLSDATE'] = date('Y-m-d H:i:s');
+		}
+
+		if (array_key_exists('email', $body) && $body['email'] !== null && $body['email'] !== ''
+			&& filter_var(trim((string) $body['email']), FILTER_VALIDATE_EMAIL) === false) {
+			throw new Api_v2_exception('validation_error', 'Invalid email', 400, ['field' => 'email']);
+		}
+
 		if (array_key_exists('call', $body) && !$this->CI->logbook_model->is_valid_callsign($body['call'])) {
 			throw new Api_v2_exception('validation_error', 'Invalid callsign', 400, ['field' => 'call']);
 		}
@@ -779,6 +809,9 @@ class Qso_resource extends Api_v2_resource {
 			'cqz'        => ['COL_CQZ', false],
 			'ituz'       => ['COL_ITUZ', false],
 			'qsl_via'    => ['COL_QSL_VIA', false],
+			'qsl_sent'   => ['COL_QSL_SENT', true],
+			'qsl_sent_via' => ['COL_QSL_SENT_VIA', true],
+			'email'      => ['COL_EMAIL', false],
 			'srx'        => ['COL_SRX', false],
 			'stx'        => ['COL_STX', false],
 			'srx_string' => ['COL_SRX_STRING', true],
@@ -896,6 +929,7 @@ class Qso_resource extends Api_v2_resource {
 			'submode'    => ['COL_SUBMODE', 'string'],
 			'freq'       => ['COL_FREQ', 'string'],
 			'freq_rx'    => ['COL_FREQ_RX', 'string'],
+			'qslsdate'   => ['COL_QSLSDATE', 'string'],
 		];
 	}
 

@@ -345,7 +345,7 @@ class Callbook {
 				}
 			}
 
-			if (strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
+			if (stripos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
 				$plaincall = $this->get_plaincall($callsign);
 				// Now try again but give back reduced data, as we can't validate location and stuff (true at the end)
 				$callbook = $this->ci->hamqth->search($plaincall, $this->ci->cache->get($this->hamqth_session_cachekey), true);

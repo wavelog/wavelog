@@ -72,6 +72,7 @@
 
     let lang_gen_advanced_logbook_confirm_fix_missing_dxcc = '<?= __("Are you sure you want to fix all QSOs with missing DXCC information? This action cannot be undone."); ?>';
     let lang_gen_advanced_logbook_dupe_search = '<?= __("Duplicate Search"); ?>';
+    let lang_gen_advanced_logbook_mark_dupes = '<?= __("Mark dupes (keep oldest)"); ?>';
     let lang_gen_advanced_logbook_search = '<?= __("Search"); ?>';
 
     let lang_gen_advanced_logbook_show_more = '<?= __("Show more"); ?>';

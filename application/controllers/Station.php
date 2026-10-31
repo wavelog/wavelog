@@ -29,9 +29,7 @@ class Station extends CI_Controller
 
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('station_profile_name', 'Station Profile Name', 'required');
-		$this->form_validation->set_rules('dxcc', 'DXCC', 'required');
-		$this->form_validation->set_rules('gridsquare', 'Locator', 'callback_check_locator');
+		$this->set_station_profile_rules();
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Create Station Location");
@@ -87,8 +85,7 @@ class Station extends CI_Controller
 			$data = $this->load_station_for_editing($id);
 			$data['page_title'] = __("Edit Station Location: ") . $data['my_station_profile']->station_profile_name;
 
-			$this->form_validation->set_rules('dxcc', 'DXCC', 'required');
-			$this->form_validation->set_rules('gridsquare', 'Locator', 'callback_check_locator');
+			$this->set_station_profile_rules();
 			if ($this->form_validation->run() == FALSE) {
 				$data['csrf_token'] = $this->paths->csrf_generate($this->router->class.'_'.$this->router->method);
 				$this->load->view('interface_assets/header', $data);
@@ -127,7 +124,7 @@ class Station extends CI_Controller
 			$data['copy_from'] = $data['my_station_profile']->station_id;
 			$data['my_station_profile']->station_id = NULL;
 			$data['my_station_profile']->station_profile_name = '';
-			$this->form_validation->set_rules('gridsquare', 'Locator', 'callback_check_locator');
+			$this->set_station_profile_rules();
 
 			if ($this->form_validation->run() == FALSE) {
 				$this->load->view('interface_assets/header', $data);
@@ -166,8 +163,6 @@ class Station extends CI_Controller
 		$data['my_station_profile'] = $this->stations->profile_full($item_id_clean);
 
 		$data['dxcc_list'] = $this->dxcc->list();
-
-		$this->form_validation->set_rules('station_profile_name', 'Station Profile Name', 'required');
 
 		return $data;
 	}
@@ -223,6 +218,41 @@ class Station extends CI_Controller
 			$coords = $this->stations->lookupProfileCoords($id);
 			print json_encode($coords);
 		}
+	}
+
+	/**
+	 * Set form validation rules for station profile create/edit/copy.
+	 * Limits mirror the station_profile table schema (install.sql) so that
+	 * oversized user input fails validation instead of throwing a
+	 * database "Data too long for column" exception.
+	 *
+	 * Requires the form_validation library to be loaded by the caller.
+	 *
+	 * @return void
+	 */
+	private function set_station_profile_rules() {
+		$this->form_validation->set_rules('station_profile_name', 'Station Profile Name', 'required|max_length[200]');
+		$this->form_validation->set_rules('station_callsign', 'Station Callsign', 'max_length[50]');
+		$this->form_validation->set_rules('dxcc', 'DXCC', 'required|is_natural_no_zero');
+		$this->form_validation->set_rules('station_cq', 'CQ Zone', 'is_natural_no_zero');
+		$this->form_validation->set_rules('station_itu', 'ITU Zone', 'is_natural_no_zero');
+		$this->form_validation->set_rules('station_power', 'Station Power', 'numeric|less_than[32768]');
+		$this->form_validation->set_rules('gridsquare', 'Locator', 'max_length[100]|callback_check_locator');
+		$this->form_validation->set_rules('city', 'City', 'max_length[100]');
+		$this->form_validation->set_rules('station_state', 'State', 'max_length[4]');
+		$this->form_validation->set_rules('station_ca_state', 'Canada State', 'max_length[4]');
+		$this->form_validation->set_rules('station_cnty', 'County', 'max_length[200]');
+		$this->form_validation->set_rules('iota', 'IOTA', 'max_length[100]');
+		$this->form_validation->set_rules('sota', 'SOTA', 'max_length[10]');
+		$this->form_validation->set_rules('wwff', 'WWFF', 'max_length[50]');
+		$this->form_validation->set_rules('pota', 'POTA', 'max_length[50]');
+		$this->form_validation->set_rules('sig', 'Signature', 'max_length[50]');
+		$this->form_validation->set_rules('sig_info', 'Signature Info', 'max_length[50]');
+		$this->form_validation->set_rules('eqslnickname', 'eQSL Nickname', 'max_length[255]');
+		$this->form_validation->set_rules('qrzapikey', 'QRZ API Key', 'max_length[20]');
+		$this->form_validation->set_rules('hrdlog_username', 'HRDLog Username', 'max_length[20]');
+		$this->form_validation->set_rules('hrdlog_code', 'HRDLog Code', 'max_length[20]');
+		$this->form_validation->set_rules('webadifapikey', 'WebADIF API Key', 'max_length[50]');
 	}
 
 	function check_locator($grid = '') {

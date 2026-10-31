@@ -915,12 +915,15 @@ class CI_Email {
 	/**
 	 * Get the Message ID
 	 *
-	 * @return	string
+	 * Wavelog: upstream CI3 used uniqid('') (13 hex chars), which matches the
+	 * SpamAssassin MSGID_RANDY rule. Use a timestamp plus 128 random bits instead.
+	 *
+	 * @return	string	Message-ID in the form <YmdHis.32hexchars@domain>
 	 */
 	protected function _get_message_id()
 	{
 		$from = str_replace(array('>', '<'), '', $this->_headers['Return-Path']);
-		return '<'.uniqid('').strstr($from, '@').'>';
+		return '<'.gmdate('YmdHis').'.'.bin2hex(random_bytes(16)).strstr($from, '@').'>';
 	}
 
 	// --------------------------------------------------------------------

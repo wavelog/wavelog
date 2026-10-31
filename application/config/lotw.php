@@ -22,3 +22,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config['lotw_unsupported_prop_modes'] = array('INTERNET', 'RPT');
 
+$config['lotw_download_skip_date'] = '2100-01-01 00:00:00.000';

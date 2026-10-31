@@ -269,8 +269,7 @@
     if ($dxcc_array) {
 		echo '<div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">';
 		// Progress summary
-    	// Calculate total DXCC entities from the actual array (respects include deleted filter)
-		$total_dxcc_entities = count($dxcc_array); ?>
+		?>
 
 		<ul class="nav nav-pills nav-pills-sm mb-3" id="progressTabs" role="tablist">
 			<li class="nav-item">

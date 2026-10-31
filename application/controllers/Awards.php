@@ -194,6 +194,7 @@ class Awards extends CI_Controller {
 				unset($dxcclist[0]);
 			}
 			$dxcc_result = $this->dxcc->get_dxcc_array($dxcclist, $bands, $postdata, $location_list);
+			$data['total_dxcc_entities'] = $this->dxcc->countDxccEntities($postdata);
 			// Extract bands data and summary from the result
 			$data['dxcc_array'] = ($dxcc_result && isset($dxcc_result['matrix'])) ? $dxcc_result['matrix'] : null;
 			$data['dxcc_summary'] = ($dxcc_result && isset($dxcc_result['summary'])) ? $dxcc_result['summary'] : null;
@@ -203,6 +204,7 @@ class Awards extends CI_Controller {
 			$data['dxcc_array'] = null;
 			$data['dxcc_summary'] = null;
 			$data['dxcc_continent_summary'] = null;
+			$data['total_dxcc_entities'] = $this->dxcc->countDxccEntities($postdata);
 		}
 
 		// Render Page
