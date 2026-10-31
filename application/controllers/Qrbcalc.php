@@ -71,6 +71,22 @@ class Qrbcalc extends CI_Controller {
 		$data['text_latlng2'] = $text_latlng2;
 		$data['latlng2'] = $latlng2;
 
+		// Raw numeric values for the QRB calculator result card
+		$data['distance_value'] = $distance;
+		$data['bearing_value'] = $this->qra->get_bearing($locator1, $locator2);
+		$data['reverse_bearing_value'] = $this->qra->get_bearing($locator2, $locator1);
+		switch ($measurement_base) {
+			case 'M':
+				$data['unit'] = 'mi';
+				break;
+			case 'N':
+				$data['unit'] = 'nmi';
+				break;
+			default:
+				$data['unit'] = 'km';
+				break;
+		}
+
 		$data['latlong_info_text'] = __("Negative latitudes are south of the equator, negative longitudes are west of Greenwich.");
 
 		header('Content-Type: application/json');
