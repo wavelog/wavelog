@@ -1224,7 +1224,7 @@
 		fetch(wabGeojsonUrl)
 			.then(function (r) { return r.json(); })
 			.then(function (data) {
-				wabLayer = L.layerGroup();
+				wabLayer = L.featureGroup();   // FeatureGroup (not LayerGroup) so getBounds() exists for fitBounds
 				wabLayer.addLayer(L.geoJSON(data, {
 					filter: function (f) { return f.geometry && f.geometry.type !== 'Point'; },
 					style: function () { return { color: '#d62728', weight: 1, opacity: 0.85, interactive: false }; }
