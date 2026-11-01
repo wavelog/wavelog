@@ -586,4 +586,54 @@ class Clublog_model extends CI_Model
 		}
 		return html_escape($record['call'] . ', ' . $date . ' ' . $time . ', ' . $record['band'] . ' (' . ($via == 'D' ? 'direct' : 'bureau') . ')');
 	}
+
+	/**
+	 * Test Club Log credentials without uploading or importing data.
+	 *
+	 * The former auth-test endpoint getauth.php has been removed by Club Log,
+	 * so getadif.php is used as credential oracle (same call pattern as
+	 * oqrsUser() below): HTTP 200 means the credentials (and callsign) are
+	 * valid, HTTP 403 means wrong credentials or a callsign that does not
+	 * belong to that Club Log account. A far-future start date keeps the
+	 * downloaded ADIF empty, so the check transfers no log data. The
+	 * response body is discarded.
+	 *
+	 * @param string $username Club Log email address
+	 * @param string $password Club Log password (or app password when 2FA is used)
+	 * @param string $callsign callsign to authenticate for (must belong to the Club Log account)
+	 * @return array ['status' => 'OK'|'failed_wrong_creds'|'failed_na'|'failed', 'details' => string]
+	 */
+	function test_login($username, $password, $callsign) {
+		$ret = ['status' => 'failed', 'details' => ''];
+
+		$post = array('email' => $username, 'password' => $password, 'call' => trim($callsign), 'type' => 'dxqsl', 'startyear' => '2099', 'startmonth' => '01', 'startday' => '01');
+
+		$request = curl_init('https://clublog.org/getadif.php');
+		curl_setopt($request, CURLOPT_POST, true);
+		curl_setopt($request, CURLOPT_POSTFIELDS, http_build_query($post));
+		curl_setopt($request, CURLOPT_CONNECTTIMEOUT, 10);
+		curl_setopt($request, CURLOPT_TIMEOUT, 20);
+		curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($request, CURLOPT_USERAGENT, 'Wavelog/' . $this->optionslib->get_option('version'));
+		$response = curl_exec($request);
+		$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
+
+		if (curl_errno($request)) {
+			$ret['status'] = 'failed';
+			$ret['details'] = __("Connection to Club Log failed.");
+			log_message('error', 'Clublog credential test failed: ' . curl_strerror(curl_errno($request)) . ' (' . curl_errno($request) . ')');
+		} elseif ($httpcode == 403) {
+			$ret['status'] = 'failed_wrong_creds';
+			$ret['details'] = sprintf(__("Club Log login failed for user %s. Please check username, password and that the callsign %s belongs to this Club Log account."), $username, trim($callsign));
+		} elseif ($httpcode != 200 || $response === false) {
+			$ret['status'] = 'failed_na';
+			$ret['details'] = __("Club Log currently not available. Try again later.");
+			log_message('error', 'Clublog credential test for ' . $callsign . ' failed (HTTP ' . $httpcode . '): ' . substr((string)$response, 0, 200));
+		} else {
+			$ret['status'] = 'OK';
+			$ret['details'] = __("Club Log login OK!");
+		}
+
+		return $ret;
+	}
 }

@@ -336,6 +336,11 @@ class QSO extends CI_Controller {
 
 		$result = $this->logbook_model->create_qso($qso_data, true, true);
 
+		if (!empty($result['qso_id']) && empty($result['duplicate']) && ($this->user_options_model->get_options('pskreporter_realtime', ['option_name' => 'key_station_id', 'option_key' => $qso_data['station_profile']])->row('option_value') ?? '0') === '1') {
+			$this->load->library('Pskreporter');
+			$this->pskreporter->maybe_send($this->logbook_model->get_qso($result['qso_id'], true)->row(), true);
+		}
+
 		return json_encode($result, JSON_PRETTY_PRINT);
 	}
 

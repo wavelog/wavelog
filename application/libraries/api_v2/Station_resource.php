@@ -20,7 +20,8 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * settings exposed are the upload switches of the two services whose
  * credentials live on the user (not the station): the ClubLog upload mode
  * (clublog_upload: live/on/disabled) and the eQSL QTH nickname
- * (eqsl_qth_nickname, empty = no eQSL upload).
+ * (eqsl_qth_nickname, empty = no eQSL upload), plus the per-station
+ * PSKReporter live reporting switch (pskreporter_live, boolean).
  */
 class Station_resource extends Api_v2_resource {
 
@@ -129,6 +130,9 @@ class Station_resource extends Api_v2_resource {
 		}
 
 		$row = $this->CI->stations->profile_by_uuid($dbdata['station_uuid'], $this->user_id());
+		if ($row && array_key_exists('pskreporter_live', $body)) {
+			$this->set_pskreporter_live((int) $row->station_id, $body['pskreporter_live']);
+		}
 		$headers = $row ? ['Location' => base_url('index.php/api/v2/station/' . (int) $row->station_id)] : [];
 		$this->CI->api_v2_response->respond($row ? $this->format_station($row) : null, 201, null, $headers);
 	}
@@ -195,13 +199,17 @@ class Station_resource extends Api_v2_resource {
 		$this->validate_grid($body);
 
 		$set_active = !empty($body['set_active']);
+		$set_psk = array_key_exists('pskreporter_live', $body);
 		$data = $this->build_columns($body, false, (int) $current->station_dxcc);
-		if (empty($data) && !$set_active) {
+		if (empty($data) && !$set_active && !$set_psk) {
 			throw new Api_v2_exception('validation_error', 'No editable fields in request body', 400);
 		}
 
 		if (!empty($data)) {
 			$this->CI->stationsetup_model->update_location((int) $id, $data, $this->user_id());
+		}
+		if ($set_psk) {
+			$this->set_pskreporter_live((int) $id, $body['pskreporter_live']);
 		}
 		if ($set_active) {
 			// Same call the web UI makes (Stationsetup::setActiveStation_json),
@@ -337,6 +345,39 @@ class Station_resource extends Api_v2_resource {
 	}
 
 	/**
+	 * Persist the per-station PSKReporter live reporting switch in
+	 * user_options (same storage the web UI uses). Absent row = disabled.
+	 *
+	 * @param int   $station_id Target station_profile row.
+	 * @param mixed $value      Raw pskreporter_live value from the body.
+	 */
+	protected function set_pskreporter_live(int $station_id, $value): void {
+		$enabled = filter_var($value, FILTER_VALIDATE_BOOL) ? '1' : '0';
+		$this->CI->user_options_model->set_option(
+			'pskreporter_realtime',
+			'key_station_id',
+			[$station_id => $enabled],
+			$this->user_id()
+		);
+	}
+
+	/**
+	 * Read the per-station PSKReporter live reporting switch for a station
+	 * owned by the token holder.
+	 *
+	 * @param object $row station_profile row (station_id used).
+	 * @return bool
+	 */
+	protected function pskreporter_live($row): bool {
+		$opt = $this->CI->user_options_model->get_options(
+			'pskreporter_realtime',
+			['option_name' => 'key_station_id', 'option_key' => (int) $row->station_id],
+			$this->user_id()
+		)->row('option_value');
+		return ($opt ?? '0') === '1';
+	}
+
+	/**
 	 * Verify a station exists and belongs to the token owner, returning its row.
 	 *
 	 * @throws Api_v2_exception 404 when missing or not owned.
@@ -459,6 +500,7 @@ class Station_resource extends Api_v2_resource {
 				? 'disabled'
 				: ((int) ($row->clublogrealtime ?? 0) === 1 ? 'live' : 'on'),
 			'eqsl_qth_nickname' => $row->eqslqthnickname ?? null,
+			'pskreporter_live' => $this->pskreporter_live($row),
 		];
 	}
 }

@@ -68,6 +68,8 @@ class Stations extends CI_Model {
 
 		$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $id))->result();
 		$row->eqsl_default_qslmsg = $options_object[0]->option_value ?? '';
+		$options_object = $this->user_options_model->get_options('pskreporter_realtime', array('option_name' => 'key_station_id', 'option_key' => $id))->result();
+		$row->pskreporterrealtime = $options_object[0]->option_value ?? '0';
 		return $row;
 	}
 
@@ -183,6 +185,7 @@ class Stations extends CI_Model {
 		// Insert Records & return insert id //
 		if ($this->db->insert('station_profile', $data)) {
 			$new_station_id = $this->db->insert_id();
+			$this->user_options_model->set_option('pskreporter_realtime', 'key_station_id', array($new_station_id => $this->input->post('pskreporterrealtime', true) ?? '0'));
 			$eqsl_default_qslmsg = $this->input->post('eqsl_default_qslmsg', true);
 			if (!empty(trim($eqsl_default_qslmsg))) {
 				$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($new_station_id => $eqsl_default_qslmsg));
@@ -265,6 +268,7 @@ class Stations extends CI_Model {
 
 		$eqsl_default_qslmsg = $this->input->post('eqsl_default_qslmsg', true) ?? '';
 		$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($this->input->post('station_id', true) => $eqsl_default_qslmsg));
+		$this->user_options_model->set_option('pskreporter_realtime', 'key_station_id', array($this->input->post('station_id', true) => $this->input->post('pskreporterrealtime', true) ?? '0'));
 	}
 
 	function delete($id,$force = false, $user_id = null) {
