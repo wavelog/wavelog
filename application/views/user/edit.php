@@ -1169,16 +1169,18 @@
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("Club Log Email"); ?></label>
-										<input class="form-control" type="email" name="user_clublog_name" value="<?php if(isset($user_clublog_name)) { echo $user_clublog_name; } ?>" />
+										<input class="form-control" type="email" name="user_clublog_name" id="user_clublog_name" value="<?php if(isset($user_clublog_name)) { echo $user_clublog_name; } ?>" />
 										<?php if(isset($userclublogname_error)) { echo "<small class=\"badge bg-danger\">".$userclublogname_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?= __("Club Log Password"); ?></label>
 										<div class="input-group">
-											<input class="form-control" type="password" name="user_clublog_password" value="<?php if(isset($user_clublog_password)) { echo $user_clublog_password; } ?>" />
+											<input class="form-control" type="password" name="user_clublog_password" id="user_clublog_password" value="<?php if(isset($user_clublog_password)) { echo $user_clublog_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
+											<button class="btn btn-secondary ld-ext-right" type="button" id="clublog_test_btn"><?= __("Test Login"); ?><div class="ld ld-ring ld-spin"></div></button>
 										</div>
+										<div class="alert mt-3" style="display: none;" id="clublog_test_txt"></div>
 										<small class="form-text text-muted"><?= sprintf(__("If you have 2FA enabled at Clublog, you have to generate an App. Password to use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."), '<a target="_blank" href="https://clublog.org/edituser.php?tab=7">', '</a>'); ?></small>
 										<?php if(isset($clublogpassword_error)) {
 											echo "<small class=\"badge bg-danger\">".$clublogpassword_error."</small>";

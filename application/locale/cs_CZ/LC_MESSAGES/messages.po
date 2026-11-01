@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-01 10:25+0000\n"
+"POT-Creation-Date: 2026-11-01 10:35+0000\n"
 "PO-Revision-Date: 2026-10-26 20:10+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -147,6 +147,7 @@ msgstr "Troposférické vedení"
 #: application/controllers/Club.php:177 application/controllers/Club.php:246
 #: application/controllers/Club.php:298 application/controllers/Clublog.php:89
 #: application/controllers/Clublog.php:147
+#: application/controllers/Clublog.php:193
 #: application/controllers/Contest_admin.php:13
 #: application/controllers/Contestcalendar.php:7
 #: application/controllers/Contesting.php:38
@@ -1142,6 +1143,10 @@ msgstr "Clublog"
 #: application/controllers/Clublog.php:149
 msgid "Clublog QSL Import"
 msgstr "Import QSL z Clublog"
+
+#: application/controllers/Clublog.php:229
+msgid "No Club Log credentials provided."
+msgstr ""
 
 #: application/controllers/Contest_admin.php:42
 msgid "Contests Administration"
@@ -5056,6 +5061,25 @@ msgstr "Chyba při přidávání člena klubu!"
 msgid "Unknown"
 msgstr "Neznámé"
 
+#: application/models/Clublog_model.php:623
+msgid "Connection to Club Log failed."
+msgstr ""
+
+#: application/models/Clublog_model.php:627
+#, php-format
+msgid ""
+"Club Log login failed for user %s. Please check username, password and that "
+"the callsign %s belongs to this Club Log account."
+msgstr ""
+
+#: application/models/Clublog_model.php:630
+msgid "Club Log currently not available. Try again later."
+msgstr ""
+
+#: application/models/Clublog_model.php:634
+msgid "Club Log login OK!"
+msgstr ""
+
 #: application/models/Contesting_import_model.php:219
 #, php-format
 msgid ""
@@ -6224,7 +6248,7 @@ msgstr "Přejít"
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:57
 #: application/views/logbookadvanced/index.php:359
-#: application/views/qso/index.php:757 application/views/user/edit.php:1420
+#: application/views/qso/index.php:757 application/views/user/edit.php:1422
 msgid "Clear"
 msgstr "Vymazat"
 
@@ -12760,7 +12784,7 @@ msgid "Time window"
 msgstr "Časové okno"
 
 #: application/views/contesting/logger/components/winkeyer.php:4
-#: application/views/user/edit.php:1363
+#: application/views/user/edit.php:1365
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
@@ -13518,7 +13542,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:464
 #: application/views/stationsetup/locationlist.php:49
 #: application/views/stationsetup/locationlist.php:59
-#: application/views/user/edit.php:1259
+#: application/views/user/edit.php:1261
 msgid "Yes"
 msgstr "Ano"
 
@@ -13902,7 +13926,7 @@ msgstr "Identifikátor"
 #: application/views/station_profile/edit.php:336
 #: application/views/stationsetup/stationsetup.php:104
 #: application/views/user/edit.php:551 application/views/user/edit.php:552
-#: application/views/user/edit.php:1222 application/views/user/edit.php:1302
+#: application/views/user/edit.php:1224 application/views/user/edit.php:1304
 msgid "Enabled"
 msgstr "Povoleno"
 
@@ -24141,7 +24165,7 @@ msgstr "Přihlašovací jméno Logbook of The World (LoTW)"
 msgid "Logbook of The World (LoTW) Password"
 msgstr "Heslo Logbook of The World (LoTW)"
 
-#: application/views/user/edit.php:1127
+#: application/views/user/edit.php:1127 application/views/user/edit.php:1181
 msgid "Test Login"
 msgstr "Test přihlášení"
 
@@ -24161,7 +24185,7 @@ msgstr "E-mail Club Logu"
 msgid "Club Log Password"
 msgstr "Heslo Club Logu"
 
-#: application/views/user/edit.php:1182
+#: application/views/user/edit.php:1184
 #, php-format
 msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
@@ -24170,25 +24194,25 @@ msgstr ""
 "Pokud máte povoleno 2FA v Clublogu, musíte vygenerovat heslo aplikace pro "
 "použití Clublogu ve Wavelogu. Navštivte %svaši stránku nastavení Clublogu%s."
 
-#: application/views/user/edit.php:1191
+#: application/views/user/edit.php:1193
 msgid "Fetch Club Log OQRS requests"
 msgstr ""
 
-#: application/views/user/edit.php:1192
+#: application/views/user/edit.php:1194
 msgid ""
 "If enabled, OQRS requests made via Club Log are fetched during the Club Log "
 "sync and matching QSOs are marked as requested."
 msgstr ""
 
-#: application/views/user/edit.php:1205
+#: application/views/user/edit.php:1207
 msgid "Widgets"
 msgstr "Widgety"
 
-#: application/views/user/edit.php:1213
+#: application/views/user/edit.php:1215
 msgid "On-Air widget"
 msgstr "Widget On-Air"
 
-#: application/views/user/edit.php:1224
+#: application/views/user/edit.php:1226
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
@@ -24196,16 +24220,16 @@ msgstr ""
 "Poznámka: Pro použití tohoto widgetu musíte mít nakonfigurované a funkční "
 "alespoň jedno CAT rádio."
 
-#: application/views/user/edit.php:1228 application/views/user/edit.php:1306
+#: application/views/user/edit.php:1230 application/views/user/edit.php:1308
 #, php-format
 msgid "If enabled, widget will be available at %s."
 msgstr "Když je povoleno, widget bude dostupný na %s."
 
-#: application/views/user/edit.php:1240
+#: application/views/user/edit.php:1242
 msgid "Display \"Last seen\" time"
 msgstr "Zobrazit čas 'Naposledy viděno'"
 
-#: application/views/user/edit.php:1241
+#: application/views/user/edit.php:1243
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
@@ -24213,25 +24237,25 @@ msgstr ""
 "Toto nastavení řídí, zda se v widgetu zobrazuje čas 'Naposledy viděno' nebo "
 "ne."
 
-#: application/views/user/edit.php:1251
+#: application/views/user/edit.php:1253
 msgid "Display radio name"
 msgstr "Zobrazit název rádia"
 
-#: application/views/user/edit.php:1252
+#: application/views/user/edit.php:1254
 msgid ""
 "This setting controls whether the radio's name is displayed in the widget or "
 "not."
 msgstr "Toto nastavení určuje, zda se ve widgetu zobrazuje název rádia."
 
-#: application/views/user/edit.php:1256
+#: application/views/user/edit.php:1258
 msgid "Display only most recently updated radio"
 msgstr "Zobrazit pouze nejnověji aktualizované rádio"
 
-#: application/views/user/edit.php:1260
+#: application/views/user/edit.php:1262
 msgid "No, show all radios"
 msgstr "Ne, zobrazit všechna rádia"
 
-#: application/views/user/edit.php:1262
+#: application/views/user/edit.php:1264
 msgid ""
 "If you have multiple CAT radios configured, this setting controls whether "
 "the widget should display all on-air radios of the user, or just the most "
@@ -24243,15 +24267,15 @@ msgstr ""
 "aktualizované. V případě, že máte pouze jedno rádio, toto nastavení nemá "
 "žádný efekt."
 
-#: application/views/user/edit.php:1272
+#: application/views/user/edit.php:1274
 msgid "QSOs widget"
 msgstr "Widget QSO"
 
-#: application/views/user/edit.php:1281
+#: application/views/user/edit.php:1283
 msgid "Display exact QSO time"
 msgstr "Zobrazit přesný čas QSO"
 
-#: application/views/user/edit.php:1282
+#: application/views/user/edit.php:1284
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
@@ -24259,40 +24283,40 @@ msgstr ""
 "Toto nastavení řídí, zda se má v widgetu QSO zobrazovat přesný čas QSO nebo "
 "ne."
 
-#: application/views/user/edit.php:1293
+#: application/views/user/edit.php:1295
 msgid "Last LoTW Upload widget"
 msgstr "Widget posledního nahrání do LoTW"
 
-#: application/views/user/edit.php:1322
+#: application/views/user/edit.php:1324
 msgid "Miscellaneous"
 msgstr "Různé"
 
-#: application/views/user/edit.php:1330
+#: application/views/user/edit.php:1332
 msgid "AMSAT Status Upload"
 msgstr "Nahrávání stavu AMSAT"
 
-#: application/views/user/edit.php:1339
+#: application/views/user/edit.php:1341
 msgid "Upload status of SAT QSOs to"
 msgstr "Nahrávání stavu SAT QSO na"
 
-#: application/views/user/edit.php:1349
+#: application/views/user/edit.php:1351
 msgid "Mastodonserver"
 msgstr "Mastodon server"
 
-#: application/views/user/edit.php:1352
+#: application/views/user/edit.php:1354
 msgid "URL of Mastodonserver"
 msgstr "URL Mastodon serveru"
 
-#: application/views/user/edit.php:1354
+#: application/views/user/edit.php:1356
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "Hlavní URL vašeho Mastodon serveru, např. %s"
 
-#: application/views/user/edit.php:1372
+#: application/views/user/edit.php:1374
 msgid "Winkeyer Features Enabled"
 msgstr "Funkce Winkeyer povoleny"
 
-#: application/views/user/edit.php:1373
+#: application/views/user/edit.php:1375
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
@@ -24301,25 +24325,25 @@ msgstr ""
 "Podpora Winkeyer ve Wavelogu je velmi experimentální. Před povolením si "
 "nejprve přečtěte wiki na %s."
 
-#: application/views/user/edit.php:1385
+#: application/views/user/edit.php:1387
 msgid "Hams.at"
 msgstr "Hams.at"
 
-#: application/views/user/edit.php:1388
+#: application/views/user/edit.php:1390
 msgid "Private Feed Key"
 msgstr "Soukromý klíč feedu"
 
-#: application/views/user/edit.php:1390
+#: application/views/user/edit.php:1392
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "Podívejte se na svůj profil na %s."
 
-#: application/views/user/edit.php:1399
+#: application/views/user/edit.php:1401
 msgid "Show Workable Passes Only"
 msgstr "Zobrazit pouze pracovatelné přelety"
 
-#: application/views/user/edit.php:1400
+#: application/views/user/edit.php:1402
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -24327,15 +24351,15 @@ msgstr ""
 "Pokud je povoleno, zobrazí pouze pracovatelné přelety podle lokátoru "
 "nastaveného ve vašem účtu hams.at. Vyžaduje nastavený soukromý klíč feedu."
 
-#: application/views/user/edit.php:1413
+#: application/views/user/edit.php:1415
 msgid "Save Account"
 msgstr "Uložit změny účtu"
 
-#: application/views/user/edit.php:1419
+#: application/views/user/edit.php:1421
 msgid "Search settings"
 msgstr "Prohledat nastavení"
 
-#: application/views/user/edit.php:1421
+#: application/views/user/edit.php:1423
 msgid "No settings match your search."
 msgstr "Vašemu hledání neodpovídá žádné nastavení."
 

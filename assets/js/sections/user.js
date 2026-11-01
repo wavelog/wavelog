@@ -217,6 +217,34 @@ $(document).ready(function(){
 		})
 	});
 
+	$('#clublog_test_btn').click(function() {
+		var btn_div = $('#clublog_test_btn');
+		var msg_div = $('#clublog_test_txt');
+
+		msg_div.removeClass('alert-success alert-danger').text('').hide();
+		btn_div.removeClass('alert-success alert-danger').addClass('running').prop('disabled', true);
+
+		$.ajax({
+			url: base_url + 'index.php/clublog/check_clublog_credentials',
+			type: 'POST',
+			contentType: "application/json",
+			data: JSON.stringify({clublog_email: $("#user_clublog_name").val(), clublog_pass: $("#user_clublog_password").val()}),
+			success: function(res) {
+				if(res.status == 'OK') {
+					btn_div.addClass('alert-success').removeClass('running').prop('disabled', false);
+					msg_div.addClass('alert-success').text(decodeHtml(res.details)).show();
+				} else {
+					btn_div.addClass('alert-danger').removeClass('running').prop('disabled', false);
+					msg_div.addClass('alert-danger').text('Error: '+decodeHtml(res.details)).show();
+				}
+			},
+			error: function(res) {
+				btn_div.addClass('alert-danger').removeClass('running').prop('disabled', false);
+				msg_div.addClass('alert-danger').text('ERROR').show();
+			},
+		})
+	});
+
 	$('.admin_pwd_reset').click(function() {
 		var pwd_reset_user_name = $(this).data('username');
 		var pwd_reset_user_callsign = $(this).data('callsign');
