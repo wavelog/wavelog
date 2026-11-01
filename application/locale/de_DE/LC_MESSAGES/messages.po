@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-01 10:25+0000\n"
+"POT-Creation-Date: 2026-11-01 10:35+0000\n"
 "PO-Revision-Date: 2026-10-28 16:02+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -164,6 +164,7 @@ msgstr "troposphärisches Ducting"
 #: application/controllers/Club.php:177 application/controllers/Club.php:246
 #: application/controllers/Club.php:298 application/controllers/Clublog.php:89
 #: application/controllers/Clublog.php:147
+#: application/controllers/Clublog.php:193
 #: application/controllers/Contest_admin.php:13
 #: application/controllers/Contestcalendar.php:7
 #: application/controllers/Contesting.php:38
@@ -1161,6 +1162,10 @@ msgstr "Clublog"
 #: application/controllers/Clublog.php:149
 msgid "Clublog QSL Import"
 msgstr "Clublog QSL-Import"
+
+#: application/controllers/Clublog.php:229
+msgid "No Club Log credentials provided."
+msgstr ""
 
 #: application/controllers/Contest_admin.php:42
 msgid "Contests Administration"
@@ -5109,6 +5114,25 @@ msgstr "Fehler beim Hinzufügen eines Clubmitglieds!"
 msgid "Unknown"
 msgstr "Unbekannt"
 
+#: application/models/Clublog_model.php:623
+msgid "Connection to Club Log failed."
+msgstr ""
+
+#: application/models/Clublog_model.php:627
+#, php-format
+msgid ""
+"Club Log login failed for user %s. Please check username, password and that "
+"the callsign %s belongs to this Club Log account."
+msgstr ""
+
+#: application/models/Clublog_model.php:630
+msgid "Club Log currently not available. Try again later."
+msgstr ""
+
+#: application/models/Clublog_model.php:634
+msgid "Club Log login OK!"
+msgstr ""
+
 #: application/models/Contesting_import_model.php:219
 #, php-format
 msgid ""
@@ -6296,7 +6320,7 @@ msgstr "Los"
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:57
 #: application/views/logbookadvanced/index.php:359
-#: application/views/qso/index.php:757 application/views/user/edit.php:1420
+#: application/views/qso/index.php:757 application/views/user/edit.php:1422
 msgid "Clear"
 msgstr "Zurücksetzen"
 
@@ -12924,7 +12948,7 @@ msgid "Time window"
 msgstr "Zeitfenster"
 
 #: application/views/contesting/logger/components/winkeyer.php:4
-#: application/views/user/edit.php:1363
+#: application/views/user/edit.php:1365
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
@@ -13694,7 +13718,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:464
 #: application/views/stationsetup/locationlist.php:49
 #: application/views/stationsetup/locationlist.php:59
-#: application/views/user/edit.php:1259
+#: application/views/user/edit.php:1261
 msgid "Yes"
 msgstr "Ja"
 
@@ -14082,7 +14106,7 @@ msgstr "Identifikator"
 #: application/views/station_profile/edit.php:336
 #: application/views/stationsetup/stationsetup.php:104
 #: application/views/user/edit.php:551 application/views/user/edit.php:552
-#: application/views/user/edit.php:1222 application/views/user/edit.php:1302
+#: application/views/user/edit.php:1224 application/views/user/edit.php:1304
 msgid "Enabled"
 msgstr "Eingeschaltet"
 
@@ -24466,7 +24490,7 @@ msgstr "Logbook of The World (LoTW) Benutzername"
 msgid "Logbook of The World (LoTW) Password"
 msgstr "Logbook of The World (LoTW) Passwort"
 
-#: application/views/user/edit.php:1127
+#: application/views/user/edit.php:1127 application/views/user/edit.php:1181
 msgid "Test Login"
 msgstr "Login Test"
 
@@ -24486,7 +24510,7 @@ msgstr "Club Log E-Mail"
 msgid "Club Log Password"
 msgstr "Club Log Passwort"
 
-#: application/views/user/edit.php:1182
+#: application/views/user/edit.php:1184
 #, php-format
 msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
@@ -24496,11 +24520,11 @@ msgstr ""
 "generieren, um Clublog in Wavelog zu nutzen. Besuche %sdeine Clublog-"
 "Einstellungsseite%s, um dies zu tun."
 
-#: application/views/user/edit.php:1191
+#: application/views/user/edit.php:1193
 msgid "Fetch Club Log OQRS requests"
 msgstr "Hole OQRS-Anforderungen von Clublog"
 
-#: application/views/user/edit.php:1192
+#: application/views/user/edit.php:1194
 msgid ""
 "If enabled, OQRS requests made via Club Log are fetched during the Club Log "
 "sync and matching QSOs are marked as requested."
@@ -24509,15 +24533,15 @@ msgstr ""
 "Clublog und markiert die QSOs entsprechend als angefordert, dass diese in "
 "der normalen QSL-Warteschlange erscheinen."
 
-#: application/views/user/edit.php:1205
+#: application/views/user/edit.php:1207
 msgid "Widgets"
 msgstr "Widgets"
 
-#: application/views/user/edit.php:1213
+#: application/views/user/edit.php:1215
 msgid "On-Air widget"
 msgstr "On-Air Widget"
 
-#: application/views/user/edit.php:1224
+#: application/views/user/edit.php:1226
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
@@ -24525,16 +24549,16 @@ msgstr ""
 "Hinweis: Wenn du dieses Widget nutzen möchtest, solltest du mindestens einen "
 "Transceiver via CAT konfiguriert haben."
 
-#: application/views/user/edit.php:1228 application/views/user/edit.php:1306
+#: application/views/user/edit.php:1230 application/views/user/edit.php:1308
 #, php-format
 msgid "If enabled, widget will be available at %s."
 msgstr "Wenn diese Einstellung aktiviert ist, findest du das Widget unter %s."
 
-#: application/views/user/edit.php:1240
+#: application/views/user/edit.php:1242
 msgid "Display \"Last seen\" time"
 msgstr "Zeige \"Zuletzt gesehen\"-Zeit an"
 
-#: application/views/user/edit.php:1241
+#: application/views/user/edit.php:1243
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
@@ -24542,11 +24566,11 @@ msgstr ""
 "Mit dieser Einstellung kannst du beeinflussen, ob die Zeit aus 'Zuletzt "
 "gesehen' im Widget angezeigt werden soll, oder nicht."
 
-#: application/views/user/edit.php:1251
+#: application/views/user/edit.php:1253
 msgid "Display radio name"
 msgstr "Funkgeräte-Name anzeigen"
 
-#: application/views/user/edit.php:1252
+#: application/views/user/edit.php:1254
 msgid ""
 "This setting controls whether the radio's name is displayed in the widget or "
 "not."
@@ -24554,15 +24578,15 @@ msgstr ""
 "Diese Einstellung steuert, ob der Name des Funkgeräts im Widget angezeigt "
 "wird oder nicht."
 
-#: application/views/user/edit.php:1256
+#: application/views/user/edit.php:1258
 msgid "Display only most recently updated radio"
 msgstr "Zeige nur zuletzt aktualisierten CAT-Transceiver an"
 
-#: application/views/user/edit.php:1260
+#: application/views/user/edit.php:1262
 msgid "No, show all radios"
 msgstr "Nein, zeige alle CAT-Transceiver"
 
-#: application/views/user/edit.php:1262
+#: application/views/user/edit.php:1264
 msgid ""
 "If you have multiple CAT radios configured, this setting controls whether "
 "the widget should display all on-air radios of the user, or just the most "
@@ -24574,15 +24598,15 @@ msgstr ""
 "geupdated wurde. Hast du nur einen CAT-TRX, so hat diese Einstellung keinen "
 "Effekt."
 
-#: application/views/user/edit.php:1272
+#: application/views/user/edit.php:1274
 msgid "QSOs widget"
 msgstr "QSOs-Widget"
 
-#: application/views/user/edit.php:1281
+#: application/views/user/edit.php:1283
 msgid "Display exact QSO time"
 msgstr "Zeige genaue QSO-Zeit an"
 
-#: application/views/user/edit.php:1282
+#: application/views/user/edit.php:1284
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
@@ -24590,40 +24614,40 @@ msgstr ""
 "Diese Einstellung steuert, ob die genaue QSO-Zeit im QSO-Widget angezeigt "
 "werden soll oder nicht."
 
-#: application/views/user/edit.php:1293
+#: application/views/user/edit.php:1295
 msgid "Last LoTW Upload widget"
 msgstr "Letztes LoTW-Upload-Widget"
 
-#: application/views/user/edit.php:1322
+#: application/views/user/edit.php:1324
 msgid "Miscellaneous"
 msgstr "Verschiedenes"
 
-#: application/views/user/edit.php:1330
+#: application/views/user/edit.php:1332
 msgid "AMSAT Status Upload"
 msgstr "AMSAT Status-Upload"
 
-#: application/views/user/edit.php:1339
+#: application/views/user/edit.php:1341
 msgid "Upload status of SAT QSOs to"
 msgstr "Status von SAT-QSOs hochladen auf"
 
-#: application/views/user/edit.php:1349
+#: application/views/user/edit.php:1351
 msgid "Mastodonserver"
 msgstr "Mastodonserver"
 
-#: application/views/user/edit.php:1352
+#: application/views/user/edit.php:1354
 msgid "URL of Mastodonserver"
 msgstr "URL des Mastodonservers"
 
-#: application/views/user/edit.php:1354
+#: application/views/user/edit.php:1356
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "Haupt-URL deines Mastodon-Servers, z.B. %s"
 
-#: application/views/user/edit.php:1372
+#: application/views/user/edit.php:1374
 msgid "Winkeyer Features Enabled"
 msgstr "Winkeyer-Features eingeschaltet"
 
-#: application/views/user/edit.php:1373
+#: application/views/user/edit.php:1375
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
@@ -24632,25 +24656,25 @@ msgstr ""
 "Die Winkeyer-Unterstützung in Wavelog ist sehr experimentell. Lies zuerst "
 "das Wiki auf %s, bevor du es aktivierst."
 
-#: application/views/user/edit.php:1385
+#: application/views/user/edit.php:1387
 msgid "Hams.at"
 msgstr "Hams.at"
 
-#: application/views/user/edit.php:1388
+#: application/views/user/edit.php:1390
 msgid "Private Feed Key"
 msgstr "Privater Feed-Schlüssel"
 
-#: application/views/user/edit.php:1390
+#: application/views/user/edit.php:1392
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "Schau in deinem Profil unter %s."
 
-#: application/views/user/edit.php:1399
+#: application/views/user/edit.php:1401
 msgid "Show Workable Passes Only"
 msgstr "Zeige nur Überflüge an, die gearbeitet werden können"
 
-#: application/views/user/edit.php:1400
+#: application/views/user/edit.php:1402
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -24658,15 +24682,15 @@ msgstr ""
 "Wenn aktiviert, werden nur sichtbare Überflüge basierend auf dem Locator des "
 "hams.at Profils angezeigt. Dazu muss der Private Feed Key konfiguriert sein."
 
-#: application/views/user/edit.php:1413
+#: application/views/user/edit.php:1415
 msgid "Save Account"
 msgstr "Speichere Kontoänderungen"
 
-#: application/views/user/edit.php:1419
+#: application/views/user/edit.php:1421
 msgid "Search settings"
 msgstr "Einstellungen durchsuchen"
 
-#: application/views/user/edit.php:1421
+#: application/views/user/edit.php:1423
 msgid "No settings match your search."
 msgstr "Keine Einstellungen entsprechen deinen Suchkriterien."
 
