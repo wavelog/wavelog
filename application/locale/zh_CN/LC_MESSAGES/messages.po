@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-10-31 13:57+0000\n"
+"POT-Creation-Date: 2026-11-01 06:48+0000\n"
 "PO-Revision-Date: 2026-10-27 06:41+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -232,9 +232,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Qslpostcard.php:15
 #: application/controllers/Qslprint.php:22
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
-#: application/controllers/Qso.php:20 application/controllers/Qso.php:481
-#: application/controllers/Qso.php:503 application/controllers/Qso.php:531
-#: application/controllers/Qso.php:803 application/controllers/Radio.php:39
+#: application/controllers/Qso.php:20 application/controllers/Qso.php:486
+#: application/controllers/Qso.php:508 application/controllers/Qso.php:536
+#: application/controllers/Qso.php:808 application/controllers/Radio.php:39
 #: application/controllers/Radio.php:209 application/controllers/Radio.php:234
 #: application/controllers/Radio.php:249
 #: application/controllers/Satellite.php:12
@@ -477,7 +477,7 @@ msgstr "API Key %s 的说明信息已更新。"
 
 #: application/controllers/Api.php:116 application/controllers/Api.php:150
 #: application/controllers/Api_token.php:27
-#: application/controllers/Api_token.php:80 application/controllers/Qso.php:626
+#: application/controllers/Api_token.php:80 application/controllers/Qso.php:631
 msgid "Invalid request method"
 msgstr "无效的请求方法"
 
@@ -1008,7 +1008,7 @@ msgid "Call Tester"
 msgstr "通联记录检测器"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:892
+#: application/controllers/Qso.php:897
 msgid "No callsign provided."
 msgstr "未提供呼号。"
 
@@ -1492,8 +1492,8 @@ msgstr "WWFF 编号"
 #: application/views/qslprint/index.php:34 application/views/qso/index.php:139
 #: application/views/qso/index.php:402
 #: application/views/search/search_result_ajax.php:18
-#: application/views/station_profile/create.php:432
-#: application/views/station_profile/edit.php:461
+#: application/views/station_profile/create.php:451
+#: application/views/station_profile/edit.php:480
 #: application/views/user/edit.php:403 application/views/user/edit.php:926
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:9 application/views/wabtool/index.php:18
@@ -3434,21 +3434,21 @@ msgstr "添加 QSO"
 msgid "QSO could not be saved"
 msgstr "QSO无法保存"
 
-#: application/controllers/Qso.php:838 application/controllers/Qso.php:861
+#: application/controllers/Qso.php:843 application/controllers/Qso.php:866
 #, php-format
 msgid "Please check value for gridsquare (%s)"
 msgstr "请检查网格坐标的值 (%s)"
 
-#: application/controllers/Qso.php:850
+#: application/controllers/Qso.php:855
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
 msgstr "请检查 VUCC 网格 的值 (%s)"
 
-#: application/controllers/Qso.php:879
+#: application/controllers/Qso.php:884
 msgid "You have to be logged in to access this URL."
 msgstr "需要登录方可浏览此页面。"
 
-#: application/controllers/Qso.php:885
+#: application/controllers/Qso.php:890
 msgid "Call Transfer"
 msgstr "通联转接"
 
@@ -4666,15 +4666,15 @@ msgstr "创建并更新电台"
 msgid "Delete radios"
 msgstr "删除电台"
 
-#: application/libraries/api_v2/Station_resource.php:49
+#: application/libraries/api_v2/Station_resource.php:50
 msgid "Read station locations"
 msgstr "读取台站位置"
 
-#: application/libraries/api_v2/Station_resource.php:50
+#: application/libraries/api_v2/Station_resource.php:51
 msgid "Create and update station locations"
 msgstr "创建并更新台站位置"
 
-#: application/libraries/api_v2/Station_resource.php:51
+#: application/libraries/api_v2/Station_resource.php:52
 msgid "Delete station locations"
 msgstr "删除台站位置"
 
@@ -9786,14 +9786,16 @@ msgstr "WAB 分区"
 #: application/views/station_profile/create.php:339
 #: application/views/station_profile/create.php:367
 #: application/views/station_profile/create.php:391
-#: application/views/station_profile/create.php:409
-#: application/views/station_profile/create.php:416
+#: application/views/station_profile/create.php:408
+#: application/views/station_profile/create.php:428
+#: application/views/station_profile/create.php:435
 #: application/views/station_profile/edit.php:354
 #: application/views/station_profile/edit.php:362
 #: application/views/station_profile/edit.php:392
 #: application/views/station_profile/edit.php:419
-#: application/views/station_profile/edit.php:437
-#: application/views/station_profile/edit.php:444
+#: application/views/station_profile/edit.php:436
+#: application/views/station_profile/edit.php:456
+#: application/views/station_profile/edit.php:463
 #: application/views/stationsetup/locationlist.php:47
 #: application/views/stationsetup/locationlist.php:57
 #: application/views/user/edit.php:694 application/views/user/edit.php:698
@@ -12188,7 +12190,7 @@ msgid "Name of Contest in ADIF-specification"
 msgstr "竞赛 在 ADIF 中的名称"
 
 #: application/views/contest_admin/create.php:35
-#: application/views/station_profile/create.php:432
+#: application/views/station_profile/create.php:451
 #: application/views/station_profile/edit.php:60
 msgid "Create"
 msgstr "创建"
@@ -13204,14 +13206,16 @@ msgstr "如果符合条件，向竞赛组织者申请纸质奖状。"
 #: application/views/station_profile/create.php:338
 #: application/views/station_profile/create.php:366
 #: application/views/station_profile/create.php:390
-#: application/views/station_profile/create.php:410
-#: application/views/station_profile/create.php:417
+#: application/views/station_profile/create.php:409
+#: application/views/station_profile/create.php:429
+#: application/views/station_profile/create.php:436
 #: application/views/station_profile/edit.php:353
 #: application/views/station_profile/edit.php:361
 #: application/views/station_profile/edit.php:391
 #: application/views/station_profile/edit.php:418
-#: application/views/station_profile/edit.php:438
-#: application/views/station_profile/edit.php:445
+#: application/views/station_profile/edit.php:437
+#: application/views/station_profile/edit.php:457
+#: application/views/station_profile/edit.php:464
 #: application/views/stationsetup/locationlist.php:49
 #: application/views/stationsetup/locationlist.php:59
 #: application/views/user/edit.php:1259
@@ -22292,30 +22296,42 @@ msgstr "QO-100 Dx Club 个人页面"
 msgid "QO-100 Dx Club Realtime Upload"
 msgstr "QO-100 Dx Club 实时上传"
 
-#: application/views/station_profile/create.php:407
-#: application/views/station_profile/edit.php:435
+#: application/views/station_profile/create.php:406
+#: application/views/station_profile/edit.php:434
+msgid "PSKReporter Live Reporting"
+msgstr ""
+
+#: application/views/station_profile/create.php:411
+#: application/views/station_profile/edit.php:439
+msgid ""
+"If enabled, QSOs logged live in the QSO form are reported to "
+"pskreporter.info in real time. QSOs older than one hour are not reported."
+msgstr ""
+
+#: application/views/station_profile/create.php:426
+#: application/views/station_profile/edit.php:454
 msgid "OQRS Enabled"
 msgstr "OQRS 已启用"
 
-#: application/views/station_profile/create.php:414
-#: application/views/station_profile/edit.php:442
+#: application/views/station_profile/create.php:433
+#: application/views/station_profile/edit.php:461
 #: application/views/stationsetup/locationlist.php:33
 msgid "OQRS Email alert"
 msgstr "OQRS 邮件提醒"
 
-#: application/views/station_profile/create.php:419
-#: application/views/station_profile/edit.php:447
+#: application/views/station_profile/create.php:438
+#: application/views/station_profile/edit.php:466
 msgid "Make sure email is set up under admin and global options."
 msgstr "请确认已在站点设置中配置了邮件功能。"
 
-#: application/views/station_profile/create.php:422
-#: application/views/station_profile/edit.php:450
+#: application/views/station_profile/create.php:441
+#: application/views/station_profile/edit.php:469
 #: application/views/stationsetup/locationlist.php:32
 msgid "OQRS Text"
 msgstr "OQRS 文本"
 
-#: application/views/station_profile/create.php:424
-#: application/views/station_profile/edit.php:452
+#: application/views/station_profile/create.php:443
+#: application/views/station_profile/edit.php:471
 msgid "Some info you want to add regarding QSL'ing."
 msgstr "QSL 的额外信息。"
 
