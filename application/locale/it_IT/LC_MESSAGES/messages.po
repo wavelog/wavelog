@@ -248,7 +248,9 @@ msgstr "Canalizzazioni troposferiche"
 #: application/controllers/User.php:1246 application/controllers/User.php:1292
 #: application/controllers/User.php:1544 application/controllers/User.php:1682
 #: application/controllers/User.php:1902 application/controllers/User.php:1918
-#: application/controllers/User.php:1942
+#: application/controllers/User.php:1942 application/controllers/Qso.php:486
+#: application/controllers/Qso.php:508 application/controllers/Qso.php:536
+#: application/controllers/Qso.php:808
 msgid "You're not allowed to do that!"
 msgstr "Non ti è permesso farlo!"
 
@@ -460,6 +462,7 @@ msgstr "La descrizione per la chiave %s è stata aggiornata."
 #: application/controllers/Api.php:116 application/controllers/Api.php:150
 #: application/controllers/Api_token.php:27
 #: application/controllers/Api_token.php:80 application/controllers/Qso.php:626
+#: application/controllers/Qso.php:631
 msgid "Invalid request method"
 msgstr "Metodo di richiesta non valido"
 
@@ -990,7 +993,7 @@ msgid "Call Tester"
 msgstr "Call Tester"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:892
+#: application/controllers/Qso.php:892 application/controllers/Qso.php:897
 msgid "No callsign provided."
 msgstr "Nessun nominativo fornito."
 
@@ -1499,6 +1502,8 @@ msgstr "Referenza WWFF"
 #: application/views/webadif/export.php:125
 #: application/views/zonechecker/index.php:11
 #: application/views/user/edit.php:926
+#: application/views/station_profile/create.php:451
+#: application/views/station_profile/edit.php:480
 msgid "Station Location"
 msgstr "Luogo Stazione"
 
@@ -3491,20 +3496,21 @@ msgid "QSO could not be saved"
 msgstr "Il QSO non può essere salvato"
 
 #: application/controllers/Qso.php:838 application/controllers/Qso.php:861
+#: application/controllers/Qso.php:843 application/controllers/Qso.php:866
 #, php-format
 msgid "Please check value for gridsquare (%s)"
 msgstr "Si prega di controllare il valore per il gridsquare (%s)"
 
-#: application/controllers/Qso.php:850
+#: application/controllers/Qso.php:850 application/controllers/Qso.php:855
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
 msgstr "Per favore controlla il valore per il gridsquare VUCC (%s)"
 
-#: application/controllers/Qso.php:879
+#: application/controllers/Qso.php:879 application/controllers/Qso.php:884
 msgid "You have to be logged in to access this URL."
 msgstr "Devi effettuare l'accesso per accedere a questo URL."
 
-#: application/controllers/Qso.php:885
+#: application/controllers/Qso.php:885 application/controllers/Qso.php:890
 msgid "Call Transfer"
 msgstr "Trasferisci nominativo"
 
@@ -4804,14 +4810,17 @@ msgid "Delete radios"
 msgstr "Elimina radio"
 
 #: application/libraries/api_v2/Station_resource.php:49
+#: application/libraries/api_v2/Station_resource.php:50
 msgid "Read station locations"
 msgstr "Leggi le posizioni delle stazioni"
 
 #: application/libraries/api_v2/Station_resource.php:50
+#: application/libraries/api_v2/Station_resource.php:51
 msgid "Create and update station locations"
 msgstr "Crea e aggiorna le posizioni delle stazioni"
 
 #: application/libraries/api_v2/Station_resource.php:51
+#: application/libraries/api_v2/Station_resource.php:52
 msgid "Delete station locations"
 msgstr "Elimina le posizioni delle stazioni"
 
@@ -10171,6 +10180,12 @@ msgstr "Locatore WAB"
 #: application/views/stationsetup/locationlist.php:57
 #: application/views/user/edit.php:694 application/views/user/edit.php:698
 #: application/views/user/edit.php:788 application/views/user/edit.php:796
+#: application/views/station_profile/create.php:408
+#: application/views/station_profile/create.php:428
+#: application/views/station_profile/create.php:435
+#: application/views/station_profile/edit.php:436
+#: application/views/station_profile/edit.php:456
+#: application/views/station_profile/edit.php:463
 msgid "No"
 msgstr "No"
 
@@ -12674,6 +12689,7 @@ msgstr "Nome del contest nella specifica ADIF"
 #: application/views/contest_admin/create.php:35
 #: application/views/station_profile/create.php:432
 #: application/views/station_profile/edit.php:60
+#: application/views/station_profile/create.php:451
 msgid "Create"
 msgstr "Crea"
 
@@ -13736,6 +13752,12 @@ msgstr "Richiedi un certificato cartaceo allo sponsor del contest, se idoneo."
 #: application/views/stationsetup/locationlist.php:49
 #: application/views/stationsetup/locationlist.php:59
 #: application/views/user/edit.php:1251 application/views/user/edit.php:1259
+#: application/views/station_profile/create.php:409
+#: application/views/station_profile/create.php:429
+#: application/views/station_profile/create.php:436
+#: application/views/station_profile/edit.php:437
+#: application/views/station_profile/edit.php:457
+#: application/views/station_profile/edit.php:464
 msgid "Yes"
 msgstr "Si"
 
@@ -23473,17 +23495,23 @@ msgstr "QO-100 Dx Club Caricamento Reale"
 
 #: application/views/station_profile/create.php:407
 #: application/views/station_profile/edit.php:435
+#: application/views/station_profile/create.php:426
+#: application/views/station_profile/edit.php:454
 msgid "OQRS Enabled"
 msgstr "OQRS abilitato"
 
 #: application/views/station_profile/create.php:414
 #: application/views/station_profile/edit.php:442
 #: application/views/stationsetup/locationlist.php:33
+#: application/views/station_profile/create.php:433
+#: application/views/station_profile/edit.php:461
 msgid "OQRS Email alert"
 msgstr "Avviso email OQRS"
 
 #: application/views/station_profile/create.php:419
 #: application/views/station_profile/edit.php:447
+#: application/views/station_profile/create.php:438
+#: application/views/station_profile/edit.php:466
 msgid "Make sure email is set up under admin and global options."
 msgstr ""
 "Assicurati che l'email sia configurata nelle opzioni amministrative e "
@@ -23492,11 +23520,15 @@ msgstr ""
 #: application/views/station_profile/create.php:422
 #: application/views/station_profile/edit.php:450
 #: application/views/stationsetup/locationlist.php:32
+#: application/views/station_profile/create.php:441
+#: application/views/station_profile/edit.php:469
 msgid "OQRS Text"
 msgstr "Testo OQRS"
 
 #: application/views/station_profile/create.php:424
 #: application/views/station_profile/edit.php:452
+#: application/views/station_profile/create.php:443
+#: application/views/station_profile/edit.php:471
 msgid "Some info you want to add regarding QSL'ing."
 msgstr "Alcune informazioni che desideri aggiungere riguardo al QSL."
 
@@ -25840,6 +25872,18 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:66
 msgid "Reverse bearing"
+msgstr ""
+
+#: application/views/station_profile/create.php:406
+#: application/views/station_profile/edit.php:434
+msgid "PSKReporter Live Reporting"
+msgstr ""
+
+#: application/views/station_profile/create.php:411
+#: application/views/station_profile/edit.php:439
+msgid ""
+"If enabled, QSOs logged live in the QSO form are reported to "
+"pskreporter.info in real time. QSOs older than one hour are not reported."
 msgstr ""
 
 #~ msgid "Callsigns tested: "
