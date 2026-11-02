@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-02 06:29+0000\n"
-"PO-Revision-Date: 2026-10-28 19:55+0000\n"
+"POT-Creation-Date: 2026-10-31 13:57+0000\n"
+"PO-Revision-Date: 2026-11-02 06:29+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -147,7 +147,6 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Club.php:177 application/controllers/Club.php:246
 #: application/controllers/Club.php:298 application/controllers/Clublog.php:89
 #: application/controllers/Clublog.php:147
-#: application/controllers/Clublog.php:193
 #: application/controllers/Contest_admin.php:13
 #: application/controllers/Contestcalendar.php:7
 #: application/controllers/Contesting.php:38
@@ -206,9 +205,9 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Qslpostcard.php:15
 #: application/controllers/Qslprint.php:22
 #: application/controllers/Qslprint.php:156 application/controllers/Qso.php:7
-#: application/controllers/Qso.php:20 application/controllers/Qso.php:486
-#: application/controllers/Qso.php:508 application/controllers/Qso.php:536
-#: application/controllers/Qso.php:808 application/controllers/Radio.php:39
+#: application/controllers/Qso.php:20 application/controllers/Qso.php:481
+#: application/controllers/Qso.php:503 application/controllers/Qso.php:531
+#: application/controllers/Qso.php:803 application/controllers/Radio.php:39
 #: application/controllers/Radio.php:209 application/controllers/Radio.php:234
 #: application/controllers/Radio.php:249
 #: application/controllers/Satellite.php:12
@@ -244,7 +243,9 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:103
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84
+#: application/models/Club_model.php:84 application/controllers/Qso.php:486
+#: application/controllers/Qso.php:508 application/controllers/Qso.php:536
+#: application/controllers/Qso.php:808 application/controllers/Clublog.php:193
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -452,7 +453,8 @@ msgstr "API-nyckel %s beskrivning har uppdaterats."
 
 #: application/controllers/Api.php:116 application/controllers/Api.php:150
 #: application/controllers/Api_token.php:27
-#: application/controllers/Api_token.php:80 application/controllers/Qso.php:631
+#: application/controllers/Api_token.php:80 application/controllers/Qso.php:626
+#: application/controllers/Qso.php:631
 msgid "Invalid request method"
 msgstr "Ogiltig begäranmetod"
 
@@ -983,7 +985,7 @@ msgid "Call Tester"
 msgstr "Anropssignals testare"
 
 #: application/controllers/Calltester.php:164
-#: application/controllers/Qso.php:897
+#: application/controllers/Qso.php:892 application/controllers/Qso.php:897
 msgid "No callsign provided."
 msgstr "Ingen anropssignal angiven."
 
@@ -1142,10 +1144,6 @@ msgstr "Clublog"
 #: application/controllers/Clublog.php:149
 msgid "Clublog QSL Import"
 msgstr "Clublog QSL-import"
-
-#: application/controllers/Clublog.php:229
-msgid "No Club Log credentials provided."
-msgstr ""
 
 #: application/controllers/Contest_admin.php:42
 msgid "Contests Administration"
@@ -1477,14 +1475,16 @@ msgstr "WWFF-referens"
 #: application/views/qslprint/index.php:34 application/views/qso/index.php:139
 #: application/views/qso/index.php:402
 #: application/views/search/search_result_ajax.php:18
-#: application/views/station_profile/create.php:451
-#: application/views/station_profile/edit.php:480
+#: application/views/station_profile/create.php:432
+#: application/views/station_profile/edit.php:461
 #: application/views/user/edit.php:403 application/views/user/edit.php:926
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:9 application/views/wabtool/index.php:18
 #: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:125
 #: application/views/zonechecker/index.php:11
+#: application/views/station_profile/create.php:451
+#: application/views/station_profile/edit.php:480
 msgid "Station Location"
 msgstr "Stationsplats"
 
@@ -3116,9 +3116,9 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:163
-#: application/models/Logbook_model.php:1646
+#: application/models/Logbook_model.php:1648
 #: application/views/contesting/logger/components/qso-form.php:44
-#: application/views/qso/index.php:40
+#: application/views/qso/index.php:40 application/models/Logbook_model.php:1646
 msgid "Invalid callsign"
 msgstr "Ogiltigt anropssignal"
 
@@ -3459,21 +3459,22 @@ msgstr "Lägg till QSO"
 msgid "QSO could not be saved"
 msgstr "QSO kunde inte sparas"
 
+#: application/controllers/Qso.php:838 application/controllers/Qso.php:861
 #: application/controllers/Qso.php:843 application/controllers/Qso.php:866
 #, php-format
 msgid "Please check value for gridsquare (%s)"
 msgstr "Vänligen kontrollera värdet för lokatorrutan (%s)"
 
-#: application/controllers/Qso.php:855
+#: application/controllers/Qso.php:850 application/controllers/Qso.php:855
 #, php-format
 msgid "Please check value for VUCC gridsquare (%s)"
 msgstr "Var god kontrollera värdet för VUCC lokatorruta (%s)"
 
-#: application/controllers/Qso.php:884
+#: application/controllers/Qso.php:879 application/controllers/Qso.php:884
 msgid "You have to be logged in to access this URL."
 msgstr "Du måste vara inloggad för att komma åt den här URL:en."
 
-#: application/controllers/Qso.php:890
+#: application/controllers/Qso.php:885 application/controllers/Qso.php:890
 msgid "Call Transfer"
 msgstr "Överför Anropssignal"
 
@@ -4727,14 +4728,17 @@ msgstr "Skapa och uppdatera radioapparater"
 msgid "Delete radios"
 msgstr "Radera radioapparater"
 
+#: application/libraries/api_v2/Station_resource.php:49
 #: application/libraries/api_v2/Station_resource.php:50
 msgid "Read station locations"
 msgstr "Läs stationsplatser"
 
+#: application/libraries/api_v2/Station_resource.php:50
 #: application/libraries/api_v2/Station_resource.php:51
 msgid "Create and update station locations"
 msgstr "Skapa och uppdatera stationsplatser"
 
+#: application/libraries/api_v2/Station_resource.php:51
 #: application/libraries/api_v2/Station_resource.php:52
 msgid "Delete station locations"
 msgstr "Radera stationsplatser"
@@ -5062,25 +5066,6 @@ msgstr "Fel vid tillägg av klubbmedlem!"
 msgid "Unknown"
 msgstr "Okänd"
 
-#: application/models/Clublog_model.php:623
-msgid "Connection to Club Log failed."
-msgstr ""
-
-#: application/models/Clublog_model.php:627
-#, php-format
-msgid ""
-"Club Log login failed for user %s. Please check username, password and that "
-"the callsign %s belongs to this Club Log account."
-msgstr ""
-
-#: application/models/Clublog_model.php:630
-msgid "Club Log currently not available. Try again later."
-msgstr ""
-
-#: application/models/Clublog_model.php:634
-msgid "Club Log login OK!"
-msgstr ""
-
 #: application/models/Contesting_import_model.php:219
 #, php-format
 msgid ""
@@ -5269,33 +5254,41 @@ msgstr "Importerat papper"
 msgid "Imported label type"
 msgstr "Importerad etikett typ"
 
+#: application/models/Logbook_model.php:428
 #: application/models/Logbook_model.php:426
 msgid "Station not accessible"
 msgstr "Stationen är inte tillgänglig"
 
+#: application/models/Logbook_model.php:1085
 #: application/models/Logbook_model.php:1083
 msgid "Realtime upload disabled"
 msgstr "Direktuppladdning inaktiverad"
 
+#: application/models/Logbook_model.php:1638
 #: application/models/Logbook_model.php:1636
 msgid "Station ID not allowed"
 msgstr "Stations-ID inte tillåtet"
 
+#: application/models/Logbook_model.php:1643
 #: application/models/Logbook_model.php:1641
 msgid "No Call given"
 msgstr "Ingen anropssignal angiven"
 
+#: application/models/Logbook_model.php:1719
+#: application/models/Logbook_model.php:1937
 #: application/models/Logbook_model.php:1717
 #: application/models/Logbook_model.php:1935
 msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
+#: application/models/Logbook_model.php:5223
 #: application/models/Logbook_model.php:5221
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
+#: application/models/Logbook_model.php:5231
 #: application/models/Logbook_model.php:5229
 #, php-format
 msgid ""
@@ -5304,6 +5297,7 @@ msgid ""
 msgstr ""
 "Fel lokator %s vid import av QSO med %s för stationslokator %s: HOPPADES ÖVER"
 
+#: application/models/Logbook_model.php:5247
 #: application/models/Logbook_model.php:5245
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -5312,6 +5306,7 @@ msgstr ""
 "Du försökte importera ett QSO utan giltigt datum. Detta QSO importerades "
 "inte. Det är ogiltigt"
 
+#: application/models/Logbook_model.php:5257
 #: application/models/Logbook_model.php:5255
 #, php-format
 msgid ""
@@ -5321,6 +5316,7 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan en angiven anropssignal. Detta "
 "QSO importerades inte. Det är ogiltigt."
 
+#: application/models/Logbook_model.php:5264
 #: application/models/Logbook_model.php:5262
 #, php-format
 msgid ""
@@ -5330,6 +5326,7 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO med en ogiltig anropssignal. Detta "
 "QSO importerades inte. Den ogiltiga inmatningen är ' %s'."
 
+#: application/models/Logbook_model.php:5334
 #: application/models/Logbook_model.php:5332
 #, php-format
 msgid ""
@@ -5339,6 +5336,7 @@ msgstr ""
 "QSO på %s: Bandet '%s' är inte i bandkonfigurationen. Detta QSO importerades "
 "inte."
 
+#: application/models/Logbook_model.php:5341
 #: application/models/Logbook_model.php:5339
 #, php-format
 msgid ""
@@ -5348,63 +5346,77 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan angivet band. Detta QSO "
 "importerades inte. Det är ogiltigt"
 
+#: application/models/Logbook_model.php:5619
 #: application/models/Logbook_model.php:5617
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
+#: application/models/Logbook_model.php:5630
 #: application/models/Logbook_model.php:5628
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
+#: application/models/Logbook_model.php:5693
 #: application/models/Logbook_model.php:5691
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:6067
+#: application/models/Logbook_model.php:6069
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:6067
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
+#: application/models/Logbook_model.php:6136
+#: application/models/Logbook_model.php:6236
 #: application/models/Logbook_model.php:6134
 #: application/models/Logbook_model.php:6234
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
+#: application/models/Logbook_model.php:6144
 #: application/models/Logbook_model.php:6142
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
+#: application/models/Logbook_model.php:6150
 #: application/models/Logbook_model.php:6148
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
+#: application/models/Logbook_model.php:6154
 #: application/models/Logbook_model.php:6152
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
+#: application/models/Logbook_model.php:6158
 #: application/models/Logbook_model.php:6156
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
+#: application/models/Logbook_model.php:6161
 #: application/models/Logbook_model.php:6159
 msgid "unconfirmed"
 msgstr "obekräftad"
 
-#: application/models/Logbook_model.php:6162
+#: application/models/Logbook_model.php:6164
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:6162
 msgid "unknown"
 msgstr "Okänd"
 
+#: application/models/Logbook_model.php:6239
 #: application/models/Logbook_model.php:6237
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
+#: application/models/Logbook_model.php:6242
 #: application/models/Logbook_model.php:6240
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
-#: application/models/Logbook_model.php:6661
+#: application/models/Logbook_model.php:6663
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5418,9 +5430,11 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6661
 msgid "Bearing"
 msgstr "Bäring"
 
+#: application/models/Logbookadvanced_model.php:1824
 #: application/models/Logbookadvanced_model.php:1823
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
@@ -5429,15 +5443,18 @@ msgstr ""
 "Ogiltigt primärt QSO-ID, eller så har du inte behörighet att komma åt något "
 "av QSO:erna"
 
-#: application/models/Logbookadvanced_model.php:1833
+#: application/models/Logbookadvanced_model.php:1834
 #: application/views/view_log/qso.php:877
+#: application/models/Logbookadvanced_model.php:1833
 msgid "QSO not found"
 msgstr "QSO hittades inte"
 
+#: application/models/Logbookadvanced_model.php:1920
 #: application/models/Logbookadvanced_model.php:1919
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr "Inga fält valda för sammanslagning eller inga skillnader mellan QSOs"
 
+#: application/models/Logbookadvanced_model.php:1933
 #: application/models/Logbookadvanced_model.php:1932
 msgid "QSOs merged successfully"
 msgstr "QSO:erna slogs ihop framgångsrikt"
@@ -6255,7 +6272,8 @@ msgstr "Gå"
 #: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:57
 #: application/views/logbookadvanced/index.php:359
-#: application/views/qso/index.php:757 application/views/user/edit.php:1422
+#: application/views/qso/index.php:757 application/views/user/edit.php:1420
+#: application/views/user/edit.php:1422
 msgid "Clear"
 msgstr "Rensa"
 
@@ -8563,6 +8581,7 @@ msgstr "QSL-kort"
 #: application/views/awards/itu/index.php:205
 #: application/views/awards/wac/index.php:134
 #: application/views/awards/wae/index.php:210
+#: application/views/lookup/result.php:28
 #: application/views/lookup/result.php:37
 msgid "Legend:"
 msgstr "Legend:"
@@ -10039,20 +10058,24 @@ msgstr "WAB-ruta"
 #: application/views/station_profile/create.php:339
 #: application/views/station_profile/create.php:367
 #: application/views/station_profile/create.php:391
-#: application/views/station_profile/create.php:408
-#: application/views/station_profile/create.php:428
-#: application/views/station_profile/create.php:435
+#: application/views/station_profile/create.php:409
+#: application/views/station_profile/create.php:416
 #: application/views/station_profile/edit.php:354
 #: application/views/station_profile/edit.php:362
 #: application/views/station_profile/edit.php:392
 #: application/views/station_profile/edit.php:419
-#: application/views/station_profile/edit.php:436
-#: application/views/station_profile/edit.php:456
-#: application/views/station_profile/edit.php:463
+#: application/views/station_profile/edit.php:437
+#: application/views/station_profile/edit.php:444
 #: application/views/stationsetup/locationlist.php:47
 #: application/views/stationsetup/locationlist.php:57
 #: application/views/user/edit.php:694 application/views/user/edit.php:698
 #: application/views/user/edit.php:796
+#: application/views/station_profile/create.php:408
+#: application/views/station_profile/create.php:428
+#: application/views/station_profile/create.php:435
+#: application/views/station_profile/edit.php:436
+#: application/views/station_profile/edit.php:456
+#: application/views/station_profile/edit.php:463
 msgid "No"
 msgstr "Nej"
 
@@ -12521,8 +12544,9 @@ msgid "Name of Contest in ADIF-specification"
 msgstr "Namn på tävlingen i ADIF-specifikationen"
 
 #: application/views/contest_admin/create.php:35
-#: application/views/station_profile/create.php:451
+#: application/views/station_profile/create.php:432
 #: application/views/station_profile/edit.php:60
+#: application/views/station_profile/create.php:451
 msgid "Create"
 msgstr "Skapa"
 
@@ -12812,7 +12836,7 @@ msgid "Time window"
 msgstr "Tidsfönster"
 
 #: application/views/contesting/logger/components/winkeyer.php:4
-#: application/views/user/edit.php:1365
+#: application/views/user/edit.php:1363 application/views/user/edit.php:1365
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
@@ -13561,18 +13585,23 @@ msgstr "Begär ett pappersdiplom från tävlingsarrangören om du är berättiga
 #: application/views/station_profile/create.php:338
 #: application/views/station_profile/create.php:366
 #: application/views/station_profile/create.php:390
-#: application/views/station_profile/create.php:409
-#: application/views/station_profile/create.php:429
-#: application/views/station_profile/create.php:436
+#: application/views/station_profile/create.php:410
+#: application/views/station_profile/create.php:417
 #: application/views/station_profile/edit.php:353
 #: application/views/station_profile/edit.php:361
 #: application/views/station_profile/edit.php:391
 #: application/views/station_profile/edit.php:418
+#: application/views/station_profile/edit.php:438
+#: application/views/station_profile/edit.php:445
+#: application/views/stationsetup/locationlist.php:49
+#: application/views/stationsetup/locationlist.php:59
+#: application/views/user/edit.php:1259
+#: application/views/station_profile/create.php:409
+#: application/views/station_profile/create.php:429
+#: application/views/station_profile/create.php:436
 #: application/views/station_profile/edit.php:437
 #: application/views/station_profile/edit.php:457
 #: application/views/station_profile/edit.php:464
-#: application/views/stationsetup/locationlist.php:49
-#: application/views/stationsetup/locationlist.php:59
 #: application/views/user/edit.php:1261
 msgid "Yes"
 msgstr "Ja"
@@ -13958,6 +13987,7 @@ msgstr "Identifierare"
 #: application/views/station_profile/edit.php:336
 #: application/views/stationsetup/stationsetup.php:104
 #: application/views/user/edit.php:551 application/views/user/edit.php:552
+#: application/views/user/edit.php:1222 application/views/user/edit.php:1302
 #: application/views/user/edit.php:1224 application/views/user/edit.php:1304
 msgid "Enabled"
 msgstr "Aktiverad"
@@ -16582,7 +16612,7 @@ msgstr "Färger"
 #: application/views/user/edit.php:731
 #: application/views/visitor/layout/footer.php:13
 msgid "Night Shadow"
-msgstr ""
+msgstr "Natt skugga"
 
 #: application/views/interface_assets/footer.php:58
 msgid "Post"
@@ -16616,7 +16646,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:66
 msgid "Reverse bearing"
-msgstr ""
+msgstr "Omvänd bäring"
 
 #: application/views/interface_assets/footer.php:67
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -22958,41 +22988,39 @@ msgstr "QO-100 Dx Clubs profilsida"
 msgid "QO-100 Dx Club Realtime Upload"
 msgstr "QO-100 Dx Club Realtids-Upladdning"
 
-#: application/views/station_profile/create.php:406
-#: application/views/station_profile/edit.php:434
-msgid "PSKReporter Live Reporting"
-msgstr ""
-
-#: application/views/station_profile/create.php:411
-#: application/views/station_profile/edit.php:439
-msgid ""
-"If enabled, QSOs logged live in the QSO form are reported to "
-"pskreporter.info in real time. QSOs older than one hour are not reported."
-msgstr ""
-
+#: application/views/station_profile/create.php:407
+#: application/views/station_profile/edit.php:435
 #: application/views/station_profile/create.php:426
 #: application/views/station_profile/edit.php:454
 msgid "OQRS Enabled"
 msgstr "OQRS aktiverad"
 
+#: application/views/station_profile/create.php:414
+#: application/views/station_profile/edit.php:442
+#: application/views/stationsetup/locationlist.php:33
 #: application/views/station_profile/create.php:433
 #: application/views/station_profile/edit.php:461
-#: application/views/stationsetup/locationlist.php:33
 msgid "OQRS Email alert"
 msgstr "OQRS e-postvarning"
 
+#: application/views/station_profile/create.php:419
+#: application/views/station_profile/edit.php:447
 #: application/views/station_profile/create.php:438
 #: application/views/station_profile/edit.php:466
 msgid "Make sure email is set up under admin and global options."
 msgstr ""
 "Se till att e-post är konfigurerad under admin- och globala alternativ."
 
+#: application/views/station_profile/create.php:422
+#: application/views/station_profile/edit.php:450
+#: application/views/stationsetup/locationlist.php:32
 #: application/views/station_profile/create.php:441
 #: application/views/station_profile/edit.php:469
-#: application/views/stationsetup/locationlist.php:32
 msgid "OQRS Text"
 msgstr "OQRS-text"
 
+#: application/views/station_profile/create.php:424
+#: application/views/station_profile/edit.php:452
 #: application/views/station_profile/create.php:443
 #: application/views/station_profile/edit.php:471
 msgid "Some info you want to add regarding QSL'ing."
@@ -24259,7 +24287,7 @@ msgstr "Club Log E-post"
 msgid "Club Log Password"
 msgstr "Club Log Lösenord"
 
-#: application/views/user/edit.php:1184
+#: application/views/user/edit.php:1182 application/views/user/edit.php:1184
 #, php-format
 msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
@@ -24269,11 +24297,11 @@ msgstr ""
 "att använda Clublog i Wavelog. Besök %sdin Clublog-inställningssida%s för "
 "att göra det."
 
-#: application/views/user/edit.php:1193
+#: application/views/user/edit.php:1191 application/views/user/edit.php:1193
 msgid "Fetch Club Log OQRS requests"
 msgstr "Hämta Club Log OQRS-förfrågningar"
 
-#: application/views/user/edit.php:1194
+#: application/views/user/edit.php:1192 application/views/user/edit.php:1194
 msgid ""
 "If enabled, OQRS requests made via Club Log are fetched during the Club Log "
 "sync and matching QSOs are marked as requested."
@@ -24281,15 +24309,15 @@ msgstr ""
 "Om aktiverad hämta OQRS-förfrågningar som gjorts via Club Log under Club Log-"
 "synkroniseringen och markera matchande QSOs som begärda."
 
-#: application/views/user/edit.php:1207
+#: application/views/user/edit.php:1205 application/views/user/edit.php:1207
 msgid "Widgets"
 msgstr "Widgets"
 
-#: application/views/user/edit.php:1215
+#: application/views/user/edit.php:1213 application/views/user/edit.php:1215
 msgid "On-Air widget"
 msgstr "On-Air widget"
 
-#: application/views/user/edit.php:1226
+#: application/views/user/edit.php:1224 application/views/user/edit.php:1226
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
@@ -24297,16 +24325,17 @@ msgstr ""
 "Observera: För att använda denna widget måste du ha minst en CAT-radio "
 "konfigurerad och fungerande."
 
+#: application/views/user/edit.php:1228 application/views/user/edit.php:1306
 #: application/views/user/edit.php:1230 application/views/user/edit.php:1308
 #, php-format
 msgid "If enabled, widget will be available at %s."
 msgstr "När den är aktiverad kommer widgeten att vara tillgänglig på %s."
 
-#: application/views/user/edit.php:1242
+#: application/views/user/edit.php:1240 application/views/user/edit.php:1242
 msgid "Display \"Last seen\" time"
 msgstr "Visa \"Senast sedd\" tid"
 
-#: application/views/user/edit.php:1243
+#: application/views/user/edit.php:1241 application/views/user/edit.php:1243
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
@@ -24314,25 +24343,25 @@ msgstr ""
 "Denna inställning styr om tiden för 'Senast sedd' visas i widgeten eller "
 "inte."
 
-#: application/views/user/edit.php:1253
+#: application/views/user/edit.php:1251 application/views/user/edit.php:1253
 msgid "Display radio name"
 msgstr "Visa radionamn"
 
-#: application/views/user/edit.php:1254
+#: application/views/user/edit.php:1252 application/views/user/edit.php:1254
 msgid ""
 "This setting controls whether the radio's name is displayed in the widget or "
 "not."
 msgstr "Denna inställning styr om radions namn visas i widgeten eller inte."
 
-#: application/views/user/edit.php:1258
+#: application/views/user/edit.php:1256 application/views/user/edit.php:1258
 msgid "Display only most recently updated radio"
 msgstr "Visa endast den senast uppdaterade radion"
 
-#: application/views/user/edit.php:1262
+#: application/views/user/edit.php:1260 application/views/user/edit.php:1262
 msgid "No, show all radios"
 msgstr "Nej, visa alla radioapparater"
 
-#: application/views/user/edit.php:1264
+#: application/views/user/edit.php:1262 application/views/user/edit.php:1264
 msgid ""
 "If you have multiple CAT radios configured, this setting controls whether "
 "the widget should display all on-air radios of the user, or just the most "
@@ -24344,55 +24373,55 @@ msgstr ""
 "uppdaterade. Om du bara har en radio så har den här inställningen ingen "
 "effekt."
 
-#: application/views/user/edit.php:1274
+#: application/views/user/edit.php:1272 application/views/user/edit.php:1274
 msgid "QSOs widget"
 msgstr "QSO-widget"
 
-#: application/views/user/edit.php:1283
+#: application/views/user/edit.php:1281 application/views/user/edit.php:1283
 msgid "Display exact QSO time"
 msgstr "Visa exakt QSO-tid"
 
-#: application/views/user/edit.php:1284
+#: application/views/user/edit.php:1282 application/views/user/edit.php:1284
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
 msgstr ""
 "Denna inställning styr om exakt QSO-tid ska visas i QSO-widgeten eller inte."
 
-#: application/views/user/edit.php:1295
+#: application/views/user/edit.php:1293 application/views/user/edit.php:1295
 msgid "Last LoTW Upload widget"
 msgstr "Senaste LoTW Uppladdningswidget"
 
-#: application/views/user/edit.php:1324
+#: application/views/user/edit.php:1322 application/views/user/edit.php:1324
 msgid "Miscellaneous"
 msgstr "Diverse"
 
-#: application/views/user/edit.php:1332
+#: application/views/user/edit.php:1330 application/views/user/edit.php:1332
 msgid "AMSAT Status Upload"
 msgstr "AMSAT Statusuppladdning"
 
-#: application/views/user/edit.php:1341
+#: application/views/user/edit.php:1339 application/views/user/edit.php:1341
 msgid "Upload status of SAT QSOs to"
 msgstr "Ladda upp status för SAT QSOs till"
 
-#: application/views/user/edit.php:1351
+#: application/views/user/edit.php:1349 application/views/user/edit.php:1351
 msgid "Mastodonserver"
 msgstr "Mastodonserver"
 
-#: application/views/user/edit.php:1354
+#: application/views/user/edit.php:1352 application/views/user/edit.php:1354
 msgid "URL of Mastodonserver"
 msgstr "URL till Mastodonserver"
 
-#: application/views/user/edit.php:1356
+#: application/views/user/edit.php:1354 application/views/user/edit.php:1356
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "Huvud-URL för din Mastodon-server, t.ex. %s"
 
-#: application/views/user/edit.php:1374
+#: application/views/user/edit.php:1372 application/views/user/edit.php:1374
 msgid "Winkeyer Features Enabled"
 msgstr "Winkeyer-funktioner aktiverade"
 
-#: application/views/user/edit.php:1375
+#: application/views/user/edit.php:1373 application/views/user/edit.php:1375
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
@@ -24401,25 +24430,25 @@ msgstr ""
 "Winkeyer-stöd i Wavelog är mycket experimentellt. Läs först wikin på %s "
 "innan du aktiverar."
 
-#: application/views/user/edit.php:1387
+#: application/views/user/edit.php:1385 application/views/user/edit.php:1387
 msgid "Hams.at"
 msgstr "Hams.at"
 
-#: application/views/user/edit.php:1390
+#: application/views/user/edit.php:1388 application/views/user/edit.php:1390
 msgid "Private Feed Key"
 msgstr "Privat nyckel"
 
-#: application/views/user/edit.php:1392
+#: application/views/user/edit.php:1390 application/views/user/edit.php:1392
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "Se din profil på %s."
 
-#: application/views/user/edit.php:1401
+#: application/views/user/edit.php:1399 application/views/user/edit.php:1401
 msgid "Show Workable Passes Only"
 msgstr "Visa endast användbara passeringar"
 
-#: application/views/user/edit.php:1402
+#: application/views/user/edit.php:1400 application/views/user/edit.php:1402
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -24427,15 +24456,15 @@ msgstr ""
 "Om aktiverad visar endast användbara pass baserat på lokatorrutan som anges "
 "i ditt hams.at-konto. Kräver att privat nyckel är konfigurerad."
 
-#: application/views/user/edit.php:1415
+#: application/views/user/edit.php:1413 application/views/user/edit.php:1415
 msgid "Save Account"
 msgstr "Spara kontoändringar"
 
-#: application/views/user/edit.php:1421
+#: application/views/user/edit.php:1419 application/views/user/edit.php:1421
 msgid "Search settings"
 msgstr "Sökinställningar"
 
-#: application/views/user/edit.php:1423
+#: application/views/user/edit.php:1421 application/views/user/edit.php:1423
 msgid "No settings match your search."
 msgstr "Inga inställningar matchar din sökning."
 
@@ -25292,6 +25321,46 @@ msgstr "Clublog Loggsökning"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW-användare. Senaste uppladdningen var "
+
+#: application/views/station_profile/create.php:406
+#: application/views/station_profile/edit.php:434
+msgid "PSKReporter Live Reporting"
+msgstr "PSKReporter Live-rapportering"
+
+#: application/views/station_profile/create.php:411
+#: application/views/station_profile/edit.php:439
+msgid ""
+"If enabled, QSOs logged live in the QSO form are reported to "
+"pskreporter.info in real time. QSOs older than one hour are not reported."
+msgstr ""
+"Om aktiverad, rapportera QSOn som loggas live i QSO-formuläret till "
+"pskreporter.info i realtid. QSOn som är äldre än en timme rapporteras inte."
+
+#: application/controllers/Clublog.php:229
+msgid "No Club Log credentials provided."
+msgstr "Inga Club Log-inloggningsuppgifter har angetts."
+
+#: application/models/Clublog_model.php:623
+msgid "Connection to Club Log failed."
+msgstr "Anslutningen till Club Log misslyckades."
+
+#: application/models/Clublog_model.php:627
+#, php-format
+msgid ""
+"Club Log login failed for user %s. Please check username, password and that "
+"the callsign %s belongs to this Club Log account."
+msgstr ""
+"Inloggningen till Club Log misslyckades för användaren %s. Kontrollera "
+"användarnamn, lösenord och att anropssignalen %s tillhör detta Club Log-"
+"konto."
+
+#: application/models/Clublog_model.php:630
+msgid "Club Log currently not available. Try again later."
+msgstr "Club Log är för närvarande inte tillgängligt. Försök igen senare."
+
+#: application/models/Clublog_model.php:634
+msgid "Club Log login OK!"
+msgstr "Club Log-inloggning OK!"
 
 #~ msgid "Callsigns tested: "
 #~ msgstr "Anropssignaler testade: "
