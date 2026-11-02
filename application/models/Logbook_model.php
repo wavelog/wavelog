@@ -3069,14 +3069,20 @@ class Logbook_model extends CI_Model {
 		$binding[] = $station_id;
 
 		if ($from) {
-			$from = DateTime::createFromFormat('d/m/Y', $from);
+			$from = DateTime::createFromFormat('Y-m-d', $from);
+			if ($from === false) {
+				return null;
+			}
 			$from = $from->format('Y-m-d');
 
 			$sql .= "  AND qsos.COL_TIME_ON >= ?";
 			$binding[] = $from;
 		}
 		if ($to) {
-			$to = DateTime::createFromFormat('d/m/Y', $to);
+			$to = DateTime::createFromFormat('Y-m-d', $to);
+			if ($to === false) {
+				return null;
+			}
 			$to = $to->format('Y-m-d');
 
 			$sql .= "  AND qsos.COL_TIME_ON <= ?";
