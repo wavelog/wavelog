@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-02 06:45+0000\n"
-"PO-Revision-Date: 2026-10-27 06:41+0000\n"
+"PO-Revision-Date: 2026-11-02 10:49+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -1167,7 +1167,7 @@ msgstr "Clublog QSL 导入"
 
 #: application/controllers/Clublog.php:229
 msgid "No Club Log credentials provided."
-msgstr ""
+msgstr "未提供 Club Log 凭据。"
 
 #: application/controllers/Contest_admin.php:42
 msgid "Contests Administration"
@@ -2909,7 +2909,7 @@ msgstr "LoTW ADIF 信息"
 
 #: application/controllers/Lotw.php:679
 msgid "Downloaded LoTW report contains no matches."
-msgstr ""
+msgstr "下载的 LoTW 报告不包含任何匹配项。"
 
 #: application/controllers/Lotw.php:727 application/controllers/Lotw.php:1030
 msgid "You have not defined your ARRL LoTW credentials!"
@@ -2917,36 +2917,36 @@ msgstr "未配置 LoTW 登录信息！"
 
 #: application/controllers/Lotw.php:735
 msgid "No QSOs in log. LoTW download skipped."
-msgstr ""
+msgstr "日志中没有 QSO。已跳过 LoTW 下载。"
 
 #: application/controllers/Lotw.php:754
 #, php-format
 msgid "LoTW download failed for user %s: %s (%s)."
-msgstr ""
+msgstr "用户 %s 的 LoTW 下载失败：%s（%s）。"
 
 #: application/controllers/Lotw.php:757
 #, php-format
 msgid "LoTW download failed for user %s: unexpected HTTP status %s."
-msgstr ""
+msgstr "用户 %s 的 LoTW 下载失败：HTTP 状态码异常 %s。"
 
 #: application/controllers/Lotw.php:761
 #, php-format
 msgid "LoTW download failed for user %s: Username/password incorrect"
-msgstr ""
+msgstr "用户 %s 的 LoTW 下载失败：用户名/密码错误"
 
 #: application/controllers/Lotw.php:770
 #, php-format
 msgid "LoTW download hit a rate limit for user %s"
-msgstr ""
+msgstr "用户 %s 的 LoTW 下载达到速率限制"
 
 #: application/controllers/Lotw.php:775
 #, php-format
 msgid "Downloaded LoTW report for user %s is invalid. Check your credentials."
-msgstr ""
+msgstr "用户 %s 下载的 LoTW 报告无效。请检查凭据。"
 
 #: application/controllers/Lotw.php:906
 msgid "No LoTW User details found to carry out matches."
-msgstr ""
+msgstr "未找到用于执行匹配的 LoTW 用户详细信息。"
 
 #: application/controllers/Lotw.php:970
 msgid "Connection to LoTW failed."
@@ -5000,7 +5000,7 @@ msgstr "未知"
 
 #: application/models/Clublog_model.php:626
 msgid "Connection to Club Log failed."
-msgstr ""
+msgstr "连接到 Club Log 失败。"
 
 #: application/models/Clublog_model.php:630
 #, php-format
@@ -5008,14 +5008,16 @@ msgid ""
 "Club Log login failed for user %s. Please check username, password and that "
 "the callsign %s belongs to this Club Log account."
 msgstr ""
+"Club Log 用户 %s 登录失败。请检查用户名、密码，并确认呼号 %s 属于此 Club Log "
+"账户。"
 
 #: application/models/Clublog_model.php:633
 msgid "Club Log currently not available. Try again later."
-msgstr ""
+msgstr "Club Log 当前不可用。请稍后再试。"
 
 #: application/models/Clublog_model.php:637
 msgid "Club Log login OK!"
-msgstr ""
+msgstr "Club Log 登录成功！"
 
 #: application/models/Contesting_import_model.php:219
 #, php-format
@@ -16142,7 +16144,7 @@ msgstr "颜色"
 #: application/views/user/edit.php:731
 #: application/views/visitor/layout/footer.php:13
 msgid "Night Shadow"
-msgstr ""
+msgstr "夜晚阴影"
 
 #: application/views/interface_assets/footer.php:58
 msgid "Post"
@@ -16176,7 +16178,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:66
 msgid "Reverse bearing"
-msgstr ""
+msgstr "反向方位角"
 
 #: application/views/interface_assets/footer.php:67
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -22323,7 +22325,7 @@ msgstr "QO-100 Dx Club 实时上传"
 #: application/views/station_profile/create.php:406
 #: application/views/station_profile/edit.php:434
 msgid "PSKReporter Live Reporting"
-msgstr ""
+msgstr "PSKReporter 实时报告"
 
 #: application/views/station_profile/create.php:411
 #: application/views/station_profile/edit.php:439
@@ -22331,6 +22333,8 @@ msgid ""
 "If enabled, QSOs logged live in the QSO form are reported to "
 "pskreporter.info in real time. QSOs older than one hour are not reported."
 msgstr ""
+"启用后，在 QSO 表单中实时记录的 QSO 会实时报告到 pskreporter.info。超过一小时"
+"的 QSO 不会被报告。"
 
 #: application/views/station_profile/create.php:426
 #: application/views/station_profile/edit.php:454
@@ -23576,13 +23580,15 @@ msgstr ""
 
 #: application/views/user/edit.php:1193
 msgid "Fetch Club Log OQRS requests"
-msgstr ""
+msgstr "获取 Club Log OQRS 请求"
 
 #: application/views/user/edit.php:1194
 msgid ""
 "If enabled, OQRS requests made via Club Log are fetched during the Club Log "
 "sync and matching QSOs are marked as requested."
 msgstr ""
+"启用后，通过 Club Log 提交的 OQRS 请求会在 Club Log 同步期间获取，匹配的 QSO "
+"会标记为已请求。"
 
 #: application/views/user/edit.php:1207
 msgid "Widgets"
