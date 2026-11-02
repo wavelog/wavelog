@@ -688,13 +688,14 @@ class Qso_resource extends Api_v2_resource {
 			$time_on = $this->parse_datetime($body['qso_date'], $body['time_on']);
 			$data['COL_TIME_ON'] = $time_on;
 
-			// time_off defaults to time_on and is clamped to >= time_on,
-			// same as the web UI edit path.
+			// time_off defaults to time_on. A time_off before time_on on the
+			// 00-hour is a cross-midnight QSO → roll to the next day,
+			// same as the web UI logging path.
 			$time_off = isset($body['time_off']) && $body['time_off'] !== ''
 				? $this->parse_datetime($body['qso_date'], $body['time_off'])
 				: $time_on;
-			if (strtotime($time_off) < strtotime($time_on)) {
-				$time_off = $time_on;
+			if (strtotime($time_off) < strtotime($time_on) && date('H', strtotime($time_off)) === '00') {
+				$time_off = date('Y-m-d H:i:s', strtotime($time_off . ' +1 day'));
 			}
 			$data['COL_TIME_OFF'] = $time_off;
 		}
