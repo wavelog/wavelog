@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-02 06:45+0000\n"
-"PO-Revision-Date: 2026-10-27 06:41+0000\n"
-"Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
+"PO-Revision-Date: 2026-11-02 10:49+0000\n"
+"Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
 "Language: ja\n"
@@ -1145,7 +1145,7 @@ msgstr "Clublog QSLインポート"
 
 #: application/controllers/Clublog.php:229
 msgid "No Club Log credentials provided."
-msgstr ""
+msgstr "Club Logの認証情報が提供されていません。"
 
 #: application/controllers/Contest_admin.php:42
 msgid "Contests Administration"
@@ -2914,7 +2914,7 @@ msgstr "LoTW ADIF情報"
 
 #: application/controllers/Lotw.php:679
 msgid "Downloaded LoTW report contains no matches."
-msgstr ""
+msgstr "ダウンロードしたLoTWレポートには一致するものがありません。"
 
 #: application/controllers/Lotw.php:727 application/controllers/Lotw.php:1030
 msgid "You have not defined your ARRL LoTW credentials!"
@@ -2922,36 +2922,40 @@ msgstr "ARRL LoTWの認証情報を設定していません！"
 
 #: application/controllers/Lotw.php:735
 msgid "No QSOs in log. LoTW download skipped."
-msgstr ""
+msgstr "ログにQSOがありません。LoTWのダウンロードをスキップしました。"
 
 #: application/controllers/Lotw.php:754
 #, php-format
 msgid "LoTW download failed for user %s: %s (%s)."
-msgstr ""
+msgstr "ユーザー %s のLoTWダウンロードに失敗しました: %s (%s）。"
 
 #: application/controllers/Lotw.php:757
 #, php-format
 msgid "LoTW download failed for user %s: unexpected HTTP status %s."
-msgstr ""
+msgstr "ユーザー %s のLoTWダウンロードに失敗しました: 予期しないHTTPステータス %s。"
 
 #: application/controllers/Lotw.php:761
 #, php-format
 msgid "LoTW download failed for user %s: Username/password incorrect"
 msgstr ""
+"ユーザー %s のLoTWダウンロードに失敗しました: ユーザー名またはパスワードが正"
+"しくありません"
 
 #: application/controllers/Lotw.php:770
 #, php-format
 msgid "LoTW download hit a rate limit for user %s"
-msgstr ""
+msgstr "ユーザー %s のLoTWダウンロードがレート制限に達しました"
 
 #: application/controllers/Lotw.php:775
 #, php-format
 msgid "Downloaded LoTW report for user %s is invalid. Check your credentials."
 msgstr ""
+"ユーザー %s のダウンロードしたLoTWレポートは無効です。認証情報を確認してくだ"
+"さい。"
 
 #: application/controllers/Lotw.php:906
 msgid "No LoTW User details found to carry out matches."
-msgstr ""
+msgstr "照合を実行するためのLoTWユーザー情報が見つかりません。"
 
 #: application/controllers/Lotw.php:970
 msgid "Connection to LoTW failed."
@@ -5052,7 +5056,7 @@ msgstr "不明"
 
 #: application/models/Clublog_model.php:626
 msgid "Connection to Club Log failed."
-msgstr ""
+msgstr "Club Logへの接続に失敗しました。"
 
 #: application/models/Clublog_model.php:630
 #, php-format
@@ -5060,14 +5064,17 @@ msgid ""
 "Club Log login failed for user %s. Please check username, password and that "
 "the callsign %s belongs to this Club Log account."
 msgstr ""
+"ユーザー %s のClub Logへのログインに失敗しました。ユーザー名、パスワード、お"
+"よびコールサイン %s がこのClub Logアカウントに属していることを確認してくださ"
+"い。"
 
 #: application/models/Clublog_model.php:633
 msgid "Club Log currently not available. Try again later."
-msgstr ""
+msgstr "Club Logは現在ご利用いただけません。しばらくしてからもう一度お試しください。"
 
 #: application/models/Clublog_model.php:637
 msgid "Club Log login OK!"
-msgstr ""
+msgstr "Club Logへのログインに成功しました！"
 
 #: application/models/Contesting_import_model.php:219
 #, php-format
@@ -16558,7 +16565,7 @@ msgstr "色"
 #: application/views/user/edit.php:731
 #: application/views/visitor/layout/footer.php:13
 msgid "Night Shadow"
-msgstr ""
+msgstr "ナイトシャドウ"
 
 #: application/views/interface_assets/footer.php:58
 msgid "Post"
@@ -16593,7 +16600,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:66
 msgid "Reverse bearing"
-msgstr ""
+msgstr "逆方位"
 
 #: application/views/interface_assets/footer.php:67
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -22901,7 +22908,7 @@ msgstr "QO-100 Dxクラブ リアルタイムアップロード"
 #: application/views/station_profile/create.php:406
 #: application/views/station_profile/edit.php:434
 msgid "PSKReporter Live Reporting"
-msgstr ""
+msgstr "PSKReporterライブレポート"
 
 #: application/views/station_profile/create.php:411
 #: application/views/station_profile/edit.php:439
@@ -22909,6 +22916,8 @@ msgid ""
 "If enabled, QSOs logged live in the QSO form are reported to "
 "pskreporter.info in real time. QSOs older than one hour are not reported."
 msgstr ""
+"有効にすると、QSOフォームでリアルタイムに記録されたQSOがpskreporter.infoに"
+"リアルタイムで報告されます。1時間以上前のQSOは報告されません。"
 
 #: application/views/station_profile/create.php:426
 #: application/views/station_profile/edit.php:454
@@ -24209,13 +24218,15 @@ msgstr ""
 
 #: application/views/user/edit.php:1193
 msgid "Fetch Club Log OQRS requests"
-msgstr ""
+msgstr "Club Log OQRSリクエストを取得"
 
 #: application/views/user/edit.php:1194
 msgid ""
 "If enabled, OQRS requests made via Club Log are fetched during the Club Log "
 "sync and matching QSOs are marked as requested."
 msgstr ""
+"有効にすると、Club Log経由で行われたOQRSリクエストがClub Logの同期中に取得さ"
+"れ、一致するQSOがリクエスト済みとしてマークされます。"
 
 #: application/views/user/edit.php:1207
 msgid "Widgets"
