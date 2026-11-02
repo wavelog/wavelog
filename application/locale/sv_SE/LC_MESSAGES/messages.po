@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-10-31 13:57+0000\n"
-"PO-Revision-Date: 2026-10-31 16:54+0000\n"
+"PO-Revision-Date: 2026-11-02 06:29+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -25293,7 +25293,7 @@ msgstr "LoTW-användare. Senaste uppladdningen var "
 #: application/views/station_profile/create.php:406
 #: application/views/station_profile/edit.php:434
 msgid "PSKReporter Live Reporting"
-msgstr ""
+msgstr "PSKReporter Live-rapportering"
 
 #: application/views/station_profile/create.php:411
 #: application/views/station_profile/edit.php:439
@@ -25301,14 +25301,16 @@ msgid ""
 "If enabled, QSOs logged live in the QSO form are reported to "
 "pskreporter.info in real time. QSOs older than one hour are not reported."
 msgstr ""
+"Om aktiverad, rapportera QSOn som loggas live i QSO-formuläret till "
+"pskreporter.info i realtid. QSOn som är äldre än en timme rapporteras inte."
 
 #: application/controllers/Clublog.php:229
 msgid "No Club Log credentials provided."
-msgstr ""
+msgstr "Inga Club Log-inloggningsuppgifter har angetts."
 
 #: application/models/Clublog_model.php:623
 msgid "Connection to Club Log failed."
-msgstr ""
+msgstr "Anslutningen till Club Log misslyckades."
 
 #: application/models/Clublog_model.php:627
 #, php-format
@@ -25316,14 +25318,17 @@ msgid ""
 "Club Log login failed for user %s. Please check username, password and that "
 "the callsign %s belongs to this Club Log account."
 msgstr ""
+"Inloggningen till Club Log misslyckades för användaren %s. Kontrollera "
+"användarnamn, lösenord och att anropssignalen %s tillhör detta Club Log-"
+"konto."
 
 #: application/models/Clublog_model.php:630
 msgid "Club Log currently not available. Try again later."
-msgstr ""
+msgstr "Club Log är för närvarande inte tillgängligt. Försök igen senare."
 
 #: application/models/Clublog_model.php:634
 msgid "Club Log login OK!"
-msgstr ""
+msgstr "Club Log-inloggning OK!"
 
 #~ msgid "Callsigns tested: "
 #~ msgstr "Anropssignaler testade: "
