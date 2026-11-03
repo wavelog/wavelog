@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-02 06:45+0000\n"
-"PO-Revision-Date: 2026-10-30 10:04+0000\n"
+"PO-Revision-Date: 2026-11-03 17:16+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -1149,7 +1149,7 @@ msgstr "Importazione QSL da Clublog"
 
 #: application/controllers/Clublog.php:229
 msgid "No Club Log credentials provided."
-msgstr ""
+msgstr "Nessuna credenziale di Club Log fornita."
 
 #: application/controllers/Contest_admin.php:42
 msgid "Contests Administration"
@@ -5093,7 +5093,7 @@ msgstr "Sconosciuto"
 
 #: application/models/Clublog_model.php:626
 msgid "Connection to Club Log failed."
-msgstr ""
+msgstr "Connessione a Club Log non riuscita."
 
 #: application/models/Clublog_model.php:630
 #, php-format
@@ -5101,14 +5101,16 @@ msgid ""
 "Club Log login failed for user %s. Please check username, password and that "
 "the callsign %s belongs to this Club Log account."
 msgstr ""
+"Accesso a Club Log non riuscito per l'utente %s. Verifica il nome utente, la "
+"password e che il nominativo %s appartenga a questo account Club Log."
 
 #: application/models/Clublog_model.php:633
 msgid "Club Log currently not available. Try again later."
-msgstr ""
+msgstr "Club Log non è attualmente disponibile. Riprova più tardi."
 
 #: application/models/Clublog_model.php:637
 msgid "Club Log login OK!"
-msgstr ""
+msgstr "Accesso a Club Log riuscito!"
 
 #: application/models/Contesting_import_model.php:219
 #, php-format
@@ -16712,7 +16714,7 @@ msgstr "Colori"
 #: application/views/user/edit.php:731
 #: application/views/visitor/layout/footer.php:13
 msgid "Night Shadow"
-msgstr ""
+msgstr "Ombra notturna"
 
 #: application/views/interface_assets/footer.php:58
 msgid "Post"
@@ -16748,7 +16750,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:66
 msgid "Reverse bearing"
-msgstr ""
+msgstr "Puntamento inverso"
 
 #: application/views/interface_assets/footer.php:67
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -23152,7 +23154,7 @@ msgstr "QO-100 Dx Club Caricamento Reale"
 #: application/views/station_profile/create.php:406
 #: application/views/station_profile/edit.php:434
 msgid "PSKReporter Live Reporting"
-msgstr ""
+msgstr "Reporting in tempo reale di PSKReporter"
 
 #: application/views/station_profile/create.php:411
 #: application/views/station_profile/edit.php:439
@@ -23160,6 +23162,9 @@ msgid ""
 "If enabled, QSOs logged live in the QSO form are reported to "
 "pskreporter.info in real time. QSOs older than one hour are not reported."
 msgstr ""
+"Se abilitata, i QSO registrati in tempo reale nel modulo QSO vengono "
+"segnalati a pskreporter.info in tempo reale. I QSO più vecchi di un'ora non "
+"vengono segnalati."
 
 #: application/views/station_profile/create.php:426
 #: application/views/station_profile/edit.php:454
