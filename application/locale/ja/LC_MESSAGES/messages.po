@@ -2932,7 +2932,8 @@ msgstr "ユーザー %s のLoTWダウンロードに失敗しました: %s (%s�
 #: application/controllers/Lotw.php:757
 #, php-format
 msgid "LoTW download failed for user %s: unexpected HTTP status %s."
-msgstr "ユーザー %s のLoTWダウンロードに失敗しました: 予期しないHTTPステータス %s。"
+msgstr ""
+"ユーザー %s のLoTWダウンロードに失敗しました: 予期しないHTTPステータス %s。"
 
 #: application/controllers/Lotw.php:761
 #, php-format
@@ -5070,7 +5071,8 @@ msgstr ""
 
 #: application/models/Clublog_model.php:633
 msgid "Club Log currently not available. Try again later."
-msgstr "Club Logは現在ご利用いただけません。しばらくしてからもう一度お試しください。"
+msgstr ""
+"Club Logは現在ご利用いただけません。しばらくしてからもう一度お試しください。"
 
 #: application/models/Clublog_model.php:637
 msgid "Club Log login OK!"
@@ -17650,6 +17652,7 @@ msgstr "課題が指定されていません"
 #: application/views/qslpostcard/printqueue.php:8
 #: application/views/qslpostcard/printqueue_selected.php:10
 #: application/views/qslprint/printqsl.php:9
+#: application/views/logbookadvanced/printQsl.php:21
 msgid "Template"
 msgstr "テンプレート"
 
@@ -17709,6 +17712,7 @@ msgstr "PDF"
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:32
 #: application/views/qslprint/printqsl.php:34
+#: application/views/logbookadvanced/printQsl.php:58
 msgid "Save PDF"
 msgstr "PDFで保存"
 
@@ -18190,6 +18194,7 @@ msgstr ""
 #: application/views/logbookadvanced/startatform.php:125
 #: application/views/qslprint/printlabel.php:138
 #: application/views/qslprint/printqsl.php:37
+#: application/views/logbookadvanced/printQsl.php:41
 msgid "Mark QSL as printed"
 msgstr "QSLを印刷済みとしてマークする"
 
@@ -19587,6 +19592,7 @@ msgstr ""
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
 #: application/views/qslprint/printqsl.php:22
+#: application/views/logbookadvanced/printQsl.php:34
 msgid ""
 "Print options (QSOs per card, background image, address printing) are set "
 "per template in the QSL Postcard Designer."
@@ -19598,6 +19604,7 @@ msgstr ""
 #: application/views/qslpostcard/printqueue.php:22
 #: application/views/qslpostcard/printqueue_selected.php:28
 #: application/views/qslprint/printqsl.php:30
+#: application/views/logbookadvanced/printQsl.php:54
 msgid "Generate Postcard PDF"
 msgstr "ポストカードのPDFを生成する"
 
@@ -19605,6 +19612,7 @@ msgstr "ポストカードのPDFを生成する"
 #: application/views/qslpostcard/printqueue.php:33
 #: application/views/qslpostcard/printqueue_selected.php:39
 #: application/views/qslprint/printqsl.php:42
+#: application/views/logbookadvanced/printQsl.php:65
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
@@ -22916,8 +22924,8 @@ msgid ""
 "If enabled, QSOs logged live in the QSO form are reported to "
 "pskreporter.info in real time. QSOs older than one hour are not reported."
 msgstr ""
-"有効にすると、QSOフォームでリアルタイムに記録されたQSOがpskreporter.infoに"
-"リアルタイムで報告されます。1時間以上前のQSOは報告されません。"
+"有効にすると、QSOフォームでリアルタイムに記録されたQSOがpskreporter.infoにリ"
+"アルタイムで報告されます。1時間以上前のQSOは報告されません。"
 
 #: application/views/station_profile/create.php:426
 #: application/views/station_profile/edit.php:454

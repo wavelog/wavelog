@@ -2179,10 +2179,14 @@ $(document).ready(function () {
 							if (!tplId) {
 								return;
 							}
+							var markprinted = $('#markprinted')[0].checked;
 							var $form = $('#printQslCardForm');
 						$form.attr('action', base_url + 'index.php/qslpostcard/pdfselected/' + tplId);
 						$form.attr('target', '_blank');
 						$form[0].submit();
+						if (markprinted) {
+							handleQsl('Y','B', 'sentBureau');
+						}
 						dialog.close();
 					});
 					$('#btnPrintQslCardSave').off('click').on('click', function () {
@@ -2190,10 +2194,14 @@ $(document).ready(function () {
 						if (!tplId) {
 							return;
 						}
+						var markprinted = $('#markprinted')[0].checked;
 						var $form = $('#printQslCardForm');
 						$form.attr('action', base_url + 'index.php/qslpostcard/pdfselected/' + tplId + '?download=1');
 						$form.attr('target', '_blank');
 						$form[0].submit();
+						if (markprinted) {
+							handleQsl('Y','B', 'sentBureau');
+						}
 						dialog.close();
 					});
 					},
