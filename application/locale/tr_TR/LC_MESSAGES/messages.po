@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-03 19:37+0000\n"
-"PO-Revision-Date: 2026-10-26 20:10+0000\n"
+"PO-Revision-Date: 2026-11-04 13:11+0000\n"
 "Last-Translator: metint <metin@tekkalmaz.net>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/tr/>\n"
@@ -1149,7 +1149,7 @@ msgstr "Clublog QSL İçe Aktarım"
 
 #: application/controllers/Clublog.php:229
 msgid "No Club Log credentials provided."
-msgstr ""
+msgstr "Club Log kullanıcı adı ve şifre girilmedi."
 
 #: application/controllers/Contest_admin.php:42
 msgid "Contests Administration"
@@ -2914,7 +2914,7 @@ msgstr "LoTW ADIF Bilgileri"
 
 #: application/controllers/Lotw.php:679
 msgid "Downloaded LoTW report contains no matches."
-msgstr ""
+msgstr "İndirilen LoTW raporunda eşleşme bulunamadı."
 
 #: application/controllers/Lotw.php:727 application/controllers/Lotw.php:1030
 msgid "You have not defined your ARRL LoTW credentials!"
@@ -2922,36 +2922,43 @@ msgstr "ARRL LoTW kimlik bilgilerinizi tanımlamadınız!"
 
 #: application/controllers/Lotw.php:735
 msgid "No QSOs in log. LoTW download skipped."
-msgstr ""
+msgstr "Günlükte QSO yok. LoTW indirme işlemi atlandı."
 
 #: application/controllers/Lotw.php:754
 #, php-format
 msgid "LoTW download failed for user %s: %s (%s)."
-msgstr ""
+msgstr "Kullanıcı %s için LoTW indirme işlemi başarısız oldu: %s (%s)."
 
 #: application/controllers/Lotw.php:757
 #, php-format
 msgid "LoTW download failed for user %s: unexpected HTTP status %s."
 msgstr ""
+"Kullanıcı %s için LoTW indirme işlemi başarısız oldu: beklenmeyen HTTP "
+"durumu %s."
 
 #: application/controllers/Lotw.php:761
 #, php-format
 msgid "LoTW download failed for user %s: Username/password incorrect"
 msgstr ""
+"Kullanıcı %s için LoTW indirme işlemi başarısız oldu: Kullanıcı adı/şifre "
+"hatalı"
 
 #: application/controllers/Lotw.php:770
 #, php-format
 msgid "LoTW download hit a rate limit for user %s"
-msgstr ""
+msgstr "LoTW indirme işlemi kullanıcı %s için hız sınırına ulaştı"
 
 #: application/controllers/Lotw.php:775
 #, php-format
 msgid "Downloaded LoTW report for user %s is invalid. Check your credentials."
 msgstr ""
+"Kullanıcı %s için indirilen LoTW raporu geçersiz. Kimlik bilgilerini kontrol "
+"et."
 
 #: application/controllers/Lotw.php:906
 msgid "No LoTW User details found to carry out matches."
 msgstr ""
+"Eşleştirmeleri gerçekleştirmek için LoTW Kullanıcısı ayrıntıları bulunamadı."
 
 #: application/controllers/Lotw.php:970
 msgid "Connection to LoTW failed."
@@ -3008,24 +3015,24 @@ msgstr "Mod %s güncellendi"
 #: application/controllers/Most_wanted_squares.php:22
 #: application/views/interface_assets/header.php:560
 msgid "Most Wanted Squares"
-msgstr ""
+msgstr "En Çok Aranan Kareler"
 
 #: application/controllers/Most_wanted_squares.php:43
 msgid "Invalid band."
-msgstr ""
+msgstr "Geçersiz bant."
 
 #: application/controllers/Most_wanted_squares.php:48
 #: application/views/most_wanted_squares/index.php:8
 msgid "The active station location has no gridsquare set."
-msgstr ""
+msgstr "Etkin istasyon konumu için grid karesi ayarlı değil."
 
 #: application/controllers/Most_wanted_squares.php:53
 msgid "The gridsquare of the active station location is invalid."
-msgstr ""
+msgstr "Etkin istasyon konumuna ait grid karesi geçersiz."
 
 #: application/controllers/Most_wanted_squares.php:90
 msgid "VUCC gridsquare data unavailable."
-msgstr ""
+msgstr "VUCC grid karesi verisi mevcut değil."
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:158
@@ -5064,7 +5071,7 @@ msgstr "Bilinmeyen"
 
 #: application/models/Clublog_model.php:626
 msgid "Connection to Club Log failed."
-msgstr ""
+msgstr "Club Log bağlantısı başarısız oldu."
 
 #: application/models/Clublog_model.php:630
 #, php-format
@@ -5072,14 +5079,17 @@ msgid ""
 "Club Log login failed for user %s. Please check username, password and that "
 "the callsign %s belongs to this Club Log account."
 msgstr ""
+"Kullanıcı %s için Club Log girişi başarısız oldu. Lütfen kullanıcı adını, "
+"parolayı ve %s çağrı işaretinin bu Club Log hesabına ait olduğunu kontrol "
+"edin."
 
 #: application/models/Clublog_model.php:633
 msgid "Club Log currently not available. Try again later."
-msgstr ""
+msgstr "Club Log şu anda kullanılamıyor. Daha sonra tekrar deneyin."
 
 #: application/models/Clublog_model.php:637
 msgid "Club Log login OK!"
-msgstr ""
+msgstr "Club Log girişi başarılı!"
 
 #: application/models/Contesting_import_model.php:219
 #, php-format
@@ -16618,7 +16628,7 @@ msgstr "Renkler"
 #: application/views/user/edit.php:731
 #: application/views/visitor/layout/footer.php:13
 msgid "Night Shadow"
-msgstr ""
+msgstr "Gece Gölgesi"
 
 #: application/views/interface_assets/footer.php:58
 msgid "Post"
@@ -16654,7 +16664,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:66
 msgid "Reverse bearing"
-msgstr ""
+msgstr "Ters kerteriz"
 
 #: application/views/interface_assets/footer.php:67
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -20205,6 +20215,7 @@ msgstr "Bir Mod Oluştur"
 msgid ""
 "Export a list of 4-digit gridsquares that have not been worked yet on VHF."
 msgstr ""
+"VHF'te henüz çalışılmamış 4 haneli grid karelerinin listesini dışa aktar."
 
 #: application/views/most_wanted_squares/index.php:21
 #, php-format
@@ -20212,10 +20223,12 @@ msgid ""
 "The list contains all not worked gridsquares within %d km of the gridsquare "
 "%s of the active station location %s (%s)."
 msgstr ""
+"Liste, etkin istasyon konumu %s (%s), %s grid karesine %d km mesafedeki, "
+"henüz çalışılmamış tüm grid karelerini içerir."
 
 #: application/views/most_wanted_squares/index.php:34
 msgid "Exclude squares that contain no land"
-msgstr ""
+msgstr "Kara içermeyen kareleri hariç tut"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
@@ -23006,7 +23019,7 @@ msgstr "QO-100 Dx Club Gerçek Zamanlı Yükleme"
 #: application/views/station_profile/create.php:406
 #: application/views/station_profile/edit.php:434
 msgid "PSKReporter Live Reporting"
-msgstr ""
+msgstr "PSKReporter Canlı Raporlama"
 
 #: application/views/station_profile/create.php:411
 #: application/views/station_profile/edit.php:439
@@ -23014,6 +23027,9 @@ msgid ""
 "If enabled, QSOs logged live in the QSO form are reported to "
 "pskreporter.info in real time. QSOs older than one hour are not reported."
 msgstr ""
+"Etkinleştirildiğinde, QSO formunda canlı olarak kaydedilen QSO'lar "
+"pskreporter.info'ya gerçek zamanlı olarak bildirilir. Bir saatten eski "
+"QSO'lar bildirilmez."
 
 #: application/views/station_profile/create.php:426
 #: application/views/station_profile/edit.php:454
@@ -24320,13 +24336,16 @@ msgstr ""
 
 #: application/views/user/edit.php:1193
 msgid "Fetch Club Log OQRS requests"
-msgstr ""
+msgstr "Club Log OQRS isteklerini getir"
 
 #: application/views/user/edit.php:1194
 msgid ""
 "If enabled, OQRS requests made via Club Log are fetched during the Club Log "
 "sync and matching QSOs are marked as requested."
 msgstr ""
+"Etkinleştirildiğinde, Club Log üzerinden yapılan OQRS istekleri Club Log "
+"senkronizasyonu sırasında alınır ve eşleşen QSO'lar istek yapılmış olarak "
+"işaretlenir."
 
 #: application/views/user/edit.php:1207
 msgid "Widgets"
