@@ -91,6 +91,7 @@
 			<?php if (($next_run ?? '') != '') { echo "<p>".__("The next automatic sync with SRR will happen at: ").$next_run." UTC</p>"; } ?>
 			<p><?= __("Here you can see all QSOs which have not been previously uploaded to SRR."); ?></p>
 			<p><?= __("The RDA district of your station (e.g. SP-19) has to be entered in the field 'Station County' of the station location. It is stored in every QSO as MY_CNTY."); ?></p>
+			<?php if ($this->config->item('disable_manual_srr')) { echo '<p><span class="badge text-bg-warning">' . __("Warning") . '</span> ' . __("Manual upload is disabled. The automatic sync does not upload QSOs on 2m and above without a propagation mode (PROP_MODE) or QSOs without a valid RDA district (e.g. SP-19) in the field 'My County' (MY_CNTY).") . '</p>'; } ?>
 <?php
 			if ($station_profile->result()) {
 			echo '
