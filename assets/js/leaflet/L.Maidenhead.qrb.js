@@ -10,7 +10,7 @@ L.MaidenheadQrb = L.LayerGroup.extend({
 		color: 'rgba(255, 0, 0, 0.4)',
 
 		// Redraw on move or moveend
-		redraw: 'move'
+		redraw: 'moveend'
 	},
 
 	initialize: function (options) {
@@ -63,17 +63,8 @@ L.MaidenheadQrb = L.LayerGroup.extend({
 			for (var lat = bottom; lat < top; lat += unit) {
 				var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
 
-				if (zoom < 2 || zoom > 4) {
-					this.addLayer(this._getLabel(lon+unit-(unit/lcor),lat+(unit/2)+(unit/lcor*c), map));
-				}
-				if (zoom < 3 ) {
+				if (zoom < 3 || zoom > 4) {
 					this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.color, weight: 1, fill:false, interactive: false}));
-				}
-				if (zoom < 3 || zoom > 5) {
-					this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.color, weight: 1, fill:false, interactive: false}));
-				}
-
-				if (zoom < 3 || zoom > 5) {
 					this.addLayer(this._getLabel(lon+unit-(unit/lcor),lat+(unit/2)+(unit/lcor*c), map));
 				}
 

@@ -722,17 +722,25 @@
 										</div>
 										<label class="d-block mb-0" for="user_map_gridsquare_show"><?= __("Show Locator"); ?></label>
 									</div>
-								<?php if(!isset($user_map_tile_style)) { $user_map_tile_style = 'map-follow'; } ?>
-								<div class="mb-3">	<!-- Custom Map Tile Style -->
-									<label for="user_map_tile_style"><?= __("Map Tile Style"); ?></label>
-									<?php $styles = map_style_options(); $current = $user_map_tile_style ?? 'map-follow'; ?>
-										<select class="form-select"	id="user_map_tile_style" name="user_map_tile_style" >
-											<?php foreach ($styles as $slug => $label): ?>
-												<option value="<?= html_escape($slug); ?>" <?= $current == $slug ? 'selected' : ''; ?> ><?= html_escape($label); ?></option>
-											<?php endforeach; ?>
-										</select>
-								    <small class="form-text text-muted"><?= __("Choose the map tile rendering method; this will override the theme settings."); ?></small>
-								</div>
+									<?php if(!isset($user_map_nightshadow_show)) { $user_map_nightshadow_show='0'; }?>
+									<div class="d-flex align-items-start gap-2 mb-3">
+										<input type="hidden" name="user_map_nightshadow_show" value="0">
+										<div class="form-check form-switch mt-1">
+											<input class="form-check-input" type="checkbox" role="switch" id="user_map_nightshadow_show" name="user_map_nightshadow_show" value="1" <?php if ($user_map_nightshadow_show == 1) { echo 'checked'; } ?>>
+										</div>
+										<label class="d-block mb-0" for="user_map_nightshadow_show"><?= __("Night Shadow"); ?></label>
+									</div>
+									<?php if(!isset($user_map_tile_style)) { $user_map_tile_style = 'map-follow'; } ?>
+									<div class="mb-3">	<!-- Custom Map Tile Style -->
+										<label for="user_map_tile_style"><?= __("Map Tile Style"); ?></label>
+										<?php $styles = map_style_options(); $current = $user_map_tile_style ?? 'map-follow'; ?>
+											<select class="form-select"	id="user_map_tile_style" name="user_map_tile_style" >
+												<?php foreach ($styles as $slug => $label): ?>
+													<option value="<?= html_escape($slug); ?>" <?= $current == $slug ? 'selected' : ''; ?> ><?= html_escape($label); ?></option>
+												<?php endforeach; ?>
+											</select>
+										<small class="form-text text-muted"><?= __("Choose the map tile rendering method; this will override the theme settings."); ?></small>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -1161,16 +1169,18 @@
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("Club Log Email"); ?></label>
-										<input class="form-control" type="email" name="user_clublog_name" value="<?php if(isset($user_clublog_name)) { echo $user_clublog_name; } ?>" />
+										<input class="form-control" type="email" name="user_clublog_name" id="user_clublog_name" value="<?php if(isset($user_clublog_name)) { echo $user_clublog_name; } ?>" />
 										<?php if(isset($userclublogname_error)) { echo "<small class=\"badge bg-danger\">".$userclublogname_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?= __("Club Log Password"); ?></label>
 										<div class="input-group">
-											<input class="form-control" type="password" name="user_clublog_password" value="<?php if(isset($user_clublog_password)) { echo $user_clublog_password; } ?>" />
+											<input class="form-control" type="password" name="user_clublog_password" id="user_clublog_password" value="<?php if(isset($user_clublog_password)) { echo $user_clublog_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
+											<button class="btn btn-secondary ld-ext-right" type="button" id="clublog_test_btn"><?= __("Test Login"); ?><div class="ld ld-ring ld-spin"></div></button>
 										</div>
+										<div class="alert mt-3" style="display: none;" id="clublog_test_txt"></div>
 										<small class="form-text text-muted"><?= sprintf(__("If you have 2FA enabled at Clublog, you have to generate an App. Password to use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."), '<a target="_blank" href="https://clublog.org/edituser.php?tab=7">', '</a>'); ?></small>
 										<?php if(isset($clublogpassword_error)) {
 											echo "<small class=\"badge bg-danger\">".$clublogpassword_error."</small>";

@@ -175,14 +175,12 @@ class Logbook_model extends CI_Model {
 			// Handle end time
 			if (!empty($end_time)) {
 				$end_datetime_obj = DateTime::createFromFormat("$date_format H:i:s", "$start_date $end_time");
-
 				if ($end_datetime_obj === false) {
 					$end_datetime_obj = DateTime::createFromFormat("$date_format H:i", "$start_date $end_time");	// Try converting as H:i if H:i:s failed b4
-					if ($end_datetime_obj === false) {
-						$datetime_off = $datetime; // No Luck? Than end = start
-					} else {
-						$datetime_off = $end_datetime_obj->format('Y-m-d H:i:s');
-					}
+				}
+
+				if ($end_datetime_obj === false) {
+					$datetime_off = $datetime; // No Luck? Than end = start
 				} else {
 					// If time-off is before time-on and hour is 00 → add 1 day
 					if ($end_datetime_obj < $datetime_obj && str_starts_with($end_time, "00")) {
@@ -3071,14 +3069,20 @@ class Logbook_model extends CI_Model {
 		$binding[] = $station_id;
 
 		if ($from) {
-			$from = DateTime::createFromFormat('d/m/Y', $from);
+			$from = DateTime::createFromFormat('Y-m-d', $from);
+			if ($from === false) {
+				return null;
+			}
 			$from = $from->format('Y-m-d');
 
 			$sql .= "  AND qsos.COL_TIME_ON >= ?";
 			$binding[] = $from;
 		}
 		if ($to) {
-			$to = DateTime::createFromFormat('d/m/Y', $to);
+			$to = DateTime::createFromFormat('Y-m-d', $to);
+			if ($to === false) {
+				return null;
+			}
 			$to = $to->format('Y-m-d');
 
 			$sql .= "  AND qsos.COL_TIME_ON <= ?";
