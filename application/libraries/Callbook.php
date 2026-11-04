@@ -150,6 +150,20 @@ class Callbook {
 		return $callbook;
 	}
 
+	/**
+	 * Whether a failed search should be repeated after a new login.
+	 *
+	 * "Not found" is a data error returned with a valid session, so it is not retried (that would cost a second
+	 * lookup). Other errors may be session errors (QRZ: "Invalid session key", "Session Timeout") and are retried.
+	 *
+	 * @param array $callbook Search result; 'error' may be a string or a SimpleXMLElement
+	 * @return bool
+	 */
+	private function _needs_relogin($callbook) {
+		$error = (string) ($callbook['error'] ?? '');
+		return $error != '' && stripos($error, 'not found') === false;
+	}
+
 	private function _qrz($callsign, $fullname) {
 		$this->ci->load->is_loaded('qrz') ?: $this->ci->load->library('qrz');
 
@@ -184,7 +198,7 @@ class Callbook {
 				return $callbook;
 			}
 
-			if ($callbook['error'] ?? '' == 'Invalid session key') {
+			if ($this->_needs_relogin($callbook)) {
 				$qrz_session_key = $this->ci->qrz->session($username, $password);
 				if (!$this->_validate_sessionkey($qrz_session_key)) {
 					$callbook['error'] = sprintf($this->error_obtaining_sessionkey, $qrz_session_key);
@@ -255,7 +269,7 @@ class Callbook {
 				return $callbook;
 			}
 
-			if ($callbook['error'] ?? '' == 'Invalid session key') {
+			if ($this->_needs_relogin($callbook)) {
 				$qrzcq_session_key = $this->ci->qrzcq->session($username, $password);
 				if (!$this->_validate_sessionkey($qrzcq_session_key[1])) {
 					$callbook['error'] = sprintf($this->error_obtaining_sessionkey, $qrzcq_session_key[1]);
@@ -389,7 +403,7 @@ class Callbook {
 				return $callbook;
 			}
 
-			if ($callbook['error'] ?? '' == 'Session does not exist or expired') {
+			if ($this->_needs_relogin($callbook)) {
 				$qrzru_session_key = $this->ci->qrzru->session($username, $password);
 				if (!$this->_validate_sessionkey($qrzru_session_key)) {
 					$callbook['error'] = sprintf($this->error_obtaining_sessionkey, $qrzru_session_key);
