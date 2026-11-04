@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-04 13:17+0000\n"
-"PO-Revision-Date: 2026-10-27 20:37+0000\n"
+"POT-Creation-Date: 2026-11-02 06:45+0000\n"
+"PO-Revision-Date: 2026-11-03 17:16+0000\n"
 "Last-Translator: Telectroboy <telectroboy@hotmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
@@ -4595,6 +4595,8 @@ msgstr ""
 msgid "Generic error reading the cached callbook session key."
 msgstr ""
 
+#: application/libraries/Callbook.php:244
+#: application/libraries/Callbook.php:258
 #: application/libraries/Callbook.php:282
 msgid "QRZCQ Error"
 msgstr "Erreur QRZCQ"
@@ -5110,7 +5112,7 @@ msgstr ""
 
 #: application/models/Clublog_model.php:637
 msgid "Club Log login OK!"
-msgstr ""
+msgstr "Connexion Club Log réussie !"
 
 #: application/models/Contesting_import_model.php:219
 #, php-format
@@ -5136,7 +5138,7 @@ msgstr "Les responsables doivent modifier les concours."
 
 #: application/models/Countqsoby_model.php:262
 msgid "Unlinked"
-msgstr ""
+msgstr "Non lié"
 
 #: application/models/Dbtools_model.php:118
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
@@ -17747,11 +17749,12 @@ msgid "No paper assigned"
 msgstr "Aucun papier sélectionné"
 
 #: application/views/labeldesigner/designer.php:91
-#: application/views/logbookadvanced/printQsl.php:21
+#: application/views/logbookadvanced/printQsl.php:9
 #: application/views/qslpostcard/designer.php:67
 #: application/views/qslpostcard/printqueue.php:8
 #: application/views/qslpostcard/printqueue_selected.php:10
 #: application/views/qslprint/printqsl.php:9
+#: application/views/logbookadvanced/printQsl.php:21
 msgid "Template"
 msgstr ""
 
@@ -17806,11 +17809,12 @@ msgid "PDF"
 msgstr ""
 
 #: application/views/labeldesigner/designer.php:135
-#: application/views/logbookadvanced/printQsl.php:58
+#: application/views/logbookadvanced/printQsl.php:34
 #: application/views/qslpostcard/designer.php:99
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:32
 #: application/views/qslprint/printqsl.php:34
+#: application/views/logbookadvanced/printQsl.php:58
 msgid "Save PDF"
 msgstr ""
 
@@ -18282,10 +18286,10 @@ msgstr ""
 "quelque chose de significatif, peut-être le style de l'étiquette."
 
 #: application/views/labels/index.php:2
-#: application/views/logbookadvanced/printQsl.php:41
 #: application/views/logbookadvanced/startatform.php:125
 #: application/views/qslprint/printlabel.php:138
 #: application/views/qslprint/printqsl.php:37
+#: application/views/logbookadvanced/printQsl.php:41
 msgid "Mark QSL as printed"
 msgstr "Marquer la QSL comme imprimée"
 
@@ -19694,26 +19698,29 @@ msgstr ""
 "Les champs sélectionnés seront fusionnés dans le QSO principal. Vous pouvez "
 "sélectionner des champs différents pour chaque QSO."
 
-#: application/views/logbookadvanced/printQsl.php:34
+#: application/views/logbookadvanced/printQsl.php:22
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
 #: application/views/qslprint/printqsl.php:22
+#: application/views/logbookadvanced/printQsl.php:34
 msgid ""
 "Print options (QSOs per card, background image, address printing) are set "
 "per template in the QSL Postcard Designer."
 msgstr ""
 
-#: application/views/logbookadvanced/printQsl.php:54
+#: application/views/logbookadvanced/printQsl.php:30
 #: application/views/qslpostcard/printqueue.php:22
 #: application/views/qslpostcard/printqueue_selected.php:28
 #: application/views/qslprint/printqsl.php:30
+#: application/views/logbookadvanced/printQsl.php:54
 msgid "Generate Postcard PDF"
 msgstr ""
 
-#: application/views/logbookadvanced/printQsl.php:65
+#: application/views/logbookadvanced/printQsl.php:41
 #: application/views/qslpostcard/printqueue.php:33
 #: application/views/qslpostcard/printqueue_selected.php:39
 #: application/views/qslprint/printqsl.php:42
+#: application/views/logbookadvanced/printQsl.php:65
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."

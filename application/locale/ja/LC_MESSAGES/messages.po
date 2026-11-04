@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-04 13:17+0000\n"
-"PO-Revision-Date: 2026-10-27 06:41+0000\n"
-"Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
+"POT-Creation-Date: 2026-11-02 06:45+0000\n"
+"PO-Revision-Date: 2026-11-04 13:11+0000\n"
+"Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
 "Language: ja\n"
@@ -1145,7 +1145,7 @@ msgstr "Clublog QSLインポート"
 
 #: application/controllers/Clublog.php:229
 msgid "No Club Log credentials provided."
-msgstr ""
+msgstr "Club Logの認証情報が提供されていません。"
 
 #: application/controllers/Contest_admin.php:42
 msgid "Contests Administration"
@@ -2914,7 +2914,7 @@ msgstr "LoTW ADIF情報"
 
 #: application/controllers/Lotw.php:679
 msgid "Downloaded LoTW report contains no matches."
-msgstr ""
+msgstr "ダウンロードしたLoTWレポートには一致するものがありません。"
 
 #: application/controllers/Lotw.php:727 application/controllers/Lotw.php:1030
 msgid "You have not defined your ARRL LoTW credentials!"
@@ -2922,36 +2922,41 @@ msgstr "ARRL LoTWの認証情報を設定していません！"
 
 #: application/controllers/Lotw.php:735
 msgid "No QSOs in log. LoTW download skipped."
-msgstr ""
+msgstr "ログにQSOがありません。LoTWのダウンロードをスキップしました。"
 
 #: application/controllers/Lotw.php:754
 #, php-format
 msgid "LoTW download failed for user %s: %s (%s)."
-msgstr ""
+msgstr "ユーザー %s のLoTWダウンロードに失敗しました: %s (%s）。"
 
 #: application/controllers/Lotw.php:757
 #, php-format
 msgid "LoTW download failed for user %s: unexpected HTTP status %s."
 msgstr ""
+"ユーザー %s のLoTWダウンロードに失敗しました: 予期しないHTTPステータス %s。"
 
 #: application/controllers/Lotw.php:761
 #, php-format
 msgid "LoTW download failed for user %s: Username/password incorrect"
 msgstr ""
+"ユーザー %s のLoTWダウンロードに失敗しました: ユーザー名またはパスワードが正"
+"しくありません"
 
 #: application/controllers/Lotw.php:770
 #, php-format
 msgid "LoTW download hit a rate limit for user %s"
-msgstr ""
+msgstr "ユーザー %s のLoTWダウンロードがレート制限に達しました"
 
 #: application/controllers/Lotw.php:775
 #, php-format
 msgid "Downloaded LoTW report for user %s is invalid. Check your credentials."
 msgstr ""
+"ユーザー %s のダウンロードしたLoTWレポートは無効です。認証情報を確認してくだ"
+"さい。"
 
 #: application/controllers/Lotw.php:906
 msgid "No LoTW User details found to carry out matches."
-msgstr ""
+msgstr "照合を実行するためのLoTWユーザー情報が見つかりません。"
 
 #: application/controllers/Lotw.php:970
 msgid "Connection to LoTW failed."
@@ -4558,6 +4563,8 @@ msgstr ""
 "キャッシュされたコールブックセッションキーの読み取り中に一般的なエラーが発生"
 "しました。"
 
+#: application/libraries/Callbook.php:244
+#: application/libraries/Callbook.php:258
 #: application/libraries/Callbook.php:282
 msgid "QRZCQ Error"
 msgstr "QRZCQ エラー"
@@ -5052,7 +5059,7 @@ msgstr "不明"
 
 #: application/models/Clublog_model.php:626
 msgid "Connection to Club Log failed."
-msgstr ""
+msgstr "Club Logへの接続に失敗しました。"
 
 #: application/models/Clublog_model.php:630
 #, php-format
@@ -5060,14 +5067,18 @@ msgid ""
 "Club Log login failed for user %s. Please check username, password and that "
 "the callsign %s belongs to this Club Log account."
 msgstr ""
+"ユーザー %s のClub Logへのログインに失敗しました。ユーザー名、パスワード、お"
+"よびコールサイン %s がこのClub Logアカウントに属していることを確認してくださ"
+"い。"
 
 #: application/models/Clublog_model.php:633
 msgid "Club Log currently not available. Try again later."
 msgstr ""
+"Club Logは現在ご利用いただけません。しばらくしてからもう一度お試しください。"
 
 #: application/models/Clublog_model.php:637
 msgid "Club Log login OK!"
-msgstr ""
+msgstr "Club Logへのログインに成功しました！"
 
 #: application/models/Contesting_import_model.php:219
 #, php-format
@@ -16558,7 +16569,7 @@ msgstr "色"
 #: application/views/user/edit.php:731
 #: application/views/visitor/layout/footer.php:13
 msgid "Night Shadow"
-msgstr ""
+msgstr "ナイトシャドウ"
 
 #: application/views/interface_assets/footer.php:58
 msgid "Post"
@@ -16593,7 +16604,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:66
 msgid "Reverse bearing"
-msgstr ""
+msgstr "逆方位"
 
 #: application/views/interface_assets/footer.php:67
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -17638,11 +17649,12 @@ msgid "No paper assigned"
 msgstr "課題が指定されていません"
 
 #: application/views/labeldesigner/designer.php:91
-#: application/views/logbookadvanced/printQsl.php:21
+#: application/views/logbookadvanced/printQsl.php:9
 #: application/views/qslpostcard/designer.php:67
 #: application/views/qslpostcard/printqueue.php:8
 #: application/views/qslpostcard/printqueue_selected.php:10
 #: application/views/qslprint/printqsl.php:9
+#: application/views/logbookadvanced/printQsl.php:21
 msgid "Template"
 msgstr "テンプレート"
 
@@ -17697,11 +17709,12 @@ msgid "PDF"
 msgstr "PDF"
 
 #: application/views/labeldesigner/designer.php:135
-#: application/views/logbookadvanced/printQsl.php:58
+#: application/views/logbookadvanced/printQsl.php:34
 #: application/views/qslpostcard/designer.php:99
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:32
 #: application/views/qslprint/printqsl.php:34
+#: application/views/logbookadvanced/printQsl.php:58
 msgid "Save PDF"
 msgstr "PDFで保存"
 
@@ -18180,10 +18193,10 @@ msgstr ""
 "てください。"
 
 #: application/views/labels/index.php:2
-#: application/views/logbookadvanced/printQsl.php:41
 #: application/views/logbookadvanced/startatform.php:125
 #: application/views/qslprint/printlabel.php:138
 #: application/views/qslprint/printqsl.php:37
+#: application/views/logbookadvanced/printQsl.php:41
 msgid "Mark QSL as printed"
 msgstr "QSLを印刷済みとしてマークする"
 
@@ -19577,10 +19590,11 @@ msgstr ""
 "選択されたフィールドは、メインのQSOに統合されます。各QSOから異なるフィールド"
 "を選択することも可能です。"
 
-#: application/views/logbookadvanced/printQsl.php:34
+#: application/views/logbookadvanced/printQsl.php:22
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
 #: application/views/qslprint/printqsl.php:22
+#: application/views/logbookadvanced/printQsl.php:34
 msgid ""
 "Print options (QSOs per card, background image, address printing) are set "
 "per template in the QSL Postcard Designer."
@@ -19588,17 +19602,19 @@ msgstr ""
 "印刷オプション（1枚あたりの交信回数、背景画像、宛名印刷など）は、QSLポスト"
 "カードデザイナーでテンプレートごとに設定します。"
 
-#: application/views/logbookadvanced/printQsl.php:54
+#: application/views/logbookadvanced/printQsl.php:30
 #: application/views/qslpostcard/printqueue.php:22
 #: application/views/qslpostcard/printqueue_selected.php:28
 #: application/views/qslprint/printqsl.php:30
+#: application/views/logbookadvanced/printQsl.php:54
 msgid "Generate Postcard PDF"
 msgstr "ポストカードのPDFを生成する"
 
-#: application/views/logbookadvanced/printQsl.php:65
+#: application/views/logbookadvanced/printQsl.php:41
 #: application/views/qslpostcard/printqueue.php:33
 #: application/views/qslpostcard/printqueue_selected.php:39
 #: application/views/qslprint/printqsl.php:42
+#: application/views/logbookadvanced/printQsl.php:65
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
@@ -20132,10 +20148,7 @@ msgid ""
 "%s of the active station location %s (%s)."
 msgstr ""
 "リストには、以下の範囲で作業されていないグリッドマスがすべて含まれています。 "
-"%d km グリッドスクエアの\n"
-"%s アクティブステーション位置の\n"
-"%s (\n"
-"%s )。"
+"%d km グリッドスクエアの %s アクティブステーション位置の %s ( %s )。"
 
 #: application/views/most_wanted_squares/index.php:34
 msgid "Exclude squares that contain no land"
@@ -22902,7 +22915,7 @@ msgstr "QO-100 Dxクラブ リアルタイムアップロード"
 #: application/views/station_profile/create.php:406
 #: application/views/station_profile/edit.php:434
 msgid "PSKReporter Live Reporting"
-msgstr ""
+msgstr "PSKReporterライブレポート"
 
 #: application/views/station_profile/create.php:411
 #: application/views/station_profile/edit.php:439
@@ -22910,6 +22923,8 @@ msgid ""
 "If enabled, QSOs logged live in the QSO form are reported to "
 "pskreporter.info in real time. QSOs older than one hour are not reported."
 msgstr ""
+"有効にすると、QSOフォームでリアルタイムに記録されたQSOがpskreporter.infoにリ"
+"アルタイムで報告されます。1時間以上前のQSOは報告されません。"
 
 #: application/views/station_profile/create.php:426
 #: application/views/station_profile/edit.php:454
@@ -24210,13 +24225,15 @@ msgstr ""
 
 #: application/views/user/edit.php:1193
 msgid "Fetch Club Log OQRS requests"
-msgstr ""
+msgstr "Club Log OQRSリクエストを取得"
 
 #: application/views/user/edit.php:1194
 msgid ""
 "If enabled, OQRS requests made via Club Log are fetched during the Club Log "
 "sync and matching QSOs are marked as requested."
 msgstr ""
+"有効にすると、Club Log経由で行われたOQRSリクエストがClub Logの同期中に取得さ"
+"れ、一致するQSOがリクエスト済みとしてマークされます。"
 
 #: application/views/user/edit.php:1207
 msgid "Widgets"

@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-04 13:17+0000\n"
-"PO-Revision-Date: 2026-10-26 20:10+0000\n"
+"POT-Creation-Date: 2026-11-02 06:45+0000\n"
+"PO-Revision-Date: 2026-11-02 08:00+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
@@ -1146,7 +1146,7 @@ msgstr "Import QSL z Clublog"
 
 #: application/controllers/Clublog.php:229
 msgid "No Club Log credentials provided."
-msgstr ""
+msgstr "Nebyly poskytnuty přihlašovací údaje Club Logu."
 
 #: application/controllers/Contest_admin.php:42
 msgid "Contests Administration"
@@ -2911,7 +2911,7 @@ msgstr "Informace LoTW ADIF"
 
 #: application/controllers/Lotw.php:679
 msgid "Downloaded LoTW report contains no matches."
-msgstr ""
+msgstr "Stažený výpis z LoTW neobsahuje žádné shody."
 
 #: application/controllers/Lotw.php:727 application/controllers/Lotw.php:1030
 msgid "You have not defined your ARRL LoTW credentials!"
@@ -2919,36 +2919,40 @@ msgstr "Nedefinovali jste své přihlašovací údaje ARRL LoTW!"
 
 #: application/controllers/Lotw.php:735
 msgid "No QSOs in log. LoTW download skipped."
-msgstr ""
+msgstr "V deníku nejsou žádná QSO. Stažení z LoTW přeskočeno."
 
 #: application/controllers/Lotw.php:754
 #, php-format
 msgid "LoTW download failed for user %s: %s (%s)."
-msgstr ""
+msgstr "Stažení z LoTW pro uživatele %s selhalo: %s (%s)."
 
 #: application/controllers/Lotw.php:757
 #, php-format
 msgid "LoTW download failed for user %s: unexpected HTTP status %s."
-msgstr ""
+msgstr "Stažení z LoTW pro uživatele %s selhalo: neočekávaný stav HTTP %s."
 
 #: application/controllers/Lotw.php:761
 #, php-format
 msgid "LoTW download failed for user %s: Username/password incorrect"
 msgstr ""
+"Stažení z LoTW pro uživatele %s selhalo: nesprávné uživatelské jméno nebo "
+"heslo"
 
 #: application/controllers/Lotw.php:770
 #, php-format
 msgid "LoTW download hit a rate limit for user %s"
-msgstr ""
+msgstr "Stažení z LoTW pro uživatele %s narazilo na limit rychlosti"
 
 #: application/controllers/Lotw.php:775
 #, php-format
 msgid "Downloaded LoTW report for user %s is invalid. Check your credentials."
 msgstr ""
+"Stažený výpis z LoTW pro uživatele %s je neplatný. Zkontrolujte své "
+"přihlašovací údaje."
 
 #: application/controllers/Lotw.php:906
 msgid "No LoTW User details found to carry out matches."
-msgstr ""
+msgstr "Nebyly nalezeny údaje uživatele LoTW potřebné k párování."
 
 #: application/controllers/Lotw.php:970
 msgid "Connection to LoTW failed."
@@ -3005,24 +3009,24 @@ msgstr "Mód %s byl aktualizován"
 #: application/controllers/Most_wanted_squares.php:22
 #: application/views/interface_assets/header.php:560
 msgid "Most Wanted Squares"
-msgstr ""
+msgstr "Nejžádanější lokátory"
 
 #: application/controllers/Most_wanted_squares.php:43
 msgid "Invalid band."
-msgstr ""
+msgstr "Neplatné pásmo."
 
 #: application/controllers/Most_wanted_squares.php:48
 #: application/views/most_wanted_squares/index.php:8
 msgid "The active station location has no gridsquare set."
-msgstr ""
+msgstr "Aktivní umístění stanice nemá nastavený lokátor."
 
 #: application/controllers/Most_wanted_squares.php:53
 msgid "The gridsquare of the active station location is invalid."
-msgstr ""
+msgstr "Lokátor aktivního umístění stanice je neplatný."
 
 #: application/controllers/Most_wanted_squares.php:90
 msgid "VUCC gridsquare data unavailable."
-msgstr ""
+msgstr "Data VUCC lokátorů nejsou dostupná."
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:158
@@ -4555,6 +4559,8 @@ msgstr "Obecná chyba při ukládání klíče relace callbooku do mezipaměti."
 msgid "Generic error reading the cached callbook session key."
 msgstr "Obecná chyba při čtení klíče relace callbooku z mezipaměti."
 
+#: application/libraries/Callbook.php:244
+#: application/libraries/Callbook.php:258
 #: application/libraries/Callbook.php:282
 msgid "QRZCQ Error"
 msgstr "Chyba QRZCQ"
@@ -5063,7 +5069,7 @@ msgstr "Neznámé"
 
 #: application/models/Clublog_model.php:626
 msgid "Connection to Club Log failed."
-msgstr ""
+msgstr "Připojení ke Club Logu selhalo."
 
 #: application/models/Clublog_model.php:630
 #, php-format
@@ -5071,14 +5077,16 @@ msgid ""
 "Club Log login failed for user %s. Please check username, password and that "
 "the callsign %s belongs to this Club Log account."
 msgstr ""
+"Přihlášení ke Club Logu se nezdařilo pro uživatele %s. Zkontrolujte "
+"uživatelské jméno, heslo a zda značka %s patří k tomuto účtu Club Log."
 
 #: application/models/Clublog_model.php:633
 msgid "Club Log currently not available. Try again later."
-msgstr ""
+msgstr "Club Log je momentálně nedostupný. Zkuste to později."
 
 #: application/models/Clublog_model.php:637
 msgid "Club Log login OK!"
-msgstr ""
+msgstr "Přihlášení ke Club Logu OK!"
 
 #: application/models/Contesting_import_model.php:219
 #, php-format
@@ -16543,7 +16551,7 @@ msgstr "Barvy"
 #: application/views/user/edit.php:731
 #: application/views/visitor/layout/footer.php:13
 msgid "Night Shadow"
-msgstr ""
+msgstr "Stín noci"
 
 #: application/views/interface_assets/footer.php:58
 msgid "Post"
@@ -16577,7 +16585,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:66
 msgid "Reverse bearing"
-msgstr ""
+msgstr "Zpětný azimut"
 
 #: application/views/interface_assets/footer.php:67
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -17622,11 +17630,12 @@ msgid "No paper assigned"
 msgstr "Nepřiřazen žádný papír"
 
 #: application/views/labeldesigner/designer.php:91
-#: application/views/logbookadvanced/printQsl.php:21
+#: application/views/logbookadvanced/printQsl.php:9
 #: application/views/qslpostcard/designer.php:67
 #: application/views/qslpostcard/printqueue.php:8
 #: application/views/qslpostcard/printqueue_selected.php:10
 #: application/views/qslprint/printqsl.php:9
+#: application/views/logbookadvanced/printQsl.php:21
 msgid "Template"
 msgstr "Šablona"
 
@@ -17681,11 +17690,12 @@ msgid "PDF"
 msgstr "PDF"
 
 #: application/views/labeldesigner/designer.php:135
-#: application/views/logbookadvanced/printQsl.php:58
+#: application/views/logbookadvanced/printQsl.php:34
 #: application/views/qslpostcard/designer.php:99
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:32
 #: application/views/qslprint/printqsl.php:34
+#: application/views/logbookadvanced/printQsl.php:58
 msgid "Save PDF"
 msgstr "Uložit PDF"
 
@@ -18165,10 +18175,10 @@ msgstr ""
 "například styl štítku."
 
 #: application/views/labels/index.php:2
-#: application/views/logbookadvanced/printQsl.php:41
 #: application/views/logbookadvanced/startatform.php:125
 #: application/views/qslprint/printlabel.php:138
 #: application/views/qslprint/printqsl.php:37
+#: application/views/logbookadvanced/printQsl.php:41
 msgid "Mark QSL as printed"
 msgstr "Označit QSL jako vytištěné"
 
@@ -19570,10 +19580,11 @@ msgstr ""
 "Vybraná pole budou sloučena do primárního QSO. Z každého QSO můžete vybrat "
 "jiná pole."
 
-#: application/views/logbookadvanced/printQsl.php:34
+#: application/views/logbookadvanced/printQsl.php:22
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
 #: application/views/qslprint/printqsl.php:22
+#: application/views/logbookadvanced/printQsl.php:34
 msgid ""
 "Print options (QSOs per card, background image, address printing) are set "
 "per template in the QSL Postcard Designer."
@@ -19581,17 +19592,19 @@ msgstr ""
 "Možnosti tisku (počet QSO na lístek, obrázek pozadí, tisk adresy) se "
 "nastavují pro každou šablonu v Návrháři QSL lístků."
 
-#: application/views/logbookadvanced/printQsl.php:54
+#: application/views/logbookadvanced/printQsl.php:30
 #: application/views/qslpostcard/printqueue.php:22
 #: application/views/qslpostcard/printqueue_selected.php:28
 #: application/views/qslprint/printqsl.php:30
+#: application/views/logbookadvanced/printQsl.php:54
 msgid "Generate Postcard PDF"
 msgstr "Vygenerovat PDF pohlednice"
 
-#: application/views/logbookadvanced/printQsl.php:65
+#: application/views/logbookadvanced/printQsl.php:41
 #: application/views/qslpostcard/printqueue.php:33
 #: application/views/qslpostcard/printqueue_selected.php:39
 #: application/views/qslprint/printqsl.php:42
+#: application/views/logbookadvanced/printQsl.php:65
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
@@ -20116,6 +20129,8 @@ msgstr "Vytvořit mód"
 msgid ""
 "Export a list of 4-digit gridsquares that have not been worked yet on VHF."
 msgstr ""
+"Exportovat seznam čtyřznakových lokátorů, které na VHF ještě nebyly "
+"pracovány."
 
 #: application/views/most_wanted_squares/index.php:21
 #, php-format
@@ -20123,10 +20138,12 @@ msgid ""
 "The list contains all not worked gridsquares within %d km of the gridsquare "
 "%s of the active station location %s (%s)."
 msgstr ""
+"Seznam obsahuje všechny nepracované lokátory do vzdálenosti %d km od "
+"lokátoru %s aktivního umístění stanice %s (%s)."
 
 #: application/views/most_wanted_squares/index.php:34
 msgid "Exclude squares that contain no land"
-msgstr ""
+msgstr "Vynechat lokátory, které neobsahují pevninu"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
@@ -22895,7 +22912,7 @@ msgstr "Nahrání QO-100 Dx Club v reálném čase"
 #: application/views/station_profile/create.php:406
 #: application/views/station_profile/edit.php:434
 msgid "PSKReporter Live Reporting"
-msgstr ""
+msgstr "Živé hlášení do PSKReporteru"
 
 #: application/views/station_profile/create.php:411
 #: application/views/station_profile/edit.php:439
@@ -22903,6 +22920,8 @@ msgid ""
 "If enabled, QSOs logged live in the QSO form are reported to "
 "pskreporter.info in real time. QSOs older than one hour are not reported."
 msgstr ""
+"Pokud je zapnuto, QSO zapsaná živě ve formuláři QSO se v reálném čase hlásí "
+"na pskreporter.info. QSO starší než jedna hodina se nehlásí."
 
 #: application/views/station_profile/create.php:426
 #: application/views/station_profile/edit.php:454
@@ -24197,13 +24216,15 @@ msgstr ""
 
 #: application/views/user/edit.php:1193
 msgid "Fetch Club Log OQRS requests"
-msgstr ""
+msgstr "Stahovat OQRS požadavky z Club Logu"
 
 #: application/views/user/edit.php:1194
 msgid ""
 "If enabled, OQRS requests made via Club Log are fetched during the Club Log "
 "sync and matching QSOs are marked as requested."
 msgstr ""
+"Pokud je zapnuto, během synchronizace s Club Logem se stáhnou OQRS požadavky "
+"podané přes Club Log a odpovídající QSO se označí jako vyžádaná."
 
 #: application/views/user/edit.php:1207
 msgid "Widgets"
