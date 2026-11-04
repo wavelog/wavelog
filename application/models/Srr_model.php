@@ -595,6 +595,7 @@ class Srr_model extends CI_Model {
 		$known = 0;
 		$not_found = 0;
 		$table = '';
+		$handled = array();
 		foreach ($callsigns as $callsign) {
 			$result = $this->srr_request('GET', '/qso/export?callsign='.urlencode($callsign).'&source=all&qslsince='.$qslsince, $key);
 			if ($result['error'] != '' || $result['httpcode'] != 200) {
@@ -609,6 +610,13 @@ class Srr_model extends CI_Model {
 				}
 
 				$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
+
+				$record_key = $this->record_key($record, $time_on);
+				if (isset($handled[$record_key])) {
+					continue;
+				}
+				$handled[$record_key] = true;
+
 				$status = $this->Logbook_model->import_check($time_on, $record['call'], strtolower($record['band']), $record['mode'], $record['prop_mode'] ?? '', $record['sat_name'] ?? '', $record['station_callsign'], $station_ids);
 
 				if ($status[0] != "Found") {
@@ -708,6 +716,7 @@ class Srr_model extends CI_Model {
 		$station_ids = $this->Stations->all_station_ids_of_user($user_id);
 
 		$verified_ids = array();
+		$handled = array();
 		foreach ($callsigns as $callsign) {
 			$result = $this->srr_request('GET', '/qso/export?callsign='.urlencode($callsign).'&source=all&from='.$from.'&to='.$to, $key);
 			if ($result['error'] != '' || $result['httpcode'] != 200) {
@@ -718,6 +727,13 @@ class Srr_model extends CI_Model {
 			$parser->feed($result['raw']);
 			while ($record = $parser->get_record()) {
 				$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
+
+				$record_key = $this->record_key($record, $time_on);
+				if (isset($handled[$record_key])) {
+					continue;
+				}
+				$handled[$record_key] = true;
+
 				$status = $this->Logbook_model->import_check($time_on, $record['call'], strtolower($record['band']), $record['mode'], $record['prop_mode'] ?? '', $record['sat_name'] ?? '', $record['station_callsign'], $station_ids);
 				if (($status[0] == "Found") && isset($pending[$status[1]])) {
 					$verified_ids[] = $status[1];
@@ -792,24 +808,45 @@ class Srr_model extends CI_Model {
 	}
 
 	/**
-	 * Returns the own and the delegated callsigns of the SRR account.
-	 * The SRR export of a callsign contains all QSOs of the SRR account,
-	 * so one request for the own and one for each delegated callsign is enough.
+	 * Returns the own and the delegated callsigns of the SRR account, each of them once
 	 *
 	 * @param object $me SRR user from get_srr_me()
 	 * @return array Callsigns
 	 */
 	private function srr_callsigns($me) {
 		$callsigns = array();
-		if (isset($me->callsigns[0]->callsign)) {
-			$callsigns[] = $me->callsigns[0]->callsign;
-		}
-		foreach (($me->delegated_callsigns ?? array()) as $delegated) {
-			if (($delegated->callsign ?? '') != '') {
-				$callsigns[] = $delegated->callsign;
+		foreach (array_merge($me->callsigns ?? array(), $me->delegated_callsigns ?? array()) as $item) {
+			$callsign = $item->callsign ?? '';
+			if (($callsign != '') && !isset($callsigns[strtoupper($callsign)])) {
+				$callsigns[strtoupper($callsign)] = $callsign;
 			}
 		}
-		return $callsigns;
+		return array_values($callsigns);
+	}
+
+	/**
+	 * Returns the key of a QSO to the minute
+	 *
+	 * @param string $station_callsign Station callsign
+	 * @param string $call Callsign of the worked station
+	 * @param string $band Band
+	 * @param string $time_on Date and time of the QSO as Y-m-d H:i
+	 * @return string
+	 */
+	private function minute_key($station_callsign, $call, $band, $time_on) {
+		return strtoupper($station_callsign).'|'.strtoupper($call).'|'.strtolower($band).'|'.$time_on;
+	}
+
+	/**
+	 * Returns the key of a record of the SRR export. The same QSO may be in
+	 * the export of several callsigns, the key is used to handle it only once.
+	 *
+	 * @param array $record ADIF record of the SRR export
+	 * @param string $time_on Date and time of the QSO as Y-m-d H:i
+	 * @return string
+	 */
+	private function record_key($record, $time_on) {
+		return $this->minute_key($record['station_callsign'], $record['call'], $record['band'], $time_on).'|'.strtoupper($record['mode']);
 	}
 
 	/**
