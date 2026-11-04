@@ -556,6 +556,19 @@ class Srr_model extends CI_Model {
 	 * @return string Result message with a table of the updated QSOs
 	 */
 	function download_user($user_id, $key, $from = null, $me = null) {
+		$this->load->model('Logbook_model');
+		$this->load->model('Stations');
+
+		$station_ids = $this->Stations->all_station_ids_of_user($user_id);
+		if ($station_ids == '') {
+			return __("No Station Profiles found");
+		}
+
+		// No QSOs in log, so there is nothing a download could match
+		if ($this->Logbook_model->total_qsos(explode(', ', $station_ids)) == 0) {
+			return __("No QSOs in log. SRR download skipped.");
+		}
+
 		if ($me === null) {
 			$me = $this->get_srr_me($key);
 		}
@@ -566,15 +579,8 @@ class Srr_model extends CI_Model {
 			return __("SRR could not be reached. Please try again later.");
 		}
 
-		$this->load->model('Logbook_model');
-		$this->load->model('Stations');
 		if (!$this->load->is_loaded('adif_parser')) {
 			$this->load->library('adif_parser');
-		}
-
-		$station_ids = $this->Stations->all_station_ids_of_user($user_id);
-		if ($station_ids == '') {
-			return __("No Station Profiles found");
 		}
 
 		if (($from ?? '') != '') {
