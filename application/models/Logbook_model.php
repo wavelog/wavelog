@@ -2080,7 +2080,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		$old_srr = ($qso->COL_SRR_QSL_SENT ?? '');
-		if (($old_srr == 'I' || $old_srr == 'Y') && $clublog_relevant_update && !$srr_modified) {	// Update only to "M" if uploaded before or Invalid (may be correct after update)
+		if (($old_srr == 'I' || $old_srr == 'Y' || $old_srr == 'Q') && $clublog_relevant_update && !$srr_modified) {	// Update only to "M" if uploaded before, queued or Invalid (may be correct after update)
 			$data['COL_SRR_QSL_SENT'] = 'M';
 		}
 
@@ -2139,7 +2139,7 @@ class Logbook_model extends CI_Model {
 			$this->set_clublog_modified($id);
 		}
 
-		if (($old_srr == 'I' || $old_srr == 'Y') && $clublog_relevant_update) {
+		if (($old_srr == 'I' || $old_srr == 'Y' || $old_srr == 'Q') && $clublog_relevant_update) {
 			$this->set_srr_modified($id);
 		}
 
@@ -3044,10 +3044,18 @@ class Logbook_model extends CI_Model {
 	/**
 	 * Set SRR upload status to 'modified'.
 	 *
+	 * Only mark rows that were already uploaded before, are queued or were invalid.
+	 *
 	 * @param int $qso_id  the QSO primary key (COL_PRIMARY_KEY)
 	 */
 	function set_srr_modified($qso_id) {
-		$this->set_modified_status($qso_id, 'COL_SRR_QSL_SENT');
+		$data = array(
+			'COL_SRR_QSL_SENT' => 'M'
+		);
+
+		$this->db->where('COL_PRIMARY_KEY', $qso_id);
+		$this->db->where_in('COL_SRR_QSL_SENT', array('Y', 'Q', 'I'));
+		$this->db->update($this->config->item('table_name'), $data);
 	}
 
 	/**
@@ -6513,7 +6521,8 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
-	 * Returns the QSOs of a station profile which are not yet uploaded to SRR
+	 * Returns the QSOs of a station profile which are not yet uploaded to SRR.
+	 * QSOs which are queued in the SRR inbox after an upload are not sent again.
 	 *
 	 * @param int $station_id Station profile id
 	 * @return CI_DB_result
@@ -6525,6 +6534,7 @@ class Logbook_model extends CI_Model {
 			' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
 			' where thcv.station_id = ?' .
 			' and (COL_SRR_QSL_SENT not in ("Y","I") OR COL_SRR_QSL_SENT is null)' .
+			' and not (coalesce(COL_SRR_QSL_SENT, "") = "Q" and exists (select 1 from srr_pending where srr_pending.qso_id = thcv.COL_PRIMARY_KEY))' .
 			' order by COL_TIME_ON';
 		$binding[] = $station_id;
 
@@ -6576,7 +6586,7 @@ class Logbook_model extends CI_Model {
 	 * Sets the SRR sent state and date of a QSO
 	 *
 	 * @param int $qso_id QSO primary key
-	 * @param string $state Y (uploaded) or I (rejected by SRR)
+	 * @param string $state Y (uploaded), Q (queued in the SRR inbox) or I (rejected by SRR)
 	 * @return string
 	 */
 	function mark_srr_sent($qso_id, $state = 'Y') {
@@ -6661,6 +6671,47 @@ class Logbook_model extends CI_Model {
 		$this->db->group_end();
 
 		$this->db->update($this->config->item('table_name'), $data);
+	}
+
+	/**
+	 * Marks QSOs as queued for SRR before they are sent
+	 *
+	 * @param array $qso_ids QSO primary keys
+	 * @return void
+	 */
+	function srr_mark_queued($qso_ids) {
+		$data = array(
+			'COL_SRR_QSLSDATE' => date("Y-m-d H:i:s"),
+			'COL_SRR_QSL_SENT' => 'Q',
+		);
+
+		foreach (array_chunk($qso_ids, 100) as $chunk) {
+			$this->db->where_in('COL_PRIMARY_KEY', $chunk);
+			$this->db->update($this->config->item('table_name'), $data);
+		}
+	}
+
+	/**
+	 * Stores the result of the verification of queued SRR QSOs. QSOs which are
+	 * found keep their upload date, QSOs which are not uploaded have no upload date.
+	 *
+	 * @param array $qso_ids QSO primary keys
+	 * @param string $state Y (found on SRR) or N (not found, sent again with the next upload)
+	 * @return void
+	 */
+	function srr_update_verified($qso_ids, $state) {
+		$data = array(
+			'COL_SRR_QSL_SENT' => $state,
+		);
+		if ($state == 'N') {
+			$data['COL_SRR_QSLSDATE'] = null;
+		}
+
+		foreach (array_chunk($qso_ids, 100) as $chunk) {
+			$this->db->where_in('COL_PRIMARY_KEY', $chunk);
+			$this->db->where('COL_SRR_QSL_SENT', 'Q');
+			$this->db->update($this->config->item('table_name'), $data);
+		}
 	}
 
 	function mark_lotw_sent($qso_id) {

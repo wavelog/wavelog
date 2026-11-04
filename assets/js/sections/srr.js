@@ -18,7 +18,9 @@ function ExportSrr(station_id, propmode_los, without_rda) {
 			$.each(data.info, function(index, value){
 				$('#modcount'+value.station_id).html(value.modcount);
 				$('#notcount'+value.station_id).html(value.notcount);
+				$('#queuedcount'+value.station_id).html(value.queuedcount);
 				$('#totcount'+value.station_id).html(value.totcount);
+				$('#rejcount'+value.station_id).html(value.rejcount);
 			});
 			if (data.status == 'rda') {
 				RdaSrr(station_id, propmode_los, data.rda_qsos);
@@ -31,29 +33,63 @@ function ExportSrr(station_id, propmode_los, without_rda) {
 			if (data.status == 'OK') {
 				$("#export").append('<div class="alert alert-success" role="alert">' + data.infomessage + '</div>');
 			}
+			if (data.remaining > 0) {
+				// The QSOs are marked as queued by the next request, the user does not wait for it
+				$('#modcount'+station_id).html('');
+				$('#notcount'+station_id).html('');
+				$('#queuedcount'+station_id).html((parseInt($('#queuedcount'+station_id).html()) || 0) + data.remaining);
+				UploadRemainingSrr(station_id, propmode_los, without_rda, data.uploaded, data.failed);
+			}
 			if (data.uploaded > 0) {
 				AcceptedSrr(data.verify_minutes);
 			}
-
-			if (data.hasOwnProperty("errormessages") && data.errormessages.length > 0) {
-				$("#export").append(
-					'<div class="errormessages">\n' +
-					'    <div class="card mt-2">\n' +
-					'        <div class="card-header bg-danger">\n' +
-					'            Error Message\n' +
-					'        </div>\n' +
-					'        <div class="card-body">\n' +
-					'            <div class="errors"></div>\n' +
-					'        </div>\n' +
-					'    </div>\n' +
-					'</div>'
-				);
-				$.each(data.errormessages, function (index, value) {
-					$(".errors").append('<li>' + value);
-				});
-			}
+			ErrorsSrr(data);
 		}
 	});
+}
+
+function UploadRemainingSrr(station_id, propmode_los, without_rda, uploaded, failed) {
+	$.ajax({
+		url: base_url + 'index.php/srr/upload_remaining',
+		type: 'post',
+		data: {'station_id': station_id, 'propmode_los': (propmode_los ? 1 : 0), 'without_rda': (without_rda ? 1 : 0), 'uploaded': uploaded, 'failed': failed},
+		success: function (data) {
+			$.each(data.info, function(index, value){
+				$('#modcount'+value.station_id).html(value.modcount);
+				$('#notcount'+value.station_id).html(value.notcount);
+				$('#queuedcount'+value.station_id).html(value.queuedcount);
+				$('#totcount'+value.station_id).html(value.totcount);
+				$('#rejcount'+value.station_id).html(value.rejcount);
+			});
+			if (data.status == 'OK' && data.infomessage != '') {
+				$("#export .alert").remove();
+				$("#export").append('<div class="alert alert-success" role="alert">' + data.infomessage + '</div>');
+			}
+			ErrorsSrr(data);
+		}
+	});
+}
+
+function ErrorsSrr(data) {
+	if (data.hasOwnProperty("errormessages") && data.errormessages.length > 0) {
+		if ($(".errormessages").length == 0) {
+			$("#export").append(
+				'<div class="errormessages">\n' +
+				'    <div class="card mt-2">\n' +
+				'        <div class="card-header bg-danger">\n' +
+				'            Error Message\n' +
+				'        </div>\n' +
+				'        <div class="card-body">\n' +
+				'            <div class="errors"></div>\n' +
+				'        </div>\n' +
+				'    </div>\n' +
+				'</div>'
+			);
+		}
+		$.each(data.errormessages, function (index, value) {
+			$(".errors").append('<li>' + value);
+		});
+	}
 }
 
 function RdaSrr(station_id, propmode_los, qsos) {

@@ -100,7 +100,9 @@
 					<td>' . __("Station callsign") . '</td>
 					<td>' . __("Edited QSOs not uploaded") . '</td>
 					<td>' . __("Total QSOs not uploaded") . '</td>
+					<td>' . __("Total QSOs queued") . '</td>
 					<td>' . __("Total QSOs uploaded") . '</td>
+					<td>' . __("Total QSOs rejected") . '</td>
 					<td>' . __("Actions") . '</td>
 				</thead>
 				<tbody>';
@@ -110,7 +112,9 @@
 					echo '<td><span class="callsign">' . $station->station_callsign . '</span></td>';
 					echo '<td id ="modcount'.$station->station_id.'">' . $station->modcount . '</td>';
 					echo '<td id ="notcount'.$station->station_id.'">' . $station->notcount . '</td>';
+					echo '<td id ="queuedcount'.$station->station_id.'">' . $station->queuedcount . '</td>';
 					echo '<td id ="totcount'.$station->station_id.'">' . $station->totcount . '</td>';
+					echo '<td id ="rejcount'.$station->station_id.'">' . $station->rejcount . '</td>';
 					echo '<td><button id="srrUpload" type="button" name="srrUpload" class="btn btn-primary btn-sm ld-ext-right ld-ext-right-'.$station->station_id.'" onclick="ExportSrr('. $station->station_id .')"><i class="fas fa-cloud-upload-alt"></i> ' . __("Upload") . '<div class="ld ld-ring ld-spin"></div></button></td>';
 					echo '</tr>';
 				}
@@ -158,6 +162,6 @@
 	var lang_srr_date = "<?= __("Date"); ?>";
 	var lang_srr_band = "<?= __("Band"); ?>";
 	var lang_srr_mode = "<?= __("Mode"); ?>";
-	var lang_srr_accepted_title = "<?= __("QSOs accepted by SRR"); ?>";
-	var lang_srr_accepted_message = "<?= __("Your QSOs have been accepted by SRR. They will be processed within about %d minutes. We recommend downloading the confirmations afterwards."); ?>";
+	var lang_srr_accepted_title = "<?= __("QSOs sent to SRR"); ?>";
+	var lang_srr_accepted_message = "<?= __("Your QSOs are being sent to SRR. SRR should process them within about %d minutes. We recommend downloading the confirmations afterwards. Rejected QSOs are counted in the table, stay on this page to see the reasons."); ?>";
 </script>

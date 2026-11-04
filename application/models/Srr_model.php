@@ -10,11 +10,14 @@ class Srr_model extends CI_Model {
 	// Number of requests sent at the same time, 0 = all at once
 	private $max_parallel = 0;
 
-	// Minimum minutes after the upload until QSOs in the SRR inbox are verified
+	// Minimum minutes shown to the user until QSOs in the SRR inbox are processed
 	private $verify_min = 15;
 
-	// QSOs per minute which SRR processes from its inbox (measured), used for the verification time
+	// QSOs per minute which SRR processes from its inbox (measured), used for the shown time and the deadline
 	private $srr_rate = 50;
+
+	// Minimum minutes after the upload until QSOs which SRR did not process are uploaded again
+	private $pending_deadline_min = 1440;
 
 	/**
 	 * Returns the stored SRR API key of a user
@@ -123,7 +126,7 @@ class Srr_model extends CI_Model {
 
 	/**
 	 * Returns the station profiles of a user with the counts of modified,
-	 * not uploaded and uploaded QSOs
+	 * not uploaded, queued (in the SRR inbox), uploaded and rejected QSOs
 	 *
 	 * @param int|null $user_id User id, the logged in user if null
 	 * @return CI_DB_result
@@ -133,7 +136,7 @@ class Srr_model extends CI_Model {
 			$user_id = $this->session->userdata('user_id');
 		}
 		$bindings=[];
-		$sql = "SELECT station_profile.station_id, station_profile.station_profile_name, station_profile.station_callsign, modc.modcount, notc.notcount, totc.totcount
+		$sql = "SELECT station_profile.station_id, station_profile.station_profile_name, station_profile.station_callsign, modc.modcount, notc.notcount, quec.queuedcount, totc.totcount, rejc.rejcount
 			FROM station_profile
 			LEFT OUTER JOIN (
 				SELECT count(*) modcount, station_id
@@ -149,11 +152,24 @@ class Srr_model extends CI_Model {
 			group by station_id
 		) as notc on station_profile.station_id = notc.station_id
 		LEFT OUTER JOIN (
+			SELECT count(*) queuedcount, station_id
+			FROM " . $this->config->item('table_name') .
+			" INNER JOIN srr_pending ON srr_pending.qso_id = COL_PRIMARY_KEY
+			WHERE COL_SRR_QSL_SENT = 'Q'
+			group by station_id
+		) as quec on station_profile.station_id = quec.station_id
+		LEFT OUTER JOIN (
 			SELECT count(*) totcount, station_id
 			FROM " . $this->config->item('table_name') .
 			" WHERE COL_SRR_QSL_SENT = 'Y'
 			group by station_id
 		) as totc on station_profile.station_id = totc.station_id
+		LEFT OUTER JOIN (
+			SELECT count(*) rejcount, station_id
+			FROM " . $this->config->item('table_name') .
+			" WHERE COL_SRR_QSL_SENT = 'I'
+			group by station_id
+		) as rejc on station_profile.station_id = rejc.station_id
 		WHERE station_profile.user_id = ?
 		ORDER BY station_profile.station_callsign, station_profile.station_profile_name";
 		$bindings[]=$user_id;
@@ -163,11 +179,7 @@ class Srr_model extends CI_Model {
 	}
 
 	/**
-	 * Uploads all not yet uploaded QSOs of a station profile to SRR.
-	 *
-	 * A first request with a few QSOs checks that SRR accepts them, then all other
-	 * QSOs are sent in requests of 100 QSOs at the same time. QSOs which SRR did not
-	 * process yet (inbox) are stored and verified later by verify_pending().
+	 * Returns the QSOs of a station profile which can be uploaded to SRR now.
 	 *
 	 * QSOs on 2m and above need a PROP_MODE. If there are QSOs without one,
 	 * nothing is uploaded and the QSOs are returned (status "propmode") so the
@@ -181,17 +193,17 @@ class Srr_model extends CI_Model {
 	 * @param bool $propmode_los Send QSOs on 2m and above without PROP_MODE with PROP_MODE LOS and store it in the QSOs
 	 * @param bool $interactive FALSE (cron): skip QSOs instead of returning them for a dialog
 	 * @param bool $without_rda Send QSOs without a valid RDA without MY_CNTY
-	 * @return array status, infomessage, errormessages, the number of uploaded QSOs (uploaded), the minutes until the verification (verify_minutes) and the QSOs for the dialogs (qsos, rda_qsos)
+	 * @param array $result Upload result, gets the status, the messages and the QSOs for the dialogs
+	 * @return array QSOs to upload, empty if there is nothing to upload now
 	 */
-	function upload_station($station_profile, $key, $propmode_los = false, $interactive = true, $without_rda = false) {
-		$result = array('status' => 'OK', 'infomessage' => '', 'errormessages' => array(), 'qsos' => array());
+	private function prepare_upload($station_profile, $key, $propmode_los, $interactive, $without_rda, &$result) {
 		$station_text = $station_profile->station_callsign." (".$station_profile->station_profile_name."): ";
 
 		$rda_list = $this->get_srr_rda($key);
 		if ($rda_list === false) {
 			$result['status'] = 'Error';
 			$result['errormessages'][] = $station_text.__("Could not load the RDA list from SRR.");
-			return $result;
+			return array();
 		}
 
 		$this->load->model('Logbook_model');
@@ -210,7 +222,7 @@ class Srr_model extends CI_Model {
 		// Nothing to upload
 		if (empty($qsos)) {
 			$result['infomessage'] = $station_text.__("No QSOs to upload.");
-			return $result;
+			return array();
 		}
 
 		// QSOs on 2m and above need a PROP_MODE
@@ -241,7 +253,7 @@ class Srr_model extends CI_Model {
 
 		if (count($result['qsos']) > 0) {
 			$result['status'] = 'propmode';
-			return $result;
+			return array();
 		}
 
 		// The user chose LOS for these QSOs, so it is stored in the QSOs too
@@ -281,21 +293,45 @@ class Srr_model extends CI_Model {
 
 		if (count($result['rda_qsos']) > 0) {
 			$result['status'] = 'rda';
-			return $result;
+			return array();
 		}
 
 		if ($skipped > 0) {
 			$result['errormessages'][] = $station_text.sprintf(__("%d QSO(s) have no valid RDA district and were not uploaded."), $skipped);
 		}
 
-		$uploaded = 0;
-		$failed = 0;
-		$pending_ids = array();
+		return $upload_qsos;
+	}
+
+	/**
+	 * Uploads the not yet uploaded QSOs of a station profile to SRR.
+	 *
+	 * A first request with a few QSOs checks that SRR accepts them. The user does not
+	 * wait for all other QSOs: the result is returned with the number of the remaining
+	 * QSOs (remaining) and the browser starts upload_remaining() right away.
+	 * Without user interaction (cron) all QSOs are sent here.
+	 *
+	 * @param object $station_profile Station profile row
+	 * @param string $key SRR API key
+	 * @param bool $propmode_los Send QSOs on 2m and above without PROP_MODE with PROP_MODE LOS and store it in the QSOs
+	 * @param bool $interactive FALSE (cron): skip QSOs instead of returning them for a dialog and send all QSOs
+	 * @param bool $without_rda Send QSOs without a valid RDA without MY_CNTY
+	 * @return array status, infomessage, errormessages, the numbers of uploaded and rejected QSOs (uploaded, failed), the number of QSOs for upload_remaining() (remaining), the minutes until SRR should have processed them (verify_minutes) and the QSOs for the dialogs (qsos, rda_qsos)
+	 */
+	function upload_station($station_profile, $key, $propmode_los = false, $interactive = true, $without_rda = false) {
+		$result = array('status' => 'OK', 'infomessage' => '', 'errormessages' => array(), 'qsos' => array());
+		$station_text = $station_profile->station_callsign." (".$station_profile->station_profile_name."): ";
+
+		$upload_qsos = $this->prepare_upload($station_profile, $key, $propmode_los, $interactive, $without_rda, $result);
+		if (empty($upload_qsos)) {
+			return $result;
+		}
+
 		$result['uploaded'] = 0;
 
 		// A first small request checks that SRR accepts our QSOs before all others are sent
 		$probe = array_slice($upload_qsos, 0, $this->probe_size);
-		$chunks = array_chunk(array_slice($upload_qsos, $this->probe_size), 100);
+		$remaining = array_slice($upload_qsos, $this->probe_size);
 		$upload_qsos = '';
 
 		$response = $this->post_qsos($this->build_records($probe), $key);
@@ -306,18 +342,119 @@ class Srr_model extends CI_Model {
 		}
 
 		$marked = $this->mark_chunk($probe, $response['data'], $station_text);
-		$uploaded += $marked['uploaded'];
-		$failed += $marked['failed'];
-		$pending_ids = array_merge($pending_ids, $marked['pending']);
 		$result['errormessages'] = array_merge($result['errormessages'], $marked['errormessages']);
 
-		if (($marked['uploaded'] == 0) && (count($chunks) > 0)) {
+		if (($marked['uploaded'] == 0) && (count($remaining) > 0)) {
 			$result['status'] = 'Error';
-			$result['errormessages'][] = $station_text.__("All test QSOs were rejected by SRR, the remaining QSOs were not uploaded.");
+			$result['errormessages'][] = $station_text.sprintf(__("SRR rejected all %d QSOs of the first request, so the upload was stopped and %d QSOs were not sent. The rejected QSOs are marked as invalid, the next upload continues with the other QSOs."), count($probe), count($remaining));
 			return $result;
 		}
 
-		// All other QSOs are sent in requests of 100 QSOs at the same time
+		// SRR processes about srr_rate QSOs per minute from its inbox, which may still hold an earlier upload.
+		// This time is shown to the user, rounded up to 5 minutes, but not less than verify_min minutes.
+		$inbox_minutes = (count($marked['pending']) + count($remaining) + $this->count_pending($station_profile->user_id)) / $this->srr_rate;
+		$result['verify_minutes'] = max($this->verify_min, (int)ceil($inbox_minutes / 5) * 5);
+		$this->add_pending($marked['pending'], $this->pending_deadline($inbox_minutes));
+
+		$result['uploaded'] = $marked['uploaded'];
+		$result['failed'] = $marked['failed'];
+
+		if ($interactive && (count($remaining) > 0)) {
+			$result['remaining'] = count($remaining);
+			$result['infomessage'] = $station_text.sprintf(__("%d QSOs queued for upload to SRR"), $marked['uploaded'] + count($remaining));
+			return $result;
+		}
+
+		$sent = $this->send_remaining($remaining, $station_profile, $key, $result);
+		$result['uploaded'] += $sent['uploaded'];
+		$result['failed'] += $sent['failed'];
+		$result['infomessage'] = $this->upload_message($station_text, $result['uploaded'], $result['failed']);
+		return $result;
+	}
+
+	/**
+	 * Uploads the QSOs which remain after the first request of upload_station().
+	 * The browser starts it right after upload_station() and does not need to wait for it.
+	 *
+	 * @param object $station_profile Station profile row
+	 * @param string $key SRR API key
+	 * @param bool $propmode_los Send QSOs on 2m and above without PROP_MODE with PROP_MODE LOS and store it in the QSOs
+	 * @param bool $without_rda Send QSOs without a valid RDA without MY_CNTY
+	 * @param int $probe_uploaded Number of QSOs uploaded by upload_station(), for the message
+	 * @param int $probe_failed Number of QSOs rejected in upload_station(), for the message
+	 * @return array status, infomessage, errormessages and the numbers of uploaded and rejected QSOs (uploaded, failed)
+	 */
+	function upload_remaining($station_profile, $key, $propmode_los = false, $without_rda = false, $probe_uploaded = 0, $probe_failed = 0) {
+		$result = array('status' => 'OK', 'infomessage' => '', 'errormessages' => array(), 'qsos' => array(), 'uploaded' => 0, 'failed' => 0);
+		$station_text = $station_profile->station_callsign." (".$station_profile->station_profile_name."): ";
+
+		$upload_qsos = $this->prepare_upload($station_profile, $key, $propmode_los, false, $without_rda, $result);
+		if (empty($upload_qsos)) {
+			return $result;
+		}
+
+		$sent = $this->send_remaining($upload_qsos, $station_profile, $key, $result);
+		$result['uploaded'] = $sent['uploaded'];
+		$result['failed'] = $sent['failed'];
+		$result['infomessage'] = $this->upload_message($station_text, $probe_uploaded + $sent['uploaded'], $probe_failed + $sent['failed']);
+		return $result;
+	}
+
+	/**
+	 * Returns the result message of an upload
+	 *
+	 * @param string $station_text Prefix of the message
+	 * @param int $uploaded Number of uploaded QSOs
+	 * @param int $failed Number of rejected QSOs
+	 * @return string Message
+	 */
+	private function upload_message($station_text, $uploaded, $failed) {
+		$message = $station_text.__("Upload Successful")." ".$uploaded." QSOs";
+		if ($failed > 0) {
+			$message .= ", ".sprintf(__("%d QSO(s) rejected by SRR and marked as invalid"), $failed);
+		}
+		return $message;
+	}
+
+	/**
+	 * Returns the minutes until SRR must have processed queued QSOs. QSOs which
+	 * it still has not processed after this time are uploaded again, see verify_pending().
+	 *
+	 * @param float $inbox_minutes Estimated minutes until SRR has processed its inbox
+	 * @return int Minutes
+	 */
+	private function pending_deadline($inbox_minutes) {
+		return max($this->pending_deadline_min, (int)ceil(2 * $inbox_minutes));
+	}
+
+	/**
+	 * Marks QSOs as queued and sends them in requests of 100 QSOs at the same time.
+	 * QSOs which SRR processes during the request are marked by its response, the
+	 * others stay queued and are verified later by verify_pending(). The QSOs of a
+	 * failed request are set to not uploaded and are sent next time.
+	 *
+	 * @param array $qsos QSOs to upload
+	 * @param object $station_profile Station profile row
+	 * @param string $key SRR API key
+	 * @param array $result Upload result, gets the status and the error messages
+	 * @return array Numbers of uploaded and rejected QSOs (uploaded, failed)
+	 */
+	private function send_remaining($qsos, $station_profile, $key, &$result) {
+		$sent = array('uploaded' => 0, 'failed' => 0);
+		if (empty($qsos)) {
+			return $sent;
+		}
+
+		$station_text = $station_profile->station_callsign." (".$station_profile->station_profile_name."): ";
+
+		$qso_ids = array_column($qsos, 'COL_PRIMARY_KEY');
+		$inbox_minutes = (count($qso_ids) + $this->count_pending($station_profile->user_id)) / $this->srr_rate;
+		$this->Logbook_model->srr_mark_queued($qso_ids);
+		$this->add_pending($qso_ids, $this->pending_deadline($inbox_minutes));
+
+		$chunks = array_chunk($qsos, 100);
+		$qsos = '';
+
 		$mh = curl_multi_init();
 		$active_handles = array();
 		$queue_index = 0;
@@ -340,16 +477,19 @@ class Srr_model extends CI_Model {
 				unset($active_handles[(int)$ch]);
 				curl_multi_remove_handle($mh, $ch);
 
+				$chunk_ids = array_column($chunk, 'COL_PRIMARY_KEY');
 				$response = $this->post_result($this->srr_response($ch, curl_multi_getcontent($ch), $info['result']));
 				if ($response['error'] != '') {
-					// The QSOs of this request stay not uploaded and are sent next time
+					// The QSOs of this request are not uploaded and are sent next time
+					$this->Logbook_model->srr_update_verified($chunk_ids, 'N');
+					$this->remove_pending($chunk_ids);
 					$result['status'] = 'Error';
 					$result['errormessages'][] = $station_text.__("Upload Failed")." - ".$response['error'];
 				} else {
-					$marked = $this->mark_chunk($chunk, $response['data'], $station_text);
-					$uploaded += $marked['uploaded'];
-					$failed += $marked['failed'];
-					$pending_ids = array_merge($pending_ids, $marked['pending']);
+					$marked = $this->mark_chunk($chunk, $response['data'], $station_text, true);
+					$this->remove_pending(array_diff($chunk_ids, $marked['pending']));
+					$sent['uploaded'] += $marked['uploaded'];
+					$sent['failed'] += $marked['failed'];
 					$result['errormessages'] = array_merge($result['errormessages'], $marked['errormessages']);
 				}
 
@@ -368,17 +508,7 @@ class Srr_model extends CI_Model {
 
 		curl_multi_close($mh);
 
-		// SRR processes about srr_rate QSOs per minute from its inbox. The QSOs are verified
-		// after this time, rounded up to 5 minutes, but not before verify_min minutes.
-		$result['verify_minutes'] = max($this->verify_min, (int)ceil(count($pending_ids) / $this->srr_rate / 5) * 5);
-		$this->add_pending($pending_ids, $result['verify_minutes']);
-
-		$result['uploaded'] = $uploaded;
-		$result['infomessage'] = $station_text.__("Upload Successful")." ".$uploaded." QSOs";
-		if ($failed > 0) {
-			$result['infomessage'] .= ", ".sprintf(__("%d QSO(s) rejected by SRR and marked as invalid"), $failed);
-		}
-		return $result;
+		return $sent;
 	}
 
 	/**
@@ -486,10 +616,25 @@ class Srr_model extends CI_Model {
 	}
 
 	/**
+	 * Returns the number of QSOs of a user which SRR accepted but did not process yet (inbox)
+	 *
+	 * @param int $user_id User id
+	 * @return int Number of QSOs
+	 */
+	private function count_pending($user_id) {
+		$sql = "SELECT count(*) AS pending
+			FROM srr_pending
+			INNER JOIN " . $this->config->item('table_name') . " qsos ON qsos.COL_PRIMARY_KEY = srr_pending.qso_id
+			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
+			WHERE station_profile.user_id = ?";
+		return (int)$this->db->query($sql, array($user_id))->row()->pending;
+	}
+
+	/**
 	 * Stores uploaded QSOs which SRR accepted but did not process yet (inbox)
 	 *
 	 * @param array $qso_ids QSO primary keys
-	 * @param int $minutes Minutes until the QSOs are verified
+	 * @param int $minutes Minutes until SRR must have processed the QSOs (deadline)
 	 * @return void
 	 */
 	function add_pending($qso_ids, $minutes) {
@@ -507,9 +652,23 @@ class Srr_model extends CI_Model {
 	}
 
 	/**
-	 * Verifies the uploaded QSOs of a user which SRR did not process during the upload (inbox).
-	 * QSOs found in the SRR export stay uploaded, QSOs not found are marked as invalid.
-	 * Only QSOs whose verification time (see upload_station()) has passed are checked.
+	 * Removes QSOs from the list of QSOs which SRR did not process yet
+	 *
+	 * @param array $qso_ids QSO primary keys
+	 * @return void
+	 */
+	private function remove_pending($qso_ids) {
+		foreach (array_chunk($qso_ids, 100) as $chunk) {
+			$this->db->where_in('qso_id', $chunk);
+			$this->db->delete('srr_pending');
+		}
+	}
+
+	/**
+	 * Verifies the queued QSOs of a user which SRR did not process during the upload (inbox).
+	 * QSOs found in the SRR export are marked as uploaded. QSOs not found are probably still in
+	 * the inbox and stay queued. After their deadline (see upload_station()) they are marked
+	 * as not uploaded, so the next upload sends them again.
 	 *
 	 * @param int $user_id User id
 	 * @param string $key SRR API key
@@ -526,16 +685,16 @@ class Srr_model extends CI_Model {
 		// QSOs which were deleted or set to another SRR state in the meantime need no verification
 		$sql = "DELETE srr_pending FROM srr_pending
 			LEFT OUTER JOIN " . $this->config->item('table_name') . " qsos ON qsos.COL_PRIMARY_KEY = srr_pending.qso_id
-			WHERE qsos.COL_PRIMARY_KEY IS NULL OR coalesce(qsos.COL_SRR_QSL_SENT, '') <> 'Y'";
+			WHERE qsos.COL_PRIMARY_KEY IS NULL OR coalesce(qsos.COL_SRR_QSL_SENT, '') <> 'Q'";
 		$this->db->query($sql);
 
-		$sql = "SELECT srr_pending.qso_id, qsos.COL_CALL, qsos.COL_TIME_ON, qsos.COL_BAND
+		$sql = "SELECT srr_pending.qso_id, srr_pending.verify_date, qsos.COL_CALL, qsos.COL_TIME_ON, qsos.COL_BAND
 			FROM srr_pending
 			INNER JOIN " . $this->config->item('table_name') . " qsos ON qsos.COL_PRIMARY_KEY = srr_pending.qso_id
 			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
-			WHERE station_profile.user_id = ? AND srr_pending.verify_date <= ?
+			WHERE station_profile.user_id = ?
 			ORDER BY qsos.COL_TIME_ON";
-		$rows = $this->db->query($sql, array($user_id, date("Y-m-d H:i:s")))->result();
+		$rows = $this->db->query($sql, array($user_id))->result();
 
 		$callsigns = $this->srr_callsigns($me);
 		if (empty($rows) || empty($callsigns)) {
@@ -569,29 +728,38 @@ class Srr_model extends CI_Model {
 			}
 		}
 
-		$r = sprintf(__("%d uploaded QSO(s) verified on SRR, %d not found and marked as invalid."), count($verified_ids), count($pending));
+		$now = date("Y-m-d H:i:s");
+		$expired_ids = array();
+		$expired_text = '';
 		foreach ($pending as $qso_id => $qso) {
-			$this->Logbook_model->mark_srr_sent($qso_id, 'I');
-			$r .= "<br>".$qso->COL_CALL." ".date('Y-m-d H:i', strtotime($qso->COL_TIME_ON))." ".$qso->COL_BAND." - ".__("not found on SRR after processing. Please check the API requests in your SRR panel.");
+			if ($qso->verify_date <= $now) {
+				$expired_ids[] = $qso_id;
+				$expired_text .= "<br>".$qso->COL_CALL." ".date('Y-m-d H:i', strtotime($qso->COL_TIME_ON))." ".$qso->COL_BAND." - ".__("not found on SRR, it will be sent again with the next upload. Please check the API requests in your SRR panel.");
+			}
 		}
 
-		$this->db->where_in('qso_id', array_merge($verified_ids, array_keys($pending)));
-		$this->db->delete('srr_pending');
+		$this->Logbook_model->srr_update_verified($verified_ids, 'Y');
+		$this->Logbook_model->srr_update_verified($expired_ids, 'N');
 
-		return $r;
+		$this->remove_pending(array_merge($verified_ids, $expired_ids));
+
+		$r = sprintf(__("%d uploaded QSO(s) verified on SRR, %d still being processed by SRR, %d not found and set to not uploaded."), count($verified_ids), count($pending) - count($expired_ids), count($expired_ids));
+
+		return $r.$expired_text;
 	}
 
 	/**
 	 * Marks the QSOs of one request by the SRR response. QSOs with an error are
-	 * marked as invalid, all others as uploaded. If SRR did not process all
-	 * accepted QSOs yet (inbox), the uploaded QSOs are returned as pending for a later verification.
+	 * marked as invalid, all others as uploaded. If SRR did not process all accepted QSOs
+	 * yet (inbox), they are marked as queued and returned as pending for a later verification.
 	 *
 	 * @param array $chunk QSO rows of the request
 	 * @param object $data Decoded SRR response
 	 * @param string $station_text Prefix for the error messages
+	 * @param bool $marked_queued TRUE if the QSOs are already marked as queued and stored as pending
 	 * @return array uploaded, failed, errormessages and the ids of the pending QSOs (pending)
 	 */
-	private function mark_chunk($chunk, $data, $station_text) {
+	private function mark_chunk($chunk, $data, $station_text, $marked_queued = false) {
 		$result = array('uploaded' => 0, 'failed' => 0, 'errormessages' => array(), 'pending' => array());
 
 		$qso_errors = array();
@@ -606,6 +774,8 @@ class Srr_model extends CI_Model {
 			}
 		}
 
+		$queued = (int)($data->process->processed ?? 0) < (int)($data->accepted ?? count($chunk));
+
 		$uploaded_ids = array();
 		foreach ($chunk as $index => $qso) {
 			if (isset($qso_errors[$index])) {
@@ -613,13 +783,16 @@ class Srr_model extends CI_Model {
 				$result['errormessages'][] = $station_text.$qso->COL_CALL." ".date('Y-m-d H:i', strtotime($qso->COL_TIME_ON))." ".$qso->COL_BAND." - ".$qso_errors[$index];
 				$result['failed']++;
 			} else {
-				$this->Logbook_model->mark_srr_sent($qso->COL_PRIMARY_KEY);
+				// A download may already have verified a QSO which is marked as queued, so it is not marked again
+				if (!$queued || !$marked_queued) {
+					$this->Logbook_model->mark_srr_sent($qso->COL_PRIMARY_KEY, $queued ? 'Q' : 'Y');
+				}
 				$uploaded_ids[] = $qso->COL_PRIMARY_KEY;
 				$result['uploaded']++;
 			}
 		}
 
-		if ((int)($data->process->processed ?? 0) < (int)($data->accepted ?? count($chunk))) {
+		if ($queued) {
 			$result['pending'] = $uploaded_ids;
 		}
 

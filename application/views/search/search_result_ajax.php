@@ -453,7 +453,7 @@ $ci =& get_instance();
                 echo ' class="srr-';
        		if ($row->COL_SRR_QSL_SENT=='Y') {
 			echo "green";
-		} elseif ($row->COL_SRR_QSL_SENT=='M') {
+		} elseif ($row->COL_SRR_QSL_SENT=='M' || $row->COL_SRR_QSL_SENT=='Q') {
 			echo "yellow";
 		} else {
 			echo "red";

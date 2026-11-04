@@ -731,6 +731,7 @@ $options = json_decode($options);
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="Y"><?= __("Yes"); ?></option>
                                             <option value="N"><?= __("No"); ?></option>
+                                            <option value="Q"><?= __("Queued"); ?></option>
                                             <option value="I"><?= __("Invalid (Ignore)"); ?></option>
                                         </select>
                                     </div>

@@ -92,6 +92,26 @@ class Srr extends CI_Controller {
 	 * @return void Echoes the upload result and the updated statistics as JSON
 	 */
 	public function upload_station() {
+		$this->upload(false);
+	}
+
+	/**
+	 * Uploads the QSOs which remain after upload_station(). The browser starts it
+	 * right after upload_station() and the user does not need to wait for it.
+	 *
+	 * @return void Echoes the upload result and the updated statistics as JSON
+	 */
+	public function upload_remaining() {
+		$this->upload(true);
+	}
+
+	/**
+	 * Runs the first or the second part of an upload for the posted station profile
+	 *
+	 * @param bool $remaining TRUE: the QSOs which remain after the first part
+	 * @return void Echoes the upload result and the updated statistics as JSON
+	 */
+	private function upload($remaining) {
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		ini_set('memory_limit', '-1');
 
@@ -114,7 +134,11 @@ class Srr extends CI_Controller {
 			$data['errormessages'] = array(__("You're not allowed to do that!"));
 		} else {
 			$station_profile = $this->Stations->profile($station_id)->row();
-			$data = $this->Srr_model->upload_station($station_profile, $srr_key, $propmode_los, true, $without_rda);
+			if ($remaining) {
+				$data = $this->Srr_model->upload_remaining($station_profile, $srr_key, $propmode_los, $without_rda, (int)$this->input->post('uploaded'), (int)$this->input->post('failed'));
+			} else {
+				$data = $this->Srr_model->upload_station($station_profile, $srr_key, $propmode_los, true, $without_rda);
+			}
 		}
 
 		$data['info'] = $this->Srr_model->stations_with_srr()->result();
