@@ -690,12 +690,11 @@ class Srr_model extends CI_Model {
 	 */
 	function verify_pending($user_id, $key, $me) {
 		$this->load->model('Logbook_model');
-		$this->load->model('Stations');
 		if (!$this->load->is_loaded('adif_parser')) {
 			$this->load->library('adif_parser');
 		}
 
-		$sql = "SELECT qsos.COL_PRIMARY_KEY, qsos.COL_SRR_QSLSDATE, qsos.COL_CALL, qsos.COL_TIME_ON, qsos.COL_BAND
+		$sql = "SELECT qsos.COL_PRIMARY_KEY, qsos.COL_SRR_QSLSDATE, qsos.COL_STATION_CALLSIGN, qsos.COL_CALL, qsos.COL_TIME_ON, qsos.COL_BAND, qsos.COL_MODE, qsos.COL_SUBMODE
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
 			WHERE station_profile.user_id = ? AND qsos.COL_SRR_QSL_SENT = 'Q'
@@ -708,12 +707,13 @@ class Srr_model extends CI_Model {
 		}
 
 		$pending = array();
+		$by_minute = array();
 		foreach ($rows as $row) {
 			$pending[$row->COL_PRIMARY_KEY] = $row;
+			$by_minute[$this->minute_key($row->COL_STATION_CALLSIGN, $row->COL_CALL, $row->COL_BAND, date('Y-m-d H:i', strtotime($row->COL_TIME_ON)))][] = $row;
 		}
 		$from = date('Ymd', strtotime($rows[0]->COL_TIME_ON));
 		$to = date('Ymd', strtotime($rows[count($rows) - 1]->COL_TIME_ON));
-		$station_ids = $this->Stations->all_station_ids_of_user($user_id);
 
 		$verified_ids = array();
 		$handled = array();
@@ -734,10 +734,12 @@ class Srr_model extends CI_Model {
 				}
 				$handled[$record_key] = true;
 
-				$status = $this->Logbook_model->import_check($time_on, $record['call'], strtolower($record['band']), $record['mode'], $record['prop_mode'] ?? '', $record['sat_name'] ?? '', $record['station_callsign'], $station_ids);
-				if (($status[0] == "Found") && isset($pending[$status[1]])) {
-					$verified_ids[] = $status[1];
-					unset($pending[$status[1]]);
+				// SRR identifies a QSO to the minute, so import_check() with its 15 minutes would mix up QSOs
+				$minute_key = $this->minute_key($record['station_callsign'], $record['call'], $record['band'], $time_on);
+				if (!empty($by_minute[$minute_key])) {
+					$qso = $this->take_pending($by_minute[$minute_key], $record['mode']);
+					$verified_ids[] = $qso->COL_PRIMARY_KEY;
+					unset($pending[$qso->COL_PRIMARY_KEY]);
 				}
 			}
 		}
@@ -760,6 +762,24 @@ class Srr_model extends CI_Model {
 		$r = sprintf(__("%d uploaded QSO(s) verified on SRR, %d still being processed by SRR, %d not found and set to not uploaded."), count($verified_ids), count($pending) - count($expired_ids), count($expired_ids));
 
 		return $r.$expired_text;
+	}
+
+	/**
+	 * Takes the QSO for a record of the SRR export off a list of queued QSOs of the same minute.
+	 * A QSO with the mode of the record is preferred, otherwise the first one is taken.
+	 *
+	 * @param array $qsos Queued QSOs of the same minute, not empty
+	 * @param string $mode Mode of the record
+	 * @return object QSO row
+	 */
+	private function take_pending(&$qsos, $mode) {
+		foreach ($qsos as $index => $qso) {
+			if ((strcasecmp($qso->COL_MODE ?? '', $mode) == 0) || (strcasecmp($qso->COL_SUBMODE ?? '', $mode) == 0)) {
+				unset($qsos[$index]);
+				return $qso;
+			}
+		}
+		return array_shift($qsos);
 	}
 
 	/**
