@@ -24,6 +24,11 @@ class Migration_srr_integration extends CI_Migration {
 		}
 
 		if ($this->chk4cron('sync_srr') == 0) {
+			// A random minute spreads the load on SRR, like in migration 308
+			do {
+				$random_minute = mt_rand(1, 59);
+			} while ($random_minute % 5 == 0);
+
 			$data = array(
 				array(
 					'id' => 'sync_srr',
@@ -31,7 +36,7 @@ class Migration_srr_integration extends CI_Migration {
 					'status' => 'disabled',
 					'description' => 'Sync with SRR',
 					'function' => 'index.php/srr/srr_sync',
-					'expression' => '15 5 * * *',
+					'expression' => $random_minute . ' 5 * * *',
 					'last_run' => null,
 					'next_run' => null
 				));
