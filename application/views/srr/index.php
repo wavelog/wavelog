@@ -34,13 +34,13 @@
 					<tbody>
 						<?php foreach (($srr_me->callsigns ?? array()) as $srr_call) { ?>
 							<tr>
-								<td><span class="callsign"><?php echo $srr_call->callsign; ?></span></td>
+								<td><span class="callsign"><?php echo html_escape($srr_call->callsign); ?></span></td>
 								<td><?= __("Own callsign"); ?></td>
 							</tr>
 						<?php } ?>
 						<?php foreach (($srr_me->delegated_callsigns ?? array()) as $srr_call) { ?>
 							<tr>
-								<td><span class="callsign"><?php echo $srr_call->callsign ?? ''; ?></span></td>
+								<td><span class="callsign"><?php echo html_escape($srr_call->callsign ?? ''); ?></span></td>
 								<td><?= __("Delegated callsign"); ?></td>
 							</tr>
 						<?php } ?>
@@ -110,8 +110,8 @@
 				<tbody>';
 				foreach ($station_profile->result() as $station) {      // Fills the table with the data
 				echo '<tr>';
-					echo '<td>' . $station->station_profile_name . '</td>';
-					echo '<td><span class="callsign">' . $station->station_callsign . '</span></td>';
+					echo '<td>' . html_escape($station->station_profile_name) . '</td>';
+					echo '<td><span class="callsign">' . html_escape($station->station_callsign) . '</span></td>';
 					echo '<td id ="modcount'.$station->station_id.'">' . $station->modcount . '</td>';
 					echo '<td id ="notcount'.$station->station_id.'">' . $station->notcount . '</td>';
 					echo '<td id ="queuedcount'.$station->station_id.'">' . $station->queuedcount . '</td>';

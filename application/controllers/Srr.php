@@ -170,7 +170,7 @@ class Srr extends CI_Controller {
 	 *
 	 * @param object|false|null $srr_me Result of get_srr_me()
 	 * @param object $station_profile Station profile row
-	 * @return string Error message, empty if the upload can start
+	 * @return string Error message escaped for HTML, empty if the upload can start
 	 */
 	private function upload_error($srr_me, $station_profile) {
 		if ($srr_me === false) {
@@ -180,7 +180,7 @@ class Srr extends CI_Controller {
 			return __("SRR could not be reached. Please try again later.");
 		}
 		if (!$this->Srr_model->callsign_on_account($station_profile->station_callsign, $srr_me)) {
-			return $station_profile->station_callsign." (".$station_profile->station_profile_name."): ".__("This callsign is not on your SRR account, so nothing was uploaded.");
+			return html_escape($station_profile->station_callsign." (".$station_profile->station_profile_name."): ").__("This callsign is not on your SRR account, so nothing was uploaded.");
 		}
 		return '';
 	}

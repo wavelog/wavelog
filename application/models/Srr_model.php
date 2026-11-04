@@ -236,7 +236,7 @@ class Srr_model extends CI_Model {
 	 * @return array QSOs to upload, empty if there is nothing to upload now
 	 */
 	private function prepare_upload($station_profile, $key, $propmode_los, $interactive, $without_rda, &$result) {
-		$station_text = $station_profile->station_callsign." (".$station_profile->station_profile_name."): ";
+		$station_text = html_escape($station_profile->station_callsign." (".$station_profile->station_profile_name."): ");
 
 		$rda_list = $this->get_srr_rda($key);
 		if ($rda_list === false) {
@@ -359,7 +359,7 @@ class Srr_model extends CI_Model {
 	 */
 	function upload_station($station_profile, $key, $propmode_los = false, $interactive = true, $without_rda = false) {
 		$result = array('status' => 'OK', 'infomessage' => '', 'errormessages' => array(), 'qsos' => array());
-		$station_text = $station_profile->station_callsign." (".$station_profile->station_profile_name."): ";
+		$station_text = html_escape($station_profile->station_callsign." (".$station_profile->station_profile_name."): ");
 
 		$upload_qsos = $this->prepare_upload($station_profile, $key, $propmode_los, $interactive, $without_rda, $result);
 		if (empty($upload_qsos)) {
@@ -425,7 +425,7 @@ class Srr_model extends CI_Model {
 	 */
 	function upload_remaining($station_profile, $key, $propmode_los = false, $without_rda = false, $probe_uploaded = 0, $probe_failed = 0) {
 		$result = array('status' => 'OK', 'infomessage' => '', 'errormessages' => array(), 'qsos' => array(), 'uploaded' => 0, 'failed' => 0);
-		$station_text = $station_profile->station_callsign." (".$station_profile->station_profile_name."): ";
+		$station_text = html_escape($station_profile->station_callsign." (".$station_profile->station_profile_name."): ");
 
 		$upload_qsos = $this->prepare_upload($station_profile, $key, $propmode_los, false, $without_rda, $result);
 		if (empty($upload_qsos)) {
@@ -442,7 +442,7 @@ class Srr_model extends CI_Model {
 	/**
 	 * Returns the result message of an upload
 	 *
-	 * @param string $station_text Prefix of the message
+	 * @param string $station_text Prefix of the message, escaped for HTML
 	 * @param int $uploaded Number of uploaded QSOs
 	 * @param int $failed Number of rejected QSOs
 	 * @return string Message
@@ -484,7 +484,7 @@ class Srr_model extends CI_Model {
 			return $sent;
 		}
 
-		$station_text = $station_profile->station_callsign." (".$station_profile->station_profile_name."): ";
+		$station_text = html_escape($station_profile->station_callsign." (".$station_profile->station_profile_name."): ");
 
 		$this->Logbook_model->srr_mark_queued(array_column($qsos, 'COL_PRIMARY_KEY'));
 
@@ -604,7 +604,7 @@ class Srr_model extends CI_Model {
 		foreach ($callsigns as $callsign) {
 			$result = $this->srr_request('GET', '/qso/export?callsign='.urlencode($callsign).'&source=all&qslsince='.$qslsince, $key);
 			if ($result['error'] != '' || $result['httpcode'] != 200) {
-				return $verified.$callsign.": ".__("Download failed")." - ".($result['error'] != '' ? $result['error'] : __("HTTP Code").": ".$result['httpcode']);
+				return $verified.html_escape($callsign).": ".__("Download failed")." - ".($result['error'] != '' ? $result['error'] : __("HTTP Code").": ".$result['httpcode']);
 			}
 
 			$parser = new ADIF_Parser();
@@ -642,7 +642,7 @@ class Srr_model extends CI_Model {
 				$qsl_date = (($record['qslrdate'] ?? '') != '') ? date('Y-m-d', strtotime($record['qslrdate'])) : date('Y-m-d');
 				$this->Logbook_model->srr_update($status[1], $qsl_date, $cnty);
 				$updated++;
-				$table .= "<tr><td>".$record['station_callsign']."</td><td>".$time_on."</td><td>".$record['call']."</td><td>".$record['band']."</td><td>".$record['mode']."</td><td>".$cnty."</td><td>".$qsl_date."</td></tr>";
+				$table .= "<tr><td>".html_escape($record['station_callsign'])."</td><td>".$time_on."</td><td>".html_escape($record['call'])."</td><td>".html_escape($record['band'])."</td><td>".html_escape($record['mode'])."</td><td>".html_escape($cnty)."</td><td>".$qsl_date."</td></tr>";
 			}
 		}
 
@@ -725,7 +725,7 @@ class Srr_model extends CI_Model {
 		foreach ($callsigns as $callsign) {
 			$result = $this->srr_request('GET', '/qso/export?callsign='.urlencode($callsign).'&source=all&from='.$from.'&to='.$to, $key);
 			if ($result['error'] != '' || $result['httpcode'] != 200) {
-				return $callsign.": ".__("Verification of the uploaded QSOs failed")." - ".($result['error'] != '' ? $result['error'] : __("HTTP Code").": ".$result['httpcode']);
+				return html_escape($callsign).": ".__("Verification of the uploaded QSOs failed")." - ".($result['error'] != '' ? $result['error'] : __("HTTP Code").": ".$result['httpcode']);
 			}
 
 			$parser = new ADIF_Parser();
@@ -757,7 +757,7 @@ class Srr_model extends CI_Model {
 		foreach ($pending as $qso_id => $qso) {
 			if ((($qso->COL_SRR_QSLSDATE ?? '') == '') || ((strtotime($qso->COL_SRR_QSLSDATE) + $deadline) <= $now)) {
 				$expired_ids[] = $qso_id;
-				$expired_text .= "<br>".$qso->COL_CALL." ".date('Y-m-d H:i', strtotime($qso->COL_TIME_ON))." ".$qso->COL_BAND." - ".__("not found on SRR, it will be sent again with the next upload. Please check the API requests in your SRR panel.");
+				$expired_text .= "<br>".html_escape($qso->COL_CALL)." ".date('Y-m-d H:i', strtotime($qso->COL_TIME_ON))." ".html_escape($qso->COL_BAND)." - ".__("not found on SRR, it will be sent again with the next upload. Please check the API requests in your SRR panel.");
 			}
 		}
 
@@ -794,7 +794,7 @@ class Srr_model extends CI_Model {
 	 *
 	 * @param array $chunk QSO rows of the request
 	 * @param object $data Decoded SRR response
-	 * @param string $station_text Prefix for the error messages
+	 * @param string $station_text Prefix for the error messages, escaped for HTML
 	 * @param bool $marked_queued TRUE if the QSOs are already marked as queued
 	 * @return array uploaded, failed and errormessages
 	 */
@@ -818,7 +818,7 @@ class Srr_model extends CI_Model {
 		foreach ($chunk as $index => $qso) {
 			if (isset($qso_errors[$index])) {
 				$this->Logbook_model->mark_srr_sent($qso->COL_PRIMARY_KEY, 'I');
-				$result['errormessages'][] = $station_text.$qso->COL_CALL." ".date('Y-m-d H:i', strtotime($qso->COL_TIME_ON))." ".$qso->COL_BAND." - ".$qso_errors[$index];
+				$result['errormessages'][] = $station_text.html_escape($qso->COL_CALL)." ".date('Y-m-d H:i', strtotime($qso->COL_TIME_ON))." ".html_escape($qso->COL_BAND)." - ".html_escape($qso_errors[$index]);
 				$result['failed']++;
 			} else {
 				// A download may already have verified a QSO which is marked as queued, so it is not marked again
@@ -934,14 +934,14 @@ class Srr_model extends CI_Model {
 	 * Checks the result of a POST /qso request
 	 *
 	 * @param array $result Result from srr_request() or srr_response()
-	 * @return array error (empty on success) and the decoded response (data)
+	 * @return array error (empty on success, safe for HTML) and the decoded response (data)
 	 */
 	private function post_result($result) {
 		$error = '';
 		if ($result['error'] != '') {
 			$error = $result['error'];
 		} elseif (($result['httpcode'] != 200) || !in_array(($result['data']->result ?? ''), array('OK', 'PARTIAL'))) {
-			$error = ($result['data']->error->message ?? '')." (".__("HTTP Code").": ".$result['httpcode'].")";
+			$error = html_escape($result['data']->error->message ?? '')." (".__("HTTP Code").": ".$result['httpcode'].")";
 		}
 		return array('error' => $error, 'data' => $result['data']);
 	}

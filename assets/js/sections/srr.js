@@ -98,7 +98,7 @@ function RdaSrr(station_id, propmode_los, qsos) {
 		'<table class="table table-sm table-striped">' +
 		'<thead><tr><th>' + lang_srr_callsign + '</th><th>' + lang_srr_date + '</th><th>' + lang_srr_band + '</th><th>' + lang_srr_mode + '</th><th>' + lang_srr_rda + '</th></tr></thead><tbody>';
 	$.each(qsos, function (index, qso) {
-		message += '<tr><td>' + qso.call + '</td><td>' + qso.date + '</td><td>' + qso.band + '</td><td>' + qso.mode + '</td><td>' + $('<div>').text(qso.rda).html() + '</td></tr>';
+		message += '<tr><td>' + escapeHtml(qso.call) + '</td><td>' + escapeHtml(qso.date) + '</td><td>' + escapeHtml(qso.band) + '</td><td>' + escapeHtml(qso.mode) + '</td><td>' + escapeHtml(qso.rda) + '</td></tr>';
 	});
 	message += '</tbody></table>';
 
@@ -130,7 +130,7 @@ function PropmodeSrr(station_id, without_rda, qsos) {
 		'<table class="table table-sm table-striped">' +
 		'<thead><tr><th>' + lang_srr_callsign + '</th><th>' + lang_srr_date + '</th><th>' + lang_srr_band + '</th><th>' + lang_srr_mode + '</th></tr></thead><tbody>';
 	$.each(qsos, function (index, qso) {
-		message += '<tr><td>' + qso.call + '</td><td>' + qso.date + '</td><td>' + qso.band + '</td><td>' + qso.mode + '</td></tr>';
+		message += '<tr><td>' + escapeHtml(qso.call) + '</td><td>' + escapeHtml(qso.date) + '</td><td>' + escapeHtml(qso.band) + '</td><td>' + escapeHtml(qso.mode) + '</td></tr>';
 	});
 	message += '</tbody></table>';
 
