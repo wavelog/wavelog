@@ -213,7 +213,8 @@ class Srr extends CI_Controller {
 	/**
 	 * Called by cron. Uploads the QSOs of all users with an SRR key
 	 * and downloads their confirmations. Users whose key SRR rejects and stations
-	 * whose callsign is not on the SRR account are skipped. The run stops if SRR is unavailable.
+	 * whose callsign is not on the SRR account are skipped. The run stops if SRR does not answer
+	 * the key check of a user, an upload stops if SRR does not respond to one of its requests.
 	 *
 	 * @return void Echoes the result per station profile and user
 	 */

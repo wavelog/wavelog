@@ -470,7 +470,8 @@ class Srr_model extends CI_Model {
 	 * Marks QSOs as queued and sends them in requests of 100 QSOs, max_parallel at the same time.
 	 * QSOs which SRR processes during the request are marked by its response, the
 	 * others stay queued and are verified later by verify_pending(). The QSOs of a
-	 * failed request are set to not uploaded and are sent next time.
+	 * failed request are set to not uploaded and are sent next time. If SRR does not
+	 * respond, no further requests are started and the QSOs not sent are set to not uploaded too.
 	 *
 	 * @param array $qsos QSOs to upload
 	 * @param object $station_profile Station profile row
@@ -495,6 +496,7 @@ class Srr_model extends CI_Model {
 		$active_handles = array();
 		$queue_index = 0;
 		$queue_count = count($chunks);
+		$aborted = false;
 
 		while ($queue_index < $queue_count && count($active_handles) < $this->max_parallel) {
 			$ch = $this->srr_handle('POST', '/qso', $key, $this->qso_payload($this->build_records($chunks[$queue_index])));
@@ -518,6 +520,9 @@ class Srr_model extends CI_Model {
 					$this->Logbook_model->srr_update_verified(array_column($chunk, 'COL_PRIMARY_KEY'), 'N');
 					$result['status'] = 'Error';
 					$result['errormessages'][] = $station_text.__("Upload Failed")." - ".$response['error'];
+					if ($info['result'] != CURLE_OK) {
+						$aborted = true;
+					}
 				} else {
 					$marked = $this->mark_chunk($chunk, $response['data'], $station_text, true);
 					$sent['uploaded'] += $marked['uploaded'];
@@ -525,7 +530,7 @@ class Srr_model extends CI_Model {
 					$result['errormessages'] = array_merge($result['errormessages'], $marked['errormessages']);
 				}
 
-				if ($queue_index < $queue_count) {
+				if (!$aborted && $queue_index < $queue_count) {
 					$new_ch = $this->srr_handle('POST', '/qso', $key, $this->qso_payload($this->build_records($chunks[$queue_index])));
 					curl_multi_add_handle($mh, $new_ch);
 					$active_handles[(int)$new_ch] = array('ch' => $new_ch, 'chunk' => $queue_index);
@@ -539,6 +544,12 @@ class Srr_model extends CI_Model {
 		}
 
 		curl_multi_close($mh);
+
+		if ($queue_index < $queue_count) {
+			$unsent_ids = array_column(array_merge(...array_slice($chunks, $queue_index)), 'COL_PRIMARY_KEY');
+			$this->Logbook_model->srr_update_verified($unsent_ids, 'N');
+			$result['errormessages'][] = $station_text.sprintf(__("SRR did not respond, so the upload was stopped and %d QSOs were not sent. They will be sent with the next upload."), count($unsent_ids));
+		}
 
 		return $sent;
 	}
