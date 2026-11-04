@@ -145,7 +145,12 @@ class Srr extends CI_Controller {
 			$data['errormessages'] = array(__("You're not allowed to do that!"));
 		} else {
 			$station_profile = $this->Stations->profile($station_id)->row();
-			if ($remaining) {
+			// The second part follows the first one directly, so only the first part asks SRR
+			$upload_error = $remaining ? '' : $this->upload_error($this->Srr_model->get_srr_me($srr_key), $station_profile);
+			if ($upload_error != '') {
+				$data['status'] = 'Error';
+				$data['errormessages'] = array($upload_error);
+			} elseif ($remaining) {
 				$data = $this->Srr_model->upload_remaining($station_profile, $srr_key, $propmode_los, $without_rda, (int)$this->input->post('uploaded'), (int)$this->input->post('failed'));
 			} else {
 				$data = $this->Srr_model->upload_station($station_profile, $srr_key, $propmode_los, true, $without_rda);
@@ -156,6 +161,27 @@ class Srr extends CI_Controller {
 
 		header('Content-type: application/json');
 		echo json_encode($data);
+	}
+
+	/**
+	 * Returns why the QSOs of a station profile can not be uploaded to SRR. A callsign
+	 * which is not on the SRR account would get all QSOs of the upload marked as invalid.
+	 *
+	 * @param object|false|null $srr_me Result of get_srr_me()
+	 * @param object $station_profile Station profile row
+	 * @return string Error message, empty if the upload can start
+	 */
+	private function upload_error($srr_me, $station_profile) {
+		if ($srr_me === false) {
+			return __("The stored SRR key is not valid. Please request a new key.");
+		}
+		if ($srr_me === null) {
+			return __("SRR could not be reached. Please try again later.");
+		}
+		if (!$this->Srr_model->callsign_on_account($station_profile->station_callsign, $srr_me)) {
+			return $station_profile->station_callsign." (".$station_profile->station_profile_name."): ".__("This callsign is not on your SRR account, so nothing was uploaded.");
+		}
+		return '';
 	}
 
 	/**
@@ -184,7 +210,8 @@ class Srr extends CI_Controller {
 
 	/**
 	 * Called by cron. Uploads the QSOs of all users with an SRR key
-	 * and downloads their confirmations.
+	 * and downloads their confirmations. Users whose key SRR rejects and stations
+	 * whose callsign is not on the SRR account are skipped. The run stops if SRR is unavailable.
 	 *
 	 * @return void Echoes the result per station profile and user
 	 */
@@ -211,8 +238,25 @@ class Srr extends CI_Controller {
 		}
 
 		foreach ($users as $user) {
+			$srr_me = $this->Srr_model->get_srr_me($user->option_value);
+			if ($srr_me === false) {
+				log_message('error', 'SRR rejected the key of user '.$user->user_id.'. Skipping this user.');
+				echo sprintf(__("User %d: the stored SRR key is not valid."), $user->user_id)."<br>";
+				continue;
+			}
+			if ($srr_me === null) {	// Stop the run immediately, because the next users would have to wait for SRR too
+				log_message('error', 'SRR could not be reached. Stopping the SRR sync!');
+				echo __("SRR could not be reached. Please try again later.")."<br>";
+				break;
+			}
+
 			$station_profiles = $this->Stations->all_of_user($user->user_id);
 			foreach ($station_profiles->result() as $station_profile) {
+				$upload_error = $this->upload_error($srr_me, $station_profile);
+				if ($upload_error != '') {
+					echo $upload_error."<br>";
+					continue;
+				}
 				$result = $this->Srr_model->upload_station($station_profile, $user->option_value, false, false);
 				if ($result['infomessage'] != '') {
 					echo $result['infomessage']."<br>";
@@ -221,7 +265,7 @@ class Srr extends CI_Controller {
 					echo $errormessage."<br>";
 				}
 			}
-			echo $this->Srr_model->download_user($user->user_id, $user->option_value)."<br>";
+			echo $this->Srr_model->download_user($user->user_id, $user->option_value, null, $srr_me)."<br>";
 		}
 	}
 

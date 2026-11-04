@@ -95,6 +95,31 @@ class Srr_model extends CI_Model {
 	}
 
 	/**
+	 * Checks if a station callsign is one of the own or delegated callsigns of the
+	 * SRR account. The plain callsigns are compared, so UB1AVZ/P matches UB1AVZ.
+	 *
+	 * @param string $station_callsign Callsign of the station profile
+	 * @param object $me SRR user from get_srr_me()
+	 * @return bool
+	 */
+	function callsign_on_account($station_callsign, $me) {
+		if (!$this->load->is_loaded('callbook')) {
+			$this->load->library('callbook');
+		}
+
+		$account_calls = array();
+		foreach (($me->callsigns ?? array()) as $srr_call) {
+			$account_calls[] = strtoupper($this->callbook->get_plaincall($srr_call->callsign ?? ''));
+		}
+		foreach (($me->delegated_callsigns ?? array()) as $srr_call) {
+			$account_calls[] = strtoupper($this->callbook->get_plaincall($srr_call->callsign ?? ''));
+		}
+
+		$plaincall = strtoupper($this->callbook->get_plaincall($station_callsign));
+		return ($plaincall != '') && in_array($plaincall, $account_calls, true);
+	}
+
+	/**
 	 * Returns the list of RDA codes from the SRR info endpoint.
 	 * The list is cached as long as SRR allows it (cache_ttl).
 	 *
@@ -534,10 +559,13 @@ class Srr_model extends CI_Model {
 	 * @param int $user_id User id
 	 * @param string $key SRR API key
 	 * @param string|null $from Date to download from, since the last received SRR confirmation if null
+	 * @param object|false|null $me Result of get_srr_me() if the caller already has it, null to request it here
 	 * @return string Result message with a table of the updated QSOs
 	 */
-	function download_user($user_id, $key, $from = null) {
-		$me = $this->get_srr_me($key);
+	function download_user($user_id, $key, $from = null, $me = null) {
+		if ($me === null) {
+			$me = $this->get_srr_me($key);
+		}
 		if ($me === false) {
 			return __("The stored SRR key is not valid. Please request a new key.");
 		}
