@@ -77,9 +77,11 @@
 				<li class="nav-item">
 					<a class="nav-link active" id="export-tab" data-bs-toggle="tab" href="#export" role="tab" aria-controls="export" aria-selected="true"><?= __("Upload Logbook"); ?></a>
 				</li>
+				<?php if (!($this->config->item('disable_manual_srr'))) { ?>
 				<li class="nav-item">
 					<a class="nav-link" id="import-tab" data-bs-toggle="tab" href="#import" role="tab" aria-controls="import" aria-selected="false"><?= __("Download QSLs"); ?></a>
 				</li>
+				<?php } ?>
 			</ul>
 		</div>
 
@@ -115,7 +117,11 @@
 					echo '<td id ="queuedcount'.$station->station_id.'">' . $station->queuedcount . '</td>';
 					echo '<td id ="totcount'.$station->station_id.'">' . $station->totcount . '</td>';
 					echo '<td id ="rejcount'.$station->station_id.'">' . $station->rejcount . '</td>';
+			if (!($this->config->item('disable_manual_srr'))) {
 					echo '<td><button id="srrUpload" type="button" name="srrUpload" class="btn btn-primary btn-sm ld-ext-right ld-ext-right-'.$station->station_id.'" onclick="ExportSrr('. $station->station_id .')"><i class="fas fa-cloud-upload-alt"></i> ' . __("Upload") . '<div class="ld ld-ring ld-spin"></div></button></td>';
+			} else {
+					echo '<td>&nbsp;</td>';
+			}
 					echo '</tr>';
 				}
 				echo '</tfoot></table>';
@@ -127,6 +133,7 @@
 		?>
 
 				</div>
+				<?php if (!($this->config->item('disable_manual_srr'))) { ?>
 				<div class="tab-pane fade" id="import" role="tabpanel" aria-labelledby="import-tab">
 
 					<form class="form" action="<?php echo site_url('srr/download'); ?>" method="post" enctype="multipart/form-data">
@@ -141,6 +148,7 @@
 						<button type="button" class="btn btn-sm btn-primary ld-ext-right ld-ext-right-import" onclick="importSrr();"><i class="fas fa-cloud-download-alt"></i> <?= __("Download QSLs from SRR"); ?><div class="ld ld-ring ld-spin"></div></button>
 					</form>
 				</div>
+				<?php } ?>
 			</div>
 		</div>
 	</div>
