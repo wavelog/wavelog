@@ -6522,7 +6522,7 @@ class Logbook_model extends CI_Model {
 
 	/**
 	 * Returns the QSOs of a station profile which are not yet uploaded to SRR.
-	 * QSOs which are queued in the SRR inbox after an upload are not sent again.
+	 * QSOs with the state Q are queued in the SRR inbox and are not sent again.
 	 *
 	 * @param int $station_id Station profile id
 	 * @return CI_DB_result
@@ -6533,8 +6533,7 @@ class Logbook_model extends CI_Model {
 			' left join station_profile on thcv.station_id = station_profile.station_id' .
 			' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
 			' where thcv.station_id = ?' .
-			' and (COL_SRR_QSL_SENT not in ("Y","I") OR COL_SRR_QSL_SENT is null)' .
-			' and not (coalesce(COL_SRR_QSL_SENT, "") = "Q" and exists (select 1 from srr_pending where srr_pending.qso_id = thcv.COL_PRIMARY_KEY))' .
+			' and (COL_SRR_QSL_SENT not in ("Y","I","Q") OR COL_SRR_QSL_SENT is null)' .
 			' order by COL_TIME_ON';
 		$binding[] = $station_id;
 

@@ -194,8 +194,7 @@ class Srr_model extends CI_Model {
 		LEFT OUTER JOIN (
 			SELECT count(*) queuedcount, station_id
 			FROM " . $this->config->item('table_name') .
-			" INNER JOIN srr_pending ON srr_pending.qso_id = COL_PRIMARY_KEY
-			WHERE COL_SRR_QSL_SENT = 'Q'
+			" WHERE COL_SRR_QSL_SENT = 'Q'
 			group by station_id
 		) as quec on station_profile.station_id = quec.station_id
 		LEFT OUTER JOIN (
@@ -392,9 +391,9 @@ class Srr_model extends CI_Model {
 
 		// SRR processes about srr_rate QSOs per minute from its inbox, which may still hold an earlier upload.
 		// This time is shown to the user, rounded up to 5 minutes, but not less than verify_min minutes.
-		$inbox_minutes = (count($marked['pending']) + count($remaining) + $this->count_pending($station_profile->user_id)) / $this->srr_rate;
+		// QSOs of the first request which SRR did not process are already marked as queued.
+		$inbox_minutes = (count($remaining) + $this->count_queued($station_profile->user_id)) / $this->srr_rate;
 		$result['verify_minutes'] = max($this->verify_min, (int)ceil($inbox_minutes / 5) * 5);
-		$this->add_pending($marked['pending'], $this->pending_deadline($inbox_minutes));
 
 		$result['uploaded'] = $marked['uploaded'];
 		$result['failed'] = $marked['failed'];
@@ -487,10 +486,7 @@ class Srr_model extends CI_Model {
 
 		$station_text = $station_profile->station_callsign." (".$station_profile->station_profile_name."): ";
 
-		$qso_ids = array_column($qsos, 'COL_PRIMARY_KEY');
-		$inbox_minutes = (count($qso_ids) + $this->count_pending($station_profile->user_id)) / $this->srr_rate;
-		$this->Logbook_model->srr_mark_queued($qso_ids);
-		$this->add_pending($qso_ids, $this->pending_deadline($inbox_minutes));
+		$this->Logbook_model->srr_mark_queued(array_column($qsos, 'COL_PRIMARY_KEY'));
 
 		$chunks = array_chunk($qsos, 100);
 		$qsos = '';
@@ -517,17 +513,14 @@ class Srr_model extends CI_Model {
 				unset($active_handles[(int)$ch]);
 				curl_multi_remove_handle($mh, $ch);
 
-				$chunk_ids = array_column($chunk, 'COL_PRIMARY_KEY');
 				$response = $this->post_result($this->srr_response($ch, curl_multi_getcontent($ch), $info['result']));
 				if ($response['error'] != '') {
 					// The QSOs of this request are not uploaded and are sent next time
-					$this->Logbook_model->srr_update_verified($chunk_ids, 'N');
-					$this->remove_pending($chunk_ids);
+					$this->Logbook_model->srr_update_verified(array_column($chunk, 'COL_PRIMARY_KEY'), 'N');
 					$result['status'] = 'Error';
 					$result['errormessages'][] = $station_text.__("Upload Failed")." - ".$response['error'];
 				} else {
 					$marked = $this->mark_chunk($chunk, $response['data'], $station_text, true);
-					$this->remove_pending(array_diff($chunk_ids, $marked['pending']));
 					$sent['uploaded'] += $marked['uploaded'];
 					$sent['failed'] += $marked['failed'];
 					$result['errormessages'] = array_merge($result['errormessages'], $marked['errormessages']);
@@ -662,59 +655,25 @@ class Srr_model extends CI_Model {
 	}
 
 	/**
-	 * Returns the number of QSOs of a user which SRR accepted but did not process yet (inbox)
+	 * Returns the number of QSOs of a user which are queued in the SRR inbox
 	 *
 	 * @param int $user_id User id
 	 * @return int Number of QSOs
 	 */
-	private function count_pending($user_id) {
-		$sql = "SELECT count(*) AS pending
-			FROM srr_pending
-			INNER JOIN " . $this->config->item('table_name') . " qsos ON qsos.COL_PRIMARY_KEY = srr_pending.qso_id
+	private function count_queued($user_id) {
+		$sql = "SELECT count(*) AS queued
+			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
-			WHERE station_profile.user_id = ?";
-		return (int)$this->db->query($sql, array($user_id))->row()->pending;
-	}
-
-	/**
-	 * Stores uploaded QSOs which SRR accepted but did not process yet (inbox)
-	 *
-	 * @param array $qso_ids QSO primary keys
-	 * @param int $minutes Minutes until SRR must have processed the QSOs (deadline)
-	 * @return void
-	 */
-	function add_pending($qso_ids, $minutes) {
-		$verify_date = date("Y-m-d H:i:s", time() + $minutes * 60);
-		foreach (array_chunk($qso_ids, 100) as $chunk) {
-			$bindings = array();
-			foreach ($chunk as $qso_id) {
-				$bindings[] = $qso_id;
-				$bindings[] = $verify_date;
-			}
-			$sql = "INSERT INTO srr_pending (qso_id, verify_date) VALUES ".implode(',', array_fill(0, count($chunk), '(?, ?)'))."
-				ON DUPLICATE KEY UPDATE verify_date = VALUES(verify_date)";
-			$this->db->query($sql, $bindings);
-		}
-	}
-
-	/**
-	 * Removes QSOs from the list of QSOs which SRR did not process yet
-	 *
-	 * @param array $qso_ids QSO primary keys
-	 * @return void
-	 */
-	private function remove_pending($qso_ids) {
-		foreach (array_chunk($qso_ids, 100) as $chunk) {
-			$this->db->where_in('qso_id', $chunk);
-			$this->db->delete('srr_pending');
-		}
+			WHERE station_profile.user_id = ? AND qsos.COL_SRR_QSL_SENT = 'Q'";
+		return (int)$this->db->query($sql, array($user_id))->row()->queued;
 	}
 
 	/**
 	 * Verifies the queued QSOs of a user which SRR did not process during the upload (inbox).
 	 * QSOs found in the SRR export are marked as uploaded. QSOs not found are probably still in
-	 * the inbox and stay queued. After their deadline (see upload_station()) they are marked
-	 * as not uploaded, so the next upload sends them again.
+	 * the inbox and stay queued. After their deadline (see pending_deadline()), counted from their
+	 * upload date, they are marked as not uploaded, so the next upload sends them again.
+	 * A QSO without an upload date has no deadline to wait for.
 	 *
 	 * @param int $user_id User id
 	 * @param string $key SRR API key
@@ -728,17 +687,10 @@ class Srr_model extends CI_Model {
 			$this->load->library('adif_parser');
 		}
 
-		// QSOs which were deleted or set to another SRR state in the meantime need no verification
-		$sql = "DELETE srr_pending FROM srr_pending
-			LEFT OUTER JOIN " . $this->config->item('table_name') . " qsos ON qsos.COL_PRIMARY_KEY = srr_pending.qso_id
-			WHERE qsos.COL_PRIMARY_KEY IS NULL OR coalesce(qsos.COL_SRR_QSL_SENT, '') <> 'Q'";
-		$this->db->query($sql);
-
-		$sql = "SELECT srr_pending.qso_id, srr_pending.verify_date, qsos.COL_CALL, qsos.COL_TIME_ON, qsos.COL_BAND
-			FROM srr_pending
-			INNER JOIN " . $this->config->item('table_name') . " qsos ON qsos.COL_PRIMARY_KEY = srr_pending.qso_id
+		$sql = "SELECT qsos.COL_PRIMARY_KEY, qsos.COL_SRR_QSLSDATE, qsos.COL_CALL, qsos.COL_TIME_ON, qsos.COL_BAND
+			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
-			WHERE station_profile.user_id = ?
+			WHERE station_profile.user_id = ? AND qsos.COL_SRR_QSL_SENT = 'Q'
 			ORDER BY qsos.COL_TIME_ON";
 		$rows = $this->db->query($sql, array($user_id))->result();
 
@@ -749,7 +701,7 @@ class Srr_model extends CI_Model {
 
 		$pending = array();
 		foreach ($rows as $row) {
-			$pending[$row->qso_id] = $row;
+			$pending[$row->COL_PRIMARY_KEY] = $row;
 		}
 		$from = date('Ymd', strtotime($rows[0]->COL_TIME_ON));
 		$to = date('Ymd', strtotime($rows[count($rows) - 1]->COL_TIME_ON));
@@ -774,11 +726,13 @@ class Srr_model extends CI_Model {
 			}
 		}
 
-		$now = date("Y-m-d H:i:s");
+		// COL_SRR_QSLSDATE is written with PHP date(), so it is compared with the PHP time
+		$deadline = $this->pending_deadline(count($rows) / $this->srr_rate) * 60;
+		$now = time();
 		$expired_ids = array();
 		$expired_text = '';
 		foreach ($pending as $qso_id => $qso) {
-			if ($qso->verify_date <= $now) {
+			if ((($qso->COL_SRR_QSLSDATE ?? '') == '') || ((strtotime($qso->COL_SRR_QSLSDATE) + $deadline) <= $now)) {
 				$expired_ids[] = $qso_id;
 				$expired_text .= "<br>".$qso->COL_CALL." ".date('Y-m-d H:i', strtotime($qso->COL_TIME_ON))." ".$qso->COL_BAND." - ".__("not found on SRR, it will be sent again with the next upload. Please check the API requests in your SRR panel.");
 			}
@@ -786,8 +740,6 @@ class Srr_model extends CI_Model {
 
 		$this->Logbook_model->srr_update_verified($verified_ids, 'Y');
 		$this->Logbook_model->srr_update_verified($expired_ids, 'N');
-
-		$this->remove_pending(array_merge($verified_ids, $expired_ids));
 
 		$r = sprintf(__("%d uploaded QSO(s) verified on SRR, %d still being processed by SRR, %d not found and set to not uploaded."), count($verified_ids), count($pending) - count($expired_ids), count($expired_ids));
 
@@ -797,16 +749,16 @@ class Srr_model extends CI_Model {
 	/**
 	 * Marks the QSOs of one request by the SRR response. QSOs with an error are
 	 * marked as invalid, all others as uploaded. If SRR did not process all accepted QSOs
-	 * yet (inbox), they are marked as queued and returned as pending for a later verification.
+	 * yet (inbox), they are marked as queued for a later verification by verify_pending().
 	 *
 	 * @param array $chunk QSO rows of the request
 	 * @param object $data Decoded SRR response
 	 * @param string $station_text Prefix for the error messages
-	 * @param bool $marked_queued TRUE if the QSOs are already marked as queued and stored as pending
-	 * @return array uploaded, failed, errormessages and the ids of the pending QSOs (pending)
+	 * @param bool $marked_queued TRUE if the QSOs are already marked as queued
+	 * @return array uploaded, failed and errormessages
 	 */
 	private function mark_chunk($chunk, $data, $station_text, $marked_queued = false) {
-		$result = array('uploaded' => 0, 'failed' => 0, 'errormessages' => array(), 'pending' => array());
+		$result = array('uploaded' => 0, 'failed' => 0, 'errormessages' => array());
 
 		$qso_errors = array();
 		foreach (($data->validation_errors ?? array()) as $validation_error) {
@@ -822,7 +774,6 @@ class Srr_model extends CI_Model {
 
 		$queued = (int)($data->process->processed ?? 0) < (int)($data->accepted ?? count($chunk));
 
-		$uploaded_ids = array();
 		foreach ($chunk as $index => $qso) {
 			if (isset($qso_errors[$index])) {
 				$this->Logbook_model->mark_srr_sent($qso->COL_PRIMARY_KEY, 'I');
@@ -833,13 +784,8 @@ class Srr_model extends CI_Model {
 				if (!$queued || !$marked_queued) {
 					$this->Logbook_model->mark_srr_sent($qso->COL_PRIMARY_KEY, $queued ? 'Q' : 'Y');
 				}
-				$uploaded_ids[] = $qso->COL_PRIMARY_KEY;
 				$result['uploaded']++;
 			}
-		}
-
-		if ($queued) {
-			$result['pending'] = $uploaded_ids;
 		}
 
 		return $result;
