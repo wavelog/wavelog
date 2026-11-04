@@ -130,7 +130,7 @@
 				<div class="tab-pane fade" id="import" role="tabpanel" aria-labelledby="import-tab">
 
 					<form class="form" action="<?php echo site_url('srr/download'); ?>" method="post" enctype="multipart/form-data">
-						<p><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("If no startdate is given then the QSLs after last confirmation will be downloaded/updated!"); ?></p>
+						<p><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("If no start date is given then the QSLs after last confirmation will be downloaded/updated!"); ?></p>
 						<div class="row">
 							<div class="col-md-2">
 								<label for="from"><?= __("From date") . ": " ?></label>
