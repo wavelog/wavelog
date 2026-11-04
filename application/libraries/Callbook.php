@@ -125,7 +125,28 @@ class Callbook {
 		return $callbook;
 	}
 
+	/**
+	 * Look up a callsign in one callbook.
+	 *
+	 * With callbook_cache_ttl > 0 successful results are cached for that many seconds and served from the cache,
+	 * so stations worked again and again (e.g. a special event station running for days) cost one lookup only.
+	 * Errors and "not found" are not cached.
+	 *
+	 * @param string $callsign Callsign to look up
+	 * @param string $source Callbook name (qrz, qrzcq, hamqth, qrzru, qrzcall)
+	 * @return array Callbook data, or an array with 'error'
+	 */
 	function queryCallbook($callsign, $source) {
+		$cache_ttl = (int) ($this->ci->config->item('callbook_cache_ttl') ?? 0);
+		$cache_key = 'callbook_' . $source . '_' . md5(strtoupper($callsign) . '|' . ($this->ci->config->item('use_fullname') ? 1 : 0));
+		if ($cache_ttl > 0) {
+			$cached = $this->ci->cache->get($cache_key);
+			if (is_array($cached)) {
+				log_message('debug', 'Callbook lookup for '.$callsign.' using '.$source.': served from cache');
+				return $cached;
+			}
+		}
+
 		switch ($source) {
 			case 'qrz':
 				$callbook = $this->_qrz($callsign, $this->ci->config->item('use_fullname'));
@@ -147,6 +168,9 @@ class Callbook {
 		}
 
 		log_message('debug', 'Callbook lookup for '.$callsign.' using '.$source.': '.((($callbook['error'] ?? '' ) != '') ? $callbook['error'] : 'Success'));
+		if ($cache_ttl > 0 && is_array($callbook) && ($callbook['error'] ?? '') == '') {
+			$this->ci->cache->save($cache_key, $callbook, $cache_ttl);
+		}
 		return $callbook;
 	}
 
