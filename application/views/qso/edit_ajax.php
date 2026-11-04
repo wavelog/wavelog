@@ -618,6 +618,7 @@
                                                         <option value="R" <?php if ($qso->COL_SRR_QSL_SENT == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
                                                         <option value="Q" <?php if ($qso->COL_SRR_QSL_SENT == "Q") echo "selected=\"selected\""; ?>><?= __("Queued"); ?></option>
                                                         <option value="I" <?php if ($qso->COL_SRR_QSL_SENT == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
+                                                        <option value="M" <?php if ($qso->COL_SRR_QSL_SENT == "M") echo "selected=\"selected\""; ?>><?= __("Modified"); ?></option>
                                                     </select>
                                                 </div>
                                             </div>
