@@ -17,7 +17,6 @@ class Genfunctions
 			(($postdata['lotw'] ?? '') != '') ||
 			(($postdata['qsl'] ?? '') != '') ||
 			(($postdata['dcl'] ?? '') != '') ||
-			(($postdata['srr'] ?? '') != '') ||
 			(($postdata['eqsl'] ?? '') != '') ) {
 			if (($postdata['qsl'] ?? '') != '') {
 				array_push($qsl, "col_qsl_rcvd = 'Y'");
@@ -36,9 +35,6 @@ class Genfunctions
 			}
 			if (($postdata['dcl'] ?? '') != '') {
 				array_push($qsl, "COL_DCL_QSL_RCVD = 'Y'");
-			}
-			if (($postdata['srr'] ?? '') != '') {
-				array_push($qsl, "COL_SRR_QSL_RCVD = 'Y'");
 			}
 			if (count($qsl) > 0) {
 				$condition = '(' . implode(' or ', $qsl) . ')';
@@ -134,9 +130,6 @@ class Genfunctions
 			}
 			if (($postdata['qrz'] ?? '')!= '' ) {
 				$qsl .= "Z";
-			}
-			if (($postdata['srr'] ?? '')!= '' ) {
-				$qsl .= "S";
 			}
 		}
 		return $qsl;
