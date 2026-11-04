@@ -605,12 +605,20 @@ function getDistance($distance) {
                        case "I":
                           echo "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
                           break;
+                       case "M":
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" data-bs-html=\"true\" title=\"".__("Modified");
+                          break;
                        default:
                           echo "class=\"qsl-red";
                           break;
                        }
                         if (!empty($row->COL_SRR_QSLSDATE)) {
-                            $timestamp = strtotime($row->COL_SRR_QSLSDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                            $timestamp = strtotime($row->COL_SRR_QSLSDATE);
+                            if (($row->COL_SRR_QSL_SENT ?? 'N') == "M") {
+                                echo "<br />(".__("last sent")." ".($timestamp != '' ? date($custom_date_format, $timestamp) : '').")";
+                            } else {
+                                echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                            }
                         }
                      } else { echo "class=\"qsl-red"; }
                         echo "\">&#9650;</span>"; ?>

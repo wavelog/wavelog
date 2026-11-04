@@ -744,13 +744,20 @@ class QSO
 			case "I":
 				$srrstring .= "class=\"qrz-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
 				break;
+			case "M":
+				$srrstring .= "class=\"qrz-yellow\" data-bs-toggle=\"tooltip\" data-bs-html=\"true\" title=\"".__("Modified");
+				break;
 			default:
 			$srrstring .= "class=\"qrz-red";
 				break;
 			}
 			if ($data['COL_SRR_QSLSDATE'] != null) {
 				$timestamp = strtotime($data['COL_SRR_QSLSDATE']);
-				$srrstring .= " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+				if ($data['COL_SRR_QSL_SENT'] == "M") {
+					$srrstring .= "<br />(".__("last sent")." ".($timestamp != '' ? date($custom_date_format, $timestamp) : '').")";
+				} else {
+					$srrstring .= " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+				}
 			}
 		} else {
 			$srrstring .= "class=\"qrz-red";
