@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-02 06:45+0000\n"
+"POT-Creation-Date: 2026-11-04 13:17+0000\n"
 "PO-Revision-Date: 2026-11-02 08:00+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4559,8 +4559,6 @@ msgstr "Obecná chyba při ukládání klíče relace callbooku do mezipaměti."
 msgid "Generic error reading the cached callbook session key."
 msgstr "Obecná chyba při čtení klíče relace callbooku z mezipaměti."
 
-#: application/libraries/Callbook.php:244
-#: application/libraries/Callbook.php:258
 #: application/libraries/Callbook.php:282
 msgid "QRZCQ Error"
 msgstr "Chyba QRZCQ"
@@ -17630,12 +17628,11 @@ msgid "No paper assigned"
 msgstr "Nepřiřazen žádný papír"
 
 #: application/views/labeldesigner/designer.php:91
-#: application/views/logbookadvanced/printQsl.php:9
+#: application/views/logbookadvanced/printQsl.php:21
 #: application/views/qslpostcard/designer.php:67
 #: application/views/qslpostcard/printqueue.php:8
 #: application/views/qslpostcard/printqueue_selected.php:10
 #: application/views/qslprint/printqsl.php:9
-#: application/views/logbookadvanced/printQsl.php:21
 msgid "Template"
 msgstr "Šablona"
 
@@ -17690,12 +17687,11 @@ msgid "PDF"
 msgstr "PDF"
 
 #: application/views/labeldesigner/designer.php:135
-#: application/views/logbookadvanced/printQsl.php:34
+#: application/views/logbookadvanced/printQsl.php:58
 #: application/views/qslpostcard/designer.php:99
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:32
 #: application/views/qslprint/printqsl.php:34
-#: application/views/logbookadvanced/printQsl.php:58
 msgid "Save PDF"
 msgstr "Uložit PDF"
 
@@ -18175,10 +18171,10 @@ msgstr ""
 "například styl štítku."
 
 #: application/views/labels/index.php:2
+#: application/views/logbookadvanced/printQsl.php:41
 #: application/views/logbookadvanced/startatform.php:125
 #: application/views/qslprint/printlabel.php:138
 #: application/views/qslprint/printqsl.php:37
-#: application/views/logbookadvanced/printQsl.php:41
 msgid "Mark QSL as printed"
 msgstr "Označit QSL jako vytištěné"
 
@@ -19580,11 +19576,10 @@ msgstr ""
 "Vybraná pole budou sloučena do primárního QSO. Z každého QSO můžete vybrat "
 "jiná pole."
 
-#: application/views/logbookadvanced/printQsl.php:22
+#: application/views/logbookadvanced/printQsl.php:34
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
 #: application/views/qslprint/printqsl.php:22
-#: application/views/logbookadvanced/printQsl.php:34
 msgid ""
 "Print options (QSOs per card, background image, address printing) are set "
 "per template in the QSL Postcard Designer."
@@ -19592,19 +19587,17 @@ msgstr ""
 "Možnosti tisku (počet QSO na lístek, obrázek pozadí, tisk adresy) se "
 "nastavují pro každou šablonu v Návrháři QSL lístků."
 
-#: application/views/logbookadvanced/printQsl.php:30
+#: application/views/logbookadvanced/printQsl.php:54
 #: application/views/qslpostcard/printqueue.php:22
 #: application/views/qslpostcard/printqueue_selected.php:28
 #: application/views/qslprint/printqsl.php:30
-#: application/views/logbookadvanced/printQsl.php:54
 msgid "Generate Postcard PDF"
 msgstr "Vygenerovat PDF pohlednice"
 
-#: application/views/logbookadvanced/printQsl.php:41
+#: application/views/logbookadvanced/printQsl.php:65
 #: application/views/qslpostcard/printqueue.php:33
 #: application/views/qslpostcard/printqueue_selected.php:39
 #: application/views/qslprint/printqsl.php:42
-#: application/views/logbookadvanced/printQsl.php:65
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."

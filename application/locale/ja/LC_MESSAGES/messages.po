@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-02 06:45+0000\n"
+"POT-Creation-Date: 2026-11-04 13:17+0000\n"
 "PO-Revision-Date: 2026-11-04 13:11+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4563,8 +4563,6 @@ msgstr ""
 "キャッシュされたコールブックセッションキーの読み取り中に一般的なエラーが発生"
 "しました。"
 
-#: application/libraries/Callbook.php:244
-#: application/libraries/Callbook.php:258
 #: application/libraries/Callbook.php:282
 msgid "QRZCQ Error"
 msgstr "QRZCQ エラー"
@@ -17649,12 +17647,11 @@ msgid "No paper assigned"
 msgstr "課題が指定されていません"
 
 #: application/views/labeldesigner/designer.php:91
-#: application/views/logbookadvanced/printQsl.php:9
+#: application/views/logbookadvanced/printQsl.php:21
 #: application/views/qslpostcard/designer.php:67
 #: application/views/qslpostcard/printqueue.php:8
 #: application/views/qslpostcard/printqueue_selected.php:10
 #: application/views/qslprint/printqsl.php:9
-#: application/views/logbookadvanced/printQsl.php:21
 msgid "Template"
 msgstr "テンプレート"
 
@@ -17709,12 +17706,11 @@ msgid "PDF"
 msgstr "PDF"
 
 #: application/views/labeldesigner/designer.php:135
-#: application/views/logbookadvanced/printQsl.php:34
+#: application/views/logbookadvanced/printQsl.php:58
 #: application/views/qslpostcard/designer.php:99
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:32
 #: application/views/qslprint/printqsl.php:34
-#: application/views/logbookadvanced/printQsl.php:58
 msgid "Save PDF"
 msgstr "PDFで保存"
 
@@ -18193,10 +18189,10 @@ msgstr ""
 "てください。"
 
 #: application/views/labels/index.php:2
+#: application/views/logbookadvanced/printQsl.php:41
 #: application/views/logbookadvanced/startatform.php:125
 #: application/views/qslprint/printlabel.php:138
 #: application/views/qslprint/printqsl.php:37
-#: application/views/logbookadvanced/printQsl.php:41
 msgid "Mark QSL as printed"
 msgstr "QSLを印刷済みとしてマークする"
 
@@ -19590,11 +19586,10 @@ msgstr ""
 "選択されたフィールドは、メインのQSOに統合されます。各QSOから異なるフィールド"
 "を選択することも可能です。"
 
-#: application/views/logbookadvanced/printQsl.php:22
+#: application/views/logbookadvanced/printQsl.php:34
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
 #: application/views/qslprint/printqsl.php:22
-#: application/views/logbookadvanced/printQsl.php:34
 msgid ""
 "Print options (QSOs per card, background image, address printing) are set "
 "per template in the QSL Postcard Designer."
@@ -19602,19 +19597,17 @@ msgstr ""
 "印刷オプション（1枚あたりの交信回数、背景画像、宛名印刷など）は、QSLポスト"
 "カードデザイナーでテンプレートごとに設定します。"
 
-#: application/views/logbookadvanced/printQsl.php:30
+#: application/views/logbookadvanced/printQsl.php:54
 #: application/views/qslpostcard/printqueue.php:22
 #: application/views/qslpostcard/printqueue_selected.php:28
 #: application/views/qslprint/printqsl.php:30
-#: application/views/logbookadvanced/printQsl.php:54
 msgid "Generate Postcard PDF"
 msgstr "ポストカードのPDFを生成する"
 
-#: application/views/logbookadvanced/printQsl.php:41
+#: application/views/logbookadvanced/printQsl.php:65
 #: application/views/qslpostcard/printqueue.php:33
 #: application/views/qslpostcard/printqueue_selected.php:39
 #: application/views/qslprint/printqsl.php:42
-#: application/views/logbookadvanced/printQsl.php:65
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."

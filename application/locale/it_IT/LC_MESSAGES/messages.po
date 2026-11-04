@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-02 06:45+0000\n"
+"POT-Creation-Date: 2026-11-04 13:17+0000\n"
 "PO-Revision-Date: 2026-11-03 17:16+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4593,8 +4593,6 @@ msgstr ""
 "Errore generico durante la lettura della chiave di sessione del callbook "
 "memorizzata nella cache."
 
-#: application/libraries/Callbook.php:244
-#: application/libraries/Callbook.php:258
 #: application/libraries/Callbook.php:282
 msgid "QRZCQ Error"
 msgstr "Errore QRZCQ"
@@ -17809,12 +17807,11 @@ msgid "No paper assigned"
 msgstr "Nessun foglio assegnato"
 
 #: application/views/labeldesigner/designer.php:91
-#: application/views/logbookadvanced/printQsl.php:9
+#: application/views/logbookadvanced/printQsl.php:21
 #: application/views/qslpostcard/designer.php:67
 #: application/views/qslpostcard/printqueue.php:8
 #: application/views/qslpostcard/printqueue_selected.php:10
 #: application/views/qslprint/printqsl.php:9
-#: application/views/logbookadvanced/printQsl.php:21
 msgid "Template"
 msgstr "Modello"
 
@@ -17869,12 +17866,11 @@ msgid "PDF"
 msgstr "PDF"
 
 #: application/views/labeldesigner/designer.php:135
-#: application/views/logbookadvanced/printQsl.php:34
+#: application/views/logbookadvanced/printQsl.php:58
 #: application/views/qslpostcard/designer.php:99
 #: application/views/qslpostcard/printqueue.php:26
 #: application/views/qslpostcard/printqueue_selected.php:32
 #: application/views/qslprint/printqsl.php:34
-#: application/views/logbookadvanced/printQsl.php:58
 msgid "Save PDF"
 msgstr "Salva PDF"
 
@@ -18361,10 +18357,10 @@ msgstr ""
 "di significativo, magari lo stile dell'etichetta."
 
 #: application/views/labels/index.php:2
+#: application/views/logbookadvanced/printQsl.php:41
 #: application/views/logbookadvanced/startatform.php:125
 #: application/views/qslprint/printlabel.php:138
 #: application/views/qslprint/printqsl.php:37
-#: application/views/logbookadvanced/printQsl.php:41
 msgid "Mark QSL as printed"
 msgstr "Segna QSL come stampata"
 
@@ -19774,11 +19770,10 @@ msgstr ""
 "I campi selezionati verranno uniti nel QSO principale. Puoi selezionare "
 "campi diversi da ciascun QSO."
 
-#: application/views/logbookadvanced/printQsl.php:22
+#: application/views/logbookadvanced/printQsl.php:34
 #: application/views/qslpostcard/printqueue.php:18
 #: application/views/qslpostcard/printqueue_selected.php:21
 #: application/views/qslprint/printqsl.php:22
-#: application/views/logbookadvanced/printQsl.php:34
 msgid ""
 "Print options (QSOs per card, background image, address printing) are set "
 "per template in the QSL Postcard Designer."
@@ -19786,19 +19781,17 @@ msgstr ""
 "Le opzioni di stampa (QSOs per cartolina, immagine di sfondo, stampa "
 "dell'indirizzo) sono impostate per modello nel Designer di cartoline QSL."
 
-#: application/views/logbookadvanced/printQsl.php:30
+#: application/views/logbookadvanced/printQsl.php:54
 #: application/views/qslpostcard/printqueue.php:22
 #: application/views/qslpostcard/printqueue_selected.php:28
 #: application/views/qslprint/printqsl.php:30
-#: application/views/logbookadvanced/printQsl.php:54
 msgid "Generate Postcard PDF"
 msgstr "Genera PDF della cartolina"
 
-#: application/views/logbookadvanced/printQsl.php:41
+#: application/views/logbookadvanced/printQsl.php:65
 #: application/views/qslpostcard/printqueue.php:33
 #: application/views/qslpostcard/printqueue_selected.php:39
 #: application/views/qslprint/printqsl.php:42
-#: application/views/logbookadvanced/printQsl.php:65
 msgid ""
 "No templates available for printing. Go to the QSL Postcard Designer and "
 "create a template first."
