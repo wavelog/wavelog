@@ -890,10 +890,12 @@ class Srr_model extends CI_Model {
 	 */
 	private function srr_callsigns($me) {
 		$callsigns = array();
-		foreach (array_merge($me->callsigns ?? array(), $me->delegated_callsigns ?? array()) as $item) {
-			$callsign = $item->callsign ?? '';
-			if (($callsign != '') && !isset($callsigns[strtoupper($callsign)])) {
-				$callsigns[strtoupper($callsign)] = $callsign;
+		foreach (array($me->callsigns ?? array(), $me->delegated_callsigns ?? array()) as $srr_calls) {
+			foreach ($srr_calls as $srr_call) {
+				$callsign = $srr_call->callsign ?? '';
+				if (($callsign != '') && !isset($callsigns[strtoupper($callsign)])) {
+					$callsigns[strtoupper($callsign)] = $callsign;
+				}
 			}
 		}
 		return array_values($callsigns);
