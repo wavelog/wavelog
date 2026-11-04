@@ -607,19 +607,25 @@ class Srr_model extends CI_Model {
 
 		$callsigns = $this->srr_callsigns($me);
 
-		$updated = 0;
-		$known = 0;
-		$not_found = 0;
-		$table = '';
-		$handled = array();
+		// The date of the next download is the same for all callsigns and moves with the first marked QSO.
+		// So nothing is marked until all exports are here, or the next download skips those of a failed export.
+		$exports = array();
 		foreach ($callsigns as $callsign) {
 			$result = $this->srr_request('GET', '/qso/export?callsign='.urlencode($callsign).'&source=all&qslsince='.$qslsince, $key);
 			if ($result['error'] != '' || $result['httpcode'] != 200) {
 				return $verified.html_escape($callsign).": ".__("Download failed")." - ".($result['error'] != '' ? $result['error'] : __("HTTP Code").": ".$result['httpcode']);
 			}
+			$exports[] = $result['raw'];
+		}
 
+		$updated = 0;
+		$known = 0;
+		$not_found = 0;
+		$table = '';
+		$handled = array();
+		foreach ($exports as $export) {
 			$parser = new ADIF_Parser();
-			$parser->feed($result['raw']);
+			$parser->feed($export);
 			while ($record = $parser->get_record()) {
 				if (($record['qsl_rcvd'] ?? '') != 'Y') {
 					continue;
@@ -697,7 +703,8 @@ class Srr_model extends CI_Model {
 	 * QSOs found in the SRR export are marked as uploaded. QSOs not found are probably still in
 	 * the inbox and stay queued. After their deadline (see pending_deadline()), counted from their
 	 * upload date, they are marked as not uploaded, so the next upload sends them again.
-	 * A QSO without an upload date has no deadline to wait for.
+	 * A QSO without an upload date has no deadline to wait for. If the export of a callsign
+	 * fails, the other callsigns are verified and the QSOs of this one stay queued without a deadline.
 	 *
 	 * @param int $user_id User id
 	 * @param string $key SRR API key
@@ -708,6 +715,9 @@ class Srr_model extends CI_Model {
 		$this->load->model('Logbook_model');
 		if (!$this->load->is_loaded('adif_parser')) {
 			$this->load->library('adif_parser');
+		}
+		if (!$this->load->is_loaded('callbook')) {
+			$this->load->library('callbook');
 		}
 
 		$sql = "SELECT qsos.COL_PRIMARY_KEY, qsos.COL_SRR_QSLSDATE, station_profile.station_callsign, qsos.COL_CALL, qsos.COL_TIME_ON, qsos.COL_BAND, qsos.COL_MODE, qsos.COL_SUBMODE
@@ -734,10 +744,14 @@ class Srr_model extends CI_Model {
 
 		$verified_ids = array();
 		$handled = array();
+		$failed_calls = array();
+		$failed_text = '';
 		foreach ($callsigns as $callsign) {
 			$result = $this->srr_request('GET', '/qso/export?callsign='.urlencode($callsign).'&source=all&from='.$from.'&to='.$to, $key);
 			if ($result['error'] != '' || $result['httpcode'] != 200) {
-				return html_escape($callsign).": ".__("Verification of the uploaded QSOs failed")." - ".($result['error'] != '' ? $result['error'] : __("HTTP Code").": ".$result['httpcode']);
+				$failed_calls[] = strtoupper($this->callbook->get_plaincall($callsign));
+				$failed_text .= html_escape($callsign).": ".__("Verification of the uploaded QSOs failed")." - ".($result['error'] != '' ? $result['error'] : __("HTTP Code").": ".$result['httpcode'])."<br>";
+				continue;
 			}
 
 			$parser = new ADIF_Parser();
@@ -768,6 +782,10 @@ class Srr_model extends CI_Model {
 		$expired_ids = array();
 		$expired_text = '';
 		foreach ($pending as $qso_id => $qso) {
+			// The export of this callsign failed, so the QSO may be on SRR
+			if (in_array(strtoupper($this->callbook->get_plaincall($qso->station_callsign)), $failed_calls, true)) {
+				continue;
+			}
 			if ((($qso->COL_SRR_QSLSDATE ?? '') == '') || ((strtotime($qso->COL_SRR_QSLSDATE) + $deadline) <= $now)) {
 				$expired_ids[] = $qso_id;
 				$expired_text .= "<br>".html_escape($qso->COL_CALL)." ".date('Y-m-d H:i', strtotime($qso->COL_TIME_ON))." ".html_escape($qso->COL_BAND)." - ".__("not found on SRR, it will be sent again with the next upload. Please check the API requests in your SRR panel.");
@@ -779,7 +797,7 @@ class Srr_model extends CI_Model {
 
 		$r = sprintf(__("%d uploaded QSO(s) verified on SRR, %d still being processed by SRR, %d not found and set to not uploaded."), count($verified_ids), count($pending) - count($expired_ids), count($expired_ids));
 
-		return $r.$expired_text;
+		return $failed_text.$r.$expired_text;
 	}
 
 	/**
