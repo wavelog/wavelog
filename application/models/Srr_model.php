@@ -7,8 +7,8 @@ class Srr_model extends CI_Model {
 	// Number of QSOs sent in the first request of an upload
 	private $probe_size = 10;
 
-	// Number of requests sent at the same time, 0 = all at once
-	private $max_parallel = 0;
+	// Number of requests sent at the same time
+	private $max_parallel = 5;
 
 	// Minimum minutes shown to the user until QSOs in the SRR inbox are processed
 	private $verify_min = 15;
@@ -467,7 +467,7 @@ class Srr_model extends CI_Model {
 	}
 
 	/**
-	 * Marks QSOs as queued and sends them in requests of 100 QSOs at the same time.
+	 * Marks QSOs as queued and sends them in requests of 100 QSOs, max_parallel at the same time.
 	 * QSOs which SRR processes during the request are marked by its response, the
 	 * others stay queued and are verified later by verify_pending(). The QSOs of a
 	 * failed request are set to not uploaded and are sent next time.
@@ -495,9 +495,8 @@ class Srr_model extends CI_Model {
 		$active_handles = array();
 		$queue_index = 0;
 		$queue_count = count($chunks);
-		$max_parallel = ($this->max_parallel > 0) ? $this->max_parallel : $queue_count;
 
-		while ($queue_index < $queue_count && count($active_handles) < $max_parallel) {
+		while ($queue_index < $queue_count && count($active_handles) < $this->max_parallel) {
 			$ch = $this->srr_handle('POST', '/qso', $key, $this->qso_payload($this->build_records($chunks[$queue_index])));
 			curl_multi_add_handle($mh, $ch);
 			$active_handles[(int)$ch] = array('ch' => $ch, 'chunk' => $queue_index);
