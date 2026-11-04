@@ -710,7 +710,7 @@ class Srr_model extends CI_Model {
 			$this->load->library('adif_parser');
 		}
 
-		$sql = "SELECT qsos.COL_PRIMARY_KEY, qsos.COL_SRR_QSLSDATE, qsos.COL_STATION_CALLSIGN, qsos.COL_CALL, qsos.COL_TIME_ON, qsos.COL_BAND, qsos.COL_MODE, qsos.COL_SUBMODE
+		$sql = "SELECT qsos.COL_PRIMARY_KEY, qsos.COL_SRR_QSLSDATE, station_profile.station_callsign, qsos.COL_CALL, qsos.COL_TIME_ON, qsos.COL_BAND, qsos.COL_MODE, qsos.COL_SUBMODE
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
 			WHERE station_profile.user_id = ? AND qsos.COL_SRR_QSL_SENT = 'Q'
@@ -726,7 +726,8 @@ class Srr_model extends CI_Model {
 		$by_minute = array();
 		foreach ($rows as $row) {
 			$pending[$row->COL_PRIMARY_KEY] = $row;
-			$by_minute[$this->minute_key($row->COL_STATION_CALLSIGN, $row->COL_CALL, $row->COL_BAND, date('Y-m-d H:i', strtotime($row->COL_TIME_ON)))][] = $row;
+			// The upload sends the callsign of the station profile, see AdifHelper::getAdifLine()
+			$by_minute[$this->minute_key($row->station_callsign, $row->COL_CALL, $row->COL_BAND, date('Y-m-d H:i', strtotime($row->COL_TIME_ON)))][] = $row;
 		}
 		$from = date('Ymd', strtotime($rows[0]->COL_TIME_ON));
 		$to = date('Ymd', strtotime($rows[count($rows) - 1]->COL_TIME_ON));
@@ -753,9 +754,10 @@ class Srr_model extends CI_Model {
 				// SRR identifies a QSO to the minute, so import_check() with its 15 minutes would mix up QSOs
 				$minute_key = $this->minute_key($record['station_callsign'], $record['call'], $record['band'], $time_on);
 				if (!empty($by_minute[$minute_key])) {
-					$qso = $this->take_pending($by_minute[$minute_key], $record['mode']);
-					$verified_ids[] = $qso->COL_PRIMARY_KEY;
-					unset($pending[$qso->COL_PRIMARY_KEY]);
+					foreach ($this->take_pending($by_minute[$minute_key], $record['mode']) as $qso) {
+						$verified_ids[] = $qso->COL_PRIMARY_KEY;
+						unset($pending[$qso->COL_PRIMARY_KEY]);
+					}
 				}
 			}
 		}
@@ -781,21 +783,23 @@ class Srr_model extends CI_Model {
 	}
 
 	/**
-	 * Takes the QSO for a record of the SRR export off a list of queued QSOs of the same minute.
-	 * A QSO with the mode of the record is preferred, otherwise the first one is taken.
+	 * Takes the QSOs for a record of the SRR export off a list of queued QSOs of the same minute.
+	 * All QSOs with the mode of the record are taken, because they are one QSO for SRR.
+	 * If there is none, the first QSO of the list is taken.
 	 *
 	 * @param array $qsos Queued QSOs of the same minute, not empty
 	 * @param string $mode Mode of the record
-	 * @return object QSO row
+	 * @return array QSO rows
 	 */
 	private function take_pending(&$qsos, $mode) {
+		$taken = array();
 		foreach ($qsos as $index => $qso) {
 			if ((strcasecmp($qso->COL_MODE ?? '', $mode) == 0) || (strcasecmp($qso->COL_SUBMODE ?? '', $mode) == 0)) {
+				$taken[] = $qso;
 				unset($qsos[$index]);
-				return $qso;
 			}
 		}
-		return array_shift($qsos);
+		return !empty($taken) ? $taken : array(array_shift($qsos));
 	}
 
 	/**
