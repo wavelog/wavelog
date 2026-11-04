@@ -1482,9 +1482,10 @@ class Logbookadvanced_model extends CI_Model {
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else if ($column == 'COL_SRR_QSL_RCVD') {
 			$skipqrzupdate = true;
+			$qslrdate = $value == 'N' ? 'null' : 'now()';
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
-			" SET " . $this->config->item('table_name').".COL_SRR_QSL_RCVD = ?, " . $this->config->item('table_name').".COL_SRR_QSLRDATE = now()" .
+			" SET " . $this->config->item('table_name').".COL_SRR_QSL_RCVD = ?, " . $this->config->item('table_name').".COL_SRR_QSLRDATE = " . $qslrdate .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));

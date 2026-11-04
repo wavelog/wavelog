@@ -657,7 +657,7 @@ class Srr_model extends CI_Model {
 	function srr_last_qsl_rcvd_date($user_id) {
 		$sql = "SELECT date_format(MAX(COALESCE(COL_SRR_QSLRDATE, str_to_date('1900-01-01','%Y-%m-%d'))),'%Y%m%d') MAXDATE
 			FROM " . $this->config->item('table_name') . " INNER JOIN station_profile ON (" . $this->config->item('table_name') . ".station_id = station_profile.station_id)
-			WHERE station_profile.user_id = ?";
+			WHERE station_profile.user_id = ? AND COL_SRR_QSL_RCVD = 'Y'";
 		$query = $this->db->query($sql, array($user_id));
 		return $query->row()->MAXDATE ?? '19000101';
 	}
