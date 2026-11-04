@@ -188,7 +188,7 @@ class Srr extends CI_Controller {
 	/**
 	 * Downloads the SRR confirmations of the user, optionally since the posted date.
 	 *
-	 * @return void Echoes the download result as JSON
+	 * @return void Echoes the download result and the updated statistics as JSON
 	 */
 	public function download() {
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
@@ -201,13 +201,15 @@ class Srr extends CI_Controller {
 
 		$srr_key = $this->Srr_model->srr_key($this->session->userdata('user_id'));
 		if ($srr_key == '') {
-			$r = __("You need to store an SRR key to use this function.");
+			$data['message'] = __("You need to store an SRR key to use this function.");
 		} else {
-			$r = $this->Srr_model->download_user($this->session->userdata('user_id'), $srr_key, $this->input->post('date', true));
+			$data['message'] = $this->Srr_model->download_user($this->session->userdata('user_id'), $srr_key, $this->input->post('date', true));
 		}
 
+		$data['info'] = $this->Srr_model->stations_with_srr()->result();
+
 		header('Content-type: application/json');
-		echo json_encode($r);
+		echo json_encode($data);
 	}
 
 	/**

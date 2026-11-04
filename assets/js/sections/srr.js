@@ -15,13 +15,7 @@ function ExportSrr(station_id, propmode_los, without_rda) {
 		success: function (data) {
 			$(".ld-ext-right-"+station_id).removeClass('running');
 			$(".ld-ext-right-"+station_id).prop('disabled', false);
-			$.each(data.info, function(index, value){
-				$('#modcount'+value.station_id).html(value.modcount);
-				$('#notcount'+value.station_id).html(value.notcount);
-				$('#queuedcount'+value.station_id).html(value.queuedcount);
-				$('#totcount'+value.station_id).html(value.totcount);
-				$('#rejcount'+value.station_id).html(value.rejcount);
-			});
+			CountersSrr(data.info);
 			if (data.status == 'rda') {
 				RdaSrr(station_id, propmode_los, data.rda_qsos);
 				return;
@@ -54,19 +48,23 @@ function UploadRemainingSrr(station_id, propmode_los, without_rda, uploaded, fai
 		type: 'post',
 		data: {'station_id': station_id, 'propmode_los': (propmode_los ? 1 : 0), 'without_rda': (without_rda ? 1 : 0), 'uploaded': uploaded, 'failed': failed},
 		success: function (data) {
-			$.each(data.info, function(index, value){
-				$('#modcount'+value.station_id).html(value.modcount);
-				$('#notcount'+value.station_id).html(value.notcount);
-				$('#queuedcount'+value.station_id).html(value.queuedcount);
-				$('#totcount'+value.station_id).html(value.totcount);
-				$('#rejcount'+value.station_id).html(value.rejcount);
-			});
+			CountersSrr(data.info);
 			if (data.status == 'OK' && data.infomessage != '') {
 				$("#export .alert").remove();
 				$("#export").append('<div class="alert alert-success" role="alert">' + data.infomessage + '</div>');
 			}
 			ErrorsSrr(data);
 		}
+	});
+}
+
+function CountersSrr(info) {
+	$.each(info, function(index, value){
+		$('#modcount'+value.station_id).html(value.modcount);
+		$('#notcount'+value.station_id).html(value.notcount);
+		$('#queuedcount'+value.station_id).html(value.queuedcount);
+		$('#totcount'+value.station_id).html(value.totcount);
+		$('#rejcount'+value.station_id).html(value.rejcount);
 	});
 }
 
@@ -192,7 +190,8 @@ function importSrr() {
 		success: function (data) {
 			$(".ld-ext-right-import").removeClass('running');
 			$(".ld-ext-right-import").prop('disabled', false);
-			$("#import").append('<div class="alert alert-success" role="alert">' + data + '</div>');
+			CountersSrr(data.info);
+			$("#import").append('<div class="alert alert-success" role="alert">' + data.message + '</div>');
 		}
 	});
 }

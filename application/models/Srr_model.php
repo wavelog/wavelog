@@ -845,7 +845,7 @@ class Srr_model extends CI_Model {
 	 * @param array $chunk QSO rows of the request
 	 * @param object $data Decoded SRR response
 	 * @param string $station_text Prefix for the error messages, escaped for HTML
-	 * @param bool $marked_queued TRUE if the QSOs are already marked as queued
+	 * @param bool $marked_queued TRUE if the QSOs are already marked as queued, a QSO which is no longer queued is not changed
 	 * @return array uploaded, failed and errormessages
 	 */
 	private function mark_chunk($chunk, $data, $station_text, $marked_queued = false) {
@@ -867,13 +867,13 @@ class Srr_model extends CI_Model {
 
 		foreach ($chunk as $index => $qso) {
 			if (isset($qso_errors[$index])) {
-				$this->Logbook_model->mark_srr_sent($qso->COL_PRIMARY_KEY, 'I');
+				$this->Logbook_model->mark_srr_sent($qso->COL_PRIMARY_KEY, 'I', $marked_queued);
 				$result['errormessages'][] = $station_text.html_escape($qso->COL_CALL)." ".date('Y-m-d H:i', strtotime($qso->COL_TIME_ON))." ".html_escape($qso->COL_BAND)." - ".html_escape($qso_errors[$index]);
 				$result['failed']++;
 			} else {
 				// A download may already have verified a QSO which is marked as queued, so it is not marked again
 				if (!$queued || !$marked_queued) {
-					$this->Logbook_model->mark_srr_sent($qso->COL_PRIMARY_KEY, $queued ? 'Q' : 'Y');
+					$this->Logbook_model->mark_srr_sent($qso->COL_PRIMARY_KEY, $queued ? 'Q' : 'Y', $marked_queued);
 				}
 				$result['uploaded']++;
 			}

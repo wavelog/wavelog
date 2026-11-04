@@ -6586,9 +6586,10 @@ class Logbook_model extends CI_Model {
 	 *
 	 * @param int $qso_id QSO primary key
 	 * @param string $state Y (uploaded), Q (queued in the SRR inbox) or I (rejected by SRR)
+	 * @param bool $only_queued TRUE: do not change a QSO which is no longer queued, it was edited or verified meanwhile
 	 * @return string
 	 */
-	function mark_srr_sent($qso_id, $state = 'Y') {
+	function mark_srr_sent($qso_id, $state = 'Y', $only_queued = false) {
 
 		$data = array(
 			'COL_SRR_QSLSDATE' => date("Y-m-d H:i:s"),
@@ -6596,6 +6597,9 @@ class Logbook_model extends CI_Model {
 		);
 
 		$this->db->where('COL_PRIMARY_KEY', $qso_id);
+		if ($only_queued) {
+			$this->db->where('COL_SRR_QSL_SENT', 'Q');
+		}
 
 		$this->db->update($this->config->item('table_name'), $data);
 
