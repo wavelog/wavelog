@@ -75,17 +75,23 @@ class Srr_model extends CI_Model {
 	 * Checks the key against SRR (/me)
 	 *
 	 * @param string $key SRR API key
-	 * @return object|false The SRR user incl. callsigns, false if the key is invalid
+	 * @return object|false|null The SRR user incl. callsigns, false if the key is empty or SRR rejected it (HTTP 401 or 403), null if SRR is unavailable (curl error, any other HTTP code or an unexpected body)
 	 */
 	function get_srr_me($key) {
 		if (($key ?? '') == '') {
 			return false;
 		}
 		$result = $this->srr_request('GET', '/me', $key);
-		if (($result['httpcode'] == 200) && (($result['data']->result ?? '') == 'OK')) {
+		if ($result['error'] != '') {
+			return null;
+		}
+		if (in_array($result['httpcode'], array(401, 403))) {
+			return false;
+		}
+		if (($result['httpcode'] == 200) && (($result['data']->result ?? '') == 'OK') && is_object($result['data']->data ?? null)) {
 			return $result['data']->data;
 		}
-		return false;
+		return null;
 	}
 
 	/**
@@ -534,6 +540,9 @@ class Srr_model extends CI_Model {
 		$me = $this->get_srr_me($key);
 		if ($me === false) {
 			return __("The stored SRR key is not valid. Please request a new key.");
+		}
+		if ($me === null) {
+			return __("SRR could not be reached. Please try again later.");
 		}
 
 		$this->load->model('Logbook_model');

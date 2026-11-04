@@ -20,7 +20,7 @@
 
 			<?php $this->load->view('layout/messages'); ?>
 
-			<?php if (($srr_me ?? false) !== false && $srr_key != '') { ?>
+			<?php if (is_object($srr_me ?? null)) { ?>
 
 			<div class="table-responsive">
 				<table class="table table-hover">
@@ -48,7 +48,7 @@
 				</table>
 			</div>
 
-			<?php } else { ?>
+			<?php } elseif (!($srr_unavailable ?? false)) { ?>
 			<div class="card-body">
 				<div class="alert alert-info" role="alert">
 					<?= __("You need to request an SRR key to use this function. Copy the key from your SRR panel and paste it here."); ?>
@@ -68,7 +68,7 @@
 	</div>
 	<!-- Card Ends -->
 
-	<?php if (($srr_me ?? false) !== false && $srr_key != '') { ?>
+	<?php if (is_object($srr_me ?? null) || ($srr_unavailable ?? false)) { ?>
 	<br>
 
 	<div class="card">

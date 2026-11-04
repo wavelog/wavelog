@@ -15,8 +15,9 @@ class Srr extends CI_Controller {
 	}
 
 	/**
-	 * Shows the SRR page with the key management and, if a valid key is stored,
-	 * the upload statistics of all station profiles of the user.
+	 * Shows the SRR page with the key management and, if a key is stored which SRR
+	 * did not reject, the upload statistics of all station profiles of the user.
+	 * These are built from local data, so they are shown while SRR is unavailable too.
 	 *
 	 * @return void
 	 */
@@ -34,6 +35,9 @@ class Srr extends CI_Controller {
 			$data['srr_me'] = $this->Srr_model->get_srr_me($srr_key);
 			if ($data['srr_me'] === false) {
 				$data['error'] = __("The stored SRR key is not valid. Please request a new key.");
+			} elseif ($data['srr_me'] === null) {
+				$data['error'] = __("SRR could not be reached. Please try again later.");
+				$data['srr_unavailable'] = true;
 			}
 			$data['station_profile'] = $this->Srr_model->stations_with_srr();
 		}
@@ -58,6 +62,7 @@ class Srr extends CI_Controller {
 
 	/**
 	 * Validates the posted SRR key against SRR and stores it for the user.
+	 * The key is not stored if SRR rejects it or could not be reached.
 	 *
 	 * @return void Redirects to the SRR page
 	 */
@@ -66,9 +71,12 @@ class Srr extends CI_Controller {
 		$this->load->model('Srr_model');
 
 		$srr_key = trim($this->input->post('srr_key', true) ?? '');
-		if ($this->Srr_model->get_srr_me($srr_key) !== false) {
+		$srr_me = $this->Srr_model->get_srr_me($srr_key);
+		if (is_object($srr_me)) {
 			$this->Srr_model->store_key($srr_key);
 			$this->session->set_flashdata('success', __("Key stored."));
+		} elseif ($srr_me === null) {
+			$this->session->set_flashdata('error', __("SRR could not be reached. Please try again later."));
 		} else {
 			$this->session->set_flashdata('error', __("Received an invalid SRR key. Please check the key, and try again."));
 		}
