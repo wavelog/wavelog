@@ -19,6 +19,15 @@ class Srr_model extends CI_Model {
 	// Minimum minutes after the upload until QSOs which SRR did not process are uploaded again
 	private $pending_deadline_min = 1440;
 
+	// Seconds until a GET request to SRR is aborted
+	private $timeout_get = 30;
+
+	// Seconds until a GET /qso/export request to SRR is aborted
+	private $timeout_export = 120;
+
+	// Seconds until a POST request to SRR is aborted, SRR keeps it open up to wait.limit_seconds (120, measured up to 130)
+	private $timeout_post = 180;
+
 	/**
 	 * Returns the stored SRR API key of a user
 	 *
@@ -936,15 +945,18 @@ class Srr_model extends CI_Model {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
+		$timeout = (strpos($path, '/qso/export') === 0) ? $this->timeout_export : $this->timeout_get;
 		$headers = [
 			'Authorization: Bearer '.$key,
 			'Accept: application/json'
 		];
 		if ($method == 'POST') {
+			$timeout = $this->timeout_post;
 			$headers[] = 'Content-Type: application/json';
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
 		}
+		curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		return $ch;
 	}

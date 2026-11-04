@@ -23,6 +23,9 @@ class Srr extends CI_Controller {
 	public function index() {
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
+		// The page waits for SRR, so the session is released to keep other pages usable
+		session_write_close();
+
 		// Load required models for page generation
 		$this->load->model('Srr_model');
 
