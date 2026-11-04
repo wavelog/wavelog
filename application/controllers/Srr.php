@@ -212,8 +212,9 @@ class Srr extends CI_Controller {
 
 	/**
 	 * Called by cron. Uploads the QSOs of all users with an SRR key
-	 * and downloads their confirmations. Users whose key SRR rejects and stations
-	 * whose callsign is not on the SRR account are skipped. The run stops if SRR does not answer
+	 * and downloads their confirmations. Users without QSOs are skipped without asking SRR.
+	 * Users whose key SRR rejects and stations whose callsign is not on the SRR account
+	 * are skipped too. The run stops if SRR does not answer
 	 * the key check of a user, an upload stops if SRR does not respond to one of its requests.
 	 *
 	 * @return void Echoes the result per station profile and user
@@ -241,6 +242,12 @@ class Srr extends CI_Controller {
 		}
 
 		foreach ($users as $user) {
+			$skip_reason = $this->Srr_model->skip_reason($user->user_id);
+			if ($skip_reason != '') {
+				echo $skip_reason."<br>";
+				continue;
+			}
+
 			$srr_me = $this->Srr_model->get_srr_me($user->option_value);
 			if ($srr_me === false) {
 				log_message('error', 'SRR rejected the key of user '.$user->user_id.'. Skipping this user.');

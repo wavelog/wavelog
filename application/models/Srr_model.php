@@ -555,17 +555,12 @@ class Srr_model extends CI_Model {
 	}
 
 	/**
-	 * Downloads the confirmations of a user from SRR and marks the
-	 * matching QSOs as received. The RDA district of the worked station (CNTY)
-	 * is stored in the QSO.
+	 * Returns why SRR does not need to be asked for a user
 	 *
 	 * @param int $user_id User id
-	 * @param string $key SRR API key
-	 * @param string|null $from Date to download from, since the last received SRR confirmation if null
-	 * @param object|false|null $me Result of get_srr_me() if the caller already has it, null to request it here
-	 * @return string Result message with a table of the updated QSOs
+	 * @return string Message, empty if the user has QSOs
 	 */
-	function download_user($user_id, $key, $from = null, $me = null) {
+	function skip_reason($user_id) {
 		$this->load->model('Logbook_model');
 		$this->load->model('Stations');
 
@@ -578,6 +573,28 @@ class Srr_model extends CI_Model {
 		if ($this->Logbook_model->total_qsos(explode(', ', $station_ids)) == 0) {
 			return __("No QSOs in log. SRR download skipped.");
 		}
+
+		return '';
+	}
+
+	/**
+	 * Downloads the confirmations of a user from SRR and marks the
+	 * matching QSOs as received. The RDA district of the worked station (CNTY)
+	 * is stored in the QSO.
+	 *
+	 * @param int $user_id User id
+	 * @param string $key SRR API key
+	 * @param string|null $from Date to download from, since the last received SRR confirmation if null
+	 * @param object|false|null $me Result of get_srr_me() if the caller already has it, null to request it here
+	 * @return string Result message with a table of the updated QSOs
+	 */
+	function download_user($user_id, $key, $from = null, $me = null) {
+		$skip_reason = $this->skip_reason($user_id);
+		if ($skip_reason != '') {
+			return $skip_reason;
+		}
+
+		$station_ids = $this->Stations->all_station_ids_of_user($user_id);
 
 		if ($me === null) {
 			$me = $this->get_srr_me($key);
