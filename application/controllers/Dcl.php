@@ -242,7 +242,7 @@ class Dcl extends CI_Controller {
 	|
 	|	Works entirely in memory, no tempfiles.
 	 */
-	function dcl_download($sync_user_id = null, $since = null, &$details = null) {
+	private function dcl_download($sync_user_id = null, $since = null, &$details = null) {
 		if ($this->session->userdata('user_id') != '') {	// Called from browser/session: auth-check and never sync foreign users
 			if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); exit; }
 			if ($sync_user_id == null) {
