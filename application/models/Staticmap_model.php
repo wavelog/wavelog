@@ -275,7 +275,9 @@ class Staticmap_model extends CI_Model {
                 if ($pathlines) {
                     $station_grid = $this->stations->profile($qso['station_id'])->row()->station_gridsquare;
                     $station_latlng = $this->qra->qra2latlong($station_grid);
-                    $paths_cnfd[] = $this->draw_pathline($station_latlng, $latlng, $continentEnabled, '04A902', $line_pxsize); // Green
+                    if ($station_latlng !== false) {
+                        $paths_cnfd[] = $this->draw_pathline($station_latlng, $latlng, $continentEnabled, '04A902', $line_pxsize); // Green
+                    }
                 }
                 $markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
                 continue;
@@ -283,7 +285,9 @@ class Staticmap_model extends CI_Model {
                 if ($pathlines) {
                     $station_grid = $this->stations->profile($qso['station_id'])->row()->station_gridsquare;
                     $station_latlng = $this->qra->qra2latlong($station_grid);
-                    $paths[] = $this->draw_pathline($station_latlng, $latlng, $continentEnabled, 'ff0000', $line_pxsize); // Red
+                    if ($station_latlng !== false) {
+                        $paths[] = $this->draw_pathline($station_latlng, $latlng, $continentEnabled, 'ff0000', $line_pxsize); // Red
+                    }
                 }
                 $markerQsos[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
                 continue;

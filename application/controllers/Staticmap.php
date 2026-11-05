@@ -226,13 +226,15 @@ class Staticmap extends CI_Controller {
 
                 $coordinates = [];
                 foreach ($grids as $grid) {
-                    $coordinates[] = $this->qra->qra2latlong($grid);
+                    if (trim((string)$grid) !== '' && ($ll = $this->qra->qra2latlong($grid)) !== false) {
+                        $coordinates[] = $ll;
+                    }
                 }
 
                 if ($custom_center) {
                     $centerMap = $this->qra->qra2latlong($custom_center);
                 } else {
-                    $centerMap = $this->qra->getCenterLatLng($coordinates);
+                    $centerMap = $coordinates ? $this->qra->getCenterLatLng($coordinates) : array(20, 0);
                 }
 
                 $qsos = $this->visitor_model->get_qsos(

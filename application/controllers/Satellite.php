@@ -556,7 +556,7 @@ class Satellite extends CI_Controller {
 		$data['homegrid'] = $this->stations->gridsquare_from_station($active_station_id);
 		$data['callsign'] = $this->stations->get_station_power($active_station_id)['station_callsign'];
 		$this->load->library('Qra');
-		[$data['lat'], $data['lon']] = $this->qra->qra2latlong($data['homegrid']);
+		[$data['lat'], $data['lon']] = $this->qra->qra2latlong($data['homegrid']) ?: [null, null];
 		$data['refs'] = $this->stations->get_station_refs($active_station_id);
 		$this->load->view('satellite/hamsatpost', $data);
 	}
