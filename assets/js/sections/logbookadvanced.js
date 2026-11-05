@@ -6,6 +6,7 @@ let inStateFixing = false;
 let stateFixStats = {fixed: 0, skipped: 0, fixedDxcc: new Set(), skippedDxcc: new Set(), skipReasons: new Set(), skippedDetails: []};
 let lastChecked = null;
 let silentReset = false;
+let markDupesAfterLoad = false;
 const filterDefaults = {};
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -530,6 +531,15 @@ function loadQSOTable(rows) {
 				lastChecked = this;
 			});
 		});
+
+		if (markDupesAfterLoad) {
+			markDupesAfterLoad = false;
+			rows.forEach(function (qso) {
+				if (qso.isdupe) {
+					selectQsoID(qso.qsoID);
+				}
+			});
+		}
 	};
 
 	if (langUrl) {
@@ -1865,6 +1875,21 @@ $(document).ready(function () {
 							}
 						},
 						{
+							label: lang_gen_advanced_logbook_mark_dupes + ' <div class="ld ld-ring ld-spin"></div>',
+							cssClass: 'btn btn-sm btn-warning ld-ext-right',
+							id: 'markDupesButton',
+							action: function (dialogItself) {
+								dialogItself.close();
+								$('#dupedate').val($('#date_check').is(':checked') ? "Y" : "N");
+								$('#dupemode').val($('#mode_check').is(':checked') ? "Y" : "N");
+								$('#dupeband').val($('#band_check').is(':checked') ? "Y" : "N");
+								$('#dupesat').val($('#satellite_check').is(':checked') ? "Y" : "N");
+								$('#dupedateval').val($('#dupe_time').length ? $('#dupe_time').val() * 60 : '1800');
+								markDupesAfterLoad = true;
+								dupeSearch();
+							}
+						},
+						{
 							label: lang_admin_close,
 							cssClass: 'btn btn-sm btn-secondary',
 							id: 'closeDupeDialogButton',
@@ -2154,10 +2179,14 @@ $(document).ready(function () {
 							if (!tplId) {
 								return;
 							}
+							var markprinted = $('#markprinted')[0].checked;
 							var $form = $('#printQslCardForm');
 						$form.attr('action', base_url + 'index.php/qslpostcard/pdfselected/' + tplId);
 						$form.attr('target', '_blank');
 						$form[0].submit();
+						if (markprinted) {
+							handleQsl('Y','B', 'sentBureau');
+						}
 						dialog.close();
 					});
 					$('#btnPrintQslCardSave').off('click').on('click', function () {
@@ -2165,10 +2194,14 @@ $(document).ready(function () {
 						if (!tplId) {
 							return;
 						}
+						var markprinted = $('#markprinted')[0].checked;
 						var $form = $('#printQslCardForm');
 						$form.attr('action', base_url + 'index.php/qslpostcard/pdfselected/' + tplId + '?download=1');
 						$form.attr('target', '_blank');
 						$form[0].submit();
+						if (markprinted) {
+							handleQsl('Y','B', 'sentBureau');
+						}
 						dialog.close();
 					});
 					},
