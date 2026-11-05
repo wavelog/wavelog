@@ -444,6 +444,14 @@ class adif extends CI_Controller {
 						if(count($record) == 0) {
 							break;
 						};
+
+						// Detect LoTW report and prevent setting QSL_RCVD as this is dedicated to paper QSL cards
+						if (isset($record['app_lotw_owncall'])) {
+							log_message('debug', 'LoTW QSO report found');
+							unset($record['qsl_rcvd']);
+							unset($record['qslrdate']);
+						}
+
 						array_push($alladif, $record);
 					};
 					$record='';	// free memory

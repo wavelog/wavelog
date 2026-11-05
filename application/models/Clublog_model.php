@@ -152,6 +152,7 @@ class Clublog_model extends CI_Model
 						log_message('info', 'Nothing awaiting upload to clublog for ' . $station_row->station_callsign);
 					}
 				}
+				sleep(11); // Mitigate Clublogs behaviour to send a 403 even after 10 successful requests
 			}
 		}
 		log_message('info', $return);
@@ -237,6 +238,7 @@ class Clublog_model extends CI_Model
 					log_message('info', $log);
 					$return .= $log."<br>";
 				}
+				sleep(11); // Mitigate Clublogs behaviour to send a 403 even after 10 successful requests
 			}
 		} else {
 			$return = "Nothing to download";
@@ -429,5 +431,212 @@ class Clublog_model extends CI_Model
 			$returner['status'] = $response;
 		}
 		return ($returner);
+	}
+
+	/**
+	 * Fetch OQRS requests from ClubLog and mark matching QSOs as requested.
+	 *
+	 * Gated per user via user_options (clublog/oqrs_sync/enabled). Fetch runs per
+	 * station callsign (ClubLog getadif.php, type=dxqsl) using the stored 'lastrun'
+	 * date as start filter unless $since_date is given; lastrun is only advanced
+	 * when every callsign fetch succeeded, so failed windows are retried on the
+	 * next run. The first run has no date filter and backfills the full history.
+	 *
+	 * @param int    $userid     users.user_id
+	 * @param string $username   ClubLog account email
+	 * @param string $password   ClubLog account password
+	 * @param string $since_date optional manual start date (Y-m-d) overriding lastrun
+	 * @return string summary with list of marked QSOs (HTML), empty if disabled or nothing fetched
+	 */
+	function oqrsUser($userid, $username, $password, $since_date = null) {
+		$this->load->model('user_options_model');
+		$oqrs_options = array();
+		foreach ($this->user_options_model->get_options('clublog', array('option_name' => 'oqrs_sync'), $userid)->result() as $opt) {
+			$oqrs_options[$opt->option_key] = $opt->option_value;
+		}
+		if (($oqrs_options['enabled'] ?? '0') != '1') {
+			return '';
+		}
+
+		$station_profiles = $this->all_enabled($userid);
+		if (!$station_profiles->num_rows()) {
+			return '';
+		}
+
+		$lastrun = $oqrs_options['lastrun'] ?? '';
+		if (preg_match('/^\d{4}-\d{2}-\d{2}$/', (string)$since_date)) {
+			$lastrun = $since_date;
+		}
+		$this->load->library('adif_parser');
+
+		$ok = true;
+		$fetched = 0;
+		$marked = array();
+		$skipped = 0;
+		$errors = array();
+		foreach ($station_profiles->result() as $station_row) {
+			$station_ids = array_filter(array_map('trim', explode(',', $station_row->station_ids)));
+			if (empty($station_ids) || $this->db->where_in('station_id', $station_ids)->count_all_results($this->config->item('table_name')) == 0) {
+				continue;	// no QSOs for this callsign -> nothing to match, skip fetch
+			}
+
+			$post = array('email' => $username, 'password' => $password, 'call' => trim($station_row->station_callsign), 'type' => 'dxqsl');
+			if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $lastrun)) {
+				$post['startyear'] = substr($lastrun, 0, 4);
+				$post['startmonth'] = substr($lastrun, 5, 2);
+				$post['startday'] = substr($lastrun, 8, 2);
+			}
+
+			$request = curl_init('https://clublog.org/getadif.php');
+			curl_setopt($request, CURLOPT_POST, true);
+			curl_setopt($request, CURLOPT_POSTFIELDS, http_build_query($post));
+			curl_setopt($request, CURLOPT_TIMEOUT, 30);
+			curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+			$response = curl_exec($request);
+			$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
+
+			$u = strtoupper((string)$response);
+			if ($response === false || $httpcode != 200 || (trim($u) !== '' && !str_contains($u, '<EOH>') && !str_contains($u, '<EOR>'))) {
+				log_message('error', 'Clublog OQRS fetch failed for ' . $station_row->station_callsign . ' (HTTP ' . $httpcode . '): ' . substr((string)$response, 0, 200));
+				$errors[] = $station_row->station_callsign;
+				$ok = false;
+				continue;
+			}
+
+			if (trim($u) !== '') {
+				$parser = new ADIF_Parser();
+				$parser->load_from_string($response);
+				$parser->initialize();
+				while ($record = $parser->get_record()) {
+					if (isset($record['call'], $record['qso_date'])) {
+						$fetched++;
+						$line = $this->oqrs_mark_requested($record, $station_row->station_callsign, $station_ids);
+						if ($line !== null) {
+							$marked[] = $line;
+						} else {
+							$skipped++;
+						}
+					}
+				}
+			}
+			log_message('info', 'Clublog OQRS requests fetched for ' . $station_row->station_callsign);
+			sleep(11); // Mitigate Clublogs behaviour to send a 403 even after 10 successful requests
+		}
+
+		if ($ok) {
+			$this->user_options_model->set_option('clublog', 'oqrs_sync', array('lastrun' => date('Y-m-d')), $userid);
+		}
+
+		$return = '';
+		if ($fetched > 0 || !empty($errors)) {
+			$return = 'Clublog OQRS: ' . $fetched . ' requests fetched, ' . count($marked) . ' QSOs marked requested, ' . $skipped . ' skipped (already sent/requested or no match)';
+			if (!empty($errors)) {
+				$return .= '<br>Fetch failed for: ' . html_escape(implode(', ', $errors));
+			}
+			if (!empty($marked)) {
+				$return .= '<br>' . implode('<br>', $marked);
+			}
+		}
+		return $return;
+	}
+
+	/**
+	 * Mark a QSO referenced by a ClubLog OQRS request as requested ('R') so it
+	 * enters the QSL print queue workflow.
+	 *
+	 * Matching mirrors logbook_model::clublog_update() (call + datetime + band with
+	 * unit stripped + station callsign, scoped to the station ids of that callsign).
+	 * QSOs already marked sent/requested (COL_QSL_SENT 'Y'/'R') are never touched,
+	 * so manual marks survive; such collisions are only logged.
+	 *
+	 * @param array  $record           parsed ADIF record (lowercase keys) from the ClubLog OQRS export
+	 * @param string $station_callsign station callsign the OQRS request belongs to
+	 * @param array  $station_ids      station_profile ids sharing that callsign
+	 * @return string|null escaped one-line description of the marked QSO, null if nothing was marked
+	 */
+	function oqrs_mark_requested($record, $station_callsign, $station_ids) {
+		if (empty($station_ids)) {
+			return null;
+		}
+
+		$record['call'] = str_replace('Ø', '0', $record['call'] ?? '');
+		$date = date('Y-m-d', strtotime($record['qso_date'] ?? ''));
+		$time = trim($record['time_on'] ?? '');
+		if ($date == '1970-01-01' || $time == '' || $record['call'] == '' || !isset($record['band'])) {
+			return null;
+		}
+		if (!preg_match('/^(\d{2})(\d{2})/', $time, $m)) {
+			return null;
+		}
+		$time = $m[1] . ':' . $m[2];
+		$band = preg_replace('/(cm|m)$/i', '', trim($record['band']));
+
+		$via_raw = strtolower(($record['qsl_via'] ?? '') . ' ' . ($record['app_clublog_qsl_via'] ?? ''));
+		$via = str_contains($via_raw, 'direct') ? 'D' : 'B';
+
+		$placeholders = implode(',', array_fill(0, count($station_ids), '?'));
+		$sql = "UPDATE " . $this->config->item('table_name') . " SET COL_QSL_SENT = 'R', COL_QSLSDATE = ?, COL_QSL_SENT_VIA = ?
+			WHERE COL_CALL = ? AND date_format(COL_TIME_ON, '%Y-%m-%d %H:%i') = ? AND replace(replace(COL_BAND,'cm',''),'m','') = ? AND COL_STATION_CALLSIGN = ? AND station_id IN (" . $placeholders . ") AND coalesce(COL_QSL_SENT,'') not in ('Y','R')";
+		$bindings = array_merge(
+			array(date('Y-m-d H:i:s'), $via, $record['call'], $date . ' ' . $time, $band, $station_callsign),
+			$station_ids
+		);
+		$this->db->query($sql, $bindings);
+
+		if (!$this->db->affected_rows()) {
+			log_message('info', 'Clublog OQRS request for ' . $record['call'] . ' at ' . $date . ' ' . $time . ' ' . $record['band'] . ' matched no QSO or the QSO was already sent/requested.');
+			return null;
+		}
+		return html_escape($record['call'] . ', ' . $date . ' ' . $time . ', ' . $record['band'] . ' (' . ($via == 'D' ? 'direct' : 'bureau') . ')');
+	}
+
+	/**
+	 * Test Club Log credentials without uploading or importing data.
+	 *
+	 * The former auth-test endpoint getauth.php has been removed by Club Log,
+	 * so getadif.php is used as credential oracle (same call pattern as
+	 * oqrsUser() below): HTTP 200 means the credentials (and callsign) are
+	 * valid, HTTP 403 means wrong credentials or a callsign that does not
+	 * belong to that Club Log account. A far-future start date keeps the
+	 * downloaded ADIF empty, so the check transfers no log data. The
+	 * response body is discarded.
+	 *
+	 * @param string $username Club Log email address
+	 * @param string $password Club Log password (or app password when 2FA is used)
+	 * @param string $callsign callsign to authenticate for (must belong to the Club Log account)
+	 * @return array ['status' => 'OK'|'failed_wrong_creds'|'failed_na'|'failed', 'details' => string]
+	 */
+	function test_login($username, $password, $callsign) {
+		$ret = ['status' => 'failed', 'details' => ''];
+
+		$post = array('email' => $username, 'password' => $password, 'call' => trim($callsign), 'type' => 'dxqsl', 'startyear' => '2099', 'startmonth' => '01', 'startday' => '01');
+
+		$request = curl_init('https://clublog.org/getadif.php');
+		curl_setopt($request, CURLOPT_POST, true);
+		curl_setopt($request, CURLOPT_POSTFIELDS, http_build_query($post));
+		curl_setopt($request, CURLOPT_CONNECTTIMEOUT, 10);
+		curl_setopt($request, CURLOPT_TIMEOUT, 20);
+		curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($request, CURLOPT_USERAGENT, 'Wavelog/' . $this->optionslib->get_option('version'));
+		$response = curl_exec($request);
+		$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
+
+		if (curl_errno($request)) {
+			$ret['status'] = 'failed';
+			$ret['details'] = __("Connection to Club Log failed.");
+			log_message('error', 'Clublog credential test failed: ' . curl_strerror(curl_errno($request)) . ' (' . curl_errno($request) . ')');
+		} elseif ($httpcode == 403) {
+			$ret['status'] = 'failed_wrong_creds';
+			$ret['details'] = sprintf(__("Club Log login failed for user %s. Please check username, password and that the callsign %s belongs to this Club Log account."), $username, trim($callsign));
+		} elseif ($httpcode != 200 || $response === false) {
+			$ret['status'] = 'failed_na';
+			$ret['details'] = __("Club Log currently not available. Try again later.");
+			log_message('error', 'Clublog credential test for ' . $callsign . ' failed (HTTP ' . $httpcode . '): ' . substr((string)$response, 0, 200));
+		} else {
+			$ret['status'] = 'OK';
+			$ret['details'] = __("Club Log login OK!");
+		}
+
+		return $ret;
 	}
 }
