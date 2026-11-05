@@ -254,10 +254,12 @@ class Staticmap_model extends CI_Model {
         foreach ($qsos->result('array') as $qso) {
             if (!empty($qso['COL_GRIDSQUARE'])) {
                 $latlng = $this->qra->qra2latlong($qso['COL_GRIDSQUARE']);
+                if ($latlng === false) { continue; }
                 $lat = $latlng[0];
                 $lng = $latlng[1];
             } else if (!empty($qso['COL_VUCC_GRIDS'])) {
                 $latlng = $this->qra->qra2latlong($qso['COL_VUCC_GRIDS']);
+                if ($latlng === false) { continue; }
                 $lat = $latlng[0];
                 $lng = $latlng[1];
             } else {
