@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-04 13:17+0000\n"
-"PO-Revision-Date: 2026-10-26 20:10+0000\n"
+"PO-Revision-Date: 2026-11-05 19:57+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -1158,7 +1158,7 @@ msgstr "Импорт QSL из Clublog"
 
 #: application/controllers/Clublog.php:229
 msgid "No Club Log credentials provided."
-msgstr ""
+msgstr "Учетные данные Club Log не указаны."
 
 #: application/controllers/Contest_admin.php:42
 msgid "Contests Administration"
@@ -2926,7 +2926,7 @@ msgstr "LoTW. Информация ADIF"
 
 #: application/controllers/Lotw.php:679
 msgid "Downloaded LoTW report contains no matches."
-msgstr ""
+msgstr "Скачанный отчёт LoTW не содержит совпадений."
 
 #: application/controllers/Lotw.php:727 application/controllers/Lotw.php:1030
 msgid "You have not defined your ARRL LoTW credentials!"
@@ -2934,36 +2934,42 @@ msgstr "Вы не указали свои учетные данные ARRL LoTW!
 
 #: application/controllers/Lotw.php:735
 msgid "No QSOs in log. LoTW download skipped."
-msgstr ""
+msgstr "В журнале нет QSO. Скачивание из LoTW пропущено."
 
 #: application/controllers/Lotw.php:754
 #, php-format
 msgid "LoTW download failed for user %s: %s (%s)."
-msgstr ""
+msgstr "Не удалось скачать данные LoTW для пользователя %s: %s (%s)."
 
 #: application/controllers/Lotw.php:757
 #, php-format
 msgid "LoTW download failed for user %s: unexpected HTTP status %s."
 msgstr ""
+"Не удалось скачать данные LoTW для пользователя %s: неожиданный статус HTTP "
+"%s."
 
 #: application/controllers/Lotw.php:761
 #, php-format
 msgid "LoTW download failed for user %s: Username/password incorrect"
 msgstr ""
+"Не удалось скачать данные LoTW для пользователя %s: Неверное имя "
+"пользователя или пароль"
 
 #: application/controllers/Lotw.php:770
 #, php-format
 msgid "LoTW download hit a rate limit for user %s"
-msgstr ""
+msgstr "При скачивании из LoTW достигнут лимит запросов для пользователя %s"
 
 #: application/controllers/Lotw.php:775
 #, php-format
 msgid "Downloaded LoTW report for user %s is invalid. Check your credentials."
 msgstr ""
+"Скачанный отчёт LoTW для пользователя %s недействителен. Проверь свои "
+"учётные данные."
 
 #: application/controllers/Lotw.php:906
 msgid "No LoTW User details found to carry out matches."
-msgstr ""
+msgstr "Не найдены данные пользователя LoTW для выполнения сопоставлений."
 
 #: application/controllers/Lotw.php:970
 msgid "Connection to LoTW failed."
@@ -3020,24 +3026,24 @@ msgstr "Вид модуляции %s обновлён"
 #: application/controllers/Most_wanted_squares.php:22
 #: application/views/interface_assets/header.php:560
 msgid "Most Wanted Squares"
-msgstr ""
+msgstr "Самые востребованные квадраты QTH-локатора"
 
 #: application/controllers/Most_wanted_squares.php:43
 msgid "Invalid band."
-msgstr ""
+msgstr "Недопустимый диапазон."
 
 #: application/controllers/Most_wanted_squares.php:48
 #: application/views/most_wanted_squares/index.php:8
 msgid "The active station location has no gridsquare set."
-msgstr ""
+msgstr "Для активного профиля QTH не задан квадрат QTH-локатора."
 
 #: application/controllers/Most_wanted_squares.php:53
 msgid "The gridsquare of the active station location is invalid."
-msgstr ""
+msgstr "QTH-локатор активного профиля QTH некорректен."
 
 #: application/controllers/Most_wanted_squares.php:90
 msgid "VUCC gridsquare data unavailable."
-msgstr ""
+msgstr "Данные о квадратах QTH-локатора VUCC недоступны."
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:158
@@ -5093,7 +5099,7 @@ msgstr "Неизвестно"
 
 #: application/models/Clublog_model.php:626
 msgid "Connection to Club Log failed."
-msgstr ""
+msgstr "Не удалось подключиться к ClubLog."
 
 #: application/models/Clublog_model.php:630
 #, php-format
@@ -5101,14 +5107,17 @@ msgid ""
 "Club Log login failed for user %s. Please check username, password and that "
 "the callsign %s belongs to this Club Log account."
 msgstr ""
+"Не удалось выполнить вход в ClubLog для пользователя %s. Проверь имя "
+"пользователя, пароль и убедись, что позывной %s относится к этой учётной "
+"записи ClubLog."
 
 #: application/models/Clublog_model.php:633
 msgid "Club Log currently not available. Try again later."
-msgstr ""
+msgstr "ClubLog в данный момент недоступен. Повтори попытку позже."
 
 #: application/models/Clublog_model.php:637
 msgid "Club Log login OK!"
-msgstr ""
+msgstr "Вход в ClubLog выполнен успешно!"
 
 #: application/models/Contesting_import_model.php:219
 #, php-format
@@ -16728,7 +16737,7 @@ msgstr "Цвета"
 #: application/views/user/edit.php:731
 #: application/views/visitor/layout/footer.php:13
 msgid "Night Shadow"
-msgstr ""
+msgstr "Ночная тень"
 
 #: application/views/interface_assets/footer.php:58
 msgid "Post"
@@ -16762,7 +16771,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:66
 msgid "Reverse bearing"
-msgstr ""
+msgstr "Обратный азимут"
 
 #: application/views/interface_assets/footer.php:67
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -20329,6 +20338,8 @@ msgstr "Добавить вид модуляции"
 msgid ""
 "Export a list of 4-digit gridsquares that have not been worked yet on VHF."
 msgstr ""
+"Экспорт списока 4-значных квадратов QTH-локатора, с которыми ещё не "
+"проводились QSO на VHF."
 
 #: application/views/most_wanted_squares/index.php:21
 #, php-format
@@ -20336,10 +20347,13 @@ msgid ""
 "The list contains all not worked gridsquares within %d km of the gridsquare "
 "%s of the active station location %s (%s)."
 msgstr ""
+"Список содержит все квадраты QTH-локатора, с которыми ещё не проводились "
+"QSO, в пределах %d км от квадрата QTH-локатора %s активного профиля QTH %s "
+"(%s)."
 
 #: application/views/most_wanted_squares/index.php:34
 msgid "Exclude squares that contain no land"
-msgstr ""
+msgstr "Исключить квадраты, не содержащие сушу"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
@@ -23142,7 +23156,7 @@ msgstr "Загрузка QO-100 Dx Club в реальном времени"
 #: application/views/station_profile/create.php:406
 #: application/views/station_profile/edit.php:434
 msgid "PSKReporter Live Reporting"
-msgstr ""
+msgstr "Отчёты PSKReporter в реальном времени"
 
 #: application/views/station_profile/create.php:411
 #: application/views/station_profile/edit.php:439
@@ -23150,6 +23164,9 @@ msgid ""
 "If enabled, QSOs logged live in the QSO form are reported to "
 "pskreporter.info in real time. QSOs older than one hour are not reported."
 msgstr ""
+"Если включено, QSO, внесённые в реальном времени через форму ввода QSO, "
+"отправляются на pskreporter.info в режиме реального времени. QSO старше "
+"одного часа не отправляются."
 
 #: application/views/station_profile/create.php:426
 #: application/views/station_profile/edit.php:454
@@ -24455,13 +24472,16 @@ msgstr ""
 
 #: application/views/user/edit.php:1193
 msgid "Fetch Club Log OQRS requests"
-msgstr ""
+msgstr "Получить запросы OQRS из ClubLog"
 
 #: application/views/user/edit.php:1194
 msgid ""
 "If enabled, OQRS requests made via Club Log are fetched during the Club Log "
 "sync and matching QSOs are marked as requested."
 msgstr ""
+"Если включено, запросы OQRS, отправленные через ClubLog, загружаются во "
+"время синхронизации с ClubLog, а соответствующие QSO помечаются как "
+"запрошенные."
 
 #: application/views/user/edit.php:1207
 msgid "Widgets"
