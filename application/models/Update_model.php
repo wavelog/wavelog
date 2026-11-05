@@ -440,17 +440,7 @@ class Update_model extends CI_Model {
          set_time_limit(0);                       // 7 files, the big ones are slow
 
         // Peak is ~24 MB on the largest file (DE, 1436 parks), so 256M is ample.
-        // Raise-only: never shrink a host that is already configured higher.
-        $cur = trim((string) ini_get('memory_limit'));
-        if ($cur !== '' && $cur !== '-1') {
-            $bytes = (int) $cur;
-            switch (strtolower(substr($cur, -1))) {
-                case 'g': $bytes *= 1024 * 1024 * 1024; break;
-                case 'm': $bytes *= 1024 * 1024; break;
-                case 'k': $bytes *= 1024; break;
-            }
-            if ($bytes < 256 * 1024 * 1024) { ini_set('memory_limit', '256M'); }
-        }
+        $this->_raise_memory_limit(256 * 1024 * 1024);
 
         $total = 0;
         $errors = [];
@@ -547,6 +537,138 @@ class Update_model extends CI_Model {
             return $msg;
         }
         return 'FAILED: no boundaries imported (' . implode('; ', $errors) . ')';
+    }
+
+    /* WWFF boundary import — recipe of pota_boundaries(), one GeoJSON per
+     * prefix from dj7nt.de/{prefix}ff.geojson. */
+    private $wwff_boundary_sources = ['DL'];
+
+    function wwff_boundaries() {
+        $this->load->model('cron_model');
+        $this->cron_model->set_last_run('update_wwff_boundaries');
+
+        set_time_limit(0);
+
+        $this->_raise_memory_limit(256 * 1024 * 1024);
+
+        $total = 0;
+        $errors = [];
+        $per_source = [];
+
+        $prev_save_queries = $this->db->save_queries;
+        $this->db->save_queries = FALSE;
+        $txn_open = false;
+        try {
+            foreach ($this->wwff_boundary_sources as $cc) {
+                $url = 'https://dj7nt.de/' . strtolower($cc) . 'ff.geojson'; // todo: Replace with correct URL when negoatiation with the WWFF-Guys is completed
+                $tmp = tempnam(sys_get_temp_dir(), 'wwff_geo_');
+                if ($tmp === false) {
+                    $errors[] = $cc . ': tempnam failed';
+                    continue;
+                }
+                if (!$this->_download_to_file($url, $tmp)) {
+                    $errors[] = $cc . ': download failed';
+                    @unlink($tmp);
+                    continue;
+                }
+
+                $this->db->trans_begin();
+                $txn_open = true;
+                $this->db->query('DELETE FROM wwff_boundaries WHERE source = ?', [$cc]);
+
+                $count = 0;
+                $last_ref = '';
+                $batch = [];
+                $batch_bytes = 0;
+                $flush = function () use (&$batch, &$batch_bytes) {
+                    if ($batch) {
+                        $this->db->insert_batch('wwff_boundaries', $batch);
+                        $batch = [];
+                        $batch_bytes = 0;
+                    }
+                };
+
+                foreach ($this->_stream_geojson_features($tmp) as $feature) {
+                    if (!is_array($feature) || ($feature['type'] ?? '') !== 'Feature') { continue; }
+                    $name = (string) ($feature['properties']['name'] ?? '');
+                    if (!preg_match('/^(DLFF-\d+)/i', $name, $m)) { continue; }
+                    $ref = strtoupper($m[1]);
+                    $geom = $feature['geometry'] ?? null;
+                    if ($geom === null) { continue; }
+
+                    // GeometryCollection → one row per polygon
+                    $geoms = ($geom['type'] ?? '') === 'GeometryCollection'
+                        ? ($geom['geometries'] ?? []) : [$geom];
+
+                    foreach ($geoms as $g) {
+                        if (!isset($g['type'], $g['coordinates'])) { continue; }
+                        $this->_strip_z($g['coordinates']);   // z always 0 in KML export
+                        $json = json_encode($g);
+                        if ($json === false) { continue; }
+                        $batch[] = ['reference' => $ref, 'geom' => $json, 'source' => $cc];
+                        $batch_bytes += strlen($json);
+                        $last_ref = $ref;
+                        $count++;
+
+                        if ($batch_bytes >= 4 * 1024 * 1024) { $flush(); }
+                    }
+                }
+                $flush();
+
+                if ($count === 0) {
+                    $this->db->trans_rollback();
+                    $txn_open = false;
+                    $errors[] = $cc . ': 0 features parsed (format drift?) — existing data kept';
+                } elseif ($this->db->trans_status() === FALSE) {
+                    $this->db->trans_rollback();
+                    $txn_open = false;
+                    $errors[] = $cc . ': db error at/near ' . $last_ref . ' — rolled back';
+                } else {
+                    $this->db->trans_commit();
+                    $txn_open = false;
+                    $per_source[] = $cc . '=' . number_format($count);
+                    $total += $count;
+                }
+                @unlink($tmp);
+            }
+        } catch (Throwable $e) {
+            if ($txn_open) { $this->db->trans_rollback(); }
+            throw $e;
+        } finally {
+            $this->db->save_queries = $prev_save_queries;
+        }
+
+        if ($total > 0) {
+            $msg = 'DONE: ' . number_format($total) . ' WWFF boundaries saved'
+                . ' (' . implode(', ', $per_source) . ')';
+            if ($errors) { $msg .= ' | errors: ' . implode('; ', $errors); }
+            return $msg;
+        }
+        return 'FAILED: no boundaries imported (' . implode('; ', $errors) . ')';
+    }
+
+    /* [lon, lat, z] → [lon, lat], recursively. */
+    private function _strip_z(&$arr) {
+        if (!is_array($arr) || empty($arr)) { return; }
+        if (is_array($arr[0])) {
+            foreach ($arr as &$sub) { $this->_strip_z($sub); }
+        } elseif (count($arr) > 2) {
+            $arr = [$arr[0], $arr[1]];
+        }
+    }
+
+    /* Raise-only memory_limit guard: never shrinks a host configured higher. */
+    private function _raise_memory_limit($min_bytes) {
+        $cur = trim((string) ini_get('memory_limit'));
+        if ($cur !== '' && $cur !== '-1') {
+            $bytes = (int) $cur;
+            switch (strtolower(substr($cur, -1))) {
+                case 'g': $bytes *= 1024 * 1024 * 1024; break;
+                case 'm': $bytes *= 1024 * 1024; break;
+                case 'k': $bytes *= 1024; break;
+            }
+            if ($bytes < $min_bytes) { ini_set('memory_limit', (int) ($min_bytes / 1024 / 1024) . 'M'); }
+        }
     }
 
     private function _download_to_file($url, $path) {
