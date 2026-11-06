@@ -1338,7 +1338,7 @@
 											<input class="form-check-input" type="checkbox" role="switch" id="amsatstatusupload" name="user_amsat_status_upload" value="1" <?php if ($user_amsat_status_upload == 1) { echo 'checked'; } ?>>
 										</div>
 										<div>
-											<label class="d-block mb-0" for="amsatsatatusupload"><?= __("Upload status of SAT QSOs to"); ?> <a href="https://www.amsat.org/status/" target="_blank">https://www.amsat.org/status/</a>.</label>
+											<label class="d-block mb-0" for="amsatsatatusupload"><?= __("Upload status of SAT QSOs to"); ?> <a href="https://status.amsat.org/" target="_blank">https://status.amsat.org/</a>.</label>
 										</div>
 									</div>
 								</div>
