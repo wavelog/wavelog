@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-06 13:13+0000\n"
+"POT-Creation-Date: 2026-11-06 13:21+0000\n"
 "PO-Revision-Date: 2026-10-28 19:55+0000\n"
 "Last-Translator: Lars Granheim <lb3qj.lars@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.wavelog.org/projects/"
@@ -186,7 +186,7 @@ msgstr "Troposfærisk kanalisering"
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:117
 #: application/controllers/Lotw.php:387 application/controllers/Lotw.php:425
-#: application/controllers/Lotw.php:912 application/controllers/Lotw.php:999
+#: application/controllers/Lotw.php:915 application/controllers/Lotw.php:1002
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14
 #: application/controllers/Most_wanted_squares.php:14
@@ -2842,7 +2842,7 @@ msgstr "Sertifikat oppdatert."
 msgid "Certificate Deleted."
 msgstr "Sertifikat slettet."
 
-#: application/controllers/Lotw.php:437
+#: application/controllers/Lotw.php:439
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
@@ -2855,7 +2855,7 @@ msgstr ""
 "passord!%s Du finner mer informasjon på %sLoTW-feilsøkingssiden%s i Wavelog-"
 "wikien."
 
-#: application/controllers/Lotw.php:439
+#: application/controllers/Lotw.php:441
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
@@ -2868,7 +2868,7 @@ msgstr ""
 "behandlet av LoTW. Du finner mer informasjon på %sLoTW-feilsøkingssiden%s i "
 "Wavelog-wikien."
 
-#: application/controllers/Lotw.php:445
+#: application/controllers/Lotw.php:447
 #, php-format
 msgid ""
 "Generic error processing the certificate in file %s. For further information "
@@ -2877,7 +2877,7 @@ msgstr ""
 "Feil ved behandling av sertifikatet i filen %s. Du finner mer informasjon på "
 "%sLoTW-feilsøkingssiden%s i Wavelog-wikien."
 
-#: application/controllers/Lotw.php:457
+#: application/controllers/Lotw.php:460
 #, php-format
 msgid ""
 "Generic error extracting the private key from certificate in file %s. For "
@@ -2887,77 +2887,77 @@ msgstr ""
 "Feil ved uttrekking av den private nøkkelen fra sertifikatet i filen %s. Du "
 "finner mer informasjon på %sLoTW-feilsøkingssiden%s i Wavelog-wikien."
 
-#: application/controllers/Lotw.php:671
+#: application/controllers/Lotw.php:674
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF-informasjon"
 
-#: application/controllers/Lotw.php:679
+#: application/controllers/Lotw.php:682
 msgid "Downloaded LoTW report contains no matches."
 msgstr ""
 
-#: application/controllers/Lotw.php:727 application/controllers/Lotw.php:1030
+#: application/controllers/Lotw.php:730 application/controllers/Lotw.php:1033
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Du har ikke angitt ARRL LoTW-påloggingsopplysninger!"
 
-#: application/controllers/Lotw.php:735
+#: application/controllers/Lotw.php:738
 msgid "No QSOs in log. LoTW download skipped."
-msgstr ""
-
-#: application/controllers/Lotw.php:754
-#, php-format
-msgid "LoTW download failed for user %s: %s (%s)."
 msgstr ""
 
 #: application/controllers/Lotw.php:757
 #, php-format
+msgid "LoTW download failed for user %s: %s (%s)."
+msgstr ""
+
+#: application/controllers/Lotw.php:760
+#, php-format
 msgid "LoTW download failed for user %s: unexpected HTTP status %s."
 msgstr ""
 
-#: application/controllers/Lotw.php:761
+#: application/controllers/Lotw.php:764
 #, php-format
 msgid "LoTW download failed for user %s: Username/password incorrect"
 msgstr ""
 
-#: application/controllers/Lotw.php:770
+#: application/controllers/Lotw.php:773
 #, php-format
 msgid "LoTW download hit a rate limit for user %s"
 msgstr ""
 
-#: application/controllers/Lotw.php:775
+#: application/controllers/Lotw.php:778
 #, php-format
 msgid "Downloaded LoTW report for user %s is invalid. Check your credentials."
 msgstr ""
 
-#: application/controllers/Lotw.php:906
+#: application/controllers/Lotw.php:909
 msgid "No LoTW User details found to carry out matches."
 msgstr ""
 
-#: application/controllers/Lotw.php:970
+#: application/controllers/Lotw.php:973
 msgid "Connection to LoTW failed."
 msgstr "Tilkoblingen til LoTW mislyktes."
 
-#: application/controllers/Lotw.php:975
+#: application/controllers/Lotw.php:978
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "Innlogging til LoTW mislyktes for brukeren %s: %s."
 
-#: application/controllers/Lotw.php:975
+#: application/controllers/Lotw.php:978
 msgid "Username/password incorrect"
 msgstr "Brukernavn/passord er feil"
 
-#: application/controllers/Lotw.php:978
+#: application/controllers/Lotw.php:981
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW er for øyeblikket ikke tilgjengelig. Prøv igjen senere."
 
-#: application/controllers/Lotw.php:982
+#: application/controllers/Lotw.php:985
 msgid "LoTW login OK!"
 msgstr "LoTW pålogging OK!"
 
-#: application/controllers/Lotw.php:988
+#: application/controllers/Lotw.php:991
 msgid "No LoTW credentials provided."
 msgstr "Ingen LoTW påloggingsopplysninger oppgitt."
 
-#: application/controllers/Lotw.php:1005
+#: application/controllers/Lotw.php:1008
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF-import"
 
