@@ -1804,6 +1804,18 @@ class Logbook_model extends CI_Model {
 			$dcl_rcvd = 'N';
 		}
 
+		if ($this->input->post('srr_sent')) {
+			$srr_sent = $this->input->post('srr_sent',true);
+		} else {
+			$srr_sent = 'N';
+		}
+
+		if ($this->input->post('srr_rcvd')) {
+			$srr_rcvd = strtoupper($p = $this->input->post('srr_rcvd', true)) === 'V' ? 'Y' : $p;
+		} else {
+			$srr_rcvd = 'N';
+		}
+
 		if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
 			$lotw_sent = 'I';
 		} elseif ($this->input->post('lotw_sent')) {
@@ -1935,6 +1947,31 @@ class Logbook_model extends CI_Model {
 			$dclrdate = $qso->COL_DCL_QSLRDATE;
 		}
 
+		if ($srr_sent == 'N' && $qso->COL_SRR_QSL_SENT != $srr_sent) {
+			$srrsdate = null;
+		} elseif (!$qso->COL_SRR_QSLSDATE || $qso->COL_SRR_QSL_SENT != $srr_sent) {
+			$srrsdate = date('Y-m-d H:i:s');
+		} else {
+			$srrsdate = $qso->COL_SRR_QSLSDATE;
+		}
+
+		if ($srr_rcvd == 'N') {
+			$srrrdate = null;
+		} elseif (!$qso->COL_SRR_QSLRDATE || $qso->COL_SRR_QSL_RCVD != $srr_rcvd) {
+			$srrrdate = date('Y-m-d H:i:s');
+		} else {
+			$srrrdate = $qso->COL_SRR_QSLRDATE;
+		}
+
+		// The SRR states were changed by the user. The dialog shows an empty state as "N".
+		$srr_modified = false;
+		if (($qso->COL_SRR_QSL_SENT ?? '') != $srr_sent) {
+			$srr_modified = true;
+		}
+		if ((($qso->COL_SRR_QSL_RCVD ?? '') == '' ? 'N' : $qso->COL_SRR_QSL_RCVD) != $srr_rcvd) {
+			$srr_modified = true;
+		}
+
 		if (is_numeric($this->input->post('distance')) && $this->input->post('distance') == 0) {
 			$distance = 0;
 		} elseif (($this->input->post('distance')) && (is_numeric($this->input->post('distance')))) {
@@ -2012,6 +2049,10 @@ class Logbook_model extends CI_Model {
 			'COL_DCL_QSLRDATE' => $dclrdate,
 			'COL_DCL_QSL_RCVD' => $dcl_rcvd,
 			'COL_DCL_QSL_SENT' => $dcl_sent,
+			'COL_SRR_QSLSDATE' => $srrsdate,
+			'COL_SRR_QSLRDATE' => $srrrdate,
+			'COL_SRR_QSL_RCVD' => $srr_rcvd,
+			'COL_SRR_QSL_SENT' => $srr_sent,
 			'COL_IOTA' => $this->input->post('iota_ref'),
 			'COL_SOTA_REF' => strtoupper(trim($this->input->post('sota_ref'))),
 			'COL_WWFF_REF' => strtoupper(trim($this->input->post('wwff_ref'))),
@@ -2063,6 +2104,11 @@ class Logbook_model extends CI_Model {
 			$data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] = 'M';
 		}
 
+		$old_srr = ($qso->COL_SRR_QSL_SENT ?? '');
+		if (($old_srr == 'I' || $old_srr == 'Y' || $old_srr == 'Q') && $clublog_relevant_update && !$srr_modified) {	// Update only to "M" if uploaded before, queued or Invalid (may be correct after update)
+			$data['COL_SRR_QSL_SENT'] = 'M';
+		}
+
 		$this->db->where('COL_PRIMARY_KEY', $this->input->post('id'));
 		$data = $this->sanitize_utf8($data);
 		try {
@@ -2108,6 +2154,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where('COL_PRIMARY_KEY', $id);
 		$current_row = $this->db->get($this->config->item('table_name'))->row();
 		$old_clublog = $current_row->COL_CLUBLOG_QSO_UPLOAD_STATUS ?? '';
+		$old_srr = $current_row->COL_SRR_QSL_SENT ?? '';
 		$clublog_relevant_update = $this->has_non_routing_changes($current_row, $data);
 
 		$this->db->where('COL_PRIMARY_KEY', $id);
@@ -2115,6 +2162,10 @@ class Logbook_model extends CI_Model {
 
 		if (($old_clublog == 'I' || $old_clublog == 'Y') && $clublog_relevant_update) {
 			$this->set_clublog_modified($id);
+		}
+
+		if (($old_srr == 'I' || $old_srr == 'Y' || $old_srr == 'Q') && $clublog_relevant_update) {
+			$this->set_srr_modified($id);
 		}
 
 		// Invalidate DXCluster cache for this callsign
@@ -3013,6 +3064,23 @@ class Logbook_model extends CI_Model {
 	 */
 	function set_clublog_modified($qso_id) {
 		$this->set_modified_status($qso_id, 'COL_CLUBLOG_QSO_UPLOAD_STATUS');
+	}
+
+	/**
+	 * Set SRR upload status to 'modified'.
+	 *
+	 * Only mark rows that were already uploaded before, are queued or were invalid.
+	 *
+	 * @param int $qso_id  the QSO primary key (COL_PRIMARY_KEY)
+	 */
+	function set_srr_modified($qso_id) {
+		$data = array(
+			'COL_SRR_QSL_SENT' => 'M'
+		);
+
+		$this->db->where('COL_PRIMARY_KEY', $qso_id);
+		$this->db->where_in('COL_SRR_QSL_SENT', array('Y', 'Q', 'I'));
+		$this->db->update($this->config->item('table_name'), $data);
 	}
 
 	/**
@@ -5137,7 +5205,7 @@ class Logbook_model extends CI_Model {
 		return false;
 	}
 
-	function import_bulk($records, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $skipGridCheck = false) {
+	function import_bulk($records, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $skipGridCheck = false, $markSrr = false) {
 		$custom_errors['errormessage'] = '';
 		$critical_errors = [];
 		$validation_errors = [];
@@ -5158,7 +5226,7 @@ class Logbook_model extends CI_Model {
 		$station_qslmsg = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
 
 		foreach ($records as $record) {
-			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $markDcl, $skipexport, trim($operatorName), $apicall, $skipStationCheck, true, $station_id_ok, $station_profile, $station_qslmsg, $skipGridCheck);
+			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $markDcl, $skipexport, trim($operatorName), $apicall, $skipStationCheck, true, $station_id_ok, $station_profile, $station_qslmsg, $skipGridCheck, $markSrr);
 			if (($one_error['error'] ?? '') != '') {
 				$category = $one_error['error_category'] ?? 'other';
 				if ($category === 'critical') {
@@ -5229,7 +5297,7 @@ class Logbook_model extends CI_Model {
      * $markHrd - used in ADIF import to mark QSOs as exported to HRDLog.net Logbook when importing QSOs
      * $skipexport - used in ADIF import to skip the realtime upload to QRZ Logbook when importing QSOs from ADIF
      */
-	function import($record, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null, $station_qslmsg = null, $skipGridCheck = false) {
+	function import($record, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null, $station_qslmsg = null, $skipGridCheck = false, $markSrr = false) {
 		// be sure that station belongs to user
 		$this->load->is_loaded('stations') ?: $this->load->model('stations');
 		if ($station_id_ok == false) {
@@ -5855,6 +5923,14 @@ class Logbook_model extends CI_Model {
 				$input_dcl_qso_upload_status = (!empty($record['dcl_qsl_sent'])) ? $record['dcl_qsl_sent'] : '';
 			}
 
+			if ($markSrr != null) {
+				$input_srr_qso_upload_status = 'Y';
+				$input_srr_qso_upload_date = date("Y-m-d H:i:s", strtotime("now"));
+			} else {
+				$input_srr_qso_upload_date = (!empty($record['srr_qslsdate'])) ? $record['srr_qslsdate'] : null;
+				$input_srr_qso_upload_status = (!empty($record['srr_qsl_sent'])) ? $record['srr_qsl_sent'] : '';
+			}
+
 			$distance=null;
 			if ((!empty($record['distance'])) && (is_numeric($record['distance']))) {
 				$distance=$record['distance'];
@@ -5983,6 +6059,10 @@ class Logbook_model extends CI_Model {
 				'COL_DCL_QSL_SENT' => $input_dcl_qso_upload_status,
 				'COL_DCL_QSLRDATE' => (!empty($record['dcl_qslrdate'])) ? $record['dcl_qslrdate'] : null,
 				'COL_DCL_QSL_RCVD' => (!empty($record['dcl_qsl_rcvd'])) ? (strtoupper($record['dcl_qsl_rcvd']) === 'V' ? 'Y' : $record['dcl_qsl_rcvd']) : null,
+				'COL_SRR_QSLSDATE' => $input_srr_qso_upload_date,
+				'COL_SRR_QSL_SENT' => $input_srr_qso_upload_status,
+				'COL_SRR_QSLRDATE' => (!empty($record['srr_qslrdate'])) ? $record['srr_qslrdate'] : null,
+				'COL_SRR_QSL_RCVD' => (!empty($record['srr_qsl_rcvd'])) ? (strtoupper($record['srr_qsl_rcvd']) === 'V' ? 'Y' : $record['srr_qsl_rcvd']) : null,
 				'COL_QSL_RCVD' => $input_qsl_rcvd,
 				'COL_QSL_RCVD_VIA' => $input_qsl_rcvd_via,
 				'COL_QSL_SENT' => $input_qsl_sent,
@@ -6465,6 +6545,27 @@ class Logbook_model extends CI_Model {
 		return $query;
 	}
 
+	/**
+	 * Returns the QSOs of a station profile which are not yet uploaded to SRR.
+	 * QSOs with the state Q are queued in the SRR inbox and are not sent again.
+	 *
+	 * @param int $station_id Station profile id
+	 * @return CI_DB_result
+	 */
+	function get_srr_qsos_to_upload($station_id) {
+
+		$sql = 'select *, dxcc_entities.name as station_country from ' . $this->config->item('table_name') . ' thcv ' .
+			' left join station_profile on thcv.station_id = station_profile.station_id' .
+			' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
+			' where thcv.station_id = ?' .
+			' and (COL_SRR_QSL_SENT not in ("Y","I","Q") OR COL_SRR_QSL_SENT is null)' .
+			' order by COL_TIME_ON';
+		$binding[] = $station_id;
+
+		$query = $this->db->query($sql, $binding);
+		return $query;
+	}
+
 	function get_lotw_qsos_to_upload($station_id, $start_date, $end_date) {
 
 		$this->db->select('COL_PRIMARY_KEY,COL_CALL, COL_BAND, COL_BAND_RX, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_FREQ, COL_FREQ_RX, COL_GRIDSQUARE, COL_SAT_NAME, COL_PROP_MODE, COL_LOTW_QSL_SENT, station_id');
@@ -6503,6 +6604,142 @@ class Logbook_model extends CI_Model {
 		$this->db->update($this->config->item('table_name'), $data);
 
 		return "Updated";
+	}
+
+	/**
+	 * Sets the SRR sent state and date of a QSO
+	 *
+	 * @param int $qso_id QSO primary key
+	 * @param string $state Y (uploaded), Q (queued in the SRR inbox) or I (rejected by SRR)
+	 * @param bool $only_queued TRUE: do not change a QSO which is no longer queued, it was edited or verified meanwhile
+	 * @return string
+	 */
+	function mark_srr_sent($qso_id, $state = 'Y', $only_queued = false) {
+
+		$data = array(
+			'COL_SRR_QSLSDATE' => date("Y-m-d H:i:s"),
+			'COL_SRR_QSL_SENT' => $state,
+		);
+
+		$this->db->where('COL_PRIMARY_KEY', $qso_id);
+		if ($only_queued) {
+			$this->db->where('COL_SRR_QSL_SENT', 'Q');
+		}
+
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return "Updated";
+	}
+
+	/**
+	 * Marks a QSO as confirmed by SRR
+	 *
+	 * @param int $primarykey QSO primary key
+	 * @param string $qsl_date Date of the confirmation (Y-m-d)
+	 * @param string $cnty RDA district of the worked station, not changed if empty
+	 * @return string
+	 */
+	function srr_update($primarykey, $qsl_date, $cnty = '') {
+
+		$data = array(
+			'COL_SRR_QSLRDATE' => $qsl_date,
+			'COL_SRR_QSL_RCVD' => 'Y',
+		);
+
+		if ($cnty != "") {
+			$data['COL_CNTY'] = $cnty;
+		}
+
+		$this->db->where('COL_PRIMARY_KEY', $primarykey);
+
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return "Updated";
+	}
+
+	/**
+	 * Sets the RDA district of the worked station (CNTY) of a QSO
+	 *
+	 * @param int $primarykey QSO primary key
+	 * @param string $cnty RDA district
+	 * @return string
+	 */
+	function srr_update_cnty($primarykey, $cnty) {
+
+		$data = array(
+			'COL_CNTY' => $cnty,
+		);
+
+		$this->db->where('COL_PRIMARY_KEY', $primarykey);
+
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return "Updated";
+	}
+
+	/**
+	 * Sets the propagation mode LOS for QSOs without a propagation mode
+	 *
+	 * @param array $qso_ids QSO primary keys
+	 * @return void
+	 */
+	function srr_update_prop_mode_los($qso_ids) {
+		if (empty($qso_ids)) {
+			return;
+		}
+
+		$data = array(
+			'COL_PROP_MODE' => 'LOS',
+		);
+
+		$this->db->where_in('COL_PRIMARY_KEY', $qso_ids);
+		$this->db->group_start();
+		$this->db->where('COL_PROP_MODE', '');
+		$this->db->or_where('COL_PROP_MODE IS NULL');
+		$this->db->group_end();
+
+		$this->db->update($this->config->item('table_name'), $data);
+	}
+
+	/**
+	 * Marks QSOs as queued for SRR before they are sent
+	 *
+	 * @param array $qso_ids QSO primary keys
+	 * @return void
+	 */
+	function srr_mark_queued($qso_ids) {
+		$data = array(
+			'COL_SRR_QSLSDATE' => date("Y-m-d H:i:s"),
+			'COL_SRR_QSL_SENT' => 'Q',
+		);
+
+		foreach (array_chunk($qso_ids, 100) as $chunk) {
+			$this->db->where_in('COL_PRIMARY_KEY', $chunk);
+			$this->db->update($this->config->item('table_name'), $data);
+		}
+	}
+
+	/**
+	 * Stores the result of the verification of queued SRR QSOs. QSOs which are
+	 * found keep their upload date, QSOs which are not uploaded have no upload date.
+	 *
+	 * @param array $qso_ids QSO primary keys
+	 * @param string $state Y (found on SRR) or N (not found, sent again with the next upload)
+	 * @return void
+	 */
+	function srr_update_verified($qso_ids, $state) {
+		$data = array(
+			'COL_SRR_QSL_SENT' => $state,
+		);
+		if ($state == 'N') {
+			$data['COL_SRR_QSLSDATE'] = null;
+		}
+
+		foreach (array_chunk($qso_ids, 100) as $chunk) {
+			$this->db->where_in('COL_PRIMARY_KEY', $chunk);
+			$this->db->where('COL_SRR_QSL_SENT', 'Q');
+			$this->db->update($this->config->item('table_name'), $data);
+		}
 	}
 
 	function mark_lotw_sent($qso_id) {

@@ -1,0 +1,74 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+/*
+	Adds the SRR QSL fields and the SRR sync cron.
+*/
+
+class Migration_srr_integration extends CI_Migration {
+
+	public function up() {
+		$table_name = $this->config->item('table_name');
+
+		if (!$this->db->field_exists('COL_SRR_QSLRDATE', $table_name)) {
+			$this->dbtry("ALTER TABLE `$table_name` ADD COLUMN COL_SRR_QSLRDATE DATETIME DEFAULT NULL AFTER COL_DCL_QSL_SENT;");
+		}
+		if (!$this->db->field_exists('COL_SRR_QSL_RCVD', $table_name)) {
+			$this->dbtry("ALTER TABLE `$table_name` ADD COLUMN COL_SRR_QSL_RCVD VARCHAR(10) DEFAULT NULL AFTER COL_SRR_QSLRDATE;");
+		}
+		if (!$this->db->field_exists('COL_SRR_QSLSDATE', $table_name)) {
+			$this->dbtry("ALTER TABLE `$table_name` ADD COLUMN COL_SRR_QSLSDATE DATETIME DEFAULT NULL AFTER COL_SRR_QSL_RCVD;");
+		}
+		if (!$this->db->field_exists('COL_SRR_QSL_SENT', $table_name)) {
+			$this->dbtry("ALTER TABLE `$table_name` ADD COLUMN COL_SRR_QSL_SENT VARCHAR(10) DEFAULT NULL AFTER COL_SRR_QSLSDATE;");
+		}
+
+		if ($this->chk4cron('sync_srr') == 0) {
+			// A random minute spreads the load on SRR, like in migration 308
+			do {
+				$random_minute = mt_rand(1, 59);
+			} while ($random_minute % 5 == 0);
+
+			$data = array(
+				array(
+					'id' => 'sync_srr',
+					'enabled' => '0',
+					'status' => 'disabled',
+					'description' => 'Sync with SRR',
+					'function' => 'index.php/srr/srr_sync',
+					'expression' => $random_minute . ' 5 * * *',
+					'last_run' => null,
+					'next_run' => null
+				));
+			$this->db->insert_batch('cron', $data);
+		}
+	}
+
+	public function down() {
+		$table_name = $this->config->item('table_name');
+
+		if ($this->chk4cron('sync_srr') > 0) {
+			$this->db->query("delete from cron where id='sync_srr'");
+		}
+
+		foreach (array('COL_SRR_QSL_SENT', 'COL_SRR_QSLSDATE', 'COL_SRR_QSL_RCVD', 'COL_SRR_QSLRDATE') as $column) {
+			if ($this->db->field_exists($column, $table_name)) {
+				$this->dbforge->drop_column($table_name, $column);
+			}
+		}
+	}
+
+	function chk4cron($cronkey) {
+		$query = $this->db->query("select count(id) as cid from cron where id=?",$cronkey);
+		$row = $query->row();
+		return $row->cid ?? 0;
+	}
+
+	function dbtry($what) {
+		try {
+			$this->db->query($what);
+		} catch (Exception $e) {
+			log_message("error", "Something gone wrong while adding SRR columns: ".$e." // Executing: ".$this->db->last_query());
+		}
+	}
+}

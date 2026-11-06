@@ -534,6 +534,16 @@
                     <h3><?= __("DCL"); ?></h3>
                         <p><?= __("This QSO is confirmed on DCL."); ?></p>
                     <?php } ?>
+
+                    <?php if($row->COL_SRR_QSL_RCVD == "Y" && $row->COL_SRR_QSLRDATE != null) { ?>
+                    <h3><?= __("SRR"); ?></h3>
+                        <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_SRR_QSLRDATE); echo date($custom_date_format, $timestamp); ?>.</p>
+                    <?php } ?>
+
+					<?php if($row->COL_SRR_QSL_RCVD == "Y" && $row->COL_SRR_QSLRDATE == null) { ?>
+                    <h3><?= __("SRR"); ?></h3>
+                        <p><?= __("This QSO is confirmed on SRR."); ?></p>
+                    <?php } ?>
             </div>
 
                 <div class="col-md">
