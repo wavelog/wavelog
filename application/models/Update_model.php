@@ -681,11 +681,10 @@ class Update_model extends CI_Model {
 
 		if (isset($lotwdata) && count($lotwdata) > 0) {
         	$this->db->insert_batch('lotw_users', $lotwdata);
+			if ($file_time > 0) {
+            	$this->optionslib->update('lotw_users_last_modified', (string)$file_time);
+        	}
 		}
-
-        if ($file_time > 0) {
-            $this->optionslib->update('lotw_users_last_modified', (string)$file_time);
-        }
 
         $mtime = microtime();
         $mtime = explode(" ", $mtime);
