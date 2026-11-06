@@ -644,7 +644,7 @@ class Update_model extends CI_Model {
             curl_setopt($ch, CURLOPT_TIMECONDITION, CURL_TIMECOND_IFMODSINCE);
             curl_setopt($ch, CURLOPT_TIMEVALUE, $last_modified);
         }
-        curl_exec($ch);
+        $fetch_complete = (curl_exec($ch) !== false) && (curl_errno($ch) === 0);   // whole body arrived?
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($http_code == 304) {
            fclose($f);
@@ -681,12 +681,12 @@ class Update_model extends CI_Model {
 
 		if (isset($lotwdata) && count($lotwdata) > 0) {
         	$this->db->insert_batch('lotw_users', $lotwdata);
-			if ($file_time > 0) {
-            	$this->optionslib->update('lotw_users_last_modified', (string)$file_time);
-        	}
 		}
+		if ($fetch_complete && $file_time > 0) {
+            	$this->optionslib->update('lotw_users_last_modified', (string)$file_time);
+        }
 
-        $mtime = microtime();
+		$mtime = microtime();
         $mtime = explode(" ", $mtime);
         $mtime = $mtime[1] + $mtime[0];
         $endtime = $mtime;
