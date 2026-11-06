@@ -75,11 +75,24 @@ class Satpredict {
 		return $custom_date_format . ' H:i:s';
 	}
 
+	/**
+	 * Calculate satellite passes for a set of TLEs
+	 *
+	 * @param array  $sat_tles      List of satellite objects with TLE data
+	 * @param string $yourgrid      Observer gridsquare
+	 * @param string $date          Start date (Y-m-d)
+	 * @param mixed  $mintime       Start time in fractional hours
+	 * @param mixed  $minelevation  Minimum elevation in degrees
+	 * @param string $timezone      Timezone for the results (default 'UTC')
+	 *
+	 * @return array{format: string, filtered: array, zone: string}
+	 * @throws Exception When no valid gridsquare/location is given
+	 */
 	public function calcPasses($sat_tles, $yourgrid, $date, $mintime, $minelevation, $timezone = 'UTC') {
 		$predict = new Predict();
 		$qth = $this->qth_from_grid($yourgrid);
 		if ($qth === false) {
-			return false;
+			throw new Exception(__('No valid gridsquare given. Please set your station location or enter a valid gridsquare.'));
 		}
 
 		$filtered = [];
@@ -113,11 +126,24 @@ class Satpredict {
 		return $data;
 	}
 
+	/**
+	 * Calculate a satellite pass for a single TLE
+	 *
+	 * @param object $sat_tle      Satellite object with TLE data
+	 * @param string $yourgrid     Observer gridsquare
+	 * @param string $date         Start date (Y-m-d)
+	 * @param mixed  $mintime      Start time in fractional hours
+	 * @param mixed  $minelevation Minimum elevation in degrees
+	 * @param string $timezone     Timezone for the results (default 'UTC')
+	 *
+	 * @return array{format: string, filtered: array, zone: string}
+	 * @throws Exception When no valid gridsquare/location is given
+	 */
 	public function calcPass($sat_tle, $yourgrid, $date, $mintime, $minelevation, $timezone = 'UTC') {
 		$predict = new Predict();
 		$qth = $this->qth_from_grid($yourgrid);
 		if ($qth === false) {
-			return false;
+			throw new Exception(__('No valid gridsquare given. Please set your station location or enter a valid gridsquare.'));
 		}
 
 		if ($sat_tle->tle == null) {
