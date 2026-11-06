@@ -92,7 +92,7 @@ class Satpredict {
 		$predict = new Predict();
 		$qth = $this->qth_from_grid($yourgrid);
 		if ($qth === false) {
-			throw new Exception('No valid gridsquare/location given');
+			throw new Exception(__('No valid gridsquare given. Please set your station location or enter a valid gridsquare.'));
 		}
 
 		$filtered = [];
@@ -143,7 +143,7 @@ class Satpredict {
 		$predict = new Predict();
 		$qth = $this->qth_from_grid($yourgrid);
 		if ($qth === false) {
-			throw new Exception('No valid gridsquare/location given');
+			throw new Exception(__('No valid gridsquare given. Please set your station location or enter a valid gridsquare.'));
 		}
 
 		if ($sat_tle->tle == null) {
