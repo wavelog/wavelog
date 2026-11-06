@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-04 13:17+0000\n"
+"POT-Creation-Date: 2026-11-06 13:21+0000\n"
 "PO-Revision-Date: 2026-11-06 05:54+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
@@ -187,7 +187,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Lookup.php:16 application/controllers/Lotw.php:43
 #: application/controllers/Lotw.php:93 application/controllers/Lotw.php:117
 #: application/controllers/Lotw.php:387 application/controllers/Lotw.php:425
-#: application/controllers/Lotw.php:912 application/controllers/Lotw.php:999
+#: application/controllers/Lotw.php:915 application/controllers/Lotw.php:1002
 #: application/controllers/Map.php:11 application/controllers/Map.php:25
 #: application/controllers/Mode.php:14
 #: application/controllers/Most_wanted_squares.php:14
@@ -241,8 +241,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:103
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84 application/controllers/Lotw.php:915
-#: application/controllers/Lotw.php:1002
+#: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
 msgstr "To vam ni dovoljeno!"
 
@@ -874,7 +873,6 @@ msgid "Guernsey"
 msgstr "Guernsey"
 
 #: application/controllers/Awards.php:2691
-#, fuzzy
 msgid "Wales"
 msgstr "Wales"
 
@@ -1436,7 +1434,6 @@ msgstr "CQ Zone"
 
 #: application/controllers/Countqsoby.php:77
 #: application/views/countqsoby/index.php:72
-#, fuzzy
 msgid "POTA Reference"
 msgstr "POTA Reference"
 
@@ -1448,7 +1445,6 @@ msgstr "POTA Reference"
 #: application/views/station_profile/edit.php:237
 #: application/views/user/edit.php:906 application/views/view_log/qso.php:343
 #: application/views/view_log/qso.php:678
-#, fuzzy
 msgid "SOTA Reference"
 msgstr "SOTA Reference"
 
@@ -1459,7 +1455,6 @@ msgstr "SOTA Reference"
 #: application/views/station_profile/edit.php:211
 #: application/views/user/edit.php:902 application/views/view_log/qso.php:336
 #: application/views/view_log/qso.php:671
-#, fuzzy
 msgid "IOTA Reference"
 msgstr "IOTA Reference"
 
@@ -1606,7 +1601,6 @@ msgid "Dashboard"
 msgstr "Nadzorna plošča"
 
 #: application/controllers/Dashboard.php:222
-#, fuzzy
 msgid "HF"
 msgstr "HF"
 
@@ -1623,7 +1617,6 @@ msgid "SAT"
 msgstr "SAT"
 
 #: application/controllers/Dashboard.php:222
-#, fuzzy
 msgid "VHF+"
 msgstr "VHF+"
 
@@ -2869,7 +2862,7 @@ msgstr "Certifikat posodobljen."
 msgid "Certificate Deleted."
 msgstr "Certifikat izbrisan."
 
-#: application/controllers/Lotw.php:437
+#: application/controllers/Lotw.php:439
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
@@ -2882,7 +2875,7 @@ msgstr ""
 "več informacij obiščite %sstran za odpravljanje težav z LoTW%s v Wavelog "
 "wikiju."
 
-#: application/controllers/Lotw.php:439
+#: application/controllers/Lotw.php:441
 #, php-format
 msgid ""
 "Generic error extracting the certificate from file %s. If the filename "
@@ -2895,7 +2888,7 @@ msgstr ""
 "sistem LoTW še ni obdelal. Za več informacij obiščite %sstran za "
 "odpravljanje težav z LoTW%s v Wavelog wikiju."
 
-#: application/controllers/Lotw.php:445
+#: application/controllers/Lotw.php:447
 #, php-format
 msgid ""
 "Generic error processing the certificate in file %s. For further information "
@@ -2904,7 +2897,7 @@ msgstr ""
 "Prišlo je do splošne napake pri obdelavi potrdila v datoteki %s. Za več "
 "informacij obiščite %sstran za odpravljanje težav z LoTW%s v Wavelog wikiju."
 
-#: application/controllers/Lotw.php:457
+#: application/controllers/Lotw.php:460
 #, php-format
 msgid ""
 "Generic error extracting the private key from certificate in file %s. For "
@@ -2915,81 +2908,80 @@ msgstr ""
 "Za več informacij obiščite %sstran za odpravljanje težav z LoTW%s v Wavelog "
 "wikiju."
 
-#: application/controllers/Lotw.php:671 application/controllers/Lotw.php:674
+#: application/controllers/Lotw.php:674
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF informacije"
 
-#: application/controllers/Lotw.php:679
+#: application/controllers/Lotw.php:682
 msgid "Downloaded LoTW report contains no matches."
 msgstr "Preneseno poročilo LoTW ne vsebuje nobenih ujemanj."
 
-#: application/controllers/Lotw.php:727 application/controllers/Lotw.php:1030
 #: application/controllers/Lotw.php:730 application/controllers/Lotw.php:1033
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Niste določili svojih poverilnic ARRL LoTW!"
 
-#: application/controllers/Lotw.php:735
+#: application/controllers/Lotw.php:738
 msgid "No QSOs in log. LoTW download skipped."
 msgstr "V dnevniku ni zvez (QSO). Prenos iz sistema LoTW je bil izpuščen."
 
-#: application/controllers/Lotw.php:754
+#: application/controllers/Lotw.php:757
 #, php-format
 msgid "LoTW download failed for user %s: %s (%s)."
 msgstr "Prenos iz LoTW ni uspel za uporabnika %s: %s (%s)."
 
-#: application/controllers/Lotw.php:757
+#: application/controllers/Lotw.php:760
 #, php-format
 msgid "LoTW download failed for user %s: unexpected HTTP status %s."
 msgstr "Prenos iz LoTW za uporabnika %s ni uspel: nepričakovan status HTTP %s."
 
-#: application/controllers/Lotw.php:761
+#: application/controllers/Lotw.php:764
 #, php-format
 msgid "LoTW download failed for user %s: Username/password incorrect"
 msgstr ""
 "Prenos iz LoTW za uporabnika %s ni uspel: napačno uporabniško ime ali geslo"
 
-#: application/controllers/Lotw.php:770
+#: application/controllers/Lotw.php:773
 #, php-format
 msgid "LoTW download hit a rate limit for user %s"
 msgstr "Prenos iz LoTW je za uporabnika %s dosegel omejitev"
 
-#: application/controllers/Lotw.php:775
+#: application/controllers/Lotw.php:778
 #, php-format
 msgid "Downloaded LoTW report for user %s is invalid. Check your credentials."
 msgstr ""
 "Preneseno poročilo LoTW za uporabnika %s ni veljavno. Preverite svoje "
 "podatke za prijavo."
 
-#: application/controllers/Lotw.php:906
+#: application/controllers/Lotw.php:909
 msgid "No LoTW User details found to carry out matches."
 msgstr "Za izvedbo primerjav niso bili najdeni podatki o uporabniku LoTW."
 
-#: application/controllers/Lotw.php:970 application/controllers/Lotw.php:973
+#: application/controllers/Lotw.php:973
 msgid "Connection to LoTW failed."
 msgstr "Povezava z LoTW ni uspela."
 
-#: application/controllers/Lotw.php:975 application/controllers/Lotw.php:978
+#: application/controllers/Lotw.php:978
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "Prijava v LoTW ni uspela za uporabnika %s: %s."
 
-#: application/controllers/Lotw.php:975 application/controllers/Lotw.php:978
+#: application/controllers/Lotw.php:978
 msgid "Username/password incorrect"
 msgstr "Napačno uporabniško ime/geslo"
 
-#: application/controllers/Lotw.php:978 application/controllers/Lotw.php:981
+#: application/controllers/Lotw.php:981
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW trenutno ni na voljo. Poskusite znova pozneje."
 
-#: application/controllers/Lotw.php:982 application/controllers/Lotw.php:985
+#: application/controllers/Lotw.php:985
 msgid "LoTW login OK!"
 msgstr "Prijava v LoTW OK!"
 
-#: application/controllers/Lotw.php:988 application/controllers/Lotw.php:991
+#: application/controllers/Lotw.php:991
 msgid "No LoTW credentials provided."
 msgstr "Poverilnice za LoTW niso bile podane."
 
-#: application/controllers/Lotw.php:1005 application/controllers/Lotw.php:1008
+#: application/controllers/Lotw.php:1008
 msgid "LoTW ADIF Import"
 msgstr "Uvoz LoTW ADIF"
 
@@ -3126,9 +3118,9 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:163
-#: application/models/Logbook_model.php:1646
+#: application/models/Logbook_model.php:1671
 #: application/views/contesting/logger/components/qso-form.php:44
-#: application/views/qso/index.php:40 application/models/Logbook_model.php:1671
+#: application/views/qso/index.php:40
 msgid "Invalid callsign"
 msgstr ""
 
@@ -5306,31 +5298,25 @@ msgstr "Postaja ni dostopna"
 msgid "Realtime upload disabled"
 msgstr ""
 
-#: application/models/Logbook_model.php:1636
 #: application/models/Logbook_model.php:1661
 msgid "Station ID not allowed"
 msgstr "ID postaje ni dovoljen"
 
-#: application/models/Logbook_model.php:1641
 #: application/models/Logbook_model.php:1666
 msgid "No Call given"
 msgstr "Ni podanega pozivnega znaka"
 
-#: application/models/Logbook_model.php:1717
-#: application/models/Logbook_model.php:1935
 #: application/models/Logbook_model.php:1742
 #: application/models/Logbook_model.php:1960
 msgid "DXCC has to be Numeric"
 msgstr "DXCC mora biti numeričen"
 
-#: application/models/Logbook_model.php:5227
 #: application/models/Logbook_model.php:5252
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Različen klicni znak postaje %s med uvozom QSO z %s za %s: PRESKOČENO"
 
-#: application/models/Logbook_model.php:5235
 #: application/models/Logbook_model.php:5260
 #, php-format
 msgid ""
@@ -5339,7 +5325,6 @@ msgid ""
 msgstr ""
 "Različen lokator %s med uvozom QSO z %s za lokator postaje %s: PRESKOČENO"
 
-#: application/models/Logbook_model.php:5251
 #: application/models/Logbook_model.php:5276
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -5348,7 +5333,6 @@ msgstr ""
 "Poskušali ste uvoziti QSO brez veljavnega datuma. Ta QSO ni bila uvožena. Je "
 "neveljavna"
 
-#: application/models/Logbook_model.php:5261
 #: application/models/Logbook_model.php:5286
 #, php-format
 msgid ""
@@ -5356,7 +5340,6 @@ msgid ""
 "imported. It's invalid."
 msgstr ""
 
-#: application/models/Logbook_model.php:5268
 #: application/models/Logbook_model.php:5293
 #, php-format
 msgid ""
@@ -5364,7 +5347,6 @@ msgid ""
 "imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5338
 #: application/models/Logbook_model.php:5363
 #, php-format
 msgid ""
@@ -5372,7 +5354,6 @@ msgid ""
 "imported."
 msgstr ""
 
-#: application/models/Logbook_model.php:5345
 #: application/models/Logbook_model.php:5370
 #, php-format
 msgid ""
@@ -5382,77 +5363,63 @@ msgstr ""
 "Zveza na %s: Poskušali ste uvoziti QSO brez podanega banda. Ta QSO ni bila "
 "uvožena. Je neveljavna"
 
-#: application/models/Logbook_model.php:5623
 #: application/models/Logbook_model.php:5648
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate je napačen (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5634
 #: application/models/Logbook_model.php:5659
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate je napačen (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5697
 #: application/models/Logbook_model.php:5722
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date je napačen (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:6073
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:6098
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Dvojnik za"
 
-#: application/models/Logbook_model.php:6140
-#: application/models/Logbook_model.php:6240
 #: application/models/Logbook_model.php:6165
 #: application/models/Logbook_model.php:6265
 msgid "QSO could not be matched"
 msgstr "QSO ni bilo mogoče najti"
 
-#: application/models/Logbook_model.php:6148
 #: application/models/Logbook_model.php:6173
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potrjeno od LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:6154
 #: application/models/Logbook_model.php:6179
 msgid "confirmed by award manager"
 msgstr "potrjeno od award managerja"
 
-#: application/models/Logbook_model.php:6158
 #: application/models/Logbook_model.php:6183
 msgid "confirmed by cross-check of DCL data"
 msgstr "potrjeno z navzkrižnim preverjanjem podatkov DCL"
 
-#: application/models/Logbook_model.php:6162
 #: application/models/Logbook_model.php:6187
 msgid "confirmation pending"
 msgstr "potrditev čaka na"
 
-#: application/models/Logbook_model.php:6165
 #: application/models/Logbook_model.php:6190
 msgid "unconfirmed"
 msgstr "nepotrjeno"
 
-#: application/models/Logbook_model.php:6168
+#: application/models/Logbook_model.php:6193
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
-#: application/models/Logbook_model.php:6193
 msgid "unknown"
 msgstr "neznano"
 
-#: application/models/Logbook_model.php:6243
 #: application/models/Logbook_model.php:6268
 msgid "POTA reference already in log"
 msgstr "Referenca POTA je že v dnevniku"
 
-#: application/models/Logbook_model.php:6246
 #: application/models/Logbook_model.php:6271
 msgid "QSO updated"
 msgstr "QSO posodobljena"
 
-#: application/models/Logbook_model.php:6667
+#: application/models/Logbook_model.php:6692
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5466,7 +5433,6 @@ msgstr "QSO posodobljena"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
-#: application/models/Logbook_model.php:6692
 msgid "Bearing"
 msgstr "Smer"
 
