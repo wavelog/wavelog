@@ -1102,10 +1102,23 @@ $(document).ready(function() {
             dxWaterfall.refresh();
         }
 
-        cat2UI($('#sat_name'),data.satname,false,false);
-        cat2UI($('#sat_mode'),data.satmode,false,false);
+        // Satellite/propagation fields. cat2UI skips empty values, so a payload
+        // without sat data would leave stale CAT-written values in the form.
+        // Clear them — but only values CAT itself wrote (catValue set), manual
+        // or session-prefilled entries must survive sat-less payloads.
+        var $satName = $('#sat_name');
+        var $satMode = $('#sat_mode');
+        var $propagation = $('#selectPropagation');
+        if (data.satname || data.satmode || data.prop_mode) {
+            cat2UI($satName,data.satname,false,false);
+            cat2UI($satMode,data.satmode,false,false);
+            cat2UI($propagation,data.prop_mode,false,false);
+        } else if ($satName.data('catValue') || $propagation.data('catValue')) {
+            $satName.val('').removeData('catValue');
+            $satMode.val('').removeData('catValue');
+            $propagation.val('').removeData('catValue');
+        }
         cat2UI($('#transmit_power'),data.power,false,false);
-        cat2UI($('#selectPropagation'),data.prop_mode,false,false);
 
         // Clear the CAT updating flag AFTER all updates
         cat_updating_frequency = false;
