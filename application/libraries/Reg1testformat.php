@@ -12,9 +12,7 @@ class Reg1testformat {
       $edi_header .= "TName=" . $contest_id ."\r\n";   //Contestname
       $edi_header .= "TDate=" . str_replace("-", "", $from) . ";" . str_replace("-", "", $to) . "\r\n"; //from and to date of contest, Ymd format, with semicolon
       $edi_header .= "PCall=" . strtoupper($callsign) . "\r\n"; //Station callsign during contest
-      if (trim((string)$gridlocator) !== '') {
-         $edi_header .= "PWWLo=" . strtoupper($gridlocator) . "\r\n"; //Gridlocator during contest
-      }
+      $edi_header .= "PWWLo=" . strtoupper($gridlocator) . "\r\n"; //Gridlocator during contest
       $edi_header .= "PExch=" . strtoupper(substr($sentexchange, 0, 6)) . "\r\n"; //Sent exchange, max 6 characters uppercase
       $edi_header .= "PAdr1=" . $contestaddress1 . "\r\n"; //Contest Address Line 1
       $edi_header .= "PAdr2=" . $contestaddress2 . "\r\n"; //Contest Address Line 2
