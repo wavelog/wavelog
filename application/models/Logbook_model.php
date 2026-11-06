@@ -6666,9 +6666,10 @@ class Logbook_model extends CI_Model {
 			if (isset($xbearing)) {
 				$plot['html'].=__("Bearing").': '.$xbearing."&deg;<br/>";
 			}
-			if (isset($stn_loc)) {
-				list($plot['lat'], $plot['lng']) = $stn_loc;
+			if (!is_array($stn_loc) || ($stn_loc[0] == 0 && $stn_loc[1] == 0)) {
+				continue;
 			}
+			list($plot['lat'], $plot['lng']) = $stn_loc;
 			// add plot //
 			$json["markers"][] = $plot;
 		}
