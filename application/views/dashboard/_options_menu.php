@@ -1,4 +1,6 @@
 <?php
+// Clubstation members (non-officers) are not allowed to change the dashboard options
+if (!clubaccess_check(9)) { return; }
 $__kpi_on  = !empty($dashboard_show_kpi_stats);
 $__kpi_val = $__kpi_on ? '0' : '1';
 $__dxp_on  = !empty($dashboard_show_dxpeditions);

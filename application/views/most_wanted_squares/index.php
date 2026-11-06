@@ -1,6 +1,6 @@
 <div class="container px-3 px-lg-4 mt-3 mb-3">
 
-	<h2><?php echo $page_title; ?> <small class="text-muted">(MMMonVHF)</small></h2>
+	<h2><?php echo $page_title; ?> <small><a href="https://www.mmmonvhf.de/emws.php" target="_blank">(MMMonVHF)</a></small></h2>
 
 	<?php if (empty($station_profile->station_gridsquare)) { ?>
 

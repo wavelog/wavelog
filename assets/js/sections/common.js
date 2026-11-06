@@ -804,12 +804,13 @@ function spawnQrbCalculator(locator1, locator2) {
 		type: 'post',
 		success: function (html) {
 			BootstrapDialog.show({
-				title: lang_qrbcalc_title,
+				title: '<i class="fas fa-compass me-2"></i>' + lang_qrbcalc_title,
 				size: BootstrapDialog.SIZE_WIDE,
-				cssClass: 'lookup-dialog bg-black bg-opacity-50',
+				cssClass: 'qrb-dialog lookup-dialog bg-black bg-opacity-50',
 				nl2br: false,
 				message: html,
 				onshown: function(dialog) {
+					$(window).off('resize', sizeQrbMap).on('resize', sizeQrbMap);
 					if (locator1 !== undefined) {
 						$("#qrbcalc_locator1").val(locator1);
 					}
@@ -817,6 +818,7 @@ function spawnQrbCalculator(locator1, locator2) {
 						$("#qrbcalc_locator2").val(locator2);
 						calculateQrb();
 					}
+					sizeQrbMap();
 				},
 				buttons: [{
 					label: lang_admin_close,
@@ -867,24 +869,124 @@ function calculateQrb() {
             data: {'locator1': locator1,
                     'locator2': locator2},
             success: function (html) {
-
-                var result = "<h5>" + html['latlong_info_text'] + "<br><br>";
-                result += html['text_latlng1'] + '<br>';
-                result += html['text_latlng2'] + '<br><br>';
-                result += html['distance'] + ' ';
-                result += html['bearing'] + '</h5>';
-
-                $(".qrbResult").html(result);
+                renderQrbResult(html, locator1, locator2);
+                $("#mapqrb").show();
+                sizeQrbMap();
                 newpath(html['latlng1'], html['latlng2'], locator1, locator2);
             }
         });
     } else if (locator1 == '' || locator2 == '') {
-        $('.qrbResult').html('<div class="qrbalert alert alert-danger" role="alert">' + lang_qrbcalc_empty_loc + '</div>');
+        $('.qrbResult').html('<div class="qrbalert alert alert-danger d-flex align-items-center gap-2 m-3" role="alert"><i class="fas fa-triangle-exclamation"></i><div>' + lang_qrbcalc_empty_loc + '</div></div>');
         $("#mapqrb").hide();
     } else {
         $("#mapqrb").hide();
-        $('.qrbResult').html('<div class="qrbalert alert alert-danger" role="alert">' + lang_qrbcalc_errmsg + '</div>');
+        $('.qrbResult').html('<div class="qrbalert alert alert-danger d-flex align-items-center gap-2 m-3" role="alert"><i class="fas fa-triangle-exclamation"></i><div>' + lang_qrbcalc_errmsg + '</div></div>');
     }
+}
+
+function resetQrbForm(form) {
+    form.reset();
+    $(".qrbResult").empty();
+    $("#mapqrb").hide();
+}
+
+function sizeQrbMap() {
+    if (window.qrbMap) {
+        window.qrbMap.invalidateSize();
+    }
+}
+
+function qrbCardinal(bearing) {
+    var dirs = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+    return dirs[Math.round((((bearing % 360) + 360) % 360) / 22.5) % 16];
+}
+
+function qrbCoordinate(value, isLatitude) {
+    var val = Number(value);
+    var hemisphere = isLatitude ? (val >= 0 ? 'N' : 'S') : (val >= 0 ? 'E' : 'W');
+    return Math.abs(val).toFixed(3) + '° ' + hemisphere;
+}
+
+function qrbCompassSvg(bearing) {
+    var ticks = '';
+    for (var angle = 0; angle < 360; angle += 15) {
+        var major = angle % 45 === 0;
+        var rad = (angle - 90) * Math.PI / 180;
+        var inner = major ? 43 : 47;
+        ticks += '<line x1="' + (60 + inner * Math.cos(rad)).toFixed(1)
+            + '" y1="' + (60 + inner * Math.sin(rad)).toFixed(1)
+            + '" x2="' + (60 + 52 * Math.cos(rad)).toFixed(1)
+            + '" y2="' + (60 + 52 * Math.sin(rad)).toFixed(1)
+            + '" stroke-width="' + (major ? 2 : 1) + '"'
+            + (major ? ' opacity="0.8"' : ' opacity="0.45"') + '/>';
+    }
+
+    return '<svg class="qrb-compass" width="132" height="132" viewBox="0 0 120 120" role="img" aria-label="' + Math.round(bearing) + '°">'
+        + '<circle cx="60" cy="60" r="54" class="text-body-tertiary" fill="none" stroke="currentColor" stroke-width="2"/>'
+        + '<g class="text-body" stroke="currentColor">' + ticks + '</g>'
+        + '<g fill="currentColor">'
+        + '<text x="60" y="24" text-anchor="middle" dominant-baseline="central" class="text-danger">N</text>'
+        + '<text x="96" y="60" text-anchor="middle" dominant-baseline="central" class="text-body-tertiary">E</text>'
+        + '<text x="60" y="96" text-anchor="middle" dominant-baseline="central" class="text-body-tertiary">S</text>'
+        + '<text x="24" y="60" text-anchor="middle" dominant-baseline="central" class="text-body-tertiary">W</text>'
+        + '</g>'
+        + '<g transform="rotate(' + Math.round(bearing) + ' 60 60)" fill="currentColor">'
+        + '<polygon points="60,32 64.5,60 55.5,60" class="text-danger"/>'
+        + '<polygon points="60,88 64.5,60 55.5,60" class="text-body" opacity="0.6"/>'
+        + '</g>'
+        + '<circle cx="60" cy="60" r="4" class="text-body" fill="currentColor"/>'
+        + '</svg>';
+}
+
+function qrbResultChip(locator, latlng) {
+    return '<span class="qrb-chip d-inline-flex align-items-center gap-2 px-2 py-1 border rounded bg-body">'
+        + '<span class="font-monospace fw-bold">' + locator.toUpperCase() + '</span>'
+        + '<span class="small text-body-secondary">' + qrbCoordinate(latlng[0], true) + ', ' + qrbCoordinate(latlng[1], false) + '</span>'
+        + '</span>';
+}
+
+function renderQrbResult(data, locator1, locator2) {
+    var bearing = Number(data['bearing_value']);
+    var distance = Number(data['distance_value']);
+
+    // Fall back to the plain server-side sentences if no numeric values are available
+    if (isNaN(bearing) || isNaN(distance)) {
+        var fallback = '<div class="p-3"><h5>' + data['latlong_info_text'] + "<br><br>";
+        fallback += data['text_latlng1'] + '<br>';
+        fallback += data['text_latlng2'] + '<br><br>';
+        fallback += data['distance'] + ' ';
+        fallback += data['bearing'] + '</h5></div>';
+        $(".qrbResult").html(fallback);
+        return;
+    }
+
+    var cardinal = qrbCardinal(bearing);
+    var reverseBearing = Number(data['reverse_bearing_value']);
+    if (isNaN(reverseBearing)) {
+        reverseBearing = (bearing + 180) % 360;
+    }
+    var distanceText = distance >= 100
+        ? Math.round(distance).toLocaleString()
+        : (Math.round(distance * 10) / 10).toLocaleString();
+
+    var result = '<div class="d-flex align-items-center gap-4 flex-wrap p-3 flex-grow-1">'
+        + qrbCompassSvg(bearing)
+        + '<div class="flex-grow-1">'
+        + '<div class="text-body-secondary text-uppercase small fw-semibold mb-1">' + lang_qrbcalc_distance + '</div>'
+        + '<div class="fs-1 fw-bold lh-1">' + distanceText + ' <span class="fs-4 fw-normal text-body-secondary">' + data['unit'] + '</span></div>'
+        + '<div class="text-body-secondary text-uppercase small fw-semibold mt-3 mb-1">' + lang_qrbcalc_bearing + '</div>'
+        + '<div class="fs-4 fw-semibold lh-1">' + Math.round(bearing) + '° <span class="fw-normal text-body-secondary">' + cardinal + '</span></div>'
+        + '<div class="mt-1"><span class="text-body-secondary">' + lang_qrbcalc_reverse_bearing + ':</span> <span class="fw-semibold">' + Math.round(reverseBearing) + '° ' + qrbCardinal(reverseBearing) + '</span></div>'
+        + '</div>'
+        + '</div>'
+        + '<div class="d-flex align-items-center gap-2 flex-wrap p-3 pt-0">'
+        + qrbResultChip(locator1, data['latlng1'])
+        + '<i class="fas fa-arrow-right" style="opacity: 0.7;"></i>'
+        + qrbResultChip(locator2, data['latlng2'])
+        + '</div>'
+        + '<div class="small text-body-secondary px-3 pb-2">' + data['latlong_info_text'] + '</div>';
+
+    $(".qrbResult").html(result);
 }
 
 function validateLocator(locator) {
@@ -1292,6 +1394,44 @@ function set_map_height(extra_height = 0) {
     // console.log('#gridsquare_map: ' + gridsquareMapHeight);
 }
 
+function qrbGridSquareBounds(locator) {
+    var loc = String(locator || '').trim().toUpperCase();
+    if (!/^[A-R]{2}[0-9]{2}/.test(loc)) {
+        return null;
+    }
+    var lon = (loc.charCodeAt(0) - 65) * 20 - 180 + (loc.charCodeAt(2) - 48) * 2;
+    var lat = (loc.charCodeAt(1) - 65) * 10 - 90 + (loc.charCodeAt(3) - 48);
+    return [[lat, lon], [lat + 1, lon + 2]];
+}
+
+function qrbHighlightSquares(map, locator1, locator2) {
+    var container = map.getContainer();
+    if (container) {
+        container.classList.add('gl-dim-labels');
+    }
+    var sqColor = (typeof isDarkModeTheme === 'function' && isDarkModeTheme()) ? '#ffd60a' : '#ff1900';
+    var drawn = {};
+    [locator1, locator2].forEach(function (locator) {
+        String(locator).split(',').forEach(function (part) {
+            var key = part.trim().toUpperCase().substring(0, 4);
+            if (key.length === 4 && !drawn[key]) {
+                drawn[key] = true;
+                var sq = qrbGridSquareBounds(key);
+                if (sq) {
+                    map.addLayer(L.rectangle(sq, {
+                        color: sqColor,
+                        weight: 2,
+                        dashArray: '8,5',
+                        fillColor: sqColor,
+                        fillOpacity: 0.1,
+                        interactive: false
+                    }));
+                }
+            }
+        });
+    });
+}
+
 function newpath(latlng1, latlng2, locator1, locator2) {
     // If map is already initialized
     var container = L.DomUtil.get('mapqrbcontainer');
@@ -1299,7 +1439,7 @@ function newpath(latlng1, latlng2, locator1, locator2) {
     if(container != null){
         container._leaflet_id = null;
         container.remove();
-        $("#mapqrb").append('<div id="mapqrbcontainer" style="Height: 500px"></div>');
+        $("#mapqrb").append('<div id="mapqrbcontainer"></div>');
     }
 
     var map = new L.Map('mapqrbcontainer', {
@@ -1308,6 +1448,8 @@ function newpath(latlng1, latlng2, locator1, locator2) {
           position: 'topleft'
         },
       }).setView([30, 0], 1.5);
+
+    window.qrbMap = map;
 
     if (locator1.toUpperCase() != locator2.toUpperCase()) {
 
@@ -1379,6 +1521,8 @@ function newpath(latlng1, latlng2, locator1, locator2) {
         map.addLayer(osm);
         var marker = L.marker([latlng1[0], latlng1[1]], {closeOnClick: false, autoClose: false}).addTo(map).bindPopup(locator1);
     }
+
+    qrbHighlightSquares(map, locator1, locator2);
 }
 
 function disableMap() {

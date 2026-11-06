@@ -1,5 +1,5 @@
 <?php if ((($solar_bandconditions ?? '') != '') && (($solar_solardata ?? '') != '')){ ?>
-		<div class="card mb-3" id="solar-card" title="<?= __("Right-click for options"); ?>">
+		<div class="card mb-3" id="solar-card"<?php if (clubaccess_check(9)) { ?> title="<?= __("Right-click for options"); ?>"<?php } ?>>
 			<div class="card-header py-2">
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
