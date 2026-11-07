@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-06 15:08+0000\n"
-"PO-Revision-Date: 2026-11-07 21:44+0000\n"
+"PO-Revision-Date: 2026-11-08 01:35+0000\n"
 "Last-Translator: om8hop <om8hop@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sk/>\n"
@@ -71,7 +71,7 @@ msgstr "F2 odraz"
 #: application/config/adif_propmodes.php:16
 msgctxt "Propagation Mode"
 msgid "Ground Wave"
-msgstr ""
+msgstr "Prízemná vlna"
 
 #: application/config/adif_propmodes.php:17
 msgctxt "Propagation Mode"
@@ -91,7 +91,7 @@ msgstr "IRLP"
 #: application/config/adif_propmodes.php:20
 msgctxt "Propagation Mode"
 msgid "Line of Sight (includes transmission through obstacles such as walls)"
-msgstr ""
+msgstr "Priama viditeľnosť (vrátane šírenia cez prekážky, napríklad steny)"
 
 #: application/config/adif_propmodes.php:21
 msgctxt "Propagation Mode"
@@ -258,7 +258,7 @@ msgstr "Kumulatívne štatistiky"
 #: application/views/achievements/index.php:76
 #: application/views/interface_assets/header.php:196
 msgid "Achievements"
-msgstr ""
+msgstr "Úspechy"
 
 #: application/controllers/Activated_gridmap.php:12
 #: application/views/activated_gridmap/index.php:6
@@ -323,7 +323,7 @@ msgstr "Celkový počet veľkých lokátorov"
 
 #: application/controllers/Activationplanner.php:32
 msgid "CQ Zones"
-msgstr ""
+msgstr "CQ zóny"
 
 #: application/controllers/Activationplanner.php:32
 #: application/controllers/Activationplanner.php:33
@@ -340,12 +340,12 @@ msgstr "ITU zóny"
 
 #: application/controllers/Activationplanner.php:66
 msgid "States / Provinces"
-msgstr ""
+msgstr "Štáty / provincie"
 
 #: application/controllers/Activationplanner.php:75
 #: application/views/interface_assets/header.php:340
 msgid "Activation Planner"
-msgstr ""
+msgstr "Plánovač aktivácií"
 
 #: application/controllers/Activators.php:19
 #: application/views/activators/index.php:6
@@ -419,13 +419,15 @@ msgstr "POTA dáta naimportované"
 msgid ""
 "The AMSAT status service is currently unavailable. Please try again later."
 msgstr ""
+"Služba stavu satelitov AMSAT je momentálne nedostupná. Skúste to znova "
+"neskôr."
 
 #: application/controllers/Amsatstatus.php:37
 #: application/controllers/Amsatstatus.php:195
 #: application/views/amsatstatus/index.php:10
 #: application/views/interface_assets/header.php:334
 msgid "AMSAT Satellite Status"
-msgstr ""
+msgstr "Stav satelitov AMSAT"
 
 #: application/controllers/Api.php:47
 msgid "API"
@@ -478,27 +480,27 @@ msgstr "API kľúč %s bol vymazaný"
 
 #: application/controllers/Api_token.php:36
 msgid "Please provide a token name"
-msgstr ""
+msgstr "Zadajte názov tokenu"
 
 #: application/controllers/Api_token.php:45
 msgid "Please select at least one scope"
-msgstr ""
+msgstr "Vyberte aspoň jeden rozsah"
 
 #: application/controllers/Api_token.php:67
 msgid "API Token generated"
-msgstr ""
+msgstr "Token API bol vygenerovaný"
 
 #: application/controllers/Api_token.php:69
 msgid "API Token could not be generated"
-msgstr ""
+msgstr "Token API sa nepodarilo vygenerovať"
 
 #: application/controllers/Api_token.php:89
 msgid "Invalid API Token"
-msgstr ""
+msgstr "Neplatný token API"
 
 #: application/controllers/Api_token.php:96
 msgid "API Token has been deleted"
-msgstr ""
+msgstr "Token API bol odstránený"
 
 #: application/controllers/Awards.php:30
 #: application/views/interface_assets/header.php:200
@@ -604,7 +606,7 @@ msgstr "JCC"
 #: application/controllers/Awards.php:614 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:279
 msgid "JCG"
-msgstr ""
+msgstr "JCG"
 
 #: application/controllers/Awards.php:664 application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:212
@@ -848,35 +850,35 @@ msgstr "WAP"
 #: application/controllers/Awards.php:2005
 #: application/views/interface_assets/header.php:269
 msgid "WAIP"
-msgstr ""
+msgstr "WAIP"
 
 #: application/controllers/Awards.php:2685
 msgid "England"
-msgstr ""
+msgstr "Anglicko"
 
 #: application/controllers/Awards.php:2686
 msgid "Isle of Man"
-msgstr ""
+msgstr "Ostrov Man"
 
 #: application/controllers/Awards.php:2687
 msgid "Northern Ireland"
-msgstr ""
+msgstr "Severné Írsko"
 
 #: application/controllers/Awards.php:2688
 msgid "Jersey"
-msgstr ""
+msgstr "Jersey"
 
 #: application/controllers/Awards.php:2689
 msgid "Scotland"
-msgstr ""
+msgstr "Škótsko"
 
 #: application/controllers/Awards.php:2690
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernsey"
 
 #: application/controllers/Awards.php:2691
 msgid "Wales"
-msgstr ""
+msgstr "Wales"
 
 #: application/controllers/Awards.php:2907
 #: application/views/awards/wac/index.php:7
@@ -906,12 +908,12 @@ msgstr "\"Polska\" Award"
 
 #: application/controllers/Awards.php:3255
 msgid "Awards - AMSAT Rover"
-msgstr ""
+msgstr "Diplomy – AMSAT Rover"
 
 #: application/controllers/Azimuthal.php:14
 #: application/views/interface_assets/header.php:342
 msgid "Azimuthal Map"
-msgstr ""
+msgstr "Azimutálna mapa"
 
 #: application/controllers/Backup.php:14 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:367
@@ -1017,7 +1019,7 @@ msgstr "Povolenia klubu"
 #: application/controllers/Contesting.php:765
 #: application/controllers/Contesting.php:777
 msgid "Invalid request method."
-msgstr ""
+msgstr "Neplatná metóda požiadavky."
 
 #: application/controllers/Club.php:122 application/controllers/Club.php:148
 #: application/controllers/Club.php:181 application/controllers/Club.php:250
@@ -1045,25 +1047,27 @@ msgstr "Používateľa sa nepodarilo odstrániť z klubu."
 
 #: application/controllers/Club.php:187 application/controllers/Club.php:256
 msgid "No members selected."
-msgstr ""
+msgstr "Nie sú vybraní žiadni členovia."
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
-msgstr ""
+msgstr "Žiadny z vybraných používateľov nie je členom tohto klubu."
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
 "Cannot proceed: this would remove the last Club Officer. An instance "
 "administrator must perform this action."
 msgstr ""
+"Nie je možné pokračovať, pretože by sa odstránil posledný funkcionár klubu. "
+"Túto akciu musí vykonať správca inštancie."
 
 #: application/controllers/Club.php:209
 msgid "Club member permissions could not be updated."
-msgstr ""
+msgstr "Oprávnenia členov klubu sa nepodarilo aktualizovať."
 
 #: application/controllers/Club.php:213
 msgid "No members were updated."
-msgstr ""
+msgstr "Nebol aktualizovaný žiadny člen."
 
 #: application/controllers/Club.php:226
 #, php-format
@@ -1075,11 +1079,11 @@ msgstr[2] ""
 
 #: application/controllers/Club.php:277
 msgid "Users could not be removed from club."
-msgstr ""
+msgstr "Používateľov sa nepodarilo odstrániť z klubu."
 
 #: application/controllers/Club.php:281
 msgid "No members were removed."
-msgstr ""
+msgstr "Nebol odstránený žiadny člen."
 
 #: application/controllers/Club.php:285
 #, php-format
@@ -1144,11 +1148,11 @@ msgstr "Import Clublog QSL"
 
 #: application/controllers/Clublog.php:229
 msgid "No Club Log credentials provided."
-msgstr ""
+msgstr "Neboli zadané prihlasovacie údaje do Club Logu."
 
 #: application/controllers/Contest_admin.php:42
 msgid "Contests Administration"
-msgstr ""
+msgstr "Správa pretekov"
 
 #: application/controllers/Contest_admin.php:56
 msgid "Update Contest"
@@ -1157,7 +1161,7 @@ msgstr "Aktualizovať contest"
 #: application/controllers/Contest_admin.php:76
 #, php-format
 msgid "Contest %s updated"
-msgstr ""
+msgstr "Preteky %s boli aktualizované"
 
 #: application/controllers/Contestcalendar.php:11
 #: application/views/interface_assets/header.php:330
@@ -1172,12 +1176,12 @@ msgstr "Kalendár contestov nie je dostupný. Skúste to znova neskôr"
 #: application/views/contesting/manager/export_cbr.php:15
 #: application/views/contesting/manager/export_edi.php:15
 msgid "Contest Management"
-msgstr ""
+msgstr "Správa pretekov"
 
 #: application/controllers/Contesting.php:92
 #: application/controllers/Contesting.php:613
 msgid "Officers must set up contests."
-msgstr ""
+msgstr "Contest musia nastaviť organizátori."
 
 #: application/controllers/Contesting.php:109
 #, php-format
@@ -16202,7 +16206,7 @@ msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
 msgstr ""
-"Použite toto, ak máte veľa QSO na nahratie do eQSL – zabránite tak vypršaniu "
+"Použite toto, ak máte veľa QSO na nahratie do eQSL. Zabránite tak vypršaniu "
 "časového limitu servera."
 
 #: application/views/eqslcard/index.php:8
