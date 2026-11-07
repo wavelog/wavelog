@@ -1610,7 +1610,7 @@ class Logbook_model extends CI_Model {
 				$observed_dt = new DateTime($observed_at, new DateTimeZone('UTC'));
 				$reported_at = $observed_dt->format('Y-m-d\\TH:i:s\\Z');
 			} catch (Exception $e) {
-				log_message('error', 'AMSAT status upload skipped: invalid time for ' . $satellite . ' - ' . $e->getMessage());
+				log_message('error', 'AMSAT status upload skipped: invalid time for ' . $sat_name . ' - ' . $e->getMessage());
 				return;
 			}
 			$url = 'https://status.amsat.org/api/v1/reports.php';
