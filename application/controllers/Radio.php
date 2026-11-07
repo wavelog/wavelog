@@ -78,13 +78,13 @@ class Radio extends CI_Controller {
 			echo "</tr>";
 
 			foreach ($query->result() as $row) {
-				echo '<tr data-radio-id="' . $row->id . '">';
-				echo "<td>" . $row->radio . "</td>";
+			echo '<tr data-radio-id="' . $row->id . '">';
+			echo "<td>" . html_escape($row->radio) . "</td>";
 
 				if ($this->session->userdata('clubstation') == 1 && clubaccess_check(9)) {
 					$operator = $this->user_model->get_by_id($row->operator)->row();
 					if ($operator) {
-						echo "<td>" . $operator->user_callsign . "</td>";
+						echo "<td>" . html_escape($operator->user_callsign) . "</td>";
 					} else {
 						echo "<td>" . __("UNKNOWN") . "</td>";
 					}
@@ -101,12 +101,12 @@ class Radio extends CI_Controller {
 				}
 				echo '<td class="radio-freq">' . $freq_html . '</td>';
 
-				if (empty($row->mode) || $row->mode == "non") {
-					$mode_html = "N/A";
-				} elseif (empty($row->mode_rx) || $row->mode_rx == "non") {
-					$mode_html = $row->mode;
-				} else {
-					$mode_html = $row->mode_rx . " / " . $row->mode;
+			if (empty($row->mode) || $row->mode == "non") {
+				$mode_html = "N/A";
+			} elseif (empty($row->mode_rx) || $row->mode_rx == "non") {
+				$mode_html = html_escape($row->mode);
+			} else {
+				$mode_html = html_escape($row->mode_rx) . " / " . html_escape($row->mode);
 				}
 				echo '<td class="radio-mode">' . $mode_html . '</td>';
 

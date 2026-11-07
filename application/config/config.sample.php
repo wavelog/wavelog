@@ -24,8 +24,13 @@ $config['directory'] = 'logbook';
 | $config['callbook'] = 'hamqth';
 | This can also be set to an array of callbooks to search sequentially until a match is found. Example:
 | $config['callbook'] = ['qrz', 'hamqth'];
+|
+| Successful lookups can be cached to save callbook requests, e.g. with a daily lookup limit or when the
+| same stations are worked for days (special event stations). Lifetime in seconds, 0 disables the cache (default).
+| Example for 7 days: $config['callbook_cache_ttl'] = 604800;
  */
 $config['callbook'] = 'hamqth';
+$config['callbook_cache_ttl'] = 0;
 
 $config['datadir'] = null; // default to install directory
 

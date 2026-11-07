@@ -81,6 +81,20 @@
 		return $invalid;
 	}
 
+	/**
+	 * Store a CAT (radio) status payload for a radio/operator/user.
+	 *
+	 * Upserts into the cat table (insert on first sight, update afterwards)
+	 * and fans the status out to MQTT and the worker. When the payload is
+	 * unchanged apart from the timestamp, only the timestamp column is
+	 * refreshed (liveness heartbeat) and the MQTT event is skipped.
+	 *
+	 * @param array $result   Radio payload (radio, frequency, mode, ...)
+	 * @param int   $user_id  Owning user id
+	 * @param mixed $operator Station operator (callsign or null)
+	 *
+	 * @return void
+	 */
 	function update($result, $user_id, $operator) {
 			$timestamp = gmdate("Y-m-d H:i:s");
 
@@ -164,6 +178,21 @@
 				// Update the record
 				foreach ($query->result() as $row) {
 					$radio_ids[] = $row->id;
+
+					$unchanged = true;
+					foreach ($data as $key => $value) {
+						if ($key != 'timestamp' && (string)($row->{$key} ?? '') !== (string)($value ?? '')) {
+							$unchanged = false;
+							break;
+						}
+					}
+					if ($unchanged) {
+						$this->db->where('id', $row->id);
+						$this->db->where('user_id', $user_id);
+						$this->db->update('cat', array('timestamp' => $timestamp));
+						continue;
+					}
+
 					$this->db->where('id', $row->id);
 					$this->db->where('user_id', $user_id);
 					$this->db->update('cat', $data);
@@ -179,7 +208,7 @@
 				$this->db->insert('cat', $data);
 				$radio_ids[] = $this->db->insert_id();
 				if (($this->config->item('mqtt_server') ?? '') != '') {
-                			$this->mh->wl_event('cat/'.$user_id, json_encode(array_merge($data,$eventdata)));
+					$this->mh->wl_event('cat/'.$user_id, json_encode(array_merge($data,$eventdata)));
 				}
 			}
 			unset($eventdata);

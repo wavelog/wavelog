@@ -9,12 +9,12 @@
 		<table class="table table-striped">
 			<?php foreach ($radio_status->result_array() as $row) { ?>
 			<tr data-radio-id="<?php echo html_escape($row['id']); ?>">
-				<td><?php echo $row['radio']; ?></td>
+				<td><?php echo html_escape($row['radio']); ?></td>
 				<td class="radio-qrg">
 					<?php if($row['prop_mode'] == 'SAT') { ?>
-						<?php echo $row['sat_name']; ?>
+						<?php echo html_escape($row['sat_name']); ?>
 					<?php } else { ?>
-						<?php echo $this->frequency->qrg_conversion($row['frequency']); ?> (<?php echo $row['mode']; ?>)
+						<?php echo $this->frequency->qrg_conversion($row['frequency']); ?> (<?php echo html_escape($row['mode']); ?>)
 					<?php } ?>
 				</td>
 			</tr>

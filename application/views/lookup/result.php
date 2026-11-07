@@ -24,14 +24,18 @@
 } ?>
 
 <?php
+	$conf = $this->session->userdata('user_default_confirmation');
+	$legend = [];
+	if ($conf === null || strpos($conf, 'Q') !== false) { $legend[] = __("(Q)SL-Paper-Card"); }
+	if ($conf === null || strpos($conf, 'L') !== false) { $legend[] = __("(L)oTW"); }
+	if ($conf === null || strpos($conf, 'E') !== false) { $legend[] = __("(e)QSL"); }
+	if ($conf === null || strpos($conf, 'Z') !== false) { $legend[] = __('QR(Z)-"confirmation"'); }
+	if ($conf === null || strpos($conf, 'C') !== false) { $legend[] = __("(C)lublog"); }
+	$legend[] = __("(W)orked");
+
 	echo '<div class="text-center">';
 	echo __('Legend:');
-	echo '<pre>'.__("(Q)SL-Paper-Card").", ";
-	echo __("(L)oTW").", ";
-	echo __("(e)QSL").", ";
-	echo __('QR(Z)-"confirmation"').", ";
-	echo __("(C)lublog").", ";
-	echo __("(W)orked").'</pre>';
+	echo '<pre>' . implode(", ", $legend) . '</pre>';
 	echo '</div>';
 ?>
 

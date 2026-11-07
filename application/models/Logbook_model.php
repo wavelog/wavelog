@@ -175,14 +175,12 @@ class Logbook_model extends CI_Model {
 			// Handle end time
 			if (!empty($end_time)) {
 				$end_datetime_obj = DateTime::createFromFormat("$date_format H:i:s", "$start_date $end_time");
-
 				if ($end_datetime_obj === false) {
 					$end_datetime_obj = DateTime::createFromFormat("$date_format H:i", "$start_date $end_time");	// Try converting as H:i if H:i:s failed b4
-					if ($end_datetime_obj === false) {
-						$datetime_off = $datetime; // No Luck? Than end = start
-					} else {
-						$datetime_off = $end_datetime_obj->format('Y-m-d H:i:s');
-					}
+				}
+
+				if ($end_datetime_obj === false) {
+					$datetime_off = $datetime; // No Luck? Than end = start
 				} else {
 					// If time-off is before time-on and hour is 00 → add 1 day
 					if ($end_datetime_obj < $datetime_obj && str_starts_with($end_time, "00")) {
@@ -569,6 +567,13 @@ class Logbook_model extends CI_Model {
 		];
 	}
 
+	public $lotw_table_empty = false;	// set by check_last_lotw() when the lotw_users table is empty
+
+	/*
+	 * Returns the number of days since last LoTW upload
+	 * input: callsign
+	 * output: number of days or null if callsign is not a LoTW user
+	 */
 	public function check_last_lotw($call) {	// Fetch difference in days when $call has last updated LotW
 
 		$sql = "select datediff(now(),lastupload) as DAYS from lotw_users where callsign = ?";	// Use binding to prevent SQL-injection
@@ -577,6 +582,9 @@ class Logbook_model extends CI_Model {
 		if (isset($row)) {
 			return ($row->DAYS);
 		}
+		// No row for this call: distinguish "table empty" from "not a LoTW user"
+		$sql = "SELECT EXISTS (SELECT 1 FROM lotw_users) AS tbl_count;";
+		$this->lotw_table_empty = ($this->db->query($sql)->row()->tbl_count == 0);
 	}
 
 	public function check_station($id) {
@@ -762,9 +770,12 @@ class Logbook_model extends CI_Model {
 				$sql .= ' AND `COL_DXCC` = 339';
 				break;
 			case 'JCG':
-				// Unlike JCC, JCG (gun/county) numbers have no "ward of a
-				// designated city" variant, so COL_CNTY is matched directly.
-				$sql .= ' WHERE `COL_CNTY` = ? AND `COL_DXCC` = 339';
+				// Ogasawara-Shicho also includes DXCC 177/192 regardless of CNTY.
+				if ($searchphrase == '10007') {
+					$sql .= ' WHERE ((`COL_CNTY` = ? AND `COL_DXCC` = 339) OR `COL_DXCC` IN (177, 192))';
+				} else {
+					$sql .= ' WHERE `COL_CNTY` = ? AND `COL_DXCC` = 339';
+				}
 				$binding[] = $searchphrase;
 				break;
 			case 'SOTA':
@@ -1591,13 +1602,38 @@ class Logbook_model extends CI_Model {
 			$amsat_source_grid = strtok($data['COL_MY_VUCC_GRIDS'], ',');
 		}
 		if ($amsat_source_grid != '') {
-			$datearray = date_parse_from_format("Y-m-d H:i:s", $data['COL_TIME_ON']);
-			$url = 'https://amsat.org/status/submit.php?SatSubmit=yes&Confirm=yes&SatName=' . $sat_name . '&SatYear=' . $datearray['year'] . '&SatMonth=' . str_pad($datearray['month'], 2, '0', STR_PAD_LEFT) . '&SatDay=' . str_pad($datearray['day'], 2, '0', STR_PAD_LEFT) . '&SatHour=' . str_pad($datearray['hour'], 2, '0', STR_PAD_LEFT) . '&SatPeriod=' . (intdiv(($datearray['minute'] - 1), 15)) . '&SatCall=' . $data['COL_STATION_CALLSIGN'] . '&SatReport=Heard&SatGridSquare=' . substr($amsat_source_grid,0,6);
+			$observed_at = (string)($data['COL_TIME_ON'] ?? '');
+			if ($observed_at === '') {
+				return;
+			}
+			try {
+				$observed_dt = new DateTime($observed_at, new DateTimeZone('UTC'));
+				$reported_at = $observed_dt->format('Y-m-d\\TH:i:s\\Z');
+			} catch (Exception $e) {
+				log_message('error', 'AMSAT status upload skipped: invalid time for ' . $sat_name . ' - ' . $e->getMessage());
+				return;
+			}
+			$url = 'https://status.amsat.org/api/v1/reports.php';
+			$payload = array(
+				'name' => $sat_name,
+				'report' => 'Heard',
+				'callsign' => $data['COL_STATION_CALLSIGN'],
+				'reported_at' => $reported_at,
+				'grid_square' => substr($amsat_source_grid,0,6)
+			);
+			$body = json_encode($payload);
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
+			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+				'Accept: application/json',
+				'Content-Type: application/json',
+			));
 			curl_exec($ch);
 		}
 	}
@@ -3058,14 +3094,20 @@ class Logbook_model extends CI_Model {
 		$binding[] = $station_id;
 
 		if ($from) {
-			$from = DateTime::createFromFormat('d/m/Y', $from);
+			$from = DateTime::createFromFormat('Y-m-d', $from);
+			if ($from === false) {
+				return null;
+			}
 			$from = $from->format('Y-m-d');
 
 			$sql .= "  AND qsos.COL_TIME_ON >= ?";
 			$binding[] = $from;
 		}
 		if ($to) {
-			$to = DateTime::createFromFormat('d/m/Y', $to);
+			$to = DateTime::createFromFormat('Y-m-d', $to);
+			if ($to === false) {
+				return null;
+			}
 			$to = $to->format('Y-m-d');
 
 			$sql .= "  AND qsos.COL_TIME_ON <= ?";
@@ -5018,7 +5060,7 @@ class Logbook_model extends CI_Model {
 		$row = $query->row();
 
 		if ($row->QSOS == 0) {
-			return '2100-01-01 00:00:00.000';	// No QSO in Log, set since to future, otherwise this user blocks download
+			return $this->config->item('lotw_download_skip_date'); // No QSO in Log, set since to future, otherwise this user blocks download
 		}
 		if ($row->MAXDATE != null) {
 			return $row->MAXDATE;
@@ -6649,9 +6691,10 @@ class Logbook_model extends CI_Model {
 			if (isset($xbearing)) {
 				$plot['html'].=__("Bearing").': '.$xbearing."&deg;<br/>";
 			}
-			if (isset($stn_loc)) {
-				list($plot['lat'], $plot['lng']) = $stn_loc;
+			if (!is_array($stn_loc) || ($stn_loc[0] == 0 && $stn_loc[1] == 0)) {
+				continue;
 			}
+			list($plot['lat'], $plot['lng']) = $stn_loc;
 			// add plot //
 			$json["markers"][] = $plot;
 		}

@@ -411,6 +411,21 @@ class Gridmap_model extends CI_Model {
 		return $gridarray;
 	}
 
+	/**
+	 * Returns the set of 4-digit gridsquares that the vuccgrids table lists for any DXCC entity
+	 *
+	 * @return array Gridsquares as keys, true as value
+	 */
+	function get_vucc_grid_set() {
+		$result = $this->db->query('SELECT DISTINCT UPPER(SUBSTRING(gridsquare, 1, 4)) AS grid FROM vuccgrids');
+
+		$grids = array();
+		foreach ($result->result() as $row) {
+			$grids[$row->grid] = true;
+		}
+		return $grids;
+	}
+
 	function get_coordinates_for_dxcc($dxcc) {
 		// Get country coordinates if a specific country is selected
 		$country_coords = null;

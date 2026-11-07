@@ -419,7 +419,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
                 <option value="0" selected="selected"><?= __("None"); ?></option>
 		            <option value="ws"<?php if ($this->session->userdata('radio') == 'ws' && $manual_mode == '0') { echo ' selected="selected"'; } ?>><?= __("Live - WebSocket"); ?></option>
                 <?php foreach ($radios->result() as $row) { ?>
-                  <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id && $manual_mode == '0') { echo "selected=\"selected\""; } ?>><?= __("Polling - ") . $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
+                  <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id && $manual_mode == '0') { echo "selected=\"selected\""; } ?>><?= __("Polling - ") . html_escape($row->radio); ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
                 <?php } ?>
                 </select>
                 <input type="hidden" id="radio_ws_name" name="radio_ws_name" value="" />

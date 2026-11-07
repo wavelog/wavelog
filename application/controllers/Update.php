@@ -334,11 +334,11 @@ class Update extends CI_Controller {
 
 	private function _invalidate_dxcc_cache() {
 		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
-			'adapter' => $this->config->item('cache_adapter') ?? 'file', 
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
 			'backup' => $this->config->item('cache_backup') ?? 'file',
 			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
 		]);
-		
+
 		$possible_cachekeys = [
 			'dxcc_exceptions',
 			'dxcc_prefixes',
@@ -738,11 +738,15 @@ class Update extends CI_Controller {
 		$lockfilename='/tmp/.update_hon_running';
 		if (!file_exists($lockfilename)) {
 			touch($lockfilename);
-			$this->load->model('cron_model');
-			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 			$this->load->model('Update_model');
 			$bodyData['hamsofnote'] = $this->Update_model->update_hams_of_note();
 			unlink($lockfilename);
+			if ($bodyData['hamsofnote'] === null) {
+				$this->session->set_flashdata('error', __("Hams of Note Update failed. Result: ") . "'No data returned'");
+			} else {
+				$this->load->model('cron_model');
+				$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+			}
 			if ($this->session->userdata('user_type') == '99') {
 				$data['page_title'] = __("Update of Hams of Note");
 				$this->load->view('interface_assets/header', $data);
