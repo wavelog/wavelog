@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-06 15:08+0000\n"
-"PO-Revision-Date: 2026-11-07 16:20+0000\n"
+"PO-Revision-Date: 2026-11-07 19:49+0000\n"
 "Last-Translator: om8hop <om8hop@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sk/>\n"
@@ -1668,7 +1668,7 @@ msgstr "Časový limit dosiahnutý. Zastavenie ďalších nahrávaní."
 
 #: application/controllers/Dcl.php:192
 msgid "Upload Successful"
-msgstr "Nahrávanie úspešné."
+msgstr "Nahrávanie úspešné"
 
 #: application/controllers/Dcl.php:201
 msgid "No Station Profiles found to upload to DCL"
@@ -5227,7 +5227,7 @@ msgstr "Zdá sa, že stránka eQSL sa zmenila. Prosím, otvor problém na GitHub
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr ""
-"Pri nahrávaní QSO sa vyskytla nečakaná chyba. Možno má eQSL nejaké problémy."
+"Pri nahrávaní QSO sa vyskytla nečakaná chyba. Možno má eQSL nejaké problémy"
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -6798,7 +6798,7 @@ msgid ""
 "and export!"
 msgstr ""
 "Ak potrebujete podrobnejšie filtrovanie, použite na filtrovanie a export "
-"%srozšírený denník spojení%s."
+"%srozšírený denník spojení%s!"
 
 #: application/views/adif/import.php:275
 #: application/views/search/lotw_unconfirmed.php:24
@@ -10108,9 +10108,8 @@ msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
-"Polia použité pre toto ocenenie: Lokátor (Gridsquare) a vucc_grids (ADIF:\n"
-"GRIDSQUARE, VUCC_GRIDS)Pre tento diplom sa používajú oblasti: Gridsquare a "
-"vucc_grids (ADIF:"
+"Polia použité pre tento diplom: Lokátor (Gridsquare) a VUCC lokátory (ADIF: "
+"GRIDSQUARE, VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:19
 msgid "VUCC Gridsquares by Band"
@@ -10281,9 +10280,8 @@ msgid ""
 "Fields taken for this Award: Continent (ADIF tag 'CONT'). Must contain a "
 "valid continent-abbreviation!"
 msgstr ""
-"Polia použité pre toto ocenenie: Kontinent (ADIF značka 'CONT'). Musí\n"
-"obsahovať platnú skratku kontinentu!Pre tento diplom sa používajú oblasti: "
-"Kontinent (ADIF značka 'CONT'). Musí"
+"Polia použité pre toto ocenenie: Kontinent (ADIF značka „CONT“). Musí "
+"obsahovať platnú skratku kontinentu!"
 
 #: application/views/awards/wac/index.php:13
 msgid "Awards - Worked All Continents (WAC)"
@@ -16579,22 +16577,9 @@ msgid ""
 "Please make sure the 'eQSL QTH Nickname' field is set in your station "
 "profile and that the value matches the QTH Nickname you set within eQSL."
 msgstr ""
-"Prosím, uistite sa, že pole \"eQSL prezývka QTH\" je nastavené vo vašom\n"
-"profile stanice a že hodnota zodpovedá prezývke QTH, ktorú ste nastavili v\n"
-"eQSL.Prosím, uistite sa, že pole \"eQSL prezývka QTH\" je nastavené vo "
-"vašom\n"
-"profile stanice a že hodnota zodpovedá prezývke QTH, ktorú ste nastavili v\n"
-"eQSL.Prosím, uistite sa, že pole \"eQSL prezývka QTH\" je nastavené vo "
-"vašom\n"
-"profile stanice a že hodnota zodpovedá prezývke QTH, ktorú ste nastavili v\n"
-"eQSL.Prosím, uistite sa, že pole \"eQSL prezývka QTH\" je nastavené vo "
-"vašom\n"
-"profile stanice a že hodnota zodpovedá prezývke QTH, ktorú ste nastavili v\n"
-"eQSL.Prosím, uistite sa, že pole \"eQSL prezývka QTH\" je nastavené vo "
-"vašom\n"
-"profile stanice a že hodnota zodpovedá prezývke QTH, ktorú ste nastavili v\n"
-"eQSL.Ubezpeč sa, že pole 'eQSL QTH Nickname' je nastavené v tvojom profile "
-"stanice a že hodnota zodpovedá nicku QTH, ktorú si nastavil v eQSL."
+"Prosím, uistite sa, že pole \"eQSL prezývka QTH\" je nastavené vo vašom "
+"profile stanice a že hodnota zodpovedá prezývke QTH, ktorú ste nastavili v "
+"eQSL."
 
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
@@ -17357,11 +17342,9 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
-"Tu na chvíľu zastavte. Vami zvolený DXCC je zastaraný a už nie je platný. "
-"Skontrolujte, ktorý DXCC je pre túto konkrétnu lokalitu správny. Ak ste si "
-"istí, ignorujte toto varovanie.Zastav sa tu na chvíľu. Tvoj vybraný DXCC je "
-"zastaraný a už nie je platný. Skontroluj, ktorý DXCC je pre toto konkrétne "
-"miesto správny. Ak si si istý, ignoruj toto varovanie."
+"Na chvíľu sa zastavte. Vami zvolená entita DXCC je zastaraná a už nie je "
+"platná. Skontrolujte, ktorá entita DXCC je pre túto konkrétnu lokalitu "
+"správna. Ak ste si istí svojím výberom, môžete toto upozornenie ignorovať."
 
 #: application/views/interface_assets/footer.php:902
 msgid "Count: "
@@ -22860,16 +22843,15 @@ msgstr "Meno operátora:"
 
 #: application/views/simplefle/syntax_help.php:57
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
-msgstr "QSL správa (Pozor! Aktuálne nie je viditeľná vo Wavelogu!)"
+msgstr "QSL správa (Pozor! Momentálne sa vo Wavelogu nezobrazuje!):"
 
 #: application/views/simplefle/syntax_help.php:61
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
 msgstr ""
-"Môžete použiť syntax komentára na vyplnenie adif-polí podporovaných\n"
-"Wavelog-Importom:Môžeš použiť syntax komentára, aby si vyplnil polia ADIF "
-"podporované importom Wavelog:"
+"Na vyplnenie polí ADIF podporovaných importom vo Wavelogu môžete použiť "
+"nasledujúcu syntax komentára:"
 
 #: application/views/simplefle/syntax_help.php:66
 msgid "Contest exchange"
@@ -24982,7 +24964,7 @@ msgid ""
 msgstr ""
 "Pred začatím zapisovania QSO je potrebné nastaviť vaše prvé stanovište "
 "stanice. Viac informácií o fungovaní stanovišť staníc a denníkov spojení "
-"nájdete v našej %sWiki%s."
+"nájdete v našej %sWiki%s!"
 
 #: application/views/user/modals/first_login_wizard.php:22
 msgid ""
