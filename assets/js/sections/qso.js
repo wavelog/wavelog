@@ -226,7 +226,7 @@ $('#stationProfile').on('change', function () {
 		data: { 'stationProfile': stationProfile },
 		success: function (res) {
 			$('#transmit_power').val(res.station_power);
-			latlng=[res.lat,res.lng];
+			latlng = (res.lat !== null && res.lng !== null) ? [res.lat, res.lng] : null;
 			station_callsign = res.station_callsign;
 			$("#sat_name").change();
 		},
@@ -1147,6 +1147,7 @@ function stop_az_ele_ticker() {
 }
 
 function start_az_ele_ticker(tle) {
+	if (!latlng || latlng[0] === null || latlng[1] === null) { stop_az_ele_ticker(); return; }
 	const lines = tle.tle.trim().split('\n');
 
 	// Initialize a satellite record
