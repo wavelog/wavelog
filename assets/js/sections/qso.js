@@ -252,7 +252,7 @@ $("#callsign").on("compositionend", function(e){
 });
 
 $(document).on("keydown", function (e) {
-	if (e.key === "Escape" && $('#callsign').val() != '') { // escape key maps to keycode `27`
+	if (e.key === "Escape" && $('#callsign').val() != '' && !$('.modal.show').length) { // escape key maps to keycode `27`
 		preventLookup = true;
 
 		if (lookupCall) {
@@ -261,11 +261,13 @@ $(document).on("keydown", function (e) {
 
 		reset_fields();
 
+		// Jump back to the QSO tab and focus the callsign input
+		bootstrap.Tab.getOrCreateInstance(document.getElementById('qso-tab')).show();
+
 		// make sure the focusout event is finished before we allow a new lookup
 		setTimeout(() => {
 			preventLookup = false;
 		}, 100);
-		// console.log("Escape key pressed");
 		$('#callsign').trigger("focus");
 	}
 });
