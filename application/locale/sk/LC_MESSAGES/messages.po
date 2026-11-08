@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-06 15:08+0000\n"
-"PO-Revision-Date: 2026-11-08 17:11+0000\n"
+"PO-Revision-Date: 2026-11-09 06:59+0000\n"
 "Last-Translator: om8hop <om8hop@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sk/>\n"
@@ -3863,7 +3863,7 @@ msgstr "Zobraziť verejnú stránku pre denník: "
 #: application/controllers/Stationsetup.php:306
 #: application/views/stationsetup/stationsetup.php:91
 msgid "Are you sure you want to delete the public slug?"
-msgstr "Si naozaj istý, že chceš zmazať verejný slug?"
+msgstr "Naozaj chcete odstrániť verejný identifikátor?"
 
 #: application/controllers/Stationsetup.php:306
 #: application/views/stationsetup/stationsetup.php:90
@@ -4510,7 +4510,7 @@ msgstr ""
 
 #: application/controllers/Widgets.php:282
 msgid "User has disabled the LoTW upload widget"
-msgstr ""
+msgstr "Používateľ vypol widget nahrávania do LoTW"
 
 #: application/controllers/Widgets.php:540
 msgid "User not found by slug"
@@ -4526,7 +4526,7 @@ msgstr "Vyhľadávač lokátorových zón"
 
 #: application/controllers/Zonechecker.php:477
 msgid "GeoJSON data unavailable"
-msgstr ""
+msgstr "Údaje GeoJSON nie sú dostupné"
 
 #: application/libraries/Callbook.php:72
 msgid "Lookup not configured. Please review configuration."
@@ -4540,10 +4540,14 @@ msgstr "Chyba pri získavaní kľúča relácie pre callbook. Chyba: %s"
 #: application/libraries/Callbook.php:74
 msgid "Generic error storing the callbook session key in cache."
 msgstr ""
+"Pri ukladaní kľúča relácie databázy volacích značiek do vyrovnávacej pamäte "
+"nastala chyba."
 
 #: application/libraries/Callbook.php:75
 msgid "Generic error reading the cached callbook session key."
 msgstr ""
+"Pri čítaní kľúča relácie databázy volacích značiek z vyrovnávacej pamäte "
+"nastala chyba."
 
 #: application/libraries/Callbook.php:282
 msgid "QRZCQ Error"
@@ -4649,87 +4653,87 @@ msgstr "Mesto / Ku / Gun"
 
 #: application/libraries/api_v2/Club_resource.php:71
 msgid "Read club members"
-msgstr ""
+msgstr "Zobraziť členov klubu"
 
 #: application/libraries/api_v2/Club_resource.php:72
 msgid "Manage club member permissions"
-msgstr ""
+msgstr "Spravovať oprávnenia členov klubu"
 
 #: application/libraries/api_v2/Club_resource.php:73
 msgid "Remove club members"
-msgstr ""
+msgstr "Odstrániť členov klubu"
 
 #: application/libraries/api_v2/Confirmation_resource.php:54
 msgid "Read QSL confirmations"
-msgstr ""
+msgstr "Zobraziť potvrdenia QSL"
 
 #: application/libraries/api_v2/Contest_resource.php:55
 msgid "Read contest sessions"
-msgstr ""
+msgstr "Zobraziť súťažné relácie"
 
 #: application/libraries/api_v2/Contest_resource.php:56
 msgid "Create and update contest sessions"
-msgstr ""
+msgstr "Vytvárať a upravovať súťažné relácie"
 
 #: application/libraries/api_v2/Contest_resource.php:57
 msgid "Delete contest sessions"
-msgstr ""
+msgstr "Odstrániť súťažné relácie"
 
 #: application/libraries/api_v2/Logbook_resource.php:49
 msgid "Read logbooks"
-msgstr ""
+msgstr "Zobraziť denníky spojení"
 
 #: application/libraries/api_v2/Logbook_resource.php:50
 msgid "Create and update logbooks"
-msgstr ""
+msgstr "Vytvárať a upravovať denníky spojení"
 
 #: application/libraries/api_v2/Logbook_resource.php:51
 msgid "Delete logbooks"
-msgstr ""
+msgstr "Odstrániť denníky spojení"
 
 #: application/libraries/api_v2/Lookup_resource.php:44
 msgid "Look up callsigns and grids"
-msgstr ""
+msgstr "Vyhľadávať volacie značky a lokátory"
 
 #: application/libraries/api_v2/Qso_resource.php:50
 msgid "Read QSOs"
-msgstr ""
+msgstr "Zobraziť QSO"
 
 #: application/libraries/api_v2/Qso_resource.php:51
 msgid "Create and update QSOs"
-msgstr ""
+msgstr "Vytvárať a upravovať QSO"
 
 #: application/libraries/api_v2/Qso_resource.php:52
 msgid "Delete QSOs"
-msgstr ""
+msgstr "Odstránenie QSO"
 
 #: application/libraries/api_v2/Radio_resource.php:30
 msgid "Read radios"
-msgstr ""
+msgstr "Zobraziť rádiostanice"
 
 #: application/libraries/api_v2/Radio_resource.php:31
 msgid "Create and update radios"
-msgstr ""
+msgstr "Vytvárať a upravovať rádiostanice"
 
 #: application/libraries/api_v2/Radio_resource.php:32
 msgid "Delete radios"
-msgstr ""
+msgstr "Odstrániť rádiostanice"
 
 #: application/libraries/api_v2/Station_resource.php:50
 msgid "Read station locations"
-msgstr ""
+msgstr "Zobraziť stanovištia"
 
 #: application/libraries/api_v2/Station_resource.php:51
 msgid "Create and update station locations"
-msgstr ""
+msgstr "Vytvárať a upravovať stanovištia"
 
 #: application/libraries/api_v2/Station_resource.php:52
 msgid "Delete station locations"
-msgstr ""
+msgstr "Odstrániť stanovištia"
 
 #: application/libraries/api_v2/Statistic_resource.php:49
 msgid "Read statistics"
-msgstr ""
+msgstr "Zobraziť štatistiky"
 
 #: application/models/Achievements_model.php:172
 #: application/models/Achievements_model.php:173
@@ -4737,9 +4741,9 @@ msgstr ""
 #, php-format
 msgid "%s day"
 msgid_plural "%s days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%s deň"
+msgstr[1] "%s dni"
+msgstr[2] "%s dní"
 
 #: application/models/Achievements_model.php:172
 msgid "Longest streak"
@@ -4754,11 +4758,11 @@ msgstr ""
 #: application/views/awards/amsat_rover/index.php:152
 #: application/views/awards/counties/index.php:197
 msgid "Target"
-msgstr ""
+msgstr "Cieľ"
 
 #: application/models/Achievements_model.php:177
 msgid "Reached on"
-msgstr ""
+msgstr "Dosiahnuté dňa"
 
 #: application/models/Achievements_model.php:181
 #, php-format
@@ -4775,7 +4779,7 @@ msgstr[2] ""
 
 #: application/models/Achievements_model.php:195
 msgid "QSOs in log"
-msgstr ""
+msgstr "QSO v denníku"
 
 #: application/models/Achievements_model.php:196
 #: application/models/Achievements_model.php:203
@@ -4788,7 +4792,7 @@ msgstr[2] ""
 
 #: application/models/Achievements_model.php:199
 msgid "Unlocked on"
-msgstr ""
+msgstr "Odomknuté dňa"
 
 #: application/models/Achievements_model.php:207
 #, php-format
@@ -4800,37 +4804,37 @@ msgstr[2] ""
 
 #: application/models/Achievements_model.php:237
 msgid "QSOs in classic digimodes"
-msgstr ""
+msgstr "QSO v klasických digitálnych módoch"
 
 #: application/models/Achievements_model.php:239
 #: application/models/Achievements_model.php:356
 #: application/models/Achievements_model.php:389
 msgid "First QSO on"
-msgstr ""
+msgstr "Prvé QSO dňa"
 
 #: application/models/Achievements_model.php:242
 msgid "Top classic mode"
-msgstr ""
+msgstr "Najpoužívanejší klasický mód"
 
 #: application/models/Achievements_model.php:245
 msgid "First CW QSO"
-msgstr ""
+msgstr "Prvé QSO v CW"
 
 #: application/models/Achievements_model.php:247
 msgid "First SSB QSO"
-msgstr ""
+msgstr "Prvé QSO v SSB"
 
 #: application/models/Achievements_model.php:249
 msgid "First FT8 QSO"
-msgstr ""
+msgstr "Prvé QSO v móde FT8"
 
 #: application/models/Achievements_model.php:251
 msgid "First Classic Digimode QSO"
-msgstr ""
+msgstr "Prvé QSO v klasickom digitálnom móde"
 
 #: application/models/Achievements_model.php:252
 msgid "Triple Threat"
-msgstr ""
+msgstr "Trojitá výzva"
 
 #: application/models/Achievements_model.php:253
 #, php-format
@@ -4842,40 +4846,40 @@ msgstr[2] ""
 
 #: application/models/Achievements_model.php:255
 msgid "Worked modes"
-msgstr ""
+msgstr "Použité módy"
 
 #: application/models/Achievements_model.php:256
 msgid "Missing modes"
-msgstr ""
+msgstr "Chýbajúce módy"
 
 #: application/models/Achievements_model.php:272
 msgid "First LoTW Confirmation"
-msgstr ""
+msgstr "Prvé potvrdenie cez LoTW"
 
 #: application/models/Achievements_model.php:273
 msgid "Confirmed on"
-msgstr ""
+msgstr "Potvrdené dňa"
 
 #: application/models/Achievements_model.php:291
 msgid "CW and SSB QSOs"
-msgstr ""
+msgstr "QSO v CW a SSB"
 
 #: application/models/Achievements_model.php:292
 msgid "FT8 and FT4 QSOs"
-msgstr ""
+msgstr "QSO v móde FT8 a FT4"
 
 #: application/models/Achievements_model.php:293
 msgid "Current ratio"
-msgstr ""
+msgstr "Aktuálny pomer"
 
 #: application/models/Achievements_model.php:294
 msgid "Needed ratio"
-msgstr ""
+msgstr "Požadovaný pomer"
 
 #: application/models/Achievements_model.php:299
 #, php-format
 msgid "Total: %s QSOs"
-msgstr ""
+msgstr "Spolu: %s QSO"
 
 #: application/models/Achievements_model.php:303
 #: application/views/awards/counties/index.php:195
@@ -4897,35 +4901,35 @@ msgstr "Urobené"
 
 #: application/models/Achievements_model.php:306
 msgid "Classic digimodes"
-msgstr ""
+msgstr "Klasické digitálne módy"
 
 #: application/models/Achievements_model.php:310
 #, php-format
 msgid "HF: %s/%s"
-msgstr ""
+msgstr "KV: %s/%s"
 
 #: application/models/Achievements_model.php:311
 #, php-format
 msgid "WARC: %s/%s"
-msgstr ""
+msgstr "WARC: %s/%s"
 
 #: application/models/Achievements_model.php:312
 #, php-format
 msgid "SAT: %s"
-msgstr ""
+msgstr "SAT: %s"
 
 #: application/models/Achievements_model.php:314
 #, php-format
 msgid "First confirmation: %s"
-msgstr ""
+msgstr "Prvé potvrdenie: %s"
 
 #: application/models/Achievements_model.php:314
 msgid "No LoTW confirmation yet"
-msgstr ""
+msgstr "Zatiaľ žiadne potvrdenie cez LoTW"
 
 #: application/models/Achievements_model.php:316
 msgid "CW and SSB versus FT8 and FT4"
-msgstr ""
+msgstr "CW a SSB oproti FT8 a FT4"
 
 #: application/models/Achievements_model.php:319
 msgid "Streak"
@@ -4937,27 +4941,27 @@ msgstr ""
 
 #: application/models/Achievements_model.php:324
 msgid "Classic Mode Ratio"
-msgstr ""
+msgstr "Pomer klasických módov"
 
 #: application/models/Achievements_model.php:353
 msgid "QSOs in this mode"
-msgstr ""
+msgstr "QSO v tomto móde"
 
 #: application/models/Achievements_model.php:371
 msgid "Bands worked"
-msgstr ""
+msgstr "Použité pásma"
 
 #: application/models/Achievements_model.php:372
 msgid "Missing bands"
-msgstr ""
+msgstr "Chýbajúce pásma"
 
 #: application/models/Achievements_model.php:373
 msgid "Range"
-msgstr ""
+msgstr "Rozsah"
 
 #: application/models/Achievements_model.php:376
 msgid "Completed on"
-msgstr ""
+msgstr "Dokončené dňa"
 
 #: application/models/Achievements_model.php:379
 #, php-format
@@ -4969,11 +4973,11 @@ msgstr[2] ""
 
 #: application/models/Achievements_model.php:387
 msgid "SAT QSOs"
-msgstr ""
+msgstr "Satelitné QSO"
 
 #: application/models/Achievements_model.php:392
 msgid "Different satellites"
-msgstr ""
+msgstr "Rôzne satelity"
 
 #: application/models/Achievements_model.php:398
 #, php-format
@@ -4994,38 +4998,40 @@ msgstr[2] ""
 #: application/models/Achievements_model.php:407
 #: application/views/visitor/mini.php:214
 msgid "No QSOs yet"
-msgstr ""
+msgstr "Zatiaľ žiadne QSO"
 
 #: application/models/Achievements_model.php:410
 #: application/models/Achievements_model.php:412
 msgid "classic"
-msgstr ""
+msgstr "klasický"
 
 #: application/models/Api_v2_model.php:105
 msgid " (min. 2.1.0)"
-msgstr ""
+msgstr " (min. 2.1.0)"
 
 #: application/models/Api_v2_model.php:106
 msgid ""
 "Radio control and QSO upload from WSJT-X, JTDX and friends. Requires at "
 "least version 2.1.0 of WaveLogGate."
 msgstr ""
+"Ovládanie rádiostanice a odosielanie QSO z programov WSJT-X, JTDX a "
+"podobných. Vyžaduje WaveLogGate vo verzii aspoň 2.1.0."
 
 #: application/models/Api_v2_model.php:112
 msgid "Read-only"
-msgstr ""
+msgstr "Iba na čítanie"
 
 #: application/models/Api_v2_model.php:113
 msgid "Read access to everything, no changes to your data."
-msgstr ""
+msgstr "Prístup na čítanie všetkých údajov bez možnosti ich meniť."
 
 #: application/models/Api_v2_model.php:119
 msgid "Statistics only"
-msgstr ""
+msgstr "Iba štatistiky"
 
 #: application/models/Api_v2_model.php:120
 msgid "Statistics only, no changes to your data."
-msgstr ""
+msgstr "Prístup iba k štatistikám bez možnosti meniť údaje."
 
 #: application/models/Club_model.php:12
 msgid "Club Officer"
@@ -5058,7 +5064,7 @@ msgstr "Neznáme"
 
 #: application/models/Clublog_model.php:626
 msgid "Connection to Club Log failed."
-msgstr ""
+msgstr "Pripojenie ku Club Log zlyhalo."
 
 #: application/models/Clublog_model.php:630
 #, php-format
@@ -5066,14 +5072,16 @@ msgid ""
 "Club Log login failed for user %s. Please check username, password and that "
 "the callsign %s belongs to this Club Log account."
 msgstr ""
+"Prihlásenie používateľa %s do Club Log zlyhalo. Skontrolujte používateľské "
+"meno, heslo a či volacia značka %s patrí k tomuto účtu Club Log."
 
 #: application/models/Clublog_model.php:633
 msgid "Club Log currently not available. Try again later."
-msgstr ""
+msgstr "Club Log je momentálne nedostupný. Skúste to neskôr."
 
 #: application/models/Clublog_model.php:637
 msgid "Club Log login OK!"
-msgstr ""
+msgstr "Prihlásenie do Club Log bolo úspešné!"
 
 #: application/models/Contesting_import_model.php:219
 #, php-format
@@ -5091,11 +5099,11 @@ msgstr ""
 
 #: application/models/Contesting_model.php:257
 msgid "Officers must edit contests."
-msgstr ""
+msgstr "Funkcionári klubu musia upravovať súťaže."
 
 #: application/models/Countqsoby_model.php:262
 msgid "Unlinked"
-msgstr ""
+msgstr "Nepriradené"
 
 #: application/models/Dbtools_model.php:118
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
@@ -5105,50 +5113,62 @@ msgstr "Tabuľka VuccGrids je prázdna. Najprv importujte údaje lokátorov VUCC
 msgid ""
 "No working adapter available - cache is running on the no-op 'dummy' driver."
 msgstr ""
+"Nie je dostupný žiadny funkčný adaptér – vyrovnávacia pamäť používa nečinný "
+"ovládač „dummy“."
 
 #: application/models/Debug_model.php:322
 #: application/models/Debug_model.php:370
 msgid "Adapter not supported."
-msgstr ""
+msgstr "Adaptér nie je podporovaný."
 
 #: application/models/Debug_model.php:351
 #, php-format
 msgid "%s adapter threw an exception: %s"
-msgstr ""
+msgstr "Adaptér %s vyvolal výnimku: %s"
 
 #: application/models/Debug_model.php:358
 #, php-format
 msgid "PHP extension '%s' is not loaded."
-msgstr ""
+msgstr "Rozšírenie PHP „%s“ nie je načítané."
 
 #: application/models/Debug_model.php:362
 #, php-format
 msgid "Cache directory is not writable: %s"
-msgstr ""
+msgstr "Do adresára vyrovnávacej pamäte nemožno zapisovať: %s"
 
 #: application/models/Debug_model.php:364
 msgid ""
 "Redis server unreachable - check settings in application/config/redis.php."
 msgstr ""
+"Server Redis je nedostupný – skontrolujte nastavenia v application/config/"
+"redis.php."
 
 #: application/models/Debug_model.php:366
 msgid ""
 "No Memcached server responded - check settings in application/config/"
 "memcached.php."
 msgstr ""
+"Žiadny server Memcached neodpovedá – skontrolujte nastavenia v application/"
+"config/memcached.php."
 
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
+"APCu je načítané, ale v tomto rozhraní PHP ho nemožno použiť (apc.enabled=0?)"
+"."
 
 #: application/models/Debug_model.php:377
 #, php-format
 msgid "Cannot write to cache directory %s - check permissions."
 msgstr ""
+"Do adresára vyrovnávacej pamäte %s nemožno zapisovať – skontrolujte "
+"oprávnenia."
 
 #: application/models/Debug_model.php:379
 msgid "Redis write failed - server down or maxmemory reached?"
 msgstr ""
+"Zápis do Redis zlyhal – je server nedostupný alebo bol dosiahnutý limit "
+"pamäte?"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
@@ -5156,19 +5176,22 @@ msgstr ""
 
 #: application/models/Debug_model.php:383
 msgid "APCu write failed - shared memory full?"
-msgstr ""
+msgstr "Zápis do APCu zlyhal – je zdieľaná pamäť plná?"
 
 #: application/models/Debug_model.php:389
 msgid "Write succeeded but read failed - cache directory readable?"
 msgstr ""
+"Zápis sa podaril, ale čítanie zlyhalo – je adresár vyrovnávacej pamäte "
+"čitateľný?"
 
 #: application/models/Debug_model.php:391
 msgid "Write succeeded but read failed - key evicted by Redis?"
 msgstr ""
+"Zápis sa podaril, ale čítanie zlyhalo – odstránil Redis daný kľúč z pamäte?"
 
 #: application/models/Debug_model.php:393
 msgid "Write succeeded but read failed."
-msgstr ""
+msgstr "Zápis sa podaril, ale čítanie zlyhalo."
 
 #: application/models/Debug_model.php:395
 msgid "Test key could not be deleted - check permissions/access."
