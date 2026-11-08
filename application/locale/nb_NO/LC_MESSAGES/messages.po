@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-08 07:22+0000\n"
-"PO-Revision-Date: 2026-10-28 19:55+0000\n"
+"PO-Revision-Date: 2026-11-09 06:59+0000\n"
 "Last-Translator: Lars Granheim <lb3qj.lars@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/nb/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.10.1\n"
+"X-Generator: Weblate 2026.11.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -7154,56 +7154,60 @@ msgstr ""
 
 #: application/views/api/components/create_token_modal.php:20
 msgid "30 days"
-msgstr ""
+msgstr "30 dager"
 
 #: application/views/api/components/create_token_modal.php:21
 msgid "90 days"
-msgstr ""
+msgstr "90 dager"
 
 #: application/views/api/components/create_token_modal.php:22
 msgid "1 year"
-msgstr ""
+msgstr "1 år"
 
 #: application/views/api/components/create_token_modal.php:23
 #: application/views/api/index.php:154 application/views/api/index.php:157
 #: application/views/user/index.php:69 application/views/user/index.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:31
 msgid "Never"
-msgstr ""
+msgstr "Aldri"
 
 #: application/views/api/components/create_token_modal.php:25
 msgid "When the token should stop working."
-msgstr ""
+msgstr "Når tokenet skal slutte å fungere."
 
 #: application/views/api/components/create_token_modal.php:27
 msgid ""
 "A token that never expires stays valid until you delete it manually. This is "
 "possible, but not recommended for security reasons."
 msgstr ""
+"Et token som aldri utløper, forblir gyldig til du sletter det manuelt. Dette "
+"er mulig, men anbefales ikke av sikkerhetsgrunner."
 
 #: application/views/api/components/create_token_modal.php:34
 #: application/views/api/index.php:136
 msgid "Scopes"
-msgstr ""
+msgstr "Omfang"
 
 #: application/views/api/components/create_token_modal.php:35
 msgid "Select which parts of the API v2 this token may access."
-msgstr ""
+msgstr "Velg hvilke deler av API v2 dette tokenet kan ha tilgang til."
 
 #: application/views/api/components/create_token_modal.php:63
 msgid "Please select at least one scope."
-msgstr ""
+msgstr "Velg minst ett omfang."
 
 #: application/views/api/components/create_token_modal.php:67
 #: application/views/satellite/pass.php:152
 msgid "Presets"
-msgstr ""
+msgstr "Forhåndsinnstillinger"
 
 #: application/views/api/components/create_token_modal.php:68
 msgid ""
 "Don't know which scopes you need? Pick the tool you want to use and we "
 "select the scopes for you."
 msgstr ""
+"Vet du ikke hvilke omfang du trenger? Velg verktøyet du vil bruke, så velger "
+"vi omfangene for deg."
 
 #: application/views/api/components/create_token_modal.php:78
 #: application/views/awards/wpx/index.php:146
@@ -7221,6 +7225,8 @@ msgid ""
 "A preset replaces your current selection. You can still adjust the scopes "
 "afterwards."
 msgstr ""
+"En forhåndsinnstilling erstatter det gjeldende utvalget ditt. Du kan "
+"fortsatt justere omfangene etterpå."
 
 #: application/views/api/components/create_token_modal.php:87
 #: application/views/club/clubswitch_modal.php:15
@@ -7244,19 +7250,19 @@ msgstr ""
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: application/views/api/components/create_token_modal.php:89
 msgid "Create Token"
-msgstr ""
+msgstr "Opprett token"
 
 #: application/views/api/components/edit_legacy.php:15
 msgid "Editing Description for API Key"
-msgstr ""
+msgstr "Redigerer beskrivelse for API-nøkkel"
 
 #: application/views/api/components/edit_legacy.php:28
 msgid "Simple name to describe what you use this API for."
-msgstr ""
+msgstr "Enkelt navn som beskriver hva du bruker dette API-et til."
 
 #: application/views/api/components/edit_legacy.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:32
@@ -7283,19 +7289,19 @@ msgstr ""
 #: application/views/satellite/pass.php:188
 #: application/views/simplefle/index.php:22
 msgid "Save"
-msgstr ""
+msgstr "Lagre"
 
 #: application/views/api/components/new_token_modal.php:6
 msgid "New API Token"
-msgstr ""
+msgstr "Nytt API-token"
 
 #: application/views/api/components/new_token_modal.php:12
 msgid "Copy this token now. For security reasons it will not be shown again."
-msgstr ""
+msgstr "Kopier dette tokenet nå. Av sikkerhetsgrunner vil det ikke vises igjen."
 
 #: application/views/api/components/new_token_modal.php:14
 msgid "Your API Token"
-msgstr ""
+msgstr "API-tokenet ditt"
 
 #: application/views/api/components/new_token_modal.php:17
 #: application/views/api/index.php:19 application/views/api/index.php:54
@@ -7303,17 +7309,19 @@ msgstr ""
 #: application/views/debug/index.php:61
 #: application/views/qso/components/share_modal.php:19
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopier til utklippstavle"
 
 #: application/views/api/index.php:8
 msgid "Legacy API Keys (API v1)"
-msgstr ""
+msgstr "Eldre API-nøkler (API v1)"
 
 #: application/views/api/index.php:11
 msgid ""
 "New integrations should use the API v2 tokens below, if the third party "
 "system supports it."
 msgstr ""
+"Nye integrasjoner bør bruke API v2-tokenene nedenfor hvis "
+"tredjepartssystemet støtter det."
 
 #: application/views/api/index.php:11
 msgid ""
@@ -7321,6 +7329,9 @@ msgid ""
 "access Wavelog in a controlled way. Access to the API is managed via API "
 "keys."
 msgstr ""
+"Wavelog-API-et (Application Programming Interface) lar tredjepartssystemer "
+"få tilgang til Wavelog på en kontrollert måte. Tilgang til API-et "
+"administreres via API-nøkler."
 
 #: application/views/api/index.php:12
 msgid ""
@@ -7329,22 +7340,27 @@ msgid ""
 "Wavelog. Generate a read-only key if the application only needs to obtain "
 "data from Wavelog."
 msgstr ""
+"Du må generere en API-nøkkel for hvert verktøy du ønsker å bruke (f.eks. "
+"WLgate). Generer en nøkkel med lese- og skrivetilgang hvis programmet må "
+"sende data til Wavelog. Generer en nøkkel med kun lesetilgang hvis "
+"programmet bare trenger å hente data fra Wavelog."
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog API v1:"
-msgstr ""
+msgstr "Lenker til tredjepartsprogramvare som fungerer med Wavelog API v1:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
-msgstr ""
+msgstr "Flere verktøy"
 
 #: application/views/api/index.php:19 application/views/api/index.php:125
 msgid "API URL"
-msgstr ""
+msgstr "API URL"
 
 #: application/views/api/index.php:19
+#, fuzzy
 msgid "The API URL for this Wavelog instance is"
-msgstr ""
+msgstr "API-URL-en for denne Wavelog-instansen er"
 
 #: application/views/api/index.php:20 application/views/dxcalendar/index.php:20
 #: application/views/eqsl/export.php:33
@@ -7352,41 +7368,46 @@ msgstr ""
 #: application/views/qso/index.php:47 application/views/radio/index.php:32
 #: application/views/search/filter.php:66
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: application/views/api/index.php:20
 msgid ""
 "It's good practice to delete a key if you are no longer using the associated "
 "application."
 msgstr ""
+"Det er god praksis å slette en nøkkel hvis du ikke lenger bruker det "
+"tilknyttede programmet."
 
 #: application/views/api/index.php:22
+#, fuzzy
 msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
 msgstr ""
+"På klubb­stasjoner er API-nøklene personlige og deles ikke. Brukere av "
+"klubb­stasjoner kan bare se sine egne nøkler."
 
 #: application/views/api/index.php:30
 msgid "API Key"
-msgstr ""
+msgstr "API-nøkkel"
 
 #: application/views/api/index.php:31 application/views/cron/edit.php:30
 #: application/views/cron/index.php:75
 #: application/views/search/stored_queries.php:8
 msgid "Description"
-msgstr ""
+msgstr "Beskrivelse"
 
 #: application/views/api/index.php:32 application/views/api/index.php:137
 msgid "Last Used"
-msgstr ""
+msgstr "Sist brukt"
 
 #: application/views/api/index.php:34 application/views/api/index.php:140
 msgid "Created By"
-msgstr ""
+msgstr "Opprettet av"
 
 #: application/views/api/index.php:36
 msgid "Permissions"
-msgstr ""
+msgstr "Tillatelser"
 
 #: application/views/api/index.php:38 application/views/api/index.php:142
 #: application/views/awards/pl_polska/index.php:381
@@ -7402,44 +7423,44 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:602
 #: application/views/webadif/export.php:45
 msgid "Actions"
-msgstr ""
+msgstr "Handlinger"
 
 #: application/views/api/index.php:64
 msgid "Read & Write"
-msgstr ""
+msgstr "Les og skriv"
 
 #: application/views/api/index.php:66
 msgid "Read-Only"
-msgstr ""
+msgstr "Skrivebeskyttet"
 
 #: application/views/api/index.php:76
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
 #: application/views/api/index.php:79
 msgid "<noname>"
-msgstr ""
+msgstr "<noname>"
 
 #: application/views/api/index.php:79
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
-msgstr ""
+msgstr "Er du sikker på at du vil slette API-nøkkelen %s?"
 
 #: application/views/api/index.php:97
 msgid "You have no API Keys."
-msgstr ""
+msgstr "Du har ingen API-nøkler."
 
 #: application/views/api/index.php:104
 msgid "Create a read & write key"
-msgstr ""
+msgstr "Opprett en lese- og skrivenøkkel"
 
 #: application/views/api/index.php:110
 msgid "Create a read-only key"
-msgstr ""
+msgstr "Opprett en skrivebeskyttet nøkkel"
 
 #: application/views/api/index.php:120
 msgid "API Tokens (API v2)"
-msgstr ""
+msgstr "API-tokens (API v2)"
 
 #: application/views/api/index.php:123
 msgid ""
@@ -7447,38 +7468,43 @@ msgid ""
 "(scopes). The token is shown only once when it is created, so copy it right "
 "away."
 msgstr ""
+"API-tokens gir tilgang til REST API v2 med detaljerte tillatelser (omfang). "
+"Tokenet vises bare én gang når det opprettes, så kopier det med en gang."
 
 #: application/views/api/index.php:124
 #, php-format
 msgid "The API v2 documentation can be found %shere%s."
-msgstr ""
+msgstr "Dokumentasjonen for API v2 finner du %sher%s."
 
 #: application/views/api/index.php:125
 msgid "The API v2 base URL for this Wavelog instance is"
-msgstr ""
+msgstr "Basis-URL for API v2 for denne Wavelog-instansen er"
 
 #: application/views/api/index.php:127
 msgid ""
 "On Clubstations the API Tokens are personal and not shared. Clubstation "
 "users can only see their own tokens."
 msgstr ""
+"På klubb­stasjoner er API-tokenene personlige og deles ikke. "
+"Klubbstasjonsbrukere kan bare se sine egne tokens."
 
 #: application/views/api/index.php:138
 msgid "Expires"
-msgstr ""
+msgstr "Utløper"
 
 #: application/views/api/index.php:159
 msgid "Expired"
-msgstr ""
+msgstr "Utløpt"
 
 #: application/views/api/index.php:169
 #, php-format
 msgid "Are you sure you want delete the API Token %s?"
-msgstr ""
+msgstr "Er du sikker på at du vil slette API-nøkkelen %s?"
 
 #: application/views/api/index.php:184
 msgid "You have no API Tokens yet. Click on the button below to create one."
 msgstr ""
+"Du har ingen API-tokens ennå. Klikk på knappen nedenfor for å opprette et."
 
 #: application/views/awards/73on73/index.php:5
 #: application/views/awards/73on73/index.php:13
@@ -7544,6 +7570,8 @@ msgid ""
 "Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 "
 "(FUNcube-1) amateur radio satellite."
 msgstr ""
+"Paul Stoetzer N8HM sponser et diplom for forbindelser gjort via "
+"amatørradiosatellitten AO-73 (FUNcube-1)."
 
 #: application/views/awards/73on73/index.php:8
 #: application/views/awards/helvetia/index.php:29
