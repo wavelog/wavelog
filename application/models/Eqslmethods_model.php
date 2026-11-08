@@ -252,6 +252,10 @@ class Eqslmethods_model extends CI_Model {
 	 * Classifies a raw eQSL importADIF response and applies the matching state change
 	 * (mark sent/invalid, flashdata).
 	 *
+	 * Empty body (HTTP 200, verdict-less reply-form shell) and "Missing ADIFData"
+	 * are treated as terminal eQSL verdicts: the QSO is marked invalid instead of
+	 * being retried forever, so the rest of the upload queue is not blocked.
+	 *
 	 * @param string   $result Raw response incl. HTTP headers (CURLOPT_HEADER = 1)
 	 * @param array    $chi    curl_getinfo() array of the finished handle
 	 * @param array    $qsl    QSO row from eqsl_not_yet_sent()
@@ -267,10 +271,14 @@ class Eqslmethods_model extends CI_Model {
 			$rawbody = (($_pos = strpos((string)$result, "\r\n\r\n")) !== false) ? substr((string)$result, $_pos + 4) : (string)$result;
 			$body = trim(preg_replace('/\s+/', ' ', strip_tags($rawbody)));
 			if ($body == '') {
+				// HTTP 200 but verdict-less reply-form shell: eQSL silently refuses this
+				// record. Retrying forever would block the user's whole queue, so mark
+				// it invalid (user-reversible by resetting COL_EQSL_QSL_SENT).
 				$msg = __("Empty response from eQSL.cc!");
-				log_message('error', 'eQSL: Empty response at QSO-ID: '.$qsl['COL_PRIMARY_KEY']);
+				log_message('error', 'eQSL: Empty response at QSO-ID: '.$qsl['COL_PRIMARY_KEY'].' - marked invalid. raw: '.preg_replace('/[^\x20-\x7E]/', '.', substr((string)$result, -200)));
 				$this->session->set_flashdata('warning', $msg);
-				$status = "Error";
+				$this->eqsl_mark_invalid($qsl['COL_PRIMARY_KEY']);
+				$status = "Invalid";
 			} elseif (stristr($result, "Result: 1 out of 1 records added")) {
 				$status = "Sent";
 				$this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
@@ -294,6 +302,12 @@ class Eqslmethods_model extends CI_Model {
 				$msg = __("QTH Nickname does not exist at eQSL");
 				$this->session->set_flashdata('warning', $msg);
 				$status = "Nick Error";
+			} elseif (stristr($result, "Missing ADIFData")) {
+				// eQSL received a truncated request (URL too long for IIS) - terminal
+				// for this QSO via the GET transport, so mark it invalid as well.
+				log_message("Error", "eQSL: Missing ADIFData at QSO-ID: ".$qsl['COL_PRIMARY_KEY']." - marked invalid");
+				$this->eqsl_mark_invalid($qsl['COL_PRIMARY_KEY']);
+				$status = "Invalid";
 			} else {
 				log_message("Error","eQSL: Uncaught exception at QSO-ID: ".$qsl['COL_PRIMARY_KEY']." Response: ".substr($body, -300));
 			}
