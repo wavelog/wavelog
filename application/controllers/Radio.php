@@ -214,7 +214,7 @@ class Radio extends CI_Controller {
 
 		$this->cat->delete($clean_id);
 
-		if ($clean_id == $this->user_options_model->get_options('cat', array('option_name' => $this->_get_optionname()), $this->_get_correct_uid())->row()->option_value ?? '') {
+		if ($clean_id == $this->user_options_model->get_options('cat', array('option_name' => $this->_get_optionname()), $this->_get_correct_uid())->row()?->option_value ?? '') {
 			$this->release_default_radio();
 		}
 
