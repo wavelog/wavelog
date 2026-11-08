@@ -1610,7 +1610,7 @@ class Logbook_model extends CI_Model {
 				$observed_dt = new DateTime($observed_at, new DateTimeZone('UTC'));
 				$reported_at = $observed_dt->format('Y-m-d\\TH:i:s\\Z');
 			} catch (Exception $e) {
-				log_message('error', 'AMSAT status upload skipped: invalid time for ' . $sat_name . ' - ' . $e->getMessage());
+				log_message('debug', 'AMSAT status upload skipped: invalid time for ' . $sat_name . ' - ' . $e->getMessage());
 				return;
 			}
 			$url = 'https://status.amsat.org/api/v1/reports.php';
@@ -5272,7 +5272,7 @@ class Logbook_model extends CI_Model {
 			$call = $record['call'] ?? '';
 			$mode = $record['mode'] ?? '';
 			$band = $record['band'] ?? '';
-			log_message("Error", "Trying to import QSO with invalid date: " . $qso_date. " for station_id " . $station_id . ". Call: " . $call . " Mode: " . $mode . " Band: " . $band);
+			log_message("debug", "Trying to import QSO with invalid date: " . $qso_date. " for station_id " . $station_id . ". Call: " . $call . " Mode: " . $mode . " Band: " . $band);
 			$returner['error']=__("You tried to import a QSO without valid date. This QSO wasn't imported. It's invalid") . ". Call: " . $call . ", Mode: " . $mode . ", Band: " . $band . "<br>";
 			$returner['error_category'] = 'validation';
 			return($returner);
@@ -5282,14 +5282,14 @@ class Logbook_model extends CI_Model {
 		$time_on = date('Y-m-d', strtotime($record['qso_date'] ?? '1970-01-01')) . " " . date('H:i:s', strtotime($record['time_on'] ?? '00:00:00'));
 
 		if (($record['call'] ?? '') == '') {
-			log_message("Error", "Trying to import QSO without Call for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " Mode: " . ($record['mode'] ?? '') . " Band: " . ($record['band'] ?? ''));
+			log_message("debug", "Trying to import QSO without Call for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " Mode: " . ($record['mode'] ?? '') . " Band: " . ($record['band'] ?? ''));
 			$returner['error'] = sprintf(__("QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't imported. It's invalid.")."<br>", $time_on);
 			$returner['error_category'] = 'validation';
 			return($returner);
 		}
 
 		if (!$this->is_valid_callsign($record['call'])) {
-			log_message("error", "Trying to import QSO with invalid Call \"" . $record['call'] . "\" for station_id " . $station_id . ". QSO Date/Time: " . $time_on);
+			log_message("debug", "Trying to import QSO with invalid Call \"" . $record['call'] . "\" for station_id " . $station_id . ". QSO Date/Time: " . $time_on);
 			$returner['error'] = sprintf(__("QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't imported. The invalid input is '%s'.")."<br>", $time_on, htmlentities($record['call']));
 			$returner['error_category'] = 'validation';
 			return($returner);
@@ -5359,14 +5359,14 @@ class Logbook_model extends CI_Model {
 
 		// Reject QSO with unknown (unconfigured) TX band
 		if ($band_conversion_failed) {
-			log_message("Error", "Unknown band '" . ($record['band'] ?? '') . "' on import for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " Mode: " . ($record['mode'] ?? '') . " Call: " . ($record['call'] ?? ''));
+			log_message("debug", "Unknown band '" . ($record['band'] ?? '') . "' on import for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " Mode: " . ($record['mode'] ?? '') . " Call: " . ($record['call'] ?? ''));
 			$returner['error']=sprintf(__("QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't imported."), $time_on, ($record['band'] ?? '')) . '<br>';
 			$returner['error_category'] = 'validation';
 			return($returner);
 		}
 
 		if (($band ?? '') == '') {
-			log_message("Error", "Trying to import QSO without Band for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " at ".($record['freq'] ?? 'N/A')." Mode: " . ($record['mode'] ?? '') . " Call: " . ($record['call'] ?? ''));
+			log_message("debug", "Trying to import QSO without Band for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " at ".($record['freq'] ?? 'N/A')." Mode: " . ($record['mode'] ?? '') . " Call: " . ($record['call'] ?? ''));
 			$returner['error']=sprintf(__("QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't imported. It's invalid"), $time_on) . '<br>';
 
 			$returner['error_category'] = 'validation';
@@ -5389,7 +5389,7 @@ class Logbook_model extends CI_Model {
 			if (strlen($record['mode']) <= 12) { // COL_MODE is VARCHAR(12)
 				$input_mode = $record['mode'];
 			} else {
-				log_message('error', 'ADIF Import: Mode too long: ' . $record['mode'] . ' for QSO with call: ' . $record['call'] . ' at date ' . $record['qso_date']);
+				log_message('debug', 'ADIF Import: Mode too long: ' . $record['mode'] . ' for QSO with call: ' . $record['call'] . ' at date ' . $record['qso_date']);
 				$input_mode = '';
 			}
 		} else {
