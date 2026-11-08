@@ -201,7 +201,7 @@ class Qrz extends CI_Controller {
 						$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
 						$sql = 'update station_profile set qrzrealtime = -1 where station_id = ?';
 						$this->db->query($sql,$station_id);
-						$station_aborted = true; /* If key is invalid, immediate stop syncing for more QSOs of this station */
+						$station_aborted = true; /* If call is invalid, immediate stop syncing for more QSOs of this station */
 					} elseif ( ($result['status']=='error') && (str_contains($result['message'],'DXCC could not be determined')) ) {
 						log_message('error', 'QRZ upload failed for qso for Station_ID '.$station_id.' //  Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' // Message: '.$result['message']);
 						$this->markqso($qso->COL_PRIMARY_KEY,'I');
