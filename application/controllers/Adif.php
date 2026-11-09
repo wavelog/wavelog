@@ -285,6 +285,7 @@ class adif extends CI_Controller {
 
 		$data['active_station_info'] = $station_profile->row();
 		$data['active_station_id'] = $active_station_id;
+		$data['no_active_station'] = empty($active_station_id);
 
 		// Pass allowed tabs to view
 		$data['allowed_tabs'] = $this->get_allowed_tabs();
@@ -317,12 +318,24 @@ class adif extends CI_Controller {
 		$data['contests'] = $this->contest_admin_model->getActiveContests();
 		$data['active_station_id'] = $active_station_id; // local var, set above
 		$data['cd_p_level'] = ($this->session->userdata('cd_p_level') ?? 0);
+		$data['max_upload'] = ini_get('upload_max_filesize');
 
 		if ($this->config->item('special_callsign') && clubaccess_check(9) && $this->session->userdata('clubstation') == 1) {
 			$this->load->model('club_model');
 			$data['club_operators'] = $this->club_model->get_club_members($this->session->userdata('user_id'));
 		} else {
 			$data['club_operators'] = false;
+		}
+
+		if (empty($active_station_id)) {
+			if ($this->input->method() === 'post') {
+				redirect('adif/import');
+			}
+			$data['no_active_station'] = true;
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('adif/import', $data);
+			$this->load->view('interface_assets/footer');
+			return;
 		}
 
 		$config['upload_path'] = './uploads/';
@@ -334,7 +347,6 @@ class adif extends CI_Controller {
 
 		if ( ! $this->upload->do_upload()) {
 			$data['error'] = $this->upload->display_errors();
-			$data['max_upload'] = ini_get('upload_max_filesize');
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('adif/import', $data);
@@ -432,6 +444,14 @@ class adif extends CI_Controller {
 						if(count($record) == 0) {
 							break;
 						};
+
+						// Detect LoTW report and prevent setting QSL_RCVD as this is dedicated to paper QSL cards
+						if (isset($record['app_lotw_owncall'])) {
+							log_message('debug', 'LoTW QSO report found');
+							unset($record['qsl_rcvd']);
+							unset($record['qslrdate']);
+						}
+
 						array_push($alladif, $record);
 					};
 					$record='';	// free memory
@@ -451,15 +471,16 @@ class adif extends CI_Controller {
 						return;
 					}
 				} else {	// Failure, if no ADIF inside ZIP
-					$data['max_upload'] = ini_get('upload_max_filesize');
 					$this->load->view('interface_assets/header', $data);
 					$this->load->view('adif/import', $data);
 					$this->load->view('interface_assets/footer');
 					return;
 				}
-			} else {
-				$custom_errors['errormessage'] = __("Station Profile not valid for User");
-			}
+		} else {
+			$updata = $this->upload->data();
+			unlink('./uploads/'.$updata['file_name']);
+			$custom_errors['errormessage'] = __("Station Profile not valid for User");
+		}
 
 			log_message("Error","ADIF End");
 			$data['adif_errors'] = $custom_errors['errormessage'];
@@ -497,11 +518,10 @@ class adif extends CI_Controller {
 		$config['allowed_types'] = 'adi|ADI|adif|ADIF';
 
 		$this->load->library('upload', $config);
+		$data['max_upload'] = ini_get('upload_max_filesize');
 
 		if ( ! $this->upload->do_upload()) {
 			$data['error'] = $this->upload->display_errors();
-
-			$data['max_upload'] = ini_get('upload_max_filesize');
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('adif/import', $data);
@@ -577,11 +597,10 @@ class adif extends CI_Controller {
 		$config['allowed_types'] = 'adi|ADI|adif|ADIF';
 
 		$this->load->library('upload', $config);
+		$data['max_upload'] = ini_get('upload_max_filesize');
 
 		if ( ! $this->upload->do_upload()) {
 			$data['error'] = $this->upload->display_errors();
-
-			$data['max_upload'] = ini_get('upload_max_filesize');
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('adif/import', $data);

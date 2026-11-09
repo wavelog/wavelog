@@ -35,6 +35,7 @@ class Debug extends CI_Controller
 		$data['system_time'] = date($custom_date_format . " H:i:s", time());
 
 		$data['running_version'] = $this->optionslib->get_option('version');
+		$data['git_describe'] = $_ENV['WAVELOG_GIT_DESCRIBE'] ?? '';
 		$data['latest_release'] = $this->optionslib->get_option('latest_release');
 
 		$data['newer_version_available'] = false;

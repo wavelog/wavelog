@@ -87,6 +87,13 @@
                         </div>
                     <?php } ?>
 
+                    <?php if (!empty($no_active_station)) { ?>
+                        <div class="alert alert-warning" role="alert">
+                            <?= __("No active station location. ADIF import is disabled.") ?>
+                            <a href="<?php echo site_url('stationsetup'); ?>" class="alert-link"><?= __("Go to Station Setup") ?></a>
+                        </div>
+                    <?php } ?>
+
                     <p><span class="badge text-bg-warning"><?= __("Important") ?></span> <?= __("Log Files must have the file type *.adi") ?></p>
                     <p><span class="badge text-bg-warning"><?= __("Warning") ?></span> <?= __("Maximum file upload size is ") ?><?php echo $max_upload; ?>B.</p>
 
@@ -248,7 +255,7 @@
 						<?php } ?>
 
 
-                        <button id="prepare_sub" class="btn btn-sm btn-primary mb-2 ld-ext-right" value="Upload"><?= __("Upload") ?><div class="ld ld-ring ld-spin"></div></button>
+                        <button id="prepare_sub" class="btn btn-sm btn-primary mb-2 ld-ext-right" value="Upload"<?php if (!empty($no_active_station)) { echo ' disabled'; } ?>><?= __("Upload") ?><div class="ld ld-ring ld-spin"></div></button>
                     </form>
                 </div>
                 <?php endif; ?>

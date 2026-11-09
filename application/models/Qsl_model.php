@@ -1,16 +1,49 @@
 <?php
 class Qsl_model extends CI_Model {
-	function getQsoWithQslList() {
+	/**
+	 * Get QSOs with uploaded QSL cards of the active logbook
+	 *
+	 * @param int|null $limit Max number of rows (null for all)
+	 * @param int|null $offset Row offset, only used together with $limit
+	 * @return CI_DB_result
+	 */
+	function getQsoWithQslList($limit = null, $offset = null) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		$this->db->select('*');
-		$this->db->from($this->config->item('table_name'));
-		$this->db->join('qsl_images', 'qsl_images.qsoid = ' . $this->config->item('table_name') . '.col_primary_key');
-		$this->db->where_in('station_id', $logbooks_locations_array);
-		$this->db->order_by("id", "desc");
+		$table_name = $this->config->item('table_name');
+		$sql = "SELECT *
+				FROM {$table_name} qso
+				INNER JOIN qsl_images q ON (q.qsoid = qso.COL_PRIMARY_KEY)
+				WHERE qso.station_id IN ?
+				ORDER BY q.id DESC";
 
-		return $this->db->get();
+		$binding = [$logbooks_locations_array];
+		if ($limit !== null && $offset !== null) {
+			$sql .= " LIMIT ? OFFSET ?";
+			$binding[] = (int) $limit;
+			$binding[] = (int) $offset;
+		}
+		return $this->db->query($sql, $binding);
+	}
+
+	/**
+	 * Count QSOs with uploaded QSL cards of the active logbook
+	 *
+	 * @return int
+	 */
+	function count_qsl_list() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		$table_name = $this->config->item('table_name');
+		$sql = "SELECT COUNT(*) AS cnt
+				FROM qsl_images q
+				INNER JOIN {$table_name} qso ON (q.qsoid = qso.COL_PRIMARY_KEY)
+				WHERE qso.station_id IN ?";
+
+		$query = $this->db->query($sql, [$logbooks_locations_array]);
+		return (int) $query->row()->cnt;
 	}
 
 	function getQslForQsoId($id) {
@@ -94,25 +127,25 @@ class Qsl_model extends CI_Model {
 		$this->db->delete('qsl_images', array('id' => $clean_id));
 	}
 
+	/**
+	 * Get the filename of a QSL card, if the QSO belongs to the user
+	 *
+	 * @param int $id QSL image id (qsl_images.id)
+	 * @return CI_DB_result|null Null if the QSL card is not accessible
+	 */
 	function getFilename($id) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
 
 		// be sure that QSO belongs to user
 		$this->load->model('logbook_model');
-		$this->db->select('qsoid');
-		$this->db->from('qsl_images');
-		$this->db->where('id', $clean_id);
-		$qsoid = $this->db->get()->row()->qsoid;
-		if (!$this->logbook_model->check_qso_is_accessible($qsoid)) {
+		$sql = "SELECT qsoid, filename FROM qsl_images WHERE id = ?";
+		$query = $this->db->query($sql, [$clean_id]);
+		if (!$this->logbook_model->check_qso_is_accessible($query->row()->qsoid ?? null)) {
 			return;
 		}
 
-		$this->db->select('filename');
-		$this->db->from('qsl_images');
-		$this->db->where('id', $clean_id);
-
-		return $this->db->get();
+		return $query;
 	}
 
 	function searchQsos($callsign) {

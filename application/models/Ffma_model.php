@@ -40,7 +40,7 @@ class Ffma_model extends CI_Model {
 			.$this->config->item('table_name')
 			.' WHERE station_id in ('.$location_list.')'
 			." and COL_LOTW_QSL_RCVD = 'Y'"
-			." and COL_BAND = '6M'"
+			." and COL_BAND = '6m'"
 			.' AND substring(COL_GRIDSQUARE,1,4) in (\''.implode('\',\'', $this->us_grids).'\')';
         return $this->db->query($sql);
     }
@@ -50,7 +50,7 @@ class Ffma_model extends CI_Model {
 			.$this->config->item('table_name')
 			.' WHERE station_id in ('.$location_list.')'
 			." and COL_QSL_RCVD = 'Y'"
-			." and COL_BAND = '6M'"
+			." and COL_BAND = '6m'"
 			.' AND substring(COL_GRIDSQUARE,1,4) in (\''.implode('\',\'', $this->us_grids).'\')';
         return $this->db->query($sql);
     }
@@ -59,7 +59,7 @@ class Ffma_model extends CI_Model {
         $sql = 'SELECT distinct substring(COL_GRIDSQUARE,1,4) as GRID_SQUARES FROM '
 			.$this->config->item('table_name')
 			.' WHERE station_id in ('.$location_list.')'
-			." and COL_BAND = '6M'"
+			." and COL_BAND = '6m'"
 			.' AND substring(COL_GRIDSQUARE,1,4) in (\''.implode('\',\'', $this->us_grids).'\')';
         return $this->db->query($sql);
     }
@@ -71,7 +71,7 @@ class Ffma_model extends CI_Model {
 			." and COL_LOTW_QSL_RCVD = 'Y'"
 			." and COL_VUCC_GRIDS != ''"
 			." and COL_VUCC_GRIDS IS NOT NULL"
-			." and COL_BAND = '6M'";
+			." and COL_BAND = '6m'";
         $query = $this->db->query($sql);
         $vucc_grids = [];
         foreach ($query->result() as $row) {
@@ -94,7 +94,7 @@ class Ffma_model extends CI_Model {
 			." and COL_QSL_RCVD = 'Y'"
 			." and COL_VUCC_GRIDS != ''"
 			." and COL_VUCC_GRIDS IS NOT NULL"
-			." and COL_BAND = '6M'";
+			." and COL_BAND = '6m'";
         $query = $this->db->query($sql);
         $vucc_grids = [];
         foreach ($query->result() as $row) {
@@ -116,7 +116,7 @@ class Ffma_model extends CI_Model {
 			.' WHERE station_id in ('.$location_list.')'
 			." and COL_VUCC_GRIDS != ''"
 			." and COL_VUCC_GRIDS IS NOT NULL"
-			." and COL_BAND = '6M'";
+			." and COL_BAND = '6m'";
         $query = $this->db->query($sql);
         $vucc_grids = [];
         foreach ($query->result() as $row) {

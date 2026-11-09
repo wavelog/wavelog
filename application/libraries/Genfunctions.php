@@ -308,5 +308,76 @@ class Genfunctions
 			return false;
 		}
 	}
-}
 
+	/**
+	 * Build an ETag and answer with 304 Not Modified if the client already has it
+	 *
+	 * @param string $eta Unique key of the resource
+	 * @param mixed $modifier Variant of the resource (e.g. thumbnail width)
+	 * @return string The quoted ETag, or '0' if a 304 was sent
+	 */
+	public function gen_check_etag($eta,$modifier) {
+
+		$etag = '"' . md5($eta.$modifier) . '"';
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
+		    trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			session_write_close();
+			session_cache_limiter('public');
+			header('HTTP/1.1 304 Not Modified');
+			header('ETag: ' . $etag);
+			header('Pragma: public');
+			header('Cache-Control: public, max-age=31536000, immutable'); 
+			header('Expires: ' . gmdate('D, d M Y H:i:s', strtotime('+1 year')) . ' GMT');
+			return '0';
+		}
+		return $etag;
+	}
+
+	/**
+	 * Output image with optional width-based thumbnail generation
+	 * 
+	 * @param string $image_data Binary image data
+	 * @param int $width Desired width (null for original size)
+	 * @param string $etag ETag from gen_check_etag()
+	 * @return void
+	 */
+	public function output_image_with_width($image_data, $width, $etag) {
+		session_write_close();
+		session_cache_limiter('public');
+
+		header('Content-Type: image/jpg');
+		header('ETag: ' . $etag);
+		header('Pragma: public');
+		header('Cache-Control: public, max-age=31536000, immutable'); 
+		header('Expires: ' . gmdate('D, d M Y H:i:s', strtotime('+1 year')) . ' GMT');
+		// If width is null or 0, output original image
+		if ($width!=(int)$width || $width === null || $width <= 0 || $width>1500) {	// Return original Image if huger 1500 or smaller 100 or crap
+			echo $image_data;
+			return;
+		}
+
+		// Generate thumbnail
+		$original_image = imagecreatefromstring($image_data);
+		if ($original_image === false) {
+			// Failed to process, output original
+			echo $image_data;
+			return;
+		}
+
+		$original_width = imagesx($original_image);
+		$original_height = imagesy($original_image);
+
+		// Calculate proportional height
+		$height = (int) (($original_height / $original_width) * $width);
+
+		// Create new image
+		$thumbnail = imagecreatetruecolor($width, $height);
+
+		// Resample
+		imagecopyresampled($thumbnail, $original_image, 0, 0, 0, 0, $width, $height, $original_width, $original_height);
+
+		// Output
+		imagejpeg($thumbnail, null, 90); // 90% quality
+	}
+}

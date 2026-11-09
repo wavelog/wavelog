@@ -5,12 +5,14 @@
 # Fabian Berg <fabian.berg@hb9hil.org>, 2025.
 # Viliam Petrik <tatralom@gmail.com>, 2025.
 # Dariusz Koryto <dariusz@koryto.eu>, 2026.
+# Michal OM1PU <mprilepok@gmail.com>, 2026.
+# om8hop <om8hop@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-09-10 09:03+0000\n"
-"PO-Revision-Date: 2026-03-17 23:36+0000\n"
-"Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
+"PO-Revision-Date: 2026-11-07 19:49+0000\n"
+"Last-Translator: om8hop <om8hop@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/"
 "installer/sk/>\n"
 "Language: sk\n"
@@ -18,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 2026.11.1\n"
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
@@ -106,7 +108,7 @@ msgstr "Čiernohorčina"
 
 #: install/includes/interface_assets/footer.php:79
 msgid "Norwegian (Bokmål)"
-msgstr ""
+msgstr "Nórčina (Bokmål)"
 
 #: install/includes/interface_assets/footer.php:80
 msgid "Polish"
@@ -118,7 +120,7 @@ msgstr "Portugalčina"
 
 #: install/includes/interface_assets/footer.php:82
 msgid "Romanian"
-msgstr ""
+msgstr "Ruminčina"
 
 #: install/includes/interface_assets/footer.php:83
 msgid "Russian"
@@ -369,6 +371,13 @@ msgid ""
 "an XML subscription for the Call Locator; QRZCALL.EU needs a Data or Extra "
 "subscription on %s. HamQTH does not always provide the locator information."
 msgstr ""
+"Táto konfigurácia je voliteľná. Vyhľadávanie volacích znakov bude k "
+"dispozícii všetkým používateľom tejto inštalácie. Môžete si vybrať medzi "
+"službami QRZ.com, HamQTH, QRZCQ, QRZ.ru a QRZCALL.EU. Hoci služba HamQTH "
+"funguje aj bez používateľského mena a hesla, pre ostatných poskytovateľov "
+"budete potrebovať prihlasovacie údaje. Služba QRZ.com vyžaduje predplatné "
+"XML pre vyhľadávanie volacích znakov; služba QRZCALL.EU vyžaduje predplatné "
+"Data alebo Extra na %s. Služba HamQTH neposkytuje informácie o lokátore vždy."
 
 #: install/index.php:415 install/index.php:516 install/index.php:968
 msgid "Username"
@@ -405,15 +414,15 @@ msgstr ""
 
 #: install/index.php:442
 msgid "API Token"
-msgstr ""
+msgstr "API kľúč"
 
 #: install/index.php:452
 msgid "Generate a Personal Access Token at"
-msgstr ""
+msgstr "Vygeneruj osobný prístupový kľúč na"
 
 #: install/index.php:454
 msgid "Requires a Data or Extra subscription."
-msgstr ""
+msgstr "Vyžaduje predplatné Data alebo Extra."
 
 #: install/index.php:457 install/index.php:462
 msgid "Advanced Settings"
@@ -702,11 +711,9 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
-"Tu na chvíľu zastavte. Vami zvolený DXCC je zastaraný a už nie je platný. "
-"Skontrolujte, ktorý DXCC je pre túto konkrétnu lokalitu správny. Ak ste si "
-"istí, ignorujte toto varovanie.Zastav sa tu na chvíľu. Tvoj vybraný DXCC je "
-"zastaraný a už nie je platný. Skontroluj, ktorý DXCC je pre toto konkrétne "
-"miesto správny. Ak si si istý, ignoruj toto varovanie."
+"Na chvíľu sa zastavte. Vami zvolená entita DXCC je zastaraná a už nie je "
+"platná. Skontrolujte, ktorá entita DXCC je pre túto konkrétnu lokalitu "
+"správna. Ak ste si istí svojím výberom, môžete toto upozornenie ignorovať."
 
 #: install/index.php:1814
 msgid ""

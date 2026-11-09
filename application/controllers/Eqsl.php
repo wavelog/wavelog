@@ -314,12 +314,20 @@ class eqsl extends CI_Controller {
 		return $table;
 	}
 
+	/**
+	 * Output an eQSL card image, fetched from eQSL.cc on first access and cached on disk
+	 *
+	 * @param int $id QSO primary key (COL_PRIMARY_KEY)
+	 * @param int|null $width Thumbnail width in px (null for original size)
+	 * @return void
+	 */
 	function image($id, $width=null) {
 		if (!$this->user_model->authorize(2)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
-		$etag=$this->gen_check_etag("wl_eqsl_cacher_".$id,$width);
+		$this->load->library('Genfunctions');
+		$etag=$this->genfunctions->gen_check_etag("wl_eqsl_cacher_".$id,$width);
 		if ($etag == '0') { // Cached on Client side
 			return; 
 		}
@@ -436,7 +444,7 @@ class eqsl extends CI_Controller {
 					log_message('error', 'Failed to save eQSL image to: ' . $image_path);
 				}
 
-				$this->output_image_with_width($content, $width, $etag);	// This must be 1st time (because it's freshly fetched from eQSL) - so add the etag
+				$this->genfunctions->output_image_with_width($content, $width, $etag);	// This must be 1st time (because it's freshly fetched from eQSL) - so add the etag
 				return; // Only process the first image found
 			}
 		} else {
@@ -445,75 +453,12 @@ class eqsl extends CI_Controller {
 				$image_file = $this->paths->getUserdataPath('eqsl_card', 'p') . '/' . $this->Eqsl_images->get_image($id);
 				$content = file_get_contents($image_file);
 				if ($content !== false) {
-					$this->output_image_with_width($content, $width, $etag);
+					$this->genfunctions->output_image_with_width($content, $width, $etag);
 				} else {
 					show_error(__('Failed to load cached eQSL image'), 500);
 				}
 			}
 		}
-	}
-
-	private function gen_check_etag($eta,$modifier) {
-
-		$etag = '"' . md5($eta.$modifier) . '"';
-
-		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
-		    trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
-			session_write_close();
-			session_cache_limiter('public');
-			header('HTTP/1.1 304 Not Modified');
-			header('ETag: ' . $etag);
-			header('Pragma: public');
-			header('Cache-Control: public, max-age=31536000, immutable'); 
-			header('Expires: ' . gmdate('D, d M Y H:i:s', strtotime('+1 year')) . ' GMT'); // Never expire
-			return '0';
-		}
-		return $etag;
-	}
-
-	/**
-	 * Output image with optional width-based thumbnail generation
-	 * @param string $image_data Binary image data
-	 * @param int $width Desired width (null for original size)
-	 */
-	private function output_image_with_width($image_data, $width, $etag) {
-		session_write_close();
-		session_cache_limiter('public');
-
-		header('Content-Type: image/jpg');
-		header('ETag: ' . $etag);
-		header('Pragma: public');
-		header('Cache-Control: public, max-age=31536000, immutable'); 
-		header('Expires: ' . gmdate('D, d M Y H:i:s', strtotime('+1 year')) . ' GMT'); // Never expire
-
-		// If width is null or 0, output original image
-		if ($width!=(int)$width || $width === null || $width <= 0 || $width>1500) {	// Return original Image if huger 1500 or smaller 100 or crap
-			echo $image_data;
-			return;
-		}
-
-		// Generate thumbnail
-		$original_image = imagecreatefromstring($image_data);
-		if ($original_image === false) {
-			// Failed to process, output original
-			echo $image_data;
-			return;
-		}
-
-		$original_width = imagesx($original_image);
-		$original_height = imagesy($original_image);
-
-		// Calculate proportional height
-		$height = (int) (($original_height / $original_width) * $width);
-
-		// Create new image
-		$thumbnail = imagecreatetruecolor($width, $height);
-
-		// Resample
-		imagecopyresampled($thumbnail, $original_image, 0, 0, 0, 0, $width, $height, $original_width, $original_height);
-
-		// Output
-		imagejpeg($thumbnail, null, 90); // 90% quality
 	}
 
 	function bulk_download_image($id) {

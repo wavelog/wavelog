@@ -9,16 +9,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
-| Folder location for storing P12 certificate files on the system
-|--------------------------------------------------------------------------
-|
-| This folder must be outside of your www root for security reasons
-|
-*/
-$config['lotw_keys_folder'] = "";
-
-/*
-|--------------------------------------------------------------------------
 | Propagation modes that are not supported by LoTW
 |--------------------------------------------------------------------------
 |
@@ -32,3 +22,4 @@ $config['lotw_keys_folder'] = "";
 */
 $config['lotw_unsupported_prop_modes'] = array('INTERNET', 'RPT');
 
+$config['lotw_download_skip_date'] = '2100-01-01 00:00:00.000';

@@ -16,7 +16,12 @@ require_once __DIR__ . '/Api_v2_resource.php';
  *
  * Only the core location fields are writable via the API; external-service
  * credentials (QRZ/HRDLog/ClubLog/OQRS/webADIF/eQSL) are intentionally not
- * exposed here and keep their defaults on create.
+ * exposed here and keep their defaults on create. The only external-service
+ * settings exposed are the upload switches of the two services whose
+ * credentials live on the user (not the station): the ClubLog upload mode
+ * (clublog_upload: live/on/disabled) and the eQSL QTH nickname
+ * (eqsl_qth_nickname, empty = no eQSL upload), plus the per-station
+ * PSKReporter live reporting switch (pskreporter_live, boolean).
  */
 class Station_resource extends Api_v2_resource {
 
@@ -125,6 +130,9 @@ class Station_resource extends Api_v2_resource {
 		}
 
 		$row = $this->CI->stations->profile_by_uuid($dbdata['station_uuid'], $this->user_id());
+		if ($row && array_key_exists('pskreporter_live', $body)) {
+			$this->set_pskreporter_live((int) $row->station_id, $body['pskreporter_live']);
+		}
 		$headers = $row ? ['Location' => base_url('index.php/api/v2/station/' . (int) $row->station_id)] : [];
 		$this->CI->api_v2_response->respond($row ? $this->format_station($row) : null, 201, null, $headers);
 	}
@@ -191,13 +199,17 @@ class Station_resource extends Api_v2_resource {
 		$this->validate_grid($body);
 
 		$set_active = !empty($body['set_active']);
+		$set_psk = array_key_exists('pskreporter_live', $body);
 		$data = $this->build_columns($body, false, (int) $current->station_dxcc);
-		if (empty($data) && !$set_active) {
+		if (empty($data) && !$set_active && !$set_psk) {
 			throw new Api_v2_exception('validation_error', 'No editable fields in request body', 400);
 		}
 
 		if (!empty($data)) {
 			$this->CI->stationsetup_model->update_location((int) $id, $data, $this->user_id());
+		}
+		if ($set_psk) {
+			$this->set_pskreporter_live((int) $id, $body['pskreporter_live']);
 		}
 		if ($set_active) {
 			// Same call the web UI makes (Stationsetup::setActiveStation_json),
@@ -226,6 +238,19 @@ class Station_resource extends Api_v2_resource {
 	 */
 	protected function build_columns($body, $fill_defaults, $current_dxcc) {
 		$data = [];
+
+		// The ClubLog upload mode is one API enum driving the two legacy
+		// columns: live = realtime + batch upload, on = batch upload only,
+		// disabled = nothing is uploaded (ignore).
+		if (array_key_exists('clublog_upload', $body)) {
+			$mode = $this->normalize_clublog_mode($body['clublog_upload']);
+			$data['clublogrealtime'] = $mode === 'live' ? 1 : 0;
+			$data['clublogignore']   = $mode === 'disabled' ? 1 : 0;
+		} elseif ($fill_defaults) {
+			$data['clublogrealtime'] = 0;
+			$data['clublogignore']   = 0;
+		}
+
 		foreach ($this->writable_fields() as $key => $def) {
 			list($col, $normalizer, $default) = $def;
 			if (array_key_exists($key, $body)) {
@@ -271,6 +296,7 @@ class Station_resource extends Api_v2_resource {
 			'sig'        => ['station_sig',          'upper',       null],
 			'sig_info'   => ['station_sig_info',     'upper',       null],
 			'power'      => ['station_power',        'power',       null],
+			'eqsl_qth_nickname' => ['eqslqthnickname', 'eqsl_nickname', null],
 		];
 	}
 
@@ -290,10 +316,65 @@ class Station_resource extends Api_v2_resource {
 				return is_numeric($value) ? (int) $value : null;
 			case 'power':
 				return is_numeric($value) ? round((float) $value, 3) : null;
+			case 'eqsl_nickname':
+				return mb_substr(xss_clean(trim((string) $value)), 0, 255);
 			case 'string':
 			default:
 				return xss_clean((string) $value);
 		}
+	}
+
+	/**
+	 * Validate the ClubLog upload mode enum and return its canonical form.
+	 *
+	 * @param mixed $value Raw clublog_upload value from the request body.
+	 * @throws Api_v2_exception 400 for any value outside live/on/disabled.
+	 * @return string One of 'live', 'on', 'disabled'.
+	 */
+	protected function normalize_clublog_mode($value) {
+		$mode = strtolower(trim((string) $value));
+		if (!in_array($mode, ['live', 'on', 'disabled'], true)) {
+			throw new Api_v2_exception(
+				'validation_error',
+				'clublog_upload must be one of: live, on, disabled',
+				400,
+				['field' => 'clublog_upload']
+			);
+		}
+		return $mode;
+	}
+
+	/**
+	 * Persist the per-station PSKReporter live reporting switch in
+	 * user_options (same storage the web UI uses). Absent row = disabled.
+	 *
+	 * @param int   $station_id Target station_profile row.
+	 * @param mixed $value      Raw pskreporter_live value from the body.
+	 */
+	protected function set_pskreporter_live(int $station_id, $value): void {
+		$enabled = filter_var($value, FILTER_VALIDATE_BOOL) ? '1' : '0';
+		$this->CI->user_options_model->set_option(
+			'pskreporter_realtime',
+			'key_station_id',
+			[$station_id => $enabled],
+			$this->user_id()
+		);
+	}
+
+	/**
+	 * Read the per-station PSKReporter live reporting switch for a station
+	 * owned by the token holder.
+	 *
+	 * @param object $row station_profile row (station_id used).
+	 * @return bool
+	 */
+	protected function pskreporter_live($row): bool {
+		$opt = $this->CI->user_options_model->get_options(
+			'pskreporter_realtime',
+			['option_name' => 'key_station_id', 'option_key' => (int) $row->station_id],
+			$this->user_id()
+		)->row('option_value');
+		return ($opt ?? '0') === '1';
 	}
 
 	/**
@@ -415,6 +496,11 @@ class Station_resource extends Api_v2_resource {
 			'sig_info'   => $row->station_sig_info ?? null,
 			'power'      => isset($row->station_power) && is_numeric($row->station_power) ? (float) $row->station_power : null,
 			'active'     => isset($row->station_active) && $row->station_active == 1,
+			'clublog_upload' => (int) ($row->clublogignore ?? 0) === 1
+				? 'disabled'
+				: ((int) ($row->clublogrealtime ?? 0) === 1 ? 'live' : 'on'),
+			'eqsl_qth_nickname' => $row->eqslqthnickname ?? null,
+			'pskreporter_live' => $this->pskreporter_live($row),
 		];
 	}
 }

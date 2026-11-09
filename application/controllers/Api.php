@@ -40,8 +40,9 @@ class API extends CI_Controller {
 		$data['api_tokens'] = $this->api_v2_model->get_tokens_for_user();
 		$data['token_scopes'] = Api_v2_model::grantable_scope_registry();
 		$data['token_presets'] = Api_v2_model::preset_registry();
-		// One-time reveal: the plaintext token survives exactly one redirect.
-		$data['new_api_token'] = $this->session->flashdata('new_api_token');
+		// One-time reveal: the plaintext token is shown on the next visit of this page only.
+		$data['new_api_token'] = $this->session->tempdata('new_api_token');
+		$this->session->unset_userdata('new_api_token');
 		$data['clubmode'] = $this->session->userdata('clubstation') == 1 ? true : false;
 		$data['page_title'] = __("API");
 
@@ -301,6 +302,37 @@ class API extends CI_Controller {
 				}
 			}
 			echo json_encode($station_ids);
+		} else {
+			http_response_code(401);
+			echo json_encode(['status' => 'failed', 'reason' => "missing or invalid api key"]);
+		}
+	}
+
+	/**
+	 * Logbooks with a public slug of the API key owner. Same endpoint and response as in
+	 * Cloudlog (used e.g. by OscarWatch). Logbooks are not shared between users in Wavelog,
+	 * so access_level is always "owner".
+	 *
+	 * @param string $key API key (read access is sufficient)
+	 * @return void Outputs JSON
+	 */
+	function logbook_public_slugs_accessible($key = '') {
+		$this->load->model('api_model');
+		header("Content-type: application/json");
+		if ($this->api_model->authorize($key) > 0) { /* Check permission for reading */
+			$this->api_model->update_last_used($key);
+			$userid = $this->api_model->key_userid($key);
+
+			$logbooks = [];
+			foreach ($this->logbooks_model->public_slugs_by_user($userid) as $row) {
+				$logbooks[] = [
+					'logbook_id' => (int) $row->logbook_id,
+					'logbook_name' => $row->logbook_name,
+					'public_slug' => $row->public_slug,
+					'access_level' => 'owner',
+				];
+			}
+			echo json_encode(['status' => 'success', 'count' => count($logbooks), 'logbooks' => $logbooks]);
 		} else {
 			http_response_code(401);
 			echo json_encode(['status' => 'failed', 'reason' => "missing or invalid api key"]);
@@ -910,11 +942,13 @@ class API extends CI_Controller {
 		$obj = json_decode(file_get_contents("php://input"), true);
 		if ($obj === NULL) {
 		    echo json_encode(['status' => 'failed', 'reason' => "wrong JSON"]);
+			return;
 		}
 
 		if(!isset($obj['key']) || $this->api_model->authorize($obj['key']) == 0) {
 		   http_response_code(401);
 		   echo json_encode(['status' => 'failed', 'reason' => "missing api key"]);
+			return;
 		}
 
 		if(!isset($obj['logbook_public_slug']) || !isset($obj['grid'])) {

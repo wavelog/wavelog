@@ -360,8 +360,14 @@ class Gridmap_model extends CI_Model {
 		return $sql;
 	}
 
-    /*
-	 * Get's the worked modes from the log
+	/**
+	 * Get the worked modes from the log
+	 *
+	 * Returns all distinct worked modes (and submodes) for the active
+	 * station logbook, used for the mode filter in gridmap views.
+	 *
+	 * @return array Worked modes sorted alphabetically; empty array if the
+	 *               active logbook has no linked station locations
 	 */
 	function get_worked_modes() {
 
@@ -369,7 +375,7 @@ class Gridmap_model extends CI_Model {
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		if ($logbooks_locations_array[0] === -1) {
-			return null;
+			return [];
 		}
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
@@ -409,6 +415,21 @@ class Gridmap_model extends CI_Model {
 		$gridarray = array_column($gridquery->result_array(), 'gridsquare');
 
 		return $gridarray;
+	}
+
+	/**
+	 * Returns the set of 4-digit gridsquares that the vuccgrids table lists for any DXCC entity
+	 *
+	 * @return array Gridsquares as keys, true as value
+	 */
+	function get_vucc_grid_set() {
+		$result = $this->db->query('SELECT DISTINCT UPPER(SUBSTRING(gridsquare, 1, 4)) AS grid FROM vuccgrids');
+
+		$grids = array();
+		foreach ($result->result() as $row) {
+			$grids[$row->grid] = true;
+		}
+		return $grids;
 	}
 
 	function get_coordinates_for_dxcc($dxcc) {

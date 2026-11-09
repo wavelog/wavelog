@@ -41,7 +41,7 @@
 
 				<div class="mb-3">
 					<label for="activeInput"><?= __("Active"); ?></label>
-					<select id="activeInput" class="form-select mode form-select-sm" name="active">
+					<select id="activeInput" class="form-select mode form-select-sm" name="active"<?php echo $contest->id == 1 ? " disabled" : ""; ?>>
         				<option value="1" <?php echo $contest->active == 1 ? "selected=\"selected\"" : ""; ?>>
             				<?= __("Active"); ?>
         				</option>

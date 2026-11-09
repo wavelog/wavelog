@@ -169,7 +169,7 @@ class Reg1testformat {
             return "432 MHz";
          case "23cm":
             return "1,3 GHz";
-         case "13cm";
+         case "13cm":
             return "2,3 GHz";
          case "9cm":
             return "3,4 GHz";

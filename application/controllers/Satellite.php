@@ -290,8 +290,8 @@ class Satellite extends CI_Controller {
 			$this->load->view('satellite/passtable', $data);
 		}
 		catch (Exception $e) {
-			header("Content-type: application/json");
-			echo json_encode(['ok' => 'Error', 'message' => $e->getMessage() . $e->getCode()]);
+			header("Content-type: text/html");
+			echo '<div class="alert alert-danger">' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8') . '</div>';
 		}
 	}
 
@@ -302,8 +302,8 @@ class Satellite extends CI_Controller {
 			$this->calcSkedPasses($tle);
 		}
 		catch (Exception $e) {
-			header("Content-type: application/json");
-			echo json_encode(['ok' => 'Error', 'message' => $e->getMessage() . $e->getCode()]);
+			header("Content-type: text/html");
+			echo '<div class="alert alert-danger">' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8') . '</div>';
 		}
 	}
 

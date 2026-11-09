@@ -17,7 +17,7 @@ class Lookup_model extends CI_Model{
 			GROUP BY COL_SAT_NAME";
 		$query = $this->db->query($sql, [$queryinfo['callsign']]);
 		foreach ($query->result() as $sat) {
-			$letters = ($sat->qsl ? 'Q' : '').($sat->lotw ? 'L' : '').($sat->eqsl ? 'E' : '').($sat->qrz ? 'Z' : '').($sat->clublog ? 'C' : '');
+			$letters = $this->confirmation_letters($sat);
 			$resultArray[$sat->COL_SAT_NAME] = $letters ?: 'W';
 		}
 		return $resultArray;
@@ -27,6 +27,25 @@ class Lookup_model extends CI_Model{
 		$modes = $this->get_worked_modes($queryinfo['location_list']);
 
 		return $this->getResultFromDatabase($queryinfo, $modes);
+	}
+
+	/**
+	 * Build confirmation-letter string (Q/L/E/Z/C) for a result row, honoring
+	 * the user's "Default QSL-Methods" profile setting (user_default_confirmation).
+	 * Setting NULL/absent = all methods (legacy behavior); set-but-empty = worked only.
+	 *
+	 * @param object $row Result row with qsl/lotw/eqsl/qrz/clublog flags (0/1)
+	 * @return string Concatenated letters, e.g. "QL"
+	 */
+	private function confirmation_letters($row) {
+		$conf = $this->session->userdata('user_default_confirmation');
+		$letters = '';
+		foreach (['qsl' => 'Q', 'lotw' => 'L', 'eqsl' => 'E', 'qrz' => 'Z', 'clublog' => 'C'] as $flag => $letter) {
+			if ($row->$flag && ($conf === null || strpos($conf, $letter) !== false)) {
+				$letters .= $letter;
+			}
+		}
+		return $letters;
 	}
 
 	function getDxccForVucc($grid) {
@@ -71,7 +90,7 @@ class Lookup_model extends CI_Model{
 		// Populating array with worked/confirmed band/mode combinations (Q/L/E/Z/C letters like the DXCC award table)
 		foreach ($this->getQueryData($queryinfo) as $r) {
 			if (in_array($r->col_band, $queryinfo['bands'])) {
-				$letters = ($r->qsl ? 'Q' : '').($r->lotw ? 'L' : '').($r->eqsl ? 'E' : '').($r->qrz ? 'Z' : '').($r->clublog ? 'C' : '');
+				$letters = $this->confirmation_letters($r);
 				$resultArray[$r->col_mode][$r->col_band] = $letters ?: 'W';
 			}
 		}

@@ -39,7 +39,7 @@ switch ($date_format) {
   var lang_qso_sat_below_horizon_confirm = "<?= __("Satellite appears below the horizon (elevation %s°). The stored TLE may be outdated for this QSO time. Do you really want to log this QSO?"); ?>";
   var lang_invalid_callsign = "<?= __("Invalid callsign"); ?>";
   var lang_qso_wait_before_saving = "<?= __("Please wait before saving another QSO"); ?>";
-  var latlng=[<?php echo $lat.','.$lng;?>];
+  var latlng = <?php echo json_encode([$lat ?? null, $lng ?? null]); ?>;
   var user_date_format = "<?php echo $date_format; ?>"; // Pass the user's date format to JavaScript
   var lang_qso_sat_lotw_support_not_found = "<?= __("Satellite not found"); ?>";
   var lang_qso_sat_lotw_supported = "<?= __("Supported by LoTW"); ?>";
@@ -419,7 +419,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
                 <option value="0" selected="selected"><?= __("None"); ?></option>
 		            <option value="ws"<?php if ($this->session->userdata('radio') == 'ws' && $manual_mode == '0') { echo ' selected="selected"'; } ?>><?= __("Live - WebSocket"); ?></option>
                 <?php foreach ($radios->result() as $row) { ?>
-                  <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id && $manual_mode == '0') { echo "selected=\"selected\""; } ?>><?= __("Polling - ") . $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
+                  <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id && $manual_mode == '0') { echo "selected=\"selected\""; } ?>><?= __("Polling - ") . html_escape($row->radio); ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
                 <?php } ?>
                 </select>
                 <input type="hidden" id="radio_ws_name" name="radio_ws_name" value="" />

@@ -44,21 +44,21 @@ function distinctApplyPreset(preset) {
 
 		case 'yesterday':
 			const yesterday = new Date(today);
-			yesterday.setDate(yesterday.getUTCDate() - 1);
+			yesterday.setUTCDate(yesterday.getUTCDate() - 1);
 			dateFrom.value = formatDate(yesterday);
 			dateTo.value = formatDate(yesterday);
 			break;
 
 		case 'last7days':
 			const sevenDaysAgo = new Date(today);
-			sevenDaysAgo.setDate(sevenDaysAgo.getUTCDate() - 7);
+			sevenDaysAgo.setUTCDate(sevenDaysAgo.getUTCDate() - 7);
 			dateFrom.value = formatDate(sevenDaysAgo);
 			dateTo.value = formatDate(today);
 			break;
 
 		case 'last30days':
 			const thirtyDaysAgo = new Date(today);
-			thirtyDaysAgo.setDate(thirtyDaysAgo.getUTCDate() - 30);
+			thirtyDaysAgo.setUTCDate(thirtyDaysAgo.getUTCDate() - 30);
 			dateFrom.value = formatDate(thirtyDaysAgo);
 			dateTo.value = formatDate(today);
 			break;
@@ -150,7 +150,7 @@ function distinctBadgeStyle(color) {
 }
 
 function renderDistinctTable(tmp) {
-	var typeLabels = { dxcc: lang_distinct_counts_type_dxcc, grid: lang_distinct_counts_type_grid, itu: lang_distinct_counts_type_itu, cq: lang_distinct_counts_type_cq };
+	var typeLabels = { dxcc: lang_distinct_counts_type_dxcc, grid: lang_distinct_counts_type_grid, itu: lang_distinct_counts_type_itu, cq: lang_distinct_counts_type_cq, station_profile: lang_distinct_counts_type_station_profile };
 	var typeLabel = typeLabels[tmp.type] || lang_distinct_counts_type_ref;
 
 	var workedColor = (typeof user_map_custom !== 'undefined' && user_map_custom.qso && user_map_custom.qso.color) ? user_map_custom.qso.color : '#0d6efd';
@@ -167,7 +167,13 @@ function renderDistinctTable(tmp) {
 
 	destroyDistinctTable();
 
-	var columns = [
+	var useClusters = tmp.type === 'station_profile';
+
+	var columns = [];
+	if (useClusters) {
+		columns.push({ title: '', data: 'cluster', visible: false });
+	}
+	columns.push(
 		{ title: decodeHtml(typeLabel), data: 'display_key', className: 'dt-body-left', render: function(data, type, row) {
 			if (type === 'display') {
 				return data + (row.group_deleted ? ' <span class="badge text-bg-danger">' + decodeHtml(lang_distinct_counts_deleted_dxcc) + '</span>' : '');
@@ -186,31 +192,46 @@ function renderDistinctTable(tmp) {
 			}
 			return data;
 		} }
-	];
+	);
 
 	var rows = [];
 	$.each(tmp.groups, function() {
-		rows.push({
+		var row = {
 			group_key: escapeHtml(String(this.group_key)),
 			display_key: escapeHtml(this.group_name != null ? String(this.group_name) : String(this.group_key)),
 			group_deleted: !!this.group_deleted,
 			qso_count: Number(this.qso_count),
 			confirmed_count: Number(this.confirmed_count)
-		});
+		};
+		if (useClusters) {
+			row.cluster = escapeHtml(String(this.cluster ?? ''));
+		}
+		rows.push(row);
 	});
 
 	distinctTable = $('#distincttable').DataTable({
 		data: rows,
 		columns: columns,
 		pageLength: 25,
-		order: [[1, 'desc']],
+		order: useClusters ? [[0, 'asc'], [2, 'desc']] : [[1, 'desc']],
 		language: {
 			url: getDataTablesLanguageUrl(),
 		},
 		dom: 'Bfrtip',
 		buttons: [
 			'csv'
-		]
+		],
+		drawCallback: useClusters ? function(settings) {
+			var api = new $.fn.dataTable.Api(settings);
+			var last = null;
+			api.rows({ page: 'current' }).nodes().to$().each(function() {
+				var cluster = api.row(this).data().cluster;
+				if (cluster !== last) {
+					$(this).before('<tr class="fw-semibold"><td colspan="3">' + cluster + '</td></tr>');
+					last = cluster;
+				}
+			});
+		} : null
 	});
 
 	$('#distincttable tbody').off('click', '.dc-link').on('click', '.dc-link', function (e) {

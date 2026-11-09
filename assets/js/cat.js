@@ -526,7 +526,8 @@ $(document).ready(function() {
     }
 
     /**
-     * Send QSO data via WebSocket when CAT is enabled via WebSocket
+     * Send QSO data via WebSocket when a WebSocket connection is open
+     * (WebSocket radio or the hybrid connection next to a polling radio)
      * This allows external systems (e.g., WLGate, external logging services) to receive logged QSOs in real-time
      * @param {object} qsoData - QSO data object with fields from the QSO form
      * @returns {boolean} - true if sent via WebSocket, false otherwise
@@ -534,11 +535,6 @@ $(document).ready(function() {
     function sendQSOViaWebSocket(qsoData) {
         // Only send if WebSocket is connected and enabled
         if (!websocket || !websocketEnabled || websocket.readyState !== WebSocket.OPEN) {
-            return false;
-        }
-
-        // Only send for WebSocket radio ('ws')
-        if ($(".radios option:selected").val() != 'ws') {
             return false;
         }
 
@@ -659,7 +655,7 @@ $(document).ready(function() {
         // Build radio info line
         var radioInfo = '';
         if (data.radio != null && data.radio != '') {
-            radioInfo = '<b>' + data.radio + '</b>' + connectionType + connectionTooltip;
+            radioInfo = '<b>' + escapeHtml(data.radio) + '</b>' + connectionType + connectionTooltip;
         }
 
         // Build frequency/mode/power line
@@ -681,19 +677,19 @@ $(document).ready(function() {
 
         // Add mode and power (only if we have valid frequency)
         if(data.mode != null) {
-            freqLine = freqLine + separator + '<b>' + lang_cat_mode + ':</b> ' + data.mode;
+            freqLine = freqLine + separator + '<b>' + lang_cat_mode + ':</b> ' + escapeHtml(data.mode);
         }
         if(data.power != null && data.power != 0) {
-            freqLine = freqLine + separator + '<b>' + lang_cat_power + ':</b> ' + data.power+'W';
+            freqLine = freqLine + separator + '<b>' + lang_cat_power + ':</b> ' + escapeHtml(data.power)+'W';
         }
 
         // Add complementary info to frequency line
         var complementary_info = [];
         if(data.prop_mode != null && data.prop_mode != '') {
             if (data.prop_mode == 'SAT') {
-                complementary_info.push(data.prop_mode + ' ' + data.satname);
+                complementary_info.push(escapeHtml(data.prop_mode) + ' ' + escapeHtml(data.satname));
             } else {
-                complementary_info.push(data.prop_mode);
+                complementary_info.push(escapeHtml(data.prop_mode));
             }
         }
         if(complementary_info.length > 0) {
@@ -714,13 +710,13 @@ $(document).ready(function() {
             // Error state - WebSocket connection error
             iconClass = 'text-danger'; // Bootstrap red for error
             var radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
-            content = '<div>' + lang_cat_connection_error + ': <b>' + radioName + '</b>. ' + lang_cat_connection_lost + '</div>';
+            content = '<div>' + lang_cat_connection_error + ': <b>' + escapeHtml(radioName) + '</b>. ' + lang_cat_connection_lost + '</div>';
 
         } else if (state === 'timeout') {
             // Timeout state - data too old
             iconClass = 'text-warning'; // Bootstrap yellow/amber for timeout
             var radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
-            content = '<div>' + lang_cat_connection_timeout + ': <b>' + radioName + '</b>. ' + lang_cat_data_stale + '</div>';
+            content = '<div>' + lang_cat_connection_timeout + ': <b>' + escapeHtml(radioName) + '</b>. ' + lang_cat_data_stale + '</div>';
 
         } else if (state === 'not_logged_in') {
             // Not logged in state
@@ -745,7 +741,7 @@ $(document).ready(function() {
 			if (state === 'success') {
 				var radioName = $('select.radios option:selected').text();
 				var connectionType = $(".radios option:selected").val() == 'ws' ? lang_cat_live : lang_cat_polling;
-				tooltipContent = '<b>' + radioName + '</b> (' + connectionType + ')';
+                tooltipContent = '<b>' + escapeHtml(radioName) + '</b> (' + connectionType + ')';
 
 				// Add frequency info
 				var freqFormatted = format_frequency(data.frequency);
@@ -766,20 +762,20 @@ $(document).ready(function() {
 				}
 
 				if(data.mode != null) {
-					tooltipContent += '<br><b>' + lang_cat_mode + ':</b> ' + data.mode;
+                tooltipContent += '<br><b>' + lang_cat_mode + ':</b> ' + escapeHtml(data.mode);
 				}
 				if(data.power != null && data.power != 0) {
-					tooltipContent += '<br><b>' + lang_cat_power + ':</b> ' + data.power + 'W';
+                    tooltipContent += '<br><b>' + lang_cat_power + ':</b> ' + escapeHtml(data.power) + 'W';
 				}
 				if ($(".radios option:selected").val() != 'ws') {
 					tooltipContent += '<br><br><i>' + lang_cat_polling_tooltip + '</i>';
 				}
 			} else if (state === 'error') {
 				var radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
-				tooltipContent = lang_cat_connection_error + ': <b>' + radioName + '</b><br>' + lang_cat_connection_lost;
+				tooltipContent = lang_cat_connection_error + ': <b>' + escapeHtml(radioName) + '</b><br>' + lang_cat_connection_lost;
 			} else if (state === 'timeout') {
 				var radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
-				tooltipContent = lang_cat_connection_timeout + ': <b>' + radioName + '</b><br>' + lang_cat_data_stale;
+				tooltipContent = lang_cat_connection_timeout + ': <b>' + escapeHtml(radioName) + '</b><br>' + lang_cat_data_stale;
 			} else if (state === 'not_logged_in') {
 				tooltipContent = lang_cat_not_logged_in;
 			}
@@ -831,7 +827,7 @@ $(document).ready(function() {
 			} else {
 				connectionType = lang_cat_polling;
 			}
-			tooltipContent = '<b>' + radioName + '</b> (' + connectionType + ')';
+            tooltipContent = '<b>' + escapeHtml(radioName) + '</b> (' + connectionType + ')';
 
 				// Add frequency info
 				var freqFormatted = format_frequency(data.frequency);
@@ -853,12 +849,12 @@ $(document).ready(function() {
 
 				// Add mode
 				if(data.mode != null) {
-					tooltipContent += '<br><b>' + lang_cat_mode + ':</b> ' + data.mode;
+                tooltipContent += '<br><b>' + lang_cat_mode + ':</b> ' + escapeHtml(data.mode);
 				}
 
 				// Add power
 				if(data.power != null && data.power != 0) {
-					tooltipContent += '<br><b>' + lang_cat_power + ':</b> ' + data.power + 'W';
+                    tooltipContent += '<br><b>' + lang_cat_power + ':</b> ' + escapeHtml(data.power) + 'W';
 				}
 
 				// Add polling tooltip if applicable
@@ -867,10 +863,10 @@ $(document).ready(function() {
 				}
 			} else if (state === 'error') {
 				radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
-				tooltipContent = lang_cat_connection_error + ': <b>' + radioName + '</b><br>' + lang_cat_connection_lost;
+				tooltipContent = lang_cat_connection_error + ': <b>' + escapeHtml(radioName) + '</b><br>' + lang_cat_connection_lost;
 			} else if (state === 'timeout') {
 				radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
-				tooltipContent = lang_cat_connection_timeout + ': <b>' + radioName + '</b><br>' + lang_cat_data_stale;
+				tooltipContent = lang_cat_connection_timeout + ': <b>' + escapeHtml(radioName) + '</b><br>' + lang_cat_data_stale;
 			} else if (state === 'not_logged_in') {
 				radioName = '';
 				tooltipContent = lang_cat_not_logged_in;
@@ -878,7 +874,7 @@ $(document).ready(function() {
 
 			var ultraCompactHtml = '<span id="radio_cat_state" style="display: inline-flex; align-items: center; font-size: 0.875rem;">' +
 								  '<i class="fas fa-radio ' + iconClass + '" style="margin-right: 5px;"></i>' +
-								  '<span style="margin-right: 5px;">' + radioName + '</span>' +
+								  '<span style="margin-right: 5px;">' + escapeHtml(radioName) + '</span>' +
 								  '<i id="radio-status-icon" class="fas fa-info-circle" style="cursor: help;" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom"></i>' +
 								  '</span>';
 
@@ -1106,10 +1102,23 @@ $(document).ready(function() {
             dxWaterfall.refresh();
         }
 
-        cat2UI($('#sat_name'),data.satname,false,false);
-        cat2UI($('#sat_mode'),data.satmode,false,false);
+        // Satellite/propagation fields. cat2UI skips empty values, so a payload
+        // without sat data would leave stale CAT-written values in the form.
+        // Clear them — but only values CAT itself wrote (catValue set), manual
+        // or session-prefilled entries must survive sat-less payloads.
+        var $satName = $('#sat_name');
+        var $satMode = $('#sat_mode');
+        var $propagation = $('#selectPropagation');
+        if (data.satname || data.satmode || data.prop_mode) {
+            cat2UI($satName,data.satname,false,false);
+            cat2UI($satMode,data.satmode,false,false);
+            cat2UI($propagation,data.prop_mode,false,false);
+        } else if ($satName.data('catValue') || $propagation.data('catValue')) {
+            $satName.val('').removeData('catValue');
+            $satMode.val('').removeData('catValue');
+            $propagation.val('').removeData('catValue');
+        }
         cat2UI($('#transmit_power'),data.power,false,false);
-        cat2UI($('#selectPropagation'),data.prop_mode,false,false);
 
         // Clear the CAT updating flag AFTER all updates
         cat_updating_frequency = false;

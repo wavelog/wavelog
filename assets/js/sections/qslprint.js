@@ -253,6 +253,7 @@ function mark_qsl_sent(id, method) {
     });
 }
 
+var lastChecked = null;
 var target = document.body;
 var box_observer = new MutationObserver(function() {
 	$('#checkBoxAll').change(function (event) {
@@ -268,12 +269,27 @@ var box_observer = new MutationObserver(function() {
 			});
 		}
 	});
-	$('.qslprint').on('click', 'input[type="checkbox"]', function() {
+	$('.qslprint').on('click', 'input[type="checkbox"]', function(e) {
+		if (e.shiftKey && lastChecked) {
+			var $boxes = $('.qslprint tbody input[type="checkbox"]');
+			var start = $boxes.index(this);
+			var end = $boxes.index(lastChecked);
+			if (start > -1 && end > -1) {
+				var on = lastChecked.checked;
+				$boxes.slice(Math.min(start, end), Math.max(start, end) + 1).each(function() {
+					this.checked = on;
+					$(this).closest('tr').toggleClass('activeRow', on);
+				});
+				lastChecked = this;
+				return;
+			}
+		}
 		if ($(this).is(":checked")) {
 			$(this).closest('tr').addClass('activeRow');
 		} else {
 			$(this).closest('tr').removeClass('activeRow');
 		}
+		lastChecked = this;
 	});
 
 

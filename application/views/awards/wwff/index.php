@@ -41,8 +41,8 @@
 	</div>
 	<div class="card-body">
 		<div class="mb-3 text-center">
-			<div class="dropdown" data-bs-auto-close="outside">
-				<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="wwffFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
+			<div class="dropdown">
+				<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="wwffFilterDropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><?= __("Filters") ?></button>
 				<button type="button" onclick="applyWwffFilters();" class="btn btn-sm btn-primary"><?= __("Apply Filters") ?></button>
 
 			<div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="wwffFilterDropdown">

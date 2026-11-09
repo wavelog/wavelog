@@ -118,7 +118,7 @@ class Achievements_model extends CI_Model
 
 		// Bands
 		$params = array();
-		$rows = $this->db->query('SELECT UPPER(col_band) AS b, MIN(col_time_on) AS f, MIN(CASE WHEN ' . $conf . ' THEN col_time_on END) AS fc FROM ' . $table
+		$rows = $this->db->query('SELECT col_band AS b, MIN(col_time_on) AS f, MIN(CASE WHEN ' . $conf . ' THEN col_time_on END) AS fc FROM ' . $table
 			. " WHERE col_band IS NOT NULL AND col_band <> '' AND " . $this->station_in($station_ids, $params)
 			. ' GROUP BY b', $params)->result();
 		$bands = array();
@@ -257,8 +257,8 @@ class Achievements_model extends CI_Model
 				)),
 		);
 
-		$hf_bands = array('160M', '80M', '40M', '30M', '20M', '17M', '15M', '12M', '10M');
-		$warc_bands = array('30M', '17M', '12M');
+		$hf_bands = array('160m', '80m', '40m', '30m', '20m', '17m', '15m', '12m', '10m');
+		$warc_bands = array('30m', '17m', '12m');
 		$band_trophies = array(
 			$this->band_trophy($bands, $hf_bands, 'bands_hf.svg', 'All HF Bands', '160m through 10m'),
 			$this->band_trophy($bands, $warc_bands, 'bands_warc.svg', 'WARC Bands', '30m, 17m and 12m'),
