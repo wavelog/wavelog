@@ -68,6 +68,7 @@
 				</div>
 			<?php } ?>
 
+		<?php echo sprintf(__("The displayed data is provided by %s. Please consider uploading your SAT logs there to help making this data more convenient. If you have an account already you can find your own satellite %smap%s or %slist%s here."), '<a target="_blank" href="https://gridmaster.fr/">gridmaster.fr</a>', '<a target="_blank" href="https://gridmaster.fr/sat@'.strtolower($this->session->userdata('user_callsign')).'">', '</a>', '<a target="_blank" href="https://gridmaster.fr/sat/list@'.strtolower($this->session->userdata('user_callsign')).'">', '</a>'); ?>
 		</div> <!-- /card-body -->
 
 		<div class="d-flex align-items-center gap-2 px-3 pb-2" id="perc_filter">
@@ -83,18 +84,6 @@
 
 		<div id="gridmapcontainer">
 			<div id="gridsquare_map" class="map-leaflet" style="width: 100%;"></div>
-		</div>
-
-		<div class="card-body">
-			<div class="coordinates" style="position: static;">
-				<div class="cohidden coord-pair"><span><?= __("Latitude") ?>:&nbsp;</span><span class="text-success fw-bold" id="latDeg"></span></div>
-				<div class="cohidden coord-pair"><span><?= __("Longitude") ?>:&nbsp;</span><span class="text-success fw-bold" id="lngDeg"></span></div>
-				<div class="cohidden coord-pair"><span><?= __("Gridsquare") ?>:&nbsp;</span><span class="text-success fw-bold" id="locator"></span></div>
-				<div class="cohidden coord-pair"><span><?= __("Distance") ?>:&nbsp;</span><span class="text-success fw-bold" id="distance"></span></div>
-				<div class="cohidden coord-pair"><span><?= __("Bearing") ?>:&nbsp;</span><span class="text-success fw-bold" id="bearing"></span></div>
-				<div class="cohidden coord-pair"><span><?= __("CQ Zone") ?>:&nbsp;</span><span class="text-success fw-bold" id="cqzonedisplay"></span></div>
-				<div class="cohidden coord-pair"><span><?= __("ITU Zone") ?>:&nbsp;</span><span class="text-success fw-bold" id="ituzonedisplay"></span></div>
-			</div>
 		</div>
 
 		<script>
