@@ -729,6 +729,7 @@ $config['disable_manual_lotw'] = false;
 $config['disable_manual_eqsl'] = false;
 $config['disable_manual_hrdlog'] = false;
 $config['disable_manual_qrz'] = false;
+$config['disable_manual_srr'] = false;
 
 /*
 |--------------------------------------------------------------------------
@@ -847,6 +848,15 @@ $config['enable_eqsl_massdownload'] = false;
  */
 
  $config['enable_dcl_interface'] = true;
+
+/*
+|--------------------------------------------------------------------------
+| Enable SRR Interface
+| Set this to true if your Users and you want to connect your instance to SRR (award.srr.ru)
+|--------------------------------------------------------------------------
+ */
+
+ $config['enable_srr_interface'] = true;
 
 /*
 |--------------------------------------------------------------------------

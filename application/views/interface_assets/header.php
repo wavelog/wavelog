@@ -605,6 +605,10 @@
 										if ($this->config->item('enable_dcl_interface') ?? false) { ?>
 										<li><a class="dropdown-item" href="<?php echo site_url('dcl'); ?>" title="Upload to DCL"><i class="fas fa-sync"></i> <?= __("DCL Export"); ?></a></li>
 										<?php } ?>
+										<?php
+										if ($this->config->item('enable_srr_interface') ?? false) { ?>
+										<li><a class="dropdown-item" href="<?php echo site_url('srr'); ?>" title="SRR import / export"><i class="fas fa-sync"></i> <?= __("SRR Import / Export"); ?></a></li>
+										<?php } ?>
 									</ul>
 								</li>
 								<li><hr class="dropdown-divider"></li>
