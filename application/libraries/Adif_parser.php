@@ -151,7 +151,19 @@ class ADIF_Parser
 		$this->data = mb_convert_encoding($string, "UTF-8");
 	}
 
-	//the following function does the processing of the array into its key and value pairs
+	/**
+	 * Processes one ADIF record (text between two <EOR> markers) into an
+	 * associative array of lowercase field names and values.
+	 *
+	 * Handles optional type indicators (e.g. <QSO_DATE:8:D>), tolerates wrong
+	 * field lengths (overlong lengths are clamped at the next tag boundary) and
+	 * falls back to byte-based extraction for ADIFs that count bytes instead
+	 * of characters.
+	 *
+	 * @param string $record Single ADIF record without the surrounding <EOR> markers
+	 *
+	 * @return array Associative array (field name => value), empty array for blank input
+	 */
 	public function record_to_array($record)
 {
 	$return = array();
@@ -212,18 +224,23 @@ class ADIF_Parser
 					$next_char = mb_substr($record, $next_pos, 1, "UTF-8");
 					// If not '<' and not whitespace followed by '<', might be byte-length
 					if ($next_char !== '<' && !ctype_space($next_char)) {
-						// Character-based didn't land on tag boundary, try byte-based
-						$byte_length = strlen($record);
-						// Get byte offset for character position $a
-						$char_before = mb_substr($record, 0, $a, "UTF-8");
-						$byte_offset = strlen($char_before);
+						$boundary = mb_strpos($record, '<', $a, "UTF-8"); // Check possible boundaries
+						if ($boundary !== false && $boundary > $a) {
+							$consumed_chars = $boundary - $a;
+							$value = mb_substr($record, $a, $consumed_chars, "UTF-8");
+						} else {
+							$byte_length = strlen($record);
+							// Get byte offset for character position $a
+							$char_before = mb_substr($record, 0, $a, "UTF-8");
+							$byte_offset = strlen($char_before);
 
-						if ($byte_offset + $len <= $byte_length) {
-							// Extract by bytes
-							$byte_value = substr($record, $byte_offset, $len);
-							$value = $byte_value;
-							// Calculate how many characters we actually consumed
-							$consumed_chars = mb_strlen($value, "UTF-8");
+							if ($byte_offset + $len <= $byte_length) {
+								// Extract by bytes
+								$byte_value = substr($record, $byte_offset, $len);
+								$value = $byte_value;
+								// Calculate how many characters we actually consumed
+								$consumed_chars = mb_strlen($value, "UTF-8");
+							}
 						}
 					}
 				}
