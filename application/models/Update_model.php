@@ -1135,7 +1135,7 @@ class Update_model extends CI_Model {
 		$mtime = $mtime[1] + $mtime[0];
 		$starttime = $mtime;
 
-		$url = 'https://www.df2et.de/cqrlog/mostwanted_grids.json';
+		$url = 'https://gridmaster.fr/api/grids.json?format=map';
 		$curl = curl_init($url);
 
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

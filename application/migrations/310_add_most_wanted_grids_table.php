@@ -41,7 +41,7 @@ class Migration_add_most_wanted_grids_table extends CI_Migration {
                         'id' => 'most_wanted_grids_file',
                         'enabled' => '1',
                         'status' => 'pending',
-                        'description' => 'Download Most Wanted Grids (Satellite) from df2et.de',
+                        'description' => 'Download Most Wanted Grids (Satellite)',
                         'function' => 'index.php/update/update_most_wanted_grids',
                         'expression' => '0 0 1 * *',
                         'last_run' => null,

@@ -330,8 +330,8 @@ class Activationplanner extends CI_Controller {
 
 	/*
 	 * AJAX: given a 4-character gridsquare, return the "most wanted on SAT"
-	 * percentage from the most_wanted_grids table (df2et.de data), or null when
-	 * the grid is not listed or the table doesn't exist (feature not migrated).
+	 * percentage from the most_wanted_grids table , or null if the grid is not
+	 * listed or the table doesn't exist (feature not migrated).
 	 * Outputs JSON {perc} or null.
 	 */
 	public function perc_for_grid() {
