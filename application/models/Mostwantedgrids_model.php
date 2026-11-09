@@ -22,4 +22,10 @@ class Mostwantedgrids_model extends CI_Model {
 
 		return $row ? (int) $row->perc : null;
 	}
+
+	function get_stats() {
+		$binding = [];
+		$sql = 'SELECT COUNT(*) AS number, MAX(perc) AS maxperc FROM most_wanted_grids;';
+		return $this->db->query($sql, $binding);
+	}
 }

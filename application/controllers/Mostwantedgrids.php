@@ -13,6 +13,7 @@ class Mostwantedgrids extends CI_Controller {
 
 		$this->load->model('bands');
 		$this->load->model('gridmap_model');
+		$this->load->model('mostwantedgrids_model');
 		$this->load->model('stations');
 
 		$data['layer'] = $this->optionslib->get_option('option_map_tile_server');
@@ -30,6 +31,12 @@ class Mostwantedgrids extends CI_Controller {
 			'assets/js/sections/mostwantedgrids.js',
 			'assets/js/leaflet/L.MaidenheadMostwantedGridMap.js',
 		];
+
+		$stats = $this->mostwantedgrids_model->get_stats()->result();
+		if ($stats[0]->number == 0) {
+			$this->session->set_flashdata('warning', __("Most wanted grid table is empty. Please update the table first."));
+		}
+		$data['stats'] = $stats[0];
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('mostwantedgrids/index');
