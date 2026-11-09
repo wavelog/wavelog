@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-06 15:08+0000\n"
+"POT-Creation-Date: 2026-11-08 07:22+0000\n"
 "PO-Revision-Date: 2026-11-09 06:59+0000\n"
 "Last-Translator: om8hop <om8hop@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
@@ -198,8 +198,8 @@ msgstr "Tropo ducting"
 #: application/controllers/Notes.php:9 application/controllers/Operator.php:12
 #: application/controllers/Options.php:13 application/controllers/Oqrs.php:12
 #: application/controllers/Oqrs.php:459 application/controllers/Qrbcalc.php:12
-#: application/controllers/Qrz.php:28 application/controllers/Qrz.php:293
-#: application/controllers/Qrz.php:316 application/controllers/Qrz.php:380
+#: application/controllers/Qrz.php:28 application/controllers/Qrz.php:296
+#: application/controllers/Qrz.php:319 application/controllers/Qrz.php:383
 #: application/controllers/Qsl.php:11 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:73 application/controllers/Qsl.php:80
 #: application/controllers/Qsl.php:108 application/controllers/Qsl.php:158
@@ -244,8 +244,7 @@ msgstr "Tropo ducting"
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:103
 #: application/controllers/Zonechecker.php:16
-#: application/models/Club_model.php:84 application/controllers/Qrz.php:296
-#: application/controllers/Qrz.php:319 application/controllers/Qrz.php:383
+#: application/models/Club_model.php:84
 msgid "You're not allowed to do that!"
 msgstr "To nesmieš robiť!"
 
@@ -2916,7 +2915,8 @@ msgstr "Sťahovanie z LoTW pre používateľa %s zlyhalo: %s (%s)."
 #: application/controllers/Lotw.php:760
 #, php-format
 msgid "LoTW download failed for user %s: unexpected HTTP status %s."
-msgstr "Sťahovanie z LoTW pre používateľa %s zlyhalo: neočakávaný stav HTTP %s."
+msgstr ""
+"Sťahovanie z LoTW pre používateľa %s zlyhalo: neočakávaný stav HTTP %s."
 
 #: application/controllers/Lotw.php:764
 #, php-format
@@ -3344,17 +3344,16 @@ msgstr ""
 "Záporné zemepisné šírky označujú polohu južne od rovníka a záporné zemepisné "
 "dĺžky polohu západne od Greenwichu."
 
-#: application/controllers/Qrz.php:297
-#: application/views/interface_assets/header.php:601
 #: application/controllers/Qrz.php:300
+#: application/views/interface_assets/header.php:601
 msgid "QRZ Logbook"
 msgstr "QRZ Logbook"
 
-#: application/controllers/Qrz.php:382 application/controllers/Qrz.php:385
+#: application/controllers/Qrz.php:385
 msgid "QRZ QSL Import"
 msgstr "QRZ QSL import"
 
-#: application/controllers/Qrz.php:443 application/controllers/Qrz.php:446
+#: application/controllers/Qrz.php:446
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF informácie"
 
@@ -5154,8 +5153,8 @@ msgstr ""
 #: application/models/Debug_model.php:368
 msgid "APCu loaded but not usable in this PHP interface (apc.enabled=0?)."
 msgstr ""
-"APCu je načítané, ale v tomto rozhraní PHP ho nemožno použiť (apc.enabled=0?)"
-"."
+"APCu je načítané, ale v tomto rozhraní PHP ho nemožno použiť "
+"(apc.enabled=0?)."
 
 #: application/models/Debug_model.php:377
 #, php-format
