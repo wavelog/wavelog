@@ -1153,7 +1153,7 @@ class Update_model extends CI_Model {
 		$grids = array();
 		foreach($json as $key => $value) {
 			$grids[] = [
-				'grid' => $key,
+				'grid' => substr($key, 0, 4),
 				'perc' => $value,
 			];
 		}
