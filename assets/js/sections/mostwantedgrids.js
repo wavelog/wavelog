@@ -62,6 +62,7 @@ function plot() {
             center: mapCenter,
             zoom: mapZoom,
             minZoom: 2,
+            maxZoom: 9,
             fullscreenControl: true,
                 fullscreenControlOptions: {
                     position: 'topleft'
