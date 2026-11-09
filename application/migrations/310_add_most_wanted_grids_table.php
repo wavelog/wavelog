@@ -6,7 +6,6 @@ class Migration_add_most_wanted_grids_table extends CI_Migration {
 
     public function up()
     {
-        // Create Label Designer Templates table
         if (!$this->db->table_exists('most_wanted_grids')) {
             $this->dbforge->add_field(array(
                 'id' => array(
