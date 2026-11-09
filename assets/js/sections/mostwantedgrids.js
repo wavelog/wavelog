@@ -33,7 +33,8 @@ function gridPlot(form) {
           mwgrids = data.grid_4char;
           plot();
        },
-       error: function (data) {
+       error: function () {
+           showToast('Most Wanted Grids', 'Failed to load grid data', 'bg-danger text-white', 3000);
        },
     });
 }
