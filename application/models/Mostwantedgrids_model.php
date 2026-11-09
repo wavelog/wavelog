@@ -4,10 +4,9 @@ class Mostwantedgrids_model extends CI_Model {
 
 	function get_grids() {
 
-		$binding = [];
 		$sql = 'SELECT grid, perc FROM most_wanted_grids';
 
-		return $this->db->query($sql, $binding);
+		return $this->db->query($sql);
 	}
 
 	/**
@@ -24,8 +23,7 @@ class Mostwantedgrids_model extends CI_Model {
 	}
 
 	function get_stats() {
-		$binding = [];
 		$sql = 'SELECT COUNT(*) AS number, MAX(perc) AS maxperc FROM most_wanted_grids;';
-		return $this->db->query($sql, $binding);
+		return $this->db->query($sql);
 	}
 }
