@@ -176,6 +176,9 @@ class ADIF_Parser
 			$len_str = "";
 			$len = 0;
 			$a++; //go past the <
+			if ($a < $length && mb_substr($record, $a, 1, "UTF-8") == '<') {
+				$a++; //tolerate doubled '<' (writer bug), e.g. <<CALL:5>
+			}
 
 			while ($a < $length && mb_substr($record, $a, 1, "UTF-8") != ':') { //get the tag
 				$tag_name .= mb_substr($record, $a, 1, "UTF-8");
@@ -222,6 +225,11 @@ class ADIF_Parser
 				$next_pos = $a + $consumed_chars;
 				if ($next_pos < $length) {
 					$next_char = mb_substr($record, $next_pos, 1, "UTF-8");
+					// Tolerate doubled '<' (writer bug): a trailing '<' in the value belongs to the next tag
+					if ($next_char === '<' && mb_substr($value, -1, 1, "UTF-8") === '<') {
+						$value = rtrim($value, '<');
+						$consumed_chars = mb_strlen($value, "UTF-8");
+					}
 					// If not '<' and not whitespace followed by '<', might be byte-length
 					if ($next_char !== '<' && !ctype_space($next_char)) {
 						$boundary = mb_strpos($record, '<', $a, "UTF-8"); // Check possible boundaries
