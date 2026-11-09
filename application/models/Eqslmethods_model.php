@@ -82,9 +82,9 @@ class Eqslmethods_model extends CI_Model {
 		$adifhead .= "%3C";
 		$adifhead .= "ADIF%5FVER";
 		$adifhead .= "%3A";
-		$adifhead .= "4";
+		$adifhead .= strlen($this->optionslib->get_option('adif_version'));
 		$adifhead .= "%3E";
-		$adifhead .= "1%2E000";
+		$adifhead .= rawurlencode($this->optionslib->get_option('adif_version'));
 		$adifhead .= "%20";
 
 		$adifhead .= "%3C";
