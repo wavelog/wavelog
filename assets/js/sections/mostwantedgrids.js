@@ -149,7 +149,7 @@ function spawnGridsquareModal(loc_4char) {
 function colorGradient(color1, color2, color3, percentage) {
 	const scaleMax = Math.min(percFilterMax, maxPerc);
 	// Scale to current max value
-	percentage = percentage * 100 / scaleMax;
+	percentage = scaleMax > 0 ? percentage * 100 / scaleMax : 0;
 
 	// Parse RGBA color string
 	function parseRGBA(color) {
