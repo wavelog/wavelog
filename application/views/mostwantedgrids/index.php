@@ -87,9 +87,6 @@
 		</div>
 
 		<script>
-			<?php
-				echo "var homegrid = \"" . strtoupper($homegrid[0]) . "\";\n";
-			?>
 			var gridsquaremap = true;
 			var type = "worked";
 			<?php
