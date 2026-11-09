@@ -1584,6 +1584,7 @@ class Awards extends CI_Controller {
       $footerData = [];
       $footerData['scripts']= [
          'assets/js/leaflet/geocoding.js',
+         'assets/js/sections/gridmodal.js',
          'assets/js/leaflet/L.MaidenheadColouredGridmasterMap.js',
          'assets/js/sections/gridmaster.js'
       ];
@@ -1620,6 +1621,7 @@ class Awards extends CI_Controller {
 		$footerData = [];
 		$footerData['scripts']= [
 			'assets/js/leaflet/geocoding.js',
+			'assets/js/sections/gridmodal.js',
 			'assets/js/sections/ffma.js',
 			'assets/js/leaflet/L.MaidenheadColouredGridmasterMap.js'
 		];
