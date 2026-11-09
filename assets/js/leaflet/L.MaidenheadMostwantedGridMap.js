@@ -8,13 +8,17 @@ L.Maidenhead = L.LayerGroup.extend({
 		linecolor: isDarkModeTheme() ?  'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.3)',
 		color: isDarkModeTheme() ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)',
 
+		unworkedColor: user_map_custom?.unworked?.color
+			? hexToRgba(user_map_custom.unworked.color, 0.5)
+			: 'rgba(255, 0, 0, 0.5)',
+
 		workedColor: user_map_custom?.qso?.color
 			? hexToRgba(user_map_custom.qso.color, 0.5)
-			: 'rgba(229, 165, 10, 0.5)',
+			: 'rgba(255, 255, 0, 0.5)',
 
 		confirmedColor: user_map_custom?.qsoconfirm?.color
 			? hexToRgba(user_map_custom.qsoconfirm.color, 0.5)
-			: 'rgba(144,238,144, 0.5)',
+			: 'rgba(0 , 255, 0, 0.5)',
 
 		redraw: 'move'
 	},
@@ -78,8 +82,7 @@ L.Maidenhead = L.LayerGroup.extend({
 				var perc = mwgrids[locator];
 				if(perc !== undefined && perc >= percFilterMin && perc <= percFilterMax) {
 
-					//var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-worked', color: colorGradient(this.options.workedColor, this.options.confirmedColor, mwgrids[locator]),  weight: 1, fillOpacity: 1, fill:true, interactive: false});
-					var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-worked', color: colorGradient('rgba(255, 0, 0, 0.5)', this.options.confirmedColor, perc),  weight: 1, fillOpacity: 1, fill:true, interactive: false});
+					var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-worked', color: colorGradient(this.options.unworkedColor, this.options.workedColor, this.options.confirmedColor, perc),  weight: 1, fillOpacity: 1, fill:true, interactive: false});
 						this.addLayer(rectWorked);
 						this.addLayer(this._getLabel(lon+unit-(unit/lcor),lat+(unit/2)+(unit/lcor*c)));
 					}

@@ -145,31 +145,43 @@ function spawnGridsquareModal(loc_4char) {
 	}
 }
 
-function colorGradient(color1, color2, percent) {
+function colorGradient(color1, color2, color3, percentage) {
 	const scaleMax = Math.min(percFilterMax, maxPerc);
-	const f = scaleMax > percFilterMin ? Math.max(0, Math.min(1, (percent - percFilterMin) / (scaleMax - percFilterMin))) : 0;
+	// Scale to current max value
+	percentage = percentage * 100 / scaleMax;
 
-	function parseToRgba(colorStr) {
-		const match = colorStr.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
-		if (!match) return [0, 0, 0, 1];
-
-		return [
-			parseInt(match[1], 10),
-			parseInt(match[2], 10),
-			parseInt(match[3], 10),
-			match[4] !== undefined ? parseFloat(match[4]) : 1
-		];
+	// Parse RGBA color string
+	function parseRGBA(color) {
+		const values = color.match(/[\d.]+/g).map(Number);
+		return {
+			r: values[0],
+			g: values[1],
+			b: values[2],
+			a: values[3] ?? 1
+		};
 	}
 
-	const [r1, g1, b1, a1] = parseToRgba(color1);
-	const [r2, g2, b2, a2] = parseToRgba(color2);
+	const c1 = parseRGBA(color1);
+	const c2 = parseRGBA(color2);
+	const c3 = parseRGBA(color3);
 
-	const r = Math.round(r1 + (r2 - r1) * f);
-	const g = Math.round(g1 + (g2 - g1) * f);
-	const b = Math.round(b1 + (b2 - b1) * f);
-	const a = parseFloat((a1 + (a2 - a1)).toFixed(3));
+	// Interpolate between two colors
+	function interpolate(start, end, factor) {
+		const r = Math.round(start.r + (end.r - start.r) * factor);
+		const g = Math.round(start.g + (end.g - start.g) * factor);
+		const b = Math.round(start.b + (end.b - start.b) * factor);
+		const a = start.a + (end.a - start.a) * factor;
 
-	return `rgba(${r}, ${g}, ${b}, ${a})`;
+		return `rgba(${r}, ${g}, ${b}, ${a.toFixed(3)})`;
+	}
+
+	// First half: color1 -> color2
+	if (percentage <= 50) {
+		return interpolate(c1, c2, percentage / 50);
+	}
+	// Second half: color2 -> color3
+	return interpolate(c2, c3, (percentage - 50) / 50);
+
 }
 
 $(document).ready(function(){
