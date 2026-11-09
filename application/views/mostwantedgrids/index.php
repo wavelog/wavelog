@@ -76,7 +76,7 @@
 
 		<?php echo sprintf(__("The displayed data is provided by %s. Please consider uploading your SAT logs there to help making this data more convenient. If you have an account already you can find your own satellite %smap%s or %slist%s here."), '<a target="_blank" href="https://gridmaster.fr/">gridmaster.fr</a>', '<a target="_blank" href="https://gridmaster.fr/sat@'.strtolower($this->session->userdata('user_callsign')).'">', '</a>', '<a target="_blank" href="https://gridmaster.fr/sat/list@'.strtolower($this->session->userdata('user_callsign')).'">', '</a>'); ?>
 		<?php if ($stats->number > 0) {
-			echo sprintf(__("There are %s grids in the database. The most active grid is contained in %s%% of the logs"), $stats->number, $stats->maxperc);
+			echo sprintf(__("There are %s grids in the database. The most active grid is contained in %s%% of the logs."), $stats->number, $stats->maxperc);
 		} ?>
 		</div> <!-- /card-body -->
 
