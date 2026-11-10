@@ -67,7 +67,7 @@ function onMapMove(event) {
 	$('#lngDeg').html(LatLng2.lngDeg);
 	var locator = latLngToLocator(lat,lng);
 	$('#locator').html(locator);
-	if (homegrid != '') {
+	if (typeof homegrid !== 'undefined' && homegrid != '' && homegrid != '0') {
 		var distance = bearingDistance(homegrid, locator);
 
 		let unit;
@@ -161,6 +161,9 @@ function isMarkerInsidePolygon(marker, poly) {
 
 function onMapClick(event) {
 	if ($('.modal-dialog')[0]) {
+		return;
+	}
+	if (typeof homegrid === 'undefined' || homegrid == '' || homegrid == '0') { // No Grid Guard
 		return;
 	}
 	var LatLng = event.latlng;

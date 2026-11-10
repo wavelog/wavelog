@@ -17,6 +17,8 @@
 	let sotaUrl         = cfg.sotaUrl || '';
 	let iotaUrl         = cfg.iotaUrl || '';
 	let dxccGridUrl     = cfg.dxccGridUrl || '';
+	let mwPercUrl       = cfg.mwPercUrl || '';
+	let mwPercLbl       = decodeHtml(cfg.mwPercLbl) || 'In log of %s (SAT)';
 	let satPassUrl      = cfg.satPassUrl || '';
 	let refsNearbyUrl   = cfg.refsNearbyUrl || '';
 	let satPassLbl      = decodeHtml(cfg.satPassLbl) || 'Satellite passes';
@@ -1528,12 +1530,15 @@
 			zoneFor(lat, lng, 'cq'),
 			zoneFor(lat, lng, 'itu'),
 			stateUrl ? fetch(stateUrl + '?lat=' + lat + '&lng=' + lng).then(function (r) { return r.json(); }).catch(function () { return null; }) : Promise.resolve(null),
-			(dxccGridUrl && loc && loc.length >= 4) ? fetch(dxccGridUrl + '?grid=' + encodeURIComponent(loc.substring(0, 4))).then(function (r) { return r.json(); }).catch(function () { return []; }) : Promise.resolve([])
+			(dxccGridUrl && loc && loc.length >= 4) ? fetch(dxccGridUrl + '?grid=' + encodeURIComponent(loc.substring(0, 4))).then(function (r) { return r.json(); }).catch(function () { return []; }) : Promise.resolve([]),
+			(mwPercUrl && loc && loc.length >= 4) ? fetch(mwPercUrl + '?grid=' + encodeURIComponent(loc.substring(0, 4))).then(function (r) { return r.json(); }).catch(function () { return null; }) : Promise.resolve(null)
 		]).then(function (res) {
 			let cqNum = (res[0] && res[0].num != null) ? res[0].num : '';
 			let ituNum = (res[1] && res[1].num != null) ? res[1].num : '';
 			let s = res[2];
 			let rows = Array.isArray(res[3]) ? res[3] : [];
+			let mw = res[4];
+			let mwPerc = (mw && mw.perc != null) ? mw.perc : null;
 			let flag = rows.map(function (d) { return d.flag; }).filter(Boolean);
 			let stateDxcc = (s && s.dxcc != null) ? s.dxcc : '';
 			let gridDxcc  = (rows.length === 1 && rows[0].adif != null) ? rows[0].adif : '';
@@ -1550,7 +1555,8 @@
 				stateCode:  (s && s.code != null) ? s.code : '',
 				zoneLabel:  zParts.join(' / '),
 				stateLabel: s ? stateStr(s) : '',
-				flag:       flag
+				flag:       flag,
+				mwPerc:     mwPerc
 			};
 		});
 	}
@@ -1955,7 +1961,7 @@
 
 		let info = document.getElementById('glInfo');
 		let baseInfo = '<strong>' + loc + '</strong> &middot; ' + fmtLat(lat) + ', ' + fmtLng(lng);
-		let zones = '', stateLabel = '', refs = null, meta = null, flag = '';
+		let zones = '', stateLabel = '', refs = null, meta = null, flag = '', mw = null;
 
 		// Re-render from whatever has resolved so far, so the independently
 		// async zones and state enrichments compose instead of clobbering each
@@ -1964,6 +1970,7 @@
 			let parts = [baseInfo];
 			if (zones) { parts.push(zones); }
 			if (stateLabel) { parts.push(stateLabel); }
+			if (mw != null) { parts.push(mwPercLbl.replace('%s', mw + '%')); }
 			info.innerHTML = parts.join(' &middot; ');
 		}
 		function renderPopup() {
@@ -1980,6 +1987,7 @@
 			zones = m.zoneLabel;
 			stateLabel = m.stateLabel;
 			flag = m.flag;
+			mw = m.mwPerc;
 			renderInfo();
 			renderPopup();
 		});
@@ -2163,7 +2171,7 @@
 		} else {
 			zoomToGrid(cell1.center[0], cell1.center[1], cell1);
 
-			let z1 = '', s1 = '', r1 = null, f1 = '', m1 = null;
+			let z1 = '', s1 = '', r1 = null, f1 = '', m1 = null, mw1 = null;
 			function render() {
 				let parts = [
 					'<strong>' + cell1.loc + '</strong> &middot; ' + cell1.label + ' &middot; ' +
@@ -2171,6 +2179,7 @@
 				];
 				if (z1) { parts.push(z1); }
 				if (s1) { parts.push(s1); }
+				if (mw1 != null) { parts.push(mwPercLbl.replace('%s', mw1 + '%')); }
 				info.innerHTML = parts.join(' &middot; ');
 			}
 			render();
@@ -2183,7 +2192,7 @@
 			// CQ/ITU zones + DXCC + state + flag — one combined resolve.
 			resolvePointMeta(cell1.center[0], cell1.center[1], cell1.loc).then(function (mm) {
 				if (myReq !== zoneReq) { return; }
-				m1 = mm; z1 = mm.zoneLabel; s1 = mm.stateLabel; f1 = mm.flag;
+				m1 = mm; z1 = mm.zoneLabel; s1 = mm.stateLabel; f1 = mm.flag; mw1 = mm.mwPerc;
 				render();
 				renderPopup();
 			});
