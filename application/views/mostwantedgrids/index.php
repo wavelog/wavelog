@@ -80,6 +80,7 @@
 		} ?>
 		</div> <!-- /card-body -->
 
+		<div class="px-3 pb-1 small text-muted"><?= __("Filter: percentage of logs containing the grid"); ?></div>
 		<div class="d-flex align-items-center gap-2 px-3 pb-2" id="perc_filter">
 			<span class="text-nowrap"><?= __("Min"); ?> <span id="perc_min_val" class="fw-bold text-success">0%</span></span>
 			<div class="perc-slider flex-grow-1">
@@ -89,6 +90,19 @@
 				<input type="range" class="form-range" id="perc_max" min="0" max="100" step="1" value="100">
 			</div>
 			<span class="text-nowrap"><span id="perc_max_val" class="fw-bold text-success">100%</span> <?= __("Max"); ?></span>
+		</div>
+
+		<?php
+			$mc = json_decode($user_map_custom, true);
+			$validHex = function($c, $default) { return preg_match('/^#[0-9a-fA-F]{6}$/', $c ?? '') ? $c : $default; };
+			$c_rare   = $validHex($mc['unworked']['color']   ?? '', '#ff0000');
+			$c_mid    = $validHex($mc['qso']['color']        ?? '', '#ffff00');
+			$c_common = $validHex($mc['qsoconfirm']['color'] ?? '', '#00ff00');
+		?>
+		<div class="d-flex align-items-center gap-2 px-3 pb-2">
+			<span class="small text-nowrap"><?= __("Rare"); ?></span>
+			<span class="rounded" style="flex:1; height:.6rem; background:linear-gradient(to right, <?= $c_rare ?>, <?= $c_mid ?>, <?= $c_common ?>);"></span>
+			<span class="small text-nowrap"><?= __("Common"); ?></span>
 		</div>
 
 		<div id="gridmapcontainer">
