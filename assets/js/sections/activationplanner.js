@@ -1970,7 +1970,7 @@
 			let parts = [baseInfo];
 			if (zones) { parts.push(zones); }
 			if (stateLabel) { parts.push(stateLabel); }
-			if (mw) { parts.push(mwPercLbl.replace('%s', mw + '%')); }
+			if (mw != null) { parts.push(mwPercLbl.replace('%s', mw + '%')); }
 			info.innerHTML = parts.join(' &middot; ');
 		}
 		function renderPopup() {
@@ -2179,7 +2179,7 @@
 				];
 				if (z1) { parts.push(z1); }
 				if (s1) { parts.push(s1); }
-				if (mw1) { parts.push(mwPercLbl.replace('%s', mw1 + '%')); }
+				if (mw1 != null) { parts.push(mwPercLbl.replace('%s', mw1 + '%')); }
 				info.innerHTML = parts.join(' &middot; ');
 			}
 			render();

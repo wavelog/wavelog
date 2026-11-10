@@ -33,7 +33,8 @@ function gridPlot(form) {
           mwgrids = data.grid_4char;
           plot();
        },
-       error: function (data) {
+       error: function () {
+           showToast('Most Wanted Grids', 'Failed to load grid data', 'bg-danger text-white', 3000);
        },
     });
 }
@@ -149,7 +150,7 @@ function spawnGridsquareModal(loc_4char) {
 function colorGradient(color1, color2, color3, percentage) {
 	const scaleMax = Math.min(percFilterMax, maxPerc);
 	// Scale to current max value
-	percentage = percentage * 100 / scaleMax;
+	percentage = scaleMax > 0 ? percentage * 100 / scaleMax : 0;
 
 	// Parse RGBA color string
 	function parseRGBA(color) {

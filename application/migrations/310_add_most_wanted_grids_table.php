@@ -36,6 +36,9 @@ class Migration_add_most_wanted_grids_table extends CI_Migration {
             $query = $this->db->get('cron');
 
             if ($query->num_rows() == 0) {
+                $random_minute = mt_rand(1, 59);
+                $random_hour = mt_rand(0, 23);
+
                 $this->db->insert_batch('cron', array(
                     array(
                         'id' => 'most_wanted_grids_file',
@@ -43,7 +46,7 @@ class Migration_add_most_wanted_grids_table extends CI_Migration {
                         'status' => 'pending',
                         'description' => 'Download Most Wanted Grids (Satellite)',
                         'function' => 'index.php/update/update_most_wanted_grids',
-                        'expression' => '0 0 1 * *',
+                        'expression' => $random_minute . ' ' . $random_hour . ' 1 * *',
                         'last_run' => null,
                         'next_run' => null
                     )
