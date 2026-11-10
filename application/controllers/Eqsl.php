@@ -484,6 +484,12 @@ class eqsl extends CI_Controller {
 	 * @return void
 	 */
 	private function output_error_image($text) {
+		// Translations may contain HTML entities; GD's builtin font is single-byte latin1
+		$text = @iconv('UTF-8', 'ISO-8859-1//TRANSLIT', html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
+		if ($text === false) {
+			$text = 'eQSL error';
+		}
+
 		$im = imagecreatetruecolor(528, 336);
 		$bg = imagecolorallocate($im, 255, 255, 255);
 		$fg = imagecolorallocate($im, 190, 0, 0);
