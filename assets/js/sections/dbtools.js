@@ -1148,8 +1148,8 @@ function drawMap(data) {
 		div.style.boxShadow = '0 0 10px rgba(0,0,0,0.2)';
 
 		let rows = [
-			{ color: confirmedColor, text: js_escape(html_entity_decode(lang_gen_advanced_logbook_confirmedLabel, ENT_QUOTES, 'UTF-8')) + ' ' + data.dxccnameDisplay },
-			{ color: workedColor, text: js_escape(html_entity_decode(lang_gen_advanced_logbook_workedLabel, ENT_QUOTES, 'UTF-8')) + ' ' + data.gridsquareDisplay },
+			{ color: confirmedColor, text: lang_gen_advanced_logbook_confirmedLabel + ' ' + data.dxccnameDisplay },
+			{ color: workedColor, text: lang_gen_advanced_logbook_workedLabel + ' ' + data.gridsquareDisplay },
 		];
 		for (let i = 0; i < rows.length; i++) {
 			let row = document.createElement('div');
