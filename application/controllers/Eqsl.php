@@ -367,7 +367,7 @@ class eqsl extends CI_Controller {
 
 			// Check if eQSL password is set
 			if (empty($password)) {
-				show_error(__('eQSL password not configured for this user'), 400);
+				$this->output_error_image(__('eQSL password not configured for this user'));
 				return;
 			}
 
@@ -384,7 +384,19 @@ class eqsl extends CI_Controller {
 			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 			if ($file === false || $http_code != 200) {
-				show_error(__('Failed to fetch eQSL image data'), 503);
+				$this->output_error_image(__('Failed to fetch eQSL image data'));
+				return;
+			}
+
+			// eQSL replies with plain text starting "Error: ..." (HTTP 200) e.g. on invalid login.
+			// Success pages start with an HTML comment and contain an <img> tag instead.
+			if (preg_match('/^\s*Error:/i', $file)) {
+				$error = rtrim(preg_replace('/^\s*Error: /', '', $file));
+				if (stripos($error, 'password') !== false || stripos($error, 'username') !== false) {
+					$this->output_error_image(__('Check credentials. Login to eQSL denied'));
+				} else {
+					$this->output_error_image(__('eQSL image not available') . ': ' . $error);
+				}
 				return;
 			}
 
@@ -403,7 +415,7 @@ class eqsl extends CI_Controller {
 				} else {
 					$error_message = "Rate Limited";
 				}
-				show_error(__('eQSL image not available') . ': ' . $error_message, 503);
+				$this->output_error_image(__('eQSL image not available') . ': ' . $error_message);
 				return;
 			}
 
@@ -421,7 +433,7 @@ class eqsl extends CI_Controller {
 				$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 				if ($content === false || $http_code != 200) {
-					show_error(__('Failed to download eQSL image'), 503);
+					$this->output_error_image(__('Failed to download eQSL image'));
 					return;
 				}
 
@@ -431,7 +443,7 @@ class eqsl extends CI_Controller {
 				// Make sure storing the downloaded card won't fill up the disk
 				$this->load->library('upload_guard');
 				if (!$this->upload_guard->has_free_space($eqsl_path, strlen($content))) {
-					show_error(__('Not enough free disk space to store the eQSL card'), 507);
+					$this->output_error_image(__('Not enough free disk space to store the eQSL card'));
 					return;
 				}
 
@@ -455,10 +467,47 @@ class eqsl extends CI_Controller {
 				if ($content !== false) {
 					$this->genfunctions->output_image_with_width($content, $width, $etag);
 				} else {
-					show_error(__('Failed to load cached eQSL image'), 500);
+					$this->output_error_image(__('Failed to load cached eQSL image'));
 				}
 			}
 		}
+	}
+
+	/**
+	 * Output an error message as a JPEG image (eQSL card size)
+	 *
+	 * Needed because the eqsl/image/ endpoint is displayed inside fancybox
+	 * (type "image"), where an HTML error page would fail to load and only
+	 * show a generic "content cannot be loaded" modal.
+	 *
+	 * @param string $text The error message to render
+	 * @return void
+	 */
+	private function output_error_image($text) {
+		// Translations may contain HTML entities; GD's builtin font is single-byte latin1
+		$text = @iconv('UTF-8', 'ISO-8859-1//TRANSLIT', html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
+		if ($text === false) {
+			$text = 'eQSL error';
+		}
+
+		$im = imagecreatetruecolor(528, 336);
+		$bg = imagecolorallocate($im, 255, 255, 255);
+		$fg = imagecolorallocate($im, 190, 0, 0);
+		imagefill($im, 0, 0, $bg);
+
+		$lines = explode("\n", wordwrap($text, 50, "\n"));
+		$line_height = 20; // imagestring font 5
+		$y = max(10, (int)round((336 - count($lines) * $line_height) / 2));
+		foreach ($lines as $line) {
+			$x = max(10, (int)round((528 - strlen($line) * 9) / 2)); // font 5 is ~9px per char
+			imagestring($im, 5, $x, $y, $line, $fg);
+			$y += $line_height;
+		}
+
+		header('Content-Type: image/jpeg');
+		header('Cache-Control: no-store');
+		imagejpeg($im, null, 90);
+		imagedestroy($im);
 	}
 
 	function bulk_download_image($id) {

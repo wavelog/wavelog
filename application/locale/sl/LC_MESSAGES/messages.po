@@ -243,6 +243,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84
 #: application/controllers/Mostwantedgrids.php:8
+#: application/controllers/Eqsl.php:515 application/controllers/Eqsl.php:586
+#: application/controllers/Eqsl.php:601 application/controllers/Eqsl.php:659
 msgid "You're not allowed to do that!"
 msgstr "To vam ni dovoljeno!"
 
@@ -1909,49 +1911,51 @@ msgstr "Geslo eQSL ni konfigurirano za tega uporabnika"
 msgid "Failed to fetch eQSL image data"
 msgstr "Pridobivanje podatkov o sliki eQSL ni uspelo"
 
-#: application/controllers/Eqsl.php:406
+#: application/controllers/Eqsl.php:406 application/controllers/Eqsl.php:398
+#: application/controllers/Eqsl.php:418
 msgid "eQSL image not available"
 msgstr "Slika eQSL ni na voljo"
 
-#: application/controllers/Eqsl.php:424
+#: application/controllers/Eqsl.php:424 application/controllers/Eqsl.php:436
 msgid "Failed to download eQSL image"
 msgstr "Prenos slike eQSL ni uspel"
 
 #: application/controllers/Eqsl.php:434 application/controllers/Eqsl.php:524
+#: application/controllers/Eqsl.php:446 application/controllers/Eqsl.php:573
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "Premalo prostega prostora na disku za shranjevanje eQSL kartice"
 
-#: application/controllers/Eqsl.php:458
+#: application/controllers/Eqsl.php:458 application/controllers/Eqsl.php:470
 msgid "Failed to load cached eQSL image"
 msgstr "Nalaganje predpomnjene slike eQSL ni uspelo"
 
-#: application/controllers/Eqsl.php:541
+#: application/controllers/Eqsl.php:541 application/controllers/Eqsl.php:590
 msgid "eQSL Tools"
 msgstr "Orodja eQSL"
 
-#: application/controllers/Eqsl.php:570
+#: application/controllers/Eqsl.php:570 application/controllers/Eqsl.php:619
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "Omejeno na prvih 150 QSO za to zahtevo. Prosimo, ponovite."
 
-#: application/controllers/Eqsl.php:576
+#: application/controllers/Eqsl.php:576 application/controllers/Eqsl.php:625
 msgid " / Errors: "
 msgstr " / Errors: "
 
-#: application/controllers/Eqsl.php:576
+#: application/controllers/Eqsl.php:576 application/controllers/Eqsl.php:625
 msgid "Successfully downloaded: "
 msgstr "Uspešno preneseno: "
 
-#: application/controllers/Eqsl.php:583
+#: application/controllers/Eqsl.php:583 application/controllers/Eqsl.php:632
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr ""
 "Dosežena je omejitev zahtev eQSL. Pred ponovnim zagonom počakajte.Dosežena "
 "je omejitev števila dostopov do eQSL. Pred ponovnim zagonom počakajte."
 
-#: application/controllers/Eqsl.php:595
+#: application/controllers/Eqsl.php:595 application/controllers/Eqsl.php:644
 msgid "eQSL Card Image Download"
 msgstr "Prenos slike kartice eQSL"
 
-#: application/controllers/Eqsl.php:618
+#: application/controllers/Eqsl.php:618 application/controllers/Eqsl.php:667
 msgid "All eQSLs marked as uploaded"
 msgstr "Vsi eQSL-ji so označeni kot naloženi"
 
@@ -20623,8 +20627,8 @@ msgstr "E-poštni naslov"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"E-poštni naslov, s katerega se pošiljajo sporočila, npr. »wavelog@example.com"
-"«"
+"E-poštni naslov, s katerega se pošiljajo sporočila, npr. "
+"»wavelog@example.com«"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -23736,8 +23740,8 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Ustvarite novo mapo v »assets/css/« in vanjo naložite datoteko »"
-"bootstrap.min.css« z osnovnimi slogovnimi pravili. Uporabljamo teme iz %s"
+"Ustvarite novo mapo v »assets/css/« in vanjo naložite datoteko "
+"»bootstrap.min.css« z osnovnimi slogovnimi pravili. Uporabljamo teme iz %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -25566,6 +25570,10 @@ msgstr "Min"
 #: application/views/mostwantedgrids/index.php:91
 msgid "Max"
 msgstr "Max"
+
+#: application/controllers/Eqsl.php:396
+msgid "Check credentials. Login to eQSL denied"
+msgstr ""
 
 #~ msgid "Callsigns tested: "
 #~ msgstr "Testirani klicni znaki: "
