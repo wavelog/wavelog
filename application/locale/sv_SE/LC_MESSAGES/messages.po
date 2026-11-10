@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-10 10:12+0000\n"
+"POT-Creation-Date: 2026-11-10 10:55+0000\n"
 "PO-Revision-Date: 2026-11-07 04:53+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -176,9 +176,9 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
 #: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:169
 #: application/controllers/Eqsl.php:258 application/controllers/Eqsl.php:281
-#: application/controllers/Eqsl.php:326 application/controllers/Eqsl.php:466
-#: application/controllers/Eqsl.php:537 application/controllers/Eqsl.php:552
-#: application/controllers/Eqsl.php:610
+#: application/controllers/Eqsl.php:326 application/controllers/Eqsl.php:515
+#: application/controllers/Eqsl.php:586 application/controllers/Eqsl.php:601
+#: application/controllers/Eqsl.php:659
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -1824,47 +1824,51 @@ msgstr "eQSL-lösenord är inte konfigurerat för den här användaren"
 msgid "Failed to fetch eQSL image data"
 msgstr "Det gick inte att hämta eQSL-bilddata"
 
-#: application/controllers/Eqsl.php:406
+#: application/controllers/Eqsl.php:396
+msgid "Check credentials. Login to eQSL denied"
+msgstr ""
+
+#: application/controllers/Eqsl.php:398 application/controllers/Eqsl.php:418
 msgid "eQSL image not available"
 msgstr "eQSL-bild inte tillgänglig"
 
-#: application/controllers/Eqsl.php:424
+#: application/controllers/Eqsl.php:436
 msgid "Failed to download eQSL image"
 msgstr "Det gick inte att ladda ner eQSL-bild"
 
-#: application/controllers/Eqsl.php:434 application/controllers/Eqsl.php:524
+#: application/controllers/Eqsl.php:446 application/controllers/Eqsl.php:573
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "Inte tillräckligt med ledigt diskutrymme för att lagra eQSL-kortet"
 
-#: application/controllers/Eqsl.php:458
+#: application/controllers/Eqsl.php:470
 msgid "Failed to load cached eQSL image"
 msgstr "Det gick inte att ladda cachad eQSL-bild"
 
-#: application/controllers/Eqsl.php:541
+#: application/controllers/Eqsl.php:590
 msgid "eQSL Tools"
 msgstr "eQSL-verktyg"
 
-#: application/controllers/Eqsl.php:570
+#: application/controllers/Eqsl.php:619
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "Denna begäran är begränsat till 150 QSOs. Vänligen kör igen."
 
-#: application/controllers/Eqsl.php:576
+#: application/controllers/Eqsl.php:625
 msgid " / Errors: "
 msgstr " / Fel: "
 
-#: application/controllers/Eqsl.php:576
+#: application/controllers/Eqsl.php:625
 msgid "Successfully downloaded: "
 msgstr "Framgångsrikt nedladdad: "
 
-#: application/controllers/Eqsl.php:583
+#: application/controllers/Eqsl.php:632
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr "eQSL-gräns nådd. Vänta en stund innan du kör igen."
 
-#: application/controllers/Eqsl.php:595
+#: application/controllers/Eqsl.php:644
 msgid "eQSL Card Image Download"
 msgstr "eQSL-kortbildnedladdning"
 
-#: application/controllers/Eqsl.php:618
+#: application/controllers/Eqsl.php:667
 msgid "All eQSLs marked as uploaded"
 msgstr "Alla eQSLs markerade som uppladdade"
 
