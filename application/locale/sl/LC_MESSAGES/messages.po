@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-10 14:50+0000\n"
-"PO-Revision-Date: 2026-11-10 11:18+0000\n"
+"PO-Revision-Date: 2026-11-10 19:28+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -1832,7 +1832,7 @@ msgstr "Pridobivanje podatkov o sliki eQSL ni uspelo"
 
 #: application/controllers/Eqsl.php:396
 msgid "Check credentials. Login to eQSL denied"
-msgstr ""
+msgstr "Preverite poverilnice. Prijava v eQSL zavrnjena"
 
 #: application/controllers/Eqsl.php:398 application/controllers/Eqsl.php:418
 msgid "eQSL image not available"
@@ -5972,7 +5972,7 @@ msgstr "Zaklenjeno"
 #: application/views/activated_gridmap/index.php:10
 #: application/views/interface_assets/header.php:172
 msgid "Activated Gridsquares"
-msgstr "Aktivirana UL polja"
+msgstr "Aktivirani QTH lokatorji"
 
 #: application/views/activated_gridmap/index.php:27
 #: application/views/amsatstatus/index.php:113
@@ -7841,7 +7841,8 @@ msgid ""
 "Please set your home grid square in your station profile to calculate grid "
 "activations correctly."
 msgstr ""
-"Za pravilen izračun aktivacij UL nastavite domači UL v profilu postaje."
+"Za pravilen izračun aktivacij QTH lokatorjev nastavite domači QTH lokator v "
+"profilu postaje."
 
 #: application/views/awards/amsat_rover/index.php:31
 msgid "Go to Station Profile"
@@ -16067,7 +16068,7 @@ msgstr "Ta stran navaja zapise razdalj za vsak satelit na podlagi UL polj."
 
 #: application/views/distancerecords/index.php:24
 msgid "My Gridsquare"
-msgstr "Moje UL polje"
+msgstr "Moj QTH lokator"
 
 #: application/views/distancerecords/index.php:25
 msgid "DX Gridsquare"
@@ -16227,8 +16228,9 @@ msgid ""
 "\n"
 "You or someone else has requested a password reset on your Wavelog account."
 msgstr ""
-"Pozdravljeni,\\n\\nvi ali nekdo drug je zahteval ponastavitev gesla za vaš "
-"račun Wavelog."
+"Pozdravljeni,\n"
+"\n"
+"vi ali nekdo drug je zahteval ponastavitev gesla za vaš račun Wavelog."
 
 #: application/views/email/forgot_password.php:13
 msgid ""
@@ -16238,7 +16240,11 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
-"Če tega niste zahtevali, sporočilo prezrite.\\n\\nLep pozdrav,\\n\\nWavelog"
+"Če tega niste zahtevali, sporočilo prezrite.\n"
+"\n"
+"Lep pozdrav,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/oqrs_request.php:3
 #, php-format
@@ -16263,7 +16269,10 @@ msgid ""
 "Hi,\n"
 "\n"
 "You got an OQRS request from %s."
-msgstr "Pozdravljeni,\\n\\nprejeli ste zahtevek OQRS od %s."
+msgstr ""
+"Pozdravljeni,\n"
+"\n"
+"prejeli ste zahtevek OQRS od %s."
 
 #: application/views/email/oqrs_request.php:58
 #: application/views/oqrs/request.php:42
@@ -16282,7 +16291,12 @@ msgid ""
 "Regards,\n"
 "\n"
 "Wavelog"
-msgstr "Prijavite se v Wavelog in ga obdelajte.\\n\\nLep pozdrav,\\n\\nWavelog"
+msgstr ""
+"Prijavite se v Wavelog in nadaljujte.\n"
+"\n"
+"Lep pozdrav,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/testmail.php:3
 msgid "Wavelog Test-Mail"
@@ -16300,9 +16314,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
-"Pozdravljeni,\\n\\nto je preizkusno e-poštno sporočilo iz vaše namestitve "
-"Wavelog.\\n\\nČe ste ga prejeli, so vaše poštne nastavitve pravilne."
-"\\n\\nLep pozdrav,\\n\\nWavelog"
+"Pozdravljeni,\n"
+"\n"
+"to je preizkusno e-poštno sporočilo iz vaše namestitve Wavelog.\n"
+"\n"
+"Če ste ga prejeli, so vaše poštne nastavitve pravilne.\n"
+"\n"
+"Lep pozdrav,\n"
+"\n"
+"Wavelog"
 
 #: application/views/eqsl/analysis.php:14
 #: application/views/eqsl/download.php:13 application/views/eqsl/export.php:12
@@ -16506,7 +16526,7 @@ msgstr "Nazaj na nadzorno ploščo"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
-msgstr "Oglejte si zemljevid delanih/potrjenih UL polj"
+msgstr "Oglejte si zemljevid delanih/potrjenih QTH lokatorjev"
 
 #: application/views/gridmap/index.php:44
 #: application/views/logbookadvanced/index.php:349
@@ -17718,7 +17738,9 @@ msgstr "Neshranjene spremembe"
 msgid ""
 "Your current design has unsaved changes. Loading a different template will "
 "replace it. Continue?"
-msgstr "Neshranjene spremembe"
+msgstr ""
+"Vaša trenutna zasnova vsebuje neshranjene spremembe. Z nalaganjem druge "
+"predloge bo ta zamenjana. Nadaljujete?"
 
 #: application/views/labeldesigner/designer.php:66
 #: application/views/qslpostcard/designer.php:51
@@ -17928,7 +17950,7 @@ msgstr "Možnosti predloge"
 #: application/views/labeldesigner/designer.php:254
 #: application/views/qslpostcard/designer.php:205
 msgid "Template Options"
-msgstr "Število zvez QSO na nalepko"
+msgstr "Možnosti predloge"
 
 #: application/views/labeldesigner/designer.php:258
 msgid "Number of QSOs per label"
@@ -17937,7 +17959,7 @@ msgstr "Razmik med vrsticami"
 #: application/views/labeldesigner/designer.php:262
 #: application/views/qslpostcard/designer.php:213
 msgid "Row spacing"
-msgstr "Ločilne črte med vrsticami QSO"
+msgstr "Razmik med vrstami"
 
 #: application/views/labeldesigner/designer.php:267
 msgid ""
@@ -18059,9 +18081,9 @@ msgstr "Širina preloma besedila"
 
 #: application/views/labeldesigner/designer.php:394
 #: application/views/qslpostcard/designer.php:302
+#, fuzzy
 msgid "Wrap width"
-msgstr ""
-"Če nalepka vsebuje več zvez QSO, natisni to polje za vsako zvezo posebej"
+msgstr "Širina ovoja"
 
 #: application/views/labeldesigner/designer.php:399
 msgid "Print this field once per QSO if a label holds multiple QSOs"
@@ -18301,7 +18323,7 @@ msgstr "Shrani vrsto papirja"
 #: application/views/labels/createpaper.php:75
 #: application/views/labels/editpaper.php:75
 msgid "Save Paper Type"
-msgstr "Označi QSL kot natisnjeno"
+msgstr "Shrani vrsto papirja"
 
 #: application/views/labels/edit.php:24
 msgid ""
@@ -18351,7 +18373,7 @@ msgstr "Uporabi za tiskanje"
 
 #: application/views/labels/index.php:84
 msgid "Use For Print"
-msgstr "QSL-nalepke, ki čakajo na tiskanje"
+msgstr "Uporabi za tisk"
 
 #: application/views/labels/index.php:119
 msgid "QSL Card Labels Pending"
@@ -18375,7 +18397,7 @@ msgstr "Standardno"
 #: application/views/logbookadvanced/startatform.php:23
 #: application/views/qslprint/printlabel.php:23
 msgid "Standard"
-msgstr "Vključi moj klicni znak?"
+msgstr "Standardno"
 
 #: application/views/labels/startatform.php:30
 #: application/views/logbookadvanced/startatform.php:29
@@ -18396,7 +18418,7 @@ msgstr "Vključi klicni znak operaterja (če je vnesen)?"
 #: application/views/logbookadvanced/startatform.php:52
 #: application/views/qslprint/printlabel.php:52
 msgid "Include OP-Call? (if filled)"
-msgstr "Vključi lokator?"
+msgstr "Vključi OP-klicni znak? (če je izpolnjeno)"
 
 #: application/views/labels/startatform.php:65
 #: application/views/logbookadvanced/startatform.php:64
@@ -18414,7 +18436,7 @@ msgstr ""
 
 #: application/views/labels/startatform.php:89
 msgid "Include Via (if filled)?"
-msgstr "Vključi sporočilo QSLMSG (če je vneseno)?"
+msgstr "Vključi »Via« (če je izpolnjeno)?"
 
 #: application/views/labels/startatform.php:101
 msgid "Include QSLMSG (if filled)?"
@@ -18428,7 +18450,7 @@ msgstr "Začetni položaj tiskanja?"
 #: application/views/logbookadvanced/startatform.php:138
 #: application/views/qslprint/printlabel.php:126
 msgid "Start printing at?"
-msgstr "Vnesite začetni položaj za tiskanje nalepk"
+msgstr "Začni tiskanje pri?"
 
 #: application/views/labels/startatform.php:134
 #: application/views/logbookadvanced/startatform.php:144
@@ -19325,7 +19347,7 @@ msgstr "Do"
 #: application/views/logbookadvanced/index.php:944
 #: application/views/logbookadvanced/useroptions.php:40
 msgid "Dx"
-msgstr "DX"
+msgstr "Dx"
 
 #: application/views/logbookadvanced/index.php:451
 msgctxt "Propagation Mode"
@@ -20314,7 +20336,7 @@ msgstr ""
 
 #: application/views/mostwantedgrids/index.php:83
 msgid "Filter: percentage of logs containing the grid"
-msgstr ""
+msgstr "Filter: odstotek dnevnikov, ki vsebujejo QTH lokatorje"
 
 #: application/views/mostwantedgrids/index.php:85
 msgid "Min"
@@ -20326,11 +20348,11 @@ msgstr "Max"
 
 #: application/views/mostwantedgrids/index.php:103
 msgid "Rare"
-msgstr ""
+msgstr "Redek"
 
 #: application/views/mostwantedgrids/index.php:105
 msgid "Common"
-msgstr ""
+msgstr "Običajen"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
@@ -20492,7 +20514,7 @@ msgstr "30 minut"
 msgid "The Age in Minutes of spots, that will be taken care at bandplan/lookup"
 msgstr ""
 "Starost DX-objav v minutah, ki se upoštevajo pri pregledu frekvenčnega "
-"načrta in iskanju"
+"obsega/iskanju"
 
 #: application/views/options/dxcluster.php:26
 msgid "Show spots which are spotted from following continent"
@@ -21128,7 +21150,7 @@ msgstr "Za shranjevanje datotek QSL-kartic uporabljate %s prostora na disku"
 
 #: application/views/qslcard/index.php:71
 msgid "Add Qsos"
-msgstr "Dodaj zveze QSO"
+msgstr "Dodaj QSO"
 
 #: application/views/qslcard/searchresult.php:193
 msgid "Add to QSL"
@@ -25008,11 +25030,11 @@ msgstr "Upravljanje QSL"
 
 #: application/views/view_log/qso.php:74
 msgid "at"
-msgstr ""
+msgstr "ob"
 
 #: application/views/view_log/qso.php:76
 msgid "UTC"
-msgstr ""
+msgstr "UTC"
 
 #: application/views/view_log/qso.php:87
 msgid "View note for this callsign"
