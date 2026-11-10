@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-09 11:11+0000\n"
-"PO-Revision-Date: 2026-11-10 10:06+0000\n"
+"PO-Revision-Date: 2026-11-10 10:56+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -4285,9 +4285,10 @@ msgstr "Posodobitev LoTW SAT"
 
 #: application/controllers/Update.php:745
 #: application/controllers/Update.php:688
-#, fuzzy
 msgid "Hams of Note Update failed. Result: "
-msgstr "Hams of Note Update failed. Result: "
+msgstr ""
+"Posodobitev seznama pomembnih radioamaterjev (Hams of Note) ni uspela. "
+"Rezultat: "
 
 #: application/controllers/Update.php:751
 #: application/controllers/Update.php:694
@@ -6478,7 +6479,7 @@ msgid ""
 "names (OpenStreetMap)"
 msgstr ""
 "Poiščite WWFF / POTA / SOTA / IOTA po imenu ali referenci — tipka Enter "
-"poišče imena krajev (OpenStreetMap)."
+"poišče imena krajev (OpenStreetMap)"
 
 #: application/views/activationplanner/index.php:92
 #: application/views/simplefle/index.php:162
@@ -9604,7 +9605,7 @@ msgid ""
 "JCG reference!)"
 msgstr ""
 "Polja za to diplomo: DXCC (Japonska) in okrožje (vsebovati mora veljavno "
-"referenco JCG!)."
+"referenco JCG!)"
 
 #: application/views/awards/jcg/index.php:39
 msgid "Show JCG Map"
@@ -12881,7 +12882,7 @@ msgstr "Iskanje v imeniku klicnih znakov ni uspelo"
 #: application/views/contesting/logger/components/qso-form.php:96
 #: application/views/contesting/logger/components/qso-form.php:153
 msgid "Nr. S"
-msgstr "Oddana št."
+msgstr "Oddana št"
 
 #: application/views/contesting/logger/components/qso-form.php:96
 msgctxt ""
@@ -12904,7 +12905,7 @@ msgstr "Rdeča: samo predogled. Zelena: ta številka je rezervirana za vas."
 #: application/views/contesting/logger/components/qso-form.php:100
 #: application/views/contesting/logger/components/qso-form.php:154
 msgid "Nr. R"
-msgstr "Prejeta št."
+msgstr "Prejeta št"
 
 #: application/views/contesting/logger/components/qso-form.php:106
 msgid "Grid S"
@@ -13381,7 +13382,7 @@ msgstr "Po spremembi frekvence (QSY) počisti klicni znak"
 #: application/views/contesting/logger/index.php:143
 msgid ""
 "Clears the callsign field when the frequency changes by more than 500 Hz"
-msgstr "Po spremembi frekvence za več kot 500 Hz počisti polje klicnega znaka."
+msgstr "Po spremembi frekvence za več kot 500 Hz počisti polje klicnega znaka"
 
 #: application/views/contesting/logger/index.php:176
 msgid "Current Operator:"
@@ -14997,7 +14998,7 @@ msgid ""
 "none, not found or invalid"
 msgstr ""
 "Če je označeno, možnosti »Preveri vse« in »Posodobi izbrane« vključujeta "
-"tudi zveze QSO, pri katerih DXCC ni določen, ni najden ali je neveljaven."
+"tudi zveze QSO, pri katerih DXCC ni določen, ni najden ali je neveljaven"
 
 #: application/views/dbtools/checkresult.php:80
 #: application/views/dbtools/checkresult.php:224
@@ -16472,7 +16473,7 @@ msgstr "Stanje eQSL"
 
 #: application/views/eqsl/analysis.php:68
 msgid "There are no QSO confirmations waiting for you at eQSL.cc"
-msgstr "Na eQSL.cc vas ne čaka nobena potrditev zveze QSO."
+msgstr "Na eQSL.cc vas ne čaka nobena potrditev QSO"
 
 #: application/views/eqsl/download.php:31
 msgid ""
@@ -17183,7 +17184,7 @@ msgstr "Lokacija je pridobljena iz koordinat DXCC (lokator ni naveden)"
 #: application/views/interface_assets/footer.php:147
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
-msgstr "Lokacije ni mogoče določiti, ker je lokator prazen, DXCC pa je -NONE-."
+msgstr "Lokacije ni mogoče določiti, ker je lokator prazen, DXCC pa je -NONE-"
 
 #: application/views/interface_assets/footer.php:148
 msgid "Error saving operator callsign. Please try again."
@@ -17715,8 +17716,7 @@ msgstr "Izberite lokacijo"
 #: application/views/interface_assets/header.php:699
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
-"Pogrešate lokacije postaj? V nastavitvah postaj jih označite kot "
-"priljubljene."
+"Pogrešate lokacije postaj? V nastavitvah postaj jih označite kot priljubljene"
 
 #: application/views/interface_assets/header.php:736
 msgid "Extras"
@@ -17790,7 +17790,9 @@ msgstr "Želite izbrisati predlogo?"
 #: application/views/qslpostcard/designer.php:39
 msgid ""
 "Are you sure you want to delete this template? This action cannot be undone."
-msgstr "Notranja orodja"
+msgstr ""
+"Ali ste prepričani, da želite izbrisati to predlogo? Tega dejanja ni mogoče "
+"razveljaviti."
 
 #: application/views/labeldesigner/designer.php:53
 #: application/views/qslpostcard/designer.php:40
@@ -17834,7 +17836,7 @@ msgstr "Najprej izberite vrsto nalepke."
 #: application/views/labeldesigner/designer.php:63
 msgid ""
 "The label type of this template no longer exists. Please select another one."
-msgstr "Brisanje ni uspelo"
+msgstr "Vrsta oznake te predloge ne obstaja več. Izberite drugo."
 
 #: application/views/labeldesigner/designer.php:64
 #: application/views/qslpostcard/designer.php:49
@@ -17991,7 +17993,9 @@ msgstr "Povečava"
 msgid ""
 "Tip: After a test print, adjust global offsets rather than moving every "
 "field."
-msgstr "Zavrzi spremembe"
+msgstr ""
+"Nasvet: Po poskusnem tisku prilagodite globalne zamike, namesto da premikate "
+"vsako polje posebej."
 
 #: application/views/labeldesigner/designer.php:163
 #: application/views/qslpostcard/designer.php:127
@@ -18032,7 +18036,7 @@ msgid ""
 "column widths"
 msgstr ""
 "Mreža tabele — povlecite vogal za spremembo velikosti, oznake stolpcev pa za "
-"prilagoditev njihovih širin."
+"prilagoditev njihovih širin"
 
 #: application/views/labeldesigner/designer.php:209
 msgid "Add Table"
@@ -18071,7 +18075,7 @@ msgid ""
 "layout"
 msgstr ""
 "Samodejno nariše črto med vrsticami QSO, podobno kot pri klasični postavitvi "
-"nalepk."
+"nalepk"
 
 #: application/views/labeldesigner/designer.php:267
 msgid "Separator lines between QSO rows"
@@ -18084,7 +18088,7 @@ msgstr "Lastnosti"
 #: application/views/labeldesigner/designer.php:279
 #: application/views/qslpostcard/designer.php:230
 msgid "Properties"
-msgstr "Izberite polje na nalepki, da ga uredite."
+msgstr "Lastnosti"
 
 #: application/views/labeldesigner/designer.php:284
 #: application/views/qslpostcard/designer.php:235
@@ -18094,7 +18098,7 @@ msgstr "Za dodatna dejanja z desno tipko kliknite polje."
 #: application/views/labeldesigner/designer.php:285
 #: application/views/qslpostcard/designer.php:236
 msgid "Right-click a field for more actions."
-msgstr "Besedilo"
+msgstr "Za več dejanj kliknite polje z desno miškino tipko."
 
 #: application/views/labeldesigner/designer.php:295
 #: application/views/qslpostcard/designer.php:246
@@ -18303,51 +18307,51 @@ msgstr "Levi rob"
 
 #: application/views/labels/create.php:55 application/views/labels/edit.php:57
 msgid "Margin Left"
-msgstr "Levi rob nalepk."
+msgstr "Levi rob"
 
 #: application/views/labels/create.php:58 application/views/labels/edit.php:60
 msgid "Left margin of labels."
-msgstr "Nalepke vodoravno"
+msgstr "Levi rob nalepk."
 
 #: application/views/labels/create.php:63 application/views/labels/edit.php:65
 msgid "Labels horizontally"
-msgstr "Število nalepk v vodoravni smeri na strani."
+msgstr "Nalepke vodoravno"
 
 #: application/views/labels/create.php:66 application/views/labels/edit.php:68
 msgid "Number of labels horizontally across the page."
-msgstr "Nalepke navpično"
+msgstr "Število nalepk v vodoravni smeri na strani."
 
 #: application/views/labels/create.php:69 application/views/labels/edit.php:71
 msgid "Labels vertically"
-msgstr "Število nalepk v navpični smeri na strani."
+msgstr "Nalepke navpično"
 
 #: application/views/labels/create.php:72 application/views/labels/edit.php:74
 msgid "Number of labels vertically across the page."
-msgstr "Vodoravni razmik"
+msgstr "Število nalepk v navpični smeri na strani."
 
 #: application/views/labels/create.php:77 application/views/labels/edit.php:79
 msgid "Horizontal space"
-msgstr "Vodoravni razmik med dvema nalepkama."
+msgstr "Vodoravni razmik"
 
 #: application/views/labels/create.php:80 application/views/labels/edit.php:82
 msgid "Horizontal space between 2 labels."
-msgstr "Navpični razmik"
+msgstr "Vodoravni razmik med dvema nalepkama."
 
 #: application/views/labels/create.php:83 application/views/labels/edit.php:85
 msgid "Vertical space"
-msgstr "Navpični razmik med dvema nalepkama."
+msgstr "Navpični razmik"
 
 #: application/views/labels/create.php:86 application/views/labels/edit.php:88
 msgid "Vertical space between 2 labels."
-msgstr "Širina nalepke"
+msgstr "Navpični razmik med dvema nalepkama."
 
 #: application/views/labels/create.php:91 application/views/labels/edit.php:93
 msgid "Width of label"
-msgstr "Skupna širina ene nalepke."
+msgstr "Širina nalepke"
 
 #: application/views/labels/create.php:94 application/views/labels/edit.php:96
 msgid "Total width of one label."
-msgstr "Višina nalepke"
+msgstr "Skupna širina ene nalepke."
 
 #: application/views/labels/create.php:97 application/views/labels/edit.php:99
 msgid "Height of label"
@@ -18356,12 +18360,12 @@ msgstr "Skupna višina ene nalepke"
 #: application/views/labels/create.php:100
 #: application/views/labels/edit.php:102
 msgid "Total height of one label"
-msgstr "Velikost pisave na nalepki; ne izberite prevelike."
+msgstr "Skupna širina ene nalepke"
 
 #: application/views/labels/create.php:108
 #: application/views/labels/edit.php:110
 msgid "Font size used on the label don't go too big."
-msgstr "Zveze QSO na nalepki"
+msgstr "Velikost pisave na etiketi, naj ne bo prevelika."
 
 #: application/views/labels/create.php:111
 #: application/views/labels/edit.php:113
@@ -18376,23 +18380,23 @@ msgstr "Ime vrste papirja"
 #: application/views/labels/createpaper.php:36
 #: application/views/labels/editpaper.php:36
 msgid "Paper Type Name"
-msgstr "Ime papirja za prikaz; izberite smiselno ime."
+msgstr "Ime vrste papirja"
 
 #: application/views/labels/createpaper.php:39
 #: application/views/labels/editpaper.php:39
 msgid "Paper name used for display purposes, so pick something meaningful."
-msgstr "Širina papirja"
+msgstr "Ime prispevka se uporablja za prikaz, zato izberite nekaj smiselnega."
 
 #: application/views/labels/createpaper.php:51
 #: application/views/labels/editpaper.php:51
 msgid "Width of paper"
-msgstr "Skupna širina papirja."
+msgstr "Širina papirja"
 
 #: application/views/labels/createpaper.php:54
 #: application/views/labels/editpaper.php:54
 #: application/views/labels/editpaper.php:60
 msgid "Total width of paper."
-msgstr "Višina papirja"
+msgstr "Skupna širina papirja."
 
 #: application/views/labels/createpaper.php:57
 #: application/views/labels/editpaper.php:57
@@ -18560,7 +18564,7 @@ msgstr "Vnesite začetni položaj za tiskanje nalepk"
 #: application/views/logbookadvanced/startatform.php:144
 #: application/views/qslprint/printlabel.php:132
 msgid "Enter the starting position for label printing"
-msgstr "Iskanje dvojnikov po:"
+msgstr "Vnesite začetni položaj za tiskanje nalepk"
 
 #: application/views/logbookadvanced/callbookdialog.php:5
 msgid ""
@@ -18589,7 +18593,7 @@ msgstr[3] "Odstranim %s zvez QSO iz tekmovanj?"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:3
 msgid "Search for duplicates using:"
-msgstr "Ujemanje zvez QSO znotraj izbranega časovnega okna"
+msgstr "Poišči podvojene vnose z uporabo:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:17
 msgid "Match QSOs within the selected time window of each other"
@@ -19879,7 +19883,7 @@ msgstr ""
 #: application/views/logbookadvanced/qslcarousel.php:59
 #: application/views/qslcard/qslcarousel.php:25
 msgid "QSL picture #"
-msgstr "Slika QSL št."
+msgstr "Slika QSL #"
 
 #: application/views/logbookadvanced/qslcarousel.php:67
 #: application/views/qslcard/qslcarousel.php:32
@@ -19975,7 +19979,7 @@ msgid ""
 "This is meant for debugging purposes only and not designed to be displayed "
 "by default"
 msgstr ""
-"To je namenjeno samo odpravljanju napak in ni predvideno za privzeti prikaz."
+"To je namenjeno samo odpravljanju napak in ni predvideno za privzeti prikaz"
 
 #: application/views/logbookadvanced/useroptions.php:360
 msgid "Map Layers"
@@ -20017,7 +20021,7 @@ msgstr "Stanje LoTW ni znano"
 #: application/views/lookup/lotwuser.php:14
 #: application/views/search/result.php:84
 msgid "Table with last LoTW uploads is empty. Please check"
-msgstr "Tabela zadnjih nalaganj v LoTW je prazna. Preverite."
+msgstr "Tabela zadnjih nalaganj v LoTW je prazna. Preverite"
 
 #: application/views/lookup/lotwuser.php:16
 msgid "No LoTW User"
@@ -20214,7 +20218,7 @@ msgid ""
 "Wiki"
 msgstr ""
 "Za dodatne informacije obiščite %sstran s pogostimi vprašanji o LoTW%s v "
-"wikiju Wavelog."
+"wikiju Wavelog"
 
 #: application/views/lotw_views/upload_cert.php:38
 msgid "Upload File"
@@ -20545,7 +20549,7 @@ msgid ""
 "or use a public one"
 msgstr ""
 "Ponudnik predpomnilnika DXCluster. S %s lahko vzpostavite lasten "
-"predpomnilnik ali uporabite javnega."
+"predpomnilnik ali uporabite javnega"
 
 #: application/views/options/dxcluster.php:14
 #, php-format
@@ -20619,8 +20623,8 @@ msgstr "E-poštni naslov"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"E-poštni naslov, s katerega se pošiljajo sporočila, npr. "
-"»wavelog@example.com«."
+"E-poštni naslov, s katerega se pošiljajo sporočila, npr. »wavelog@example.com"
+"«"
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -20632,7 +20636,7 @@ msgid ""
 "or 'tls://')"
 msgstr ""
 "Ime gostitelja poštnega strežnika, npr. »mail.example.com« (brez »ssl://« "
-"ali »tls://«)."
+"ali »tls://«)"
 
 #: application/views/options/email.php:54
 msgid "SMTP Port"
@@ -20642,7 +20646,7 @@ msgstr "Vrata SMTP"
 msgid ""
 "The SMTP port of the mail server, e.g. if TLS is used -> '587', if SSL is "
 "used -> '465'"
-msgstr "Vrata SMTP poštnega strežnika, npr. »587« za TLS ali »465« za SSL."
+msgstr "Vrata SMTP poštnega strežnika, npr. »587« za TLS ali »465« za SSL"
 
 #: application/views/options/email.php:62
 msgid "SMTP Username"
@@ -20682,8 +20686,8 @@ msgid ""
 "The URL which provides the Hams Of Note List. See example and how it works "
 "here %s"
 msgstr ""
-"Naslov URL, ki ponuja seznam Hams Of Note. Primer in opis delovanja najdete "
-"tukaj: %s."
+"Naslov URL, ki ponuja seznam pomembnih radioamaterjev (Hams Of Note). Primer "
+"in opis delovanja najdete tukaj: %s"
 
 #: application/views/options/hon.php:12
 msgid "Wiki"
@@ -21967,7 +21971,7 @@ msgid ""
 "(/) and QRG is added automatically. Default is %s"
 msgstr ""
 "Naslov URL, ki se odpre ob kliku na objavo v DXCluster. Opomba: končna "
-"poševnica (/) in QRG se dodata samodejno. Privzeta vrednost je %s."
+"poševnica (/) in QRG se dodata samodejno. Privzeta vrednost je %s"
 
 #: application/views/radio/index.php:22
 msgid "Active Radios"
@@ -22123,7 +22127,8 @@ msgstr "Prikaži zemljevid poti satelitov"
 msgid ""
 "Active station location does not have a gridsquare configured. Please check"
 msgstr ""
-"Aktivna lokacija postaje nima nastavljenega lokatorja. Preverite nastavitve."
+"Aktivna lokacija postaje nima nastavljenega QTH lokatorja. Preverite "
+"nastavitve"
 
 #: application/views/satellite/flightpath.php:57
 msgid ""
@@ -22612,7 +22617,7 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
-"Če ste delali z nove lokacije, najprej ustvarite novo %slokacijo postaje%s."
+"Če ste delali z nove lokacije, najprej ustvarite novo %slokacijo postaje%s"
 
 #: application/views/simplefle/index.php:117
 msgid "e.g. OK2CQR"
@@ -22961,7 +22966,7 @@ msgid ""
 msgstr ""
 "To je potrebno za vse funkcije, ki temeljijo na trenutni lokaciji, na primer "
 "zemljevide, statistiko razdalj in drugo. Če želite uporabljati te funkcije, "
-"obvezno vnesite lokator."
+"obvezno vnesite QTH lokator"
 
 #: application/views/station_profile/create.php:200
 #: application/views/station_profile/edit.php:222
@@ -23114,7 +23119,7 @@ msgid ""
 msgstr ""
 "Če je omogočeno, zveze QSO s te lokacije ne bodo naložene v Club Log. Če se "
 "možnost samodejno izklopi, preverite, ali je klicni znak pravilno nastavljen "
-"v Club Logu."
+"v Club Logu"
 
 #: application/views/station_profile/create.php:336
 #: application/views/station_profile/edit.php:359
@@ -23731,8 +23736,8 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Ustvarite novo mapo v »assets/css/« in vanjo naložite datoteko "
-"»bootstrap.min.css« z osnovnimi slogovnimi pravili. Uporabljamo teme iz %s."
+"Ustvarite novo mapo v »assets/css/« in vanjo naložite datoteko »"
+"bootstrap.min.css« z osnovnimi slogovnimi pravili. Uporabljamo teme iz %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -23781,7 +23786,7 @@ msgid ""
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
 "Kliknite »Dodaj temo« in vnesite zahtevane podatke. Imeni datotek logotipov "
-"vnesite %sbrez%s pripone ».png«."
+"vnesite %sbrez%s pripone ».png«"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
