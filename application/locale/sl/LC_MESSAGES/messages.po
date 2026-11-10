@@ -276,6 +276,7 @@ msgstr "Zemljevid aktiviranih lokatorjev"
 #: application/views/interface_assets/footer.php:53
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Awards.php:1613
 msgid "Gridsquares"
 msgstr "Lokatorji"
 
@@ -335,6 +336,7 @@ msgstr "Cone"
 #: application/controllers/Activationplanner.php:33
 #: application/controllers/Awards.php:2777
 #: application/views/awards/itu/index.php:27
+#: application/controllers/Awards.php:2779
 msgid "ITU Zones"
 msgstr "ITU Zone"
 
@@ -537,6 +539,17 @@ msgstr "Diplome"
 #: application/controllers/Awards.php:2994
 #: application/controllers/Awards.php:3069
 #: application/controllers/Awards.php:3211
+#: application/controllers/Awards.php:1598
+#: application/controllers/Awards.php:1805
+#: application/controllers/Awards.php:1956
+#: application/controllers/Awards.php:2007
+#: application/controllers/Awards.php:2587
+#: application/controllers/Awards.php:2779
+#: application/controllers/Awards.php:2909
+#: application/controllers/Awards.php:2983
+#: application/controllers/Awards.php:2996
+#: application/controllers/Awards.php:3071
+#: application/controllers/Awards.php:3213
 #, php-format
 msgid "Awards - %s"
 msgstr "Diplome - %s"
@@ -820,25 +833,30 @@ msgstr "Diplome - "
 
 #: application/controllers/Awards.php:1577
 #: application/controllers/Awards.php:1613
+#: application/controllers/Awards.php:1614
 msgid "Gridsquares worked"
 msgstr "delani lokatorji"
 
 #: application/controllers/Awards.php:1578
 #: application/controllers/Awards.php:1614
+#: application/controllers/Awards.php:1615
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Potrjena UL polja v LoTW"
 
 #: application/controllers/Awards.php:1579
 #: application/controllers/Awards.php:1615
+#: application/controllers/Awards.php:1616
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "UL polja potrjena preko papirnatih QSL"
 
 #: application/controllers/Awards.php:1580
 #: application/controllers/Awards.php:1616
+#: application/controllers/Awards.php:1617
 msgid "Total Gridsquares worked"
 msgstr "Skupno število delanih UL polj"
 
 #: application/controllers/Awards.php:1597
+#: application/controllers/Awards.php:1598
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
@@ -852,48 +870,59 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/user/edit.php:918 application/views/view_log/qso.php:379
 #: application/views/view_log/qso.php:699
 #: application/views/interface_assets/header.php:212
+#: application/controllers/Awards.php:1805
 msgid "SIG"
 msgstr "SIG"
 
 #: application/controllers/Awards.php:1822
+#: application/controllers/Awards.php:1824
 msgid "Awards - SIG - "
 msgstr "Diplome - SIG - "
 
 #: application/controllers/Awards.php:1954 application/views/bands/index.php:62
+#: application/controllers/Awards.php:1956
 msgid "WAP"
 msgstr "WAP"
 
 #: application/controllers/Awards.php:2005
 #: application/views/interface_assets/header.php:269
 #: application/views/interface_assets/header.php:271
+#: application/controllers/Awards.php:2007
 msgid "WAIP"
 msgstr "WAIP"
 
 #: application/controllers/Awards.php:2685
+#: application/controllers/Awards.php:2687
 msgid "England"
 msgstr "Anglija"
 
 #: application/controllers/Awards.php:2686
+#: application/controllers/Awards.php:2688
 msgid "Isle of Man"
 msgstr "Isle of Man"
 
 #: application/controllers/Awards.php:2687
+#: application/controllers/Awards.php:2689
 msgid "Northern Ireland"
 msgstr "Severna Irska"
 
 #: application/controllers/Awards.php:2688
+#: application/controllers/Awards.php:2690
 msgid "Jersey"
 msgstr "Jersey"
 
 #: application/controllers/Awards.php:2689
+#: application/controllers/Awards.php:2691
 msgid "Scotland"
 msgstr "Škotska"
 
 #: application/controllers/Awards.php:2690
+#: application/controllers/Awards.php:2692
 msgid "Guernsey"
 msgstr "Guernsey"
 
 #: application/controllers/Awards.php:2691
+#: application/controllers/Awards.php:2693
 msgid "Wales"
 msgstr "Wales"
 
@@ -901,21 +930,25 @@ msgstr "Wales"
 #: application/views/awards/wac/index.php:7
 #: application/views/interface_assets/header.php:216
 #: application/views/interface_assets/header.php:218
+#: application/controllers/Awards.php:2909
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:2981
+#: application/controllers/Awards.php:2983
 msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Awards.php:2994
 #: application/views/interface_assets/header.php:226
 #: application/views/interface_assets/header.php:228
+#: application/controllers/Awards.php:2996
 msgid "73 on 73"
 msgstr "73 on 73"
 
 #: application/controllers/Awards.php:3069
 #: application/views/awards/wpx/wpx_details.php:19
+#: application/controllers/Awards.php:3071
 msgid "WPX"
 msgstr "WPX"
 
@@ -923,10 +956,12 @@ msgstr "WPX"
 #: application/views/awards/pl_polska/index.php:41
 #: application/views/interface_assets/header.php:293
 #: application/views/interface_assets/header.php:295
+#: application/controllers/Awards.php:3213
 msgid "\"Polska\" Award"
 msgstr "\"Polska\" Award"
 
 #: application/controllers/Awards.php:3255
+#: application/controllers/Awards.php:3257
 msgid "Awards - AMSAT Rover"
 msgstr "Diplome - AMSAT Rover"
 
@@ -4156,58 +4191,72 @@ msgid "Dxcc Prefixes:"
 msgstr "Dxcc Prefiksi:"
 
 #: application/controllers/Update.php:403
+#: application/controllers/Update.php:405
 msgid "SCP Update complete. Result: "
 msgstr "Posodobitev SCP končana. Rezultat: "
 
 #: application/controllers/Update.php:405
+#: application/controllers/Update.php:407
 msgid "SCP Update failed. Result: "
 msgstr "Posodobitev SCP ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:442
+#: application/controllers/Update.php:431
 msgid "LoTW Users Update complete. Result: "
 msgstr "Posodobitev uporabnikov LoTW končana. Rezultat: "
 
 #: application/controllers/Update.php:444
+#: application/controllers/Update.php:433
 msgid "LoTW Users Update failed. Result: "
 msgstr "Posodobitev uporabnikov LoTW ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:479
+#: application/controllers/Update.php:456
 msgid "DOK Update complete. Result: "
 msgstr "Posodobitev DOK je končana. Rezultat: "
 
 #: application/controllers/Update.php:481
+#: application/controllers/Update.php:458
 msgid "DOK Update failed. Result: "
 msgstr "Posodobitev DOK ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:514
+#: application/controllers/Update.php:481
 msgid "SOTA Update complete. Result: "
 msgstr "Posodobitev SOTA je končana. Rezultat: "
 
 #: application/controllers/Update.php:516
+#: application/controllers/Update.php:483
 msgid "SOTA Update failed. Result: "
 msgstr "Posodobitev SOTA ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:549
+#: application/controllers/Update.php:506
 msgid "WWFF Update complete. Result: "
 msgstr "Posodobitev WWFF je končana. Rezultat: "
 
 #: application/controllers/Update.php:551
+#: application/controllers/Update.php:508
 msgid "WWFF Update failed. Result: "
 msgstr "Posodobitev WWFF ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:585
+#: application/controllers/Update.php:531
 msgid "HAMqsl Update complete. Result: "
 msgstr "Posodobitev HAMqsl je končana. Rezultat: "
 
 #: application/controllers/Update.php:587
+#: application/controllers/Update.php:533
 msgid "HAMqsl Update failed. Result: "
 msgstr "Posodobitev HAMqsl ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:620
+#: application/controllers/Update.php:557
 msgid "POTA Update complete. Result: "
 msgstr "Posodobitev POTA je končana. Rezultat: "
 
 #: application/controllers/Update.php:622
+#: application/controllers/Update.php:559
 msgid "POTA Update failed. Result: "
 msgstr "Posodobitev POTA ni uspela. Rezultat: "
 
@@ -4220,31 +4269,38 @@ msgid "POTA boundaries update failed. Result: "
 msgstr "Posodobitev meja POTA ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:690
+#: application/controllers/Update.php:618
 msgid "TLE Update complete. Result: "
 msgstr "Posodobitev TLE je končana. Rezultat: "
 
 #: application/controllers/Update.php:692
+#: application/controllers/Update.php:620
 msgid "TLE Update failed. Result: "
 msgstr "Posodobitev TLE ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:719
+#: application/controllers/Update.php:671
 msgid "LoTW SAT Update"
 msgstr "Posodobitev LoTW SAT"
 
 #: application/controllers/Update.php:745
+#: application/controllers/Update.php:688
 #, fuzzy
 msgid "Hams of Note Update failed. Result: "
 msgstr "Hams of Note Update failed. Result: "
 
 #: application/controllers/Update.php:751
+#: application/controllers/Update.php:694
 msgid "Update of Hams of Note"
 msgstr "Posodobitev Hams of Note"
 
 #: application/controllers/Update.php:791
+#: application/controllers/Update.php:724
 msgid "VUCC Grid file update complete. Result: "
 msgstr "Posodobitev datoteke VUCC Grid je končana. Rezultat: "
 
 #: application/controllers/Update.php:793
+#: application/controllers/Update.php:726
 msgid "VUCC Grid file update failed. Result: "
 msgstr "Posodobitev datoteke VUCC Grid ni uspela. Rezultat: "
 
@@ -13603,7 +13659,8 @@ msgstr "%d zvez QSO"
 #: application/views/contesting/manager/export_edi.php:32
 msgid ""
 "This contest session has no QSOs yet. Export will produce an empty file."
-msgstr "Ta tekmovalna seja še nima zvez QSO. Izvoz bo ustvaril prazno datoteko."
+msgstr ""
+"Ta tekmovalna seja še nima zvez QSO. Izvoz bo ustvaril prazno datoteko."
 
 #: application/views/contesting/manager/export_cbr.php:38
 #: application/views/contesting/manager/export_edi.php:38
@@ -16302,8 +16359,8 @@ msgid ""
 "\n"
 "You or someone else has requested a password reset on your Wavelog account."
 msgstr ""
-"Pozdravljeni,\\n\\n"
-"vi ali nekdo drug je zahteval ponastavitev gesla za vaš račun Wavelog."
+"Pozdravljeni,\\n\\nvi ali nekdo drug je zahteval ponastavitev gesla za vaš "
+"račun Wavelog."
 
 #: application/views/email/forgot_password.php:13
 msgid ""
@@ -16313,9 +16370,7 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
-"Če tega niste zahtevali, sporočilo prezrite.\\n\\n"
-"Lep pozdrav,\\n\\n"
-"Wavelog"
+"Če tega niste zahtevali, sporočilo prezrite.\\n\\nLep pozdrav,\\n\\nWavelog"
 
 #: application/views/email/oqrs_request.php:3
 #, php-format
@@ -16340,9 +16395,7 @@ msgid ""
 "Hi,\n"
 "\n"
 "You got an OQRS request from %s."
-msgstr ""
-"Pozdravljeni,\\n\\n"
-"prejeli ste zahtevek OQRS od %s."
+msgstr "Pozdravljeni,\\n\\nprejeli ste zahtevek OQRS od %s."
 
 #: application/views/email/oqrs_request.php:58
 #: application/views/oqrs/request.php:42
@@ -16361,10 +16414,7 @@ msgid ""
 "Regards,\n"
 "\n"
 "Wavelog"
-msgstr ""
-"Prijavite se v Wavelog in ga obdelajte.\\n\\n"
-"Lep pozdrav,\\n\\n"
-"Wavelog"
+msgstr "Prijavite se v Wavelog in ga obdelajte.\\n\\nLep pozdrav,\\n\\nWavelog"
 
 #: application/views/email/testmail.php:3
 msgid "Wavelog Test-Mail"
@@ -16382,11 +16432,9 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
-"Pozdravljeni,\\n\\n"
-"to je preizkusno e-poštno sporočilo iz vaše namestitve Wavelog.\\n\\n"
-"Če ste ga prejeli, so vaše poštne nastavitve pravilne.\\n\\n"
-"Lep pozdrav,\\n\\n"
-"Wavelog"
+"Pozdravljeni,\\n\\nto je preizkusno e-poštno sporočilo iz vaše namestitve "
+"Wavelog.\\n\\nČe ste ga prejeli, so vaše poštne nastavitve pravilne."
+"\\n\\nLep pozdrav,\\n\\nWavelog"
 
 #: application/views/eqsl/analysis.php:14
 #: application/views/eqsl/download.php:13 application/views/eqsl/export.php:12
@@ -20571,8 +20619,8 @@ msgstr "E-poštni naslov"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"E-poštni naslov, s katerega se pošiljajo sporočila, npr. »wavelog@example.com"
-"«."
+"E-poštni naslov, s katerega se pošiljajo sporočila, npr. "
+"»wavelog@example.com«."
 
 #: application/views/options/email.php:46
 msgid "SMTP Host"
@@ -22842,7 +22890,8 @@ msgstr "Mesto postaje. Na primer: Oslo"
 #: application/views/station_profile/create.php:109
 #: application/views/station_profile/edit.php:131
 msgid "Station state. Applies to certain countries only."
-msgstr "Zvezna država oziroma pokrajina postaje. Velja samo za nekatere države."
+msgstr ""
+"Zvezna država oziroma pokrajina postaje. Velja samo za nekatere države."
 
 #: application/views/station_profile/create.php:116
 #: application/views/station_profile/edit.php:138
@@ -23682,8 +23731,8 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Ustvarite novo mapo v »assets/css/« in vanjo naložite datoteko »"
-"bootstrap.min.css« z osnovnimi slogovnimi pravili. Uporabljamo teme iz %s."
+"Ustvarite novo mapo v »assets/css/« in vanjo naložite datoteko "
+"»bootstrap.min.css« z osnovnimi slogovnimi pravili. Uporabljamo teme iz %s."
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -24481,7 +24530,8 @@ msgstr "Prikaži čas »Nazadnje videno«"
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
-msgstr "Ta nastavitev določa, ali je v gradniku prikazan čas »Nazadnje videno«."
+msgstr ""
+"Ta nastavitev določa, ali je v gradniku prikazan čas »Nazadnje videno«."
 
 #: application/views/user/edit.php:1253
 msgid "Display radio name"
@@ -24491,7 +24541,8 @@ msgstr "Prikaži ime radijske postaje"
 msgid ""
 "This setting controls whether the radio's name is displayed in the widget or "
 "not."
-msgstr "Ta nastavitev določa, ali je v gradniku prikazano ime radijske postaje."
+msgstr ""
+"Ta nastavitev določa, ali je v gradniku prikazano ime radijske postaje."
 
 #: application/views/user/edit.php:1258
 msgid "Display only most recently updated radio"
@@ -24524,7 +24575,8 @@ msgstr "Prikaži točen čas zveze QSO"
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
-msgstr "Ta nastavitev določa, ali se v gradniku QSO prikaže natančen čas zveze."
+msgstr ""
+"Ta nastavitev določa, ali se v gradniku QSO prikaže natančen čas zveze."
 
 #: application/views/user/edit.php:1295
 msgid "Last LoTW Upload widget"
@@ -25243,8 +25295,8 @@ msgid ""
 "There are currently no outstanding QSOs that need to be uploaded to the "
 "QO-100 Dx Club's API."
 msgstr ""
-"Trenutno ni čakajočih zvez QSO, ki bi jih bilo treba naložiti prek API-ja QO-"
-"100 Dx Club."
+"Trenutno ni čakajočih zvez QSO, ki bi jih bilo treba naložiti prek API-ja "
+"QO-100 Dx Club."
 
 #: application/views/webadif/export.php:64
 msgid "Go ahead and turn on your QO-100 station!"

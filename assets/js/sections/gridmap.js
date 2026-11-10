@@ -1,5 +1,3 @@
-var modalloading=false;
-
 let confirmedColor = 'rgba(144,238,144)';
 if (typeof(user_map_custom.qsoconfirm) !== 'undefined') {
       confirmedColor = user_map_custom.qsoconfirm.color;
@@ -261,82 +259,24 @@ function getSelectedCountryName() {
     return selectedText.join(', ');
 }
 
-function spawnGridsquareModal(loc_4char) {
-	if (!(modalloading)) {
-		var ajax_data = ({
-			'Searchphrase': loc_4char,
-			'Band': $("#band").val(),
-			'Mode': $("#mode").val(),
-			'Sat': $("#sat").val(),
-			'Orbit': $("#orbits").val(),
-            'Propagation': $('#propagation').val(),
-			'Type': 'VUCC',
-			'dateFrom': $('#dateFrom').val(),
-			'dateTo': $('#dateTo').val()
-		})
-		if (type == 'activated') {
-			ajax_data.searchmode = 'activated';
-		}
-		modalloading=true;
-		$.ajax({
-			url: base_url + 'index.php/awards/qso_details_ajax',
-			type: 'post',
-			data: ajax_data,
-			success: function (html) {
-		    		var dialog = new BootstrapDialog({
-					title: lang_general_word_qso_data,
-					cssClass: 'qso-dialog',
-					size: BootstrapDialog.SIZE_WIDE,
-					nl2br: false,
-					message: html,
-					onshown: function(dialog) {
-						modalloading=false;
-						$('[data-bs-toggle="tooltip"]').tooltip();
-						$('.displaycontactstable').DataTable({
-							"pageLength": 25,
-							responsive: false,
-							ordering: false,
-							"scrollY":        "550px",
-							"scrollCollapse": true,
-							"paging":         false,
-							"scrollX": true,
-                            "language": {
-                                url: getDataTablesLanguageUrl(),
-                            },
-							dom: 'Bfrtip',
-							buttons: [
-								'csv'
-							]
-						});
-						// change color of csv-button if dark mode is chosen
-						if (isDarkModeTheme()) {
-							$(".buttons-csv").css("color", "white");
-						}
-                        $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function () {
-                            showQsoActionsMenu($(this).closest('.dropdown'));
-                        });
-					},
-                    onhide: function(dialog) {
-                        enableMap();
-                    },
-					buttons: [{
-						label: lang_admin_close,
-						action: function(dialogItself) {
-							dialogItself.close();
-						}
-					}]
-				});
-			    dialog.realize();
-                    $('#gridsquare_map').append(dialog.getModal());
-                    disableMap();
-		    		dialog.open();
-                },
-			error: function(e) {
-				modalloading=false;
-			}
-		});
+// Query params for the shared gridsquare QSO modal (gridmodal.js)
+gridModalQuery = function (loc_4char) {
+	var ajax_data = {
+		'Searchphrase': loc_4char,
+		'Band': $("#band").val(),
+		'Mode': $("#mode").val(),
+		'Sat': $("#sat").val(),
+		'Orbit': $("#orbits").val(),
+		'Propagation': $('#propagation').val(),
+		'Type': 'VUCC',
+		'dateFrom': $('#dateFrom').val(),
+		'dateTo': $('#dateTo').val()
+	};
+	if (type == 'activated') {
+		ajax_data.searchmode = 'activated';
 	}
-}
+	return ajax_data;
+};
 
 function clearMarkers() {
 	$(".ld-ext-right-clear").addClass('running');

@@ -28,6 +28,7 @@ class Mostwantedgrids extends CI_Controller {
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/leaflet/geocoding.js',
+			'assets/js/sections/gridmodal.js',
 			'assets/js/sections/mostwantedgrids.js',
 			'assets/js/leaflet/L.MaidenheadMostwantedGridMap.js',
 		];

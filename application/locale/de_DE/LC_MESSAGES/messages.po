@@ -296,6 +296,7 @@ msgstr "Karte der aktivierten Locator"
 #: application/views/interface_assets/footer.php:53
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Awards.php:1613
 msgid "Gridsquares"
 msgstr "Locator"
 
@@ -355,6 +356,7 @@ msgstr "Zonen"
 #: application/controllers/Activationplanner.php:33
 #: application/controllers/Awards.php:2777
 #: application/views/awards/itu/index.php:27
+#: application/controllers/Awards.php:2779
 msgid "ITU Zones"
 msgstr "ITU-Zonen"
 
@@ -558,6 +560,17 @@ msgstr "Diplome"
 #: application/controllers/Awards.php:2994
 #: application/controllers/Awards.php:3069
 #: application/controllers/Awards.php:3211
+#: application/controllers/Awards.php:1598
+#: application/controllers/Awards.php:1805
+#: application/controllers/Awards.php:1956
+#: application/controllers/Awards.php:2007
+#: application/controllers/Awards.php:2587
+#: application/controllers/Awards.php:2779
+#: application/controllers/Awards.php:2909
+#: application/controllers/Awards.php:2983
+#: application/controllers/Awards.php:2996
+#: application/controllers/Awards.php:3071
+#: application/controllers/Awards.php:3213
 #, php-format
 msgid "Awards - %s"
 msgstr "Diplome – %s"
@@ -841,25 +854,30 @@ msgstr "Diplome - "
 
 #: application/controllers/Awards.php:1577
 #: application/controllers/Awards.php:1613
+#: application/controllers/Awards.php:1614
 msgid "Gridsquares worked"
 msgstr "Gearbeitete Locator"
 
 #: application/controllers/Awards.php:1578
 #: application/controllers/Awards.php:1614
+#: application/controllers/Awards.php:1615
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Auf LoTW bestätigte Locator"
 
 #: application/controllers/Awards.php:1579
 #: application/controllers/Awards.php:1615
+#: application/controllers/Awards.php:1616
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Per Papier QSL bestätigte Locator"
 
 #: application/controllers/Awards.php:1580
 #: application/controllers/Awards.php:1616
+#: application/controllers/Awards.php:1617
 msgid "Total Gridsquares worked"
 msgstr "Summe gearbeiteter Locator"
 
 #: application/controllers/Awards.php:1597
+#: application/controllers/Awards.php:1598
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
@@ -873,48 +891,59 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/user/edit.php:918 application/views/view_log/qso.php:379
 #: application/views/view_log/qso.php:699
 #: application/views/interface_assets/header.php:212
+#: application/controllers/Awards.php:1805
 msgid "SIG"
 msgstr "SIG"
 
 #: application/controllers/Awards.php:1822
+#: application/controllers/Awards.php:1824
 msgid "Awards - SIG - "
 msgstr "Diplome - SIG - "
 
 #: application/controllers/Awards.php:1954 application/views/bands/index.php:62
+#: application/controllers/Awards.php:1956
 msgid "WAP"
 msgstr "WAP"
 
 #: application/controllers/Awards.php:2005
 #: application/views/interface_assets/header.php:269
 #: application/views/interface_assets/header.php:271
+#: application/controllers/Awards.php:2007
 msgid "WAIP"
 msgstr "WAIP"
 
 #: application/controllers/Awards.php:2685
+#: application/controllers/Awards.php:2687
 msgid "England"
 msgstr "England"
 
 #: application/controllers/Awards.php:2686
+#: application/controllers/Awards.php:2688
 msgid "Isle of Man"
 msgstr "Isle of Man"
 
 #: application/controllers/Awards.php:2687
+#: application/controllers/Awards.php:2689
 msgid "Northern Ireland"
 msgstr "Nordirland"
 
 #: application/controllers/Awards.php:2688
+#: application/controllers/Awards.php:2690
 msgid "Jersey"
 msgstr "Jersey"
 
 #: application/controllers/Awards.php:2689
+#: application/controllers/Awards.php:2691
 msgid "Scotland"
 msgstr "Schottland"
 
 #: application/controllers/Awards.php:2690
+#: application/controllers/Awards.php:2692
 msgid "Guernsey"
 msgstr "Guernsey"
 
 #: application/controllers/Awards.php:2691
+#: application/controllers/Awards.php:2693
 msgid "Wales"
 msgstr "Wales"
 
@@ -922,21 +951,25 @@ msgstr "Wales"
 #: application/views/awards/wac/index.php:7
 #: application/views/interface_assets/header.php:216
 #: application/views/interface_assets/header.php:218
+#: application/controllers/Awards.php:2909
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:2981
+#: application/controllers/Awards.php:2983
 msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Awards.php:2994
 #: application/views/interface_assets/header.php:226
 #: application/views/interface_assets/header.php:228
+#: application/controllers/Awards.php:2996
 msgid "73 on 73"
 msgstr "73 on 73"
 
 #: application/controllers/Awards.php:3069
 #: application/views/awards/wpx/wpx_details.php:19
+#: application/controllers/Awards.php:3071
 msgid "WPX"
 msgstr "WPX"
 
@@ -944,10 +977,12 @@ msgstr "WPX"
 #: application/views/awards/pl_polska/index.php:41
 #: application/views/interface_assets/header.php:293
 #: application/views/interface_assets/header.php:295
+#: application/controllers/Awards.php:3213
 msgid "\"Polska\" Award"
 msgstr "\"Polska\" Diplom"
 
 #: application/controllers/Awards.php:3255
+#: application/controllers/Awards.php:3257
 msgid "Awards - AMSAT Rover"
 msgstr "Diplome - AMSAT Rover"
 
@@ -4181,94 +4216,117 @@ msgid "Dxcc Prefixes:"
 msgstr "DXCC-Präfixe:"
 
 #: application/controllers/Update.php:403
+#: application/controllers/Update.php:405
 msgid "SCP Update complete. Result: "
 msgstr "SCP-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:405
+#: application/controllers/Update.php:407
 msgid "SCP Update failed. Result: "
 msgstr "SCP-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:442
+#: application/controllers/Update.php:431
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTW-Benutzer-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:444
+#: application/controllers/Update.php:433
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTW-Benutzer-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:479
+#: application/controllers/Update.php:456
 msgid "DOK Update complete. Result: "
 msgstr "DOK-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:481
+#: application/controllers/Update.php:458
 msgid "DOK Update failed. Result: "
 msgstr "DOK-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:514
+#: application/controllers/Update.php:481
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:516
+#: application/controllers/Update.php:483
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:549
+#: application/controllers/Update.php:506
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:551
+#: application/controllers/Update.php:508
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:585
+#: application/controllers/Update.php:531
 msgid "HAMqsl Update complete. Result: "
 msgstr "HAMqsl-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:587
+#: application/controllers/Update.php:533
 msgid "HAMqsl Update failed. Result: "
 msgstr "HAMqsl-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:620
+#: application/controllers/Update.php:557
 msgid "POTA Update complete. Result: "
 msgstr "POTA-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:622
+#: application/controllers/Update.php:559
 msgid "POTA Update failed. Result: "
 msgstr "POTA-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:671
+#: application/controllers/Update.php:596
 msgid "POTA boundaries update complete. Result: "
 msgstr "Update der POTA-Parkgrenzen fertig. Ergebnis: "
 
 #: application/controllers/Update.php:673
+#: application/controllers/Update.php:598
 msgid "POTA boundaries update failed. Result: "
 msgstr "Update der POTA-Parkgrenzen fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:690
+#: application/controllers/Update.php:618
 msgid "TLE Update complete. Result: "
 msgstr "TLE-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:692
+#: application/controllers/Update.php:620
 msgid "TLE Update failed. Result: "
 msgstr "TLE-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:719
+#: application/controllers/Update.php:671
 msgid "LoTW SAT Update"
 msgstr "LoTW SAT-Aktualisierung"
 
 #: application/controllers/Update.php:745
+#: application/controllers/Update.php:688
 msgid "Hams of Note Update failed. Result: "
 msgstr "Aktualisierung von Hams of Note fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:751
+#: application/controllers/Update.php:694
 msgid "Update of Hams of Note"
 msgstr "Update von 'Hams of Note'"
 
 #: application/controllers/Update.php:791
+#: application/controllers/Update.php:724
 msgid "VUCC Grid file update complete. Result: "
 msgstr "Update der VUCC-Planquadat-Datei erfolgt. Ergebnis: "
 
 #: application/controllers/Update.php:793
+#: application/controllers/Update.php:726
 msgid "VUCC Grid file update failed. Result: "
 msgstr "Update der VUCC-Planquadrat-Datei fehlgeschlagen. Ergebnis: "
 

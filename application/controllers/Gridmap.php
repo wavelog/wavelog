@@ -48,6 +48,7 @@ class Gridmap extends CI_Controller {
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/leaflet/geocoding.js',
+			'assets/js/sections/gridmodal.js',
 			'assets/js/sections/gridmap.js',
 			'assets/js/leaflet/L.MaidenheadColouredGridMap.js',
 			'assets/js/sections/itumap_geojson.js',
