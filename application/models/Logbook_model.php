@@ -6631,7 +6631,7 @@ class Logbook_model extends CI_Model {
 		foreach ($qsos_result as $row) {
 			$plot = array('lat' => 0, 'lng' => 0, 'html' => '', 'label' => '', 'confirmed' => 'N');
 
-			$plot['label'] = $row->COL_CALL;
+			$plot['label'] = '<button type="button" class="btn btn-link text-decoration-none p-0 callsign" id="edit_qso" onclick="displayQso('.$row->COL_PRIMARY_KEY.')"><h3>'.$row->COL_CALL.'</h3></button>';
 
 			$plot['html'] = "";
 			if ($row->COL_NAME != null) {
