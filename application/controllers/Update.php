@@ -812,5 +812,26 @@ class Update extends CI_Controller {
 		}
 
 	}
+
+	public function update_most_wanted_grids() {
+		$lockfilename='/tmp/.update_most_wanted_grids_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
+			$this->load->model('Update_model');
+			$result = $this->Update_model->update_most_wanted_grids();
+			unlink($lockfilename);
+		} else {
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
+		}
+	}
 }
 ?>

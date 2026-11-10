@@ -329,6 +329,41 @@ class Activationplanner extends CI_Controller {
 	}
 
 	/*
+	 * AJAX: given a 4-character gridsquare, return the "most wanted on SAT"
+	 * percentage from the most_wanted_grids table , or null if the grid is not
+	 * listed or the table doesn't exist (feature not migrated).
+	 * Outputs JSON {perc} or null.
+	 */
+	public function perc_for_grid() {
+		$grid = strtoupper((string) $this->input->get('grid', TRUE));
+
+		if (strlen($grid) < 4 || !$this->db->table_exists('most_wanted_grids')) {
+			header('Content-Type: application/json');
+			echo json_encode(null);
+			return;
+		}
+		$grid = substr($grid, 0, 4);
+
+		$this->load->model('mostwantedgrids_model');
+		$perc = $this->mostwantedgrids_model->get_perc($grid);
+		$json = json_encode($perc === null ? null : array('perc' => $perc));
+
+		$etag = '"' . md5($grid . ':' . $json) . '"';
+		session_write_close();
+		header('Pragma: private');
+		header('Cache-Control: private, max-age=3600');
+		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 3600) . ' GMT');
+		header('ETag: ' . $etag);
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			$this->output->set_status_header(304);
+			return;
+		}
+		header('Content-Type: application/json');
+		echo $json;
+	}
+
+	/*
 	 * AJAX: WWFF/POTA/SOTA references within 20 km of a point (the centre of the
 	 * entered gridsquare). The distance math lives in Activationplanner_model.
 	 * Outputs JSON [{type, ref, name, dist}, ...] sorted by distance (km).

@@ -16,6 +16,8 @@
 		sotaUrl:    <?php echo json_encode(site_url('activationplanner/sota_directory')); ?>,
 		iotaUrl:    <?php echo json_encode(site_url('activationplanner/iota_directory')); ?>,
 		dxccGridUrl: <?php echo json_encode(site_url('activationplanner/dxcc_for_grid')); ?>,
+		mwPercUrl:  <?php echo json_encode(site_url('activationplanner/perc_for_grid')); ?>,
+		mwPercLbl:  <?php echo json_encode(__("In log of %s (SAT)")); ?>,
 		refsNearbyUrl: <?php echo json_encode(site_url('activationplanner/refs_nearby')); ?>,
 		satPassUrl: <?php echo json_encode(site_url('satellite/pass')); ?>,
 		satPassLbl: <?php echo json_encode(__("Satellite passes")); ?>,

@@ -1126,4 +1126,52 @@ class Update_model extends CI_Model {
         }
 	}
 
+	function update_most_wanted_grids() {
+		// set the last run in cron table for the correct cron id
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run('most_wanted_grids_file');
+		$mtime = microtime();
+		$mtime = explode(" ",$mtime);
+		$mtime = $mtime[1] + $mtime[0];
+		$starttime = $mtime;
+
+		$url = 'https://gridmaster.fr/api/grids.json?format=map';
+		$curl = curl_init($url);
+
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 15);
+		curl_setopt($curl, CURLOPT_TIMEOUT, 60);
+
+		$response = curl_exec($curl);
+		$json = json_decode($response);
+
+		if (!is_object($json) || count((array)$json) == 0) {
+			log_message('error', 'mostwanted_grids.json update failed: empty or invalid response from provider');
+			return "FAILED: Empty or invalid file";
+		}
+
+		$grids = array();
+		foreach($json as $key => $value) {
+			$grids[] = [
+				'grid' => substr($key, 0, 4),
+				'perc' => $value,
+			];
+		}
+
+		// Truncate the table first
+		$this->db->query("TRUNCATE TABLE most_wanted_grids;");
+		$rows = $this->db->insert_batch('most_wanted_grids', array_values($grids));
+
+		$mtime = microtime();
+		$mtime = explode(" ",$mtime);
+		$mtime = $mtime[1] + $mtime[0];
+		$endtime = $mtime;
+		$totaltime = ($endtime - $starttime);
+
+		if ($rows > 0) {
+			return "DONE: This page was created in ".$totaltime." seconds.<br />" . number_format($rows ) . " Grids saved";
+		} else {
+			return "FAILED: Empty file";
+		}
+	}
 }
