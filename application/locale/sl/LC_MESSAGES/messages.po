@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-10 14:50+0000\n"
-"PO-Revision-Date: 2026-11-10 11:18+0000\n"
+"PO-Revision-Date: 2026-11-10 23:08+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -794,7 +794,7 @@ msgstr "US Counties"
 
 #: application/controllers/Awards.php:1542
 msgid "Log View - Counties"
-msgstr "Pogled dnevnika - Counties"
+msgstr "Pregled dnevnika – Okrožja"
 
 #: application/controllers/Awards.php:1558
 msgid "Awards - "
@@ -803,7 +803,7 @@ msgstr "Diplome - "
 #: application/controllers/Awards.php:1577
 #: application/controllers/Awards.php:1614
 msgid "Gridsquares worked"
-msgstr "delani lokatorji"
+msgstr "Delani lokatorji"
 
 #: application/controllers/Awards.php:1578
 #: application/controllers/Awards.php:1615
@@ -1151,7 +1151,7 @@ msgstr "Podatki za prijavo v Club Log niso bili navedeni."
 
 #: application/controllers/Contest_admin.php:42
 msgid "Contests Administration"
-msgstr "Upravljanje kontestov"
+msgstr "Upravljanje tekmovanj"
 
 #: application/controllers/Contest_admin.php:56
 msgid "Update Contest"
@@ -1160,7 +1160,7 @@ msgstr "Posodobi tekmovanje"
 #: application/controllers/Contest_admin.php:76
 #, php-format
 msgid "Contest %s updated"
-msgstr "Kontest %s posodobljen"
+msgstr "Tekmovanje %s posodobljeno"
 
 #: application/controllers/Contestcalendar.php:11
 #: application/views/interface_assets/header.php:332
@@ -1175,7 +1175,7 @@ msgstr "Contestcalendar ni dostopen. Prosimo, poskusite kasneje"
 #: application/views/contesting/manager/export_cbr.php:15
 #: application/views/contesting/manager/export_edi.php:15
 msgid "Contest Management"
-msgstr "Upravljanje kontestov"
+msgstr "Upravljanje tekmovanj"
 
 #: application/controllers/Contesting.php:92
 #: application/controllers/Contesting.php:613
@@ -1287,7 +1287,7 @@ msgstr "Ta funkcija je onemogočena."
 #: application/controllers/Contesting_import.php:36
 #: application/controllers/Contesting_import.php:104
 msgid "No historical contests found that could be imported."
-msgstr "Ni najdenih zgodovinskih tekmovanj, ki bi jih bilo mogoče uvoziti."
+msgstr "Ni najdenih preteklih tekmovanj, ki bi jih bilo mogoče uvoziti."
 
 #: application/controllers/Contesting_import.php:40
 msgid "Import Historical Contests"
@@ -1832,7 +1832,7 @@ msgstr "Pridobivanje podatkov o sliki eQSL ni uspelo"
 
 #: application/controllers/Eqsl.php:396
 msgid "Check credentials. Login to eQSL denied"
-msgstr ""
+msgstr "Preverite poverilnice. Prijava v eQSL zavrnjena"
 
 #: application/controllers/Eqsl.php:398 application/controllers/Eqsl.php:418
 msgid "eQSL image not available"
@@ -3233,7 +3233,6 @@ msgstr "Pošiljanje preizkusnega sporočila ni uspelo. Nekaj je šlo narobe."
 msgid "Testmail sent. Email settings seem to be correct."
 msgstr ""
 "Preskusno e-poštno sporočilo je poslano. Nastavitve e-pošte so videti "
-"pravilne.Preizkusno sporočilo poslano. Zdi se, da so nastavitve e-pošte "
 "pravilne."
 
 #: application/controllers/Options.php:362
@@ -3965,8 +3964,8 @@ msgstr[3] "QSOjev"
 #: application/views/stationsetup/stationsetup.php:220
 msgid "Are you sure you want to delete all QSOs within this station profile?"
 msgstr ""
-"Ali res želite izbrisati vse zveze QSO v tem profilu postaje?Ali ste "
-"prepričani, da želite izbrisati vse QSO znotraj tega profila postaje?"
+"Ali res želite izbrisati vse QSO v tem profilu postaje?Ali ste prepričani, "
+"da želite izbrisati vse QSO znotraj tega profila postaje?"
 
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:170
@@ -5038,7 +5037,7 @@ msgstr[3] "%s / %s frekvenčnih pasov"
 
 #: application/models/Achievements_model.php:387
 msgid "SAT QSOs"
-msgstr "Satelitske zveze QSO"
+msgstr "Satelitske QSO"
 
 #: application/models/Achievements_model.php:392
 msgid "Different satellites"
@@ -5065,7 +5064,7 @@ msgstr[3] "Trenutno zaporedje: %s dni"
 #: application/models/Achievements_model.php:407
 #: application/views/visitor/mini.php:214
 msgid "No QSOs yet"
-msgstr "Za zdaj še ni zvez QSO"
+msgstr "Za zdaj še ni QSO"
 
 #: application/models/Achievements_model.php:410
 #: application/models/Achievements_model.php:412
@@ -5238,8 +5237,7 @@ msgstr "V imenik predpomnilnika %s ni mogoče pisati – preverite dovoljenja."
 msgid "Redis write failed - server down or maxmemory reached?"
 msgstr ""
 "Zapisovanje v Redis ni uspelo – strežnik ne deluje ali pa je dosežena "
-"omejitev pomnilnika?Pisanje v Redis ni uspelo - strežnik ne deluje ali je "
-"dosežen maksimalni pomnilnik?"
+"omejitev pomnilnika?"
 
 #: application/models/Debug_model.php:381
 msgid "Memcached write failed - server down?"
@@ -5908,11 +5906,11 @@ msgstr ""
 
 #: application/views/achievements/index.php:78
 msgid "QSO filter"
-msgstr "Filter zvez QSO"
+msgstr "Filter QSO"
 
 #: application/views/achievements/index.php:79
 msgid "All QSOs"
-msgstr "Vse zveze QSO"
+msgstr "Vse QSO"
 
 #: application/views/achievements/index.php:80
 msgid "Confirmed only"
@@ -5920,7 +5918,7 @@ msgstr "Samo potrjene"
 
 #: application/views/achievements/index.php:80
 msgid "Count only QSOs confirmed by LoTW or paper card"
-msgstr "Štej samo zveze QSO, potrjene prek LoTW ali s papirno kartico"
+msgstr "Štej samo QSO, potrjene prek LoTW ali s papirno kartico"
 
 #: application/views/achievements/index.php:83
 #, php-format
@@ -5972,7 +5970,7 @@ msgstr "Zaklenjeno"
 #: application/views/activated_gridmap/index.php:10
 #: application/views/interface_assets/header.php:172
 msgid "Activated Gridsquares"
-msgstr "Aktivirana UL polja"
+msgstr "Aktivirani QTH lokatorji"
 
 #: application/views/activated_gridmap/index.php:27
 #: application/views/amsatstatus/index.php:113
@@ -6246,7 +6244,7 @@ msgstr "Reference v tem lokatorskem polju"
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
 msgid "QSOs"
-msgstr "Zveze QSO"
+msgstr "QSO"
 
 #: application/views/activationplanner/index.php:46
 msgid "last"
@@ -6829,8 +6827,8 @@ msgstr ""
 #: application/views/adif/import.php:196
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
 msgstr ""
-"Označi zveze QSO kot naložene (to jih NE naloži v te storitve!)Označi QSO-je "
-"kot naložene (S tem se QSO-ji NE naložijo na te storitve!)"
+"Označi QSO kot naložene (to jih NE naloži v te storitve!)Označi QSO-je kot "
+"naložene (S tem se QSO-ji NE naložijo na te storitve!)"
 
 #: application/views/adif/import.php:203
 msgid "Mark imported QSOs as uploaded to LoTW"
@@ -7011,7 +7009,7 @@ msgid ""
 "import QSO data itself."
 msgstr ""
 "Ta funkcija omogoča uvoz referenc POTA iz dnevnika lovca POTA v obliki ADIF. "
-"Uvozi samo reference za obstoječe zveze QSO, ne pa tudi samih podatkov QSO."
+"Uvozi samo reference za obstoječe QSO, ne pa tudi samih podatkov QSO."
 
 #: application/views/adif/import.php:408
 #, php-format
@@ -7802,7 +7800,7 @@ msgstr ""
 
 #: application/views/awards/73on73/index.php:19
 msgid "73 on 73 QSO List"
-msgstr "Seznam zvez QSO 73 na 73"
+msgstr "Seznam QSO 73 na 73"
 
 #: application/views/awards/73on73/index.php:37
 #: application/views/awards/waja/index.php:172
@@ -7841,7 +7839,8 @@ msgid ""
 "Please set your home grid square in your station profile to calculate grid "
 "activations correctly."
 msgstr ""
-"Za pravilen izračun aktivacij UL nastavite domači UL v profilu postaje."
+"Za pravilen izračun aktivacij QTH lokatorjev nastavite domači QTH lokator v "
+"profilu postaje."
 
 #: application/views/awards/amsat_rover/index.php:31
 msgid "Go to Station Profile"
@@ -8386,11 +8385,11 @@ msgstr "Vsi bandi"
 
 #: application/views/awards/counties/state_ajax.php:8
 msgid "QSOs Worked"
-msgstr "Vzpostavljene zveze QSO"
+msgstr "Vzpostavljene QSO"
 
 #: application/views/awards/counties/state_ajax.php:9
 msgid "QSOs Confirmed"
-msgstr "Potrjene zveze QSO"
+msgstr "Potrjene QSO"
 
 #: application/views/awards/cq/index.php:4
 #: application/views/awards/itu/index.php:4
@@ -9184,7 +9183,7 @@ msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
-"Diploma Gridmaster je bila prvotno zasnovana za 488 polj, ki naj bi bila "
+"Diploma Gridmaster je bila prvotno zasnovana za 488 UL polj, ki naj bi bila "
 "delana v ZDA."
 
 #: application/views/awards/gridmaster/index.php:19
@@ -9441,7 +9440,7 @@ msgid ""
 "Attention! Wavelog does not verify whether a QSO happened before the entity "
 "deletion date."
 msgstr ""
-"Pozor! Wavelog ne preverja, ali je bila zveza QSO vzpostavljena pred datumom "
+"Pozor! Wavelog ne preverja, ali je bila QSO vzpostavljena pred datumom "
 "ukinitve entitete."
 
 #: application/views/awards/jcc/index.php:199
@@ -9903,7 +9902,7 @@ msgstr "Število referenc"
 #: application/views/qslprint/qslprint.php:102
 #: application/views/simplefle/index.php:147
 msgid "QSO List"
-msgstr "Seznam zvez QSO"
+msgstr "Seznam QSO"
 
 #: application/views/awards/sig/qso_list.php:14
 #: application/views/dbtools/missinggridlist.php:45
@@ -11806,7 +11805,7 @@ msgstr "Zadnja QSO"
 #: application/views/calltester/call_info.php:47
 #, php-format
 msgid "No QSOs with %s found in your logbook."
-msgstr "V vašem dnevniku ni zvez QSO z %s."
+msgstr "V vašem dnevniku ni QSO z %s."
 
 #: application/views/calltester/call_info.php:62
 #: application/views/zonechecker/result.php:74
@@ -11946,7 +11945,7 @@ msgstr "Rezultat ADIF"
 #: application/views/calltester/result.php:72
 #: application/views/zonechecker/result.php:89
 msgid "Show all QSOs with this callsign"
-msgstr "Prikaži vse zveze QSO s tem klicnim znakom"
+msgstr "Prikaži vse QSO s tem klicnim znakom"
 
 #: application/views/calltester/comparison_result.php:120
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
@@ -12074,8 +12073,8 @@ msgstr "Dejanje"
 #: application/views/club/permissions.php:44
 msgid "Log QSOs via Web GUI (live and post)"
 msgstr ""
-"Beleženje zvez QSO prek spletnega vmesnika (v živo in naknadno)Beleženje QSO "
-"prek spletnega grafičnega uporabniškega vmesnika (v živo in po objavi)"
+"Beleženje QSO prek spletnega grafičnega uporabniškega vmesnika (v živo in po "
+"objavi)"
 
 #: application/views/club/permissions.php:53
 msgid "Log QSOs via API"
@@ -12691,7 +12690,7 @@ msgstr "Naslednji teden"
 
 #: application/views/contesting/logger/components/qso-form.php:9
 msgid "QSO Logger"
-msgstr "Dnevnik zvez QSO"
+msgstr "Dnevnik QSO"
 
 #: application/views/contesting/logger/components/qso-form.php:25
 msgid "DXCC Lookup..."
@@ -12712,7 +12711,7 @@ msgstr "Že vzpostavljena zveza na %s"
 
 #: application/views/contesting/logger/components/qso-form.php:29
 msgid "Radio component not available. Can not save QSO."
-msgstr "Komponenta radijske postaje ni na voljo. Zveze QSO ni mogoče shraniti."
+msgstr "Komponenta radijske postaje ni na voljo. QSO ni mogoče shraniti."
 
 #: application/views/contesting/logger/components/qso-form.php:30
 msgid "Frequency or Mode not set. Please check radio settings."
@@ -12730,7 +12729,7 @@ msgstr "Sinhronizirano"
 
 #: application/views/contesting/logger/components/qso-form.php:36
 msgid "QSO could not be saved:"
-msgstr "Zveze QSO ni bilo mogoče shraniti:"
+msgstr "QSO ni bilo mogoče shraniti:"
 
 #: application/views/contesting/logger/components/qso-form.php:37
 msgid "Delete this QSO?"
@@ -12738,11 +12737,11 @@ msgstr "Ali želite izbrisati to zvezo QSO?"
 
 #: application/views/contesting/logger/components/qso-form.php:42
 msgid "You can only edit your own QSOs"
-msgstr "Urejate lahko samo svoje zveze QSO"
+msgstr "Urejate lahko samo svoje QSO"
 
 #: application/views/contesting/logger/components/qso-form.php:43
 msgid "Failed to delete QSO:"
-msgstr "Brisanje zveze QSO ni uspelo:"
+msgstr "Brisanje QSO ni uspelo:"
 
 #: application/views/contesting/logger/components/qso-form.php:45
 msgid "Callbook lookup failed"
@@ -13181,8 +13180,8 @@ msgid ""
 "There are still unsynced QSOs. Please wait until they are saved before "
 "switching operator."
 msgstr ""
-"Nekatere zveze QSO še niso sinhronizirane. Pred zamenjavo operaterja "
-"počakajte, da se shranijo."
+"Nekatere QSO še niso sinhronizirane. Pred zamenjavo operaterja počakajte, da "
+"se shranijo."
 
 #: application/views/contesting/logger/index.php:70
 msgid "Operator switch failed. Please try again."
@@ -13280,8 +13279,8 @@ msgid ""
 "Please provide your personal call sign. This makes sure that QSOs are logged "
 "and exported with correct operator information."
 msgstr ""
-"Vnesite svoj osebni klicni znak. Tako bodo zveze QSO zabeležene in izvožene "
-"s pravilnimi podatki o operaterju."
+"Vnesite svoj osebni klicni znak. Tako bodo QSO zabeležene in izvožene s "
+"pravilnimi podatki o operaterju."
 
 #: application/views/contesting/logger/index.php:190
 #: application/views/operator/index.php:18
@@ -13314,7 +13313,7 @@ msgstr "Postaja: "
 
 #: application/views/contesting/manager/components/confirm_delete.php:19
 msgid "Also delete all QSOs logged in this session from the logbook"
-msgstr "Iz dnevnika izbriši tudi vse zveze QSO, zabeležene v tej seji"
+msgstr "Iz dnevnika izbriši tudi vse QSO, zabeležene v tej seji"
 
 #: application/views/contesting/manager/components/confirm_delete.php:26
 msgid "Delete Session"
@@ -13523,14 +13522,13 @@ msgstr "Posodobi sejo"
 #: application/views/contesting/manager/export_edi.php:27
 #, php-format
 msgid "%d QSOs"
-msgstr "%d zvez QSO"
+msgstr "%d QSO"
 
 #: application/views/contesting/manager/export_cbr.php:32
 #: application/views/contesting/manager/export_edi.php:32
 msgid ""
 "This contest session has no QSOs yet. Export will produce an empty file."
-msgstr ""
-"Ta tekmovalna seja še nima zvez QSO. Izvoz bo ustvaril prazno datoteko."
+msgstr "Ta tekmovalna seja še nima QSO. Izvoz bo ustvaril prazno datoteko."
 
 #: application/views/contesting/manager/export_cbr.php:38
 #: application/views/contesting/manager/export_edi.php:38
@@ -13863,7 +13861,7 @@ msgstr "Prenesi EDI"
 
 #: application/views/contesting/manager/import_legacy.php:9
 msgid "Historical Contest QSOs"
-msgstr "Pretekle tekmovalne zveze QSO"
+msgstr "Pretekle tekmovalne QSO"
 
 #: application/views/contesting/manager/import_legacy.php:13
 msgid ""
@@ -13887,11 +13885,11 @@ msgid ""
 "as one session, while weekly or monthly contest series are imported as "
 "separate sessions."
 msgstr ""
-"Zveze QSO so razvrščene po tekmovanju in postaji. Zaporedne zveze QSO "
-"spadajo v isto sejo, če je med njimi manj kot 72 ur ali če so v istem "
-"koledarskem tednu ISO (od ponedeljka do nedelje). Tako dejavnosti, ki "
-"trajajo ves teden, ostanejo v eni seji, tedenske ali mesečne serije "
-"tekmovanj pa se uvozijo kot ločene seje."
+"QSO so razvrščene po tekmovanju in postaji. Zaporedne QSO spadajo v isto "
+"sejo, če je med njimi manj kot 72 ur ali če so v istem koledarskem tednu ISO "
+"(od ponedeljka do nedelje). Tako dejavnosti, ki trajajo ves teden, ostanejo "
+"v eni seji, tedenske ali mesečne serije tekmovanj pa se uvozijo kot ločene "
+"seje."
 
 #: application/views/contesting/manager/import_legacy.php:22
 msgid "Admin mode:"
@@ -14003,7 +14001,7 @@ msgstr "Izbrane seje: "
 
 #: application/views/contesting/manager/index.php:133
 msgid "Also delete all QSOs logged in these sessions from the logbook"
-msgstr "Iz dnevnika izbriši tudi vse zveze QSO, zabeležene v teh sejah"
+msgstr "Iz dnevnika izbriši tudi vse QSO, zabeležene v teh sejah"
 
 #: application/views/contesting/manager/index.php:140
 msgid "Delete Sessions"
@@ -14042,7 +14040,7 @@ msgstr "Podatki o zvezah"
 
 #: application/views/countqsoby/index.php:10
 msgid "QSOs total"
-msgstr "Skupaj zvez QSO"
+msgstr "Skupaj QSO"
 
 #: application/views/countqsoby/index.php:28
 msgid "Filter"
@@ -14054,7 +14052,7 @@ msgstr "Prednastavljena datumska obdobja"
 
 #: application/views/countqsoby/index.php:64
 msgid "Count QSOs by"
-msgstr "Štej zveze QSO po"
+msgstr "Štej QSO po"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -14275,7 +14273,7 @@ msgstr "Razčlenitev DXCC-jev"
 #: application/views/dashboard/index.php:694
 #: application/views/user/edit.php:866
 msgid "VUCC-Grids"
-msgstr "VUCC-Grids"
+msgstr "VUCC-polja"
 
 #: application/views/dashboard/_options_menu.php:22
 #: application/views/dashboard/index.php:664
@@ -14436,15 +14434,15 @@ msgstr "Za možnosti kliknite z desno tipko miške"
 
 #: application/views/dashboard/index.php:246
 msgid "QSOs this year"
-msgstr "Zveze QSO letos"
+msgstr "QSO letos"
 
 #: application/views/dashboard/index.php:256
 msgid "QSOs this month"
-msgstr "Zveze QSO ta mesec"
+msgstr "QSO ta mesec"
 
 #: application/views/dashboard/index.php:266
 msgid "QSOs today"
-msgstr "Zveze QSO danes"
+msgstr "QSO danes"
 
 #: application/views/dashboard/index.php:276
 msgid "Current Streak"
@@ -14806,7 +14804,7 @@ msgstr "Rezultati preverjanja razdalj"
 #: application/views/dbtools/checkresult.php:40
 #: application/views/dbtools/checkresult.php:56
 msgid "QSOs to update found:"
-msgstr "Najdene zveze QSO za posodobitev:"
+msgstr "Najdene QSO za posodobitev:"
 
 #: application/views/dbtools/checkresult.php:43
 #: application/views/logbookadvanced/distancedialog.php:2
@@ -14815,21 +14813,20 @@ msgid ""
 "station profile, and the gridsquare of the QSO partner. Distance will be "
 "calculated based on if short path or long path is set."
 msgstr ""
-"Posodobi razdaljo za vse zveze QSO na podlagi lokatorja v profilu postaje in "
+"Posodobi razdaljo za vse QSO na podlagi lokatorja v profilu postaje in "
 "lokatorja sogovornika. Razdalja se izračuna glede na izbrano krajšo ali "
 "daljšo pot."
 
 #: application/views/dbtools/checkresult.php:44
 #: application/views/logbookadvanced/distancedialog.php:3
 msgid "This is useful if you have imported QSOs without distance information."
-msgstr "To je uporabno, če ste uvozili zveze QSO brez podatkov o razdalji."
+msgstr "To je uporabno, če ste uvozili QSO brez podatkov o razdalji."
 
 #: application/views/dbtools/checkresult.php:45
 #: application/views/logbookadvanced/distancedialog.php:4
 msgid "Update will only set the distance for QSOs where the distance is empty."
 msgstr ""
-"Posodobitev bo nastavila razdaljo samo za zveze QSO, kjer je ta podatek "
-"prazen."
+"Posodobitev bo nastavila razdaljo samo za QSO, kjer je ta podatek prazen."
 
 #: application/views/dbtools/checkresult.php:49
 #: application/views/dbtools/checkresult.php:65
@@ -14845,11 +14842,11 @@ msgstr "Rezultati preverjanja celin"
 #: application/views/dbtools/checkresult.php:59
 msgid ""
 "Update all QSOs with the continent based on the DXCC country of the QSO."
-msgstr "Posodobi celino za vse zveze QSO na podlagi države DXCC."
+msgstr "Posodobi celino za vse QSO na podlagi države DXCC."
 
 #: application/views/dbtools/checkresult.php:60
 msgid "This is useful if you have imported QSOs without continent information."
-msgstr "To je uporabno, če ste uvozili zveze QSO brez podatkov o celini."
+msgstr "To je uporabno, če ste uvozili QSO brez podatkov o celini."
 
 #: application/views/dbtools/checkresult.php:61
 msgid ""
@@ -14866,7 +14863,7 @@ msgid ""
 "none, not found or invalid"
 msgstr ""
 "Če je označeno, možnosti »Preveri vse« in »Posodobi izbrane« vključujeta "
-"tudi zveze QSO, pri katerih DXCC ni določen, ni najden ali je neveljaven"
+"tudi QSO, pri katerih DXCC ni določen, ni najden ali je neveljaven"
 
 #: application/views/dbtools/checkresult.php:80
 #: application/views/dbtools/checkresult.php:224
@@ -14884,7 +14881,7 @@ msgstr "Rezultati preverjanja lokatorjev"
 
 #: application/views/dbtools/checkresult.php:143
 msgid "These QSOs MAY have incorrect gridsquares."
-msgstr "Te zveze QSO imajo MORDA napačne lokatorje."
+msgstr "Te QSO imajo MORDA napačne lokatorje."
 
 #: application/views/dbtools/checkresult.php:144
 msgid ""
@@ -14918,7 +14915,7 @@ msgid ""
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
 "Pri naslednjih zvezah QSO je bila ugotovljena drugačna cona CQ, kot je "
-"običajna za ta DXCC (prikazanih je največ 5000 zvez QSO):"
+"običajna za ta DXCC (prikazanih je največ 5000 QSO):"
 
 #: application/views/dbtools/checkresult.php:219
 msgid "Force update even if DXCC covers multiple CQ zones"
@@ -14934,7 +14931,7 @@ msgid ""
 msgstr ""
 "Funkcija posodobitve lahko nastavi samo glavno cono CQ, dodeljeno DXCC. Če "
 "DXCC obsega več con CQ, rezultat morda ne bo pravilen. Zato se privzeto "
-"posodobijo samo zveze QSO z DXCC, ki obsega eno cono CQ. Ta možnost omejitev "
+"posodobijo samo QSO z DXCC, ki obsega eno cono CQ. Ta možnost omejitev "
 "odpravi, vendar lahko povzroči napačne podatke. Uporabljajte previdno!"
 
 #: application/views/dbtools/checkresult.php:237
@@ -14956,7 +14953,7 @@ msgid ""
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
 "Pri naslednjih zvezah QSO je bila ugotovljena drugačna cona ITU, kot je "
-"običajna za ta DXCC (prikazanih je največ 5000 zvez QSO):"
+"običajna za ta DXCC (prikazanih je največ 5000 QSO):"
 
 #: application/views/dbtools/checkresult.php:295
 msgid "Force update even if DXCC covers multiple ITU zones"
@@ -14972,9 +14969,8 @@ msgid ""
 msgstr ""
 "Funkcija posodobitve lahko nastavi samo glavno cono ITU, dodeljeno DXCC. Če "
 "DXCC obsega več con ITU, rezultat morda ne bo pravilen. Zato se privzeto "
-"posodobijo samo zveze QSO z DXCC, ki obsega eno cono ITU. Ta možnost "
-"omejitev odpravi, vendar lahko povzroči napačne podatke. Uporabljajte "
-"previdno!"
+"posodobijo samo QSO z DXCC, ki obsega eno cono ITU. Ta možnost omejitev "
+"odpravi, vendar lahko povzroči napačne podatke. Uporabljajte previdno!"
 
 #: application/views/dbtools/checkresult.php:313
 msgid "DXCC ITU Zone"
@@ -14986,7 +14982,7 @@ msgstr "Rezultati preverjanja IOTA"
 
 #: application/views/dbtools/checkresult.php:371
 msgid "These QSOs MAY have an incorrect IOTA reference."
-msgstr "Te zveze QSO imajo MORDA napačno referenco IOTA."
+msgstr "Te QSO imajo MORDA napačno referenco IOTA."
 
 #: application/views/dbtools/checkresult.php:372
 msgid ""
@@ -14998,7 +14994,7 @@ msgstr ""
 
 #: application/views/dbtools/checkresult.php:383
 msgid "QSO DXCC"
-msgstr "DXCC zveze QSO"
+msgstr "DXCC QSO"
 
 #: application/views/dbtools/checkresult.php:385
 msgid "IOTA DXCC"
@@ -15056,7 +15052,7 @@ msgstr "Preveri napačne cone CQ pri vseh zvezah QSO v dnevniku"
 
 #: application/views/dbtools/index.php:45
 msgid "Use Wavelog to determine CQ Zone for all QSOs."
-msgstr "Uporabi Wavelog za določitev cone CQ za vse zveze QSO."
+msgstr "Uporabi Wavelog za določitev cone CQ za vse QSO."
 
 #: application/views/dbtools/index.php:48
 #: application/views/dbtools/index.php:59
@@ -15075,7 +15071,7 @@ msgstr "Preveri napačne cone ITU pri vseh zvezah QSO v dnevniku"
 
 #: application/views/dbtools/index.php:56
 msgid "Use Wavelog to determine ITU Zone for all QSOs."
-msgstr "Uporabi Wavelog za določitev cone ITU za vse zveze QSO."
+msgstr "Uporabi Wavelog za določitev cone ITU za vse QSO."
 
 #: application/views/dbtools/index.php:66
 msgid "Check Gridsquares"
@@ -15104,7 +15100,7 @@ msgstr "Posodobi razdalje"
 
 #: application/views/dbtools/index.php:100
 msgid "Calculate and update distance information for QSOs"
-msgstr "Izračunaj in posodobi razdalje za zveze QSO"
+msgstr "Izračunaj in posodobi razdalje za QSO"
 
 #: application/views/dbtools/index.php:110
 msgid "Check all QSOs in the logbook for incorrect DXCC"
@@ -15112,11 +15108,11 @@ msgstr "Preveri napačne DXCC pri vseh zvezah QSO v dnevniku"
 
 #: application/views/dbtools/index.php:111
 msgid "Use Wavelog to determine DXCC for all QSOs."
-msgstr "Uporabi Wavelog za določitev DXCC za vse zveze QSO."
+msgstr "Uporabi Wavelog za določitev DXCC za vse QSO."
 
 #: application/views/dbtools/index.php:122
 msgid "Lookup QSOs with missing grid in callbook"
-msgstr "V imeniku klicnih znakov poišči zveze QSO brez lokatorja"
+msgstr "V imeniku klicnih znakov poišči QSO brez lokatorja"
 
 #: application/views/dbtools/index.php:123
 msgid "Use callbook lookup to set gridsquare"
@@ -15145,12 +15141,12 @@ msgstr "Odpri"
 #: application/views/dbtools/missinggridlist.php:12
 #, php-format
 msgid "%s QSO(s) selected"
-msgstr "Izbranih zvez QSO: %s"
+msgstr "Izbranih QSO: %s"
 
 #: application/views/dbtools/missinggridlist.php:13
 #, php-format
 msgid "%s QSO(s) remaining"
-msgstr "Preostalih zvez QSO: %s"
+msgstr "Preostalih QSO: %s"
 
 #: application/views/dbtools/missinggridlist.php:14
 #, php-format
@@ -15192,12 +15188,12 @@ msgstr "Iskanje preklicano."
 
 #: application/views/dbtools/missinggridlist.php:32
 msgid "Only unconfirmed QSOs"
-msgstr "Samo nepotrjene zveze QSO"
+msgstr "Samo nepotrjene QSO"
 
 #: application/views/dbtools/missinggridlist.php:36
 #, php-format
 msgid "Found %s QSO(s) with missing gridsquare."
-msgstr "Najdenih zvez QSO brez lokatorja: %s."
+msgstr "Najdenih QSO brez lokatorja: %s."
 
 #: application/views/dbtools/missinggridlist.php:37
 msgid "Uncheck the QSOs you want to skip, then start the lookup."
@@ -15218,7 +15214,7 @@ msgstr "Ni najdenih težav"
 #: application/views/dbtools/showStateQsos.php:16
 #, php-format
 msgid "Found %s QSO(s) missing state information for DXCC %s."
-msgstr "Najdenih zvez QSO brez podatkov o zvezni državi za DXCC %s: %s."
+msgstr "Najdenih QSO brez podatkov o zvezni državi za DXCC %s: %s."
 
 #: application/views/dbtools/showUpdateResult.php:22
 #: application/views/dbtools/showUpdateResult.php:72
@@ -15228,12 +15224,12 @@ msgstr "Rezultati posodobitve zvezne države:"
 #: application/views/dbtools/showUpdateResult.php:24
 #: application/views/dbtools/showUpdateResult.php:26
 msgid "The number of QSOs updated for state/province in"
-msgstr "Število zvez QSO s posodobljeno zvezno državo/pokrajino v"
+msgstr "Število QSO s posodobljeno zvezno državo/pokrajino v"
 
 #: application/views/dbtools/showUpdateResult.php:38
 #: application/views/dbtools/showUpdateResult.php:101
 msgid "These QSOs could not be updated:"
-msgstr "Teh zvez QSO ni bilo mogoče posodobiti:"
+msgstr "Teh QSO ni bilo mogoče posodobiti:"
 
 #: application/views/dbtools/showUpdateResult.php:45
 #: application/views/dbtools/showUpdateResult.php:108
@@ -15250,7 +15246,7 @@ msgstr "Razlog"
 #: application/views/dbtools/showUpdateResult.php:74
 #: application/views/dbtools/showUpdateResult.php:76
 msgid "The number of QSOs updated for state/province across all DXCCs is"
-msgstr "Število zvez QSO s posodobljeno zvezno državo/pokrajino za vse DXCC je"
+msgstr "Število QSO s posodobljeno zvezno državo/pokrajino za vse DXCC je"
 
 #: application/views/dbtools/showUpdateResult.php:76
 msgid "DXCCs processed"
@@ -15262,7 +15258,7 @@ msgstr "Rezultati posodobitve celine:"
 
 #: application/views/dbtools/showUpdateResult.php:129
 msgid "The number of QSOs updated for continent is"
-msgstr "Število zvez QSO s posodobljeno celino je"
+msgstr "Število QSO s posodobljeno celino je"
 
 #: application/views/dbtools/showUpdateResult.php:133
 msgid "Results for distance update:"
@@ -15270,7 +15266,7 @@ msgstr "Rezultati posodobitve razdalje:"
 
 #: application/views/dbtools/showUpdateResult.php:134
 msgid "The number of QSOs updated for distance is"
-msgstr "Število zvez QSO s posodobljeno razdaljo je"
+msgstr "Število QSO s posodobljeno razdaljo je"
 
 #: application/views/dbtools/statecheckresult.php:3
 #: application/views/dbtools/statecheckresult.php:46
@@ -15282,8 +15278,8 @@ msgid ""
 "QSOs with missing state and gridsquares with 6 or more characters found for "
 "the following DXCCs:"
 msgstr ""
-"Za naslednje DXCC so bile najdene zveze QSO brez podatka o zvezni državi, "
-"vendar z lokatorjem, dolgim vsaj šest znakov:"
+"Za naslednje DXCC so bile najdene QSO brez podatka o zvezni državi, vendar z "
+"lokatorjem, dolgim vsaj šest znakov:"
 
 #: application/views/dbtools/statecheckresult.php:7
 msgid "Fix all DXCCs"
@@ -15296,7 +15292,7 @@ msgstr "Zaženi popravljanje"
 #: application/views/dbtools/statecheckresult.php:47
 msgid "No QSOs were found where state information can be fixed."
 msgstr ""
-"Ni najdenih zvez QSO, pri katerih bi bilo mogoče popraviti podatke o zvezni "
+"Ni najdenih QSO, pri katerih bi bilo mogoče popraviti podatke o zvezni "
 "državi."
 
 #: application/views/dcl_views/index.php:8
@@ -15883,8 +15879,8 @@ msgstr[3] "Baza podatkov vsebuje %d zvez brez profila postaje (lokacije)"
 #: application/views/debug/index.php:867
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
-"Označite zveze QSO in jih dodelite obstoječi lokaciji postaje:Prosimo, "
-"označite zveze in jih prerazporedite na obstoječo lokacijo postaje:"
+"Označite QSO in jih dodelite obstoječi lokaciji postaje:Prosimo, označite "
+"zveze in jih prerazporedite na obstoječo lokacijo postaje:"
 
 #: application/views/debug/index.php:875
 msgctxt "Stationlocation"
@@ -15898,9 +15894,8 @@ msgstr "Prerazporedi"
 #: application/views/debug/index.php:896
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
-"Vsaka zveza QSO v podatkovni zbirki je dodeljena profilu postaje "
-"(lokaciji).Vsaka zveza v vaši bazi podatkov je dodeljena profilu postaje "
-"(lokaciji)"
+"Vsaka QSO v podatkovni zbirki je dodeljena profilu postaje (lokaciji).Vsaka "
+"zveza v vaši bazi podatkov je dodeljena profilu postaje (lokaciji)"
 
 #: application/views/debug/index.php:896
 msgid "Everything ok"
@@ -16067,7 +16062,7 @@ msgstr "Ta stran navaja zapise razdalj za vsak satelit na podlagi UL polj."
 
 #: application/views/distancerecords/index.php:24
 msgid "My Gridsquare"
-msgstr "Moje UL polje"
+msgstr "Moj QTH lokator"
 
 #: application/views/distancerecords/index.php:25
 msgid "DX Gridsquare"
@@ -16080,11 +16075,11 @@ msgstr "Za to stran ni bilo najdenih zvez, ki bi ustrezale kriterijem!"
 #: application/views/distances/index.php:7
 #, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
-msgstr "Zveze so bile prikazane. %s Vaša najdaljša zveza je bila z"
+msgstr "zveze so bile prikazane. %s Vaša najdaljša zveza je bila z"
 
 #: application/views/distances/index.php:8
 msgid "in gridsquare"
-msgstr "V UL polju"
+msgstr "v UL polju"
 
 #: application/views/distances/index.php:9
 msgid "the distance was"
@@ -16227,8 +16222,9 @@ msgid ""
 "\n"
 "You or someone else has requested a password reset on your Wavelog account."
 msgstr ""
-"Pozdravljeni,\\n\\nvi ali nekdo drug je zahteval ponastavitev gesla za vaš "
-"račun Wavelog."
+"Pozdravljeni,\n"
+"\n"
+"vi ali nekdo drug je zahteval ponastavitev gesla za vaš račun Wavelog."
 
 #: application/views/email/forgot_password.php:13
 msgid ""
@@ -16238,7 +16234,11 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
-"Če tega niste zahtevali, sporočilo prezrite.\\n\\nLep pozdrav,\\n\\nWavelog"
+"Če tega niste zahtevali, sporočilo prezrite.\n"
+"\n"
+"Lep pozdrav,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/oqrs_request.php:3
 #, php-format
@@ -16255,7 +16255,7 @@ msgstr "Uporabnik ni vnesel dodatnega sporočila."
 
 #: application/views/email/oqrs_request.php:18
 msgid "Requested QSOs"
-msgstr "Zahtevane zveze QSO"
+msgstr "Zahtevane QSO"
 
 #: application/views/email/oqrs_request.php:50
 #, php-format
@@ -16263,7 +16263,10 @@ msgid ""
 "Hi,\n"
 "\n"
 "You got an OQRS request from %s."
-msgstr "Pozdravljeni,\\n\\nprejeli ste zahtevek OQRS od %s."
+msgstr ""
+"Pozdravljeni,\n"
+"\n"
+"prejeli ste zahtevek OQRS od %s."
 
 #: application/views/email/oqrs_request.php:58
 #: application/views/oqrs/request.php:42
@@ -16282,7 +16285,12 @@ msgid ""
 "Regards,\n"
 "\n"
 "Wavelog"
-msgstr "Prijavite se v Wavelog in ga obdelajte.\\n\\nLep pozdrav,\\n\\nWavelog"
+msgstr ""
+"Prijavite se v Wavelog in nadaljujte.\n"
+"\n"
+"Lep pozdrav,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/testmail.php:3
 msgid "Wavelog Test-Mail"
@@ -16300,16 +16308,22 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
-"Pozdravljeni,\\n\\nto je preizkusno e-poštno sporočilo iz vaše namestitve "
-"Wavelog.\\n\\nČe ste ga prejeli, so vaše poštne nastavitve pravilne."
-"\\n\\nLep pozdrav,\\n\\nWavelog"
+"Pozdravljeni,\n"
+"\n"
+"to je preizkusno e-poštno sporočilo iz vaše namestitve Wavelog.\n"
+"\n"
+"Če ste ga prejeli, so vaše poštne nastavitve pravilne.\n"
+"\n"
+"Lep pozdrav,\n"
+"\n"
+"Wavelog"
 
 #: application/views/eqsl/analysis.php:14
 #: application/views/eqsl/download.php:13 application/views/eqsl/export.php:12
 #: application/views/eqsl/import.php:11 application/views/eqsl/result.php:14
 #: application/views/eqsl/tools.php:11
 msgid "Upload QSOs"
-msgstr "Naloži zveze QSO"
+msgstr "Naloži QSO"
 
 #: application/views/eqsl/analysis.php:17
 #: application/views/eqsl/download.php:17 application/views/eqsl/export.php:16
@@ -16347,8 +16361,8 @@ msgid ""
 "Below is a table of QSOs that have been confirmed on eQSL but QSL images "
 "have not been downloaded yet."
 msgstr ""
-"Spodaj je tabela zvez QSO, potrjenih na eQSL, za katere slike kartic QSL še "
-"niso bile prenesene."
+"Spodaj je tabela QSO, potrjenih na eQSL, za katere slike kartic QSL še niso "
+"bile prenesene."
 
 #: application/views/eqsl/download.php:42
 #: application/views/eqslcard/index.php:38
@@ -16388,12 +16402,12 @@ msgid ""
 "There are no QSOs whose eQSL card images have not yet been downloaded. Go "
 "log some more QSOs!"
 msgstr ""
-"Ni zvez QSO, za katere slike kartic eQSL še niso bile prenesene. Vnesite še "
+"Ni QSO, za katere slike kartic eQSL še niso bile prenesene. Vnesite še "
 "kakšno zvezo QSO!"
 
 #: application/views/eqsl/export.php:31
 msgid "Below is a table of QSOs that have not yet been sent to eQSL."
-msgstr "Spodaj je tabela zvez QSO, ki še niso bile poslane na eQSL."
+msgstr "Spodaj je tabela QSO, ki še niso bile poslane na eQSL."
 
 #: application/views/eqsl/export.php:33
 msgid ""
@@ -16405,20 +16419,19 @@ msgstr ""
 
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
-msgstr ""
-"S klikom na »Naloži zveze QSO« bodo podatki o zvezah QSO poslani na eQSL.cc."
+msgstr "S klikom na »Naloži QSO« bodo podatki o zvezah QSO poslani na eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
-msgstr "Naslednje zveze QSO so bile poslane na eQSL."
+msgstr "Naslednje QSO so bile poslane na eQSL."
 
 #: application/views/eqsl/export.php:51
 msgid ""
 "There are no QSOs that need to be sent to eQSL at this time. Go log some "
 "more QSOs!"
 msgstr ""
-"Trenutno ni zvez QSO, ki bi jih bilo treba poslati na eQSL. Vnesite še "
-"kakšno zvezo QSO!"
+"Trenutno ni QSO, ki bi jih bilo treba poslati na eQSL. Vnesite še kakšno "
+"zvezo QSO!"
 
 #: application/views/eqsl/import.php:28
 msgid "The next automatic sync with eQSL will happen at: "
@@ -16438,8 +16451,8 @@ msgid ""
 "Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as "
 "confirmed on eQSL."
 msgstr ""
-"Naložite izvoženo datoteko ADIF iz eQSL s strani %s, da zveze QSO označite "
-"kot potrjene na eQSL."
+"Naložite izvoženo datoteko ADIF iz eQSL s strani %s, da QSO označite kot "
+"potrjene na eQSL."
 
 #: application/views/eqsl/import.php:35
 msgid "Choose Station(location) eQSL File belongs to:"
@@ -16506,7 +16519,7 @@ msgstr "Nazaj na nadzorno ploščo"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
-msgstr "Oglejte si zemljevid delanih/potrjenih UL polj"
+msgstr "Oglejte si zemljevid delanih/potrjenih QTH lokatorjev"
 
 #: application/views/gridmap/index.php:44
 #: application/views/logbookadvanced/index.php:349
@@ -16813,8 +16826,7 @@ msgstr "Napaka pri shranjevanju opombe"
 #: application/views/interface_assets/footer.php:90
 #, php-format
 msgid "QSO with %s by %s was added to logbook."
-msgstr ""
-"Zveza QSO s postajo %s, ki jo je vzpostavil %s, je bila dodana v dnevnik."
+msgstr "QSO s postajo %s, ki jo je vzpostavil %s, je bila dodana v dnevnik."
 
 #: application/views/interface_assets/footer.php:91
 #, php-format
@@ -17244,7 +17256,7 @@ msgstr "Nalaganje ni uspelo"
 #: application/views/interface_assets/footer.php:2777
 #: application/views/interface_assets/footer.php:2802
 msgid "Add additional QSOs to a QSL Card"
-msgstr "Dodaj dodatne zveze QSO na QSL-kartico"
+msgstr "Dodaj dodatne QSO na QSL-kartico"
 
 #: application/views/interface_assets/footer.php:2813
 msgid "Something went wrong. Please try again!"
@@ -17718,7 +17730,9 @@ msgstr "Neshranjene spremembe"
 msgid ""
 "Your current design has unsaved changes. Loading a different template will "
 "replace it. Continue?"
-msgstr "Neshranjene spremembe"
+msgstr ""
+"Vaša trenutna zasnova vsebuje neshranjene spremembe. Z nalaganjem druge "
+"predloge bo ta zamenjana. Nadaljujete?"
 
 #: application/views/labeldesigner/designer.php:66
 #: application/views/qslpostcard/designer.php:51
@@ -17886,7 +17900,9 @@ msgstr "Dodaj besedilo po meri"
 msgid ""
 "Horizontal rule — enable 'Repeats per QSO' to draw a separator under every "
 "QSO row"
-msgstr "Odmik tiskanja"
+msgstr ""
+"Vodoravna črta — omogočite »Ponovitve na QSO«, da se pod vsako vrstico QSO "
+"izriše ločilna črta"
 
 #: application/views/labeldesigner/designer.php:201
 msgid "Horizontal Line"
@@ -17894,7 +17910,8 @@ msgstr "Vodoravna črta"
 
 #: application/views/labeldesigner/designer.php:203
 msgid "Vertical rule — place at column edges to build a table grid"
-msgstr "Vodoravna črta"
+msgstr ""
+"Navpična črta – postavite jo na robove stolpcev, da ustvarite mrežo tabele"
 
 #: application/views/labeldesigner/designer.php:204
 msgid "Vertical Line"
@@ -17923,12 +17940,12 @@ msgstr "Povlecite polja na nalepko"
 
 #: application/views/labeldesigner/designer.php:233
 msgid "drag fields onto the label"
-msgstr "Možnosti predloge"
+msgstr "povlecite polja na oznako"
 
 #: application/views/labeldesigner/designer.php:254
 #: application/views/qslpostcard/designer.php:205
 msgid "Template Options"
-msgstr "Število zvez QSO na nalepko"
+msgstr "Možnosti predloge"
 
 #: application/views/labeldesigner/designer.php:258
 msgid "Number of QSOs per label"
@@ -17937,7 +17954,7 @@ msgstr "Razmik med vrsticami"
 #: application/views/labeldesigner/designer.php:262
 #: application/views/qslpostcard/designer.php:213
 msgid "Row spacing"
-msgstr "Ločilne črte med vrsticami QSO"
+msgstr "Razmik med vrstami"
 
 #: application/views/labeldesigner/designer.php:267
 msgid ""
@@ -18060,18 +18077,16 @@ msgstr "Širina preloma besedila"
 #: application/views/labeldesigner/designer.php:394
 #: application/views/qslpostcard/designer.php:302
 msgid "Wrap width"
-msgstr ""
-"Če nalepka vsebuje več zvez QSO, natisni to polje za vsako zvezo posebej"
+msgstr "Širina ovoja"
 
 #: application/views/labeldesigner/designer.php:399
 msgid "Print this field once per QSO if a label holds multiple QSOs"
-msgstr "Ponovitve na QSO"
+msgstr "To polje natisnite enkrat na QSO, če etiketa vsebuje več QSO-jev"
 
 #: application/views/labeldesigner/designer.php:400
 #: application/views/qslpostcard/designer.php:308
 msgid "Repeats per QSO"
-msgstr ""
-"Prosto premikaj ta element brez pripenjanja na mrežo ali druge elemente"
+msgstr "Ponovitve na zvezo (QSO)"
 
 #: application/views/labeldesigner/designer.php:404
 #: application/views/qslpostcard/designer.php:312
@@ -18205,7 +18220,7 @@ msgstr "Vodoravni razmik"
 
 #: application/views/labels/create.php:80 application/views/labels/edit.php:82
 msgid "Horizontal space between 2 labels."
-msgstr "Vodoravni razmik med dvema nalepkama."
+msgstr "Vodoravni razmik med dvema etiketama."
 
 #: application/views/labels/create.php:83 application/views/labels/edit.php:85
 msgid "Vertical space"
@@ -18213,7 +18228,7 @@ msgstr "Navpični razmik"
 
 #: application/views/labels/create.php:86 application/views/labels/edit.php:88
 msgid "Vertical space between 2 labels."
-msgstr "Navpični razmik med dvema nalepkama."
+msgstr "Navpični razmik med dvema etiketama."
 
 #: application/views/labels/create.php:91 application/views/labels/edit.php:93
 msgid "Width of label"
@@ -18301,7 +18316,7 @@ msgstr "Shrani vrsto papirja"
 #: application/views/labels/createpaper.php:75
 #: application/views/labels/editpaper.php:75
 msgid "Save Paper Type"
-msgstr "Označi QSL kot natisnjeno"
+msgstr "Shrani vrsto papirja"
 
 #: application/views/labels/edit.php:24
 msgid ""
@@ -18351,15 +18366,15 @@ msgstr "Uporabi za tiskanje"
 
 #: application/views/labels/index.php:84
 msgid "Use For Print"
-msgstr "QSL-nalepke, ki čakajo na tiskanje"
+msgstr "Uporabi za tisk"
 
 #: application/views/labels/index.php:119
 msgid "QSL Card Labels Pending"
-msgstr "Čakajoče zveze QSO"
+msgstr "Čakajoče QSO"
 
 #: application/views/labels/index.php:128
 msgid "QSOs Waiting"
-msgstr "Prikaži zveze QSO"
+msgstr "Prikaži QSO"
 
 #: application/views/labels/index.php:129
 msgid "View QSOs"
@@ -18375,7 +18390,7 @@ msgstr "Standardno"
 #: application/views/logbookadvanced/startatform.php:23
 #: application/views/qslprint/printlabel.php:23
 msgid "Standard"
-msgstr "Vključi moj klicni znak?"
+msgstr "Standardno"
 
 #: application/views/labels/startatform.php:30
 #: application/views/logbookadvanced/startatform.php:29
@@ -18396,7 +18411,7 @@ msgstr "Vključi klicni znak operaterja (če je vnesen)?"
 #: application/views/logbookadvanced/startatform.php:52
 #: application/views/qslprint/printlabel.php:52
 msgid "Include OP-Call? (if filled)"
-msgstr "Vključi lokator?"
+msgstr "Vključi OP-klicni znak? (če je izpolnjeno)"
 
 #: application/views/labels/startatform.php:65
 #: application/views/logbookadvanced/startatform.php:64
@@ -18414,7 +18429,7 @@ msgstr ""
 
 #: application/views/labels/startatform.php:89
 msgid "Include Via (if filled)?"
-msgstr "Vključi sporočilo QSLMSG (če je vneseno)?"
+msgstr "Vključi »Via« (če je izpolnjeno)?"
 
 #: application/views/labels/startatform.php:101
 msgid "Include QSLMSG (if filled)?"
@@ -18428,7 +18443,7 @@ msgstr "Začetni položaj tiskanja?"
 #: application/views/logbookadvanced/startatform.php:138
 #: application/views/qslprint/printlabel.php:126
 msgid "Start printing at?"
-msgstr "Vnesite začetni položaj za tiskanje nalepk"
+msgstr "Začni tiskanje pri?"
 
 #: application/views/labels/startatform.php:134
 #: application/views/logbookadvanced/startatform.php:144
@@ -18441,8 +18456,8 @@ msgid ""
 "If a QSO has a 4‑char locator (e.g., JO90), try to refine it using callbook "
 "data."
 msgstr ""
-"Če ima zveza QSO štirimestni lokator (npr. JO90), ga poskusite natančneje "
-"določiti s podatki iz imenika klicnih znakov."
+"Če ima QSO štirimestni lokator (npr. JO90), ga poskusite natančneje določiti "
+"s podatki iz imenika klicnih znakov."
 
 #: application/views/logbookadvanced/callbookdialog.php:6
 msgid ""
@@ -18457,9 +18472,9 @@ msgstr ""
 msgid "Detach %s QSO from contest?"
 msgid_plural "Detach %s QSOs from contests?"
 msgstr[0] "Odstranim %s zvezo QSO iz tekmovanja?"
-msgstr[1] "Odstranim %s zvezi QSO iz tekmovanj?"
-msgstr[2] "Odstranim %s zveze QSO iz tekmovanj?"
-msgstr[3] "Odstranim %s zvez QSO iz tekmovanj?"
+msgstr[1] "Odstranim %s QSO iz tekmovanj?"
+msgstr[2] "Odstranim %s QSO iz tekmovanj?"
+msgstr[3] "Odstranim %s QSO iz tekmovanj?"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:3
 msgid "Search for duplicates using:"
@@ -18467,19 +18482,19 @@ msgstr "Poišči podvojene vnose z uporabo:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:17
 msgid "Match QSOs within the selected time window of each other"
-msgstr "Ujemanje zvez QSO z enakim načinom dela (SSB, CW, FM itd.)"
+msgstr "Ujemanje QSO z enakim načinom dela (SSB, CW, FM itd.)"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:39
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
-msgstr "Ujemanje zvez QSO z istim načinom dela (SSB, CW, FM itd.)"
+msgstr "Ujemanje QSO z istim načinom dela (SSB, CW, FM itd.)"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:54
 msgid "Match QSOs on the same band"
-msgstr "Ujemanje zvez QSO na istem frekvenčnem pasu"
+msgstr "Ujemanje QSO na istem frekvenčnem pasu"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:69
 msgid "Match QSOs using the same satellite"
-msgstr "Ujemanje zvez QSO prek istega satelita"
+msgstr "Ujemanje QSO prek istega satelita"
 
 #: application/views/logbookadvanced/edit.php:3
 #: application/views/logbookadvanced/help.php:114
@@ -18498,7 +18513,7 @@ msgstr "Izberite stolpec za urejanje:"
 
 #: application/views/logbookadvanced/edit.php:9
 msgid "QSO details"
-msgstr "Podrobnosti zveze QSO"
+msgstr "Podrobnosti QSO"
 
 #: application/views/logbookadvanced/edit.php:14
 msgid "Contest Exch (S)"
@@ -18894,7 +18909,7 @@ msgstr "Iskanje podvojenih zvez"
 
 #: application/views/logbookadvanced/help.php:53
 msgid "The dupe search checks for duplicate QSOs with the same:"
-msgstr "Iskanje podvojenih zvez preveri zveze QSO z enakimi podatki:"
+msgstr "Iskanje podvojenih zvez preveri QSO z enakimi podatki:"
 
 #: application/views/logbookadvanced/help.php:56
 msgid "Mode / Submode"
@@ -18953,8 +18968,8 @@ msgid ""
 "All QSOs in the search result will be mapped, unless you have checked one or "
 "more QSOs."
 msgstr ""
-"Na zemljevidu bodo prikazane vse zveze QSO iz rezultatov iskanja, razen če "
-"ste označili eno ali več zvez QSO."
+"Na zemljevidu bodo prikazane vse QSO iz rezultatov iskanja, razen če ste "
+"označili eno ali več QSO."
 
 #: application/views/logbookadvanced/help.php:95
 #: application/views/logbookadvanced/help.php:116
@@ -18980,7 +18995,7 @@ msgstr "Razpoložljive kategorije urejanja:"
 
 #: application/views/logbookadvanced/help.php:110
 msgid "QSO Details:"
-msgstr "Podrobnosti zveze QSO:"
+msgstr "Podrobnosti QSO:"
 
 #: application/views/logbookadvanced/help.php:111
 msgid "Awards:"
@@ -18995,8 +19010,8 @@ msgid ""
 "You must check one or more QSOs before using batch edit. For complex "
 "changes, use the regular QSO edit instead."
 msgstr ""
-"Pred množičnim urejanjem morate označiti eno ali več zvez QSO. Za "
-"zahtevnejše spremembe uporabite običajno urejanje QSO."
+"Pred množičnim urejanjem morate označiti eno ali več QSO. Za zahtevnejše "
+"spremembe uporabite običajno urejanje QSO."
 
 #: application/views/logbookadvanced/help.php:128
 msgid "The ADIF export uses the same search criteria as the normal search."
@@ -19007,8 +19022,8 @@ msgid ""
 "All QSOs will be exported (all for selected location), unless you have "
 "checked one or more QSOs."
 msgstr ""
-"Izvožene bodo vse zveze QSO (vse za izbrano lokacijo), razen če ste označili "
-"eno ali več zvez QSO."
+"Izvožene bodo vse QSO (vse za izbrano lokacijo), razen če ste označili eno "
+"ali več QSO."
 
 #: application/views/logbookadvanced/index.php:16
 #: application/views/stationsetup/exportmapoptions.php:23
@@ -19088,7 +19103,7 @@ msgstr "Popravljanje zvezne države"
 #: application/views/logbookadvanced/index.php:35
 #, php-format
 msgid "Fixing State (%s QSOs)"
-msgstr "Popravljanje zvezne države (%s zvez QSO)"
+msgstr "Popravljanje zvezne države (%s QSO)"
 
 #: application/views/logbookadvanced/index.php:36
 #, php-format
@@ -19208,8 +19223,8 @@ msgid ""
 "Are you sure you want to fix all QSOs with missing DXCC information? This "
 "action cannot be undone."
 msgstr ""
-"Ali ste prepričani, da želite popraviti vse zveze QSO z manjkajočim podatkom "
-"DXCC? Tega dejanja ni mogoče razveljaviti."
+"Ali ste prepričani, da želite popraviti vse QSO z manjkajočim podatkom DXCC? "
+"Tega dejanja ni mogoče razveljaviti."
 
 #: application/views/logbookadvanced/index.php:75
 msgid "Mark dupes (keep oldest)"
@@ -19217,20 +19232,20 @@ msgstr "Označi podvojene zveze (ohrani najstarejšo)"
 
 #: application/views/logbookadvanced/index.php:85
 msgid "You need to select exactly 2 QSOs to merge!"
-msgstr "Za združevanje morate izbrati natanko dve zvezi QSO!"
+msgstr "Za združevanje morate izbrati natanko dve QSO!"
 
 #: application/views/logbookadvanced/index.php:86
 #: application/views/logbookadvanced/index.php:856
 msgid "Merge QSOs"
-msgstr "Združi zvezi QSO"
+msgstr "Združi QSO"
 
 #: application/views/logbookadvanced/index.php:87
 msgid ""
 "Are you really sure you want to merge these QSOs? This operation CAN\\'T be "
 "undone!"
 msgstr ""
-"Ali ste res prepričani, da želite združiti ti zvezi QSO? Tega dejanja NI "
-"MOGOČE razveljaviti!"
+"Ali ste res prepričani, da želite združiti ti QSO? Tega dejanja NI MOGOČE "
+"razveljaviti!"
 
 #: application/views/logbookadvanced/index.php:88
 msgid "Danger"
@@ -19238,15 +19253,15 @@ msgstr "Nevarnost"
 
 #: application/views/logbookadvanced/index.php:90
 msgid "Yes, Merge QSOs"
-msgstr "Da, združi zvezi QSO"
+msgstr "Da, združi QSO"
 
 #: application/views/logbookadvanced/index.php:91
 msgid "QSOs merged successfully!"
-msgstr "Zvezi QSO sta uspešno združeni!"
+msgstr "QSO sta uspešno združeni!"
 
 #: application/views/logbookadvanced/index.php:92
 msgid "Error merging QSOs"
-msgstr "Napaka pri združevanju zvez QSO"
+msgstr "Napaka pri združevanju QSO"
 
 #: application/views/logbookadvanced/index.php:93
 msgid "Error loading merge dialog"
@@ -19258,7 +19273,7 @@ msgstr "Potrebujete vsaj eno zvezo QSO!"
 
 #: application/views/logbookadvanced/index.php:96
 msgid "Attach QSOs to Contest"
-msgstr "Pripni zveze QSO tekmovanju"
+msgstr "Pripni QSO tekmovanju"
 
 #: application/views/logbookadvanced/index.php:97
 msgid "Error loading attach to contest dialog"
@@ -19266,15 +19281,15 @@ msgstr "Napaka pri nalaganju okna za pripenjanje k tekmovanju"
 
 #: application/views/logbookadvanced/index.php:98
 msgid "QSOs attached to contest successfully!"
-msgstr "Zveze QSO so bile uspešno pripete tekmovanju!"
+msgstr "QSO so bile uspešno pripete tekmovanju!"
 
 #: application/views/logbookadvanced/index.php:99
 msgid "Error attaching QSOs"
-msgstr "Napaka pri pripenjanju zvez QSO"
+msgstr "Napaka pri pripenjanju QSO"
 
 #: application/views/logbookadvanced/index.php:101
 msgid "Detach QSOs to Contest"
-msgstr "Odstrani zveze QSO iz tekmovanja"
+msgstr "Odstrani QSO iz tekmovanja"
 
 #: application/views/logbookadvanced/index.php:102
 msgid "Error loading detach to contest dialog"
@@ -19282,19 +19297,18 @@ msgstr "Napaka pri nalaganju okna za odstranjevanje iz tekmovanja"
 
 #: application/views/logbookadvanced/index.php:103
 msgid "QSOs detached to contest successfully!"
-msgstr "Zveze QSO so bile uspešno odstranjene iz tekmovanja!"
+msgstr "QSO so bile uspešno odstranjene iz tekmovanja!"
 
 #: application/views/logbookadvanced/index.php:104
 msgid "Error detaching QSOs"
-msgstr "Napaka pri odstranjevanju zvez QSO"
+msgstr "Napaka pri odstranjevanju QSO"
 
 #: application/views/logbookadvanced/index.php:106
 #, php-format
 msgid ""
 "%d of %d selected QSOs were skipped because you can only edit your own QSOs."
 msgstr ""
-"Preskočenih je bilo %d od %d izbranih zvez QSO, ker lahko urejate samo svoje "
-"zveze QSO."
+"Preskočenih je bilo %d od %d izbranih QSO, ker lahko urejate samo svoje QSO."
 
 #: application/views/logbookadvanced/index.php:107
 #, php-format
@@ -19302,8 +19316,7 @@ msgid ""
 "%d of %d selected QSOs were skipped because you can only delete your own "
 "QSOs."
 msgstr ""
-"Preskočenih je bilo %d od %d izbranih zvez QSO, ker lahko brišete samo svoje "
-"zveze QSO."
+"Preskočenih je bilo %d od %d izbranih QSO, ker lahko brišete samo svoje QSO."
 
 #: application/views/logbookadvanced/index.php:109
 msgid "You need to select at least 1 row to print a QSL card!"
@@ -19325,7 +19338,7 @@ msgstr "Do"
 #: application/views/logbookadvanced/index.php:944
 #: application/views/logbookadvanced/useroptions.php:40
 msgid "Dx"
-msgstr "DX"
+msgstr "Dx"
 
 #: application/views/logbookadvanced/index.php:451
 msgctxt "Propagation Mode"
@@ -19369,11 +19382,11 @@ msgstr "Stolpec za razvrščanje"
 #: application/views/logbookadvanced/index.php:559
 #: application/views/oqrs/showrequests.php:92
 msgid "QSO Time"
-msgstr "Čas zveze QSO"
+msgstr "Čas QSO"
 
 #: application/views/logbookadvanced/index.php:562
 msgid "QSO Modified"
-msgstr "Sprememba zveze QSO"
+msgstr "Sprememba QSO"
 
 #: application/views/logbookadvanced/index.php:566
 msgid "Sort direction"
@@ -19526,11 +19539,11 @@ msgstr "Iskanje po operaterju"
 
 #: application/views/logbookadvanced/index.php:823
 msgid "Warning! Are you sure you want to delete the marked QSO(s)?"
-msgstr "Opozorilo! Ali res želite izbrisati označene zveze QSO?"
+msgstr "Opozorilo! Ali res želite izbrisati označene QSO?"
 
 #: application/views/logbookadvanced/index.php:824
 msgid " QSO(s) will be deleted"
-msgstr " Zveze QSO bodo izbrisane"
+msgstr " QSO bodo izbrisane"
 
 #: application/views/logbookadvanced/index.php:832
 #: application/views/qso/edit_ajax.php:709
@@ -19543,7 +19556,7 @@ msgstr "V čakalno vrsto za biro"
 
 #: application/views/logbookadvanced/index.php:835
 msgid "Queue Direct"
-msgstr "V čakalno vrsto za neposredno pošiljanje"
+msgstr "V čakalno vrsto za direktno pošiljanje"
 
 #: application/views/logbookadvanced/index.php:836
 msgid "Queue Electronic"
@@ -19555,7 +19568,7 @@ msgstr "Poslano (biro)"
 
 #: application/views/logbookadvanced/index.php:839
 msgid "Sent (Direct)"
-msgstr "Poslano (neposredno)"
+msgstr "Poslano (direktno)"
 
 #: application/views/logbookadvanced/index.php:840
 msgid "Sent (Electronic)"
@@ -19579,7 +19592,7 @@ msgstr "Prejeto (biro)"
 
 #: application/views/logbookadvanced/index.php:847
 msgid "Received (Direct)"
-msgstr "Prejeto (neposredno)"
+msgstr "Prejeto (direktno)"
 
 #: application/views/logbookadvanced/index.php:848
 msgid "Received (Electronic)"
@@ -19710,7 +19723,7 @@ msgstr "Obdrži to zvezo QSO"
 
 #: application/views/logbookadvanced/mergedialog.php:62
 msgid "Select which fields to keep from each QSO:"
-msgstr "Izberite, katera polja želite obdržati iz posamezne zveze QSO:"
+msgstr "Izberite, katera polja želite obdržati iz posamezne QSO:"
 
 #: application/views/logbookadvanced/mergedialog.php:63
 msgid ""
@@ -19798,7 +19811,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/statedialog.php:4
 msgid "Update will only set the state for QSOs where:"
-msgstr "Posodobitev bo nastavila zvezno državo samo za zveze QSO, pri katerih:"
+msgstr "Posodobitev bo nastavila zvezno državo samo za QSO, pri katerih:"
 
 #: application/views/logbookadvanced/statedialog.php:6
 msgid "The state field is empty"
@@ -19818,7 +19831,7 @@ msgstr "Trenutno podprte države"
 
 #: application/views/logbookadvanced/useroptions.php:15
 msgid "Basic QSO Information"
-msgstr "Osnovni podatki o zvezi QSO"
+msgstr "Osnovni podatki o QSO"
 
 #: application/views/logbookadvanced/useroptions.php:78
 msgid "Station Details"
@@ -19979,11 +19992,11 @@ msgstr "Naloži potrdilo"
 
 #: application/views/lotw_views/index.php:44
 msgid "QSO Start Date"
-msgstr "Začetni datum zvez QSO"
+msgstr "Začetni datum QSO"
 
 #: application/views/lotw_views/index.php:45
 msgid "QSO End Date"
-msgstr "Končni datum zvez QSO"
+msgstr "Končni datum QSO"
 
 #: application/views/lotw_views/index.php:46
 msgid "Date Created"
@@ -20024,7 +20037,7 @@ msgstr "Potrdilo je veljavno"
 
 #: application/views/lotw_views/index.php:118
 msgid "QSO end date nearing"
-msgstr "Končni datum zvez QSO se približuje"
+msgstr "Končni datum QSO se približuje"
 
 #: application/views/lotw_views/index.php:130
 #, php-format
@@ -20100,7 +20113,7 @@ msgstr "Nalaganje podatkov QSO ..."
 
 #: application/views/map/qso_map.php:9
 msgid "Loading QSOs for all countries (this may take a moment)..."
-msgstr "Nalaganje zvez QSO za vse države (to lahko traja nekaj časa) ..."
+msgstr "Nalaganje QSO za vse države (to lahko traja nekaj časa) ..."
 
 #: application/views/map/qso_map.php:10
 msgid "Still loading... Processing large dataset, please wait..."
@@ -20146,12 +20159,12 @@ msgstr "Meje držav in zveznih držav"
 #: application/views/map/qso_map.php:20
 #, php-format
 msgid "Showing %s of %s total QSOs"
-msgstr "Prikazanih %s od skupno %s zvez QSO"
+msgstr "Prikazanih %s od skupno %s QSO"
 
 #: application/views/map/qso_map.php:21
 #, php-format
 msgid "Total: %s QSOs with 6+ char grids"
-msgstr "Skupaj: %s zvez QSO z lokatorji s šestimi ali več znaki"
+msgstr "Skupaj: %s QSO z lokatorji s šestimi ali več znaki"
 
 #: application/views/map/qso_map.php:23
 msgid "Hover over a region"
@@ -20167,7 +20180,7 @@ msgstr "Vzpostavljene zveze z območji:"
 
 #: application/views/map/qso_map.php:29
 msgid "Show QSO list"
-msgstr "Prikaži seznam zvez QSO"
+msgstr "Prikaži seznam QSO"
 
 #: application/views/map/qso_map.php:48
 msgid "Select Country:"
@@ -20314,7 +20327,7 @@ msgstr ""
 
 #: application/views/mostwantedgrids/index.php:83
 msgid "Filter: percentage of logs containing the grid"
-msgstr ""
+msgstr "Filter: odstotek dnevnikov, ki vsebujejo QTH lokatorje"
 
 #: application/views/mostwantedgrids/index.php:85
 msgid "Min"
@@ -20326,11 +20339,11 @@ msgstr "Max"
 
 #: application/views/mostwantedgrids/index.php:103
 msgid "Rare"
-msgstr ""
+msgstr "Redek"
 
 #: application/views/mostwantedgrids/index.php:105
 msgid "Common"
-msgstr ""
+msgstr "Običajen"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
@@ -20492,7 +20505,7 @@ msgstr "30 minut"
 msgid "The Age in Minutes of spots, that will be taken care at bandplan/lookup"
 msgstr ""
 "Starost DX-objav v minutah, ki se upoštevajo pri pregledu frekvenčnega "
-"načrta in iskanju"
+"obsega/iskanju"
 
 #: application/views/options/dxcluster.php:26
 msgid "Show spots which are spotted from following continent"
@@ -20846,8 +20859,7 @@ msgstr "Prek"
 
 #: application/views/oqrs/qsolist.php:199
 msgid "No QSOs were found. It seems you were not active at this time."
-msgstr ""
-"Najdena ni bila nobena zveza QSO. Videti je, da takrat niste bili aktivni."
+msgstr "Najdena ni bila nobena QSO. Videti je, da takrat niste bili aktivni."
 
 #: application/views/oqrs/qsolist.php:203
 #: application/views/oqrs/showrequests.php:77
@@ -20880,7 +20892,7 @@ msgstr "Pošlji zahtevo"
 #: application/views/oqrs/request_grouped.php:79
 #: application/views/oqrs/result.php:40
 msgid "No QSOs found in the log."
-msgstr "V dnevniku ni najdenih zvez QSO."
+msgstr "V dnevniku ni najdenih QSO."
 
 #: application/views/oqrs/result.php:5
 #, php-format
@@ -20901,9 +20913,9 @@ msgstr[3] "ima %d mest za frekvenčne pasove"
 msgid "and has %d QSO in the log"
 msgid_plural "and has %d QSOs in the log"
 msgstr[0] "in ima %d zvezo QSO v dnevniku"
-msgstr[1] "in ima %d zvezi QSO v dnevniku"
-msgstr[2] "in ima %d zveze QSO v dnevniku"
-msgstr[3] "in ima %d zvez QSO v dnevniku"
+msgstr[1] "in ima %d QSO v dnevniku"
+msgstr[2] "in ima %d QSO v dnevniku"
+msgstr[3] "in ima %d QSO v dnevniku"
 
 #: application/views/oqrs/result.php:37
 msgid "Request QSL"
@@ -21088,15 +21100,15 @@ msgstr "Prenesi potrditve QSL iz dnevnika QRZ"
 
 #: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
-msgstr "Označi zveze QSO kot izvožene v dnevnik QRZ"
+msgstr "Označi QSO kot izvožene v dnevnik QRZ"
 
 #: application/views/qrz/mark_qrz.php:16
 msgid "The QSOs are marked as exported to QRZ Logbook."
-msgstr "Zveze QSO so označene kot izvožene v dnevnik QRZ."
+msgstr "QSO so označene kot izvožene v dnevnik QRZ."
 
 #: application/views/qslcard/confirmationresult.php:16
 msgid "QSO date"
-msgstr "Datum zveze QSO"
+msgstr "Datum QSO"
 
 #: application/views/qslcard/confirmationresult.php:20
 msgid "Confirmation date"
@@ -21128,7 +21140,7 @@ msgstr "Za shranjevanje datotek QSL-kartic uporabljate %s prostora na disku"
 
 #: application/views/qslcard/index.php:71
 msgid "Add Qsos"
-msgstr "Dodaj zveze QSO"
+msgstr "Dodaj QSO"
 
 #: application/views/qslcard/searchresult.php:193
 msgid "Add to QSL"
@@ -21148,7 +21160,7 @@ msgstr "Nalaganje..."
 
 #: application/views/qslpostcard/designer.php:32
 msgid "unknown error"
-msgstr "Neznana napaka"
+msgstr "neznana napaka"
 
 #: application/views/qslpostcard/designer.php:33
 msgid "Preview image uploaded."
@@ -21168,11 +21180,11 @@ msgstr "Platno razglednice"
 
 #: application/views/qslpostcard/designer.php:184
 msgid "drag fields onto the postcard"
-msgstr "Povlecite polja na razglednico"
+msgstr "povlecite polja na razglednico"
 
 #: application/views/qslpostcard/designer.php:209
 msgid "Number of QSOs per QSL card"
-msgstr "Število zvez QSO na kartico QSL"
+msgstr "Število QSO na kartico QSL"
 
 #: application/views/qslpostcard/designer.php:218
 msgid "Print background image (uncheck for pre-printed cards)"
@@ -21228,7 +21240,7 @@ msgstr "Označi"
 
 #: application/views/qslprint/index.php:57
 msgid "Mark selected QSOs as sent"
-msgstr "Označi izbrane zveze QSO kot poslane"
+msgstr "Označi izbrane QSO kot poslane"
 
 #: application/views/qslprint/index.php:59
 msgid "Mark ALL requested QSLs as sent"
@@ -21236,7 +21248,7 @@ msgstr "Označi VSE zahtevane kartice QSL kot poslane"
 
 #: application/views/qslprint/index.php:67
 msgid "Export selected QSOs to ADIF-file"
-msgstr "Izvozi izbrane zveze QSO v datoteko ADIF"
+msgstr "Izvozi izbrane QSO v datoteko ADIF"
 
 #: application/views/qslprint/index.php:69
 msgid "Export requested QSLs to CSV-file"
@@ -21248,11 +21260,11 @@ msgstr "Izvozi zahtevane kartice QSL v datoteko ADIF"
 
 #: application/views/qslprint/index.php:79
 msgid "Print Selected QSO Postcards"
-msgstr "Natisni razglednice za izbrane zveze QSO"
+msgstr "Natisni razglednice za izbrane QSO"
 
 #: application/views/qslprint/index.php:81
 msgid "Print Postcards for all QSOs"
-msgstr "Natisni razglednice za vse zveze QSO"
+msgstr "Natisni razglednice za vse QSO"
 
 #: application/views/qslprint/index.php:83
 msgid "Print Selected QSL Labels"
@@ -21260,11 +21272,11 @@ msgstr "Natisni nalepke QSL za izbrane zveze"
 
 #: application/views/qslprint/index.php:85
 msgid "Print Labels for all QSOs"
-msgstr "Natisni nalepke za vse zveze QSO"
+msgstr "Natisni nalepke za vse QSO"
 
 #: application/views/qslprint/index.php:93
 msgid "Remove selected QSOs from the queue"
-msgstr "Odstrani izbrane zveze QSO iz čakalne vrste"
+msgstr "Odstrani izbrane QSO iz čakalne vrste"
 
 #: application/views/qslprint/index.php:98
 msgid ""
@@ -21361,7 +21373,7 @@ msgstr "Prikaz povzetka za DOK"
 
 #: application/views/qso/award_tabs.php:10
 msgid "Showing summary for satellite QSOs with"
-msgstr "Prikaz povzetka satelitskih zvez QSO z"
+msgstr "Prikaz povzetka satelitskih QSO z"
 
 #: application/views/qso/award_tabs.php:11
 msgid "Showing summary for continent"
@@ -21810,7 +21822,7 @@ msgstr "Na primer: Q03"
 
 #: application/views/qso/index.php:659
 msgid "E-mail address of QSO-partner"
-msgstr "E-poštni naslov sogovornika v zvezi QSO"
+msgstr "E-poštni naslov sogovornika v QSO"
 
 #: application/views/qso/index.php:666 application/views/view_log/qso.php:243
 msgid "Satellite Name"
@@ -21858,7 +21870,7 @@ msgstr "Predlogi"
 
 #: application/views/qso/index.php:888
 msgid "QSO Partner's Profile"
-msgstr "Profil sogovornika v zvezi QSO"
+msgstr "Profil sogovornika v QSO"
 
 #: application/views/qso/index.php:889
 msgid ""
@@ -21870,7 +21882,7 @@ msgstr ""
 
 #: application/views/qso/log_qso.php:9
 msgid "Redirecting to QSO logging page..."
-msgstr "Preusmerjanje na stran za vnos zvez QSO ..."
+msgstr "Preusmerjanje na stran za vnos QSO ..."
 
 #: application/views/qso/log_qso.php:75
 msgid "The data was redirected. You can close this window."
@@ -22252,7 +22264,7 @@ msgstr "Napredno iskanje"
 #: application/views/search/lotw_unconfirmed.php:18
 #: application/views/search/main.php:18
 msgid "QSOs unconfirmed on LoTW"
-msgstr "Zveze QSO, nepotrjene v LoTW"
+msgstr "QSO, nepotrjene v LoTW"
 
 #: application/views/search/filter.php:31 application/views/search/main.php:23
 msgid "Search is limited to station locations linked to active logbook"
@@ -22298,7 +22310,7 @@ msgstr "Zadnje nalaganje v LoTW"
 
 #: application/views/search/lotw_unconfirmed_result.php:41
 msgid "No QSOs with outstanding LoTW upload were found."
-msgstr "Ni najdenih zvez QSO, ki še čakajo na nalaganje v LoTW."
+msgstr "Ni najdenih QSO, ki še čakajo na nalaganje v LoTW."
 
 #: application/views/search/main.php:26
 msgid "Callsign / Gridsquare"
@@ -22312,7 +22324,7 @@ msgstr "Rezultati za %s"
 #: application/views/search/result.php:4
 #, php-format
 msgid "Sorry, but we didn't find any past QSOs with %s"
-msgstr "Žal nismo našli preteklih zvez QSO s postajo %s"
+msgstr "Žal nismo našli preteklih QSO s postajo %s"
 
 #: application/views/search/result.php:6
 #, php-format
@@ -22339,7 +22351,7 @@ msgstr "Označi QSL kot poslano (prek biroja)"
 #: application/views/search/search_result_ajax.php:464
 #: application/views/view_log/partial/log_ajax.php:616
 msgid "Mark QSL Sent (Direct)"
-msgstr "Označi QSL kot poslano (neposredno)"
+msgstr "Označi QSL kot poslano (direktno)"
 
 #: application/views/search/search_result_ajax.php:471
 #: application/views/view_log/partial/log_ajax.php:626
@@ -22351,7 +22363,7 @@ msgstr "Označi QSL kot prejeto (prek biroja)"
 #: application/views/view_log/partial/log_ajax.php:627
 #: application/views/view_log/qso.php:777
 msgid "Mark QSL Received (Direct)"
-msgstr "Označi QSL kot prejeto (neposredno)"
+msgstr "Označi QSL kot prejeto (direktno)"
 
 #: application/views/search/search_result_ajax.php:473
 #: application/views/view_log/partial/log_ajax.php:617
@@ -22363,7 +22375,7 @@ msgstr "Označi QSL-kartico kot zahtevano (prek biroja)"
 #: application/views/view_log/partial/log_ajax.php:618
 #: application/views/view_log/qso.php:787
 msgid "Mark QSL Card Requested (Direct)"
-msgstr "Označi QSL-kartico kot zahtevano (neposredno)"
+msgstr "Označi QSL-kartico kot zahtevano (direktno)"
 
 #: application/views/search/search_result_ajax.php:475
 #: application/views/view_log/partial/log_ajax.php:619
@@ -22391,8 +22403,8 @@ msgid ""
 "many QSOs with as little effort as possible."
 msgstr ""
 "»Fast Log Entry« oziroma »FLE« je sistem za zelo hitro in učinkovito "
-"beleženje zvez QSO. Zaradi njegove sintakse je za beleženje številnih zvez "
-"QSO z najmanj truda potrebnega le malo vnosa."
+"beleženje QSO. Zaradi njegove sintakse je za beleženje številnih QSO z "
+"najmanj truda potrebnega le malo vnosa."
 
 #: application/views/simplefle/index.php:15
 msgid ""
@@ -22402,7 +22414,7 @@ msgid ""
 msgstr ""
 "FLE je prvotno razvil DF3CB, ki na svojem spletnem mestu ponuja program za "
 "Windows. Simple FLE je na podlagi DF3CB-jevega FLE razvil OK2CQR in omogoča "
-"spletni vmesnik za beleženje zvez QSO."
+"spletni vmesnik za beleženje QSO."
 
 #: application/views/simplefle/index.php:16
 #, php-format
@@ -22461,7 +22473,7 @@ msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
 msgstr ""
-"Opozorilo! Seznama zvez QSO ni mogoče shraniti v dnevnik, ker pri nekaterih "
+"Opozorilo! Seznama QSO ni mogoče shraniti v dnevnik, ker pri nekaterih "
 "zvezah ni določen frekvenčni pas in/ali način dela!"
 
 #: application/views/simplefle/index.php:33
@@ -22469,7 +22481,7 @@ msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have a time "
 "defined!"
 msgstr ""
-"Opozorilo! Seznama zvez QSO ni mogoče shraniti v dnevnik, ker pri nekaterih "
+"Opozorilo! Seznama QSO ni mogoče shraniti v dnevnik, ker pri nekaterih "
 "zvezah ni določen čas!"
 
 #: application/views/simplefle/index.php:34
@@ -22491,7 +22503,7 @@ msgstr ""
 #: application/views/simplefle/index.php:36
 msgid ""
 "Are you sure that you want to add these QSO to the Log and clear the session?"
-msgstr "Ali res želite dodati te zveze QSO v dnevnik in počistiti sejo?"
+msgstr "Ali res želite dodati te QSO v dnevnik in počistiti sejo?"
 
 #: application/views/simplefle/index.php:37
 msgid "QSO Logged!"
@@ -22500,12 +22512,11 @@ msgstr "QSO je zabeležen!"
 #: application/views/simplefle/index.php:38
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
 msgstr ""
-"Zveze QSO so bile uspešno vpisane v dnevnik! Podvojeni vnosi so bili "
-"preskočeni."
+"QSO so bile uspešno vpisane v dnevnik! Podvojeni vnosi so bili preskočeni."
 
 #: application/views/simplefle/index.php:40
 msgid "An error occurred while saving the QSO to the logbook! Error: "
-msgstr "Pri shranjevanju zveze QSO v dnevnik je prišlo do napake! Napaka: "
+msgstr "Pri shranjevanju QSO v dnevnik je prišlo do napake! Napaka: "
 
 #: application/views/simplefle/index.php:44
 msgid "What is that?"
@@ -22521,7 +22532,7 @@ msgstr "Če ne izberete datuma, bo uporabljen današnji datum."
 
 #: application/views/simplefle/index.php:92
 msgid "You can add the entered QSOs to a contest."
-msgstr "Vnesene zveze QSO lahko dodate tekmovanju."
+msgstr "Vnesene QSO lahko dodate tekmovanju."
 
 #: application/views/simplefle/index.php:99
 msgid "Station Call/Location"
@@ -22574,11 +22585,11 @@ msgstr "Prvi koraki"
 
 #: application/views/simplefle/syntax_help.php:11
 msgid "Before starting to log a QSO, please note the basic rules."
-msgstr "Pred začetkom beleženja zvez QSO upoštevajte osnovna pravila."
+msgstr "Pred začetkom beleženja QSO upoštevajte osnovna pravila."
 
 #: application/views/simplefle/syntax_help.php:13
 msgid "- Each new QSO should be on a new line."
-msgstr "– Vsaka nova zveza QSO mora biti v novi vrstici."
+msgstr "– Vsaka nova QSO mora biti v novi vrstici."
 
 #: application/views/simplefle/syntax_help.php:14
 msgid ""
@@ -22589,7 +22600,7 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:17
 msgid "The first QSO"
-msgstr "Prva zveza QSO"
+msgstr "Prva QSO"
 
 #: application/views/simplefle/syntax_help.php:18
 #, php-format
@@ -22607,8 +22618,7 @@ msgstr ""
 #: application/views/simplefle/syntax_help.php:23
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
 msgstr ""
-"Na primer zveza QSO, ki se je začela ob 21.34 (UTC) s postajo 4W7EST na 20 m "
-"SSB."
+"Na primer QSO, ki se je začela ob 21.34 (UTC) s postajo 4W7EST na 20 m SSB."
 
 #: application/views/simplefle/syntax_help.php:25
 msgid "Signal reports (RST)"
@@ -22622,9 +22632,9 @@ msgid ""
 "minutes later than the first QSO."
 msgstr ""
 "Če ne navedete podatkov RST, bo sintaksa uporabila 59 za govorne zveze, 599 "
-"za CW in +0 dB za digitalne načine. Naslednja zveza QSO ni imela ocene 59 v "
-"obe smeri, zato najprej navedemo poslani RST. Opravljena je bila dve minuti "
-"po prvi zvezi."
+"za CW in +0 dB za digitalne načine. Naslednja QSO ni imela ocene 59 v obe "
+"smeri, zato najprej navedemo poslani RST. Opravljena je bila dve minuti po "
+"prvi zvezi."
 
 #: application/views/simplefle/syntax_help.php:32
 msgid ""
@@ -22632,9 +22642,9 @@ msgid ""
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
-"Prva zveza QSO je bila ob 21:34, druga pa dve minuti pozneje, ob 21:36. "
-"Zapišemo samo 6, ker se je spremenil le ta podatek. Frekvenčni pas in način "
-"dela sta ostala enaka, zato ju izpustimo."
+"Prva QSO je bila ob 21:34, druga pa dve minuti pozneje, ob 21:36. Zapišemo "
+"samo 6, ker se je spremenil le ta podatek. Frekvenčni pas in način dela sta "
+"ostala enaka, zato ju izpustimo."
 
 #: application/views/simplefle/syntax_help.php:34
 msgid "Date and time"
@@ -22647,10 +22657,10 @@ msgid ""
 "every new QSO. Therefore we can add another QSO which took place at the "
 "exact same time two days later. The date must be in format YYYY-MM-DD."
 msgstr ""
-"Pri naslednji zvezi QSO, 14. maja 2021 ob 21:40, smo zamenjali frekvenčni "
-"pas na 40 m, način dela pa je ostal SSB. Če RST ni naveden, sintaksa za "
-"vsako novo zvezo uporabi 59. Zato lahko dodamo še zvezo QSO, opravljeno ob "
-"povsem istem času dva dni pozneje. Datum mora biti v obliki LLLL-MM-DD."
+"Pri naslednji QSO, 14. maja 2021 ob 21:40, smo zamenjali frekvenčni pas na "
+"40 m, način dela pa je ostal SSB. Če RST ni naveden, sintaksa za vsako novo "
+"zvezo uporabi 59. Zato lahko dodamo še zvezo QSO, opravljeno ob povsem istem "
+"času dva dni pozneje. Datum mora biti v obliki LLLL-MM-DD."
 
 #: application/views/simplefle/syntax_help.php:47
 msgid "Additional information"
@@ -22707,7 +22717,7 @@ msgstr ""
 "pomembni. Vsaka od zgornjih štirih vrstic ponazarja eno vrsto izmenjave "
 "(samo zaporedna številka, samo besedilo ali oboje); upoštevajte, da poslani "
 "podatki ostanejo v veljavi: ko jih enkrat nastavite, se samodejno prenesejo "
-"v naslednje zveze QSO (če naslednja vrstica vsebuje prejete podatke ali samo "
+"v naslednje QSO (če naslednja vrstica vsebuje prejete podatke ali samo "
 "vejico %s), dokler jih ne spremenite ali počistite. Za samodejno povečevanje "
 "poslane zaporedne številke dodajte %s v vrstico QSO skupaj z začetnimi "
 "poslanimi podatki (samostojna vrstica ne deluje). Za izklop uporabite %s:"
@@ -22718,8 +22728,8 @@ msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use %s:"
 msgstr ""
-"Pri prvi zvezi QSO je uporabljena nastavljena zaporedna številka 1, pri "
-"drugi pa 2. Če želite počistiti poslane tekmovalne podatke, uporabite %s:"
+"Pri prvi QSO je uporabljena nastavljena zaporedna številka 1, pri drugi pa "
+"2. Če želite počistiti poslane tekmovalne podatke, uporabite %s:"
 
 #: application/views/simplefle/syntax_help.php:84
 #, php-format
@@ -22748,8 +22758,7 @@ msgstr ""
 #: application/views/simplefle/syntax_help.php:92
 msgid "Here, the QSO logged at 14:00 local time is stored as 12:00 UTC."
 msgstr ""
-"Tukaj je zveza QSO, zabeležena ob 14.00 po lokalnem času, shranjena kot "
-"12.00 UTC."
+"Tukaj je QSO, zabeležena ob 14.00 po lokalnem času, shranjena kot 12.00 UTC."
 
 #: application/views/simplefle/syntax_help.php:95
 #, php-format
@@ -23033,7 +23042,7 @@ msgid ""
 "Clublog. If this is deactivated on it's own please check if the Call is "
 "properly configured at Clublog"
 msgstr ""
-"Če je omogočeno, zveze QSO s te lokacije ne bodo naložene v Club Log. Če se "
+"Če je omogočeno, QSO s te lokacije ne bodo naložene v Club Log. Če se "
 "možnost samodejno izklopi, preverite, ali je klicni znak pravilno nastavljen "
 "v Club Logu"
 
@@ -23111,8 +23120,8 @@ msgid ""
 "If enabled, QSOs logged live in the QSO form are reported to "
 "pskreporter.info in real time. QSOs older than one hour are not reported."
 msgstr ""
-"Če je omogočeno, se zveze QSO, sproti vnesene v obrazec, v realnem času "
-"pošiljajo na pskreporter.info. Zveze, starejše od ene ure, se ne pošiljajo."
+"Če je omogočeno, se QSO, sproti vnesene v obrazec, v realnem času pošiljajo "
+"na pskreporter.info. Zveze, starejše od ene ure, se ne pošiljajo."
 
 #: application/views/station_profile/create.php:426
 #: application/views/station_profile/edit.php:454
@@ -23175,7 +23184,7 @@ msgstr "Prikaz nočne sence"
 
 #: application/views/stationsetup/exportmapoptions.php:27
 msgid "# QSOs shown"
-msgstr "Število prikazanih zvez QSO"
+msgstr "Število prikazanih QSO"
 
 #: application/views/stationsetup/exportmapoptions.php:46
 msgid "Visit export map"
@@ -23204,7 +23213,7 @@ msgstr "Omejeno na lokacije postaj, povezane z aktivnim dnevnikom"
 
 #: application/views/stationsetup/locationlist.php:11
 msgid "QSO Count"
-msgstr "Število zvez QSO"
+msgstr "Število QSO"
 
 #: application/views/stationsetup/locationlist.php:28
 msgid "eQSL Nickname"
@@ -23310,7 +23319,7 @@ msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:127
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
-msgstr "Podobno kot dnevnik tudi profil postaje združuje nabor zvez QSO."
+msgstr "Podobno kot dnevnik tudi profil postaje združuje nabor QSO."
 
 #: application/views/stationsetup/stationsetup.php:128
 msgid ""
@@ -23357,7 +23366,7 @@ msgid ""
 "Due to recent changes within Wavelog you need to reassign QSOs to your "
 "station profiles."
 msgstr ""
-"Zaradi nedavnih sprememb v Wavelogu morate zveze QSO znova dodeliti profilom "
+"Zaradi nedavnih sprememb v Wavelogu morate QSO znova dodeliti profilom "
 "postaj."
 
 #: application/views/stationsetup/stationsetup.php:146
@@ -23378,7 +23387,7 @@ msgstr "Priljubljeno"
 
 #: application/views/stationsetup/stationsetup.php:215
 msgid "mark/unmark as favorite"
-msgstr "Označi ali odstrani oznako priljubljenega"
+msgstr "označi ali odstrani oznako priljubljenega"
 
 #: application/views/stationsetup/visitor.php:1
 msgid ""
@@ -23424,7 +23433,7 @@ msgstr "Radar"
 
 #: application/views/statistics/antennaanalytics.php:101
 msgid "QSOs per degree of azimuth"
-msgstr "Število zvez QSO na stopinjo azimuta"
+msgstr "Število QSO na stopinjo azimuta"
 
 #: application/views/statistics/antennaanalytics.php:102
 #, php-format
@@ -23447,11 +23456,11 @@ msgstr "Meseci"
 
 #: application/views/statistics/index.php:19
 msgid "Number of QSOs worked each year"
-msgstr "Število opravljenih zvez QSO po letih"
+msgstr "Število opravljenih QSO po letih"
 
 #: application/views/statistics/index.php:20
 msgid "Number of QSOs worked each month"
-msgstr "Število opravljenih zvez QSO po mesecih"
+msgstr "Število opravljenih QSO po mesecih"
 
 #: application/views/statistics/index.php:31
 msgid "January"
@@ -23751,7 +23760,7 @@ msgstr "Vzpostavljene zveze s klicnimi znaki (največ 5)"
 
 #: application/views/timeplotter/index.php:14
 msgid "View a heatmap or a chart of QSOs"
-msgstr "Prikaži toplotni zemljevid ali graf zvez QSO"
+msgstr "Prikaži toplotni zemljevid ali graf QSO"
 
 #: application/views/timeplotter/index.php:85
 msgid "Best Time Window"
@@ -23767,7 +23776,7 @@ msgstr "Najuspešnejša vrsta dela"
 
 #: application/views/timeplotter/index.php:118
 msgid "Total QSOs Plotted"
-msgstr "Skupno število prikazanih zvez QSO"
+msgstr "Skupno število prikazanih QSO"
 
 #: application/views/timeplotter/index.php:132
 msgid "Heatmap"
@@ -23963,18 +23972,18 @@ msgstr "Prikaži samo lokacije postaj, povezane z aktivnim dnevnikom zvez"
 
 #: application/views/user/edit.php:431
 msgid "QSO Logging Options"
-msgstr "Možnosti beleženja zvez QSO"
+msgstr "Možnosti beleženja QSO"
 
 #: application/views/user/edit.php:440
 msgid "Log End Times for QSOs Separately"
-msgstr "Ločeno beleži čas konca zvez QSO"
+msgstr "Ločeno beleži čas konca QSO"
 
 #: application/views/user/edit.php:441
 msgid ""
 "Choose yes here if you want to log QSO start and end times separately. If "
 "set to 'No' the end time will be the same as start time."
 msgstr ""
-"Izberite »Da«, če želite ločeno beležiti začetni in končni čas zveze QSO. Če "
+"Izberite »Da«, če želite ločeno beležiti začetni in končni čas QSO. Če "
 "izberete »Ne«, bo končni čas enak začetnemu."
 
 #: application/views/user/edit.php:453
@@ -23988,7 +23997,7 @@ msgid ""
 "lookup services instead."
 msgstr ""
 "Če izberete »Da«, bo iskanje klicnega znaka najprej uporabilo podatke "
-"prejšnjih zvez QSO, šele nato zunanje storitve. Z izbiro »Ne« bodo vedno "
+"prejšnjih QSO, šele nato zunanje storitve. Z izbiro »Ne« bodo vedno "
 "uporabljene zunanje storitve."
 
 #: application/views/user/edit.php:459
@@ -24002,16 +24011,16 @@ msgid ""
 "callbook profile panel are always shown."
 msgstr ""
 "Določa, iz katerih virov se ob vnosu klicnega znaka izpolnijo polja QSO "
-"(ime, QTH, lokator itd.). Iskanje DXCC, tabela prejšnjih zvez QSO in plošča "
+"(ime, QTH, lokator itd.). Iskanje DXCC, tabela prejšnjih QSO in plošča "
 "profila iz imenika klicnih znakov so vedno prikazani."
 
 #: application/views/user/edit.php:463
 msgid "Callbook and previous QSOs (default)"
-msgstr "Imenik klicnih znakov in prejšnje zveze QSO (privzeto)"
+msgstr "Imenik klicnih znakov in prejšnje QSO (privzeto)"
 
 #: application/views/user/edit.php:467
 msgid "Only previous QSOs"
-msgstr "Samo prejšnje zveze QSO"
+msgstr "Samo prejšnje QSO"
 
 #: application/views/user/edit.php:471
 msgid "No prefill"
@@ -24198,7 +24207,7 @@ msgstr "Vrsta prejšnjih potrditev QSL"
 
 #: application/views/user/edit.php:758
 msgid "Select the type of QSL to show in the previous QSOs section."
-msgstr "Izberite vrsto QSL, ki naj bo prikazana v razdelku prejšnjih zvez QSO."
+msgstr "Izberite vrsto QSL, ki naj bo prikazana v razdelku prejšnjih QSO."
 
 #: application/views/user/edit.php:775
 msgid "Dashboard Settings"
@@ -24206,13 +24215,12 @@ msgstr "Nastavitve nadzorne plošče"
 
 #: application/views/user/edit.php:779
 msgid "Select the number of latest QSOs to be displayed on dashboard."
-msgstr "Izberite število najnovejših zvez QSO, prikazanih na nadzorni plošči."
+msgstr "Izberite število najnovejših QSO, prikazanih na nadzorni plošči."
 
 #: application/views/user/edit.php:786
 msgid "Choose the number of latest QSOs to be displayed on dashboard."
 msgstr ""
-"Izberite število najnovejših zvez QSO, ki naj bodo prikazane na nadzorni "
-"plošči."
+"Izberite število najnovejših QSO, ki naj bodo prikazane na nadzorni plošči."
 
 #: application/views/user/edit.php:790
 msgid "Show Dashboard Map"
@@ -24334,7 +24342,7 @@ msgstr "Načini dostave QSL, ki so na voljo prek OQRS"
 
 #: application/views/user/edit.php:1000
 msgid "Bureau and Direct"
-msgstr "Prek biroja in neposredno"
+msgstr "Prek biroja in direktno"
 
 #: application/views/user/edit.php:1001
 msgid "Bureau only"
@@ -24342,7 +24350,7 @@ msgstr "Samo prek biroja"
 
 #: application/views/user/edit.php:1002
 msgid "Direct only"
-msgstr "Samo neposredno"
+msgstr "Samo direktno"
 
 #: application/views/user/edit.php:1004
 msgid ""
@@ -24420,7 +24428,7 @@ msgid ""
 "sync and matching QSOs are marked as requested."
 msgstr ""
 "Če je omogočeno, se med sinhronizacijo s Club Logom pridobijo tudi zahteve "
-"OQRS, ustrezne zveze QSO pa se označijo kot zahtevane."
+"OQRS, ustrezne QSO pa se označijo kot zahtevane."
 
 #: application/views/user/edit.php:1207
 msgid "Widgets"
@@ -24490,7 +24498,7 @@ msgstr "Pripomoček QSO"
 
 #: application/views/user/edit.php:1283
 msgid "Display exact QSO time"
-msgstr "Prikaži točen čas zveze QSO"
+msgstr "Prikaži točen čas QSO"
 
 #: application/views/user/edit.php:1284
 msgid ""
@@ -24513,7 +24521,7 @@ msgstr "Pošiljanje stanja v AMSAT"
 
 #: application/views/user/edit.php:1341
 msgid "Upload status of SAT QSOs to"
-msgstr "Pošlji stanje satelitskih zvez QSO na"
+msgstr "Pošlji stanje satelitskih QSO na"
 
 #: application/views/user/edit.php:1351
 msgid "Mastodonserver"
@@ -24603,7 +24611,7 @@ msgid ""
 "adding QSOs to the logbook and accessing Wavelog APIs."
 msgstr ""
 "Uporabnikom lahko dodelite vloge z različnimi dovoljenji, na primer za "
-"dodajanje zvez QSO v dnevnik in dostop do API-jev Waveloga."
+"dodajanje QSO v dnevnik in dostop do API-jev Waveloga."
 
 #: application/views/user/index.php:16
 msgid ""
@@ -24648,11 +24656,11 @@ msgstr "Dnevniki zvez"
 
 #: application/views/user/index.php:81 application/views/user/index.php:193
 msgid "Last QSO:"
-msgstr "Zadnja zveza QSO:"
+msgstr "Zadnja QSO:"
 
 #: application/views/user/index.php:85 application/views/user/index.php:195
 msgid "No QSOs in Log"
-msgstr "V dnevniku ni zvez QSO"
+msgstr "V dnevniku ni QSO"
 
 #: application/views/user/index.php:103 application/views/user/index.php:209
 #: application/views/user/modals/admin_impersonate_modal.php:43
@@ -24783,8 +24791,8 @@ msgid ""
 "Location. You can find more information about how Station Locations and "
 "Logbooks work in our %sWiki here%s!"
 msgstr ""
-"Pred začetkom beleženja zvez QSO morate nastaviti prvo lokacijo postaje. Več "
-"o lokacijah postaj in dnevnikih si lahko preberete v %snašem wikiju%s!"
+"Pred začetkom beleženja QSO morate nastaviti prvo lokacijo postaje. Več o "
+"lokacijah postaj in dnevnikih si lahko preberete v %snašem wikiju%s!"
 
 #: application/views/user/modals/first_login_wizard.php:22
 msgid ""
@@ -24990,7 +24998,7 @@ msgstr "Ne prikazuj več"
 #: application/views/view_log/index.php:6
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
-msgstr "Prikaz vseh zvez QSO z lokacij postaj, povezanih s tem dnevnikom"
+msgstr "Prikaz vseh QSO z lokacij postaj, povezanih s tem dnevnikom"
 
 #: application/views/view_log/partial/log_ajax.php:448
 #: application/views/view_log/partial/log_ajax.php:505
@@ -25000,7 +25008,7 @@ msgstr "nazadnje poslano"
 
 #: application/views/view_log/qso.php:6 application/views/view_log/qso.php:57
 msgid "QSO Details"
-msgstr "Podrobnosti zveze QSO"
+msgstr "Podrobnosti QSO"
 
 #: application/views/view_log/qso.php:29
 msgid "QSL Management"
@@ -25008,11 +25016,11 @@ msgstr "Upravljanje QSL"
 
 #: application/views/view_log/qso.php:74
 msgid "at"
-msgstr ""
+msgstr "ob"
 
 #: application/views/view_log/qso.php:76
 msgid "UTC"
-msgstr ""
+msgstr "UTC"
 
 #: application/views/view_log/qso.php:87
 msgid "View note for this callsign"
@@ -25049,7 +25057,7 @@ msgstr "Elevacija antene"
 
 #: application/views/view_log/qso.php:285
 msgid "Show all QSOs with this DXCC"
-msgstr "Prikaži vse zveze QSO s tem DXCC"
+msgstr "Prikaži vse QSO s tem DXCC"
 
 #: application/views/view_log/qso.php:448
 msgid "QSL Card has been sent via the bureau"
@@ -25057,7 +25065,7 @@ msgstr "QSL-kartica je bila poslana prek biroja"
 
 #: application/views/view_log/qso.php:450
 msgid "QSL Card has been sent via direct"
-msgstr "QSL-kartica je bila poslana neposredno"
+msgstr "QSL-kartica je bila poslana direktno"
 
 #: application/views/view_log/qso.php:452
 msgid "QSL Card has been sent electronically"
@@ -25077,7 +25085,7 @@ msgstr "QSL-kartica je bila prejeta prek biroja"
 
 #: application/views/view_log/qso.php:467
 msgid "QSL Card has been received via direct"
-msgstr "QSL-kartica je bila prejeta neposredno"
+msgstr "QSL-kartica je bila prejeta direktno"
 
 #: application/views/view_log/qso.php:469
 msgid "QSL Card has been received electronically"
@@ -25101,31 +25109,31 @@ msgstr "Ta postaja uporablja LoTW."
 #: application/views/view_log/qso.php:521
 #: application/views/view_log/qso.php:531
 msgid "This QSO was confirmed on"
-msgstr "Ta zveza QSO je bila potrjena na"
+msgstr "Ta QSO je bila potrjena na"
 
 #: application/views/view_log/qso.php:492
 msgid "This QSO is confirmed on LoTW."
-msgstr "Ta zveza QSO je potrjena v LoTW."
+msgstr "Ta QSO je potrjena v LoTW."
 
 #: application/views/view_log/qso.php:506
 msgid "This QSO is confirmed on eQSL."
-msgstr "Ta zveza QSO je potrjena v eQSL."
+msgstr "Ta QSO je potrjena v eQSL."
 
 #: application/views/view_log/qso.php:516
 msgid "This QSO is confirmed on QRZ.com."
-msgstr "Ta zveza QSO je potrjena na QRZ.com."
+msgstr "Ta QSO je potrjena na QRZ.com."
 
 #: application/views/view_log/qso.php:526
 msgid "This QSO is confirmed on Clublog."
-msgstr "Ta zveza QSO je potrjena v Club Log."
+msgstr "Ta QSO je potrjena v Club Log."
 
 #: application/views/view_log/qso.php:536
 msgid "This QSO is confirmed on DCL."
-msgstr "Ta zveza QSO je potrjena v DCL."
+msgstr "Ta QSO je potrjena v DCL."
 
 #: application/views/view_log/qso.php:549
 msgid "More QSOs"
-msgstr "Več zvez QSO"
+msgstr "Več QSO"
 
 #: application/views/view_log/qso.php:753
 msgid "Uploaded QSL Card front image"
@@ -25177,7 +25185,7 @@ msgstr "Vnesite klicni znak!"
 
 #: application/views/visitor/punchcard.php:147
 msgid "No QSOs"
-msgstr "Ni zvez QSO"
+msgstr "Ni QSO"
 
 #: application/views/wabtool/index.php:14
 msgid "Batch Assign WAB from Gridsquare"
@@ -25193,7 +25201,7 @@ msgstr "Uporabi kvadrate WAB"
 
 #: application/views/wabtool/index.php:32
 msgid "Write the computed WAB square into the selected QSOs?"
-msgstr "Ali želite izračunani kvadrat WAB zapisati v izbrane zveze QSO?"
+msgstr "Ali želite izračunani kvadrat WAB zapisati v izbrane QSO?"
 
 #: application/views/wabtool/index.php:33
 msgid "Apply Selected"
@@ -25201,15 +25209,15 @@ msgstr "Uporabi za izbrane"
 
 #: application/views/wabtool/table.php:10
 msgid "No 100% matching QSOs found."
-msgstr "Ni najdenih zvez QSO s popolnim ujemanjem."
+msgstr "Ni najdenih QSO s popolnim ujemanjem."
 
 #: application/views/webadif/export.php:22
 msgid ""
 "Here you can see and upload all QSOs which have not been previously uploaded "
 "to QO-100 Dx Club."
 msgstr ""
-"Tukaj lahko pregledate in naložite vse zveze QSO, ki še niso bile naložene v "
-"QO-100 Dx Club."
+"Tukaj lahko pregledate in naložite vse QSO, ki še niso bile naložene v QO-"
+"100 Dx Club."
 
 #: application/views/webadif/export.php:33
 msgid ""
@@ -25224,8 +25232,8 @@ msgid ""
 "There are currently no outstanding QSOs that need to be uploaded to the "
 "QO-100 Dx Club's API."
 msgstr ""
-"Trenutno ni čakajočih zvez QSO, ki bi jih bilo treba naložiti prek API-ja "
-"QO-100 Dx Club."
+"Trenutno ni čakajočih QSO, ki bi jih bilo treba naložiti prek API-ja QO-100 "
+"Dx Club."
 
 #: application/views/webadif/export.php:64
 msgid "Go ahead and turn on your QO-100 station!"
@@ -25269,16 +25277,16 @@ msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
 "uploaded to QO-100 Dx Club."
 msgstr ""
-"Tukaj lahko zveze QSO, ki še niso bile naložene v QO-100 Dx Club, označite "
-"kot naložene."
+"Tukaj lahko QSO, ki še niso bile naložene v QO-100 Dx Club, označite kot "
+"naložene."
 
 #: application/views/webadif/export.php:117
 msgid "Mark QSOs as exported to QO-100 Dx Club"
-msgstr "Označi zveze QSO kot izvožene v QO-100 Dx Club"
+msgstr "Označi QSO kot izvožene v QO-100 Dx Club"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
-msgstr "Zveze QSO so označene kot izvožene v QO-100 Dx Club."
+msgstr "QSO so označene kot izvožene v QO-100 Dx Club."
 
 #: application/views/webadif/rejected.php:3
 msgid "Rejected by QO-100 Dx Club"
@@ -25289,8 +25297,8 @@ msgid ""
 "These QSOs were rejected by the QO-100 Dx Club API and the upload of those "
 "is not retried automatically."
 msgstr ""
-"API QO-100 Dx Club je te zveze QSO zavrnil, zato se njihov prenos ne bo "
-"samodejno ponovil."
+"API QO-100 Dx Club je te QSO zavrnil, zato se njihov prenos ne bo samodejno "
+"ponovil."
 
 #: application/views/webadif/rejected.php:11
 msgid "Reason for rejection by QO-100 Dx Club"
@@ -25417,7 +25425,7 @@ msgstr "Prikaži na zemljevidu"
 
 #: application/views/zonechecker/result.php:118
 msgid "No zone issues found. All QSOs have correct zone information."
-msgstr "Napak pri conah ni bilo. Vse zveze QSO imajo pravilne podatke o conah."
+msgstr "Napak pri conah ni bilo. Vse QSO imajo pravilne podatke o conah."
 
 #: src/QSLManager/QSO.php:898
 #, php-format
