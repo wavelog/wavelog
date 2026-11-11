@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-10 14:50+0000\n"
-"PO-Revision-Date: 2026-11-09 16:30+0000\n"
+"PO-Revision-Date: 2026-11-12 06:44+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -1826,7 +1826,7 @@ msgstr "Det gick inte att hämta eQSL-bilddata"
 
 #: application/controllers/Eqsl.php:396
 msgid "Check credentials. Login to eQSL denied"
-msgstr ""
+msgstr "Kontrollera inloggningsuppgifterna. Inloggningen till eQSL nekades"
 
 #: application/controllers/Eqsl.php:398 application/controllers/Eqsl.php:418
 msgid "eQSL image not available"
@@ -3036,11 +3036,13 @@ msgstr "VUCC-data för lokatorrutor är inte tillgängligt."
 #: application/controllers/Mostwantedgrids.php:12
 #: application/views/debug/index.php:815
 msgid "Most Wanted Grids (Satellite)"
-msgstr ""
+msgstr "Mest eftertraktade lokatorrutor (satellit)"
 
 #: application/controllers/Mostwantedgrids.php:38
 msgid "Most wanted grid table is empty. Please update the table first."
 msgstr ""
+"Tabellen över de mest eftertraktade lokatorrutorna är tom. Uppdatera "
+"tabellen först."
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:158
@@ -6076,7 +6078,7 @@ msgstr ""
 #: application/views/activationplanner/index.php:20
 #, php-format
 msgid "In log of %s (SAT)"
-msgstr ""
+msgstr "I loggen för %s (SAT)"
 
 #: application/views/activationplanner/index.php:23
 #: application/views/satellite/pass.php:21
@@ -17261,7 +17263,7 @@ msgstr "Analyser"
 
 #: application/views/interface_assets/header.php:176
 msgid "Most Wanted Grids"
-msgstr ""
+msgstr "Mest eftertraktade lokatorrutor"
 
 #: application/views/interface_assets/header.php:192
 msgid "Callsign Statistics"
@@ -20228,7 +20230,7 @@ msgstr "Uteslut lokatorrutor som inte innehåller land"
 
 #: application/views/mostwantedgrids/index.php:61
 msgid "View a map of most wanted gridsquares on satellite"
-msgstr ""
+msgstr "Visa en karta över de mest eftertraktade lokatorrutorna via satellit"
 
 #: application/views/mostwantedgrids/index.php:77
 #, php-format
@@ -20237,6 +20239,10 @@ msgid ""
 "logs there to help making this data more convenient. If you have an account "
 "already you can find your own satellite %smap%s or %slist%s here."
 msgstr ""
+"De visade uppgifterna tillhandahålls av %s. Överväg att ladda upp dina SAT-"
+"loggar dit för att bidra till att göra dessa uppgifter mer användbara. Om du "
+"redan har ett konto kan du hitta din egen satellit %skarta%s eller %slista%s "
+"här."
 
 #: application/views/mostwantedgrids/index.php:79
 #, php-format
@@ -20244,26 +20250,28 @@ msgid ""
 "There are %s grids in the database. The most active grid is contained in "
 "%s%% of the logs."
 msgstr ""
+"Det finns %s lokatorrutor i databasen. Den mest aktiva lokatorrutan "
+"förekommer i %s%% av loggarna."
 
 #: application/views/mostwantedgrids/index.php:83
 msgid "Filter: percentage of logs containing the grid"
-msgstr ""
+msgstr "Filter: andel loggar som innehåller lokatorrutan"
 
 #: application/views/mostwantedgrids/index.php:85
 msgid "Min"
-msgstr ""
+msgstr "Min"
 
 #: application/views/mostwantedgrids/index.php:92
 msgid "Max"
-msgstr ""
+msgstr "Max"
 
 #: application/views/mostwantedgrids/index.php:103
 msgid "Rare"
-msgstr ""
+msgstr "Sällsynt"
 
 #: application/views/mostwantedgrids/index.php:105
 msgid "Common"
-msgstr ""
+msgstr "Vanlig"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
@@ -24959,11 +24967,11 @@ msgstr "QSL-hantering"
 
 #: application/views/view_log/qso.php:74
 msgid "at"
-msgstr ""
+msgstr "vid"
 
 #: application/views/view_log/qso.php:76
 msgid "UTC"
-msgstr ""
+msgstr "UTC"
 
 #: application/views/view_log/qso.php:87
 msgid "View note for this callsign"
