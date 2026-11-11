@@ -134,7 +134,7 @@ L.Maidenhead = L.LayerGroup.extend({
 		var marker = L.marker([lat,lon], {icon: myIcon}, clickable=false);
 		if (typeof gridsquaremap !== 'undefined' && gridsquaremap == true) {
 			marker.on('click', function(event) {
-				spawnGridsquareModal(locator);
+				spawnGridsquareActivatorsModal(locator);
 			});
 		}
 		return marker;
