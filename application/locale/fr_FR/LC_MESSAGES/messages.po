@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-12 10:18+0000\n"
+"POT-Creation-Date: 2026-11-12 10:20+0000\n"
 "PO-Revision-Date: 2026-11-03 17:16+0000\n"
 "Last-Translator: Telectroboy <telectroboy@hotmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -405,24 +405,24 @@ msgstr "Échec de l'import ADIF !"
 msgid "Station Profile not valid for User"
 msgstr "Profil de station non valide pour l'utilisateur"
 
-#: application/controllers/Adif.php:492
+#: application/controllers/Adif.php:507
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF importé"
 
-#: application/controllers/Adif.php:506
+#: application/controllers/Adif.php:521
 msgid "DCL Import"
 msgstr "Import DCL"
 
-#: application/controllers/Adif.php:571
+#: application/controllers/Adif.php:586
 msgid "DCL Data Imported"
 msgstr "Données DCL importées"
 
-#: application/controllers/Adif.php:585
+#: application/controllers/Adif.php:600
 msgid "POTA Import"
 msgstr "Importation des POTA"
 
-#: application/controllers/Adif.php:649
+#: application/controllers/Adif.php:664
 msgid "POTA Data Imported"
 msgstr "Données des POTA importées"
 
@@ -7013,6 +7013,7 @@ msgstr ""
 
 #: application/views/adif/import.php:429
 #: application/views/adif/import_success.php:40
+#: application/views/adif/import_success.php:57
 #: application/views/dcl_views/index.php:76
 #: application/views/lotw_views/index.php:169
 msgid "Information"
@@ -7134,28 +7135,41 @@ msgstr ""
 "Nous avons trouvé les nombres de QSOs suivants pour les identifiants de "
 "concours suivants :"
 
-#: application/views/adif/import_success.php:56
+#: application/views/adif/import_success.php:57
+msgid "Real-time logging recommended"
+msgstr ""
+
+#: application/views/adif/import_success.php:58
+#, php-format
+msgid ""
+"You've imported %s QSOs, most of them digi-mode, and many were duplicates. "
+"For digi-modes like FT8/FT4 consider using a real-time API connection "
+"instead of uploading your whole log over and over again. Tools: WSJT-X "
+"Improved, Waveloggate and others. See %s."
+msgstr ""
+
+#: application/views/adif/import_success.php:64
 msgid "Import details / possible problems"
 msgstr "Détails d'importation / problèmes possibles"
 
-#: application/views/adif/import_success.php:57
+#: application/views/adif/import_success.php:65
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Vérifie %s pour des indices sur les erreurs dans les fichiers ADIF."
 
-#: application/views/adif/import_success.php:61
+#: application/views/adif/import_success.php:69
 msgid "Critical Errors - Wrong Call/Location"
 msgstr "Erreurs critiques - Appel/Lieu incorrect"
 
-#: application/views/adif/import_success.php:70
+#: application/views/adif/import_success.php:78
 msgid "Validation Errors - Invalid Data"
 msgstr "Erreurs de validation - Données invalides"
 
-#: application/views/adif/import_success.php:79
+#: application/views/adif/import_success.php:87
 msgid "Duplicate QSOs"
 msgstr "QSO en double"
 
-#: application/views/adif/import_success.php:87
+#: application/views/adif/import_success.php:95
 msgid "You might have ADIF errors. Please check the following information:"
 msgstr ""
 "Vous avez peut-être des erreurs ADIF. Veuillez vérifier les informations "
