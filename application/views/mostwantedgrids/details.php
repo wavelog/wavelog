@@ -13,7 +13,7 @@
 	<?php
 		foreach ($activation_data as $activation) {
 			echo "<tr>";
-			echo "<td>".$activation->call;
+			echo "<td class=\"callsign\">".$activation->call;
 			$lotw_hint = "";
 			if ($activation->lotw > 0) {
 				if ($activation->lotw > 365) {
