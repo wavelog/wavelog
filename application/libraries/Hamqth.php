@@ -49,52 +49,6 @@ class Hamqth {
 		return (string) $root->session->session_id;
 	}
 
-	/**
-	 * Store a HamQTH session key in the CI session
-	 *
-	 * @param string $username HamQTH username
-	 * @param string $password HamQTH password
-	 * @return bool True on success, false on transport/parse error
-	 */
-	public function set_session($username, $password) {
-
-		$ci = & get_instance();
-
-		// URL to the XML Source
-		$xml_feed_url = 'https://www.hamqth.com/xml.php?u='.$username.'&p='.urlencode($password);
-
-		// CURL Functions
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-		$xml = curl_exec($ch);
-		if(curl_errno($ch)) {
-			log_message('error', 'Hamqth set_session query failed: '.curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
-			return false;
-		}
-
-		// Create XML object
-		$xml = simplexml_load_string($xml);
-		if ($xml === false) {
-			log_message('error', 'Hamqth set_session: could not parse XML response');
-			return false;
-		}
-
-		$root = $xml->children('https://www.hamqth.com');
-		if ($root->count() == 0) {
-			$root = $xml;
-		}
-
-		$key = (string) $root->session->session_id;
-
-		$ci->session->set_userdata('hamqth_session_key', $key);
-
-		return true;
-	}
-
 
 	/**
 	 * Search a callsign at HamQTH

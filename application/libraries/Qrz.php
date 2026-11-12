@@ -46,48 +46,6 @@ class Qrz {
 	}
 
 	/**
-	 * Store a QRZ.com session key in the CI session
-	 *
-	 * @param string $username QRZ.com username
-	 * @param string $password QRZ.com password
-	 * @return bool True on success, false on transport/parse error
-	 */
-	public function set_session($username, $password) {
-
-		$ci = & get_instance();
-
-		// URL to the XML Source
-		$xml_feed_url = 'https://xmldata.qrz.com/xml/current/?username='.urlencode($username).';password='.urlencode($password).';agent=wavelog';
-
-		// CURL Functions
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
-		$xml = curl_exec($ch);
-		if(curl_errno($ch)) {
-			log_message('error', 'QRZ.com set_session query failed: '.curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
-			return false;
-		}
-
-		// Create XML object
-		$xml = simplexml_load_string($xml);
-		if ($xml === false) {
-			log_message('error', 'QRZ.com set_session: could not parse XML response');
-			return false;
-		}
-
-		$key = (string) $xml->Session->Key;
-
-		$ci->session->set_userdata('qrz_session_key', $key);
-
-		return true;
-	}
-
-	/**
 	 * Search QRZ.com for a callsign and map the result to a callbook array
 	 *
 	 * @param string $callsign Callsign to look up
