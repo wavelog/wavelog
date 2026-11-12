@@ -775,8 +775,13 @@ class Qso_resource extends Api_v2_resource {
 					}
 					$data[$col] = $body[$key] . ' 00:00:00';
 				}
-			} elseif (array_key_exists($status, $body) && strtoupper(trim((string) $body[$status])) === 'Y') {
-				$data[$col] = date('Y-m-d H:i:s');
+			} elseif (array_key_exists($status, $body)) {
+				$value = strtoupper(trim((string) $body[$status]));
+				if ($value === 'Y') {
+					$data[$col] = date('Y-m-d H:i:s');
+				} elseif ($value === 'N') {
+					$data[$col] = null;
+				}
 			}
 		}
 
