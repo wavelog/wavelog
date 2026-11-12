@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-12 10:25+0000\n"
-"PO-Revision-Date: 2026-11-10 15:55+0000\n"
+"PO-Revision-Date: 2026-11-12 10:35+0000\n"
 "Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -3082,13 +3082,13 @@ msgstr ""
 
 #: application/controllers/Mostwantedgrids.php:75
 msgid "Could not fetch activations from gridmaster.fr"
-msgstr ""
+msgstr "Kann die Aktivierungen von gridmaster.fr aktuell nicht holen"
 
 #: application/controllers/Mostwantedgrids.php:78
 #: application/controllers/Mostwantedgrids.php:79
 #: application/views/interface_assets/footer.php:53
 msgid "Last Activations"
-msgstr ""
+msgstr "Letzte Aktivierungen"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:158
@@ -7197,7 +7197,7 @@ msgstr "Wir haben die folgende QSOs für die folgenden Contest-IDs gefunden:"
 
 #: application/views/adif/import_success.php:57
 msgid "Real-time logging recommended"
-msgstr ""
+msgstr "Echtzeitlogging wird empfohlen"
 
 #: application/views/adif/import_success.php:58
 #, php-format
@@ -7207,6 +7207,10 @@ msgid ""
 "instead of uploading your whole log over and over again. Tools: WSJT-X "
 "Improved, Waveloggate and others. See %s."
 msgstr ""
+"Du hast %s QSOs importiert, die meisten davon im Digi-Modus, und viele davon "
+"waren Duplikate. Bei Digi-Modes wie FT8/FT4 solltest Du in Erwägung ziehen, "
+"die Echtzeit-API-Verbindung zu nutzen, anstatt das gesamtes Log immer wieder "
+"hochzuladen. Tools wie: WSJT-X Improved, Waveloggate und andere. Siehe %s."
 
 #: application/views/adif/import_success.php:64
 msgid "Import details / possible problems"
@@ -20454,12 +20458,12 @@ msgstr "Quadrate ohne Landmasse ausschließen"
 #: application/views/mostwantedgrids/details.php:7
 #, php-format
 msgid "Last %s Activations of %s"
-msgstr ""
+msgstr "Letzte %s Aktivierungen von %s"
 
 #: application/views/mostwantedgrids/details.php:9
 #, php-format
 msgid "Grid is contained in %s%% of all logs on %s"
-msgstr ""
+msgstr "Locator ist in %s%% aller bei %s vorhandenen Logs"
 
 #: application/views/mostwantedgrids/index.php:61
 msgid "View a map of most wanted gridsquares on satellite"
