@@ -774,6 +774,16 @@ class Qslpostcard_model extends CI_Model {
 
         if ($field === 'qso.my_grid') return trim($qso['COL_MY_GRIDSQUARE'] ?? '');
 
+        if ($field === 'qso.my_cq_zone') {
+            $cq = (int)($qso['COL_MY_CQ_ZONE'] ?? 0);
+            return $cq > 0 ? (string)$cq : '';
+        }
+
+        if ($field === 'qso.my_itu_zone') {
+            $itu = (int)($qso['COL_MY_ITU_ZONE'] ?? 0);
+            return $itu > 0 ? (string)$itu : '';
+        }
+
         if ($field === 'qso.station_callsign') {
             return strtoupper($qso['station_callsign'] ?? $qso['COL_STATION_CALLSIGN'] ?? '');
         }
