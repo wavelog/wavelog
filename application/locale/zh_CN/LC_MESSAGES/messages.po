@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-10 14:50+0000\n"
-"PO-Revision-Date: 2026-11-09 08:11+0000\n"
+"PO-Revision-Date: 2026-11-12 06:44+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -1844,7 +1844,7 @@ msgstr "未能获取 eQSL 图片数据"
 
 #: application/controllers/Eqsl.php:396
 msgid "Check credentials. Login to eQSL denied"
-msgstr ""
+msgstr "请检查凭据。eQSL 登录被拒绝"
 
 #: application/controllers/Eqsl.php:398 application/controllers/Eqsl.php:418
 msgid "eQSL image not available"
@@ -3030,11 +3030,11 @@ msgstr "VUCC 网格数据不可用。"
 #: application/controllers/Mostwantedgrids.php:12
 #: application/views/debug/index.php:815
 msgid "Most Wanted Grids (Satellite)"
-msgstr ""
+msgstr "最稀缺网格（卫星）"
 
 #: application/controllers/Mostwantedgrids.php:38
 msgid "Most wanted grid table is empty. Please update the table first."
-msgstr ""
+msgstr "最稀缺网格表为空。请先更新表格。"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:158
@@ -5984,7 +5984,7 @@ msgstr "无效网格—使用 2、4、6、8 或 10 个字符（例如：FN，FN3
 #: application/views/activationplanner/index.php:20
 #, php-format
 msgid "In log of %s (SAT)"
-msgstr ""
+msgstr "在 %s 的日志中 (SAT)"
 
 #: application/views/activationplanner/index.php:23
 #: application/views/satellite/pass.php:21
@@ -6842,6 +6842,8 @@ msgid ""
 "ADIF format. It will only import references for existing QSOs. It will not "
 "import QSO data itself."
 msgstr ""
+"此功能可用于从 ADIF 格式的 POTA 猎人日志中导入 POTA 参考信息。它只会为现有 "
+"QSO 导入参考信息，不会导入新的 QSO。"
 
 #: application/views/adif/import.php:408
 #, php-format
@@ -16801,7 +16803,7 @@ msgstr "分析"
 
 #: application/views/interface_assets/header.php:176
 msgid "Most Wanted Grids"
-msgstr ""
+msgstr "最稀缺网格"
 
 #: application/views/interface_assets/header.php:192
 msgid "Callsign Statistics"
@@ -19693,7 +19695,7 @@ msgstr "排除不包含陆地的网格"
 
 #: application/views/mostwantedgrids/index.php:61
 msgid "View a map of most wanted gridsquares on satellite"
-msgstr ""
+msgstr "查看卫星上最稀缺网格的地图"
 
 #: application/views/mostwantedgrids/index.php:77
 #, php-format
@@ -19702,33 +19704,35 @@ msgid ""
 "logs there to help making this data more convenient. If you have an account "
 "already you can find your own satellite %smap%s or %slist%s here."
 msgstr ""
+"显示的数据由 %s 提供。请考虑将你的卫星日志上传到那里，以帮助让这些数据更加便"
+"于使用。如果你已有账户，可以在此处找到自己的卫星 %s地图%s 或 %s列表%s。"
 
 #: application/views/mostwantedgrids/index.php:79
 #, php-format
 msgid ""
 "There are %s grids in the database. The most active grid is contained in "
 "%s%% of the logs."
-msgstr ""
+msgstr "数据库中有 %s 个网格。日志中最活跃的网格出现在 %s%% 的日志中。"
 
 #: application/views/mostwantedgrids/index.php:83
 msgid "Filter: percentage of logs containing the grid"
-msgstr ""
+msgstr "筛选器：包含该网格的日志百分比"
 
 #: application/views/mostwantedgrids/index.php:85
 msgid "Min"
-msgstr ""
+msgstr "最小值"
 
 #: application/views/mostwantedgrids/index.php:92
 msgid "Max"
-msgstr ""
+msgstr "最大值"
 
 #: application/views/mostwantedgrids/index.php:103
 msgid "Rare"
-msgstr ""
+msgstr "稀有"
 
 #: application/views/mostwantedgrids/index.php:105
 msgid "Common"
-msgstr ""
+msgstr "常见"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
@@ -24228,11 +24232,11 @@ msgstr "QSL 管理"
 
 #: application/views/view_log/qso.php:74
 msgid "at"
-msgstr ""
+msgstr "在"
 
 #: application/views/view_log/qso.php:76
 msgid "UTC"
-msgstr ""
+msgstr "UTC"
 
 #: application/views/view_log/qso.php:87
 msgid "View note for this callsign"
