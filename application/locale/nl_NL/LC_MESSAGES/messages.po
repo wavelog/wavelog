@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-12 10:45+0000\n"
+"POT-Creation-Date: 2026-11-12 10:50+0000\n"
 "PO-Revision-Date: 2026-11-05 19:57+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -150,7 +150,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Contest_admin.php:13
 #: application/controllers/Contestcalendar.php:7
 #: application/controllers/Contesting.php:38
-#: application/controllers/Contesting.php:1074
+#: application/controllers/Contesting.php:1078
 #: application/controllers/Contesting_import.php:10
 #: application/controllers/Contesting_import.php:26
 #: application/controllers/Contesting_import.php:56
@@ -1261,24 +1261,24 @@ msgstr ""
 "Er is een fout opgetreden bij het verwijderen van de contest-sessie. Probeer "
 "het opnieuw."
 
-#: application/controllers/Contesting.php:1016
+#: application/controllers/Contesting.php:1020
 msgid "Operator switching is disabled."
 msgstr "Wisselen van de operator is uitgeschakeld."
 
-#: application/controllers/Contesting.php:1036
+#: application/controllers/Contesting.php:1040
 msgid "Operator switching is only available in club stations."
 msgstr "Wisselen van operator is alleen beschikbaar in clubstations."
 
-#: application/controllers/Contesting.php:1046
+#: application/controllers/Contesting.php:1050
 msgid "Access denied"
 msgstr "Toegang geweigerd"
 
-#: application/controllers/Contesting.php:1054
+#: application/controllers/Contesting.php:1058
 #: application/controllers/User.php:1500
 msgid "Incorrect username or password!"
 msgstr "Onjuiste gebruikersnaam of wachtwoord!"
 
-#: application/controllers/Contesting.php:1063
+#: application/controllers/Contesting.php:1067
 msgid "A club account cannot be used as an operator."
 msgstr "Een clubaccount kan niet als operator worden gebruikt."
 
@@ -3149,7 +3149,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:163
-#: application/models/Logbook_model.php:1671
+#: application/models/Logbook_model.php:1682
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -5323,28 +5323,40 @@ msgstr "Geïmporteerd papier"
 msgid "Imported label type"
 msgstr "Geïmporteerd labeltype"
 
-#: application/models/Logbook_model.php:426
+#: application/models/Logbook_model.php:204
+msgid "Invalid prop_mode"
+msgstr ""
+
+#: application/models/Logbook_model.php:208
+msgid "Invalid sat_mode"
+msgstr ""
+
+#: application/models/Logbook_model.php:301
+msgid "Invalid locator"
+msgstr ""
+
+#: application/models/Logbook_model.php:437
 msgid "Station not accessible"
 msgstr "Station niet toegankelijk"
 
-#: application/models/Logbook_model.php:1083
+#: application/models/Logbook_model.php:1094
 msgid "Realtime upload disabled"
 msgstr "Realtime upload uitgeschakeld"
 
-#: application/models/Logbook_model.php:1661
+#: application/models/Logbook_model.php:1672
 msgid "Station ID not allowed"
 msgstr "Station-ID niet toegestaan"
 
-#: application/models/Logbook_model.php:1666
+#: application/models/Logbook_model.php:1677
 msgid "No Call given"
 msgstr "Geen roepnaam gegeven"
 
-#: application/models/Logbook_model.php:1742
-#: application/models/Logbook_model.php:1960
+#: application/models/Logbook_model.php:1753
+#: application/models/Logbook_model.php:1971
 msgid "DXCC has to be Numeric"
 msgstr "DXCC moet numeriek zijn"
 
-#: application/models/Logbook_model.php:5258
+#: application/models/Logbook_model.php:5269
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5352,7 +5364,7 @@ msgstr ""
 "Verkeerde stationsroepnaam %s bij het importeren van QSO met %s voor %s: "
 "OVERGESLAGEN"
 
-#: application/models/Logbook_model.php:5266
+#: application/models/Logbook_model.php:5277
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5361,7 +5373,7 @@ msgstr ""
 "Verschillend locatorvak %s bij het importeren van QSO met %s voor station "
 "locator %s: OVERGESLAGEN"
 
-#: application/models/Logbook_model.php:5282
+#: application/models/Logbook_model.php:5293
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5369,7 +5381,7 @@ msgstr ""
 "Je hebt geprobeerd een QSO te importeren zonder geldige datum. Deze QSO is "
 "niet geïmporteerd. Het is ongeldig"
 
-#: application/models/Logbook_model.php:5292
+#: application/models/Logbook_model.php:5303
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5378,7 +5390,7 @@ msgstr ""
 "QSO op %s: Je hebt geprobeerd een QSO te importeren zonder een opgegeven "
 "CALL. Dit QSO is niet geïmporteerd. Het is ongeldig,"
 
-#: application/models/Logbook_model.php:5299
+#: application/models/Logbook_model.php:5310
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5387,7 +5399,35 @@ msgstr ""
 "QSO op %s: Je probeerde een QSO te importeren met een ongeldig CALL. Dit QSO "
 "is niet geïmporteerd. De ongeldige invoer is '%s'."
 
-#: application/models/Logbook_model.php:5369
+#: application/models/Logbook_model.php:5316
+#, php-format
+msgid ""
+"QSO on %s: You tried to import a QSO with an invalid PROP_MODE. This QSO "
+"wasn't imported. The invalid input is '%s'."
+msgstr ""
+
+#: application/models/Logbook_model.php:5322
+#, php-format
+msgid ""
+"QSO on %s: You tried to import a QSO with an invalid SAT_MODE. This QSO "
+"wasn't imported. The invalid input is '%s'."
+msgstr ""
+
+#: application/models/Logbook_model.php:5328
+#, php-format
+msgid ""
+"QSO on %s: You tried to import a QSO with an invalid MY_GRIDSQUARE. This QSO "
+"wasn't imported. The invalid input is '%s'."
+msgstr ""
+
+#: application/models/Logbook_model.php:5334
+#, php-format
+msgid ""
+"QSO on %s: You tried to import a QSO with an invalid MY_VUCC_GRIDS. This QSO "
+"wasn't imported. The invalid input is '%s'."
+msgstr ""
+
+#: application/models/Logbook_model.php:5404
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5396,7 +5436,7 @@ msgstr ""
 "QSO op %s: Band '%s' staat niet in de bandconfiguratie. Deze QSO is niet "
 "geïmporteerd."
 
-#: application/models/Logbook_model.php:5376
+#: application/models/Logbook_model.php:5411
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5405,63 +5445,63 @@ msgstr ""
 "QSO op %s: Je hebt geprobeerd een QSO te importeren zonder een opgegeven "
 "band. Dit QSO is niet geïmporteerd. Het is ongeldig"
 
-#: application/models/Logbook_model.php:5654
+#: application/models/Logbook_model.php:5669
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "de qslrdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:5665
+#: application/models/Logbook_model.php:5680
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "de qslsdatum is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:5728
+#: application/models/Logbook_model.php:5743
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "de clublog_qso_upload_date is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:6104
+#: application/models/Logbook_model.php:6119
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicaat voor"
 
-#: application/models/Logbook_model.php:6171
-#: application/models/Logbook_model.php:6271
+#: application/models/Logbook_model.php:6186
+#: application/models/Logbook_model.php:6286
 msgid "QSO could not be matched"
 msgstr "QSO kon niet worden gekoppeld"
 
-#: application/models/Logbook_model.php:6179
+#: application/models/Logbook_model.php:6194
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bevestigd door LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:6185
+#: application/models/Logbook_model.php:6200
 msgid "confirmed by award manager"
 msgstr "Bevestigd door award manager"
 
-#: application/models/Logbook_model.php:6189
+#: application/models/Logbook_model.php:6204
 msgid "confirmed by cross-check of DCL data"
 msgstr "bevestigd door kruiscontrole van DCL-gegevens"
 
-#: application/models/Logbook_model.php:6193
+#: application/models/Logbook_model.php:6208
 msgid "confirmation pending"
 msgstr "bevestiging in afwachting"
 
-#: application/models/Logbook_model.php:6196
+#: application/models/Logbook_model.php:6211
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
-#: application/models/Logbook_model.php:6199
+#: application/models/Logbook_model.php:6214
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "onbekend"
 
-#: application/models/Logbook_model.php:6274
+#: application/models/Logbook_model.php:6289
 msgid "POTA reference already in log"
 msgstr "POTA-referentie al in logboek"
 
-#: application/models/Logbook_model.php:6277
+#: application/models/Logbook_model.php:6292
 msgid "QSO updated"
 msgstr "QSO bijgewerkt"
 
-#: application/models/Logbook_model.php:6702
+#: application/models/Logbook_model.php:6717
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
