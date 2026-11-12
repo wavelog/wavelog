@@ -544,7 +544,7 @@ class Update_model extends CI_Model {
 
     function wwff_boundaries() {
         $this->load->model('cron_model');
-        $this->cron_model->set_last_run('update_wwff_boundaries');
+        $this->load->model('options_model');
 
         set_time_limit(0);
 
@@ -553,6 +553,7 @@ class Update_model extends CI_Model {
         $total = 0;
         $errors = [];
         $per_source = [];
+        $unchanged = [];
 
         $prev_save_queries = $this->db->save_queries;
         $this->db->save_queries = FALSE;
@@ -564,7 +565,22 @@ class Update_model extends CI_Model {
                     $errors[] = $cc . ': tempnam failed';
                     continue;
                 }
-                if (!$this->_download_to_file($url, $tmp)) {
+
+                $option_key = 'wwff_boundaries_last_modified_' . strtolower($cc);
+                $last_modified = (int) ($this->options_model->item($option_key) ?? 0);
+                if ($last_modified > 0) {
+                    $has_data = $this->db->where('source', $cc)->limit(1)->get('wwff_boundaries')->num_rows() > 0;
+                    if (!$has_data) { $last_modified = 0; }
+                }
+
+                $file_time = 0;
+                $downloaded = $this->_download_to_file($url, $tmp, $last_modified, $file_time);
+                if ($downloaded === null) {
+                    $unchanged[] = $cc;
+                    @unlink($tmp);
+                    continue;
+                }
+                if ($downloaded === false) {
                     $errors[] = $cc . ': download failed';
                     @unlink($tmp);
                     continue;
@@ -626,6 +642,7 @@ class Update_model extends CI_Model {
                     $txn_open = false;
                     $per_source[] = $cc . '=' . number_format($count);
                     $total += $count;
+                    $this->options_model->update($option_key, $file_time > 0 ? (string) $file_time : '0');
                 }
                 @unlink($tmp);
             }
@@ -637,10 +654,16 @@ class Update_model extends CI_Model {
         }
 
         if ($total > 0) {
+            $this->cron_model->set_last_run('update_wwff_boundaries');
             $msg = 'DONE: ' . number_format($total) . ' DLFF boundaries saved'
                 . ' (' . implode(', ', $per_source) . ')';
+            if ($unchanged) { $msg .= ' | unchanged: ' . implode(', ', $unchanged); }
             if ($errors) { $msg .= ' | errors: ' . implode('; ', $errors); }
             return $msg;
+        }
+        if ($unchanged && !$errors) {
+            $this->cron_model->set_last_run('update_wwff_boundaries');
+            return 'DONE: DLFF boundaries unchanged (' . implode(', ', $unchanged) . ')';
         }
         return 'FAILED: no boundaries imported (' . implode('; ', $errors) . ')';
     }
@@ -669,7 +692,8 @@ class Update_model extends CI_Model {
         }
     }
 
-    private function _download_to_file($url, $path) {
+    /* Returns true for a complete download, null for HTTP 304, or false on failure. */
+    private function _download_to_file($url, $path, $last_modified = 0, &$file_time = null) {
         $fp = fopen($path, 'wb');
         if ($fp === false) { return false; }
         $ch = curl_init();
@@ -679,10 +703,18 @@ class Update_model extends CI_Model {
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
         curl_setopt($ch, CURLOPT_TIMEOUT, 600);
-        curl_exec($ch);
+        curl_setopt($ch, CURLOPT_ENCODING, '');
+        curl_setopt($ch, CURLOPT_FILETIME, true);
+        if ($last_modified > 0) {
+            curl_setopt($ch, CURLOPT_TIMECONDITION, CURL_TIMECOND_IFMODSINCE);
+            curl_setopt($ch, CURLOPT_TIMEVALUE, $last_modified);
+        }
+        $fetch_complete = (curl_exec($ch) !== false) && (curl_errno($ch) === 0);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $file_time = max(0, (int) curl_getinfo($ch, CURLINFO_FILETIME));
         fclose($fp);
-        return $code == 200;
+        if ($code == 304) { return null; }
+        return $fetch_complete && $code == 200 && filesize($path) > 0;
     }
 
     private function _stream_geojson_features($filepath) {
