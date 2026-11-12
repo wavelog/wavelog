@@ -539,9 +539,8 @@ class Update_model extends CI_Model {
         return 'FAILED: no boundaries imported (' . implode('; ', $errors) . ')';
     }
 
-    /* WWFF boundary import — recipe of pota_boundaries(), one GeoJSON per
-     * prefix from dj7nt.de/{prefix}ff.geojson. */
-    private $wwff_boundary_sources = ['DL'];
+    /* Generic WWFF boundary importer, currently fed by the official DLFF dataset. */
+    private $wwff_boundary_sources = ['DLFF' => 'https://dlff.info/data/dlff.geojson'];
 
     function wwff_boundaries() {
         $this->load->model('cron_model');
@@ -559,8 +558,7 @@ class Update_model extends CI_Model {
         $this->db->save_queries = FALSE;
         $txn_open = false;
         try {
-            foreach ($this->wwff_boundary_sources as $cc) {
-                $url = 'https://dj7nt.de/' . strtolower($cc) . 'ff.geojson'; // todo: Replace with correct URL when negoatiation with the WWFF-Guys is completed
+            foreach ($this->wwff_boundary_sources as $cc => $url) {
                 $tmp = tempnam(sys_get_temp_dir(), 'wwff_geo_');
                 if ($tmp === false) {
                     $errors[] = $cc . ': tempnam failed';
@@ -639,7 +637,7 @@ class Update_model extends CI_Model {
         }
 
         if ($total > 0) {
-            $msg = 'DONE: ' . number_format($total) . ' WWFF boundaries saved'
+            $msg = 'DONE: ' . number_format($total) . ' DLFF boundaries saved'
                 . ' (' . implode(', ', $per_source) . ')';
             if ($errors) { $msg .= ' | errors: ' . implode('; ', $errors); }
             return $msg;
