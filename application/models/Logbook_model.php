@@ -2573,6 +2573,8 @@ class Logbook_model extends CI_Model {
 			$results = array_filter($results, function($row) {
 				return !empty($row->COL_GRIDSQUARE) || !empty($row->COL_VUCC_GRIDS);
 			});
+			// Reverse array so that most recent QSOs get plotted on top of the map
+			$results = array_reverse($results);
 			// Re-index array after filtering
 			$results = array_values($results);
 		}
