@@ -2598,6 +2598,7 @@ class Logbook_model extends CI_Model {
 	// means "do not filter on this":
 	//   station_ids  int[]   station-location ids (already ownership-checked)
 	//   callsign     string  exact match on COL_CALL
+	//   dxcc_id      string  exact match on COL_DXCC
 	//   band         string  'SAT' or a COL_BAND value
 	//   mode         string  a COL_MODE or COL_SUBMODE value
 	//   qsl_filter   array   any of lotw|qsl|eqsl|clublog (OR-combined)
@@ -2622,6 +2623,11 @@ class Logbook_model extends CI_Model {
 		if (($filters['callsign'] ?? '') !== '') {
 			$where .= " AND qsos.`COL_CALL` = ?";
 			$bindings[] = strtoupper($filters['callsign']);
+		}
+
+		if (($filters['dxcc_id'] ?? null) !== null) {
+			$where .= " AND qsos.`COL_DXCC` = ?";
+			$bindings[] = $filters['dxcc_id'];
 		}
 
 		if ((int) ($filters['since_id'] ?? 0) > 0) {
