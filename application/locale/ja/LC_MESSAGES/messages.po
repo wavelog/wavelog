@@ -4510,10 +4510,12 @@ msgstr ""
 "す。"
 
 #: application/controllers/Widgets.php:21
+#: application/controllers/Widgets.php:90
 msgid "Unknown Public Page, please make sure the public slug is correct."
 msgstr "不明な公開ページです。公開スラッグが正しいことを確認してください。"
 
 #: application/controllers/Widgets.php:91 application/views/oqrs/index.php:70
+#: application/controllers/Widgets.php:101
 msgid "No stations found that are using Wavelog OQRS."
 msgstr "Wavelog OQRS を使用している無線局が見つかりません。"
 
@@ -4521,14 +4523,19 @@ msgstr "Wavelog OQRS を使用している無線局が見つかりません。"
 #: application/controllers/Widgets.php:157
 #: application/controllers/Widgets.php:261
 #: application/controllers/Widgets.php:271
+#: application/controllers/Widgets.php:156
+#: application/controllers/Widgets.php:167
+#: application/controllers/Widgets.php:281
 msgid "User slug not specified"
 msgstr "ユーザースラッグが指定されていません"
 
 #: application/controllers/Widgets.php:169
+#: application/controllers/Widgets.php:179
 msgid "User has on-air widget disabled"
 msgstr "ユーザーはオンエアウィジェットを無効にしています"
 
 #: application/controllers/Widgets.php:228
+#: application/controllers/Widgets.php:238
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
@@ -4537,14 +4544,17 @@ msgstr ""
 "フェースを設定する必要があります。"
 
 #: application/controllers/Widgets.php:282
+#: application/controllers/Widgets.php:292
 msgid "User has disabled the LoTW upload widget"
 msgstr "ユーザーがLoTWアップロードウィジェットを無効にしました"
 
 #: application/controllers/Widgets.php:540
+#: application/controllers/Widgets.php:550
 msgid "User not found by slug"
 msgstr "スラッグでユーザーが見つかりません"
 
 #: application/controllers/Widgets.php:543
+#: application/controllers/Widgets.php:553
 msgid "Multiple users found by slug"
 msgstr "スラッグで複数のユーザーが見つかりました"
 
@@ -5449,6 +5459,7 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6696
 msgid "Bearing"
 msgstr "方位"
 

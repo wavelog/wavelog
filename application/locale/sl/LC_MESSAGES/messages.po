@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-10 14:50+0000\n"
+"POT-Creation-Date: 2026-11-12 06:44+0000\n"
 "PO-Revision-Date: 2026-11-10 23:08+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
@@ -4536,28 +4536,29 @@ msgstr ""
 "znova zajete."
 
 #: application/controllers/Widgets.php:21
+#: application/controllers/Widgets.php:90
 msgid "Unknown Public Page, please make sure the public slug is correct."
 msgstr ""
 "Neznana javna stran. Preverite pravilnost javnega identifikatorja v URL-"
 "ju.Neznana javna stran, prosim preverite, ali je javna končnica URL naslova "
 "pravilna."
 
-#: application/controllers/Widgets.php:91 application/views/oqrs/index.php:70
+#: application/controllers/Widgets.php:101 application/views/oqrs/index.php:70
 msgid "No stations found that are using Wavelog OQRS."
 msgstr "Ni najdenih postaj, ki uporabljajo Wavelog OQRS."
 
-#: application/controllers/Widgets.php:146
-#: application/controllers/Widgets.php:157
-#: application/controllers/Widgets.php:261
+#: application/controllers/Widgets.php:156
+#: application/controllers/Widgets.php:167
 #: application/controllers/Widgets.php:271
+#: application/controllers/Widgets.php:281
 msgid "User slug not specified"
 msgstr "Uporabniška končnica URL naslova ni določena"
 
-#: application/controllers/Widgets.php:169
+#: application/controllers/Widgets.php:179
 msgid "User has on-air widget disabled"
 msgstr "Uporabnik ima onemogočen pripomoček za predvajanje"
 
-#: application/controllers/Widgets.php:228
+#: application/controllers/Widgets.php:238
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
@@ -4565,15 +4566,15 @@ msgstr ""
 "Ni najdenih radijskih naprav z vmesnikom CAT. Konfiguriran mora biti vsaj en "
 "radijski vmesnik."
 
-#: application/controllers/Widgets.php:282
+#: application/controllers/Widgets.php:292
 msgid "User has disabled the LoTW upload widget"
 msgstr "Uporabnik je onemogočil pripomoček za nalaganje v LoTW"
 
-#: application/controllers/Widgets.php:540
+#: application/controllers/Widgets.php:550
 msgid "User not found by slug"
 msgstr "Ne najdem uporabnika preko končnice URL"
 
-#: application/controllers/Widgets.php:543
+#: application/controllers/Widgets.php:553
 msgid "Multiple users found by slug"
 msgstr "Najdenih več uporabnikov preko končnice URL"
 
@@ -5479,7 +5480,7 @@ msgstr "Referenca POTA je že v dnevniku"
 msgid "QSO updated"
 msgstr "QSO posodobljena"
 
-#: application/models/Logbook_model.php:6692
+#: application/models/Logbook_model.php:6696
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -25216,8 +25217,8 @@ msgid ""
 "Here you can see and upload all QSOs which have not been previously uploaded "
 "to QO-100 Dx Club."
 msgstr ""
-"Tukaj lahko pregledate in naložite vse QSO, ki še niso bile naložene v QO-"
-"100 Dx Club."
+"Tukaj lahko pregledate in naložite vse QSO, ki še niso bile naložene v "
+"QO-100 Dx Club."
 
 #: application/views/webadif/export.php:33
 msgid ""

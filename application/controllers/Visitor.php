@@ -346,7 +346,7 @@ class Visitor extends CI_Controller {
 
 		$qsos = $this->logbook_model->get_qsos($this->qso_per_page, $this->uri->segment(4), $logbooks_locations_array);
 		// [PLOT] ADD plot //
-		$plot_array = $this->logbook_model->get_plot_array_for_map($qsos->result());
+		$plot_array = $this->logbook_model->get_plot_array_for_map($qsos->result(), true);
 
 		header('Content-Type: application/json; charset=utf-8');
 		echo json_encode($plot_array);
