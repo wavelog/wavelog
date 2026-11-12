@@ -36,6 +36,11 @@ class Mostwantedgrids_model extends CI_Model {
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 		$rawdata = curl_exec($ch);
+		$data = json_decode($rawdata);
+		if (!is_object($data) || !isset($data->last) || !is_array($data->last)) {
+				return null;
+		}
+		return $data;
 		$data=json_decode($rawdata);
 		return $data;
 	}
