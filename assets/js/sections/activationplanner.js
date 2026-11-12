@@ -71,10 +71,11 @@
 	// Drawn POTA park boundaries, keyed by reference (ref -> L.geoJSON layer).
 	// Populated on demand when a marker is clicked; cleared by clearAll().
 	let boundaryLayers = {};
-	// Same, plus the set of refs that have a dataset (gates the fetch).
+	// Drawn DLFF boundaries and the lazily loaded set of references with geometry.
 	let wwffBoundaryLayers = {};
 	let wwffBoundaryRefsSet = null;
 	let wwffBoundaryRefsPromise = null;
+	let wwffBoundaryGeneration = 0; // invalidates requests after clear/disable/new search
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -1034,38 +1035,56 @@
 		if (wwffBoundaryRefsPromise) { return wwffBoundaryRefsPromise; }
 		if (!wwffBoundaryRefsUrl) { return Promise.resolve(null); }
 		wwffBoundaryRefsPromise = fetch(wwffBoundaryRefsUrl)
-			.then(function (r) { return r.ok ? r.json() : null; })
+			.then(function (r) {
+				if (!r.ok) { throw new Error('WWFF boundary reference load failed'); }
+				return r.json();
+			})
 			.then(function (list) {
-				wwffBoundaryRefsSet = new Set(Array.isArray(list) ? list : []);
+				if (!Array.isArray(list)) { throw new Error('Invalid WWFF boundary reference list'); }
+				wwffBoundaryRefsSet = new Set(list);
+				wwffBoundaryRefsPromise = null;
 				return wwffBoundaryRefsSet;
 			})
-			.catch(function () { wwffBoundaryRefsPromise = null; return null; });
+			.catch(function () {
+				wwffBoundaryRefsSet = null;
+				wwffBoundaryRefsPromise = null;
+				return null;
+			});
 		return wwffBoundaryRefsPromise;
 	}
 
 	function drawWwffBoundary(ref, fit) {
 		if (!wwffBoundaryUrl || !ref || wwffBoundaryLayers[ref]) { return; }
+		let generation = wwffBoundaryGeneration;
 		wwffBoundaryLayers[ref] = true; // sentinel: in-flight / done, prevents refetch
 		loadWwffBoundaryRefs().then(function (set) {
-			if (!set || !set.has(ref)) { return; }
-			fetch(wwffBoundaryUrl + encodeURIComponent(ref))
-				.then(function (r) {
-					if (!r.ok) { return null; }
-					return r.json();
-				})
-				.then(function (feature) {
-					if (!feature || !feature.geometry) { return; }
-					let layer = L.geoJSON(feature, {
-						style: { color: '#2b8cbe', weight: 2, fillColor: '#2b8cbe', fillOpacity: 0.15 }
-					}).addTo(map);
-					wwffBoundaryLayers[ref] = layer;
-					if (fit) { map.fitBounds(layer.getBounds(), { padding: [40, 40], maxZoom: 13 }); }
-				})
-				.catch(function () { /* 404 / network: keep the point marker */ });
+			if (generation !== wwffBoundaryGeneration) { return null; }
+			if (!set || !set.has(ref)) {
+				delete wwffBoundaryLayers[ref];
+				return null;
+			}
+			return fetch(wwffBoundaryUrl + encodeURIComponent(ref)).then(function (r) {
+				if (!r.ok) { throw new Error('WWFF boundary load failed'); }
+				return r.json();
+			});
+		}).then(function (feature) {
+			if (generation !== wwffBoundaryGeneration) { return; }
+			if (!feature || !feature.geometry) { throw new Error('Invalid WWFF boundary'); }
+			let layer = L.geoJSON(feature, {
+				style: { color: '#2b8cbe', weight: 2, fillColor: '#2b8cbe', fillOpacity: 0.15 }
+			}).addTo(map);
+			wwffBoundaryLayers[ref] = layer;
+			if (fit) { map.fitBounds(layer.getBounds(), { padding: [40, 40], maxZoom: 13 }); }
+		}).catch(function () {
+			// Allow a later popup open to retry a transient refs/boundary failure.
+			if (generation === wwffBoundaryGeneration && wwffBoundaryLayers[ref] === true) {
+				delete wwffBoundaryLayers[ref];
+			}
 		});
 	}
 
 	function clearWwffBoundaries() {
+		wwffBoundaryGeneration++;
 		wwffBoundaryLayers = clearBoundaryCache(wwffBoundaryLayers);
 	}
 
@@ -1439,6 +1458,7 @@
 		hideSearchResults();
 		if (searchOverlay) { searchOverlay.clearLayers(); }
 		clearBoundaries();   // drop any park outline drawn by a previous selection / the POTA overlay
+		clearWwffBoundaries(); // drop DLFF outlines and invalidate pending boundary requests
 
 		if (row.type === 'place') {
 			// Reuse the full selection machinery (grid square, local mesh, zones,
