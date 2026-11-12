@@ -226,7 +226,7 @@ class Qso_resource extends Api_v2_resource {
 			throw new Api_v2_exception('validation_error', 'dxcc_id must be a non-negative integer', 400);
 		}
 
-		return (int) $raw;
+		return $raw;
 	}
 
 	/**
