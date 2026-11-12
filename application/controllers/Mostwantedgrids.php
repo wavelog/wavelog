@@ -71,6 +71,11 @@ class Mostwantedgrids extends CI_Controller {
 		$propagation = str_replace('"', "", $this->security->xss_clean($this->input->post("Propagation")) ?? '');
 		$type = $this->security->xss_clean($this->input->post('Type'));
 		$activation_data = $this->mostwantedgrids_model->get_grid_details($searchphrase);
+		if ($activation_data === null) {
+				echo "<div class=\"alert alert-warning\">" . __("Could not fetch activations from gridmaster.fr") . "</div>";
+				return;
+		}
+		$data['page_title'] = __("Last Activations")." - " . $type;
 		$data['page_title'] = __("Last Activations")." - " . $type;
 		$data['gridsquare'] = $searchphrase;
 		$data['grid_percentage'] = $activation_data->percent;
