@@ -9,7 +9,13 @@ class Qrzru {
 
 	public $callbookname = 'QRZ.ru';
 
-	// Return session key
+	/**
+	 * Get a QRZ.ru session key
+	 *
+	 * @param string $username QRZ.ru username
+	 * @param string $password QRZ.ru password
+	 * @return string|false Session key, empty string on login error, false on transport/parse error
+	 */
 	public function session($username, $password) {
 		// URL to the XML Source
 		$ci = & get_instance();
@@ -24,15 +30,29 @@ class Qrzru {
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
 		$xml = curl_exec($ch);
+		if(curl_errno($ch)) {
+			log_message('error', 'QRZ.ru session query failed: '.curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
+			return false;
+		}
 
 		// Create XML object
 		$xml = simplexml_load_string($xml);
+		if ($xml === false) {
+			log_message('error', 'QRZ.ru session: could not parse XML response');
+			return false;
+		}
 
 		// Return Session Key
 		return (string) $xml->Session->session_id;
 	}
 
-	// Set Session Key session.
+	/**
+	 * Store a QRZ.ru session key in the CI session
+	 *
+	 * @param string $username QRZ.ru username
+	 * @param string $password QRZ.ru password
+	 * @return bool True on success, false on transport/parse error
+	 */
 	public function set_session($username, $password) {
 
 		$ci = & get_instance();
@@ -49,9 +69,17 @@ class Qrzru {
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
 		$xml = curl_exec($ch);
+		if(curl_errno($ch)) {
+			log_message('error', 'QRZ.ru set_session query failed: '.curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
+			return false;
+		}
 
 		// Create XML object
 		$xml = simplexml_load_string($xml);
+		if ($xml === false) {
+			log_message('error', 'QRZ.ru set_session: could not parse XML response');
+			return false;
+		}
 
 		$key = (string) $xml->Session->Key;
 
@@ -61,6 +89,14 @@ class Qrzru {
 	}
 
 
+	/**
+	 * Search QRZ.ru for a callsign and map the result to a callbook array
+	 *
+	 * @param string $callsign Callsign to look up
+	 * @param string $key QRZ.ru session key
+	 * @param bool $reduced True to clear location-specific fields
+	 * @return array Callbook data with 'source' and optional 'error' key
+	 */
 	public function search($callsign, $key, $reduced = false) {
 		$data = null;
 		$ci = & get_instance();
@@ -81,6 +117,10 @@ class Qrzru {
 
 			// Create XML object
 			$xml = simplexml_load_string($xml);
+			if ($xml === false) {
+				log_message('error', 'QRZ.ru search for callsign: ' . $callsign . ': could not parse XML response');
+				return $data['error'] = 'Problems with qrz.ru communication';
+			}
 			if (!empty($xml->session->error)) {
 				return $data['error'] = (string)$xml->session->error;
 			}

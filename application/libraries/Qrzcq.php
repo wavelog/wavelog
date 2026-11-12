@@ -39,7 +39,13 @@ class Qrzcq {
 		return $result;
 	}
 
-	// Set Session Key session.
+	/**
+	 * Store a QRZCQ.com session key in the CI session
+	 *
+	 * @param string $username QRZCQ.com username
+	 * @param string $password QRZCQ.com password
+	 * @return bool True on success, false on transport/parse error
+	 */
 	public function set_session($username, $password) {
 
 		$ci = & get_instance();
@@ -56,9 +62,17 @@ class Qrzcq {
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
 		$xml = curl_exec($ch);
+		if(curl_errno($ch)) {
+			log_message('error', 'QRZCQ.com set_session query failed: '.curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
+			return false;
+		}
 
 		// Create XML object
 		$xml = simplexml_load_string($xml);
+		if ($xml === false) {
+			log_message('error', 'QRZCQ.com set_session: could not parse XML response');
+			return false;
+		}
 
 		$key = (string) $xml->Session->Key;
 
@@ -89,6 +103,10 @@ class Qrzcq {
 
 			// Create XML object
 			$xml = simplexml_load_string($xml);
+			if ($xml === false) {
+				log_message('error', 'QRZCQ.com search for callsign: ' . $callsign . ': could not parse XML response');
+				return $data['error'] = 'Problems with qrzcq.com communication';
+			}
 			if (!empty($xml->Session->Error)) {
 				return $data['error'] = $xml->Session->Error;
 			}
