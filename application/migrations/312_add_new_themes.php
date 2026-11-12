@@ -5,11 +5,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Migration: add the "Blue Monster" and "Darkly Ultrawide" themes
  *
- * Registers two new dark themes in the `themes` table:
- *  - Blue Monster (Dark)       -> assets/css/bluemonster/
- *  - Darkly Ultrawide (Dark)   -> assets/css/darkly_ultrawide/
+ * Registers new dark themes in the `themes` table:
+ *  - Blue Monster (Dark)             -> assets/css/bluemonster/normal/
+ *  - Blue Monster wide (Dark)        -> assets/css/bluemonster/wide/
+ *  - Blue Monster Ultrawide (Dark)   -> assets/css/bluemonster/ultrawide/
+ *  - Darkly Ultrawide (Dark)         -> assets/css/darkly_ultrawide/
  *
- * Both reuse the Darkly logo assets, so no new files are needed besides the
+ * All reuse the Darkly logo assets, so no new files are needed besides the
  * CSS folders that ship with this change.
  *
  * Usage: called by the CI_Migration runner during "php index.php migrate/latest".
@@ -26,10 +28,24 @@ class Migration_add_new_themes extends CI_Migration {
         $themes = array(
             array(
                 'name' => 'Blue Monster (Dark)',
-                'foldername' => 'bluemonster',
+                'foldername' => 'bluemonster/normal',
                 'theme_mode' => 'dark',
                 'header_logo' => 'wavelog_icon_only_darkly',
                 'main_logo' => 'wavelog_logo_darkly',
+            ),
+            array(
+                'name' => 'Blue Monster wide (Dark)',
+                'foldername' => 'bluemonster/wide',
+                'theme_mode' => 'dark',
+                'header_logo' => 'wavelog_icon_only_darkly_wide',
+                'main_logo' => 'wavelog_logo_darkly_wide',
+            ),
+            array(
+                'name' => 'Blue Monster Ultrawide (Dark)',
+                'foldername' => 'bluemonster/ultrawide',
+                'theme_mode' => 'dark',
+                'header_logo' => 'wavelog_icon_only_darkly_wide',
+                'main_logo' => 'wavelog_logo_darkly_wide',
             ),
             array(
                 'name' => 'Darkly Ultrawide (Dark)',
@@ -51,8 +67,10 @@ class Migration_add_new_themes extends CI_Migration {
     }
 
     public function down() {
-        $this->dbtry("DELETE FROM `themes` WHERE `foldername` IN (?, ?)", array('bluemonster', 'darkly_ultrawide'));
-        $this->dbtry("UPDATE `users` SET `user_stylesheet` = 'default' WHERE `user_stylesheet` IN (?, ?)", array('bluemonster', 'darkly_ultrawide'));
+        $folders = array('bluemonster', 'bluemonster/normal', 'bluemonster/wide', 'bluemonster/ultrawide', 'darkly_ultrawide');
+        $placeholders = implode(',', array_fill(0, count($folders), '?'));
+        $this->dbtry("DELETE FROM `themes` WHERE `foldername` IN ($placeholders)", $folders);
+        $this->dbtry("UPDATE `users` SET `user_stylesheet` = 'default' WHERE `user_stylesheet` IN ($placeholders)", $folders);
 
         $this->invalidate_theme_cache();
     }
