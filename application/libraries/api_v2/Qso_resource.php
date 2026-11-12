@@ -62,6 +62,7 @@ class Qso_resource extends Api_v2_resource {
 	 * Filters (all optional):
 	 *   ?station_id= comma-separated, ownership-checked; default: all owned
 	 *   ?callsign=   exact match on the worked callsign (e.g. HB9HIL)
+	 *   ?dxcc_id=    exact match on the DXCC entity id (COL_DXCC)
 	 *   ?band=       single band filter (e.g. 20m or SAT)
 	 *   ?mode=       single mode/submode filter (e.g. SSB or FT8)
 	 *   ?qsl_filter= comma list of lotw|qsl|eqsl|clublog (OR-combined)
@@ -97,6 +98,7 @@ class Qso_resource extends Api_v2_resource {
 		$band        = $this->normalize_band($this->param('band'));
 		$mode        = $this->normalize_mode($this->param('mode'));
 		$callsign    = $this->normalize_callsign($this->param('callsign'));
+		$dxcc_id     = $this->parse_dxcc_id();
 		$qsl_filter  = $this->parse_qsl_filter();
 		$since_id    = $this->parse_since_id();
 		$qso_since   = $this->parse_date('qso_since');
@@ -132,6 +134,7 @@ class Qso_resource extends Api_v2_resource {
 		$filters = [
 			'station_ids' => $station_ids,
 			'callsign'    => $callsign,
+			'dxcc_id'     => $dxcc_id,
 			'band'        => $band,
 			'mode'        => $mode,
 			'qsl_filter'  => $qsl_filter,
@@ -207,6 +210,23 @@ class Qso_resource extends Api_v2_resource {
 	 */
 	protected function parse_qsl_filter() {
 		return $this->parse_type_list('qsl_filter', ['lotw', 'qsl', 'eqsl', 'qrz', 'clublog']);
+	}
+
+	/**
+	 * Parse and validate the optional ?dxcc_id= filter.
+	 */
+	protected function parse_dxcc_id() {
+		$raw = $this->param('dxcc_id');
+		if ($raw === null) {
+			return null;
+		}
+
+		$raw = trim((string) $raw);
+		if ($raw === '' || !ctype_digit($raw)) {
+			throw new Api_v2_exception('validation_error', 'dxcc_id must be a non-negative integer', 400);
+		}
+
+		return $raw;
 	}
 
 	/**
