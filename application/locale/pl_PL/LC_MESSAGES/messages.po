@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-10 14:50+0000\n"
+"POT-Creation-Date: 2026-11-12 06:44+0000\n"
 "PO-Revision-Date: 2026-10-27 20:37+0000\n"
 "Last-Translator: Bartek <achtachtel@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4526,27 +4526,28 @@ msgstr ""
 "następnym przesyłaniu."
 
 #: application/controllers/Widgets.php:21
+#: application/controllers/Widgets.php:90
 msgid "Unknown Public Page, please make sure the public slug is correct."
 msgstr ""
 "Nieznana strona publiczna, należy upewnić się, że publiczny identyfikator "
 "jest poprawny."
 
-#: application/controllers/Widgets.php:91 application/views/oqrs/index.php:70
+#: application/controllers/Widgets.php:101 application/views/oqrs/index.php:70
 msgid "No stations found that are using Wavelog OQRS."
 msgstr "Nie znaleziono stacji korzystających z Wavelog OQRS."
 
-#: application/controllers/Widgets.php:146
-#: application/controllers/Widgets.php:157
-#: application/controllers/Widgets.php:261
+#: application/controllers/Widgets.php:156
+#: application/controllers/Widgets.php:167
 #: application/controllers/Widgets.php:271
+#: application/controllers/Widgets.php:281
 msgid "User slug not specified"
 msgstr "Nie określono identyfikatora użytkownika"
 
-#: application/controllers/Widgets.php:169
+#: application/controllers/Widgets.php:179
 msgid "User has on-air widget disabled"
 msgstr "Użytkownik ma wyłączony widżet NA ŻYWO"
 
-#: application/controllers/Widgets.php:228
+#: application/controllers/Widgets.php:238
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
@@ -4554,15 +4555,15 @@ msgstr ""
 "Nie znaleziono radiostacji z interfejsami CAT. Należy mieć skonfigurowany "
 "przynajmniej jeden interfejs radiowy."
 
-#: application/controllers/Widgets.php:282
+#: application/controllers/Widgets.php:292
 msgid "User has disabled the LoTW upload widget"
 msgstr "Użytkownik wyłączył widget przesyłania do LoTW"
 
-#: application/controllers/Widgets.php:540
+#: application/controllers/Widgets.php:550
 msgid "User not found by slug"
 msgstr "Nie znaleziono użytkownika o podanym identyfikatorze"
 
-#: application/controllers/Widgets.php:543
+#: application/controllers/Widgets.php:553
 msgid "Multiple users found by slug"
 msgstr "Znaleziono wielu użytkowników o podanym identyfikatorze"
 
@@ -5435,7 +5436,7 @@ msgstr "Referencja POTA już znajduje się w dzienniku"
 msgid "QSO updated"
 msgstr "QSO zaktualizowane"
 
-#: application/models/Logbook_model.php:6692
+#: application/models/Logbook_model.php:6696
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
