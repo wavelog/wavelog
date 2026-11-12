@@ -885,12 +885,16 @@ class Contesting extends CI_Controller {
 				if (array_key_exists($key, $payload)) {
 					$val = $payload[$key];
 					if (in_array($key, ['callsign', 'mode', 'rst_sent', 'rst_rcvd',
-					                    'serial_sent', 'serial_rcvd', 'exchange_sent',
-					                    'exchange_rcvd', 'gridsquare_rcvd'])) {
+						'serial_sent', 'serial_rcvd', 'exchange_sent',
+						'exchange_rcvd', 'gridsquare_rcvd'])) {
 						$val = $val !== null ? strtoupper(trim((string)$val)) : null;
 						if ($key === 'callsign' && $val !== null) {
 							$val = $this->_validateCallsign($val);
 						}
+					}
+					// Contact gridsquare (e.g. copied from the exchange): Maidenhead check
+					if ($key === 'gridsquare_rcvd' && $val !== null && $val !== '' && !valid_grid($val)) {
+						throw new Exception('Invalid gridsquare value');
 					}
 					// Bands are stored lowercase (e.g. 20m, 70cm)
 					if ($key === 'band') {

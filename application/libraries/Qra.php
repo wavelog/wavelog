@@ -208,35 +208,21 @@ class Qra {
 		return [atan2(($z / $n), sqrt($x * $x + $y * $y)) * 180 / pi(), atan2($y, $x) * 180 / pi()];
 	}
 
+	/**
+	 * Validate a locator string against the central input_validation helper.
+	 *
+	 * @param string $grid Grid locator or VUCC grids string to check.
+	 * @param string $type 'grid' (single locator), 'vucc' (grid line/corner) or 'any' (both). Default 'any'.
+	 * @return bool True if the value matches the requested dialect.
+	 */
 	function validate_grid($grid, $type='any') {
 		// (Try to) Detect placeholders like AA00aa (returned from qrz.com for example)
 		if (strlen($grid) == 6 && strtoupper($grid) == 'AA00AA') {
 			return false;
 		}
-		if ($type == 'vucc') goto vucc;
-		// Allow 6-digit locator
-		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
-		// Allow 4-digit locator
-		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-		// Allow 2-digit locator
-		if (preg_match('/^[A-Ra-r]{2}$/', $grid)) return true;
-		// Allow 8-digit locator
-		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}$/', $grid)) return true;
-		// Allow 10-digit locator
-		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
-		if ($type == 'grid') return false;
-
-		vucc:
-		// Allow 4-digit grid line
-		if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-		// Allow 6-digit grid line
-		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
-
-		// Allow 4-digit grid corner
-		if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-		// Allow 6-digit grid corner
-		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2},[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
-		return false;
+		if ($type == 'grid') return valid_grid($grid);
+		if ($type == 'vucc') return valid_vucc($grid);
+		return valid_grid($grid) || valid_vucc($grid);
 	}
 }
 
@@ -338,7 +324,7 @@ function qra2latlong($strQRA) {
 		elseif (strlen($strQRA) == 6)  $strQRA .= "55AA";
 		elseif (strlen($strQRA) == 8)  $strQRA .= "MM";
 
-		if (!preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}[0-9]{2}[A-X]{2}$/', $strQRA)) {
+		if (!valid_grid($strQRA, 10)) {
 			return false;
 		}
 

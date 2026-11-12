@@ -57,6 +57,26 @@ class Modes extends CI_Model {
 		}
 	}
 
+	/**
+	 * Get all active digital modes and submodes from the adif_modes table
+	 * as a lookup map (mode/submode uppercase => 1) for fast isset() checks.
+	 *
+	 * @return array Lookup map of active digital modes and submodes
+	 */
+	function get_digi_modes() {
+		$this->db->select('mode, submode');
+		$this->db->where('qrgmode', 'DATA');
+		$this->db->where('active', 1);
+		$modes = [];
+		foreach ($this->db->get('adif_modes')->result() as $row) {
+			$modes[strtoupper($row->mode)] = 1;
+			if (!empty($row->submode)) {
+				$modes[strtoupper($row->submode)] = 1;
+			}
+		}
+		return $modes;
+	}
+
 	function mode($id) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
