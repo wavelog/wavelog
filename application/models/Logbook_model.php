@@ -200,6 +200,14 @@ class Logbook_model extends CI_Model {
 		// In case of a satellite name we force the $prop_mode to SAT
 		$prop_mode = ($qso_data['sat_name'] ?? NULL) != NULL ? "SAT" : $prop_mode;
 
+		if ($prop_mode !== NULL && $prop_mode !== '' && !valid_prop_mode($prop_mode, array_keys($this->config->item('adif_propmodes')))) {
+			return __("Invalid prop_mode") . ': ' . $prop_mode;
+		}
+
+		if (!empty($qso_data['sat_mode']) && !valid_sat_mode($qso_data['sat_mode'])) {
+			return __("Invalid sat_mode") . ': ' . $qso_data['sat_mode'];
+		}
+
 		// Contest exchange, need to separate between serial and other type of exchange
 		$srx_string = $stx_string = $srx = $stx = NULL;
 		if ($qso_data['exchangetype'] ?? NULL) {
@@ -289,6 +297,9 @@ class Logbook_model extends CI_Model {
 
 		$darc_dok = trim($qso_data['darc_dok'] ?? '');
 		$qso_locator = strtoupper(trim($qso_data['locator'] ?? ''));
+		if ($qso_locator !== '' && !valid_grid_list($qso_locator) && !valid_grid($qso_locator)) {
+			return __("Invalid locator") . ': ' . $qso_locator;
+		}
 		$qso_qth = trim($qso_data['qth'] ?? '');
 		$qso_name = trim($qso_data['name'] ?? '');
 		$qso_age = NULL;
@@ -302,7 +313,7 @@ class Logbook_model extends CI_Model {
 					break;
 				case 'locator':
 					// Matching 4-10 character-locator
-					if (preg_match('/^[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/', $srx_string)) {
+					if (valid_grid($srx_string, 4)) {
 						$qso_locator = strtoupper($srx_string);
 					}
 					break;
@@ -5301,6 +5312,30 @@ class Logbook_model extends CI_Model {
 			return($returner);
 		}
 
+		if (!empty($record['prop_mode']) && !valid_prop_mode($record['prop_mode'], array_keys($this->config->item('adif_propmodes')))) {
+			$returner['error'] = sprintf(__("QSO on %s: You tried to import a QSO with an invalid PROP_MODE. This QSO wasn't imported. The invalid input is '%s'.")."<br>", $time_on, htmlentities((string) $record['prop_mode']));
+			$returner['error_category'] = 'validation';
+			return($returner);
+		}
+
+		if (!empty($record['sat_mode']) && !valid_sat_mode($record['sat_mode'])) {
+			$returner['error'] = sprintf(__("QSO on %s: You tried to import a QSO with an invalid SAT_MODE. This QSO wasn't imported. The invalid input is '%s'.")."<br>", $time_on, htmlentities((string) $record['sat_mode']));
+			$returner['error_category'] = 'validation';
+			return($returner);
+		}
+
+		if (!empty($record['my_gridsquare']) && !valid_grid_list($record['my_gridsquare'])) {
+			$returner['error'] = sprintf(__("QSO on %s: You tried to import a QSO with an invalid MY_GRIDSQUARE. This QSO wasn't imported. The invalid input is '%s'.")."<br>", $time_on, htmlentities((string) $record['my_gridsquare']));
+			$returner['error_category'] = 'validation';
+			return($returner);
+		}
+
+		if (!empty($record['my_vucc_grids']) && !valid_grid_list($record['my_vucc_grids'])) {
+			$returner['error'] = sprintf(__("QSO on %s: You tried to import a QSO with an invalid MY_VUCC_GRIDS. This QSO wasn't imported. The invalid input is '%s'.")."<br>", $time_on, htmlentities((string) $record['my_vucc_grids']));
+			$returner['error_category'] = 'validation';
+			return($returner);
+		}
+
 		if (isset($record['time_off'])) {
 			if (isset($record['date_off'])) {
 				// date_off and time_off set
@@ -5507,43 +5542,23 @@ class Logbook_model extends CI_Model {
 				$cq_zone = NULL;
 			}
 
-			// Sanitise gridsquare input to make sure its a gridsquare
-			if (isset($record['gridsquare'])) {
-				$a_grids = explode(',', $record['gridsquare']);	// Split at , if there are junctions
-				foreach ($a_grids as $singlegrid) {
-					$singlegrid = strtoupper($singlegrid);
-					if (strlen($singlegrid) == 4)  $singlegrid .= "LL";     // Only 4 Chars? Fill with center "LL" as only A-R allowed
-					if (strlen($singlegrid) == 6)  $singlegrid .= "55";     // Only 6 Chars? Fill with center "55"
-					if (strlen($singlegrid) == 8)  $singlegrid .= "LL";     // Only 8 Chars? Fill with center "LL" as only A-R allowed
-					if (strlen($singlegrid) % 2 != 0) {	// Check if grid is structually valid
-						$record['gridsquare'] = '';	// If not: Set to ''
-					} else {
-						if (!preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}[0-9]{2}[A-X]{2}$/', $singlegrid)) $record['gridsquare'] = '';
-					}
-				}
-				$input_gridsquare = $record['gridsquare'];
-			} else {
-				$input_gridsquare = NULL;
-			}
+		// Sanitise gridsquare input to make sure it is a grid (list)
+		$input_gridsquare = (isset($record['gridsquare'])) ? $record['gridsquare'] : NULL;
+		if ($input_gridsquare !== NULL && $input_gridsquare !== '' && !valid_grid_list($input_gridsquare)) {
+			$record['gridsquare'] = '';
+			$input_gridsquare = '';
+		}
 
-			// Sanitise vucc-gridsquare input to make sure its a gridsquare
-			if (isset($record['vucc_grids'])) {
-				$a_grids = explode(',', $record['vucc_grids']);	// Split at , if there are junctions
-				foreach ($a_grids as $singlegrid) {
-					$singlegrid = strtoupper(trim($singlegrid));
-					if (strlen($singlegrid) == 4)  $singlegrid .= "LL";     // Only 4 Chars? Fill with center "LL" as only A-R allowed
-					if (strlen($singlegrid) == 6)  $singlegrid .= "55";     // Only 6 Chars? Fill with center "55"
-					if (strlen($singlegrid) == 8)  $singlegrid .= "LL";     // Only 8 Chars? Fill with center "LL" as only A-R allowed
-					if (strlen($singlegrid) % 2 != 0) {	// Check if grid is structually valid
-						$record['vucc_grids'] = '';	// If not: Set to ''
-					} else {
-						if (!preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}[0-9]{2}[A-X]{2}$/', $singlegrid)) $record['vucc_grids'] = '';
-					}
-				}
-				$input_vucc_grids = preg_replace('/\s+/', '', $record['vucc_grids']);
+		// Sanitise vucc-gridsquare input to make sure it is a grid (list)
+		$input_vucc_grids = (isset($record['vucc_grids'])) ? $record['vucc_grids'] : NULL;
+		if ($input_vucc_grids !== NULL && $input_vucc_grids !== '') {
+			if (valid_grid_list($input_vucc_grids)) {
+				$input_vucc_grids = preg_replace('/\s+/', '', $input_vucc_grids);
 			} else {
-				$input_vucc_grids = NULL;
+				$record['vucc_grids'] = '';
+				$input_vucc_grids = '';
 			}
+		}
 
 			// Sanitise lat input to make sure its 11 chars
 			if (isset($record['lat'])) {

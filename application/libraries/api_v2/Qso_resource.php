@@ -806,6 +806,24 @@ class Qso_resource extends Api_v2_resource {
 			}
 		}
 
+		// Gridsquare, satellite mode and propagation mode: strict format checks
+		// (empty values are allowed and clear the field).
+		if (isset($data['COL_GRIDSQUARE']) && $data['COL_GRIDSQUARE'] !== null && $data['COL_GRIDSQUARE'] !== ''
+			&& !valid_grid((string) $data['COL_GRIDSQUARE'])) {
+			throw new Api_v2_exception('validation_error', 'Invalid gridsquare', 400, ['field' => 'gridsquare']);
+		}
+		if (isset($data['COL_SAT_MODE']) && $data['COL_SAT_MODE'] !== null && $data['COL_SAT_MODE'] !== ''
+			&& !valid_sat_mode((string) $data['COL_SAT_MODE'])) {
+			throw new Api_v2_exception('validation_error', 'Invalid sat_mode', 400, ['field' => 'sat_mode']);
+		}
+		if (isset($data['COL_PROP_MODE']) && $data['COL_PROP_MODE'] !== null && $data['COL_PROP_MODE'] !== '') {
+			$data['COL_PROP_MODE'] = strtoupper(trim((string) $data['COL_PROP_MODE']));
+			$prop_modes = array_keys($this->CI->config->item('adif_propmodes'));
+			if (!valid_prop_mode($data['COL_PROP_MODE'], $prop_modes)) {
+				throw new Api_v2_exception('validation_error', 'Invalid prop_mode', 400, ['field' => 'prop_mode', 'allowed' => $prop_modes]);
+			}
+		}
+
 		return $data;
 	}
 

@@ -46,7 +46,7 @@ class Satpredict {
 			if (strlen($strQRA) == 6)  $strQRA .= "55";
 			if (strlen($strQRA) == 8)  $strQRA .= "LL";
 
-			if (!preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}[0-9]{2}[A-X]{2}$/', $strQRA)) {
+			if (!valid_grid($strQRA, 10)) {
 				return false;
 			}
 		}
