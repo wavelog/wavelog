@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-12 10:50+0000\n"
-"PO-Revision-Date: 2026-11-04 13:11+0000\n"
+"PO-Revision-Date: 2026-11-12 15:47+0000\n"
 "Last-Translator: metint <metin@tekkalmaz.net>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/tr/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.10.1\n"
+"X-Generator: Weblate 2026.11.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -1830,7 +1830,7 @@ msgstr "eQSL resim verisi alınamadı"
 
 #: application/controllers/Eqsl.php:396
 msgid "Check credentials. Login to eQSL denied"
-msgstr ""
+msgstr "Kimlik bilgilerini kontrol et. eQSL için oturum açma reddedildi"
 
 #: application/controllers/Eqsl.php:398 application/controllers/Eqsl.php:418
 msgid "eQSL image not available"
@@ -3042,21 +3042,21 @@ msgstr "VUCC grid karesi verisi mevcut değil."
 #: application/controllers/Mostwantedgrids.php:12
 #: application/views/debug/index.php:815
 msgid "Most Wanted Grids (Satellite)"
-msgstr ""
+msgstr "En Çok Aranan Kareler (Uydu)"
 
 #: application/controllers/Mostwantedgrids.php:38
 msgid "Most wanted grid table is empty. Please update the table first."
-msgstr ""
+msgstr "En çok aranan kareler tablosu boş. Lütfen önce tabloyu güncelleyin."
 
 #: application/controllers/Mostwantedgrids.php:75
 msgid "Could not fetch activations from gridmaster.fr"
-msgstr ""
+msgstr "gridmaster.fr sitesinden aktivasyonlar alınamadı"
 
 #: application/controllers/Mostwantedgrids.php:78
 #: application/controllers/Mostwantedgrids.php:79
 #: application/views/interface_assets/footer.php:53
 msgid "Last Activations"
-msgstr ""
+msgstr "Son Aktivasyonlar"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:158
@@ -4619,6 +4619,8 @@ msgid ""
 "No valid gridsquare given. Please set your station location or enter a valid "
 "gridsquare."
 msgstr ""
+"Geçerli bir grid karesi belirtilmedi. Lütfen istasyon konumunuzu ayarlayın "
+"veya geçerli bir grid karesi girin."
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
@@ -5312,11 +5314,11 @@ msgstr "İçe aktarılan etiket türü"
 
 #: application/models/Logbook_model.php:204
 msgid "Invalid prop_mode"
-msgstr ""
+msgstr "Geçersiz prop_mode"
 
 #: application/models/Logbook_model.php:208
 msgid "Invalid sat_mode"
-msgstr ""
+msgstr "Geçersiz sat_mode"
 
 #: application/models/Logbook_model.php:301
 msgid "Invalid locator"
