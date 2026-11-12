@@ -811,6 +811,12 @@
                             <td><?php echo $vucc_grids_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_vucc_grids'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
+                        <tr>
+                            <td><?= __("Most Wanted Grids (Satellite)"); ?></td>
+                            <?php $timestamp = strtotime($most_wanted_grids_update->last_run ?? ''); ?>
+                            <td><?php echo ($most_wanted_grids_update->last_run ?? '') ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
+                            <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_most_wanted_grids'); ?>"><?= __("Update"); ?></a></td>
+                        </tr>
                     </table>
                 </div>
             </div>

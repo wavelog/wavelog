@@ -274,6 +274,7 @@ class Stationsetup_model extends CI_Model {
 
 	public function import_locations_parse($locations, $user_id = null) {
 		$imported=0;
+		$this->load->library('Qra');
 		foreach ($locations as $loc) {
 			if ($imported >= 1000){
 				return (array('limit',$imported."locations imported. Maximum limit of 1000 locations reached.")); // Prevent importing more than 1000 locations at once
@@ -285,7 +286,7 @@ class Stationsetup_model extends CI_Model {
 			$dbdata = [
 				'station_active'        => 0,
 				'station_profile_name'  => ((isset($loc['station_profile_name']) && $loc['station_profile_name'] != "") ? xss_clean($loc['station_profile_name']) : ''),
-				'station_gridsquare'    => ((isset($loc['station_gridsquare']) && $loc['station_gridsquare'] != "") ? xss_clean($loc['station_gridsquare']) : ''),
+				'station_gridsquare'    => ((isset($loc['station_gridsquare']) && $loc['station_gridsquare'] != "" && $this->qra->validate_grid($loc['station_gridsquare'])) ? xss_clean($loc['station_gridsquare']) : ''),
 				'station_city'          => ((isset($loc['station_city']) && $loc['station_city'] != "") ? xss_clean($loc['station_city']) : ''),
 				'station_iota'          => ((isset($loc['station_iota']) && $loc['station_iota'] != "") ? xss_clean($loc['station_iota']) : ''),
 				'station_sota'          => ((isset($loc['station_sota']) && $loc['station_sota'] != "") ? xss_clean($loc['station_sota']) : ''),

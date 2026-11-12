@@ -5,8 +5,8 @@
 	let lang_gen_advanced_logbook_select_at_least_one_row = '<?= __("You need to select a least 1 row!"); ?>';
 	let lang_gen_advanced_logbook_show_more = '<?= __("Show more"); ?>';
 	let lang_gen_advanced_logbook_show_less = '<?= __("Show less"); ?>';
-	let lang_gen_advanced_logbook_confirmedLabel = '<?= __("Gridsquares for"); ?>';
-	let lang_gen_advanced_logbook_workedLabel = '<?= __("Non DXCC matching gridsquare"); ?>';
+	let lang_gen_advanced_logbook_confirmedLabel = <?= js_escape(html_entity_decode(__("Gridsquares for"), ENT_QUOTES, 'UTF-8')); ?>;
+	let lang_gen_advanced_logbook_workedLabel = <?= js_escape(html_entity_decode(__("Non DXCC matching gridsquare"), ENT_QUOTES, 'UTF-8')); ?>;
 </script>
 
 <div class="container px-3 px-lg-4 mt-3 mb-3">

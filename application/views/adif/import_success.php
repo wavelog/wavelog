@@ -50,7 +50,15 @@
     </ul>
     <?php } ?>
        </div>
-		<!-- Display errors for ADIF import -->
+
+       <!-- Hint towards API tools when import was big, mostly dupes and mostly digi-mode -->
+       <?php if ($api_hint ?? false): ?>
+           <div class="alert alert-info" role="alert">
+               <span class="badge text-bg-info"><?= __("Information"); ?></span> <i class="fas fa-plug"></i> <b><?= __("Real-time logging recommended")?></b>
+               <p><?= sprintf(__("You've imported %s QSOs, most of them digi-mode, and many were duplicates. For digi-modes like FT8/FT4 consider using a real-time API connection instead of uploading your whole log over and over again. Tools: WSJT-X Improved, Waveloggate and others. See %s."), $qsocount, '<a target="_blank" href="https://docs.wavelog.org/user-guide/integrations/wsjt-x/">docs.wavelog.org</a>') ?></p>
+           </div>
+       <?php endif; ?>
+	<!-- Display errors for ADIF import -->
 		<?php if($adif_errors): ?>
 			<div class="mt-2 ms-2 me-2">
 				<h3 class="text-danger"><?= __("Import details / possible problems") ?></h3>

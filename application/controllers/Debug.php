@@ -130,6 +130,7 @@ class Debug extends CI_Controller
 		$data['hon_update'] = $this->cron_model->cron('update_update_hamsofnote')->row();
 		$data['hamqsl_update'] = $this->cron_model->cron('update_update_hamqsl')->row();
 		$data['vucc_grids_update'] = $this->cron_model->cron('vucc_grid_file')->row();
+		$data['most_wanted_grids_update'] = $this->cron_model->cron('most_wanted_grids_file')->row();
 
 		$data['page_title'] = __("Debug");
 
