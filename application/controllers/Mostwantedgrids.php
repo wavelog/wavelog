@@ -58,5 +58,33 @@ class Mostwantedgrids extends CI_Controller {
 
 		header('Content-Type: application/json');
 		echo json_encode($data);
-    }
+   }
+
+	public function activators_details_ajax() {
+		$this->load->model('mostwantedgrids_model');
+		$this->load->model('logbook_model');
+		$searchphrase = str_replace('"', "", $this->security->xss_clean($this->input->post("Searchphrase")));
+		$band = str_replace('"', "", $this->security->xss_clean($this->input->post("Band")));
+		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
+		$sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
+		$orbit = str_replace('"', "", $this->security->xss_clean($this->input->post("Orbit")));
+		$propagation = str_replace('"', "", $this->security->xss_clean($this->input->post("Propagation")) ?? '');
+		$type = $this->security->xss_clean($this->input->post('Type'));
+		$activation_data = $this->mostwantedgrids_model->get_grid_details($searchphrase);
+		if ($activation_data === null) {
+				echo "<div class=\"alert alert-warning\">" . __("Could not fetch activations from gridmaster.fr") . "</div>";
+				return;
+		}
+		$data['page_title'] = __("Last Activations")." - " . $type;
+		$data['page_title'] = __("Last Activations")." - " . $type;
+		$data['gridsquare'] = $searchphrase;
+		$data['grid_percentage'] = $activation_data->percent;
+		$data['activation_data'] = $activation_data->last;
+		foreach ($activation_data->last as $activation) {
+			$activation->lotw = $this->logbook_model->check_last_lotw($activation->call);
+		}
+		$data['count'] = count($activation_data->last);
+		$this->load->view('mostwantedgrids/details', $data);
+	}
+
 }

@@ -490,6 +490,7 @@ class adif extends CI_Controller {
 			$data['imported_contests'] = $contest_qso_infos ?? [];
 
 			$data['api_hint'] = false;
+			$alladif ??= [];	// unset if the station profile was invalid
 			$total = count($alladif);
 			$dupes = count($custom_errors['structured_errors']['duplicate'] ?? []);
 			if ($total >= 200 && $dupes * 2 >= $total) {

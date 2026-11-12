@@ -72,3 +72,67 @@ function spawnGridsquareModal(loc_4char) {
 		});
 	}
 }
+
+function spawnGridsquareActivatorsModal(loc_4char) {
+	if (!(modalloading) && gridModalQuery !== null) {
+		var ajax_data = gridModalQuery(loc_4char);
+		modalloading = true;
+		$.ajax({
+			url: base_url + 'index.php/mostwantedgrids/activators_details_ajax',
+			type: 'post',
+			data: ajax_data,
+			success: function (html) {
+				var dialog = new BootstrapDialog({
+					title: lang_general_word_last_activations,
+					cssClass: 'qso-dialog',
+					size: BootstrapDialog.SIZE_WIDE,
+					nl2br: false,
+					message: html,
+					onshown: function(dialog) {
+						modalloading = false;
+						$('[data-bs-toggle="tooltip"]').tooltip();
+						$('.displaycontactstable').DataTable({
+							"pageLength": 25,
+							responsive: false,
+							ordering: false,
+							"scrollY":        "550px",
+							"scrollCollapse": true,
+							"paging":         false,
+							"scrollX": true,
+							"language": {
+								url: getDataTablesLanguageUrl(),
+							},
+							dom: 'Bfrtip',
+							buttons: [
+								'csv'
+							]
+						});
+						// change color of csv-button if dark mode is chosen
+						if (isDarkModeTheme()) {
+							$(".buttons-csv").css("color", "white");
+						}
+						$('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function () {
+							showQsoActionsMenu($(this).closest('.dropdown'));
+						});
+					},
+					onhide: function(dialog) {
+						enableMap();
+					},
+					buttons: [{
+						label: lang_admin_close,
+						action: function(dialogItself) {
+							dialogItself.close();
+						}
+					}]
+				});
+				dialog.realize();
+				$('#gridsquare_map').append(dialog.getModal());
+				disableMap();
+				dialog.open();
+			},
+			error: function(e) {
+				modalloading = false;
+			}
+		});
+	}
+}
