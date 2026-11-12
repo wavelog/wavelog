@@ -14,14 +14,10 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * Route:  /api/v2/station
  * Scope:  station:read / station:write / station:delete
  *
- * Only the core location fields are writable via the API; external-service
- * credentials (QRZ/HRDLog/ClubLog/OQRS/webADIF/eQSL) are intentionally not
- * exposed here and keep their defaults on create. The only external-service
- * settings exposed are the upload switches of the two services whose
- * credentials live on the user (not the station): the ClubLog upload mode
- * (clublog_upload: live/on/disabled) and the eQSL QTH nickname
- * (eqsl_qth_nickname, empty = no eQSL upload), plus the per-station
- * PSKReporter live reporting switch (pskreporter_live, boolean).
+ * External-service credentials (QRZ/HRDLog/ClubLog/webADIF/eQSL) are
+ * intentionally not exposed. Non-secret per-station settings are writable:
+ * the ClubLog, QRZ and HRDLog upload modes (live/on/disabled), OQRS settings,
+ * the eQSL QTH nickname and the PSKReporter live reporting switch.
  */
 class Station_resource extends Api_v2_resource {
 
@@ -108,6 +104,9 @@ class Station_resource extends Api_v2_resource {
 		$this->require_scalar_fields($body);
 		$this->require_present($body, self::REQUIRED_FIELDS);
 		$this->validate_grid($body);
+		if (array_key_exists('pskreporter_live', $body)) {
+			$this->normalize_boolean('pskreporter_live', $body['pskreporter_live']);
+		}
 
 		// The first station of a user becomes the active/default one, mirroring
 		// Stations::add(); find_active() is session-bound and unusable here.
@@ -200,6 +199,9 @@ class Station_resource extends Api_v2_resource {
 
 		$set_active = !empty($body['set_active']);
 		$set_psk = array_key_exists('pskreporter_live', $body);
+		if ($set_psk) {
+			$this->normalize_boolean('pskreporter_live', $body['pskreporter_live']);
+		}
 		$data = $this->build_columns($body, false, (int) $current->station_dxcc);
 		if (empty($data) && !$set_active && !$set_psk) {
 			throw new Api_v2_exception('validation_error', 'No editable fields in request body', 400);
@@ -243,18 +245,26 @@ class Station_resource extends Api_v2_resource {
 		// columns: live = realtime + batch upload, on = batch upload only,
 		// disabled = nothing is uploaded (ignore).
 		if (array_key_exists('clublog_upload', $body)) {
-			$mode = $this->normalize_clublog_mode($body['clublog_upload']);
+			$mode = $this->normalize_upload_mode('clublog_upload', $body['clublog_upload']);
 			$data['clublogrealtime'] = $mode === 'live' ? 1 : 0;
 			$data['clublogignore']   = $mode === 'disabled' ? 1 : 0;
 		} elseif ($fill_defaults) {
 			$data['clublogrealtime'] = 0;
 			$data['clublogignore']   = 0;
 		}
+		foreach (['qrz_upload' => 'qrzrealtime', 'hrdlog_upload' => 'hrdlogrealtime'] as $field => $column) {
+			if (array_key_exists($field, $body)) {
+				$mode = $this->normalize_upload_mode($field, $body[$field]);
+				$data[$column] = $mode === 'live' ? 1 : ($mode === 'on' ? 0 : -1);
+			} elseif ($fill_defaults) {
+				$data[$column] = -1;
+			}
+		}
 
 		foreach ($this->writable_fields() as $key => $def) {
 			list($col, $normalizer, $default) = $def;
 			if (array_key_exists($key, $body)) {
-				$data[$col] = $this->normalize($normalizer, $body[$key]);
+				$data[$col] = $this->normalize($normalizer, $body[$key], $key);
 			} elseif ($fill_defaults) {
 				$data[$col] = $default;
 			}
@@ -297,6 +307,9 @@ class Station_resource extends Api_v2_resource {
 			'sig_info'   => ['station_sig_info',     'upper',       null],
 			'power'      => ['station_power',        'power',       null],
 			'eqsl_qth_nickname' => ['eqslqthnickname', 'eqsl_nickname', null],
+			'oqrs'       => ['oqrs',                  'boolean',     0],
+			'oqrs_email' => ['oqrs_email',            'boolean',     0],
+			'oqrs_text'  => ['oqrs_text',             'nullable_string', null],
 		];
 	}
 
@@ -304,7 +317,7 @@ class Station_resource extends Api_v2_resource {
 	 * Normalise a single field value the same way the web UI does before it
 	 * reaches the database.
 	 */
-	protected function normalize($normalizer, $value) {
+	protected function normalize($normalizer, $value, $field = 'value') {
 		switch ($normalizer) {
 			case 'upper':
 				return xss_clean(strtoupper(trim((string) $value)));
@@ -318,6 +331,10 @@ class Station_resource extends Api_v2_resource {
 				return is_numeric($value) ? round((float) $value, 3) : null;
 			case 'eqsl_nickname':
 				return mb_substr(xss_clean(trim((string) $value)), 0, 255);
+			case 'boolean':
+				return $this->normalize_boolean($field, $value);
+			case 'nullable_string':
+				return $value === null ? null : xss_clean((string) $value);
 			case 'string':
 			default:
 				return xss_clean((string) $value);
@@ -325,23 +342,48 @@ class Station_resource extends Api_v2_resource {
 	}
 
 	/**
-	 * Validate the ClubLog upload mode enum and return its canonical form.
+	 * Validate an upload mode enum and return its canonical form.
 	 *
-	 * @param mixed $value Raw clublog_upload value from the request body.
+	 * @param string $field Public request field name.
+	 * @param mixed  $value Raw value from the request body.
 	 * @throws Api_v2_exception 400 for any value outside live/on/disabled.
 	 * @return string One of 'live', 'on', 'disabled'.
 	 */
-	protected function normalize_clublog_mode($value) {
+	protected function normalize_upload_mode($field, $value) {
 		$mode = strtolower(trim((string) $value));
 		if (!in_array($mode, ['live', 'on', 'disabled'], true)) {
 			throw new Api_v2_exception(
 				'validation_error',
-				'clublog_upload must be one of: live, on, disabled',
+				$field . ' must be one of: live, on, disabled',
 				400,
-				['field' => 'clublog_upload']
+				['field' => $field]
 			);
 		}
 		return $mode;
+	}
+
+	/** Map a legacy realtime column to the public upload mode enum. */
+	protected function upload_mode($value) {
+		if ($value === null || (int) $value < 0) {
+			return 'disabled';
+		}
+		return (int) $value === 1 ? 'live' : 'on';
+	}
+
+	/** Validate a JSON-compatible boolean and return its database value. */
+	protected function normalize_boolean($field, $value) {
+		if (is_bool($value) || $value === 0 || $value === 1 || $value === '0' || $value === '1') {
+			return filter_var($value, FILTER_VALIDATE_BOOL) ? 1 : 0;
+		}
+		if (is_string($value) && in_array(strtolower(trim($value)), ['true', 'false'], true)) {
+			return filter_var($value, FILTER_VALIDATE_BOOL) ? 1 : 0;
+		}
+		throw new Api_v2_exception(
+			'validation_error',
+			$field . ' must be true or false',
+			400,
+			['field' => $field]
+		);
 	}
 
 	/**
@@ -352,7 +394,7 @@ class Station_resource extends Api_v2_resource {
 	 * @param mixed $value      Raw pskreporter_live value from the body.
 	 */
 	protected function set_pskreporter_live(int $station_id, $value): void {
-		$enabled = filter_var($value, FILTER_VALIDATE_BOOL) ? '1' : '0';
+		$enabled = (string) $this->normalize_boolean('pskreporter_live', $value);
 		$this->CI->user_options_model->set_option(
 			'pskreporter_realtime',
 			'key_station_id',
@@ -499,6 +541,11 @@ class Station_resource extends Api_v2_resource {
 			'clublog_upload' => (int) ($row->clublogignore ?? 0) === 1
 				? 'disabled'
 				: ((int) ($row->clublogrealtime ?? 0) === 1 ? 'live' : 'on'),
+			'qrz_upload' => $this->upload_mode($row->qrzrealtime ?? null),
+			'hrdlog_upload' => $this->upload_mode($row->hrdlogrealtime ?? null),
+			'oqrs' => (int) ($row->oqrs ?? 0) === 1,
+			'oqrs_email' => (int) ($row->oqrs_email ?? 0) === 1,
+			'oqrs_text' => $row->oqrs_text ?? null,
 			'eqsl_qth_nickname' => $row->eqslqthnickname ?? null,
 			'pskreporter_live' => $this->pskreporter_live($row),
 		];
