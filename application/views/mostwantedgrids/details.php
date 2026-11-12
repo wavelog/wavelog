@@ -1,3 +1,9 @@
+<?php
+	$custom_date_format = $this->session->userdata('user_date_format');
+	if (!$custom_date_format) {
+		$custom_date_format = $this->config->item('qso_date_format');
+	}
+?>
 <h5><?= sprintf(__("Last %s Activations of %s"), $count, $gridsquare); ?></h5>
 
 <p><?= sprintf(__("Grid is contained in %s%% of all logs on %s"), $grid_percentage, '<a href="https://gridmaster.fr" target="_blank">gridmaster.fr</a>'); ?></p>
@@ -26,7 +32,7 @@
 				echo " <a href=\"https://lotw.arrl.org/lotwuser/act?act=".$activation->call."\" target=\"_blank\"><small id=\"lotw_info\" class=\"badge bg-success ".$lotw_hint." data-bs-toggle=\"tooltip\" title=\"\">L</small></a>";
 			}
 			echo "</td>";
-			echo "<td>".$activation->date."</td>";
+			echo "<td>".date($custom_date_format, strtotime($activation->date))."</td>";
 			echo "</tr>";
 		}
 	?>
