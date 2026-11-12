@@ -120,10 +120,10 @@ class ADIF_Parser
 	public function feed($input_data) //allows the parser to be fed a string
 	{
 
-		if (strpos($input_data, "<EOH>") !== false) {
-			$arr=explode("<EOH>",$input_data);
-			$newstring = $arr[1];
-			$this->data = $newstring;
+		// ADIF tags are case-insensitive; WSJT-X and JTDX write <eoh>
+		$eoh = stripos($input_data, "<eoh>");
+		if ($eoh !== false) {
+			$this->data = substr($input_data, $eoh + 5);
 		} else {
 			$this->data = $input_data;
 		}
