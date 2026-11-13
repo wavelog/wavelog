@@ -440,17 +440,7 @@ class Update_model extends CI_Model {
          set_time_limit(0);                       // 7 files, the big ones are slow
 
         // Peak is ~24 MB on the largest file (DE, 1436 parks), so 256M is ample.
-        // Raise-only: never shrink a host that is already configured higher.
-        $cur = trim((string) ini_get('memory_limit'));
-        if ($cur !== '' && $cur !== '-1') {
-            $bytes = (int) $cur;
-            switch (strtolower(substr($cur, -1))) {
-                case 'g': $bytes *= 1024 * 1024 * 1024; break;
-                case 'm': $bytes *= 1024 * 1024; break;
-                case 'k': $bytes *= 1024; break;
-            }
-            if ($bytes < 256 * 1024 * 1024) { ini_set('memory_limit', '256M'); }
-        }
+        $this->_raise_memory_limit(256 * 1024 * 1024);
 
         $total = 0;
         $errors = [];
@@ -497,7 +487,8 @@ class Update_model extends CI_Model {
                     }
                 };
 
-                foreach ($this->_stream_geojson_features($tmp) as $feature) {
+                $parse_complete = false;
+                foreach ($this->_stream_geojson_features($tmp, $parse_complete) as $feature) {
                     if (!is_array($feature) || ($feature['type'] ?? '') !== 'Feature') { continue; }
                     $ref = $feature['properties']['id'] ?? null;
                     $geom = $feature['geometry'] ?? null;
@@ -515,7 +506,11 @@ class Update_model extends CI_Model {
                 }
                 $flush();   // remainder
 
-                if ($count === 0) {
+                if (!$parse_complete) {
+                    $this->db->trans_rollback();
+                    $txn_open = false;
+                    $errors[] = $cc . ': incomplete GeoJSON — existing data kept';
+                } elseif ($count === 0) {
                     $this->db->trans_rollback();
                     $txn_open = false;
                     $errors[] = $cc . ': 0 features parsed (format drift?) — existing data kept';
@@ -549,7 +544,214 @@ class Update_model extends CI_Model {
         return 'FAILED: no boundaries imported (' . implode('; ', $errors) . ')';
     }
 
-    private function _download_to_file($url, $path) {
+    /* Official GeoJSON endpoints keyed by their WWFF reference prefix. */
+    private $wwff_boundary_sources = ['DLFF' => 'https://dlff.info/data/dlff.geojson'];
+
+    function wwff_boundaries() {
+        $this->load->model('cron_model');
+        $this->load->model('options_model');
+
+        set_time_limit(0);
+
+        $this->_raise_memory_limit(256 * 1024 * 1024);
+
+        $total = 0;
+        $errors = [];
+        $per_source = [];
+        $unchanged = [];
+
+        $prev_save_queries = $this->db->save_queries;
+        $this->db->save_queries = FALSE;
+        $txn_open = false;
+        $tmp = null;
+        try {
+            foreach ($this->wwff_boundary_sources as $source => $url) {
+                $tmp = tempnam(sys_get_temp_dir(), 'wwff_geo_');
+                if ($tmp === false) {
+                    $errors[] = $source . ': tempnam failed';
+                    $tmp = null;
+                    continue;
+                }
+
+                $option_key = 'wwff_boundaries_last_modified_' . strtolower($source);
+                $last_modified = (int) ($this->options_model->item($option_key) ?? 0);
+                if ($last_modified > 0) {
+                    $has_data = $this->db->where('source', $source)->limit(1)->get('wwff_boundaries')->num_rows() > 0;
+                    if (!$has_data) { $last_modified = 0; }
+                }
+
+                $file_time = 0;
+                $downloaded = $this->_download_to_file($url, $tmp, $last_modified, $file_time);
+                if ($downloaded === null) {
+                    $unchanged[] = $source;
+                    @unlink($tmp);
+                    $tmp = null;
+                    continue;
+                }
+                if ($downloaded === false) {
+                    $errors[] = $source . ': download failed';
+                    @unlink($tmp);
+                    $tmp = null;
+                    continue;
+                }
+
+                $this->db->trans_begin();
+                $txn_open = true;
+                $this->db->query('DELETE FROM wwff_boundaries WHERE source = ?', [$source]);
+
+                $count = 0;
+                $invalid_features = 0;
+                $last_ref = '';
+                $batch = [];
+                $batch_bytes = 0;
+                $flush = function () use (&$batch, &$batch_bytes) {
+                    if ($batch) {
+                        $this->db->insert_batch('wwff_boundaries', $batch);
+                        $batch = [];
+                        $batch_bytes = 0;
+                    }
+                };
+
+                $parse_complete = false;
+                foreach ($this->_stream_geojson_features($tmp, $parse_complete) as $feature) {
+                    if (!is_array($feature) || ($feature['type'] ?? '') !== 'Feature') {
+                        $invalid_features++;
+                        continue;
+                    }
+                    $name = (string) ($feature['properties']['name'] ?? '');
+                    if (!preg_match('/^(' . preg_quote($source, '/') . '-\d+)/i', $name, $m)) {
+                        $invalid_features++;
+                        continue;
+                    }
+                    $ref = strtoupper($m[1]);
+                    $geom = $feature['geometry'] ?? null;
+                    if (!is_array($geom)) {
+                        $invalid_features++;
+                        continue;
+                    }
+
+                    // GeometryCollection -> one row per contained geometry.
+                    $geoms = ($geom['type'] ?? '') === 'GeometryCollection'
+                        ? ($geom['geometries'] ?? []) : [$geom];
+                    $valid_geometries = !empty($geoms);
+                    foreach ($geoms as $g) {
+                        $type = is_array($g) ? ($g['type'] ?? '') : '';
+                        $coordinate_depth = $type === 'Polygon' ? 3 : ($type === 'MultiPolygon' ? 4 : 0);
+                        if (!is_array($g)
+                            || $coordinate_depth === 0
+                            || !$this->_valid_geojson_coordinates($g['coordinates'] ?? null, $coordinate_depth)) {
+                            $valid_geometries = false;
+                            break;
+                        }
+                    }
+                    if (!$valid_geometries) {
+                        $invalid_features++;
+                        continue;
+                    }
+
+                    foreach ($geoms as $g) {
+                        $this->_strip_z($g['coordinates']);   // z always 0 in KML export
+                        $json = json_encode($g);
+                        if ($json === false) {
+                            $invalid_features++;
+                            continue;
+                        }
+                        $batch[] = ['reference' => $ref, 'geom' => $json, 'source' => $source];
+                        $batch_bytes += strlen($json);
+                        $last_ref = $ref;
+                        $count++;
+
+                        if ($batch_bytes >= 4 * 1024 * 1024) { $flush(); }
+                    }
+                }
+                $flush();
+
+                if (!$parse_complete || $invalid_features > 0) {
+                    $this->db->trans_rollback();
+                    $txn_open = false;
+                    $errors[] = $source . ': incomplete or unsupported GeoJSON ('
+                        . number_format($invalid_features) . ' invalid features) - existing data kept';
+                } elseif ($count === 0) {
+                    $this->db->trans_rollback();
+                    $txn_open = false;
+                    $errors[] = $source . ': 0 features parsed (format drift?) - existing data kept';
+                } elseif ($this->db->trans_status() === FALSE) {
+                    $this->db->trans_rollback();
+                    $txn_open = false;
+                    $errors[] = $source . ': db error at/near ' . $last_ref . ' - rolled back';
+                } else {
+                    $this->db->trans_commit();
+                    $txn_open = false;
+                    $per_source[] = $source . '=' . number_format($count);
+                    $total += $count;
+                    $this->options_model->update($option_key, $file_time > 0 ? (string) $file_time : '0');
+                }
+                @unlink($tmp);
+                $tmp = null;
+            }
+        } catch (Throwable $e) {
+            if ($txn_open) { $this->db->trans_rollback(); }
+            throw $e;
+        } finally {
+            if ($tmp !== null) { @unlink($tmp); }
+            $this->db->save_queries = $prev_save_queries;
+        }
+
+        if ($total > 0) {
+            $this->cron_model->set_last_run('update_wwff_boundaries');
+            $msg = 'DONE: ' . number_format($total) . ' WWFF boundaries saved'
+                . ' (sources: ' . implode(', ', $per_source) . ')';
+            if ($unchanged) { $msg .= ' | unchanged: ' . implode(', ', $unchanged); }
+            if ($errors) { $msg .= ' | errors: ' . implode('; ', $errors); }
+            return $msg;
+        }
+        if ($unchanged && !$errors) {
+            $this->cron_model->set_last_run('update_wwff_boundaries');
+            return 'DONE: WWFF boundaries unchanged (sources: ' . implode(', ', $unchanged) . ')';
+        }
+        return 'FAILED: no boundaries imported (' . implode('; ', $errors) . ')';
+    }
+
+    /* [lon, lat, z] → [lon, lat], recursively. */
+    private function _strip_z(&$arr) {
+        if (!is_array($arr) || empty($arr)) { return; }
+        if (is_array($arr[0])) {
+            foreach ($arr as &$sub) { $this->_strip_z($sub); }
+        } elseif (count($arr) > 2) {
+            $arr = [$arr[0], $arr[1]];
+        }
+    }
+
+    /* Validate nested Polygon/MultiPolygon coordinates down to numeric [lon, lat] positions. */
+    private function _valid_geojson_coordinates($coordinates, $depth) {
+        if (!is_array($coordinates) || empty($coordinates)) { return false; }
+        if ($depth === 1) {
+            return count($coordinates) >= 2
+                && is_numeric($coordinates[0])
+                && is_numeric($coordinates[1]);
+        }
+        foreach ($coordinates as $child) {
+            if (!$this->_valid_geojson_coordinates($child, $depth - 1)) { return false; }
+        }
+        return true;
+    }
+
+    /* Raise-only memory_limit guard: never shrinks a host configured higher. */
+    private function _raise_memory_limit($min_bytes) {
+        $cur = trim((string) ini_get('memory_limit'));
+        if ($cur !== '' && $cur !== '-1') {
+            $bytes = (int) $cur;
+            switch (strtolower(substr($cur, -1))) {
+                case 'g': $bytes *= 1024 * 1024 * 1024; break;
+                case 'm': $bytes *= 1024 * 1024; break;
+                case 'k': $bytes *= 1024; break;
+            }
+            if ($bytes < $min_bytes) { ini_set('memory_limit', (int) ($min_bytes / 1024 / 1024) . 'M'); }
+        }
+    }
+
+    /* Returns true for a complete download, null for HTTP 304, or false on failure. */
+    private function _download_to_file($url, $path, $last_modified = 0, &$file_time = null) {
         $fp = fopen($path, 'wb');
         if ($fp === false) { return false; }
         $ch = curl_init();
@@ -559,14 +761,24 @@ class Update_model extends CI_Model {
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
         curl_setopt($ch, CURLOPT_TIMEOUT, 600);
-        curl_exec($ch);
+        curl_setopt($ch, CURLOPT_ENCODING, '');
+        curl_setopt($ch, CURLOPT_FILETIME, true);
+        if ($last_modified > 0) {
+            curl_setopt($ch, CURLOPT_TIMECONDITION, CURL_TIMECOND_IFMODSINCE);
+            curl_setopt($ch, CURLOPT_TIMEVALUE, $last_modified);
+        }
+        $fetch_complete = (curl_exec($ch) !== false) && (curl_errno($ch) === 0);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $file_time = max(0, (int) curl_getinfo($ch, CURLINFO_FILETIME));
         fclose($fp);
-        return $code == 200;
+        if ($code == 304) { return null; }
+        return $fetch_complete && $code == 200 && filesize($path) > 0;
     }
 
-    private function _stream_geojson_features($filepath) {
+    private function _stream_geojson_features($filepath, &$complete = null) {
         // Extract each Feature object from a GeoJSON FeatureCollection.
+        // $complete becomes true only after the features array and root object
+        // close cleanly, allowing callers to reject partial upstream data.
         //
         // The file is read whole (the largest source, DE, is ~95 MB) and the
         // features are pulled out with a recursive PCRE pattern that matches one
@@ -576,6 +788,7 @@ class Update_model extends CI_Model {
         // which made a 95 MB file take 10+ minutes. PCRE does the same scan in C
         // in well under a second (~0.13 s for DE). Each feature is decoded and
         // yielded on its own, so only one feature is held in memory at a time.
+        $complete = false;
         $json = file_get_contents($filepath);
         if ($json === false) { return; }
 
@@ -586,6 +799,13 @@ class Update_model extends CI_Model {
         if ($p === false) { return; }
         $bracket = strpos($json, '[', $p);
         if ($bracket === false) { return; }
+        $prefix = substr($json, 0, $bracket);
+        $header = json_decode($prefix . '[]}', true);
+        if (!is_array($header)
+            || ($header['type'] ?? '') !== 'FeatureCollection'
+            || !array_key_exists('features', $header)) {
+            return;
+        }
 
         // Raise PCRE's safety ceilings for the large subject; harmless for the
         // rest of the request, so not restored.
@@ -600,13 +820,40 @@ class Update_model extends CI_Model {
 
         $off = $bracket + 1;
         $len = strlen($json);
+        $needs_separator = false;
         while ($off < $len) {
-            if (!preg_match($pattern, $json, $m, PREG_OFFSET_CAPTURE, $off)) {
-                break;
+            while ($off < $len && ctype_space($json[$off])) { $off++; }
+            if ($off >= $len) { return; }
+
+            if ($json[$off] === ']') {
+                // Validate the root object without decoding the potentially huge
+                // features array again; this also permits later root members.
+                $skeleton = $prefix . '[]' . substr($json, $off + 1);
+                $root = json_decode($skeleton, true);
+                $complete = is_array($root)
+                    && ($root['type'] ?? '') === 'FeatureCollection'
+                    && isset($root['features'])
+                    && is_array($root['features']);
+                return;
+            }
+
+            if ($needs_separator) {
+                if ($json[$off] !== ',') { return; }
+                $off++;
+                while ($off < $len && ctype_space($json[$off])) { $off++; }
+                if ($off >= $len || $json[$off] === ']') { return; }
+            }
+
+            if ($json[$off] !== '{'
+                || !preg_match($pattern, $json, $m, PREG_OFFSET_CAPTURE, $off)
+                || $m[0][1] !== $off) {
+                return;
             }
             $feat = json_decode($m[0][0], true);
-            if (is_array($feat)) { yield $feat; }
+            if (!is_array($feat)) { return; }
+            yield $feat;
             $off = $m[0][1] + strlen($m[0][0]);
+            $needs_separator = true;
         }
     }
 
