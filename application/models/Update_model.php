@@ -765,7 +765,6 @@ class Update_model extends CI_Model {
         $fetch_complete = (curl_exec($ch) !== false) && (curl_errno($ch) === 0);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $file_time = max(0, (int) curl_getinfo($ch, CURLINFO_FILETIME));
-        curl_close($ch);
         fclose($fp);
         if ($code == 304) { return null; }
         return $fetch_complete && $code == 200 && filesize($path) > 0;
