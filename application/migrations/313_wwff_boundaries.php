@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-/* WWFF reference boundaries (mirror of pota_boundaries) + monthly cron 00:45. */
+/* Generic WWFF boundary storage. */
 class Migration_wwff_boundaries extends CI_Migration {
 
 	public function up() {
@@ -24,8 +24,8 @@ class Migration_wwff_boundaries extends CI_Migration {
 					'null' => FALSE,
 				),
 				'source' => array(
-					'type' => 'CHAR',
-					'constraint' => 2,
+					'type' => 'VARCHAR',
+					'constraint' => 4,
 					'null' => FALSE,
 				),
 			));
@@ -33,6 +33,17 @@ class Migration_wwff_boundaries extends CI_Migration {
 			$this->dbforge->add_key('reference');
 			$this->dbforge->add_key('source');
 			$this->dbforge->create_table('wwff_boundaries', TRUE);
+		} else {
+			// Normalize tables created by earlier revisions of this feature branch.
+			$this->dbforge->modify_column('wwff_boundaries', array(
+				'source' => array(
+					'name' => 'source',
+					'type' => 'VARCHAR',
+					'constraint' => 4,
+					'null' => FALSE,
+				),
+			));
+			$this->db->where('source', 'DL')->update('wwff_boundaries', array('source' => 'DLFF'));
 		}
 
 		// Register the cron job if the cron table exists (created in migration 196).
@@ -43,7 +54,7 @@ class Migration_wwff_boundaries extends CI_Migration {
 					'id' => 'update_wwff_boundaries',
 					'enabled' => '1',
 					'status' => 'pending',
-					'description' => 'Update WWFF reference boundaries (DLFF GeoJSON)',
+					'description' => 'Update WWFF reference boundaries',
 					'function' => 'index.php/update/update_wwff_boundaries',
 					'expression' => '45 0 1 * *',
 					'last_run' => null,
@@ -59,15 +70,16 @@ class Migration_wwff_boundaries extends CI_Migration {
 		try {
 			$result = $CI->update_model->wwff_boundaries();
 			if (strncmp($result, 'DONE', 4) !== 0) {
-				log_message('error', 'WWFF-Boundaries initial import during migration 303: ' . $result);
+				log_message('error', 'WWFF boundaries initial import during migration 313: ' . $result);
 			}
 		} catch (\Throwable $e) {
-			log_message('error', 'WWFF-Boundaries initial import (migration 303) failed: ' . $e->getMessage());
+			log_message('error', 'WWFF boundaries initial import (migration 313) failed: ' . $e->getMessage());
 		}
 	}
 
 	public function down() {
 		$this->dbforge->drop_table('wwff_boundaries', TRUE);
 		$this->db->delete('cron', array('id' => 'update_wwff_boundaries'));
+		$this->db->delete('options', array('option_name' => 'wwff_boundaries_last_modified_dlff'));
 	}
 }

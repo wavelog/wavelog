@@ -203,8 +203,9 @@ class Activationplanner extends CI_Controller {
 	}
 
 	/* Shared body of pota_boundary / wwff_boundary: emit one reference's
-	 * boundary polygon(s) as a cached GeoJSON Feature (404 when unknown). */
-	private function _boundary_geojson($table, $reference = '') {
+	 * boundary polygon(s) as a cached GeoJSON Feature (404 when unknown).
+	 * The caller controls freshness because WWFF sources are updated more frequently. */
+	private function _boundary_geojson($table, $reference = '', $max_age = 31536000) {
 		$reference = preg_replace('/[^A-Za-z0-9\-]/', '', (string) $reference);
 		if ($reference === '') {
 			$this->output->set_status_header(404);
@@ -232,10 +233,11 @@ class Activationplanner extends CI_Controller {
 		];
 		$json = json_encode($feature);
 		$etag = '"' . md5($json) . '"';
+		$max_age = max(0, (int) $max_age);
 		session_write_close();
 		header('Pragma: private');        // override nocache Pragma emitted by autoloaded session
-		header('Cache-Control: private, max-age=31536000');
-		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 31536000) . ' GMT');
+		header('Cache-Control: private, max-age=' . $max_age);
+		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + $max_age) . ' GMT');
 		header('ETag: ' . $etag);
 		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
 			$this->output->set_status_header(304);
@@ -250,7 +252,7 @@ class Activationplanner extends CI_Controller {
 	}
 
 	public function wwff_boundary($reference = '') {
-		$this->_boundary_geojson('wwff_boundaries', $reference);
+		$this->_boundary_geojson('wwff_boundaries', $reference, 3600);
 	}
 
 	/* AJAX: the WWFF references that have boundary data (gates client-side drawing). */
