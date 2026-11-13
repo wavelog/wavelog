@@ -63,18 +63,6 @@ class Migration_wwff_boundaries extends CI_Migration {
 				));
 			}
 		}
-
-		// Best-effort initial import; failures are left to the cron/manual update path.
-		$CI =& get_instance();
-		$CI->load->model('update_model');
-		try {
-			$result = $CI->update_model->wwff_boundaries();
-			if (strncmp($result, 'DONE', 4) !== 0) {
-				log_message('error', 'WWFF boundaries initial import during migration 313: ' . $result);
-			}
-		} catch (\Throwable $e) {
-			log_message('error', 'WWFF boundaries initial import (migration 313) failed: ' . $e->getMessage());
-		}
 	}
 
 	public function down() {
