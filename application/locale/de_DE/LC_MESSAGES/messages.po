@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-12 16:54+0000\n"
-"PO-Revision-Date: 2026-11-12 10:35+0000\n"
-"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"PO-Revision-Date: 2026-11-13 08:43+0000\n"
+"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -1818,7 +1818,7 @@ msgstr "Du hast deine eQSL.cc-Anmeldedaten nicht definiert!"
 
 #: application/controllers/Eqsl.php:141
 msgid "Please chose a Station Location"
-msgstr ""
+msgstr "Bitte wähle einen Stationsstandort aus"
 
 #: application/controllers/Eqsl.php:145
 msgid "eQSL Import"
@@ -5372,15 +5372,15 @@ msgstr "Importierter Labeltyp"
 
 #: application/models/Logbook_model.php:204
 msgid "Invalid prop_mode"
-msgstr ""
+msgstr "Ungültiger Propagation-Mode"
 
 #: application/models/Logbook_model.php:208
 msgid "Invalid sat_mode"
-msgstr ""
+msgstr "Ungültiger SAT_Mode"
 
 #: application/models/Logbook_model.php:301
 msgid "Invalid locator"
-msgstr ""
+msgstr "Ungültiger Lokator"
 
 #: application/models/Logbook_model.php:437
 msgid "Station not accessible"
@@ -5452,6 +5452,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid PROP_MODE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"QSO in %s: Du hast versucht, ein QSO mit ungültigem PROP_MODE zu "
+"importieren. Dieses QSO wurde nicht importiert. Der ungültige Wert ist: '%s'."
 
 #: application/models/Logbook_model.php:5324
 #, php-format
@@ -5459,6 +5461,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid SAT_MODE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"QSO in %s: Du hast versucht, ein QSO mit ungültigem SAT_MODE zu importieren. "
+"Dieses QSO wurde nicht importiert. Der ungültige Wert ist: '%s'."
 
 #: application/models/Logbook_model.php:5330
 #, php-format
@@ -5466,6 +5470,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid MY_GRIDSQUARE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"QSO in %s: Du hast versucht, ein QSO mit ungültigem MY_GRIDSQUARE zu "
+"importieren. Dieses QSO wurde nicht importiert. Der ungültige Wert ist: '%s'."
 
 #: application/models/Logbook_model.php:5336
 #, php-format
@@ -5473,6 +5479,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid MY_VUCC_GRIDS. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"QSO in %s: Du hast versucht, ein QSO mit ungültigem MY_VUCC_GRIDS zu "
+"importieren. Dieses QSO wurde nicht importiert. Der ungültige Wert ist: '%s'."
 
 #: application/models/Logbook_model.php:5406
 #, php-format
@@ -16642,7 +16650,7 @@ msgstr "Direktimport von eQSL"
 
 #: application/views/eqsl/import.php:78
 msgid "Please chose a valid Station Location"
-msgstr ""
+msgstr "Bitte wähle zunächst einen gültigen Stationsstandort"
 
 #: application/views/eqsl/tools.php:27
 msgid ""

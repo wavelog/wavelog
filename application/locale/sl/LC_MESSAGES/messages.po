@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-12 16:54+0000\n"
-"PO-Revision-Date: 2026-11-10 23:08+0000\n"
+"PO-Revision-Date: 2026-11-13 01:03+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -1795,7 +1795,7 @@ msgstr "Niste določili svojih poverilnic za eQSL.cc!"
 
 #: application/controllers/Eqsl.php:141
 msgid "Please chose a Station Location"
-msgstr ""
+msgstr "Prosimo, izberite lokacijo postaje"
 
 #: application/controllers/Eqsl.php:145
 msgid "eQSL Import"
@@ -3054,13 +3054,13 @@ msgstr ""
 
 #: application/controllers/Mostwantedgrids.php:75
 msgid "Could not fetch activations from gridmaster.fr"
-msgstr ""
+msgstr "Aktivacij ni bilo mogoče pridobiti z gridmaster.fr"
 
 #: application/controllers/Mostwantedgrids.php:78
 #: application/controllers/Mostwantedgrids.php:79
 #: application/views/interface_assets/footer.php:53
 msgid "Last Activations"
-msgstr ""
+msgstr "Zadnje aktivacije"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:158
@@ -5362,15 +5362,15 @@ msgstr "Uvožena vrsta nalepke"
 
 #: application/models/Logbook_model.php:204
 msgid "Invalid prop_mode"
-msgstr ""
+msgstr "Neveljaven prop_mode"
 
 #: application/models/Logbook_model.php:208
 msgid "Invalid sat_mode"
-msgstr ""
+msgstr "Neveljaven sat_mode"
 
 #: application/models/Logbook_model.php:301
 msgid "Invalid locator"
-msgstr ""
+msgstr "Neveljaven lokator"
 
 #: application/models/Logbook_model.php:437
 msgid "Station not accessible"
@@ -5439,6 +5439,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid PROP_MODE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"QSO na %s: Poskusili ste uvoziti QSO z neveljavnim parametrom PROP_MODE. Ta "
+"QSO ni bil uvožen. Neveljaven vnos je »%s«."
 
 #: application/models/Logbook_model.php:5324
 #, php-format
@@ -5446,6 +5448,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid SAT_MODE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"QSO na %s: Poskusili ste uvoziti QSO z neveljavnim parametrom SAT_MODE. Ta "
+"QSO ni bil uvožen. Neveljaven vnos je »%s«."
 
 #: application/models/Logbook_model.php:5330
 #, php-format
@@ -5453,6 +5457,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid MY_GRIDSQUARE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"QSO na %s: Poskusili ste uvoziti QSO z neveljavnim poljem MY_GRIDSQUARE. Ta "
+"QSO ni bil uvožen. Neveljaven vnos je »%s«."
 
 #: application/models/Logbook_model.php:5336
 #, php-format
@@ -5460,6 +5466,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid MY_VUCC_GRIDS. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"QSO na %s: Poskusili ste uvoziti QSO z neveljavnim poljem MY_VUCC_GRIDS. Ta "
+"QSO ni bil uvožen. Neveljaven vnos je »%s«."
 
 #: application/models/Logbook_model.php:5406
 #, php-format
@@ -7212,7 +7220,7 @@ msgstr "Za naslednje ID-je tekmovanj smo našli naslednje število QSO-jev:"
 
 #: application/views/adif/import_success.php:57
 msgid "Real-time logging recommended"
-msgstr ""
+msgstr "Priporočeno beleženje v realnem času"
 
 #: application/views/adif/import_success.php:58
 #, php-format
@@ -7222,6 +7230,11 @@ msgid ""
 "instead of uploading your whole log over and over again. Tools: WSJT-X "
 "Improved, Waveloggate and others. See %s."
 msgstr ""
+"Uvozili ste %s zvez (QSO), večinoma v digitalnih načinih, pri čemer je bilo "
+"veliko podvojenih vnosov. Za digitalne načine, kot sta FT8 in FT4, "
+"razmislite o uporabi povezave API v realnem času, namesto da znova in znova "
+"nalagate celoten dnevnik zvez. Orodja: WSJT-X Improved, Waveloggate in "
+"druga. Glejte %s."
 
 #: application/views/adif/import_success.php:64
 msgid "Import details / possible problems"
@@ -16540,7 +16553,7 @@ msgstr "Uvozi neposredno iz eQSL"
 
 #: application/views/eqsl/import.php:78
 msgid "Please chose a valid Station Location"
-msgstr ""
+msgstr "Prosimo, izberite veljavno lokacijo postaje"
 
 #: application/views/eqsl/tools.php:27
 msgid ""
@@ -20378,12 +20391,12 @@ msgstr "Izključi lokatorska polja brez kopnega"
 #: application/views/mostwantedgrids/details.php:7
 #, php-format
 msgid "Last %s Activations of %s"
-msgstr ""
+msgstr "Zadnjih %s aktivacij za %s"
 
 #: application/views/mostwantedgrids/details.php:9
 #, php-format
 msgid "Grid is contained in %s%% of all logs on %s"
-msgstr ""
+msgstr "UL polje je vsebovano v %s %% vseh dnevnikov na %s"
 
 #: application/views/mostwantedgrids/index.php:61
 msgid "View a map of most wanted gridsquares on satellite"

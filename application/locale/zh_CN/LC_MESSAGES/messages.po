@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-12 16:54+0000\n"
-"PO-Revision-Date: 2026-11-12 06:44+0000\n"
-"Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
+"PO-Revision-Date: 2026-11-13 08:43+0000\n"
+"Last-Translator: BI7BLA <me@sharedow.cn>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1807,7 +1807,7 @@ msgstr "你尚未配置 eQSL.cc 账号信息！"
 
 #: application/controllers/Eqsl.php:141
 msgid "Please chose a Station Location"
-msgstr ""
+msgstr "请选择台站地址"
 
 #: application/controllers/Eqsl.php:145
 msgid "eQSL Import"
@@ -3042,13 +3042,13 @@ msgstr "最稀缺网格表为空。请先更新表格。"
 
 #: application/controllers/Mostwantedgrids.php:75
 msgid "Could not fetch activations from gridmaster.fr"
-msgstr ""
+msgstr "无法从 gridmaster.fr 获取激活信息"
 
 #: application/controllers/Mostwantedgrids.php:78
 #: application/controllers/Mostwantedgrids.php:79
 #: application/views/interface_assets/footer.php:53
 msgid "Last Activations"
-msgstr ""
+msgstr "最后激活"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:158
@@ -5233,15 +5233,15 @@ msgstr "导入的标签类型"
 
 #: application/models/Logbook_model.php:204
 msgid "Invalid prop_mode"
-msgstr ""
+msgstr "无效的 prop_mode"
 
 #: application/models/Logbook_model.php:208
 msgid "Invalid sat_mode"
-msgstr ""
+msgstr "无效的 sat_mode"
 
 #: application/models/Logbook_model.php:301
 msgid "Invalid locator"
-msgstr ""
+msgstr "无效的位置"
 
 #: application/models/Logbook_model.php:437
 msgid "Station not accessible"
@@ -5307,6 +5307,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid PROP_MODE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"%s的QSO：你尝试导入一个具有无效 PROP_MODE 的QSO，该QSO未被导入，无效内容为“%s"
+"”。"
 
 #: application/models/Logbook_model.php:5324
 #, php-format
@@ -5314,6 +5316,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid SAT_MODE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"%s的QSO：你尝试导入一个具有无效 SAT_MODE 的QSO，该QSO未被导入，无效内容为“%s”"
+"。"
 
 #: application/models/Logbook_model.php:5330
 #, php-format
@@ -5321,6 +5325,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid MY_GRIDSQUARE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"%s的QSO：你尝试导入一个具有无效 MY_GRIDSQUARE 的QSO，该QSO未被导入，无效内容"
+"为“%s”。"
 
 #: application/models/Logbook_model.php:5336
 #, php-format
@@ -5328,6 +5334,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid MY_VUCC_GRIDS. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"%s的QSO：你尝试导入一个具有无效 MY_VUCC_GRIDS 的QSO，该QSO未被导入，无效内容"
+"为“%s”。"
 
 #: application/models/Logbook_model.php:5406
 #, php-format
@@ -7046,6 +7054,9 @@ msgid ""
 "instead of uploading your whole log over and over again. Tools: WSJT-X "
 "Improved, Waveloggate and others. See %s."
 msgstr ""
+"你已导入 %s 个 QSO，其中大多数为数字模式，且许多是重复项。对于 FT8/FT4 等数字"
+"模式，建议使用实时 API 连接，而不是反复上传整个日志。你可尝试使用类似 WSJT-X "
+"Improved、Waveloggate 等工具。详见： %s。"
 
 #: application/views/adif/import_success.php:64
 msgid "Import details / possible problems"
@@ -16036,7 +16047,7 @@ msgstr "直接从eQSL导入"
 
 #: application/views/eqsl/import.php:78
 msgid "Please chose a valid Station Location"
-msgstr ""
+msgstr "请选择有效的台站位置"
 
 #: application/views/eqsl/tools.php:27
 msgid ""
@@ -19772,12 +19783,12 @@ msgstr "排除不包含陆地的网格"
 #: application/views/mostwantedgrids/details.php:7
 #, php-format
 msgid "Last %s Activations of %s"
-msgstr ""
+msgstr "最近 %s 的 %s 次激活"
 
 #: application/views/mostwantedgrids/details.php:9
 #, php-format
 msgid "Grid is contained in %s%% of all logs on %s"
-msgstr ""
+msgstr "在 %s 的所有记录中，有 %s%% 包含该网格"
 
 #: application/views/mostwantedgrids/index.php:61
 msgid "View a map of most wanted gridsquares on satellite"
