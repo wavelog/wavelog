@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-12 16:54+0000\n"
-"PO-Revision-Date: 2026-11-13 01:03+0000\n"
+"PO-Revision-Date: 2026-11-13 08:43+0000\n"
 "Last-Translator: BI7BLA <me@sharedow.cn>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -7054,6 +7054,9 @@ msgid ""
 "instead of uploading your whole log over and over again. Tools: WSJT-X "
 "Improved, Waveloggate and others. See %s."
 msgstr ""
+"你已导入 %s 个 QSO，其中大多数为数字模式，且许多是重复项。对于 FT8/FT4 等数字"
+"模式，建议使用实时 API 连接，而不是反复上传整个日志。你可尝试使用类似 WSJT-X "
+"Improved、Waveloggate 等工具。详见： %s。"
 
 #: application/views/adif/import_success.php:64
 msgid "Import details / possible problems"
@@ -16044,7 +16047,7 @@ msgstr "直接从eQSL导入"
 
 #: application/views/eqsl/import.php:78
 msgid "Please chose a valid Station Location"
-msgstr ""
+msgstr "请选择有效的台站位置"
 
 #: application/views/eqsl/tools.php:27
 msgid ""
@@ -19780,12 +19783,12 @@ msgstr "排除不包含陆地的网格"
 #: application/views/mostwantedgrids/details.php:7
 #, php-format
 msgid "Last %s Activations of %s"
-msgstr ""
+msgstr "最近 %s 的 %s 次激活"
 
 #: application/views/mostwantedgrids/details.php:9
 #, php-format
 msgid "Grid is contained in %s%% of all logs on %s"
-msgstr ""
+msgstr "在 %s 的所有记录中，有 %s%% 包含该网格"
 
 #: application/views/mostwantedgrids/index.php:61
 msgid "View a map of most wanted gridsquares on satellite"
