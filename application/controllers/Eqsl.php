@@ -138,7 +138,8 @@ class eqsl extends CI_Controller {
 					$eqsl_results[] = $this->eqslimporter->import();
 				}
 			} else {
-				log_message('error', $station_id4upload . " is not valid for user!");
+				$this->session->set_flashdata('error', __("Please chose a Station Location"));
+				redirect('eqsl/import');
 			}
 		} else {
 			$data['page_title'] = __("eQSL Import");

@@ -38,9 +38,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-12 10:50+0000\n"
-"PO-Revision-Date: 2026-11-12 06:44+0000\n"
-"Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
+"POT-Creation-Date: 2026-11-12 16:54+0000\n"
+"PO-Revision-Date: 2026-11-13 08:43+0000\n"
+"Last-Translator: BI7BLA <me@sharedow.cn>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -201,11 +201,11 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Dxatlas.php:105
 #: application/controllers/Dxcalendar.php:6
 #: application/controllers/Dxcluster.php:12 application/controllers/Eqsl.php:22
-#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:169
-#: application/controllers/Eqsl.php:258 application/controllers/Eqsl.php:281
-#: application/controllers/Eqsl.php:326 application/controllers/Eqsl.php:515
-#: application/controllers/Eqsl.php:586 application/controllers/Eqsl.php:601
-#: application/controllers/Eqsl.php:659
+#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:170
+#: application/controllers/Eqsl.php:259 application/controllers/Eqsl.php:282
+#: application/controllers/Eqsl.php:327 application/controllers/Eqsl.php:516
+#: application/controllers/Eqsl.php:587 application/controllers/Eqsl.php:602
+#: application/controllers/Eqsl.php:660
 #: application/controllers/Generic_qsl.php:11
 #: application/controllers/Gridmap.php:8 application/controllers/Hamsat.php:12
 #: application/controllers/Hrdlog.php:40
@@ -1797,96 +1797,100 @@ msgstr "eQSL 卡片"
 msgid "Showing %d to %d of %d entries"
 msgstr "显示 %d 到 %d，共 %d 条目"
 
-#: application/controllers/Eqsl.php:81 application/controllers/Eqsl.php:176
+#: application/controllers/Eqsl.php:81 application/controllers/Eqsl.php:177
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
 msgstr "电台站配置中未定义 eQSL 昵称！"
 
-#: application/controllers/Eqsl.php:104 application/controllers/Eqsl.php:195
+#: application/controllers/Eqsl.php:104 application/controllers/Eqsl.php:196
 msgid "You have not defined your eQSL.cc credentials!"
 msgstr "你尚未配置 eQSL.cc 账号信息！"
 
-#: application/controllers/Eqsl.php:144
+#: application/controllers/Eqsl.php:141
+msgid "Please chose a Station Location"
+msgstr "请选择台站地址"
+
+#: application/controllers/Eqsl.php:145
 msgid "eQSL Import"
 msgstr "eQSL 导入"
 
-#: application/controllers/Eqsl.php:154
+#: application/controllers/Eqsl.php:155
 msgid "eQSL Import Information"
 msgstr "eQSL 导入信息"
 
-#: application/controllers/Eqsl.php:183
+#: application/controllers/Eqsl.php:184
 msgid "eQSL QSO Upload"
 msgstr "eQSL QSO 上传"
 
-#: application/controllers/Eqsl.php:216
+#: application/controllers/Eqsl.php:217
 msgid "User/Pass wrong for eQSL"
 msgstr "eQSL 的用户名或密码错误"
 
-#: application/controllers/Eqsl.php:220
+#: application/controllers/Eqsl.php:221
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "不存在该eQSL QTH昵称：%s"
 
-#: application/controllers/Eqsl.php:343
+#: application/controllers/Eqsl.php:344
 msgid "QSO not found or not accessible"
 msgstr "QSO 找不到或无法访问"
 
-#: application/controllers/Eqsl.php:361
+#: application/controllers/Eqsl.php:362
 msgid "User not found"
 msgstr "用户未找到"
 
-#: application/controllers/Eqsl.php:370
+#: application/controllers/Eqsl.php:371
 msgid "eQSL password not configured for this user"
 msgstr "eQSL 未为该用户配置密码"
 
-#: application/controllers/Eqsl.php:387
+#: application/controllers/Eqsl.php:388
 msgid "Failed to fetch eQSL image data"
 msgstr "未能获取 eQSL 图片数据"
 
-#: application/controllers/Eqsl.php:396
+#: application/controllers/Eqsl.php:397
 msgid "Check credentials. Login to eQSL denied"
 msgstr "请检查凭据。eQSL 登录被拒绝"
 
-#: application/controllers/Eqsl.php:398 application/controllers/Eqsl.php:418
+#: application/controllers/Eqsl.php:399 application/controllers/Eqsl.php:419
 msgid "eQSL image not available"
 msgstr "eQSL 图片不可用"
 
-#: application/controllers/Eqsl.php:436
+#: application/controllers/Eqsl.php:437
 msgid "Failed to download eQSL image"
 msgstr "未能下载 eQSL 图片"
 
-#: application/controllers/Eqsl.php:446 application/controllers/Eqsl.php:573
+#: application/controllers/Eqsl.php:447 application/controllers/Eqsl.php:574
 msgid "Not enough free disk space to store the eQSL card"
 msgstr "磁盘空间不足，无法存储eQSL卡"
 
-#: application/controllers/Eqsl.php:470
+#: application/controllers/Eqsl.php:471
 msgid "Failed to load cached eQSL image"
 msgstr "未能加载缓存的 eQSL 图像"
 
-#: application/controllers/Eqsl.php:590
+#: application/controllers/Eqsl.php:591
 msgid "eQSL Tools"
 msgstr "eQSL 工具"
 
-#: application/controllers/Eqsl.php:619
+#: application/controllers/Eqsl.php:620
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "此请求限于前150个 QSO。请再次运行。"
 
-#: application/controllers/Eqsl.php:625
+#: application/controllers/Eqsl.php:626
 msgid " / Errors: "
 msgstr " / 错误： "
 
-#: application/controllers/Eqsl.php:625
+#: application/controllers/Eqsl.php:626
 msgid "Successfully downloaded: "
 msgstr "下载成功： "
 
-#: application/controllers/Eqsl.php:632
+#: application/controllers/Eqsl.php:633
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr "已达到 eQSL 访问次数限制。请等待后再运行。"
 
-#: application/controllers/Eqsl.php:644
+#: application/controllers/Eqsl.php:645
 msgid "eQSL Card Image Download"
 msgstr "eQSL 卡片图片下载"
 
-#: application/controllers/Eqsl.php:667
+#: application/controllers/Eqsl.php:668
 msgid "All eQSLs marked as uploaded"
 msgstr "所有 eQSL 已标记为已上传"
 
@@ -3038,13 +3042,13 @@ msgstr "最稀缺网格表为空。请先更新表格。"
 
 #: application/controllers/Mostwantedgrids.php:75
 msgid "Could not fetch activations from gridmaster.fr"
-msgstr ""
+msgstr "无法从 gridmaster.fr 获取激活信息"
 
 #: application/controllers/Mostwantedgrids.php:78
 #: application/controllers/Mostwantedgrids.php:79
 #: application/views/interface_assets/footer.php:53
 msgid "Last Activations"
-msgstr ""
+msgstr "最后激活"
 
 #: application/controllers/Notes.php:31
 #: application/views/interface_assets/header.php:158
@@ -3792,6 +3796,7 @@ msgstr "不允许"
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:152
 #: application/views/dbtools/missinggridlist.php:20
+#: application/views/eqsl/import.php:78
 #: application/views/labeldesigner/designer.php:60
 #: application/views/qslpostcard/designer.php:47
 #: application/views/qso/index.php:764 application/views/simplefle/index.php:39
@@ -4703,15 +4708,15 @@ msgstr "创建并更新电台"
 msgid "Delete radios"
 msgstr "删除电台"
 
-#: application/libraries/api_v2/Station_resource.php:50
+#: application/libraries/api_v2/Station_resource.php:46
 msgid "Read station locations"
 msgstr "读取台站位置"
 
-#: application/libraries/api_v2/Station_resource.php:51
+#: application/libraries/api_v2/Station_resource.php:47
 msgid "Create and update station locations"
 msgstr "创建并更新台站位置"
 
-#: application/libraries/api_v2/Station_resource.php:52
+#: application/libraries/api_v2/Station_resource.php:48
 msgid "Delete station locations"
 msgstr "删除台站位置"
 
@@ -5228,15 +5233,15 @@ msgstr "导入的标签类型"
 
 #: application/models/Logbook_model.php:204
 msgid "Invalid prop_mode"
-msgstr ""
+msgstr "无效的 prop_mode"
 
 #: application/models/Logbook_model.php:208
 msgid "Invalid sat_mode"
-msgstr ""
+msgstr "无效的 sat_mode"
 
 #: application/models/Logbook_model.php:301
 msgid "Invalid locator"
-msgstr ""
+msgstr "无效的位置"
 
 #: application/models/Logbook_model.php:437
 msgid "Station not accessible"
@@ -5259,7 +5264,7 @@ msgstr "未提供呼号"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
-#: application/models/Logbook_model.php:5269
+#: application/models/Logbook_model.php:5271
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5267,7 +5272,7 @@ msgstr ""
 "导入的本台呼号 %s 与当前台站地址不匹配，这是与 %s 的 QSO，当前台站地址的呼号"
 "为 %s：已跳过"
 
-#: application/models/Logbook_model.php:5277
+#: application/models/Logbook_model.php:5279
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5276,62 +5281,70 @@ msgstr ""
 "导入的本台网格 %s 与当前台站地址不匹配，这是与 %s 的 QSO，当前台站地址的网格"
 "为 %s：已跳过"
 
-#: application/models/Logbook_model.php:5293
+#: application/models/Logbook_model.php:5295
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr "导入QSO时使用了无效日期，该QSO未被导入。这是无效的"
 
-#: application/models/Logbook_model.php:5303
+#: application/models/Logbook_model.php:5305
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
 msgstr "%s的QSO:你尝试导入一个未指定呼号的 QSO，该 QSO 未被导入因为是 无效的。"
 
-#: application/models/Logbook_model.php:5310
+#: application/models/Logbook_model.php:5312
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
 msgstr "%s的QSO:你尝试导入一个未指定呼号的QSO，该QSO未被导入，无效内容为“%s”。"
 
-#: application/models/Logbook_model.php:5316
+#: application/models/Logbook_model.php:5318
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid PROP_MODE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"%s的QSO：你尝试导入一个具有无效 PROP_MODE 的QSO，该QSO未被导入，无效内容为“%s"
+"”。"
 
-#: application/models/Logbook_model.php:5322
+#: application/models/Logbook_model.php:5324
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid SAT_MODE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"%s的QSO：你尝试导入一个具有无效 SAT_MODE 的QSO，该QSO未被导入，无效内容为“%s”"
+"。"
 
-#: application/models/Logbook_model.php:5328
+#: application/models/Logbook_model.php:5330
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid MY_GRIDSQUARE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"%s的QSO：你尝试导入一个具有无效 MY_GRIDSQUARE 的QSO，该QSO未被导入，无效内容"
+"为“%s”。"
 
-#: application/models/Logbook_model.php:5334
+#: application/models/Logbook_model.php:5336
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid MY_VUCC_GRIDS. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
+"%s的QSO：你尝试导入一个具有无效 MY_VUCC_GRIDS 的QSO，该QSO未被导入，无效内容"
+"为“%s”。"
 
-#: application/models/Logbook_model.php:5404
+#: application/models/Logbook_model.php:5406
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
 msgstr "%s的QSO:频段“%s”不在频段配置中。该 QSO 未被导入。"
 
-#: application/models/Logbook_model.php:5411
+#: application/models/Logbook_model.php:5413
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5339,15 +5352,15 @@ msgid ""
 msgstr ""
 "在 %s 上的 QSO：你尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
 
-#: application/models/Logbook_model.php:5669
+#: application/models/Logbook_model.php:5671
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5680
+#: application/models/Logbook_model.php:5682
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5743
+#: application/models/Logbook_model.php:5745
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
@@ -7041,6 +7054,9 @@ msgid ""
 "instead of uploading your whole log over and over again. Tools: WSJT-X "
 "Improved, Waveloggate and others. See %s."
 msgstr ""
+"你已导入 %s 个 QSO，其中大多数为数字模式，且许多是重复项。对于 FT8/FT4 等数字"
+"模式，建议使用实时 API 连接，而不是反复上传整个日志。你可尝试使用类似 WSJT-X "
+"Improved、Waveloggate 等工具。详见： %s。"
 
 #: application/views/adif/import_success.php:64
 msgid "Import details / possible problems"
@@ -16029,6 +16045,10 @@ msgstr "日志文件的类型必须为 .adi"
 msgid "Import directly from eQSL"
 msgstr "直接从eQSL导入"
 
+#: application/views/eqsl/import.php:78
+msgid "Please chose a valid Station Location"
+msgstr "请选择有效的台站位置"
+
 #: application/views/eqsl/tools.php:27
 msgid ""
 "This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
@@ -19763,12 +19783,12 @@ msgstr "排除不包含陆地的网格"
 #: application/views/mostwantedgrids/details.php:7
 #, php-format
 msgid "Last %s Activations of %s"
-msgstr ""
+msgstr "最近 %s 的 %s 次激活"
 
 #: application/views/mostwantedgrids/details.php:9
 #, php-format
 msgid "Grid is contained in %s%% of all logs on %s"
-msgstr ""
+msgstr "在 %s 的所有记录中，有 %s%% 包含该网格"
 
 #: application/views/mostwantedgrids/index.php:61
 msgid "View a map of most wanted gridsquares on satellite"
