@@ -487,7 +487,8 @@ class Update_model extends CI_Model {
                     }
                 };
 
-                foreach ($this->_stream_geojson_features($tmp) as $feature) {
+                $parse_complete = false;
+                foreach ($this->_stream_geojson_features($tmp, $parse_complete) as $feature) {
                     if (!is_array($feature) || ($feature['type'] ?? '') !== 'Feature') { continue; }
                     $ref = $feature['properties']['id'] ?? null;
                     $geom = $feature['geometry'] ?? null;
@@ -505,7 +506,11 @@ class Update_model extends CI_Model {
                 }
                 $flush();   // remainder
 
-                if ($count === 0) {
+                if (!$parse_complete) {
+                    $this->db->trans_rollback();
+                    $txn_open = false;
+                    $errors[] = $cc . ': incomplete GeoJSON — existing data kept';
+                } elseif ($count === 0) {
                     $this->db->trans_rollback();
                     $txn_open = false;
                     $errors[] = $cc . ': 0 features parsed (format drift?) — existing data kept';
