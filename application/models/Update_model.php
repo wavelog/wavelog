@@ -539,7 +539,7 @@ class Update_model extends CI_Model {
         return 'FAILED: no boundaries imported (' . implode('; ', $errors) . ')';
     }
 
-    /* Generic WWFF boundary importer, currently fed by the official DLFF dataset. */
+    /* Official GeoJSON endpoints keyed by their WWFF reference prefix. */
     private $wwff_boundary_sources = ['DLFF' => 'https://dlff.info/data/dlff.geojson'];
 
     function wwff_boundaries() {
@@ -560,31 +560,31 @@ class Update_model extends CI_Model {
         $txn_open = false;
         $tmp = null;
         try {
-            foreach ($this->wwff_boundary_sources as $cc => $url) {
+            foreach ($this->wwff_boundary_sources as $source => $url) {
                 $tmp = tempnam(sys_get_temp_dir(), 'wwff_geo_');
                 if ($tmp === false) {
-                    $errors[] = $cc . ': tempnam failed';
+                    $errors[] = $source . ': tempnam failed';
                     $tmp = null;
                     continue;
                 }
 
-                $option_key = 'wwff_boundaries_last_modified_' . strtolower($cc);
+                $option_key = 'wwff_boundaries_last_modified_' . strtolower($source);
                 $last_modified = (int) ($this->options_model->item($option_key) ?? 0);
                 if ($last_modified > 0) {
-                    $has_data = $this->db->where('source', $cc)->limit(1)->get('wwff_boundaries')->num_rows() > 0;
+                    $has_data = $this->db->where('source', $source)->limit(1)->get('wwff_boundaries')->num_rows() > 0;
                     if (!$has_data) { $last_modified = 0; }
                 }
 
                 $file_time = 0;
                 $downloaded = $this->_download_to_file($url, $tmp, $last_modified, $file_time);
                 if ($downloaded === null) {
-                    $unchanged[] = $cc;
+                    $unchanged[] = $source;
                     @unlink($tmp);
                     $tmp = null;
                     continue;
                 }
                 if ($downloaded === false) {
-                    $errors[] = $cc . ': download failed';
+                    $errors[] = $source . ': download failed';
                     @unlink($tmp);
                     $tmp = null;
                     continue;
@@ -592,7 +592,7 @@ class Update_model extends CI_Model {
 
                 $this->db->trans_begin();
                 $txn_open = true;
-                $this->db->query('DELETE FROM wwff_boundaries WHERE source = ?', [$cc]);
+                $this->db->query('DELETE FROM wwff_boundaries WHERE source = ?', [$source]);
 
                 $count = 0;
                 $invalid_features = 0;
@@ -614,7 +614,7 @@ class Update_model extends CI_Model {
                         continue;
                     }
                     $name = (string) ($feature['properties']['name'] ?? '');
-                    if (!preg_match('/^(DLFF-\d+)/i', $name, $m)) {
+                    if (!preg_match('/^(' . preg_quote($source, '/') . '-\d+)/i', $name, $m)) {
                         $invalid_features++;
                         continue;
                     }
@@ -651,7 +651,7 @@ class Update_model extends CI_Model {
                             $invalid_features++;
                             continue;
                         }
-                        $batch[] = ['reference' => $ref, 'geom' => $json, 'source' => $cc];
+                        $batch[] = ['reference' => $ref, 'geom' => $json, 'source' => $source];
                         $batch_bytes += strlen($json);
                         $last_ref = $ref;
                         $count++;
@@ -664,20 +664,20 @@ class Update_model extends CI_Model {
                 if (!$parse_complete || $invalid_features > 0) {
                     $this->db->trans_rollback();
                     $txn_open = false;
-                    $errors[] = $cc . ': incomplete or unsupported GeoJSON ('
+                    $errors[] = $source . ': incomplete or unsupported GeoJSON ('
                         . number_format($invalid_features) . ' invalid features) - existing data kept';
                 } elseif ($count === 0) {
                     $this->db->trans_rollback();
                     $txn_open = false;
-                    $errors[] = $cc . ': 0 features parsed (format drift?) - existing data kept';
+                    $errors[] = $source . ': 0 features parsed (format drift?) - existing data kept';
                 } elseif ($this->db->trans_status() === FALSE) {
                     $this->db->trans_rollback();
                     $txn_open = false;
-                    $errors[] = $cc . ': db error at/near ' . $last_ref . ' - rolled back';
+                    $errors[] = $source . ': db error at/near ' . $last_ref . ' - rolled back';
                 } else {
                     $this->db->trans_commit();
                     $txn_open = false;
-                    $per_source[] = $cc . '=' . number_format($count);
+                    $per_source[] = $source . '=' . number_format($count);
                     $total += $count;
                     $this->options_model->update($option_key, $file_time > 0 ? (string) $file_time : '0');
                 }
@@ -694,15 +694,15 @@ class Update_model extends CI_Model {
 
         if ($total > 0) {
             $this->cron_model->set_last_run('update_wwff_boundaries');
-            $msg = 'DONE: ' . number_format($total) . ' DLFF boundaries saved'
-                . ' (' . implode(', ', $per_source) . ')';
+            $msg = 'DONE: ' . number_format($total) . ' WWFF boundaries saved'
+                . ' (sources: ' . implode(', ', $per_source) . ')';
             if ($unchanged) { $msg .= ' | unchanged: ' . implode(', ', $unchanged); }
             if ($errors) { $msg .= ' | errors: ' . implode('; ', $errors); }
             return $msg;
         }
         if ($unchanged && !$errors) {
             $this->cron_model->set_last_run('update_wwff_boundaries');
-            return 'DONE: DLFF boundaries unchanged (' . implode(', ', $unchanged) . ')';
+            return 'DONE: WWFF boundaries unchanged (sources: ' . implode(', ', $unchanged) . ')';
         }
         return 'FAILED: no boundaries imported (' . implode('; ', $errors) . ')';
     }

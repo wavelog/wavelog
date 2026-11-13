@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-/* Generic WWFF boundary storage, initially populated from the official DLFF GeoJSON. */
+/* Generic WWFF boundary storage. */
 class Migration_wwff_boundaries extends CI_Migration {
 
 	public function up() {
@@ -54,7 +54,7 @@ class Migration_wwff_boundaries extends CI_Migration {
 					'id' => 'update_wwff_boundaries',
 					'enabled' => '1',
 					'status' => 'pending',
-					'description' => 'Update WWFF reference boundaries (DLFF GeoJSON)',
+					'description' => 'Update WWFF reference boundaries',
 					'function' => 'index.php/update/update_wwff_boundaries',
 					'expression' => '45 0 1 * *',
 					'last_run' => null,
@@ -70,10 +70,10 @@ class Migration_wwff_boundaries extends CI_Migration {
 		try {
 			$result = $CI->update_model->wwff_boundaries();
 			if (strncmp($result, 'DONE', 4) !== 0) {
-				log_message('error', 'DLFF boundaries initial import during migration 313: ' . $result);
+				log_message('error', 'WWFF boundaries initial import during migration 313: ' . $result);
 			}
 		} catch (\Throwable $e) {
-			log_message('error', 'DLFF boundaries initial import (migration 313) failed: ' . $e->getMessage());
+			log_message('error', 'WWFF boundaries initial import (migration 313) failed: ' . $e->getMessage());
 		}
 	}
 

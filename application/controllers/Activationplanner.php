@@ -204,7 +204,7 @@ class Activationplanner extends CI_Controller {
 
 	/* Shared body of pota_boundary / wwff_boundary: emit one reference's
 	 * boundary polygon(s) as a cached GeoJSON Feature (404 when unknown).
-	 * The caller controls freshness because DLFF is updated more frequently. */
+	 * The caller controls freshness because WWFF sources are updated more frequently. */
 	private function _boundary_geojson($table, $reference = '', $max_age = 31536000) {
 		$reference = preg_replace('/[^A-Za-z0-9\-]/', '', (string) $reference);
 		if ($reference === '') {

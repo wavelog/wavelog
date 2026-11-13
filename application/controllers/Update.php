@@ -630,9 +630,9 @@ class Update extends CI_Controller {
 
 		if ($this->session->userdata('user_type') == '99') {
 			if (substr($result, 0, 4) == 'DONE') {
-				$this->session->set_flashdata('success', __("DLFF boundaries update complete. Result: ") . "'" . $result . "'");
+				$this->session->set_flashdata('success', __("WWFF boundaries update complete. Result: ") . "'" . $result . "'");
 			} else {
-				$this->session->set_flashdata('error', __("DLFF boundaries update failed. Result: ") . "'" . $result . "'");
+				$this->session->set_flashdata('error', __("WWFF boundaries update failed. Result: ") . "'" . $result . "'");
 			}
 			redirect('debug');
 		} else {

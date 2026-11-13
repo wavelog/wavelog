@@ -71,7 +71,7 @@
 	// Drawn POTA park boundaries, keyed by reference (ref -> L.geoJSON layer).
 	// Populated on demand when a marker is clicked; cleared by clearAll().
 	let boundaryLayers = {};
-	// Drawn DLFF boundaries and the lazily loaded set of references with geometry.
+	// Drawn WWFF boundaries and the lazily loaded set of references with geometry.
 	let wwffBoundaryLayers = {};
 	let wwffBoundaryRefsSet = null;
 	let wwffBoundaryRefsPromise = null;
@@ -1458,7 +1458,7 @@
 		hideSearchResults();
 		if (searchOverlay) { searchOverlay.clearLayers(); }
 		clearBoundaries();   // drop any park outline drawn by a previous selection / the POTA overlay
-		clearWwffBoundaries(); // drop DLFF outlines and invalidate pending boundary requests
+		clearWwffBoundaries(); // drop WWFF outlines and invalidate pending boundary requests
 
 		if (row.type === 'place') {
 			// Reuse the full selection machinery (grid square, local mesh, zones,
@@ -1968,7 +1968,7 @@
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 		if (refOverlay)  { refOverlay.clearLayers(); }   // nearby POTA/SOTA/WWFF markers
 		clearBoundaries();                               // drawn park boundaries
-		clearWwffBoundaries();                           // drawn DLFF boundaries
+		clearWwffBoundaries();                           // drawn WWFF boundaries
 		clearSecond();   // grid-2 square, marker and path line
 		clearBorders();  // square-border readout
 		stopTracking();  // stop autotracking, restore the Locate button
