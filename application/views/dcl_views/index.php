@@ -6,6 +6,9 @@
 	<div class="card">
 		<div class="card-header">
 			<a style="margin-left: 1em;" class="btn btn-outline-danger btn-sm float-end" href="<?php echo site_url('dcl/delete_key'); ?>" role="button"><i class="far fa-trash-alt"></i> <?= __("Delete Keys"); ?></a>
+			<?php if (!($this->config->item('disable_manual_dcl') ?? false)) { ?>
+				<a style="margin-left: 1em;" class="btn btn-outline-primary btn-sm float-end" href="<?php echo site_url('dcl/import'); ?>" role="button"><i class="fas fa-cloud-download-alt"></i> <?= __("Import from DCL"); ?></a>
+			<?php } ?>
 			<a class="btn btn-outline-success btn-sm float-end" href="<?php echo site_url('/dcl/key_import'); ?>" role="button"><i class="fas fa-cloud-upload-alt"></i> <?= __("Request DCL Key"); ?></a><i class="fab fa-expeditedssl"></i> <?= __("Available DCL-Keys"); ?>
 		</div>
 
