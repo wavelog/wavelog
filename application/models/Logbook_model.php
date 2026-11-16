@@ -1603,6 +1603,10 @@ class Logbook_model extends CI_Model {
 			case (substr($data['COL_SAT_NAME'], 0, 5) == 'TEV2-'):
 				$sat_name = 'TEVEL2-'.substr($data['COL_SAT_NAME'], 5, 1).'_[FM]';
 				break;
+			case 'SO-131':
+			case 'UNNE-1B':
+				$sat_name = 'SO-131_[V/u_FM]';
+				break;
 			default:
 				return;
 		}
