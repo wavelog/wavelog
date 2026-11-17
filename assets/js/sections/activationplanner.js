@@ -14,6 +14,8 @@
 	let potaUrl         = cfg.potaUrl || '';
 	let activatedPotaUrl = cfg.activatedPotaUrl || '';
 	let potaBoundaryUrl = cfg.potaBoundaryUrl || '';
+	let wwffBoundaryUrl = cfg.wwffBoundaryUrl || '';
+	let wwffBoundaryRefsUrl = cfg.wwffBoundaryRefsUrl || '';
 	let sotaUrl         = cfg.sotaUrl || '';
 	let iotaUrl         = cfg.iotaUrl || '';
 	let dxccGridUrl     = cfg.dxccGridUrl || '';
@@ -69,6 +71,11 @@
 	// Drawn POTA park boundaries, keyed by reference (ref -> L.geoJSON layer).
 	// Populated on demand when a marker is clicked; cleared by clearAll().
 	let boundaryLayers = {};
+	// Drawn WWFF boundaries and the lazily loaded set of references with geometry.
+	let wwffBoundaryLayers = {};
+	let wwffBoundaryRefsSet = null;
+	let wwffBoundaryRefsPromise = null;
+	let wwffBoundaryGeneration = 0; // invalidates requests after clear/disable/new search
 
 	// The world view the map opens at — and that Clear zooms back out to.
 	let initialView = [20, 0], initialZoom = 3;
@@ -978,6 +985,7 @@
 				let dot = L.marker([D.lat, D.lon], { icon: refIcon('#2b8cbe', 'W') });
 				dot.refType = 'WWFF'; dot.refData = D; dot.refColor = '#2b8cbe';
 				dot.bindPopup(refPopupRich);
+				dot.on('popupopen', function () { drawWwffBoundary(D.reference); });
 				wwffCluster.addLayer(dot);
 			}
 			map.addLayer(wwffCluster);
@@ -986,6 +994,7 @@
 	}
 	function disableWwff() {
 		if (wwffCluster) { map.removeLayer(wwffCluster); }
+		clearWwffBoundaries();
 	}
 
 	function drawParkBoundary(ref, fit) {
@@ -1010,12 +1019,73 @@
 
 	/* Remove every drawn park-boundary layer and forget the per-ref cache so
 	 * the next popup re-fetches. Used by disablePota() and clearAll(). */
-	function clearBoundaries() {
-		for (const ref in boundaryLayers) {
-			const l = boundaryLayers[ref];
+	function clearBoundaryCache(cache) {
+		for (const ref in cache) {
+			const l = cache[ref];
 			if (l && l.remove) { map.removeLayer(l); }
 		}
-		boundaryLayers = {};
+		return {};
+	}
+	function clearBoundaries() {
+		boundaryLayers = clearBoundaryCache(boundaryLayers);
+	}
+
+	function loadWwffBoundaryRefs() {
+		if (wwffBoundaryRefsSet) { return Promise.resolve(wwffBoundaryRefsSet); }
+		if (wwffBoundaryRefsPromise) { return wwffBoundaryRefsPromise; }
+		if (!wwffBoundaryRefsUrl) { return Promise.resolve(null); }
+		wwffBoundaryRefsPromise = fetch(wwffBoundaryRefsUrl)
+			.then(function (r) {
+				if (!r.ok) { throw new Error('WWFF boundary reference load failed'); }
+				return r.json();
+			})
+			.then(function (list) {
+				if (!Array.isArray(list)) { throw new Error('Invalid WWFF boundary reference list'); }
+				wwffBoundaryRefsSet = new Set(list);
+				wwffBoundaryRefsPromise = null;
+				return wwffBoundaryRefsSet;
+			})
+			.catch(function () {
+				wwffBoundaryRefsSet = null;
+				wwffBoundaryRefsPromise = null;
+				return null;
+			});
+		return wwffBoundaryRefsPromise;
+	}
+
+	function drawWwffBoundary(ref, fit) {
+		if (!wwffBoundaryUrl || !ref || wwffBoundaryLayers[ref]) { return; }
+		let generation = wwffBoundaryGeneration;
+		wwffBoundaryLayers[ref] = true; // sentinel: in-flight / done, prevents refetch
+		loadWwffBoundaryRefs().then(function (set) {
+			if (generation !== wwffBoundaryGeneration) { return null; }
+			if (!set || !set.has(ref)) {
+				delete wwffBoundaryLayers[ref];
+				return null;
+			}
+			return fetch(wwffBoundaryUrl + encodeURIComponent(ref)).then(function (r) {
+				if (!r.ok) { throw new Error('WWFF boundary load failed'); }
+				return r.json();
+			});
+		}).then(function (feature) {
+			if (generation !== wwffBoundaryGeneration) { return; }
+			if (!feature || !feature.geometry) { throw new Error('Invalid WWFF boundary'); }
+			let layer = L.geoJSON(feature, {
+				style: { color: '#2b8cbe', weight: 2, fillColor: '#2b8cbe', fillOpacity: 0.15 }
+			}).addTo(map);
+			wwffBoundaryLayers[ref] = layer;
+			if (fit) { map.fitBounds(layer.getBounds(), { padding: [40, 40], maxZoom: 13 }); }
+		}).catch(function () {
+			// Allow a later popup open to retry a transient refs/boundary failure.
+			if (generation === wwffBoundaryGeneration && wwffBoundaryLayers[ref] === true) {
+				delete wwffBoundaryLayers[ref];
+			}
+		});
+	}
+
+	function clearWwffBoundaries() {
+		wwffBoundaryGeneration++;
+		wwffBoundaryLayers = clearBoundaryCache(wwffBoundaryLayers);
 	}
 
 	function enablePota() {
@@ -1388,6 +1458,7 @@
 		hideSearchResults();
 		if (searchOverlay) { searchOverlay.clearLayers(); }
 		clearBoundaries();   // drop any park outline drawn by a previous selection / the POTA overlay
+		clearWwffBoundaries(); // drop WWFF outlines and invalidate pending boundary requests
 
 		if (row.type === 'place') {
 			// Reuse the full selection machinery (grid square, local mesh, zones,
@@ -1432,6 +1503,9 @@
 			// boundary resolves (supported country prefixes). flyTo below gives an
 			// immediate zoom while the outline loads, then the fit settles on the area.
 			drawParkBoundary(r.reference, true);
+		}
+		if (row.type === 'wwff') {
+			drawWwffBoundary(r.reference, true);
 		}
 		map.flyTo([r.lat, r.lon], 13);
 		m.openPopup();
@@ -1894,6 +1968,7 @@
 		if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
 		if (refOverlay)  { refOverlay.clearLayers(); }   // nearby POTA/SOTA/WWFF markers
 		clearBoundaries();                               // drawn park boundaries
+		clearWwffBoundaries();                           // drawn WWFF boundaries
 		clearSecond();   // grid-2 square, marker and path line
 		clearBorders();  // square-border readout
 		stopTracking();  // stop autotracking, restore the Locate button
