@@ -112,6 +112,7 @@ function qsl_rcvd(id, method) {
 					$("#qrz_" + id).find("span:eq(0)").attr('class', 'qrz-yellow'); // marks the QRZ Upload as modified
 				}
 				$(".qsl_rcvd_" + id).remove(); // removes choice from menu
+				$('#nav-bar-search-input').focus().select(); // refocus search box for next search
 			}
 			else {
 				$(".bootstrap-dialog-message").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>You are not allowed to update QSL status!</div>');
@@ -134,6 +135,7 @@ function qsl_sent(id, method) {
 					$("#qrz_" + id).find("span:eq(0)").attr('class', 'qrz-yellow'); // marks the QRZ Upload as modified
 				}
 				$(".qsl_sent_" + id).remove(); // removes choice from menu
+				$('#nav-bar-search-input').focus().select(); // refocus search box for next search
 			}
 			else {
 				$(".bootstrap-dialog-message").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>You are not allowed to update QSL status!</div>');
@@ -158,6 +160,7 @@ function qsl_requested(id, method) {
 			$(".ld-ext-right-t-"+method).prop('disabled', false);
 			if (data.message == 'OK') {
 				$("#qsl_" + id).find("span:eq(0)").attr('class', 'qsl-yellow'); // Paints arrow yellow
+				$('#nav-bar-search-input').focus().select(); // refocus search box for next search
 				if ($("#qrz_"+ id).find("span:eq(0)").hasClass("qrz-green")) {
 					$("#qrz_" + id).find("span:eq(0)").attr('class', 'qrz-yellow'); // marks the QRZ Upload as modified
 				}
@@ -185,6 +188,7 @@ function qsl_ignore(id, method) {
 			$(".ld-ext-right-ignore").prop('disabled', false);
 			if (data.message == 'OK') {
 				$("#qsl_" + id).find("span:eq(0)").attr('class', 'qsl-grey'); // Paints arrow grey
+				$('#nav-bar-search-input').focus().select(); // refocus search box for next search
 				if ($("#qrz_"+ id).find("span:eq(0)").hasClass("qrz-green")) {
 					$("#qrz_" + id).find("span:eq(0)").attr('class', 'qrz-yellow'); // marks the QRZ Upload as modified
 				}

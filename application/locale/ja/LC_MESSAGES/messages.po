@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-12 16:54+0000\n"
+"POT-Creation-Date: 2026-11-17 07:55+0000\n"
 "PO-Revision-Date: 2026-11-12 06:44+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1948,12 +1948,12 @@ msgstr ""
 "申し訳ありません。このインスタンスは現在メンテナンス中です。管理者のみがログ"
 "インできます。"
 
-#: application/controllers/Header_auth.php:362
-#: application/controllers/Header_auth.php:366
+#: application/controllers/Header_auth.php:368
+#: application/controllers/Header_auth.php:372
 msgid "Something went terribly wrong. Check the error log."
 msgstr "何かがひどく間違っています。エラーログを確認してください。"
 
-#: application/controllers/Header_auth.php:442
+#: application/controllers/Header_auth.php:448
 msgid "SSO Config Error. Check error log."
 msgstr "SSO設定エラー。エラーログを確認してください。"
 
@@ -3149,7 +3149,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:163
-#: application/models/Logbook_model.php:1682
+#: application/models/Logbook_model.php:1686
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -5333,20 +5333,20 @@ msgstr "利用できない無線局"
 msgid "Realtime upload disabled"
 msgstr "リアルタイムアップロードが無効になっています"
 
-#: application/models/Logbook_model.php:1672
+#: application/models/Logbook_model.php:1676
 msgid "Station ID not allowed"
 msgstr "許可されてない無線局ID"
 
-#: application/models/Logbook_model.php:1677
+#: application/models/Logbook_model.php:1681
 msgid "No Call given"
 msgstr "コールなし"
 
-#: application/models/Logbook_model.php:1753
-#: application/models/Logbook_model.php:1971
+#: application/models/Logbook_model.php:1757
+#: application/models/Logbook_model.php:1975
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:5271
+#: application/models/Logbook_model.php:5275
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -5354,7 +5354,7 @@ msgstr ""
 "%s との QSO をインポート中に、%s のコールサインが %s と異なるため：スキップさ"
 "れました"
 
-#: application/models/Logbook_model.php:5279
+#: application/models/Logbook_model.php:5283
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -5363,7 +5363,7 @@ msgstr ""
 "無線局位置 %s を持つ %s の QSO をインポート中に、異なる無線局位置 %s が検出さ"
 "れました：スキップしました"
 
-#: application/models/Logbook_model.php:5295
+#: application/models/Logbook_model.php:5299
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -5371,7 +5371,7 @@ msgstr ""
 "有効な日付のないQSOをインポートしようとしました。このQSOはインポートされませ"
 "んでした。無効です"
 
-#: application/models/Logbook_model.php:5305
+#: application/models/Logbook_model.php:5309
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
@@ -5380,7 +5380,7 @@ msgstr ""
 "交信は %s : コールサインを指定せずにQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です。"
 
-#: application/models/Logbook_model.php:5312
+#: application/models/Logbook_model.php:5316
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
@@ -5389,35 +5389,35 @@ msgstr ""
 "交信は %s : 無効なコールサインで QSO をインポートしようとしました。この QSO "
 "はインポートされませんでした。無効な入力は '%s '。"
 
-#: application/models/Logbook_model.php:5318
+#: application/models/Logbook_model.php:5322
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid PROP_MODE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5324
+#: application/models/Logbook_model.php:5328
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid SAT_MODE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5330
+#: application/models/Logbook_model.php:5334
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid MY_GRIDSQUARE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5336
+#: application/models/Logbook_model.php:5340
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid MY_VUCC_GRIDS. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5406
+#: application/models/Logbook_model.php:5410
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
@@ -5426,7 +5426,7 @@ msgstr ""
 "交信は %s : バンド '%s ' はバンド構成に含まれていません。この交信はインポート"
 "されませんでした。"
 
-#: application/models/Logbook_model.php:5413
+#: application/models/Logbook_model.php:5417
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -5435,63 +5435,63 @@ msgstr ""
 "%s でのQSO: バンドが指定されていないQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です"
 
-#: application/models/Logbook_model.php:5671
+#: application/models/Logbook_model.php:5675
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5682
+#: application/models/Logbook_model.php:5686
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5745
+#: application/models/Logbook_model.php:5749
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:6119
+#: application/models/Logbook_model.php:6123
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:6186
-#: application/models/Logbook_model.php:6286
+#: application/models/Logbook_model.php:6190
+#: application/models/Logbook_model.php:6290
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:6194
+#: application/models/Logbook_model.php:6198
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:6200
+#: application/models/Logbook_model.php:6204
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:6204
+#: application/models/Logbook_model.php:6208
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:6208
+#: application/models/Logbook_model.php:6212
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:6211
+#: application/models/Logbook_model.php:6215
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:6214
+#: application/models/Logbook_model.php:6218
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:6289
+#: application/models/Logbook_model.php:6293
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
-#: application/models/Logbook_model.php:6292
+#: application/models/Logbook_model.php:6296
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:6717
+#: application/models/Logbook_model.php:6721
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
