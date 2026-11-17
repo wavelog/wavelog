@@ -168,13 +168,25 @@ function loadActivationsTable(rows, show_workable_only) {
 			if (!grids.some(str => str.includes(activation.grids[j].substring(0, 4)))) {
 				switch (activation.grids_wkd[j]) {
 					case 1:
-						grids.push("<a href=\"javascript:displayContacts('"+escapeHtml(activation.grids[j].substring(0, 4))+"','SAT','All','All','All','VUCC','');\"><span data-bs-toggle=\"tooltip\" title=\"Worked\" class=\"badge bg-warning\">"+escapeHtml(activation.grids[j].substring(0, 4))+"</span></a>")
+						gridstring = "<a href=\"javascript:displayContacts('"+escapeHtml(activation.grids[j].substring(0, 4))+"','SAT','All','All','All','VUCC','');\"><span data-bs-toggle=\"tooltip\" title=\""+lang_worked+"\" class=\"badge bg-warning\">"+escapeHtml(activation.grids[j].substring(0, 4))+"</span></a>";
+						if (activation.grids_mw[j]) {
+							gridstring = gridstring+" <span style=\"font-size: 0.75rem;\" data-bs-toggle=\"tooltip\" title=\""+lang_most_wanted_grid+"\">("+escapeHtml(activation.grids_mw[j])+")</span>"
+						}
+						grids.push(gridstring);
 						break;
 					case 2:
-						grids.push("<a href=\"javascript:displayContacts('"+escapeHtml(activation.grids[j].substring(0, 4))+"','SAT','All','All','All','VUCC','');\"><span data-bs-toggle=\"tooltip\" title=\"Confirmed\" class=\"badge bg-success\">"+escapeHtml(activation.grids[j].substring(0, 4))+"</span></a>")
+						gridstring = "<a href=\"javascript:displayContacts('"+escapeHtml(activation.grids[j].substring(0, 4))+"','SAT','All','All','All','VUCC','');\"><span data-bs-toggle=\"tooltip\" title=\""+lang_confirmed+"\" class=\"badge bg-success\">"+escapeHtml(activation.grids[j].substring(0, 4))+"</span></a>";
+						if (activation.grids_mw[j]) {
+							gridstring = gridstring+" <span style=\"font-size: 0.75rem;\" data-bs-toggle=\"tooltip\" title=\""+lang_most_wanted_grid+"\">("+escapeHtml(activation.grids_mw[j])+")</span>"
+						}
+						grids.push(gridstring);
 						break;
 					default:
-						grids.push("<span data-bs-toggle=\"tooltip\" title=\"Not Worked\" class=\"badge bg-danger\">"+escapeHtml(activation.grids[j].substring(0, 4))+"</span>")
+						gridstring = "<span data-bs-toggle=\"tooltip\" title=\""+lang_not_worked+"\" class=\"badge bg-danger\">"+escapeHtml(activation.grids[j].substring(0, 4))+"</span>";
+						if (activation.grids_mw[j]) {
+							gridstring = gridstring+" <span style=\"font-size: 0.75rem;\" data-bs-toggle=\"tooltip\" title=\""+lang_most_wanted_grid+"\">("+escapeHtml(activation.grids_mw[j])+")</span>"
+						}
+						grids.push(gridstring);
 						break;
 				}
 			}
