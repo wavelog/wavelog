@@ -108,6 +108,13 @@ class Api_v2_model extends CI_Model {
 				'class'       => 'btn-primary',
 				'scopes'      => ['station:read', 'qso:write', 'radio:write'],
 			],
+			'waverover' => [
+				'name'        => 'WaveRover',
+				'description' => __('Import ADIF logs with automatic station location management.'),
+				'icon'        => 'fas fa-file-import',
+				'class'       => 'btn-primary',
+				'scopes'      => ['station:read', 'station:write', 'qso:write', 'logbook:read', 'logbook:write', 'lookup:read'],
+			],
 			'readonly' => [
 				'name'        => __("Read-only"),
 				'description' => __("Read access to everything, no changes to your data."),
