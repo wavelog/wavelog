@@ -454,6 +454,8 @@ class Logbookadvanced extends CI_Controller {
 				return;
 		}
 
+		// Reverse array so that most recent QSOs get plotted on top of the map
+		$qsos = array_reverse($qsos);
 		$mappedcoordinates = array();
 		foreach ($qsos as $qso) {
 			if ($this->isValidMaidenheadGrid($qso['station_gridsquare']) || empty($qso['station_gridsquare'])) {
