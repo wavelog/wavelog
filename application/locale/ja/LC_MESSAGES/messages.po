@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-17 07:55+0000\n"
+"POT-Creation-Date: 2026-11-17 17:45+0000\n"
 "PO-Revision-Date: 2026-11-12 06:44+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -692,7 +692,7 @@ msgstr " 及び "
 
 #: application/controllers/Awards.php:786
 #: application/controllers/Logbook.php:1512
-#: application/views/activationplanner/index.php:99
+#: application/views/activationplanner/index.php:101
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:335
 #: application/views/bands/index.php:59
 #: application/views/dashboard/index.php:10
@@ -723,7 +723,7 @@ msgstr "SOTA"
 
 #: application/controllers/Awards.php:884
 #: application/controllers/Logbook.php:1513
-#: application/views/activationplanner/index.php:97
+#: application/views/activationplanner/index.php:99
 #: application/views/bandmap/list.php:337 application/views/bands/index.php:66
 #: application/views/dashboard/index.php:11
 #: application/views/logbookadvanced/edit.php:40
@@ -746,7 +746,7 @@ msgstr "WWFF"
 
 #: application/controllers/Awards.php:984
 #: application/controllers/Logbook.php:1514
-#: application/views/activationplanner/index.php:98
+#: application/views/activationplanner/index.php:100
 #: application/views/adif/import.php:65 application/views/bandmap/list.php:336
 #: application/views/bands/index.php:56
 #: application/views/dashboard/index.php:12
@@ -1319,10 +1319,10 @@ msgstr "交信数をカウントする..."
 #: application/controllers/Countqsoby.php:74
 #: application/controllers/Logbook.php:1516
 #: application/views/activated_gridmap/index.php:107
-#: application/views/activationplanner/index.php:25
-#: application/views/activationplanner/index.php:73
-#: application/views/activationplanner/index.php:96
-#: application/views/activationplanner/index.php:121
+#: application/views/activationplanner/index.php:27
+#: application/views/activationplanner/index.php:75
+#: application/views/activationplanner/index.php:98
+#: application/views/activationplanner/index.php:123
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:53
 #: application/views/awards/vucc/band.php:17
@@ -1382,7 +1382,7 @@ msgid "Gridsquare"
 msgstr "グリッドスクエア"
 
 #: application/controllers/Countqsoby.php:75
-#: application/views/activationplanner/index.php:123
+#: application/views/activationplanner/index.php:125
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:217
 #: application/views/countqsoby/index.php:14
@@ -1405,7 +1405,7 @@ msgid "ITU Zone"
 msgstr "ITU ゾーン"
 
 #: application/controllers/Countqsoby.php:76
-#: application/views/activationplanner/index.php:122
+#: application/views/activationplanner/index.php:124
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:215
 #: application/views/bandmap/list.php:569
@@ -1535,6 +1535,7 @@ msgstr "Cronジョブを編集する"
 #: application/views/debug/index.php:787 application/views/debug/index.php:793
 #: application/views/debug/index.php:799 application/views/debug/index.php:805
 #: application/views/debug/index.php:811 application/views/debug/index.php:817
+#: application/views/debug/index.php:823
 msgid "never"
 msgstr "一度もない"
 
@@ -1688,35 +1689,35 @@ msgstr "キーが削除されました。"
 msgid "(empty)"
 msgstr "（空の）"
 
-#: application/controllers/Debug.php:135
+#: application/controllers/Debug.php:136
 msgid "Debug"
 msgstr "デバッグ情報"
 
-#: application/controllers/Debug.php:186
+#: application/controllers/Debug.php:187
 msgid "Migrate data now"
 msgstr "今すぐデータを移行する"
 
-#: application/controllers/Debug.php:189
+#: application/controllers/Debug.php:190
 msgid "Migration already done. Run again?"
 msgstr "移行はすでに完了しています。もう一度実行しますか?"
 
-#: application/controllers/Debug.php:193
+#: application/controllers/Debug.php:194
 msgid "No data to migrate"
 msgstr "移行するデータがありません"
 
-#: application/controllers/Debug.php:197 application/controllers/Debug.php:202
+#: application/controllers/Debug.php:198 application/controllers/Debug.php:203
 msgid "No migration possible"
 msgstr "移行はできません"
 
-#: application/controllers/Debug.php:267
+#: application/controllers/Debug.php:268
 msgid "Wavelog was updated successfully!"
 msgstr "Wavelogが正常に更新されました！"
 
-#: application/controllers/Debug.php:285
+#: application/controllers/Debug.php:286
 msgid "Selfupdate() not available. Check the Error Log."
 msgstr "Selfupdate() が利用できません。エラーログを確認してください。"
 
-#: application/controllers/Debug.php:344
+#: application/controllers/Debug.php:345
 msgid ""
 "File Migration was successful, but please check also manually. If everything "
 "seems right you can delete the folders 'assets/qslcard' and 'images/"
@@ -1725,7 +1726,7 @@ msgstr ""
 "ファイルの移行は成功しましたが、手動でもご確認ください。問題がなければ、"
 "「assets/qslcard」と「images/eqsl_card_images」フォルダを削除してください。"
 
-#: application/controllers/Debug.php:347
+#: application/controllers/Debug.php:348
 msgid "File Migration failed. Please check the Error Log."
 msgstr "ファイルの移行に失敗しました。エラーログを確認してください。"
 
@@ -2396,7 +2397,7 @@ msgstr "すべてのコールブック検索が失敗したか、結果が提供
 #: application/views/dbtools/checkresult.php:380
 #: application/views/dbtools/missinggridlist.php:46
 #: application/views/dbtools/showStateQsos.php:23
-#: application/views/debug/index.php:840
+#: application/views/debug/index.php:846
 #: application/views/distancerecords/index.php:23
 #: application/views/distances/index.php:66
 #: application/views/dxatlas/index.php:42
@@ -2532,7 +2533,7 @@ msgid "Country"
 msgstr "国"
 
 #: application/controllers/Logbook.php:1511
-#: application/views/activationplanner/index.php:100
+#: application/views/activationplanner/index.php:102
 #: application/views/awards/iota/index.php:218
 #: application/views/bandmap/list.php:338 application/views/bands/index.php:53
 #: application/views/dashboard/index.php:9
@@ -2597,7 +2598,7 @@ msgstr "州"
 
 #: application/controllers/Logbook.php:1517
 #: application/views/activated_gridmap/index.php:108
-#: application/views/activationplanner/index.php:31
+#: application/views/activationplanner/index.php:33
 #: application/views/awards/ffma/index.php:40
 #: application/views/awards/gridmaster/index.php:55
 #: application/views/contesting/logger/components/map.php:82
@@ -2689,7 +2690,7 @@ msgstr "距離"
 #: application/views/dbtools/checkresult.php:379
 #: application/views/dbtools/missinggridlist.php:47
 #: application/views/dbtools/showStateQsos.php:24
-#: application/views/debug/index.php:841 application/views/dxatlas/index.php:31
+#: application/views/debug/index.php:847 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
 #: application/views/eqslcard/index.php:36
 #: application/views/gridmap/index.php:78 application/views/kml/index.php:19
@@ -3043,7 +3044,7 @@ msgid "VUCC gridsquare data unavailable."
 msgstr "VUCCグリッドスクエアデータは利用できません。"
 
 #: application/controllers/Mostwantedgrids.php:12
-#: application/views/debug/index.php:815
+#: application/views/debug/index.php:821
 msgid "Most Wanted Grids (Satellite)"
 msgstr ""
 
@@ -3815,7 +3816,7 @@ msgstr "許可されていません"
 #: application/controllers/Stationsetup.php:156
 #: application/controllers/Stationsetup.php:177
 #: application/controllers/Stationsetup.php:478
-#: application/views/activationplanner/index.php:33
+#: application/views/activationplanner/index.php:35
 #: application/views/contesting/logger/components/qso-form.php:31
 #: application/views/contesting/logger/components/qso-form.php:34
 #: application/views/contesting/manager/index.php:152
@@ -3852,7 +3853,7 @@ msgid "Error. Link is already in use!"
 msgstr "エラー。リンクは既に使用中です！"
 
 #: application/controllers/Stationsetup.php:278
-#: application/views/debug/index.php:914
+#: application/views/debug/index.php:920
 #: application/views/options/appearance.php:31
 #: application/views/options/appearance.php:40
 #: application/views/options/appearance.php:49
@@ -4151,31 +4152,39 @@ msgstr "POTA境界の更新が完了しました。結果： "
 msgid "POTA boundaries update failed. Result: "
 msgstr "POTA境界の更新に失敗しました。結果： "
 
-#: application/controllers/Update.php:618
+#: application/controllers/Update.php:633
+msgid "WWFF boundaries update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:635
+msgid "WWFF boundaries update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:655
 msgid "TLE Update complete. Result: "
 msgstr "TLEアップデートが完了しました。結果: "
 
-#: application/controllers/Update.php:620
+#: application/controllers/Update.php:657
 msgid "TLE Update failed. Result: "
 msgstr "TLE 更新に失敗しました。結果: "
 
-#: application/controllers/Update.php:671
+#: application/controllers/Update.php:708
 msgid "LoTW SAT Update"
 msgstr "LoTW SATアップデート"
 
-#: application/controllers/Update.php:688
+#: application/controllers/Update.php:725
 msgid "Hams of Note Update failed. Result: "
 msgstr "注目すべきハムたちのアップデートに失敗しました。結果： "
 
-#: application/controllers/Update.php:694
+#: application/controllers/Update.php:731
 msgid "Update of Hams of Note"
 msgstr "注目のハムの最新情報"
 
-#: application/controllers/Update.php:724
+#: application/controllers/Update.php:761
 msgid "VUCC Grid file update complete. Result: "
 msgstr "VUCCグリッドファイルの更新が完了しました。結果: "
 
-#: application/controllers/Update.php:726
+#: application/controllers/Update.php:763
 msgid "VUCC Grid file update failed. Result: "
 msgstr "VUCC グリッドファイルの更新に失敗しました。結果: "
 
@@ -4319,7 +4328,7 @@ msgstr "ユーザー %s がログアウトしました。"
 msgid "Station Name"
 msgstr "無線局名"
 
-#: application/controllers/User.php:1548 application/views/debug/index.php:842
+#: application/controllers/User.php:1548 application/views/debug/index.php:848
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:60
 #: application/views/station_profile/edit.php:77
@@ -5552,50 +5561,50 @@ msgctxt "QSL Card Designer; No mailable address found"
 msgid "!!! NO MAILABLE ADDRESS FOUND !!!"
 msgstr "!!!郵送先住所が見つかりませんでした!!!"
 
-#: application/models/Update_model.php:717
+#: application/models/Update_model.php:964
 msgid "Newer release available:"
 msgstr "新しいリリースが利用可能です:"
 
-#: application/models/Update_model.php:721
+#: application/models/Update_model.php:968
 msgid "You are running the latest version."
 msgstr "最新バージョンを実行しています。"
 
-#: application/models/Update_model.php:861
+#: application/models/Update_model.php:1108
 msgid "cURL error:"
 msgstr "cURL エラー:"
 
-#: application/models/Update_model.php:895
+#: application/models/Update_model.php:1142
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT は既に存在します。LoTW ステータスが更新されました。"
 
-#: application/models/Update_model.php:898
-#: application/models/Update_model.php:927
+#: application/models/Update_model.php:1145
+#: application/models/Update_model.php:1174
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "LoTWステータス %d 件の QSO が更新されました"
 
-#: application/models/Update_model.php:901
+#: application/models/Update_model.php:1148
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT は既に存在します。LoTW ステータスの更新に失敗しました。"
 
-#: application/models/Update_model.php:904
+#: application/models/Update_model.php:1151
 msgid "SAT already existing. Ignored."
 msgstr "SAT はすでに存在します。無視されます。"
 
-#: application/models/Update_model.php:911
+#: application/models/Update_model.php:1158
 msgid "SAT already existing. Display name updated."
 msgstr "SAT は既に存在します。表示名を更新しました。"
 
-#: application/models/Update_model.php:913
+#: application/models/Update_model.php:1160
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT は既に存在します。表示名の更新に失敗しました。"
 
-#: application/models/Update_model.php:923
+#: application/models/Update_model.php:1170
 msgid "New SAT. Inserted."
 msgstr "新しいSATを挿入しました。"
 
-#: application/models/Update_model.php:931
+#: application/models/Update_model.php:1178
 msgid "New SAT. Insert failed."
 msgstr "新しい SAT。挿入に失敗しました。"
 
@@ -5947,7 +5956,7 @@ msgid "Trophy"
 msgstr "トロフィー"
 
 #: application/views/achievements/index.php:146
-#: application/views/activationplanner/index.php:32
+#: application/views/activationplanner/index.php:34
 #: application/views/api/components/create_token_modal.php:6
 #: application/views/api/components/new_token_modal.php:7
 #: application/views/api/components/new_token_modal.php:23
@@ -6102,7 +6111,7 @@ msgid "Clear Markers"
 msgstr "クリアマーカー"
 
 #: application/views/activated_gridmap/index.php:105
-#: application/views/activationplanner/index.php:119
+#: application/views/activationplanner/index.php:121
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:49
 #: application/views/awards/wab/index.php:186
@@ -6114,7 +6123,7 @@ msgid "Latitude"
 msgstr "緯度"
 
 #: application/views/activated_gridmap/index.php:106
-#: application/views/activationplanner/index.php:120
+#: application/views/activationplanner/index.php:122
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:51
 #: application/views/awards/wab/index.php:187
@@ -6132,43 +6141,43 @@ msgstr ""
 "無効なグリッドマスです。2、4、6、8、または10文字を使用してください（例：PM、"
 "PM74、PM74kk）。"
 
-#: application/views/activationplanner/index.php:20
+#: application/views/activationplanner/index.php:22
 #, php-format
 msgid "In log of %s (SAT)"
 msgstr ""
 
-#: application/views/activationplanner/index.php:23
+#: application/views/activationplanner/index.php:25
 #: application/views/satellite/pass.php:21
 msgid "Satellite passes"
 msgstr "衛星パス"
 
-#: application/views/activationplanner/index.php:24
+#: application/views/activationplanner/index.php:26
 msgid "Gridsquare borders"
 msgstr "グリッドスクエアの境界線"
 
-#: application/views/activationplanner/index.php:26
-#: application/views/activationplanner/index.php:84
+#: application/views/activationplanner/index.php:28
+#: application/views/activationplanner/index.php:86
 msgid "Nearby refs"
 msgstr "関連する位置の参照:"
 
-#: application/views/activationplanner/index.php:27
+#: application/views/activationplanner/index.php:29
 #, php-format
 msgid "References within %s of the gridsquare"
 msgstr "参照箇所 %s グリッドスクエアの"
 
-#: application/views/activationplanner/index.php:28
+#: application/views/activationplanner/index.php:30
 #: application/views/qslcard/confirmationresult.php:21
 #: application/views/user/index.php:30
 msgid "Type"
 msgstr "タイプ"
 
-#: application/views/activationplanner/index.php:29
+#: application/views/activationplanner/index.php:31
 #: application/views/awards/sig/qso_list.php:13
 #: application/views/countqsoby/index.php:13
 msgid "Reference"
 msgstr "参照"
 
-#: application/views/activationplanner/index.php:30
+#: application/views/activationplanner/index.php:32
 #: application/views/api/index.php:135
 #: application/views/awards/iota/index.php:220
 #: application/views/contest_admin/add.php:34
@@ -6200,50 +6209,50 @@ msgstr "参照"
 msgid "Name"
 msgstr "名前"
 
-#: application/views/activationplanner/index.php:34
+#: application/views/activationplanner/index.php:36
 msgid "Tracking"
 msgstr "トラッキング"
 
-#: application/views/activationplanner/index.php:35
+#: application/views/activationplanner/index.php:37
 #: application/views/labeldesigner/designer.php:290
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
 msgid "Field"
 msgstr "フィールド"
 
-#: application/views/activationplanner/index.php:36
+#: application/views/activationplanner/index.php:38
 msgid "Square"
 msgstr "四角"
 
-#: application/views/activationplanner/index.php:37
+#: application/views/activationplanner/index.php:39
 msgid "Subsquare"
 msgstr "サブスクエア"
 
-#: application/views/activationplanner/index.php:38
+#: application/views/activationplanner/index.php:40
 msgid "Locating…"
 msgstr "検索中…"
 
-#: application/views/activationplanner/index.php:39
+#: application/views/activationplanner/index.php:41
 msgid "Location access denied."
 msgstr "位置情報へのアクセスが拒否されました。"
 
-#: application/views/activationplanner/index.php:40
+#: application/views/activationplanner/index.php:42
 msgid "Location unavailable."
 msgstr "場所が不明です。"
 
-#: application/views/activationplanner/index.php:41
+#: application/views/activationplanner/index.php:43
 msgid "Location request timed out."
 msgstr "位置情報のリクエストがタイムアウトしました。"
 
-#: application/views/activationplanner/index.php:43
+#: application/views/activationplanner/index.php:45
 msgid "Create station location"
 msgstr "無線局の場所を作成する"
 
-#: application/views/activationplanner/index.php:44
+#: application/views/activationplanner/index.php:46
 msgid "References in this grid"
 msgstr "このグリッド内の参照"
 
-#: application/views/activationplanner/index.php:45
+#: application/views/activationplanner/index.php:47
 #: application/views/calltester/call_info.php:30
 #: application/views/countqsoby/index.php:7
 #: application/views/dbtools/statecheckresult.php:16
@@ -6253,86 +6262,86 @@ msgstr "このグリッド内の参照"
 msgid "QSOs"
 msgstr "QSO"
 
-#: application/views/activationplanner/index.php:46
+#: application/views/activationplanner/index.php:48
 msgid "last"
 msgstr "最後"
 
-#: application/views/activationplanner/index.php:47
+#: application/views/activationplanner/index.php:49
 msgid "Inactive"
 msgstr "非アクティブ"
 
-#: application/views/activationplanner/index.php:48
+#: application/views/activationplanner/index.php:50
 msgid "valid"
 msgstr "有効"
 
-#: application/views/activationplanner/index.php:50
+#: application/views/activationplanner/index.php:52
 #: application/views/view_log/qso.php:611
 msgid "Share"
 msgstr "共有"
 
-#: application/views/activationplanner/index.php:51
+#: application/views/activationplanner/index.php:53
 msgid "Share activation"
 msgstr "共有アクティベーション"
 
-#: application/views/activationplanner/index.php:52
+#: application/views/activationplanner/index.php:54
 #, php-format
 msgid "📻 Planning an activation from %s"
 msgstr "📻 アクティベーションを計画する %s"
 
-#: application/views/activationplanner/index.php:53
-#: application/views/activationplanner/index.php:89
+#: application/views/activationplanner/index.php:55
+#: application/views/activationplanner/index.php:91
 msgid "Search references…"
 msgstr "参考文献を検索…"
 
-#: application/views/activationplanner/index.php:54
+#: application/views/activationplanner/index.php:56
 msgid "No matches"
 msgstr "一致する項目はありません"
 
-#: application/views/activationplanner/index.php:55
+#: application/views/activationplanner/index.php:57
 msgid "Loading…"
 msgstr "読み込み中…"
 
-#: application/views/activationplanner/index.php:56
+#: application/views/activationplanner/index.php:58
 msgid "References"
 msgstr "参考文献"
 
-#: application/views/activationplanner/index.php:57
+#: application/views/activationplanner/index.php:59
 msgid "Places"
 msgstr "場所"
 
-#: application/views/activationplanner/index.php:58
+#: application/views/activationplanner/index.php:60
 msgid "Press Enter to search places"
 msgstr "場所を検索するには、Enterキーを押してください"
 
-#: application/views/activationplanner/index.php:68
+#: application/views/activationplanner/index.php:70
 msgid "Plan your activity here"
 msgstr "ここでアクティビティを計画しましょう"
 
-#: application/views/activationplanner/index.php:76
+#: application/views/activationplanner/index.php:78
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2、4、6、8、または10文字のメイデンヘッドロケーター"
 
-#: application/views/activationplanner/index.php:76
+#: application/views/activationplanner/index.php:78
 msgid "e.g. FN31pr"
 msgstr "例：PM74kk"
 
-#: application/views/activationplanner/index.php:77
+#: application/views/activationplanner/index.php:79
 msgid "to"
 msgstr "to"
 
-#: application/views/activationplanner/index.php:80
+#: application/views/activationplanner/index.php:82
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "距離と方位を示すオプションの2つ目のグリッドスクエア"
 
-#: application/views/activationplanner/index.php:80
+#: application/views/activationplanner/index.php:82
 msgid "e.g. JN58qm"
 msgstr "例：JN58qm"
 
-#: application/views/activationplanner/index.php:81
+#: application/views/activationplanner/index.php:83
 msgid "Go"
 msgstr "Go"
 
-#: application/views/activationplanner/index.php:82
+#: application/views/activationplanner/index.php:84
 #: application/views/awards/cq/index.php:75
 #: application/views/awards/dxcc/index.php:69
 #: application/views/awards/itu/index.php:77
@@ -6349,15 +6358,15 @@ msgstr "Go"
 msgid "Clear"
 msgstr "クリア"
 
-#: application/views/activationplanner/index.php:83
+#: application/views/activationplanner/index.php:85
 msgid "Find my location and gridsquare"
 msgstr "現在地とグリッドスクエアを検索"
 
-#: application/views/activationplanner/index.php:83
+#: application/views/activationplanner/index.php:85
 msgid "Locate me"
 msgstr "私を見つけてください"
 
-#: application/views/activationplanner/index.php:89
+#: application/views/activationplanner/index.php:91
 msgid ""
 "Search WWFF / POTA / SOTA / IOTA by name or reference — Enter searches place "
 "names (OpenStreetMap)"
@@ -6365,17 +6374,17 @@ msgstr ""
 "WWFF / POTA / SOTA / IOTA を名前または参照で検索 — 検索対象の地名を入力してく"
 "ださい (OpenStreetMap)"
 
-#: application/views/activationplanner/index.php:94
+#: application/views/activationplanner/index.php:96
 #: application/views/simplefle/index.php:162
 msgid "Refs"
 msgstr "参照"
 
-#: application/views/activationplanner/index.php:107
+#: application/views/activationplanner/index.php:109
 #: application/views/qso/index.php:758
 msgid "More options"
 msgstr "その他のオプション"
 
-#: application/views/activationplanner/index.php:108
+#: application/views/activationplanner/index.php:110
 msgid "Hide options"
 msgstr "オプションを非表示にする"
 
@@ -6573,7 +6582,7 @@ msgstr ""
 #: application/views/dashboard/index.php:339
 #: application/views/dbtools/checkresult.php:231
 #: application/views/dbtools/checkresult.php:307
-#: application/views/debug/index.php:837
+#: application/views/debug/index.php:843
 #: application/views/distancerecords/index.php:20
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
@@ -6623,7 +6632,7 @@ msgstr "日付"
 #: application/views/dashboard/index.php:341
 #: application/views/dbtools/checkresult.php:232
 #: application/views/dbtools/checkresult.php:308
-#: application/views/debug/index.php:838
+#: application/views/debug/index.php:844
 #: application/views/distancerecords/index.php:21
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
@@ -6653,7 +6662,7 @@ msgstr "時間"
 #: application/views/dbtools/missinggridlist.php:44
 #: application/views/dbtools/showStateQsos.php:21
 #: application/views/dcl_views/key_import.php:45
-#: application/views/debug/index.php:839 application/views/debug/index.php:874
+#: application/views/debug/index.php:845 application/views/debug/index.php:880
 #: application/views/dxcalendar/index.php:17
 #: application/views/eqsl/analysis.php:38
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
@@ -6729,7 +6738,7 @@ msgstr "最大ファイルアップロードサイズは "
 #: application/views/clublog/export.php:70
 #: application/views/contesting/logger/index.php:59
 #: application/views/debug/index.php:254 application/views/debug/index.php:271
-#: application/views/debug/index.php:829 application/views/hrdlog/export.php:25
+#: application/views/debug/index.php:835 application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:38
 #: application/views/notes/add.php:23 application/views/notes/edit.php:29
@@ -15543,7 +15552,7 @@ msgstr "クラスタノード"
 msgid "Uptime"
 msgstr "アップタイム"
 
-#: application/views/debug/index.php:164 application/views/debug/index.php:912
+#: application/views/debug/index.php:164 application/views/debug/index.php:918
 msgid "Online"
 msgstr "オンライン"
 
@@ -15789,7 +15798,7 @@ msgstr "クラブログからのDXCCアップデート"
 #: application/views/debug/index.php:782 application/views/debug/index.php:788
 #: application/views/debug/index.php:794 application/views/debug/index.php:800
 #: application/views/debug/index.php:806 application/views/debug/index.php:812
-#: application/views/debug/index.php:818
+#: application/views/debug/index.php:818 application/views/debug/index.php:824
 #: application/views/station_profile/edit.php:53
 msgid "Update"
 msgstr "アップデート"
@@ -15811,38 +15820,42 @@ msgid "POTA park boundaries (GeoJSON)"
 msgstr "POTA公園の境界線（GeoJSON形式）"
 
 #: application/views/debug/index.php:773
+msgid "WWFF reference boundaries"
+msgstr ""
+
+#: application/views/debug/index.php:779
 msgid "SCP file download"
 msgstr "SCPファイルのダウンロード"
 
-#: application/views/debug/index.php:779
+#: application/views/debug/index.php:785
 msgid "SOTA file download"
 msgstr "SOTAファイルのダウンロード"
 
-#: application/views/debug/index.php:785
+#: application/views/debug/index.php:791
 msgid "WWFF file download"
 msgstr "WWFFファイルのダウンロード"
 
-#: application/views/debug/index.php:791
+#: application/views/debug/index.php:797
 msgid "TLE update"
 msgstr "TLEアップデート"
 
-#: application/views/debug/index.php:797
+#: application/views/debug/index.php:803
 msgid "Hams Of Note update"
 msgstr "注目すべきハムの更新"
 
-#: application/views/debug/index.php:803
+#: application/views/debug/index.php:809
 msgid "HAMqsl"
 msgstr "HAMqsl"
 
-#: application/views/debug/index.php:809
+#: application/views/debug/index.php:815
 msgid "VUCC Grids"
 msgstr "VUCCグリッド"
 
-#: application/views/debug/index.php:825
+#: application/views/debug/index.php:831
 msgid "QSO-DB Maintenance"
 msgstr "QSO-DBメンテナンス"
 
-#: application/views/debug/index.php:829
+#: application/views/debug/index.php:835
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
@@ -15851,49 +15864,49 @@ msgstr[0] ""
 "データベースには、無線局プロファイル（位置情報）のない%d件のQSOが含まれていま"
 "す"
 
-#: application/views/debug/index.php:867
+#: application/views/debug/index.php:873
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr "QSO をマークし、既存の無線局の所在地に再割り当てしてください:"
 
-#: application/views/debug/index.php:875
+#: application/views/debug/index.php:881
 msgctxt "Stationlocation"
 msgid "Target Location"
 msgstr "ターゲットロケーション"
 
-#: application/views/debug/index.php:876 application/views/debug/index.php:887
+#: application/views/debug/index.php:882 application/views/debug/index.php:893
 msgid "Reassign"
 msgstr "再割り当て"
 
-#: application/views/debug/index.php:896
+#: application/views/debug/index.php:902
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
 "データベース内のすべてのQSOは無線局プロファイル（所在地）に割り当てられます"
 
-#: application/views/debug/index.php:896
+#: application/views/debug/index.php:902
 msgid "Everything ok"
 msgstr "すべて順調"
 
-#: application/views/debug/index.php:913
+#: application/views/debug/index.php:919
 msgid "Degraded"
 msgstr "劣化"
 
-#: application/views/debug/index.php:914
+#: application/views/debug/index.php:920
 msgid "Worker backend is not configured."
 msgstr "ワーカーバックエンドが設定されていません。"
 
-#: application/views/debug/index.php:915
+#: application/views/debug/index.php:921
 msgid "Unreachable"
 msgstr "到達できない"
 
-#: application/views/debug/index.php:915
+#: application/views/debug/index.php:921
 msgid "Worker is configured but did not respond."
 msgstr "ワーカーは設定されていますが、応答していません。"
 
-#: application/views/debug/index.php:916
+#: application/views/debug/index.php:922
 msgid "Outdated"
 msgstr "時代遅れ"
 
-#: application/views/debug/index.php:916
+#: application/views/debug/index.php:922
 msgid ""
 "Please update your Wavelog Worker to version 0.2.0 or newer to see the "
 "status."
@@ -15901,131 +15914,131 @@ msgstr ""
 "ステータスを確認するには、Wavelog Workerをバージョン0.2.0以降にアップデートし"
 "てください。"
 
-#: application/views/debug/index.php:935
+#: application/views/debug/index.php:941
 msgid "Albanian"
 msgstr "アルバニア語"
 
-#: application/views/debug/index.php:936
+#: application/views/debug/index.php:942
 msgid "Armenian"
 msgstr "アルメニア語"
 
-#: application/views/debug/index.php:937
+#: application/views/debug/index.php:943
 msgid "Bosnian"
 msgstr "ボスニア語"
 
-#: application/views/debug/index.php:938
+#: application/views/debug/index.php:944
 msgid "Bulgarian"
 msgstr "ブルガリア語"
 
-#: application/views/debug/index.php:939
+#: application/views/debug/index.php:945
 msgid "Chinese (Simplified)"
 msgstr "中国語（簡体字）"
 
-#: application/views/debug/index.php:940
+#: application/views/debug/index.php:946
 msgid "Croatian"
 msgstr "クロアチア語"
 
-#: application/views/debug/index.php:941
+#: application/views/debug/index.php:947
 msgid "Czech"
 msgstr "チェコ語"
 
-#: application/views/debug/index.php:942
+#: application/views/debug/index.php:948
 msgid "Dutch"
 msgstr "オランダ語"
 
-#: application/views/debug/index.php:943
+#: application/views/debug/index.php:949
 msgid "English"
 msgstr "英語"
 
-#: application/views/debug/index.php:944
+#: application/views/debug/index.php:950
 msgid "Estonian"
 msgstr "エストニア語"
 
-#: application/views/debug/index.php:945
+#: application/views/debug/index.php:951
 msgid "Finnish"
 msgstr "フィンランド語"
 
-#: application/views/debug/index.php:946
+#: application/views/debug/index.php:952
 msgid "French"
 msgstr "フランス語"
 
-#: application/views/debug/index.php:947
+#: application/views/debug/index.php:953
 msgid "German"
 msgstr "ドイツ語"
 
-#: application/views/debug/index.php:948
+#: application/views/debug/index.php:954
 msgid "Greek"
 msgstr "ギリシャ語"
 
-#: application/views/debug/index.php:949
+#: application/views/debug/index.php:955
 msgid "Hungarian"
 msgstr "ハンガリー語"
 
-#: application/views/debug/index.php:950
+#: application/views/debug/index.php:956
 msgid "Italian"
 msgstr "イタリア語"
 
-#: application/views/debug/index.php:951
+#: application/views/debug/index.php:957
 msgid "Japanese"
 msgstr "日本語"
 
-#: application/views/debug/index.php:952
+#: application/views/debug/index.php:958
 msgid "Latvian"
 msgstr "ラトビア語"
 
-#: application/views/debug/index.php:953
+#: application/views/debug/index.php:959
 msgid "Lithuanian"
 msgstr "リトアニア語"
 
-#: application/views/debug/index.php:954
+#: application/views/debug/index.php:960
 msgid "Montenegrin"
 msgstr "モンテネグロ語"
 
-#: application/views/debug/index.php:955
+#: application/views/debug/index.php:961
 msgid "Norwegian (Bokmål)"
 msgstr "ノルウェー語（ブークモール）"
 
-#: application/views/debug/index.php:956
+#: application/views/debug/index.php:962
 msgid "Polish"
 msgstr "ポーランド語"
 
-#: application/views/debug/index.php:957
+#: application/views/debug/index.php:963
 msgid "Portuguese"
 msgstr "ポルトガル語"
 
-#: application/views/debug/index.php:958
+#: application/views/debug/index.php:964
 msgid "Romanian"
 msgstr "ルーマニア語"
 
-#: application/views/debug/index.php:959
+#: application/views/debug/index.php:965
 msgid "Russian"
 msgstr "ロシア語"
 
-#: application/views/debug/index.php:960
+#: application/views/debug/index.php:966
 msgid "Serbian"
 msgstr "セルビア語"
 
-#: application/views/debug/index.php:961
+#: application/views/debug/index.php:967
 msgid "Slovak"
 msgstr "スロバキア語"
 
-#: application/views/debug/index.php:962
+#: application/views/debug/index.php:968
 msgid "Slovenian"
 msgstr "スロベニア語"
 
-#: application/views/debug/index.php:963
+#: application/views/debug/index.php:969
 msgid "Spanish"
 msgstr "スペイン語"
 
-#: application/views/debug/index.php:964
+#: application/views/debug/index.php:970
 msgid "Swedish"
 msgstr "スウェーデン語"
 
-#: application/views/debug/index.php:965
+#: application/views/debug/index.php:971
 msgid "Turkish"
 msgstr "トルコ語"
 
-#: application/views/debug/index.php:966
+#: application/views/debug/index.php:972
 msgid "Ukrainian"
 msgstr "ウクライナ語"
 
