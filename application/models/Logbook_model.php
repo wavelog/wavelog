@@ -1603,6 +1603,10 @@ class Logbook_model extends CI_Model {
 			case (substr($data['COL_SAT_NAME'], 0, 5) == 'TEV2-'):
 				$sat_name = 'TEVEL2-'.substr($data['COL_SAT_NAME'], 5, 1).'_[FM]';
 				break;
+			case 'SO-131':
+			case 'UNNE-1B':
+				$sat_name = 'SO-131_[V/u_FM]';
+				break;
 			default:
 				return;
 		}
@@ -2573,6 +2577,8 @@ class Logbook_model extends CI_Model {
 			$results = array_filter($results, function($row) {
 				return !empty($row->COL_GRIDSQUARE) || !empty($row->COL_VUCC_GRIDS);
 			});
+			// Reverse array so that most recent QSOs get plotted on top of the map
+			$results = array_reverse($results);
 			// Re-index array after filtering
 			$results = array_values($results);
 		}
@@ -6012,7 +6018,6 @@ class Logbook_model extends CI_Model {
 				'COL_MY_CNTY_ALT' => (!empty($record['my_cnty_alt'])) ? $record['my_cnty_alt'] : '',
 				'COL_MY_COUNTRY' => (!empty($record['my_country'])) ? $record['my_country'] : '',
 				'COL_MY_COUNTRY_INTL' => (!empty($record['my_country_intl'])) ? $record['my_country_intl'] : null,
-				'COL_MY_CQ_ZONE' => (!empty($record['my_dxcc'])) ? $record['my_dxcc'] : null,
 				'COL_MY_DARC_DOK' => (!empty($record['my_darc_dok'])) ? strtoupper($record['my_darc_dok']) : '',
 				'COL_MY_DXCC' => $this->normalize_dxcc($record['my_dxcc'] ?? NULL),
 				'COL_MY_FISTS' => (!empty($record['my_fists'])) ? $record['my_fists'] : null,
@@ -6025,7 +6030,6 @@ class Logbook_model extends CI_Model {
 				'COL_MY_NAME' => (!empty($record['my_name'])) ? $record['my_name'] : '',
 				'COL_MY_NAME_INTL' => (!empty($record['my_name_intl'])) ? $record['my_name_intl'] : '',
 				'COL_MY_POSTAL_CODE' => (!empty($record['my_postal_code'])) ? $record['my_postal_code'] : '',
-				'COL_MY_POSTCODE_INTL' => (!empty($record['my_postcode_intl'])) ? $record['my_postcode_intl'] : '',
 				'COL_MY_RIG' => (!empty($record['my_rig'])) ? $record['my_rig'] : '',
 				'COL_MY_RIG_INTL' => (!empty($record['my_rig_intl'])) ? $record['my_rig_intl'] : '',
 				'COL_MY_SIG' => (!empty($record['my_sig'])) ? $record['my_sig'] : '',
