@@ -39,34 +39,6 @@ class Qrzcq {
 		return $result;
 	}
 
-	// Set Session Key session.
-	public function set_session($username, $password) {
-
-		$ci = & get_instance();
-
-		// URL to the XML Source
-		$xml_feed_url = 'https://ssl.qrzcq.com/xml/?username='.$username.';password='.urlencode($password).';agent=wavelog';
-
-		// CURL Functions
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
-		$xml = curl_exec($ch);
-
-		// Create XML object
-		$xml = simplexml_load_string($xml);
-
-		$key = (string) $xml->Session->Key;
-
-		$ci->session->set_userdata('qrzcq_session_key', $key);
-
-		return true;
-	}
-
 
 	public function search($callsign, $key, $reduced = false) {
 		$data = null;
@@ -89,6 +61,10 @@ class Qrzcq {
 
 			// Create XML object
 			$xml = simplexml_load_string($xml);
+			if ($xml === false) {
+				log_message('error', 'QRZCQ.com search for callsign: ' . $callsign . ': could not parse XML response');
+				return $data['error'] = 'Problems with qrzcq.com communication';
+			}
 			if (!empty($xml->Session->Error)) {
 				return $data['error'] = $xml->Session->Error;
 			}

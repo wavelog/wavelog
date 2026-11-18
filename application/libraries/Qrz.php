@@ -8,7 +8,13 @@ class Qrz {
 
 	public $callbookname = 'QRZ';
 
-	// Return session key
+	/**
+	 * Get a QRZ.com session key
+	 *
+	 * @param string $username QRZ.com username
+	 * @param string $password QRZ.com password
+	 * @return string|false Session key, empty string on login error, false on transport/parse error
+	 */
 	public function session($username, $password) {
 		// URL to the XML Source
 		$ci = & get_instance();
@@ -23,42 +29,31 @@ class Qrz {
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
 		$xml = curl_exec($ch);
+		if(curl_errno($ch)) {
+			log_message('error', 'QRZ.com session query failed: '.curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
+			return false;
+		}
 
 		// Create XML object
 		$xml = simplexml_load_string($xml);
+		if ($xml === false) {
+			log_message('error', 'QRZ.com session: could not parse XML response');
+			return false;
+		}
 
 		// Return Session Key
 		return (string) $xml->Session->Key;
 	}
 
-	// Set Session Key session.
-	public function set_session($username, $password) {
-
-		$ci = & get_instance();
-
-		// URL to the XML Source
-		$xml_feed_url = 'https://xmldata.qrz.com/xml/current/?username='.urlencode($username).';password='.urlencode($password).';agent=wavelog';
-
-		// CURL Functions
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
-		$xml = curl_exec($ch);
-
-		// Create XML object
-		$xml = simplexml_load_string($xml);
-
-		$key = (string) $xml->Session->Key;
-
-		$ci->session->set_userdata('qrz_session_key', $key);
-
-		return true;
-	}
-
+	/**
+	 * Search QRZ.com for a callsign and map the result to a callbook array
+	 *
+	 * @param string $callsign Callsign to look up
+	 * @param string $key QRZ.com session key
+	 * @param bool $use_fullname True to prepend last name to the name field
+	 * @param bool $reduced True to clear location-specific fields
+	 * @return array Callbook data with 'source' and optional 'error' key
+	 */
 	public function search($callsign, $key, $use_fullname = false, $reduced = false) {
 		$data = null;
 		$ci = & get_instance();
@@ -83,6 +78,10 @@ class Qrz {
 			}
 			// Create XML object
 			$xml = simplexml_load_string($xml);
+			if ($xml === false) {
+				log_message('error', 'QRZ.com search for callsign: ' . $callsign . ': could not parse XML response');
+				return $data['error'] = 'Problems with qrz.com communication';
+			}
 			if (!empty($xml->Session->Error)) {
 				return $data['error'] = $xml->Session->Error;
 			}

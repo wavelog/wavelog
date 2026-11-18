@@ -50,6 +50,7 @@
     var lang_general_word_worked_not_confirmed = "<?= __("Worked not confirmed"); ?>";
     var lang_general_word_not_worked = "<?= __("Not worked"); ?>";
     var lang_general_word_all = "<?= __("All"); ?>";
+    var lang_general_word_last_activations = "<?= __("Last Activations"); ?>";
     var lang_general_gridsquares = "<?= __("Gridsquares"); ?>";
     var lang_general_nightshadow = "<?= __("Night Shadow"); ?>";
     var lang_admin_close = "<?= __("Close"); ?>";

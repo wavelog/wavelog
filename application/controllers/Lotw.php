@@ -427,6 +427,8 @@ class Lotw extends CI_Controller {
 		$orig_name = htmlspecialchars(basename($orig_name), ENT_QUOTES, 'UTF-8');
 
 		$results = array();
+		// The error queue can hold errors from an earlier request on the same php-fpm worker
+		while (openssl_error_string() !== false);
 		$worked = openssl_pkcs12_read($p12_data, $results, $password);
 		$openssl_error_pkcs12_read = openssl_error_string();
 		if (!$worked || $openssl_error_pkcs12_read) {
@@ -450,6 +452,7 @@ class Lotw extends CI_Controller {
 				// Reading p12 successful
 				$new_password = "wavelog"; // set default password
 				$result = null;
+				while (openssl_error_string() !== false);
 				$worked = openssl_pkey_export($results['pkey'], $result, $new_password);
 				$openssl_error_pkey_export = openssl_error_string();
 				if (!$worked || $openssl_error_pkey_export) {

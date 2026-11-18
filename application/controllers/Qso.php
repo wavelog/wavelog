@@ -69,7 +69,7 @@ class QSO extends CI_Controller {
 		$data['iota'] = $this->logbook_model->fetchIota();
 		$data['modes'] = $this->usermodes->active();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
-		[$data['lat'], $data['lng']] = $this->qra->qra2latlong($this->stations->gridsquare_from_station($this->stations->find_active()));
+		[$data['lat'], $data['lng']] = $this->qra->qra2latlong($this->stations->gridsquare_from_station($this->stations->find_active())) ?: [null, null];
 		$data['user_default_band'] = $this->session->userdata('user_default_band');
 		$data['sat_active'] = array_search("SAT", $this->bands->get_user_bands(), true);
 
@@ -796,7 +796,7 @@ class QSO extends CI_Controller {
 		$result = $this->stations->get_station_power($stationProfile);
 		$data['station_power'] = $result['station_power'];
 		$data['station_callsign'] = $result['station_callsign'];
-		[$data['lat'], $data['lng']] = $this->qra->qra2latlong($this->stations->gridsquare_from_station($stationProfile));
+		[$data['lat'], $data['lng']] = $this->qra->qra2latlong($this->stations->gridsquare_from_station($stationProfile)) ?: [null, null];
 
 		header('Content-Type: application/json');
 		echo json_encode($data);

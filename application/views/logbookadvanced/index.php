@@ -78,8 +78,8 @@
     let lang_gen_advanced_logbook_show_more = '<?= __("Show more"); ?>';
     let lang_gen_advanced_logbook_show_less = '<?= __("Show less"); ?>';
 
-	let lang_gen_advanced_logbook_confirmedLabel = '<?= __("Gridsquares for"); ?>';
-	let lang_gen_advanced_logbook_workedLabel = '<?= __("Non DXCC matching gridsquare"); ?>';
+	let lang_gen_advanced_logbook_confirmedLabel = <?= js_escape(html_entity_decode(__("Gridsquares for"), ENT_QUOTES, 'UTF-8')); ?>;
+	let lang_gen_advanced_logbook_workedLabel = <?= js_escape(html_entity_decode(__("Non DXCC matching gridsquare"), ENT_QUOTES, 'UTF-8')); ?>;
 	let lang_label_print_options = "<?= __("Label Print Options"); ?>";
 
 	let lang_gen_advanced_logbook_select_row_merge_qso = '<?= __("You need to select exactly 2 QSOs to merge!"); ?>';

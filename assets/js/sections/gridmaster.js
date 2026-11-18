@@ -118,60 +118,14 @@ function gridPlot(form, dxcc) {
    });
 }
 
-function spawnGridsquareModal(loc_4char) {
-    var ajax_data = ({
-       'Searchphrase': loc_4char,
-       'Band': 'SAT',
-       'Type': 'VUCC'
-    })
-    $.ajax({
-        url: base_url + 'index.php/awards/qso_details_ajax',
-        type: 'post',
-        data: ajax_data,
-        success: function (html) {
-            BootstrapDialog.show({
-                title: lang_general_word_qso_data,
-                cssClass: 'qso-dialog',
-                size: BootstrapDialog.SIZE_WIDE,
-                nl2br: false,
-                message: html,
-                onshown: function(dialog) {
-
-                    $('[data-bs-toggle="tooltip"]').tooltip();
-                    $('.displaycontactstable').DataTable({
-                            "pageLength": 25,
-                            responsive: false,
-                            ordering: false,
-                            "scrollY":        "550px",
-                            "scrollCollapse": true,
-                            "paging":         false,
-                            "scrollX": true,
-                            "language": {
-                                url: getDataTablesLanguageUrl(),
-                            },
-                            dom: 'Bfrtip',
-                            buttons: [
-                                'csv'
-                            ]
-                        });
-                            // change color of csv-button if dark mode is chosen
-                    if (isDarkModeTheme()) {
-                        $(".buttons-csv").css("color", "white");
-                    }
-                    $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function () {
-                        showQsoActionsMenu($(this).closest('.dropdown'));
-                    });
-                    },
-                buttons: [{
-                    label: lang_admin_close,
-                    action: function(dialogItself) {
-                        dialogItself.close();
-                    }
-                }]
-            });
-        }
-    });
-}
+// Query params for the shared gridsquare QSO modal (gridmodal.js)
+gridModalQuery = function (loc_4char) {
+	return {
+		'Searchphrase': loc_4char,
+		'Band': 'SAT',
+		'Type': 'VUCC'
+	};
+};
 
 $(document).ready(function(){
     gridPlot(this.form, dxcc);

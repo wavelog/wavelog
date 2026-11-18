@@ -79,7 +79,17 @@ class Widgets extends CI_Controller {
 		}
 	}
 
-	public function oqrs($slug) {
+	/**
+	 * OQRS widget handler
+	 *
+	 * @param string|null $slug public logbook slug
+	 * @return void
+	 */
+	public function oqrs($slug = null) {
+		if ($slug == null) {
+			show_error(__("Unknown Public Page, please make sure the public slug is correct."));
+		}
+
 		$this->load->model('oqrs_model');
 		$this->load->model('publicsearch');
 		$this->load->model('stationsetup_model');

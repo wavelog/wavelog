@@ -226,7 +226,7 @@ $('#stationProfile').on('change', function () {
 		data: { 'stationProfile': stationProfile },
 		success: function (res) {
 			$('#transmit_power').val(res.station_power);
-			latlng=[res.lat,res.lng];
+			latlng = (res.lat !== null && res.lng !== null) ? [res.lat, res.lng] : null;
 			station_callsign = res.station_callsign;
 			$("#sat_name").change();
 		},
@@ -252,7 +252,7 @@ $("#callsign").on("compositionend", function(e){
 });
 
 $(document).on("keydown", function (e) {
-	if (e.key === "Escape" && $('#callsign').val() != '') { // escape key maps to keycode `27`
+	if (e.key === "Escape" && $('#callsign').val() != '' && !$('.modal.show').length) { // escape key maps to keycode `27`
 		preventLookup = true;
 
 		if (lookupCall) {
@@ -261,11 +261,13 @@ $(document).on("keydown", function (e) {
 
 		reset_fields();
 
+		// Jump back to the QSO tab and focus the callsign input
+		bootstrap.Tab.getOrCreateInstance(document.getElementById('qso-tab')).show();
+
 		// make sure the focusout event is finished before we allow a new lookup
 		setTimeout(() => {
 			preventLookup = false;
 		}, 100);
-		// console.log("Escape key pressed");
 		$('#callsign').trigger("focus");
 	}
 });
@@ -1145,6 +1147,7 @@ function stop_az_ele_ticker() {
 }
 
 function start_az_ele_ticker(tle) {
+	if (!latlng || latlng[0] === null || latlng[1] === null) { stop_az_ele_ticker(); return; }
 	const lines = tle.tle.trim().split('\n');
 
 	// Initialize a satellite record

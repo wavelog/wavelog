@@ -248,16 +248,22 @@ class Activated_gridmap_model extends CI_Model {
 		return $sql;
 	}
 
-	/*
-	* Get's the worked modes from the log
-	*/
+	/**
+	 * Get the worked modes from the log
+	 *
+	 * Returns all distinct worked modes (and submodes) for the active
+	 * station logbook, used for the mode filter in activated gridmap views.
+	 *
+	 * @return array Worked modes sorted alphabetically; empty array if the
+	 *               active logbook has no linked station locations
+	 */
 	function get_worked_modes() {
-		
+
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		if ($logbooks_locations_array[0] === -1) {
-			return null;
+			return [];
 		}
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";

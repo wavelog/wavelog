@@ -749,7 +749,7 @@ class Logbookadvanced_model extends CI_Model {
 			$sortorder .= " ORDER BY $sortColumn $sortDirection";
 
 			// Add secondary sorts for mode column
-			if ($searchCriteria['sortdirection'] === 'mode') {
+			if ($searchCriteria['sortcolumn'] === 'mode') {
 				$sortorder .= ", qsos.COL_SUBMODE $sortDirection";
 			}
 
@@ -847,7 +847,6 @@ class Logbookadvanced_model extends CI_Model {
 
 		$sortorder = '';
 
-		$sortColumnVar = '';
 		$sortDirection = $sortDirection === 'asc' ? 'asc' : 'desc';
 
 		if ($sortColumnVar !== '') {
@@ -872,7 +871,7 @@ class Logbookadvanced_model extends CI_Model {
 			$sortorder .= " ORDER BY $sortColumn $sortDirection";
 
 			// Add secondary sorts for mode column
-			if ($sortDirection === 'mode') {
+			if ($sortColumnVar === 'mode') {
 				$sortorder .= ", qsos.COL_SUBMODE $sortDirection";
 			}
 

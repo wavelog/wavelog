@@ -71,8 +71,9 @@
 
                         <th scope="row"><?= __("Date/Time"); ?></th>
                         <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
-                        <td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); $timestamp = strtotime($row->COL_TIME_ON); $time_on = date('H:i', $timestamp); echo " at ".$time_on; ?>
+                        <td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); $timestamp = strtotime($row->COL_TIME_ON); $time_on = date('H:i', $timestamp); echo " ".__("at")." ".$time_on; ?>
                         <?php $timestamp = strtotime($row->COL_TIME_OFF); $time_off = date('H:i', $timestamp); if ($time_on != $time_off) { echo " - ".$time_off; } ?>
+                        <?php echo " ".__("UTC"); ?>
                         </td>
                         <?php } else { ?>
                         <td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); ?></td>

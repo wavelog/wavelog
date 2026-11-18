@@ -49,33 +49,6 @@ class Hamqth {
 		return (string) $root->session->session_id;
 	}
 
-	// Set Session Key session.
-	public function set_session($username, $password) {
-
-		$ci = & get_instance();
-
-		// URL to the XML Source
-		$xml_feed_url = 'https://www.hamqth.com/xml.php?u='.$username.'&p='.urlencode($password);
-
-		// CURL Functions
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-		$xml = curl_exec($ch);
-
-		// Create XML object
-		$xml = simplexml_load_string($xml);
-
-		$key = (string) $xml->session->session_id;
-
-		$ci->session->set_userdata('hamqth_session_key', $key);
-
-		return true;
-	}
-
 
 	/**
 	 * Search a callsign at HamQTH

@@ -16,6 +16,10 @@
        var feed_key_set = <?php echo strlen($user_hamsat_key); ?>;
        var lang_qrz_lookup = "<?= __("Lookup on QRZ.com"); ?>";
        var lang_last_lotw_upload = "<?= __("LoTW User. Days since last upload: "); ?>";
+       var lang_confirmed = "<?= __("Confirmed"); ?>";
+       var lang_worked = "<?= __("Worked not confirmed"); ?>";
+       var lang_not_worked = "<?= __("Not worked"); ?>";
+       var lang_most_wanted_grid = "<?= __("Most wanted grid score according to gridmaster.fr"); ?>";
     </script>
     <?php if ($user_hamsat_key != '') { ?>
     <span id="workable_hint">

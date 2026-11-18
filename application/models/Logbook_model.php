@@ -175,14 +175,12 @@ class Logbook_model extends CI_Model {
 			// Handle end time
 			if (!empty($end_time)) {
 				$end_datetime_obj = DateTime::createFromFormat("$date_format H:i:s", "$start_date $end_time");
-
 				if ($end_datetime_obj === false) {
 					$end_datetime_obj = DateTime::createFromFormat("$date_format H:i", "$start_date $end_time");	// Try converting as H:i if H:i:s failed b4
-					if ($end_datetime_obj === false) {
-						$datetime_off = $datetime; // No Luck? Than end = start
-					} else {
-						$datetime_off = $end_datetime_obj->format('Y-m-d H:i:s');
-					}
+				}
+
+				if ($end_datetime_obj === false) {
+					$datetime_off = $datetime; // No Luck? Than end = start
 				} else {
 					// If time-off is before time-on and hour is 00 → add 1 day
 					if ($end_datetime_obj < $datetime_obj && str_starts_with($end_time, "00")) {
@@ -201,6 +199,14 @@ class Logbook_model extends CI_Model {
 
 		// In case of a satellite name we force the $prop_mode to SAT
 		$prop_mode = ($qso_data['sat_name'] ?? NULL) != NULL ? "SAT" : $prop_mode;
+
+		if ($prop_mode !== NULL && $prop_mode !== '' && !valid_prop_mode($prop_mode, array_keys($this->config->item('adif_propmodes')))) {
+			return __("Invalid prop_mode") . ': ' . $prop_mode;
+		}
+
+		if (!empty($qso_data['sat_mode']) && !valid_sat_mode($qso_data['sat_mode'])) {
+			return __("Invalid sat_mode") . ': ' . $qso_data['sat_mode'];
+		}
 
 		// Contest exchange, need to separate between serial and other type of exchange
 		$srx_string = $stx_string = $srx = $stx = NULL;
@@ -291,6 +297,9 @@ class Logbook_model extends CI_Model {
 
 		$darc_dok = trim($qso_data['darc_dok'] ?? '');
 		$qso_locator = strtoupper(trim($qso_data['locator'] ?? ''));
+		if ($qso_locator !== '' && !valid_grid_list($qso_locator) && !valid_grid($qso_locator)) {
+			return __("Invalid locator") . ': ' . $qso_locator;
+		}
 		$qso_qth = trim($qso_data['qth'] ?? '');
 		$qso_name = trim($qso_data['name'] ?? '');
 		$qso_age = NULL;
@@ -304,7 +313,7 @@ class Logbook_model extends CI_Model {
 					break;
 				case 'locator':
 					// Matching 4-10 character-locator
-					if (preg_match('/^[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/', $srx_string)) {
+					if (valid_grid($srx_string, 4)) {
 						$qso_locator = strtoupper($srx_string);
 					}
 					break;
@@ -1594,6 +1603,10 @@ class Logbook_model extends CI_Model {
 			case (substr($data['COL_SAT_NAME'], 0, 5) == 'TEV2-'):
 				$sat_name = 'TEVEL2-'.substr($data['COL_SAT_NAME'], 5, 1).'_[FM]';
 				break;
+			case 'SO-131':
+			case 'UNNE-1B':
+				$sat_name = 'SO-131_[V/u_FM]';
+				break;
 			default:
 				return;
 		}
@@ -1604,13 +1617,38 @@ class Logbook_model extends CI_Model {
 			$amsat_source_grid = strtok($data['COL_MY_VUCC_GRIDS'], ',');
 		}
 		if ($amsat_source_grid != '') {
-			$datearray = date_parse_from_format("Y-m-d H:i:s", $data['COL_TIME_ON']);
-			$url = 'https://amsat.org/status/submit.php?SatSubmit=yes&Confirm=yes&SatName=' . $sat_name . '&SatYear=' . $datearray['year'] . '&SatMonth=' . str_pad($datearray['month'], 2, '0', STR_PAD_LEFT) . '&SatDay=' . str_pad($datearray['day'], 2, '0', STR_PAD_LEFT) . '&SatHour=' . str_pad($datearray['hour'], 2, '0', STR_PAD_LEFT) . '&SatPeriod=' . (intdiv(($datearray['minute'] - 1), 15)) . '&SatCall=' . $data['COL_STATION_CALLSIGN'] . '&SatReport=Heard&SatGridSquare=' . substr($amsat_source_grid,0,6);
+			$observed_at = (string)($data['COL_TIME_ON'] ?? '');
+			if ($observed_at === '') {
+				return;
+			}
+			try {
+				$observed_dt = new DateTime($observed_at, new DateTimeZone('UTC'));
+				$reported_at = $observed_dt->format('Y-m-d\\TH:i:s\\Z');
+			} catch (Exception $e) {
+				log_message('debug', 'AMSAT status upload skipped: invalid time for ' . $sat_name . ' - ' . $e->getMessage());
+				return;
+			}
+			$url = 'https://status.amsat.org/api/v1/reports.php';
+			$payload = array(
+				'name' => $sat_name,
+				'report' => 'Heard',
+				'callsign' => $data['COL_STATION_CALLSIGN'],
+				'reported_at' => $reported_at,
+				'grid_square' => substr($amsat_source_grid,0,6)
+			);
+			$body = json_encode($payload);
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
+			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+				'Accept: application/json',
+				'Content-Type: application/json',
+			));
 			curl_exec($ch);
 		}
 	}
@@ -2539,6 +2577,8 @@ class Logbook_model extends CI_Model {
 			$results = array_filter($results, function($row) {
 				return !empty($row->COL_GRIDSQUARE) || !empty($row->COL_VUCC_GRIDS);
 			});
+			// Reverse array so that most recent QSOs get plotted on top of the map
+			$results = array_reverse($results);
 			// Re-index array after filtering
 			$results = array_values($results);
 		}
@@ -2575,6 +2615,7 @@ class Logbook_model extends CI_Model {
 	// means "do not filter on this":
 	//   station_ids  int[]   station-location ids (already ownership-checked)
 	//   callsign     string  exact match on COL_CALL
+	//   dxcc_id      string  exact match on COL_DXCC
 	//   band         string  'SAT' or a COL_BAND value
 	//   mode         string  a COL_MODE or COL_SUBMODE value
 	//   qsl_filter   array   any of lotw|qsl|eqsl|clublog (OR-combined)
@@ -2599,6 +2640,11 @@ class Logbook_model extends CI_Model {
 		if (($filters['callsign'] ?? '') !== '') {
 			$where .= " AND qsos.`COL_CALL` = ?";
 			$bindings[] = strtoupper($filters['callsign']);
+		}
+
+		if (($filters['dxcc_id'] ?? null) !== null) {
+			$where .= " AND qsos.`COL_DXCC` = ?";
+			$bindings[] = $filters['dxcc_id'];
 		}
 
 		if ((int) ($filters['since_id'] ?? 0) > 0) {
@@ -3071,14 +3117,20 @@ class Logbook_model extends CI_Model {
 		$binding[] = $station_id;
 
 		if ($from) {
-			$from = DateTime::createFromFormat('d/m/Y', $from);
+			$from = DateTime::createFromFormat('Y-m-d', $from);
+			if ($from === false) {
+				return null;
+			}
 			$from = $from->format('Y-m-d');
 
 			$sql .= "  AND qsos.COL_TIME_ON >= ?";
 			$binding[] = $from;
 		}
 		if ($to) {
-			$to = DateTime::createFromFormat('d/m/Y', $to);
+			$to = DateTime::createFromFormat('Y-m-d', $to);
+			if ($to === false) {
+				return null;
+			}
 			$to = $to->format('Y-m-d');
 
 			$sql .= "  AND qsos.COL_TIME_ON <= ?";
@@ -5243,7 +5295,7 @@ class Logbook_model extends CI_Model {
 			$call = $record['call'] ?? '';
 			$mode = $record['mode'] ?? '';
 			$band = $record['band'] ?? '';
-			log_message("Error", "Trying to import QSO with invalid date: " . $qso_date. " for station_id " . $station_id . ". Call: " . $call . " Mode: " . $mode . " Band: " . $band);
+			log_message("debug", "Trying to import QSO with invalid date: " . $qso_date. " for station_id " . $station_id . ". Call: " . $call . " Mode: " . $mode . " Band: " . $band);
 			$returner['error']=__("You tried to import a QSO without valid date. This QSO wasn't imported. It's invalid") . ". Call: " . $call . ", Mode: " . $mode . ", Band: " . $band . "<br>";
 			$returner['error_category'] = 'validation';
 			return($returner);
@@ -5253,15 +5305,39 @@ class Logbook_model extends CI_Model {
 		$time_on = date('Y-m-d', strtotime($record['qso_date'] ?? '1970-01-01')) . " " . date('H:i:s', strtotime($record['time_on'] ?? '00:00:00'));
 
 		if (($record['call'] ?? '') == '') {
-			log_message("Error", "Trying to import QSO without Call for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " Mode: " . ($record['mode'] ?? '') . " Band: " . ($record['band'] ?? ''));
+			log_message("debug", "Trying to import QSO without Call for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " Mode: " . ($record['mode'] ?? '') . " Band: " . ($record['band'] ?? ''));
 			$returner['error'] = sprintf(__("QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't imported. It's invalid.")."<br>", $time_on);
 			$returner['error_category'] = 'validation';
 			return($returner);
 		}
 
 		if (!$this->is_valid_callsign($record['call'])) {
-			log_message("error", "Trying to import QSO with invalid Call \"" . $record['call'] . "\" for station_id " . $station_id . ". QSO Date/Time: " . $time_on);
+			log_message("debug", "Trying to import QSO with invalid Call \"" . $record['call'] . "\" for station_id " . $station_id . ". QSO Date/Time: " . $time_on);
 			$returner['error'] = sprintf(__("QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't imported. The invalid input is '%s'.")."<br>", $time_on, htmlentities($record['call']));
+			$returner['error_category'] = 'validation';
+			return($returner);
+		}
+
+		if (!empty($record['prop_mode']) && !valid_prop_mode($record['prop_mode'], array_keys($this->config->item('adif_propmodes')))) {
+			$returner['error'] = sprintf(__("QSO on %s: You tried to import a QSO with an invalid PROP_MODE. This QSO wasn't imported. The invalid input is '%s'.")."<br>", $time_on, htmlentities((string) $record['prop_mode']));
+			$returner['error_category'] = 'validation';
+			return($returner);
+		}
+
+		if (!empty($record['sat_mode']) && !valid_sat_mode($record['sat_mode'])) {
+			$returner['error'] = sprintf(__("QSO on %s: You tried to import a QSO with an invalid SAT_MODE. This QSO wasn't imported. The invalid input is '%s'.")."<br>", $time_on, htmlentities((string) $record['sat_mode']));
+			$returner['error_category'] = 'validation';
+			return($returner);
+		}
+
+		if (!empty($record['my_gridsquare']) && !valid_grid_list($record['my_gridsquare'])) {
+			$returner['error'] = sprintf(__("QSO on %s: You tried to import a QSO with an invalid MY_GRIDSQUARE. This QSO wasn't imported. The invalid input is '%s'.")."<br>", $time_on, htmlentities((string) $record['my_gridsquare']));
+			$returner['error_category'] = 'validation';
+			return($returner);
+		}
+
+		if (!empty($record['my_vucc_grids']) && !valid_grid_list($record['my_vucc_grids'])) {
+			$returner['error'] = sprintf(__("QSO on %s: You tried to import a QSO with an invalid MY_VUCC_GRIDS. This QSO wasn't imported. The invalid input is '%s'.")."<br>", $time_on, htmlentities((string) $record['my_vucc_grids']));
 			$returner['error_category'] = 'validation';
 			return($returner);
 		}
@@ -5330,14 +5406,14 @@ class Logbook_model extends CI_Model {
 
 		// Reject QSO with unknown (unconfigured) TX band
 		if ($band_conversion_failed) {
-			log_message("Error", "Unknown band '" . ($record['band'] ?? '') . "' on import for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " Mode: " . ($record['mode'] ?? '') . " Call: " . ($record['call'] ?? ''));
+			log_message("debug", "Unknown band '" . ($record['band'] ?? '') . "' on import for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " Mode: " . ($record['mode'] ?? '') . " Call: " . ($record['call'] ?? ''));
 			$returner['error']=sprintf(__("QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't imported."), $time_on, ($record['band'] ?? '')) . '<br>';
 			$returner['error_category'] = 'validation';
 			return($returner);
 		}
 
 		if (($band ?? '') == '') {
-			log_message("Error", "Trying to import QSO without Band for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " at ".($record['freq'] ?? 'N/A')." Mode: " . ($record['mode'] ?? '') . " Call: " . ($record['call'] ?? ''));
+			log_message("debug", "Trying to import QSO without Band for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " at ".($record['freq'] ?? 'N/A')." Mode: " . ($record['mode'] ?? '') . " Call: " . ($record['call'] ?? ''));
 			$returner['error']=sprintf(__("QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't imported. It's invalid"), $time_on) . '<br>';
 
 			$returner['error_category'] = 'validation';
@@ -5360,7 +5436,7 @@ class Logbook_model extends CI_Model {
 			if (strlen($record['mode']) <= 12) { // COL_MODE is VARCHAR(12)
 				$input_mode = $record['mode'];
 			} else {
-				log_message('error', 'ADIF Import: Mode too long: ' . $record['mode'] . ' for QSO with call: ' . $record['call'] . ' at date ' . $record['qso_date']);
+				log_message('debug', 'ADIF Import: Mode too long: ' . $record['mode'] . ' for QSO with call: ' . $record['call'] . ' at date ' . $record['qso_date']);
 				$input_mode = '';
 			}
 		} else {
@@ -5472,43 +5548,23 @@ class Logbook_model extends CI_Model {
 				$cq_zone = NULL;
 			}
 
-			// Sanitise gridsquare input to make sure its a gridsquare
-			if (isset($record['gridsquare'])) {
-				$a_grids = explode(',', $record['gridsquare']);	// Split at , if there are junctions
-				foreach ($a_grids as $singlegrid) {
-					$singlegrid = strtoupper($singlegrid);
-					if (strlen($singlegrid) == 4)  $singlegrid .= "LL";     // Only 4 Chars? Fill with center "LL" as only A-R allowed
-					if (strlen($singlegrid) == 6)  $singlegrid .= "55";     // Only 6 Chars? Fill with center "55"
-					if (strlen($singlegrid) == 8)  $singlegrid .= "LL";     // Only 8 Chars? Fill with center "LL" as only A-R allowed
-					if (strlen($singlegrid) % 2 != 0) {	// Check if grid is structually valid
-						$record['gridsquare'] = '';	// If not: Set to ''
-					} else {
-						if (!preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}[0-9]{2}[A-X]{2}$/', $singlegrid)) $record['gridsquare'] = '';
-					}
-				}
-				$input_gridsquare = $record['gridsquare'];
-			} else {
-				$input_gridsquare = NULL;
-			}
+		// Sanitise gridsquare input to make sure it is a grid (list)
+		$input_gridsquare = (isset($record['gridsquare'])) ? $record['gridsquare'] : NULL;
+		if ($input_gridsquare !== NULL && $input_gridsquare !== '' && !valid_grid_list($input_gridsquare)) {
+			$record['gridsquare'] = '';
+			$input_gridsquare = '';
+		}
 
-			// Sanitise vucc-gridsquare input to make sure its a gridsquare
-			if (isset($record['vucc_grids'])) {
-				$a_grids = explode(',', $record['vucc_grids']);	// Split at , if there are junctions
-				foreach ($a_grids as $singlegrid) {
-					$singlegrid = strtoupper(trim($singlegrid));
-					if (strlen($singlegrid) == 4)  $singlegrid .= "LL";     // Only 4 Chars? Fill with center "LL" as only A-R allowed
-					if (strlen($singlegrid) == 6)  $singlegrid .= "55";     // Only 6 Chars? Fill with center "55"
-					if (strlen($singlegrid) == 8)  $singlegrid .= "LL";     // Only 8 Chars? Fill with center "LL" as only A-R allowed
-					if (strlen($singlegrid) % 2 != 0) {	// Check if grid is structually valid
-						$record['vucc_grids'] = '';	// If not: Set to ''
-					} else {
-						if (!preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}[0-9]{2}[A-X]{2}$/', $singlegrid)) $record['vucc_grids'] = '';
-					}
-				}
-				$input_vucc_grids = preg_replace('/\s+/', '', $record['vucc_grids']);
+		// Sanitise vucc-gridsquare input to make sure it is a grid (list)
+		$input_vucc_grids = (isset($record['vucc_grids'])) ? $record['vucc_grids'] : NULL;
+		if ($input_vucc_grids !== NULL && $input_vucc_grids !== '') {
+			if (valid_grid_list($input_vucc_grids)) {
+				$input_vucc_grids = preg_replace('/\s+/', '', $input_vucc_grids);
 			} else {
-				$input_vucc_grids = NULL;
+				$record['vucc_grids'] = '';
+				$input_vucc_grids = '';
 			}
+		}
 
 			// Sanitise lat input to make sure its 11 chars
 			if (isset($record['lat'])) {
@@ -5904,7 +5960,6 @@ class Logbook_model extends CI_Model {
 				'COL_MY_CNTY_ALT' => (!empty($record['my_cnty_alt'])) ? $record['my_cnty_alt'] : '',
 				'COL_MY_COUNTRY' => (!empty($record['my_country'])) ? $record['my_country'] : '',
 				'COL_MY_COUNTRY_INTL' => (!empty($record['my_country_intl'])) ? $record['my_country_intl'] : null,
-				'COL_MY_CQ_ZONE' => (!empty($record['my_dxcc'])) ? $record['my_dxcc'] : null,
 				'COL_MY_DARC_DOK' => (!empty($record['my_darc_dok'])) ? strtoupper($record['my_darc_dok']) : '',
 				'COL_MY_DXCC' => $this->normalize_dxcc($record['my_dxcc'] ?? NULL),
 				'COL_MY_FISTS' => (!empty($record['my_fists'])) ? $record['my_fists'] : null,
@@ -5917,7 +5972,6 @@ class Logbook_model extends CI_Model {
 				'COL_MY_NAME' => (!empty($record['my_name'])) ? $record['my_name'] : '',
 				'COL_MY_NAME_INTL' => (!empty($record['my_name_intl'])) ? $record['my_name_intl'] : '',
 				'COL_MY_POSTAL_CODE' => (!empty($record['my_postal_code'])) ? $record['my_postal_code'] : '',
-				'COL_MY_POSTCODE_INTL' => (!empty($record['my_postcode_intl'])) ? $record['my_postcode_intl'] : '',
 				'COL_MY_RIG' => (!empty($record['my_rig'])) ? $record['my_rig'] : '',
 				'COL_MY_RIG_INTL' => (!empty($record['my_rig_intl'])) ? $record['my_rig_intl'] : '',
 				'COL_MY_SIG' => (!empty($record['my_sig'])) ? $record['my_sig'] : '',
@@ -6602,7 +6656,11 @@ class Logbook_model extends CI_Model {
 		foreach ($qsos_result as $row) {
 			$plot = array('lat' => 0, 'lng' => 0, 'html' => '', 'label' => '', 'confirmed' => 'N');
 
-			$plot['label'] = $row->COL_CALL;
+			if ($isVisitor == true) {
+				$plot['label'] = $row->COL_CALL;
+			} else {
+				$plot['label'] = '<button type="button" class="btn btn-link text-decoration-none p-0 callsign" id="edit_qso" onclick="displayQso('.$row->COL_PRIMARY_KEY.')"><h3>'.$row->COL_CALL.'</h3></button>';
+			}
 
 			$plot['html'] = "";
 			if ($row->COL_NAME != null) {
@@ -6662,9 +6720,10 @@ class Logbook_model extends CI_Model {
 			if (isset($xbearing)) {
 				$plot['html'].=__("Bearing").': '.$xbearing."&deg;<br/>";
 			}
-			if (isset($stn_loc)) {
-				list($plot['lat'], $plot['lng']) = $stn_loc;
+			if (!is_array($stn_loc) || ($stn_loc[0] == 0 && $stn_loc[1] == 0)) {
+				continue;
 			}
+			list($plot['lat'], $plot['lng']) = $stn_loc;
 			// add plot //
 			$json["markers"][] = $plot;
 		}

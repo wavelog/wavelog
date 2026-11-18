@@ -155,6 +155,8 @@ class Header_auth extends CI_Controller {
      *
      * JWKS mode (auth_header_jwks_uri configured):
      *   Firebase JWT::decode() handles signature, exp, nbf and alg validation.
+     *   If the JWKS holds exactly one key, that key is used directly, so tokens
+     *   without a kid header (e.g. HS256 from some proxy IdPs) can be verified.
      *
      * Low Security mode (no JWKS URI):
      *   Payload is decoded without signature verification. exp, nbf and alg
@@ -182,6 +184,10 @@ class Header_auth extends CI_Controller {
                 }
                 $jwks = json_decode($jwksJson, true);
                 $keys = JWK::parseKeySet($jwks);
+                // Single-key JWKS: use that key directly so tokens without a kid header still verify
+                if (is_array($keys) && count($keys) === 1) {
+                    $keys = reset($keys);
+                }
                 $claims = (array) JWT::decode($token, $keys);
             } catch (\Exception $e) {
                 log_message('error', 'SSO Authentication: JWT decode/verify failed: ' . $e->getMessage());

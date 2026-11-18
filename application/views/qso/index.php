@@ -39,7 +39,7 @@ switch ($date_format) {
   var lang_qso_sat_below_horizon_confirm = "<?= __("Satellite appears below the horizon (elevation %s°). The stored TLE may be outdated for this QSO time. Do you really want to log this QSO?"); ?>";
   var lang_invalid_callsign = "<?= __("Invalid callsign"); ?>";
   var lang_qso_wait_before_saving = "<?= __("Please wait before saving another QSO"); ?>";
-  var latlng=[<?php echo $lat.','.$lng;?>];
+  var latlng = <?php echo json_encode([$lat ?? null, $lng ?? null]); ?>;
   var user_date_format = "<?php echo $date_format; ?>"; // Pass the user's date format to JavaScript
   var lang_qso_sat_lotw_support_not_found = "<?= __("Satellite not found"); ?>";
   var lang_qso_sat_lotw_supported = "<?= __("Supported by LoTW"); ?>";

@@ -152,6 +152,7 @@ class Clublog_model extends CI_Model
 						log_message('info', 'Nothing awaiting upload to clublog for ' . $station_row->station_callsign);
 					}
 				}
+				sleep(11); // Mitigate Clublogs behaviour to send a 403 even after 10 successful requests
 			}
 		}
 		log_message('info', $return);
@@ -237,6 +238,7 @@ class Clublog_model extends CI_Model
 					log_message('info', $log);
 					$return .= $log."<br>";
 				}
+				sleep(11); // Mitigate Clublogs behaviour to send a 403 even after 10 successful requests
 			}
 		} else {
 			$return = "Nothing to download";
@@ -518,6 +520,7 @@ class Clublog_model extends CI_Model
 				}
 			}
 			log_message('info', 'Clublog OQRS requests fetched for ' . $station_row->station_callsign);
+			sleep(11); // Mitigate Clublogs behaviour to send a 403 even after 10 successful requests
 		}
 
 		if ($ok) {

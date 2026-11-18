@@ -2179,10 +2179,14 @@ $(document).ready(function () {
 							if (!tplId) {
 								return;
 							}
+							var markprinted = $('#markprinted')[0].checked;
 							var $form = $('#printQslCardForm');
 						$form.attr('action', base_url + 'index.php/qslpostcard/pdfselected/' + tplId);
 						$form.attr('target', '_blank');
 						$form[0].submit();
+						if (markprinted) {
+							handleQsl('Y','B', 'sentBureau');
+						}
 						dialog.close();
 					});
 					$('#btnPrintQslCardSave').off('click').on('click', function () {
@@ -2190,10 +2194,14 @@ $(document).ready(function () {
 						if (!tplId) {
 							return;
 						}
+						var markprinted = $('#markprinted')[0].checked;
 						var $form = $('#printQslCardForm');
 						$form.attr('action', base_url + 'index.php/qslpostcard/pdfselected/' + tplId + '?download=1');
 						$form.attr('target', '_blank');
 						$form[0].submit();
+						if (markprinted) {
+							handleQsl('Y','B', 'sentBureau');
+						}
 						dialog.close();
 					});
 					},
@@ -2525,21 +2533,21 @@ function saveOptions() {
 
             case 'yesterday':
                 const yesterday = new Date(today);
-                yesterday.setDate(yesterday.getUTCDate() - 1);
+                yesterday.setUTCDate(yesterday.getUTCDate() - 1);
                 dateFrom.value = formatDate(yesterday);
                 dateTo.value = formatDate(yesterday);
                 break;
 
             case 'last7days':
                 const sevenDaysAgo = new Date(today);
-                sevenDaysAgo.setDate(sevenDaysAgo.getUTCDate() - 7);
+                sevenDaysAgo.setUTCDate(sevenDaysAgo.getUTCDate() - 7);
                 dateFrom.value = formatDate(sevenDaysAgo);
                 dateTo.value = formatDate(today);
                 break;
 
             case 'last30days':
                 const thirtyDaysAgo = new Date(today);
-                thirtyDaysAgo.setDate(thirtyDaysAgo.getUTCDate() - 30);
+                thirtyDaysAgo.setUTCDate(thirtyDaysAgo.getUTCDate() - 30);
                 dateFrom.value = formatDate(thirtyDaysAgo);
                 dateTo.value = formatDate(today);
                 break;

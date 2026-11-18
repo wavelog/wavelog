@@ -173,6 +173,8 @@
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('activators'); ?>" title="Gridsquare Activators"><i class="fas fa-globe-europe"></i> <?= __("Gridsquare Activators"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('mostwantedgrids'); ?>" title="Most Wanted Grids"><i class="fas fa-table-cells"></i> <?= __("Most Wanted Grids"); ?></a></li>
+								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('distances'); ?>" title="Distances"><i class="fas fa-chart-area"></i> <?= __("Distances Worked"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('distancerecords'); ?>" title="Satellite Distance records"><i class="fas fa-chart-area"></i> <?= __("Satellite Distance Records"); ?></a></li>
