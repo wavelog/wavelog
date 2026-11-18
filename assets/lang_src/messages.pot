@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-18 05:04+0000\n"
+"POT-Creation-Date: 2026-11-18 07:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2368,7 +2368,7 @@ msgstr ""
 #: application/views/eqsl/download.php:39 application/views/eqsl/result.php:36
 #: application/views/eqslcard/index.php:33
 #: application/views/gridmap/index.php:138
-#: application/views/hamsat/index.php:40
+#: application/views/hamsat/index.php:44
 #: application/views/interface_assets/footer.php:134
 #: application/views/kml/index.php:31
 #: application/views/logbookadvanced/dupesearchdialog.php:34
@@ -5861,7 +5861,7 @@ msgstr ""
 #: application/views/distancerecords/index.php:18
 #: application/views/distances/index.php:38
 #: application/views/gridmap/index.php:107
-#: application/views/hamsat/index.php:39
+#: application/views/hamsat/index.php:43
 #: application/views/interface_assets/header.php:226
 #: application/views/logbookadvanced/dupesearchdialog.php:64
 #: application/views/logbookadvanced/edit.php:22
@@ -6324,7 +6324,7 @@ msgstr ""
 #: application/views/dxatlas/index.php:23
 #: application/views/email/oqrs_request.php:56
 #: application/views/eqsl/import.php:42 application/views/eqslcard/index.php:32
-#: application/views/gridmap/index.php:71 application/views/hamsat/index.php:37
+#: application/views/gridmap/index.php:71 application/views/hamsat/index.php:41
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/help.php:55
 #: application/views/logbookadvanced/qslcarousel.php:30
@@ -6441,7 +6441,7 @@ msgstr ""
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
 #: application/views/eqslcard/index.php:34
-#: application/views/hamsat/index.php:35
+#: application/views/hamsat/index.php:39
 #: application/views/logbookadvanced/dupesearchdialog.php:12
 #: application/views/logbookadvanced/edit.php:15
 #: application/views/mostwantedgrids/details.php:15
@@ -6491,7 +6491,7 @@ msgstr ""
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:35
-#: application/views/hamsat/index.php:36 application/views/oqrs/qsolist.php:8
+#: application/views/hamsat/index.php:40 application/views/oqrs/qsolist.php:8
 #: application/views/qslcard/index.php:36
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:36
@@ -8082,6 +8082,7 @@ msgstr ""
 #: application/views/dashboard/index.php:505
 #: application/views/dashboard/index.php:708
 #: application/views/dbtools/missinggridlist.php:49
+#: application/views/hamsat/index.php:19
 #: application/views/interface_assets/footer.php:49
 #: application/views/map/qso_map.php:25 application/views/search/result.php:32
 #: application/views/visitor/index.php:270
@@ -9088,6 +9089,7 @@ msgstr ""
 
 #: application/views/awards/jcc/index.php:168
 #: application/views/awards/jcg/index.php:168
+#: application/views/hamsat/index.php:20
 #: application/views/interface_assets/footer.php:50
 msgid "Worked not confirmed"
 msgstr ""
@@ -9097,6 +9099,7 @@ msgstr ""
 #: application/views/bandmap/list.php:90 application/views/bandmap/list.php:305
 #: application/views/dashboard/index.php:429
 #: application/views/dashboard/index.php:438
+#: application/views/hamsat/index.php:21
 #: application/views/interface_assets/footer.php:51
 #: application/views/map/qso_map.php:27
 msgid "Not worked"
@@ -10634,7 +10637,7 @@ msgstr ""
 
 #: application/views/bandmap/list.php:140
 #: application/views/contesting/manager/index.php:36
-#: application/views/hamsat/index.php:38
+#: application/views/hamsat/index.php:42
 #: application/views/logbookadvanced/attachContest.php:16
 #: application/views/logbookadvanced/edit.php:12
 #: application/views/logbookadvanced/index.php:543
@@ -15813,23 +15816,27 @@ msgstr ""
 msgid "LoTW User. Days since last upload: "
 msgstr ""
 
-#: application/views/hamsat/index.php:29
+#: application/views/hamsat/index.php:22
+msgid "Most wanted grid score according to gridmaster.fr"
+msgstr ""
+
+#: application/views/hamsat/index.php:33
 #, php-format
 msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
 msgstr ""
 
-#: application/views/hamsat/index.php:29
+#: application/views/hamsat/index.php:33
 msgid "your profile"
 msgstr ""
 
-#: application/views/hamsat/index.php:41
+#: application/views/hamsat/index.php:45
 #: application/views/satellite/hamsatpost.php:83
 msgid "Gridsquare(s)"
 msgstr ""
 
-#: application/views/hamsat/index.php:42
+#: application/views/hamsat/index.php:46
 msgid "Workable"
 msgstr ""
 
