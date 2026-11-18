@@ -226,7 +226,7 @@ $('#stationProfile').on('change', function () {
 		data: { 'stationProfile': stationProfile },
 		success: function (res) {
 			$('#transmit_power').val(res.station_power);
-			latlng=[res.lat,res.lng];
+			latlng = (res.lat !== null && res.lng !== null) ? [res.lat, res.lng] : null;
 			station_callsign = res.station_callsign;
 			$("#sat_name").change();
 		},
@@ -252,7 +252,7 @@ $("#callsign").on("compositionend", function(e){
 });
 
 $(document).on("keydown", function (e) {
-	if (e.key === "Escape" && $('#callsign').val() != '') { // escape key maps to keycode `27`
+	if (e.key === "Escape" && $('#callsign').val() != '' && !$('.modal.show').length) { // escape key maps to keycode `27`
 		preventLookup = true;
 
 		if (lookupCall) {
@@ -261,11 +261,13 @@ $(document).on("keydown", function (e) {
 
 		reset_fields();
 
+		// Jump back to the QSO tab and focus the callsign input
+		bootstrap.Tab.getOrCreateInstance(document.getElementById('qso-tab')).show();
+
 		// make sure the focusout event is finished before we allow a new lookup
 		setTimeout(() => {
 			preventLookup = false;
 		}, 100);
-		// console.log("Escape key pressed");
 		$('#callsign').trigger("focus");
 	}
 });
@@ -339,6 +341,12 @@ $("#qso_input").off('submit').on('submit', function (e) {
 	var _cs = $("#callsign").val().trim().toUpperCase();
 	if (_cs !== '' && !window.wlIsValidCallsign(_cs)) {
 		showToast(lang_general_word_error, lang_invalid_callsign, 'bg-danger text-white', 5000);
+		return false;
+	}
+
+	if (_cs.length >= 3 && !deferredLookupSubmit && lastLookupCallsign !== _cs) {
+		deferredLookupSubmit = true;
+		$('#callsign').trigger('focusout');   // starts lookup, disables #saveQso
 		return false;
 	}
 
@@ -855,6 +863,22 @@ var referenceSequence = 0;
 var lastLookupCallsign = null;
 var lookupInProgress = false;
 
+var deferredLookupSubmit = false;
+
+$(document).on('callsignLookupComplete', function () {
+	if (!deferredLookupSubmit) return;
+	var _cs = $("#callsign").val().trim().toUpperCase();
+	if (_cs.length >= 3 && lastLookupCallsign !== _cs) {
+		if (lookupInProgress) return;          // stale lookup still running, wait for its event
+		$('#callsign').trigger('focusout');    // lookup for current call; its complete event re-enters here
+		return;
+	}
+	deferredLookupSubmit = false;
+	if (_cs.length >= 3 && lastLookupCallsign === _cs) {
+		$("#qso_input").trigger('submit');     // resubmit, now with lookup data
+	}
+});
+
 // Helper function to populate reference fields after callsign lookup completes
 // Uses Map-based storage to prevent race conditions
 function populatePendingReferences(callsign, expectedSeq) {
@@ -1123,6 +1147,7 @@ function stop_az_ele_ticker() {
 }
 
 function start_az_ele_ticker(tle) {
+	if (!latlng || latlng[0] === null || latlng[1] === null) { stop_az_ele_ticker(); return; }
 	const lines = tle.tle.trim().split('\n');
 
 	// Initialize a satellite record
@@ -1398,7 +1423,7 @@ function reset_fields() {
 
 	lastLookupCallsign = null;
 	lookupInProgress = false;
-
+	deferredLookupSubmit = false;
 	$('#locator_info').text("");
 	$('#lotw_support').text("");
 	$('#lotw_support').removeClass();
@@ -2202,6 +2227,8 @@ $("#callsign").on("focusout", function () {
 			setTimeout(function() {
 				$('#saveQso').prop('disabled', false);
 				$('#fetch_status').hide();
+				// Also notify listeners on failure/abort so a deferred submit resumes
+				$(document).trigger('callsignLookupComplete');
 			}, 300);
 
 			// Reset lookup in progress flag

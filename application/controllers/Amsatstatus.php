@@ -19,7 +19,7 @@ class Amsatstatus extends CI_Controller {
 		$json = $this->cache->get($cache_key);
 
 		if ($json === false) {
-			$url = 'https://www.amsat.org/status/api/v1/reports.php?hours=24&limit=500';
+			$url = 'https://status.amsat.org/api/v1/reports.php?hours=24&limit=500';
 			$ctx = stream_context_create(['http' => [
 				'method' => 'GET',
 				'timeout' => 15,

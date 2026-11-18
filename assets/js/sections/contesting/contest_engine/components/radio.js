@@ -275,7 +275,7 @@ class RadioComponent {
 	updateModeDisplay(mode) {
 		if (this.manualMode) return;
 
-		if (mode && this.mode) {
+		if (mode && this.mode && this.mode.value !== mode) {
 			this.mode.value = mode;
 			this.mode.dispatchEvent(new Event('change'));
 		}

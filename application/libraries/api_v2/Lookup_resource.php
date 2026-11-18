@@ -71,7 +71,9 @@ class Lookup_resource extends Api_v2_resource {
 	/**
 	 * Callsign lookup itself.
 	 * Optional query: ?detail=full|basic (default basic), ?band=, ?mode=,
-	 * ?callbook=true, ?station_ids=1,2 (default: all of the owner's stations).
+	 * ?callbook=true, ?station_ids=1,2 (default: all of the owner's stations),
+	 * ?date=YYYY-MM-DD (default today) - the date the DXCC is resolved for, so
+	 * DXCC exceptions limited to a period (e.g. a DXpedition) match a past QSO.
 	 */
 	protected function do_lookup($callsign) {
 		$callsign = strtoupper(trim((string) $callsign));
@@ -89,15 +91,17 @@ class Lookup_resource extends Api_v2_resource {
 			);
 		}
 
+		$date = $this->parse_date('date') ?: date('Y-m-d');
+
 		$this->CI->load->model('logbook_model');
 
 		$station_ids = implode(', ', $this->resolve_station_ids('station_ids'));
 
 		$data = ($detail === 'basic')
-			? $this->lookup_basic($callsign, $station_ids)
-			: $this->lookup_full($callsign, $station_ids);
+			? $this->lookup_basic($callsign, $station_ids, $date)
+			: $this->lookup_full($callsign, $station_ids, $date);
 
-		$this->CI->api_v2_response->respond($data, 200, ['detail' => $detail]);
+		$this->CI->api_v2_response->respond($data, 200, ['detail' => $detail, 'date' => $date]);
 	}
 
 	/**
@@ -206,11 +210,9 @@ class Lookup_resource extends Api_v2_resource {
 	/**
 	 * Reduced lookup: DXCC derivation plus the owner's grid/name when the call
 	 * was worked before. No QSO history. Mirrors the v1 `lookup` endpoint used
-	 * by the DXClusterAPI.
+	 * by the DXClusterAPI. $date is the Y-m-d date the DXCC is resolved for.
 	 */
-	protected function lookup_basic($callsign, $station_ids) {
-		$date = date('Y-m-d');
-
+	protected function lookup_basic($callsign, $station_ids, $date) {
 		$return = [
 			'callsign'     => $callsign,
 			'dxcc'         => false,
@@ -278,10 +280,9 @@ class Lookup_resource extends Api_v2_resource {
 	/**
 	 * Full lookup: everything from basic plus per-band/mode worked & confirmed
 	 * flags, DXCC confirmation state and optional callbook data. Mirrors the v1
-	 * `private_lookup` endpoint.
+	 * `private_lookup` endpoint. $date is the Y-m-d date the DXCC is resolved for.
 	 */
-	protected function lookup_full($callsign, $station_ids) {
-		$date = date('Y-m-d');
+	protected function lookup_full($callsign, $station_ids, $date) {
 		$band = (string) $this->param('band', 'NO_BAND');
 		$mode = (string) $this->param('mode', 'NO_MODE');
 

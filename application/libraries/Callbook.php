@@ -125,7 +125,28 @@ class Callbook {
 		return $callbook;
 	}
 
+	/**
+	 * Look up a callsign in one callbook.
+	 *
+	 * With callbook_cache_ttl > 0 successful results are cached for that many seconds and served from the cache,
+	 * so stations worked again and again (e.g. a special event station running for days) cost one lookup only.
+	 * Errors and "not found" are not cached.
+	 *
+	 * @param string $callsign Callsign to look up
+	 * @param string $source Callbook name (qrz, qrzcq, hamqth, qrzru, qrzcall)
+	 * @return array Callbook data, or an array with 'error'
+	 */
 	function queryCallbook($callsign, $source) {
+		$cache_ttl = (int) ($this->ci->config->item('callbook_cache_ttl') ?? 0);
+		$cache_key = 'callbook_' . $source . '_' . md5(strtoupper($callsign) . '|' . ($this->ci->config->item('use_fullname') ? 1 : 0));
+		if ($cache_ttl > 0) {
+			$cached = $this->ci->cache->get($cache_key);
+			if (is_array($cached)) {
+				log_message('debug', 'Callbook lookup for '.$callsign.' using '.$source.': served from cache');
+				return $cached;
+			}
+		}
+
 		switch ($source) {
 			case 'qrz':
 				$callbook = $this->_qrz($callsign, $this->ci->config->item('use_fullname'));
@@ -147,7 +168,24 @@ class Callbook {
 		}
 
 		log_message('debug', 'Callbook lookup for '.$callsign.' using '.$source.': '.((($callbook['error'] ?? '' ) != '') ? $callbook['error'] : 'Success'));
+		if ($cache_ttl > 0 && is_array($callbook) && ($callbook['error'] ?? '') == '') {
+			$this->ci->cache->save($cache_key, $callbook, $cache_ttl);
+		}
 		return $callbook;
+	}
+
+	/**
+	 * Whether a failed search should be repeated after a new login.
+	 *
+	 * "Not found" is a data error returned with a valid session, so it is not retried (that would cost a second
+	 * lookup). Other errors may be session errors (QRZ: "Invalid session key", "Session Timeout") and are retried.
+	 *
+	 * @param array $callbook Search result; 'error' may be a string or a SimpleXMLElement
+	 * @return bool
+	 */
+	private function _needs_relogin($callbook) {
+		$error = (string) ($callbook['error'] ?? '');
+		return $error != '' && stripos($error, 'not found') === false;
 	}
 
 	private function _qrz($callsign, $fullname) {
@@ -184,7 +222,7 @@ class Callbook {
 				return $callbook;
 			}
 
-			if ($callbook['error'] ?? '' == 'Invalid session key') {
+			if ($this->_needs_relogin($callbook)) {
 				$qrz_session_key = $this->ci->qrz->session($username, $password);
 				if (!$this->_validate_sessionkey($qrz_session_key)) {
 					$callbook['error'] = sprintf($this->error_obtaining_sessionkey, $qrz_session_key);
@@ -255,7 +293,7 @@ class Callbook {
 				return $callbook;
 			}
 
-			if ($callbook['error'] ?? '' == 'Invalid session key') {
+			if ($this->_needs_relogin($callbook)) {
 				$qrzcq_session_key = $this->ci->qrzcq->session($username, $password);
 				if (!$this->_validate_sessionkey($qrzcq_session_key[1])) {
 					$callbook['error'] = sprintf($this->error_obtaining_sessionkey, $qrzcq_session_key[1]);
@@ -345,7 +383,7 @@ class Callbook {
 				}
 			}
 
-			if (strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
+			if (stripos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
 				$plaincall = $this->get_plaincall($callsign);
 				// Now try again but give back reduced data, as we can't validate location and stuff (true at the end)
 				$callbook = $this->ci->hamqth->search($plaincall, $this->ci->cache->get($this->hamqth_session_cachekey), true);
@@ -389,7 +427,7 @@ class Callbook {
 				return $callbook;
 			}
 
-			if ($callbook['error'] ?? '' == 'Session does not exist or expired') {
+			if ($this->_needs_relogin($callbook)) {
 				$qrzru_session_key = $this->ci->qrzru->session($username, $password);
 				if (!$this->_validate_sessionkey($qrzru_session_key)) {
 					$callbook['error'] = sprintf($this->error_obtaining_sessionkey, $qrzru_session_key);

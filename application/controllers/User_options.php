@@ -60,6 +60,14 @@ class User_Options extends CI_Controller {
 	 * Body: {"pref":"kpi|solar|map|dxpeditions|contests|dxcc|vucc|qslcards|eqsl|qrz|clublog|lotw","value":...}
 	 */
 	public function save_dashboard_pref() {
+		// On a clubstation only officers are allowed to change the dashboard options
+		if (!clubaccess_check(9)) {
+			http_response_code(403);
+			header('Content-Type: application/json');
+			echo json_encode(['success' => 0, 'error' => 'Permission denied']);
+			return;
+		}
+
 		$obj = json_decode(file_get_contents("php://input"), true);
 		$pref = $this->security->xss_clean($obj['pref'] ?? '');
 		$value = $this->security->xss_clean($obj['value'] ?? '');

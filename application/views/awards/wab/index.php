@@ -37,8 +37,8 @@
 
 			<form class="form" onsubmit="return false;">
 				<div class="text-center">
-					<div class="dropdown" data-bs-auto-close="outside">
-						<button class="btn btn-sm btn-primary dropdown-toggle me-1 mb-1" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
+					<div class="dropdown">
+						<button class="btn btn-sm btn-primary dropdown-toggle me-1 mb-1" type="button" id="filterDropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><?= __("Filters") ?></button>
 						<div class="input-group input-group-sm d-none mb-1" style="width: 190px;" id="squaresearch">
 							<input type="text" class="form-control" id="squareinput" placeholder="<?= __("WAB square"); ?>" aria-label="<?= __("WAB square"); ?>">
 							<button class="btn btn-primary" type="button" id="squaregoto" title="<?= __("Go to square"); ?>" aria-label="<?= __("Go to square"); ?>"><i class="fas fa-search"></i></button>

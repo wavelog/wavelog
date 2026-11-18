@@ -158,10 +158,12 @@ class Lookup extends CI_Controller {
 		session_write_close();
 
 		if($call != '') {
+			$this->load->library('callbook');
+			$this->load->model('Pota');
 			$call = str_replace("-","/",$call);
 			$uppercase_callsign = strtoupper($call);
-			$this->load->model('Pota');
-			$query = $this->Pota->ham_of_note($uppercase_callsign);
+			$lookupcall = $this->callbook->get_plaincall($uppercase_callsign);
+			$query = $this->Pota->ham_of_note($lookupcall);
 			if ($query->num_rows() > 0) {
 				header('Content-Type: application/json');
 				echo json_encode($query->result());

@@ -11,7 +11,7 @@
     </div>
     <p class="text-muted small mb-4">
         <?= sprintf(__("Last-heard status for the past 24 hours. Data source: %s (cached for 15 minutes)."),
-            '<a href="https://www.amsat.org/status/" target="_blank" rel="noopener noreferrer">amsat.org/status</a>'); ?>
+            '<a href="https://status.amsat.org/" target="_blank" rel="noopener noreferrer">status.amsat.org</a>'); ?>
     </p>
 
     <?php if (empty($sat_order)) { ?>

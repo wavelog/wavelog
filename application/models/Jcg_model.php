@@ -75,19 +75,24 @@ class Jcg_model extends CI_Model {
 	}
 
 	/**
-	 * WHERE clause shared by the status and export queries: Japanese QSOs
-	 * (DXCC 339) whose COL_CNTY holds a known gun/county number, in the
-	 * active logbook, honoring the band/mode/propagation filters.
-	 *
-	 * Unlike JCC, JCG numbers have no "ward of a designated city" variant to
-	 * fold in, so COL_CNTY is matched directly (see Jcc_model::entity_expr()
-	 * for the equivalent JCC case).
+	 * COL_CNTY holds either a gun number ("01001") for DXCC 339, 
+	 * or is ignored for Ogasawara and Minami Torishima (DXCC 177/192),
+	 * which count as Ogasawara-Shicho ("10007").
+	 */
+	private function entity_expr() {
+		return "case when col_dxcc in ('177', '192') then '10007' else col_cnty end";
+	}
+
+	/**
+	 * Shared status/export filter: known guns in Japan (DXCC 339), plus
+	 * Ogasawara and Minami Torishima (DXCC 177/192), in the active logbook,
+	 * honoring the band/mode/propagation filters.
 	 */
 	private function matching_where($postdata, &$bindings) {
 		$in_list = $this->quoted_in_list(array_keys($this->jcg_guns($postdata)));
 
-		$where = "col_dxcc in ('339')
-			and col_cnty in (" . $in_list . ")
+		$where = "((col_dxcc in ('339') and col_cnty in (" . $in_list . "))
+			or col_dxcc in ('177', '192'))
 			and station_id in (" . $this->location_list . ")";
 
 		$band = $postdata['band'] ?? 'All';
@@ -124,14 +129,14 @@ class Jcg_model extends CI_Model {
 	 */
 	function query_jcg_entity_status($postdata) {
 		$bindings = [];
-		$sql = "select col_cnty as entity, max(confirmed) as confirmed
+		$sql = "select entity, max(confirmed) as confirmed
 			from (
-				select col_cnty,
+				select " . $this->entity_expr() . " as entity,
 					case when (" . $this->qsl_condition($postdata) . ") then 1 else 0 end as confirmed
 				from " . $this->config->item('table_name') . " thcv
 				where " . $this->matching_where($postdata, $bindings) . "
 			) slots
-			group by col_cnty";
+			group by entity";
 		return $this->db->query($sql, $bindings)->result_array();
 	}
 
@@ -326,10 +331,11 @@ class Jcg_model extends CI_Model {
 		$bindings = [];
 		$sql = "select entity, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE, COL_PROP_MODE
 			from (
-				select col_cnty as entity, COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE, COL_PROP_MODE,
-					row_number() over (partition by col_cnty order by COL_TIME_ON asc, COL_PRIMARY_KEY asc) as rn
+				select entity, COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE, COL_PROP_MODE,
+					row_number() over (partition by entity order by COL_TIME_ON asc, COL_PRIMARY_KEY asc) as rn
 				from (
-					select COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE, COL_PROP_MODE, col_cnty
+					select " . $this->entity_expr() . " as entity,
+						COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE, COL_PROP_MODE
 					from " . $this->config->item('table_name') . " thcv
 					where " . $this->matching_where($postdata, $bindings) . "
 						and (" . $this->qsl_condition($postdata) . ")

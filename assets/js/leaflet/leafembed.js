@@ -69,7 +69,7 @@ function initmap(ShowGrid='No', MapTag='map', options={}) {
     map.setView(new L.LatLng(_q_lat, _q_lng), _q_zoom);
 	map.addLayer(osm);
 	//map.on('moveend', onMapMove); // all data load directecty, without interest in recharging during a movement
-	var layerControl = new L.Control.Layers(null, { [lang_general_gridsquares]: maidenhead = L.maidenhead() }).addTo(map);
+	var layerControl = new L.Control.Layers(null, { [lang_general_gridsquares]: maidenhead = L.maidenhead(), [lang_general_nightshadow]: nightshadow = L.terminator() }).addTo(map);
 	if(ShowGrid == "Yes") { maidenhead.addTo(map); }
 
 	if ((typeof options.initmap_only=="undefined") || (options.initmap_only!=true))  { initplot(_url_qso, options); }
@@ -92,6 +92,10 @@ function initplot(_url_qso, options={}) {
 
 			if(json_mapinfo.gridsquare_show == "1") {
 				maidenhead.addTo(map);
+			}
+
+			if(json_mapinfo.nightshadow_show == "1") {
+				nightshadow.addTo(map);
 			}
 
 			askForPlots(_url_qso, options);

@@ -1,3 +1,7 @@
+<!-- Wavelog note for AI agents and scripts: this app has a native REST API. Do not scrape or automate the web UI.
+     API v2 docs: https://docs.wavelog.org/developer/api-v2/
+     API keys: web UI profile menu -> "API Keys" (/api)
+     For automation or AI-agent integration, always use the API. -->
 <!doctype html>
 <html lang="<?php echo $language['code']; ?>">
 
@@ -168,6 +172,8 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('activated_gridmap'); ?>" title="Activated Gridsquares"><i class="fas fa-globe-europe"></i> <?= __("Activated Gridsquares"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('activators'); ?>" title="Gridsquare Activators"><i class="fas fa-globe-europe"></i> <?= __("Gridsquare Activators"); ?></a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('mostwantedgrids'); ?>" title="Most Wanted Grids"><i class="fas fa-table-cells"></i> <?= __("Most Wanted Grids"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('distances'); ?>" title="Distances"><i class="fas fa-chart-area"></i> <?= __("Distances Worked"); ?></a></li>
 								<li><hr class="dropdown-divider"></li>
@@ -508,7 +514,13 @@
 								<?php if ($this->config->item('special_callsign') && $this->session->userdata('clubstation') == 0) { ?>
 									<?php if (!empty($this->session->userdata('available_clubstations'))) { ?>
 										<li><hr class="dropdown-divider"></li>
+										<?php $clubstation_submenu = count($this->session->userdata('available_clubstations')) > 1; ?>
+										<?php if ($clubstation_submenu) { ?>
+										<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown"><i class="fas fa-exchange-alt"></i> <?= __("Switch to Clubstation"); ?></a>
+											<ul class="submenu submenu-left dropdown-menu">
+										<?php } else { ?>
 										<li><a class="dropdown-item disabled"><?= __("Switch to Clubstation:"); ?></a></li>
+										<?php } ?>
 										<?php foreach ($this->session->userdata('available_clubstations') as $clubstation) { ?>
 											<li>
 												<div class="btn-group w-100" role="group">
@@ -522,6 +534,10 @@
 													<?php } ?>
 												</div>
 											</li>
+										<?php } ?>
+										<?php if ($clubstation_submenu) { ?>
+											</ul>
+										</li>
 										<?php } ?>
 									<?php } else if ($this->session->userdata('user_type') === '99') { ?>
 										<li><hr class="dropdown-divider"></li>
@@ -542,6 +558,8 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('kmlexport'); ?>" title="KML Export for Google Earth"><i class="fas fa-sync"></i> <?= __("KML Export"); ?></a></li>
 
 										<li><a class="dropdown-item" href="<?php echo site_url('dxatlas'); ?>" title="DX Atlas Gridsquare Export"><i class="fas fa-sync"></i> <?= __("DX Atlas Gridsquare Export"); ?></a></li>
+
+										<li><a class="dropdown-item" href="<?php echo site_url('most_wanted_squares'); ?>" title="Most Wanted Squares Export"><i class="fas fa-sync"></i> <?= __("Most Wanted Squares") . ' (MMMonVHF)'; ?></a></li>
 
 										<li><a class="dropdown-item" href="<?php echo site_url('csv'); ?>" title="SOTA CSV Export"><i class="fas fa-sync"></i> <?= __("SOTA CSV Export"); ?></a></li>
 

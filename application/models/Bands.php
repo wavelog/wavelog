@@ -71,6 +71,29 @@ class Bands extends CI_Model {
 		return $results;
 	}
 
+	/**
+	 * Returns all bands of the bandgroup 'vhf', in order of frequency (unknown bands go last)
+	 *
+	 * @return array List of band names
+	 */
+	function get_vhf_bands() {
+		$result = $this->db->query("SELECT band FROM bands WHERE bandgroup = 'vhf'")->result();
+
+		$bands = array();
+		foreach ($result as $row) {
+			$bands[] = $row->band;
+		}
+
+		$order = array_keys($this->bandslots);
+		usort($bands, function($a, $b) use ($order) {
+			$ia = array_search($a, $order);
+			$ib = array_search($b, $order);
+			return ($ia === false ? count($order) : $ia) <=> ($ib === false ? count($order) : $ib);
+		});
+
+		return $bands;
+	}
+
 	function get_user_bands_for_qso_entry($includeall = false) {
 		$sql = "
 			SELECT bands.band, bands.bandgroup

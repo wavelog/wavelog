@@ -392,16 +392,7 @@ class Distances_model extends CI_Model
      * Returns: bool
      */
 	function valid_locator ($loc) {
-		$loc = strtoupper($loc);
-		if (strlen($loc) == 4)  $loc .= "LL";	// Only 4 Chars? Fill with center "LL" as only A-R allowed
-		if (strlen($loc) == 6)  $loc .= "55";	// Only 6 Chars? Fill with center "55"
-		if (strlen($loc) == 8)  $loc .= "LL";	// Only 8 Chars? Fill with center "LL" as only A-R allowed
-		if (preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}[0-9]{2}[A-X]{2}$/', $loc)) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return valid_grid($loc, 4);
 	}
 
     /*

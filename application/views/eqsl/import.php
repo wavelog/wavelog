@@ -63,9 +63,20 @@
 				</div>
 				<hr class="divider">
 			<?php } ?>
-			<div class="mb-3"><input class="btn btn-primary" type="submit" value="Import eQSL QSO Matches" /></div>
-			</form>
-		</div>
+		<div class="mb-3"><input class="btn btn-primary" type="submit" value="Import eQSL QSO Matches" /></div>
+		</form>
 	</div>
+</div>
 
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+	document.querySelector('form[action*="eqsl/import"]').addEventListener('submit', function(e) {
+		if (document.getElementById('upload').checked && this.querySelector('select[name="station_profile"]').value === '0') {
+			e.preventDefault();
+			showToast(<?= json_encode(__("Error")); ?>, <?= json_encode(__("Please chose a valid Station Location")); ?>, 'bg-danger text-white', 5000);
+		}
+	});
+});
+</script>

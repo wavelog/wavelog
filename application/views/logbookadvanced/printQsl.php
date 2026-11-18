@@ -1,3 +1,15 @@
+<style>
+    .option-item {
+        display: grid;
+        grid-template-columns: 32px 1fr auto;
+        align-items: start;
+        gap: 0.5rem;
+    }
+    .option-item .switch-container {
+        margin-top: -0.25rem;
+    }
+</style>
+
 <div class="card shadow-sm">
     <div class="card-body">
         <?php if (!empty($templates)) { ?>
@@ -20,6 +32,18 @@
                 <div class="mb-3 small text-muted d-flex align-items-start">
                     <i class="fas fa-info-circle text-info mt-1 me-2" style="width: 20px;"></i>
                     <span><?= __("Print options (QSOs per card, background image, address printing) are set per template in the QSL Postcard Designer."); ?></span>
+                </div>
+
+                <div class="option-item mb-3">
+                    <i class="fas fa-check-circle text-success mt-1"></i>
+                    <div>
+                        <label for="markprinted" class="form-label fw-bold mb-0">
+                            <?= __("Mark QSL as printed"); ?>
+                        </label>
+                    </div>
+                    <div class="form-check form-switch switch-container">
+                        <input class="form-check-input" type="checkbox" name="markprinted" id="markprinted" style="width: 3em; height: 1.5em;">
+                    </div>
                 </div>
 
                 <!-- selected_ids are injected by JS from the selected logbook rows -->

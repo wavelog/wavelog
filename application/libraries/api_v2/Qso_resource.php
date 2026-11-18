@@ -20,9 +20,11 @@ require_once __DIR__ . '/Api_v2_resource.php';
  * stored value. There is deliberately no PUT: Wavelog is the source of truth, so
  * an API client should never be able to blank fields it simply did not know
  * about - a client wanting a full overwrite can send every field explicitly.
- * PATCH touches only the field whitelist in editable_fields(): QSL/LoTW/eQSL
- * bookkeeping, DXCC/country recalculation and the MY_* station refs are
- * deliberately out of scope here.
+ * PATCH touches only the field whitelist in editable_fields(). Of the QSL
+ * bookkeeping only the paper QSL status (qsl_sent/qsl_rcvd, *_via, qslsdate/
+ * qslrdate) is writable, so a client can mark cards as sent or received; LoTW/eQSL
+ * status, DXCC/country recalculation and the MY_* station refs
+ * are deliberately out of scope here.
  *
  * Unit note: the JSON API speaks Hz throughout - POST (single and bulk), PATCH
  * and GET all take and return freq/freq_rx in Hz. Unit suffixes are accepted on
@@ -60,6 +62,7 @@ class Qso_resource extends Api_v2_resource {
 	 * Filters (all optional):
 	 *   ?station_id= comma-separated, ownership-checked; default: all owned
 	 *   ?callsign=   exact match on the worked callsign (e.g. HB9HIL)
+	 *   ?dxcc_id=    exact match on the DXCC entity id (COL_DXCC)
 	 *   ?band=       single band filter (e.g. 20m or SAT)
 	 *   ?mode=       single mode/submode filter (e.g. SSB or FT8)
 	 *   ?qsl_filter= comma list of lotw|qsl|eqsl|clublog (OR-combined)
@@ -95,6 +98,7 @@ class Qso_resource extends Api_v2_resource {
 		$band        = $this->normalize_band($this->param('band'));
 		$mode        = $this->normalize_mode($this->param('mode'));
 		$callsign    = $this->normalize_callsign($this->param('callsign'));
+		$dxcc_id     = $this->parse_dxcc_id();
 		$qsl_filter  = $this->parse_qsl_filter();
 		$since_id    = $this->parse_since_id();
 		$qso_since   = $this->parse_date('qso_since');
@@ -130,6 +134,7 @@ class Qso_resource extends Api_v2_resource {
 		$filters = [
 			'station_ids' => $station_ids,
 			'callsign'    => $callsign,
+			'dxcc_id'     => $dxcc_id,
 			'band'        => $band,
 			'mode'        => $mode,
 			'qsl_filter'  => $qsl_filter,
@@ -205,6 +210,23 @@ class Qso_resource extends Api_v2_resource {
 	 */
 	protected function parse_qsl_filter() {
 		return $this->parse_type_list('qsl_filter', ['lotw', 'qsl', 'eqsl', 'qrz', 'clublog']);
+	}
+
+	/**
+	 * Parse and validate the optional ?dxcc_id= filter.
+	 */
+	protected function parse_dxcc_id() {
+		$raw = $this->param('dxcc_id');
+		if ($raw === null) {
+			return null;
+		}
+
+		$raw = trim((string) $raw);
+		if ($raw === '' || !ctype_digit($raw)) {
+			throw new Api_v2_exception('validation_error', 'dxcc_id must be a non-negative integer', 400);
+		}
+
+		return $raw;
 	}
 
 	/**
@@ -686,13 +708,14 @@ class Qso_resource extends Api_v2_resource {
 			$time_on = $this->parse_datetime($body['qso_date'], $body['time_on']);
 			$data['COL_TIME_ON'] = $time_on;
 
-			// time_off defaults to time_on and is clamped to >= time_on,
-			// same as the web UI edit path.
+			// time_off defaults to time_on. A time_off before time_on on the
+			// 00-hour is a cross-midnight QSO → roll to the next day,
+			// same as the web UI logging path.
 			$time_off = isset($body['time_off']) && $body['time_off'] !== ''
 				? $this->parse_datetime($body['qso_date'], $body['time_off'])
 				: $time_on;
-			if (strtotime($time_off) < strtotime($time_on)) {
-				$time_off = $time_on;
+			if (strtotime($time_off) < strtotime($time_on) && date('H', strtotime($time_off)) === '00') {
+				$time_off = date('Y-m-d H:i:s', strtotime($time_off . ' +1 day'));
 			}
 			$data['COL_TIME_OFF'] = $time_off;
 		}
@@ -729,6 +752,44 @@ class Qso_resource extends Api_v2_resource {
 			}
 		}
 
+		// Paper QSL sent/received: ADIF enumerations. Marking one 'Y' without a
+		// date stamps today, like the web UI's "mark as sent/received".
+		$enums = [
+			'qsl_sent' => ['Y', 'N', 'R', 'Q', 'I'], 'qsl_sent_via' => ['B', 'D', 'E', 'M'],
+			'qsl_rcvd' => ['Y', 'N', 'R', 'I', 'V'], 'qsl_rcvd_via' => ['B', 'D', 'E', 'M'],
+		];
+		foreach ($enums as $key => $allowed) {
+			if (array_key_exists($key, $body) && $body[$key] !== null && $body[$key] !== ''
+				&& !in_array(strtoupper(trim((string) $body[$key])), $allowed, true)) {
+				throw new Api_v2_exception('validation_error', 'Invalid ' . $key . ' value', 400, ['field' => $key, 'allowed' => $allowed]);
+			}
+		}
+		foreach (['qslsdate' => ['qsl_sent', 'COL_QSLSDATE'], 'qslrdate' => ['qsl_rcvd', 'COL_QSLRDATE']] as $key => list($status, $col)) {
+			if (array_key_exists($key, $body)) {
+				if ($body[$key] === null || $body[$key] === '') {
+					$data[$col] = null;
+				} else {
+					$date = DateTime::createFromFormat('Y-m-d', (string) $body[$key]);
+					if ($date === false || $date->format('Y-m-d') !== $body[$key]) {
+						throw new Api_v2_exception('validation_error', $key . ' must be a valid date', 400, ['field' => $key, 'format' => 'YYYY-MM-DD']);
+					}
+					$data[$col] = $body[$key] . ' 00:00:00';
+				}
+			} elseif (array_key_exists($status, $body)) {
+				$value = strtoupper(trim((string) $body[$status]));
+				if ($value === 'Y') {
+					$data[$col] = date('Y-m-d H:i:s');
+				} elseif ($value === 'N') {
+					$data[$col] = null;
+				}
+			}
+		}
+
+		if (array_key_exists('email', $body) && $body['email'] !== null && $body['email'] !== ''
+			&& filter_var(trim((string) $body['email']), FILTER_VALIDATE_EMAIL) === false) {
+			throw new Api_v2_exception('validation_error', 'Invalid email', 400, ['field' => 'email']);
+		}
+
 		if (array_key_exists('call', $body) && !$this->CI->logbook_model->is_valid_callsign($body['call'])) {
 			throw new Api_v2_exception('validation_error', 'Invalid callsign', 400, ['field' => 'call']);
 		}
@@ -742,6 +803,24 @@ class Qso_resource extends Api_v2_resource {
 					$value = strtoupper(trim($value));
 				}
 				$data[$col] = $value;
+			}
+		}
+
+		// Gridsquare, satellite mode and propagation mode: strict format checks
+		// (empty values are allowed and clear the field).
+		if (isset($data['COL_GRIDSQUARE']) && $data['COL_GRIDSQUARE'] !== null && $data['COL_GRIDSQUARE'] !== ''
+			&& !valid_grid((string) $data['COL_GRIDSQUARE'])) {
+			throw new Api_v2_exception('validation_error', 'Invalid gridsquare', 400, ['field' => 'gridsquare']);
+		}
+		if (isset($data['COL_SAT_MODE']) && $data['COL_SAT_MODE'] !== null && $data['COL_SAT_MODE'] !== ''
+			&& !valid_sat_mode((string) $data['COL_SAT_MODE'])) {
+			throw new Api_v2_exception('validation_error', 'Invalid sat_mode', 400, ['field' => 'sat_mode']);
+		}
+		if (isset($data['COL_PROP_MODE']) && $data['COL_PROP_MODE'] !== null && $data['COL_PROP_MODE'] !== '') {
+			$data['COL_PROP_MODE'] = strtoupper(trim((string) $data['COL_PROP_MODE']));
+			$prop_modes = array_keys($this->CI->config->item('adif_propmodes'));
+			if (!valid_prop_mode($data['COL_PROP_MODE'], $prop_modes)) {
+				throw new Api_v2_exception('validation_error', 'Invalid prop_mode', 400, ['field' => 'prop_mode', 'allowed' => $prop_modes]);
 			}
 		}
 
@@ -779,6 +858,11 @@ class Qso_resource extends Api_v2_resource {
 			'cqz'        => ['COL_CQZ', false],
 			'ituz'       => ['COL_ITUZ', false],
 			'qsl_via'    => ['COL_QSL_VIA', false],
+			'qsl_sent'   => ['COL_QSL_SENT', true],
+			'qsl_sent_via' => ['COL_QSL_SENT_VIA', true],
+			'qsl_rcvd'   => ['COL_QSL_RCVD', true],
+			'qsl_rcvd_via' => ['COL_QSL_RCVD_VIA', true],
+			'email'     => ['COL_EMAIL', false],
 			'srx'        => ['COL_SRX', false],
 			'stx'        => ['COL_STX', false],
 			'srx_string' => ['COL_SRX_STRING', true],
@@ -896,6 +980,8 @@ class Qso_resource extends Api_v2_resource {
 			'submode'    => ['COL_SUBMODE', 'string'],
 			'freq'       => ['COL_FREQ', 'string'],
 			'freq_rx'    => ['COL_FREQ_RX', 'string'],
+			'qslsdate'   => ['COL_QSLSDATE', 'string'],
+			'qslrdate'   => ['COL_QSLRDATE', 'string'],
 		];
 	}
 

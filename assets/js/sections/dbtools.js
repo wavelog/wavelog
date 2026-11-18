@@ -521,7 +521,15 @@ function checkDxcc() {
 			$('.result').html(response);
 			initDbtoolsTable('#dxccCheckTable', {
 				ordering: true,
-				onInit: rebind_checkbox_trigger_dxcc,
+				onInit: function () {
+					rebind_checkbox_trigger_dxcc();
+
+					$('#forceDxccUpdate').on('change', function() {
+						$('#checkBoxAllDxcc').prop('checked', false);
+						$('#dxccCheckTable tbody input[type="checkbox"]').prop('checked', false);
+						$('#dxccCheckTable tbody tr.activeRow').removeClass('activeRow');
+					});
+				},
 			});
 		},
 		error: function(xhr, status, error) {
@@ -600,7 +608,11 @@ function rebind_checkbox_trigger_dxcc() {
 	$('#checkBoxAllDxcc').change(function (event) {
 		if (this.checked) {
 			$('#dxccCheckTable tbody tr').each(function (i) {
-				selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'dxccCheckTable');
+				// Skip entry if no DXCC was found for the call ("Not Found" / "- None -" / "Invalid"), unless force update
+				var result = $(this).first().closest('tr').find("td[id='resultDxcc']").text().trim();
+				if ((result != 'Not Found' && result != '- None -' && result != 'Invalid') || $('#forceDxccUpdate').prop("checked")) {
+					selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'dxccCheckTable');
+				}
 			});
 		} else {
 			$('#dxccCheckTable tbody tr').each(function (i) {
@@ -666,6 +678,7 @@ function fixDxccSelected() {
 	let id_list = [];
 	$('#dxccCheckTable tbody input:checked').each(function () {
 		let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
+		var result = $(this).closest('tr').find("td[id='resultDxcc']").text().trim();
 		id_list.push(id);
 	});
 

@@ -15,12 +15,12 @@ class Dxcc {
 	}
 
 	/**
-	 * Helper method to return a standard "NONE" result
+	 * Helper method to return a standard message result
 	 */
-	private function noneResult() {
+	private function noneResult($message = "- NONE -") {
 		return [
 			'adif' => 0,
-			'entity' => '- NONE -',
+			'entity' => $message,
 			'cqz' => 0,
 			'long' => '0',
 			'lat' => '0',
@@ -130,7 +130,7 @@ class Dxcc {
 			}
 		}
 
-		return $this->noneResult();
+		return $this->noneResult("Not Found");
 	}
 
 	function wpx($prefix, $callsign, $suffix, $i, $testcall) {
@@ -324,7 +324,7 @@ class Dxcc {
     function read_data() {
 		$CI = &get_instance();
 		$CI->load->is_loaded('cache') ?: $CI->load->driver('cache', [
-			'adapter' => $CI->config->item('cache_adapter') ?? 'file', 
+			'adapter' => $CI->config->item('cache_adapter') ?? 'file',
 			'backup' => $CI->config->item('cache_backup') ?? 'file',
 			'key_prefix' => $CI->config->item('cache_key_prefix') ?? ''
 		]);
