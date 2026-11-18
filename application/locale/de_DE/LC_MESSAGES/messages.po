@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-18 05:04+0000\n"
-"PO-Revision-Date: 2026-11-13 08:43+0000\n"
-"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
+"POT-Creation-Date: 2026-11-17 17:45+0000\n"
+"PO-Revision-Date: 2026-11-18 05:11+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -4205,11 +4205,11 @@ msgstr "Update der POTA-Parkgrenzen fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:633
 msgid "WWFF boundaries update complete. Result: "
-msgstr ""
+msgstr "Update der WWFF-Grenzen vollständig. Ergebnis: "
 
 #: application/controllers/Update.php:635
 msgid "WWFF boundaries update failed. Result: "
-msgstr ""
+msgstr "Update der WWFF-Grenzen fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:655
 msgid "TLE Update complete. Result: "
@@ -5120,25 +5120,21 @@ msgstr ""
 "Erfordert mindestens Version 2.1.0 von WaveLogGate."
 
 #: application/models/Api_v2_model.php:112
-msgid "Log and Station Upload"
-msgstr ""
-
-#: application/models/Api_v2_model.php:113
-msgid "Upload QSOs and manage station locations and logbooks."
-msgstr ""
-
 #: application/models/Api_v2_model.php:119
 msgid "Read-only"
 msgstr "Nur-Lesen"
 
+#: application/models/Api_v2_model.php:113
 #: application/models/Api_v2_model.php:120
 msgid "Read access to everything, no changes to your data."
 msgstr "Lesezugriff auf alles, keine Änderungen an deinen Daten."
 
+#: application/models/Api_v2_model.php:119
 #: application/models/Api_v2_model.php:126
 msgid "Statistics only"
 msgstr "Nur Statistiken"
 
+#: application/models/Api_v2_model.php:120
 #: application/models/Api_v2_model.php:127
 msgid "Statistics only, no changes to your data."
 msgstr "Nur Statistiken, keine Änderungen an deinen Daten."
@@ -16028,7 +16024,7 @@ msgstr "POTA-Parkgrenzen (GeoJSON)"
 
 #: application/views/debug/index.php:773
 msgid "WWFF reference boundaries"
-msgstr ""
+msgstr "WWFF-Grenzen"
 
 #: application/views/debug/index.php:779
 msgid "SCP file download"
@@ -25782,6 +25778,14 @@ msgstr "Clublog Logsuche"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW Nutzer. Letzter Upload vom "
+
+#: application/models/Api_v2_model.php:112
+msgid "Log and Station Upload"
+msgstr "Log-Upload und Stationsmanagement"
+
+#: application/models/Api_v2_model.php:113
+msgid "Upload QSOs and manage station locations and logbooks."
+msgstr "QSOs hochladen und Logbuch- sowie Stationsmanagement."
 
 #~ msgid "Callsigns tested: "
 #~ msgstr "Geprüfte Rufzeichen: "
