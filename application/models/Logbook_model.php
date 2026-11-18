@@ -4088,23 +4088,6 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	/**
-	 * Check grid for most wanted percentage
-	 *
-	 * @param string $grid grid square
-	 * @return string Most wanted percentage
-	 */
-	function check_sat_grid_mw($grid) {
-		$sql = "SELECT perc FROM most_wanted_grids WHERE grid = ?";
-		$query = $this->db->query($sql, array($grid));
-		if ($query->num_rows() > 0) {
-			$result = $query->result()[0]->perc."%";
-		} else {
-			$result = null;
-		}
-		return $result;
-	}
-
 	// $operator: see call_lookup_result() - optional COL_OPERATOR restriction for
 	// the REST API v2, no restriction by default.
 	function check_if_grid_worked_in_logbook($grid, $StationLocationsArray = null, $band = null, $cnfm = null, $operator = '') {

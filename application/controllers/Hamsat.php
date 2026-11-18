@@ -63,6 +63,7 @@ class Hamsat extends CI_Controller {
 
 	public function activations() {
 		$this->load->model("user_options_model");
+		$this->load->model('mostwantedgrids_model');
 		$this->load->model("logbooks_model");
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 		$this->load->model('logbook_model');
@@ -126,7 +127,7 @@ class Hamsat extends CI_Controller {
 			$decoded_json->data[$i]->mode_class = $modeclass;
 			for($j = 0; $j < count($decoded_json->data[$i]->grids); $j++) {
 				$worked = $this->logbook_model->check_sat_grid(substr($decoded_json->data[$i]->grids[$j], 0, 4), true);
-				$decoded_json->data[$i]->grids_mw[$j] = $this->logbook_model->check_sat_grid_mw(substr($decoded_json->data[$i]->grids[$j], 0, 4), true);
+				$decoded_json->data[$i]->grids_mw[$j] = $this->mostwantedgrids_model->get_perc(substr($decoded_json->data[$i]->grids[$j], 0, 4), true)."%";
 				switch ($worked) {
 				case 2:
 					$decoded_json->data[$i]->grids_wkd[$j] = 2;
