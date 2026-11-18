@@ -108,6 +108,13 @@ class Api_v2_model extends CI_Model {
 				'class'       => 'btn-primary',
 				'scopes'      => ['station:read', 'qso:write', 'radio:write'],
 			],
+			'log_station_upload' => [
+				'name'        => __('Log and Station Upload'),
+				'description' => __('Upload QSOs and manage station locations and logbooks.'),
+				'icon'        => 'fas fa-file-import',
+				'class'       => 'btn-primary',
+				'scopes'      => ['station:read', 'station:write', 'qso:write', 'logbook:read', 'logbook:write', 'lookup:read'],
+			],
 			'readonly' => [
 				'name'        => __("Read-only"),
 				'description' => __("Read access to everything, no changes to your data."),
