@@ -130,6 +130,41 @@ abstract class CI_Session_driver implements SessionHandlerInterface {
 	// ------------------------------------------------------------------------
 
 	/**
+	 * Create a new session ID
+	 *
+	 * Called by PHP when a new session ID is needed. Required by
+	 * SessionHandlerInterface as of PHP 9, declared here to silence
+	 * the PHP 8.6+ deprecation notice.
+	 *
+	 * @return	string
+	 */
+	public function create_sid(): string
+	{
+		return session_create_id();
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * Validate a session ID
+	 *
+	 * Only called by PHP when session.use_strict_mode is enabled.
+	 * Required by SessionHandlerInterface as of PHP 9, declared here
+	 * to silence the PHP 8.6+ deprecation notice. Returning TRUE
+	 * preserves the previous engine behaviour of accepting any
+	 * incoming cookie ID when the method is not implemented.
+	 *
+	 * @param	string	$id
+	 * @return	bool
+	 */
+	public function validateId(string $id): bool
+	{
+		return TRUE;
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
 	 * Cookie destroy
 	 *
 	 * Internal method to force removal of a cookie by the client
