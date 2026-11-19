@@ -75893,7 +75893,6 @@ void main() {
           return d;
         }
       };
-      state.renderObjs.renderer().useLegacyLights = false; // force behavior of three < 155
       state.renderObjs.hoverOrderComparator(function (a, b) {
         var aObj = getGlobeObj(a);
         var bObj = getGlobeObj(b);
