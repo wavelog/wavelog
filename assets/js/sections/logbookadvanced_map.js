@@ -718,6 +718,8 @@ function globemap(x) {
 	globePayArc=[];
 	globePayLab=[];
 	globePayPath=[];
+	globePaySat=[];
+	globePayRing=[];
 	startPos=[];
 	x.forEach((element) => {
 		if (typeof(element.latlng1) !== 'undefined') {
@@ -735,13 +737,19 @@ function globemap(x) {
 			}
 			// OneQsoArc.color = [['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)], ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]]
 			OneQsoArc.altitude=0.15;
-			if (element.antpath == 'L') {
+			if (element.sat) {
+				const satAlt = element.sat.alt / 6371;
+				globePayPath.push({ points: [[+element.latlng1[0], +element.latlng1[1], 0], [element.sat.lat, element.sat.lng, satAlt], [+element.latlng2[0], +element.latlng2[1], 0]], color: OneQsoArc.color });
+				globePaySat.push({ lat: element.sat.lat, lng: element.sat.lng, alt: satAlt, sat: element.satname, call: element.callsign });
+				globePayRing.push({ lat: element.sat.lat, lng: element.sat.lng, r: element.sat.footprint / 2 / 111.32 });
+			} else if (element.antpath == 'L') {
 				const pts = longPathPolylines(element.latlng1, element.latlng2).flat();
 				const R = Math.PI / 180, p1 = element.latlng1[0] * R, p2 = element.latlng2[0] * R, dl = (element.latlng2[1] - element.latlng1[1]) * R;
 				const altPeak = Math.asin(Math.sqrt(Math.sin((p2 - p1) / 2) ** 2 + Math.cos(p1) * Math.cos(p2) * Math.sin(dl / 2) ** 2)) * 0.37;
 				globePayPath.push({ points: pts.map((p, i) => [p[0], p[1], altPeak * Math.sin(Math.PI * i / (pts.length - 1))]), color: OneQsoArc.color });
+			} else {
+				globePayArc.push(OneQsoArc);
 			}
-			if (element.antpath != 'L') globePayArc.push(OneQsoArc);
 		}
 		let OneQsoLab={};
 		OneQsoLab.lat=element.latlng2[0];
@@ -775,6 +783,22 @@ function renderGlobe(arcsData,labelData) {
 	.pathDashLength(() => .1)
 	.pathDashGap(() => 0.01)
 	.pathDashAnimateTime(() => 4000 + 500)
+	.htmlElementsData(globePaySat)
+	.htmlLat(d => d.lat)
+	.htmlLng(d => d.lng)
+	.htmlAltitude(d => d.alt)
+	.htmlElement(d => {
+		const el = document.createElement('i');
+		el.className = 'fas fa-satellite';
+		el.style.color = '#ff9800';
+		el.style.fontSize = '14px';
+		el.title = d.sat + ' (' + d.call + ')';
+		return el;
+	})
+	.ringsData(globePayRing)
+	.ringColor(() => 'rgba(255,255,0,0.6)')
+	.ringMaxRadius(d => d.r)
+	.ringPropagationSpeed(0)
 	(document.getElementById('advancedmap'))
 }
 
