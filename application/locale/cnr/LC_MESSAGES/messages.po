@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-18 07:09+0000\n"
+"POT-Creation-Date: 2026-11-19 07:11+0000\n"
 "PO-Revision-Date: 2024-11-19 01:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Montenegrin <https://translate.wavelog.org/projects/wavelog/"
@@ -3094,7 +3094,7 @@ msgstr ""
 
 #: application/controllers/Operator.php:30
 #: application/models/Logbook_model.php:163
-#: application/models/Logbook_model.php:1686
+#: application/models/Logbook_model.php:1698
 #: application/views/contesting/logger/components/qso-form.php:44
 #: application/views/qso/index.php:40
 msgid "Invalid callsign"
@@ -5237,151 +5237,151 @@ msgstr ""
 msgid "Realtime upload disabled"
 msgstr ""
 
-#: application/models/Logbook_model.php:1676
+#: application/models/Logbook_model.php:1688
 msgid "Station ID not allowed"
 msgstr ""
 
-#: application/models/Logbook_model.php:1681
+#: application/models/Logbook_model.php:1693
 msgid "No Call given"
 msgstr ""
 
-#: application/models/Logbook_model.php:1757
-#: application/models/Logbook_model.php:1975
+#: application/models/Logbook_model.php:1769
+#: application/models/Logbook_model.php:1987
 msgid "DXCC has to be Numeric"
 msgstr ""
 
-#: application/models/Logbook_model.php:5275
+#: application/models/Logbook_model.php:5287
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:5283
+#: application/models/Logbook_model.php:5295
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:5299
+#: application/models/Logbook_model.php:5311
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:5309
+#: application/models/Logbook_model.php:5321
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given CALL. This QSO wasn't "
 "imported. It's invalid."
 msgstr ""
 
-#: application/models/Logbook_model.php:5316
+#: application/models/Logbook_model.php:5328
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid CALL. This QSO wasn't "
 "imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5322
+#: application/models/Logbook_model.php:5334
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid PROP_MODE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5328
+#: application/models/Logbook_model.php:5340
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid SAT_MODE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5334
+#: application/models/Logbook_model.php:5346
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid MY_GRIDSQUARE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5340
+#: application/models/Logbook_model.php:5352
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO with an invalid MY_VUCC_GRIDS. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
 
-#: application/models/Logbook_model.php:5410
+#: application/models/Logbook_model.php:5422
 #, php-format
 msgid ""
 "QSO on %s: Band '%s' is not in the band configuration. This QSO wasn't "
 "imported."
 msgstr ""
 
-#: application/models/Logbook_model.php:5417
+#: application/models/Logbook_model.php:5429
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:5675
+#: application/models/Logbook_model.php:5687
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5686
+#: application/models/Logbook_model.php:5698
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5749
+#: application/models/Logbook_model.php:5761
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:6123
+#: application/models/Logbook_model.php:6135
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr ""
 
-#: application/models/Logbook_model.php:6190
-#: application/models/Logbook_model.php:6290
+#: application/models/Logbook_model.php:6202
+#: application/models/Logbook_model.php:6302
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:6198
+#: application/models/Logbook_model.php:6210
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:6204
+#: application/models/Logbook_model.php:6216
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:6208
+#: application/models/Logbook_model.php:6220
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:6212
+#: application/models/Logbook_model.php:6224
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:6215
+#: application/models/Logbook_model.php:6227
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:6218
+#: application/models/Logbook_model.php:6230
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr ""
 
-#: application/models/Logbook_model.php:6293
+#: application/models/Logbook_model.php:6305
 msgid "POTA reference already in log"
 msgstr ""
 
-#: application/models/Logbook_model.php:6296
+#: application/models/Logbook_model.php:6308
 msgid "QSO updated"
 msgstr ""
 
-#: application/models/Logbook_model.php:6721
+#: application/models/Logbook_model.php:6733
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
