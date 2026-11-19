@@ -720,6 +720,7 @@ function globemap(x) {
 	globePayPath=[];
 	globePaySat=[];
 	globePayRing=[];
+	globePaySeg=[];
 	startPos=[];
 	x.forEach((element) => {
 		if (typeof(element.latlng1) !== 'undefined') {
@@ -739,7 +740,10 @@ function globemap(x) {
 			OneQsoArc.altitude=0.15;
 			if (element.sat) {
 				const satAlt = element.sat.alt / 6371;
-				globePayPath.push({ points: [[+element.latlng1[0], +element.latlng1[1], 0], [element.sat.lat, element.sat.lng, satAlt], [+element.latlng2[0], +element.latlng2[1], 0]], color: OneQsoArc.color });
+				globePaySeg.push(
+					{ a: [+element.latlng1[0], +element.latlng1[1], 0.002], b: [element.sat.lat, element.sat.lng, satAlt], color: OneQsoArc.color },
+					{ a: [element.sat.lat, element.sat.lng, satAlt], b: [+element.latlng2[0], +element.latlng2[1], 0.002], color: OneQsoArc.color }
+				);
 				globePaySat.push({ lat: element.sat.lat, lng: element.sat.lng, alt: satAlt, sat: element.satname, call: element.callsign });
 				globePayRing.push({ lat: element.sat.lat, lng: element.sat.lng, r: element.sat.footprint / 2 / 111.32 });
 			} else if (element.antpath == 'L') {
@@ -764,7 +768,7 @@ function globemap(x) {
 }
 
 function renderGlobe(arcsData,labelData) {
-	Globe()
+	const g = Globe()
 	.globeImageUrl(base_url + '/assets/images/earth-blue-marble.jpg')
 	.pointOfView({ lat: startPos[0], lng: startPos[1], altitude:1}, 100)
 	.labelsData(labelData)
@@ -799,7 +803,57 @@ function renderGlobe(arcsData,labelData) {
 	.ringColor(() => 'rgba(255,255,0,0.6)')
 	.ringMaxRadius(d => d.r)
 	.ringPropagationSpeed(0)
-	(document.getElementById('advancedmap'))
+	(document.getElementById('advancedmap'));
+	drawSatChords(g);
+}
+
+// Straight line-of-sight chords (station -> sat -> dx), rendered as thin rods
+// (stretched spheres) built from three.js constructors stolen off the globe
+// sphere in the live scene, since no global THREE is available on this page.
+function drawSatChords(globe) {
+	if (!globePaySeg.length) return;
+	(function attempt(n) {
+		requestAnimationFrame(() => {
+			try {
+				const scene = globe.scene();
+				let tmpl = null;
+				scene.traverse(o => {
+					if (!tmpl && o.isMesh && o.geometry && o.material && o.material.isMeshPhongMaterial && o.geometry.attributes && o.geometry.attributes.position) tmpl = o;
+				});
+				if (!tmpl) {
+					if (n > 0) attempt(n - 1);
+					return;
+				}
+				const MeshC = Object.getPrototypeOf(tmpl).constructor;
+				const SphereC = tmpl.geometry.constructor;
+				const V3C = tmpl.position.constructor;
+				globePaySeg.forEach(seg => {
+					const va = new V3C(...satChordPnt(seg.a));
+					const vb = new V3C(...satChordPnt(seg.b));
+					const dir = vb.clone().sub(va);
+					const len = dir.length();
+					dir.normalize();
+					const mat = tmpl.material.clone();
+					mat.map = null;
+					mat.bumpMap = null;
+					mat.color.set(seg.color === 'green' ? 0x00ff00 : 0xff0000);
+					const rod = new MeshC(new SphereC(1, 8, 6), mat);
+					rod.scale.set(0.3, len / 2, 0.3);
+					rod.position.copy(va).add(vb).multiplyScalar(0.5);
+					rod.quaternion.setFromUnitVectors(new V3C(0, 1, 0), dir);
+					rod.frustumCulled = false;
+					scene.add(rod);
+				});
+			} catch (e) {
+				console.error('sat chords failed:', e);
+			}
+		});
+	})(20);
+}
+
+function satChordPnt(p) {
+	const phi = (90 - p[0]) * Math.PI / 180, theta = (90 - p[1]) * Math.PI / 180, r = 100 * (1 + p[2]);
+	return [r * Math.sin(phi) * Math.cos(theta), r * Math.cos(phi), r * Math.sin(phi) * Math.sin(theta)];
 }
 
 // auto setting of gridmap height
