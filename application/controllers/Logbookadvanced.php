@@ -501,6 +501,18 @@ class Logbookadvanced extends CI_Controller {
 		return false;
 	}
 
+	/**
+	 * Build the map payload for a QSO with known gridsquare.
+	 *
+	 * @param array $qso               QSO row (must contain COL_ANT_PATH)
+	 * @param string $locator1         Station (own) gridsquare
+	 * @param string $locator2         DX gridsquare
+	 * @param string $measurement_base Unit of measurement ('K', 'M' or 'N')
+	 * @param string $var_dist         Suffix string for distances
+	 * @param string $custom_date_format Date format for the datetime field
+	 *
+	 * @return array Mapped QSO data for the Leaflet map (incl. antpath)
+	 */
 	public function calculate($qso, $locator1, $locator2, $measurement_base, $var_dist, $custom_date_format) {
 		if(!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
@@ -508,6 +520,7 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
+		$data['antpath'] = $qso['COL_ANT_PATH'] ?? null;
 		$data['callsign'] = $qso['COL_CALL'];
 		$data['band'] = $qso['COL_BAND'];
 		$data['mode'] = $qso['COL_MODE'];
@@ -540,12 +553,27 @@ class Logbookadvanced extends CI_Controller {
 		return $data;
 	}
 
+	/**
+	 * Build the map payload for a QSO with given lat/long (no gridsquare).
+	 *
+	 * @param array $qso               QSO row (must contain COL_ANT_PATH)
+	 * @param float $lat                DX latitude
+	 * @param float $long               DX longitude
+	 * @param string $mygrid            Station (own) gridsquare
+	 * @param string $measurement_base Unit of measurement ('K', 'M' or 'N')
+	 * @param string $var_dist         Suffix string for distances
+	 * @param string $custom_date_format Date format for the datetime field
+	 *
+	 * @return array Mapped QSO data for the Leaflet map (incl. antpath)
+	 */
 	public function calculateCoordinates($qso, $lat, $long, $mygrid, $measurement_base, $var_dist, $custom_date_format) {
 		if(!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
 		}
 
 		$this->load->model('logbook_model');
+
+		$data['antpath'] = $qso['COL_ANT_PATH'] ?? null;
 
 		if (!empty($mygrid)) {
 			$latlng1 = $this->qra->qra2latlong($mygrid);

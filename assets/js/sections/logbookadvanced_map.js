@@ -281,6 +281,32 @@ const ituzonenames = [
 	["39","165"]
 ];
 
+function longPathPolylines(a, b) {
+	const R = Math.PI / 180, p1 = a[0] * R, l1 = a[1] * R, p2 = b[0] * R, dl = (b[1] - a[1]) * R;
+	const d = Math.acos(Math.min(1, Math.max(-1, Math.sin(p1) * Math.sin(p2) + Math.cos(p1) * Math.cos(p2) * Math.cos(dl))));
+	const th = Math.atan2(Math.sin(dl) * Math.cos(p2), Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(dl)) + Math.PI;
+	const wrap = lo => lo > 180 ? lo - 360 : lo < -180 ? lo + 360 : lo;
+	const chunks = [[]];
+	let prev = a[1] * 1;
+	for (let i = 0; i <= 200; i++) {
+		const t = (2 * Math.PI - d) * i / 200, s = Math.sin(t), c = Math.cos(t);
+		const lat = Math.asin(Math.sin(p1) * c + Math.cos(p1) * s * Math.cos(th)) / R;
+		let lon = (l1 + Math.atan2(Math.sin(th) * s * Math.cos(p1), c - Math.sin(p1) * Math.sin(lat * R))) / R;
+		lon = prev + ((((lon - prev) % 360) + 540) % 360 - 180);
+		const seg = chunks[chunks.length - 1];
+		if (seg.length && Math.floor((lon + 180) / 360) !== Math.floor((prev + 180) / 360)) {
+			const latX = seg[seg.length - 1][0] + (lat - seg[seg.length - 1][0]) * (180 - Math.abs(prev)) / (Math.abs(lon) - Math.abs(prev));
+			seg.push([latX, prev > 0 ? 180 : -180]);
+			chunks.push([[latX, prev > 0 ? -180 : 180]]);
+		}
+		chunks[chunks.length - 1].push([lat, lon]);
+		prev = lon;
+	}
+	const last = chunks[chunks.length - 1];
+	last[last.length - 1] = [b[0] * 1, wrap(b[1] * 1)];
+	return chunks.map(c => c.map(([la, lo]) => [la, wrap(lo)]));
+}
+
 function loadMap(data, iconsList) {
 	$('#mapButton').prop("disabled", false).removeClass("running");
 	var osmUrl = tileUrl;
@@ -394,7 +420,12 @@ function loadMap(data, iconsList) {
 		lat_lng = [this.latlng2[0], this.latlng2[1]];
 		bounds.extend(lat_lng);
 
-		if (typeof(this.latlng1) !== 'undefined') {
+		if (typeof(this.latlng1) !== 'undefined' && this.antpath == 'L') {
+			longPathPolylines(this.latlng1, this.latlng2).forEach(chunk => {
+				clicklines.push(L.polyline(chunk, { weight: 1, opacity: 1, color: linecolor }).addTo(map));
+			});
+		}
+		if (typeof(this.latlng1) !== 'undefined' && this.antpath != 'L') {
 			const multiplelines = [];
 			multiplelines.push(
 				new L.LatLng(this.latlng1[0], this.latlng1[1]),
@@ -686,6 +717,7 @@ function globemap(x) {
 	$('#mapButton').prop("disabled", false).removeClass("running");
 	globePayArc=[];
 	globePayLab=[];
+	globePayPath=[];
 	startPos=[];
 	x.forEach((element) => {
 		if (typeof(element.latlng1) !== 'undefined') {
@@ -703,7 +735,13 @@ function globemap(x) {
 			}
 			// OneQsoArc.color = [['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)], ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]]
 			OneQsoArc.altitude=0.15;
-			globePayArc.push(OneQsoArc);
+			if (element.antpath == 'L') {
+				const pts = longPathPolylines(element.latlng1, element.latlng2).flat();
+				const R = Math.PI / 180, p1 = element.latlng1[0] * R, p2 = element.latlng2[0] * R, dl = (element.latlng2[1] - element.latlng1[1]) * R;
+				const altPeak = Math.asin(Math.sqrt(Math.sin((p2 - p1) / 2) ** 2 + Math.cos(p1) * Math.cos(p2) * Math.sin(dl / 2) ** 2)) * 0.37;
+				globePayPath.push({ points: pts.map((p, i) => [p[0], p[1], altPeak * Math.sin(Math.PI * i / (pts.length - 1))]), color: OneQsoArc.color });
+			}
+			if (element.antpath != 'L') globePayArc.push(OneQsoArc);
 		}
 		let OneQsoLab={};
 		OneQsoLab.lat=element.latlng2[0];
@@ -730,6 +768,13 @@ function renderGlobe(arcsData,labelData) {
 	.arcDashLength(() => .1)
 	.arcDashGap(() => 0.01)
 	.arcDashAnimateTime(() => 4000 + 500)
+	.pathsData(globePayPath)
+	.pathPoints(p => p.points)
+	.pathColor(p => p.color)
+	.pathPointAlt(pt => pt[2])
+	.pathDashLength(() => .1)
+	.pathDashGap(() => 0.01)
+	.pathDashAnimateTime(() => 4000 + 500)
 	(document.getElementById('advancedmap'))
 }
 
