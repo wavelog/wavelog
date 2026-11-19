@@ -1532,6 +1532,11 @@ class Logbook_model extends CI_Model {
 	}
 
 	function upload_amsat_status($data) {
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
+			'backup' => $this->config->item('cache_backup') ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
 		$sat_name = '';
 		switch ($data['COL_SAT_NAME']) {
 			case 'AO-7':
@@ -1617,8 +1622,14 @@ class Logbook_model extends CI_Model {
 			$amsat_source_grid = strtok($data['COL_MY_VUCC_GRIDS'], ',');
 		}
 		if ($amsat_source_grid != '') {
+			// Cache time to prevent uploading spots as corrections within configured time interval
+			$amsat_status_cache_time = 15;
 			$observed_at = (string)($data['COL_TIME_ON'] ?? '');
 			if ($observed_at === '') {
+				return;
+			}
+			if (abs(strtotime($observed_at) - strtotime((string)$this->cache->get('amsat_status_'.$data['COL_STATION_CALLSIGN'].'_'.$amsat_source_grid.'_'.$sat_name))) < (60 * $amsat_status_cache_time)) {
+				log_message('debug', 'AMSAT status upload skipped because last spot was within '.$amsat_status_cache_time.' min of the last reported one');
 				return;
 			}
 			try {
@@ -1650,6 +1661,7 @@ class Logbook_model extends CI_Model {
 				'Content-Type: application/json',
 			));
 			curl_exec($ch);
+			$this->cache->save('amsat_status_'.$data['COL_STATION_CALLSIGN'].'_'.$amsat_source_grid.'_'.$sat_name, $observed_at, 60*60*24*7);
 		}
 	}
 
