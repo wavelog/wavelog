@@ -6413,7 +6413,7 @@ class Logbook_model extends CI_Model {
 			$callbook = $this->callbook->getCallbookData($callsign);
 
 		} catch (Throwable $e) {
-			log_message("error", "Callbook loading failed.");
+			log_message("error", "Callbook loading failed: " . $e->getMessage());
 		}
 		return $callbook;
 	}
