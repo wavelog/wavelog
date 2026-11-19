@@ -281,6 +281,32 @@ const ituzonenames = [
 	["39","165"]
 ];
 
+function longPathPolylines(a, b) {
+	const R = Math.PI / 180, p1 = a[0] * R, l1 = a[1] * R, p2 = b[0] * R, dl = (b[1] - a[1]) * R;
+	const d = Math.acos(Math.min(1, Math.max(-1, Math.sin(p1) * Math.sin(p2) + Math.cos(p1) * Math.cos(p2) * Math.cos(dl))));
+	const th = Math.atan2(Math.sin(dl) * Math.cos(p2), Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(dl)) + Math.PI;
+	const wrap = lo => lo > 180 ? lo - 360 : lo < -180 ? lo + 360 : lo;
+	const chunks = [[]];
+	let prev = a[1] * 1;
+	for (let i = 0; i <= 200; i++) {
+		const t = (2 * Math.PI - d) * i / 200, s = Math.sin(t), c = Math.cos(t);
+		const lat = Math.asin(Math.sin(p1) * c + Math.cos(p1) * s * Math.cos(th)) / R;
+		let lon = (l1 + Math.atan2(Math.sin(th) * s * Math.cos(p1), c - Math.sin(p1) * Math.sin(lat * R))) / R;
+		lon = prev + ((((lon - prev) % 360) + 540) % 360 - 180);
+		const seg = chunks[chunks.length - 1];
+		if (seg.length && Math.floor((lon + 180) / 360) !== Math.floor((prev + 180) / 360)) {
+			const latX = seg[seg.length - 1][0] + (lat - seg[seg.length - 1][0]) * (180 - Math.abs(prev)) / (Math.abs(lon) - Math.abs(prev));
+			seg.push([latX, prev > 0 ? 180 : -180]);
+			chunks.push([[latX, prev > 0 ? -180 : 180]]);
+		}
+		chunks[chunks.length - 1].push([lat, lon]);
+		prev = lon;
+	}
+	const last = chunks[chunks.length - 1];
+	last[last.length - 1] = [b[0] * 1, wrap(b[1] * 1)];
+	return chunks.map(c => c.map(([la, lo]) => [la, wrap(lo)]));
+}
+
 function loadMap(data, iconsList) {
 	$('#mapButton').prop("disabled", false).removeClass("running");
 	var osmUrl = tileUrl;
@@ -394,7 +420,12 @@ function loadMap(data, iconsList) {
 		lat_lng = [this.latlng2[0], this.latlng2[1]];
 		bounds.extend(lat_lng);
 
-		if (typeof(this.latlng1) !== 'undefined') {
+		if (typeof(this.latlng1) !== 'undefined' && this.antpath == 'L') {
+			longPathPolylines(this.latlng1, this.latlng2).forEach(chunk => {
+				clicklines.push(L.polyline(chunk, { weight: 1, opacity: 1, color: linecolor }).addTo(map));
+			});
+		}
+		if (typeof(this.latlng1) !== 'undefined' && this.antpath != 'L') {
 			const multiplelines = [];
 			multiplelines.push(
 				new L.LatLng(this.latlng1[0], this.latlng1[1]),
