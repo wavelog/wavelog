@@ -804,7 +804,7 @@ function renderGlobe(arcsData,labelData) {
 	.ringMaxRadius(d => d.r)
 	.ringPropagationSpeed(0)
 	(document.getElementById('advancedmap'));
-	drawSatChords(g);
+	g.onGlobeReady(() => drawSatChords(g));
 }
 
 // Straight line-of-sight chords (station -> sat -> dx), rendered as thin rods
@@ -820,24 +820,24 @@ function drawSatChords(globe) {
 				scene.traverse(o => {
 					if (!tmpl && o.isMesh && o.geometry && o.material && o.material.isMeshPhongMaterial && o.geometry.attributes && o.geometry.attributes.position) tmpl = o;
 				});
-				if (!tmpl) {
+				if (!tmpl || !tmpl.material) {
 					if (n > 0) attempt(n - 1);
 					return;
 				}
 				const MeshC = Object.getPrototypeOf(tmpl).constructor;
 				const SphereC = tmpl.geometry.constructor;
 				const V3C = tmpl.position.constructor;
+				// fresh materials: the globe's own material has color = null
+				// once its texture is loaded (globe.gl sets it), so no clone()
+				const PhongC = tmpl.material.constructor;
+				const mats = { green: new PhongC({ color: 0x00ff00 }), red: new PhongC({ color: 0xff0000 }) };
 				globePaySeg.forEach(seg => {
 					const va = new V3C(...satChordPnt(seg.a));
 					const vb = new V3C(...satChordPnt(seg.b));
 					const dir = vb.clone().sub(va);
 					const len = dir.length();
 					dir.normalize();
-					const mat = tmpl.material.clone();
-					mat.map = null;
-					mat.bumpMap = null;
-					mat.color.set(seg.color === 'green' ? 0x00ff00 : 0xff0000);
-					const rod = new MeshC(new SphereC(1, 8, 6), mat);
+					const rod = new MeshC(new SphereC(1, 8, 6), mats[seg.color] || mats.red);
 					rod.scale.set(0.3, len / 2, 0.3);
 					rod.position.copy(va).add(vb).multiplyScalar(0.5);
 					rod.quaternion.setFromUnitVectors(new V3C(0, 1, 0), dir);
@@ -848,7 +848,7 @@ function drawSatChords(globe) {
 				console.error('sat chords failed:', e);
 			}
 		});
-	})(20);
+	})(100);
 }
 
 function satChordPnt(p) {
