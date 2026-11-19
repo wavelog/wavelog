@@ -1628,8 +1628,8 @@ class Logbook_model extends CI_Model {
 			if ($observed_at === '') {
 				return;
 			}
-			if ($this->cache->get('amsat_status_'.$data['COL_STATION_CALLSIGN'].'_'.$amsat_source_grid.'_'.$sat_name) == '1') {
-				log_message('debug', 'AMSAT status upload skipped because last spot was posted within '.$amsat_status_cache_time.' min ago');
+			if (abs(strtotime($observed_at) - strtotime((string)$this->cache->get('amsat_status_'.$data['COL_STATION_CALLSIGN'].'_'.$amsat_source_grid.'_'.$sat_name))) < (60 * $amsat_status_cache_time)) {
+				log_message('debug', 'AMSAT status upload skipped because last spot was within '.$amsat_status_cache_time.' min of the last reported one');
 				return;
 			}
 			try {
@@ -1661,7 +1661,7 @@ class Logbook_model extends CI_Model {
 				'Content-Type: application/json',
 			));
 			curl_exec($ch);
-			$this->cache->save('amsat_status_'.$data['COL_STATION_CALLSIGN'].'_'.$amsat_source_grid.'_'.$sat_name, '1', (60 * $amsat_status_cache_time));
+			$this->cache->save('amsat_status_'.$data['COL_STATION_CALLSIGN'].'_'.$amsat_source_grid.'_'.$sat_name, $observed_at, 60*60*24*7);
 		}
 	}
 
