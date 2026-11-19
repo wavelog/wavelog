@@ -113,10 +113,13 @@ class Qrzru {
 				$data['ituz'] = '';
 				$data['cqz'] = '';
 			}
+		} catch (Throwable $e) {
+			log_message('error', 'QRZ.ru search for callsign: ' . $callsign . ' failed: ' . $e->getMessage());
 		} finally {
 			$data['source'] = $this->sourcename();
-			return $data;
 		}
+
+		return $data;
 	}
 
 	public function sourcename() {

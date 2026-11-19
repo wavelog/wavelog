@@ -180,10 +180,13 @@ class Qrz {
 				$data['ituzone'] = '';
 				$data['cqzone'] = '';
 			}
+		} catch (Throwable $e) {
+			log_message('error', 'QRZ.com search for callsign: ' . $callsign . ' failed: ' . $e->getMessage());
 		} finally {
 			$data['source'] = $this->sourcename();
-			return $data;
 		}
+
+		return $data;
 	}
 
 	public function sourcename() {
