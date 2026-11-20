@@ -74,16 +74,22 @@ class Qrz {
 			if ($httpcode != 200) {
 				$message = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
 				log_message('debug', 'QRZ.com search for callsign: ' . $callsign . ' returned message: ' . $message . ' HTTP code: ' . $httpcode);
-				return $data['error'] = 'Problems with qrz.com communication'; // Exit function if no 200. If request fails, 0 is returned
+				$data['error'] = 'Problems with qrz.com communication'; // Exit function if no 200. If request fails, 0 is returned
+				$data['source'] = $this->sourcename();
+				return $data;
 			}
 			// Create XML object
 			$xml = simplexml_load_string($xml);
 			if ($xml === false) {
 				log_message('error', 'QRZ.com search for callsign: ' . $callsign . ': could not parse XML response');
-				return $data['error'] = 'Problems with qrz.com communication';
+				$data['error'] = 'Problems with qrz.com communication';
+				$data['source'] = $this->sourcename();
+				return $data;
 			}
 			if (!empty($xml->Session->Error)) {
-				return $data['error'] = $xml->Session->Error;
+				$data['error'] = (string) $xml->Session->Error;
+				$data['source'] = $this->sourcename();
+				return $data;
 			}
 
 			// Map all QRZ XML fields according to API specification

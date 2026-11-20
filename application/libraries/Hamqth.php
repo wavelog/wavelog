@@ -84,7 +84,11 @@ class Hamqth {
             if ($root->count() == 0) {
                 $root = $xml;
             }
-            if (!empty($root->session->error)) return $data['error'] = (string) $root->session->error;
+            if (!empty($root->session->error)) {
+                $data['error'] = (string) $root->session->error;
+                $data['source'] = $this->sourcename();
+                return $data;
+            }
 
 			// we always want to return name and callsign
 			$data['callsign'] 	= (string)$root->search->callsign;
