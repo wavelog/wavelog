@@ -5334,8 +5334,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO with an invalid SAT_MODE. This QSO "
 "wasn't imported. The invalid input is '%s'."
 msgstr ""
-"%s的 QSO：你尝试导入一个具有无效 SAT_MODE 的 QSO，该 QSO 未被导入，无效内容为"
-"“%s”。"
+"%s的 QSO：你尝试导入一个具有无效 SAT_MODE 的 QSO，该 QSO 未被导入，无效内容"
+"为“%s”。"
 
 #: application/models/Logbook_model.php:5346
 #, php-format
@@ -5440,6 +5440,7 @@ msgstr "QSO 已上传"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6734
 msgid "Bearing"
 msgstr "方位角"
 
@@ -6983,7 +6984,8 @@ msgstr "可选"
 msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
-msgstr "CBR 文件中，在每条 QSO 行的末尾都有一个 TRX 编号（对于多操作员的台站而言）"
+msgstr ""
+"CBR 文件中，在每条 QSO 行的末尾都有一个 TRX 编号（对于多操作员的台站而言）"
 
 #: application/views/adif/import.php:449
 msgid ""
@@ -11436,7 +11438,8 @@ msgstr "使用频段列表，你可以控制创建新 QSO 时显示哪些频段�
 msgid ""
 "Active bands will be shown in the QSO 'Band' drop-down, while inactive bands "
 "will be hidden and cannot be selected."
-msgstr "启用的频段将显示在 QSO “频段”下拉列表中，而停用的频段将被隐藏且无法选择。"
+msgstr ""
+"启用的频段将显示在 QSO “频段”下拉列表中，而停用的频段将被隐藏且无法选择。"
 
 #: application/views/bands/index.php:58
 msgid "Sig"
@@ -22150,9 +22153,9 @@ msgstr ""
 "收到的交换信息以点 %s 开始，发送的交换以逗号 %s 开始。最后两行是等效的：即空"
 "格和顺序都不重要。上面每四行简单地说明了一种交换类型（仅序列号，仅文本，或两"
 "者都有）；注意发送的交换是持续性的：一旦设置，它会自动带入后续的 QSO（每当下"
-"一行包含接收到的交换或单个逗号 %s）直到您更改或清除它。要自动递增发送的序列号"
-"，将 %s 添加到 QSO 行中以及初始发送的交换（它在自己的行上不起作用）。要停用，"
-"请使用 %s:"
+"一行包含接收到的交换或单个逗号 %s）直到您更改或清除它。要自动递增发送的序列"
+"号，将 %s 添加到 QSO 行中以及初始发送的交换（它在自己的行上不起作用）。要停"
+"用，请使用 %s:"
 
 #: application/views/simplefle/syntax_help.php:79
 #, php-format
@@ -22769,8 +22772,8 @@ msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
 msgstr ""
-"警告：应事先设置一个 “启用” 中的台站位置，请在右上角 “你的呼号” -> “台站位置"
-"” 中选择一个。"
+"警告：应事先设置一个 “启用” 中的台站位置，请在右上角 “你的呼号” -> “台站位"
+"置” 中选择一个。"
 
 #: application/views/stationsetup/stationsetup.php:144
 msgid ""

@@ -77,10 +77,14 @@ class Qrzru {
 			$xml = simplexml_load_string($xml);
 			if ($xml === false) {
 				log_message('error', 'QRZ.ru search for callsign: ' . $callsign . ': could not parse XML response');
-				return $data['error'] = 'Problems with qrz.ru communication';
+				$data['error'] = 'Problems with qrz.ru communication';
+				$data['source'] = $this->sourcename();
+				return $data;
 			}
 			if (!empty($xml->session->error)) {
-				return $data['error'] = (string)$xml->session->error;
+				$data['error'] = (string)$xml->session->error;
+				$data['source'] = $this->sourcename();
+				return $data;
 			}
 
 			// Return Required Fields
@@ -113,10 +117,13 @@ class Qrzru {
 				$data['ituz'] = '';
 				$data['cqz'] = '';
 			}
+		} catch (Throwable $e) {
+			log_message('error', 'QRZ.ru search for callsign: ' . $callsign . ' failed: ' . $e->getMessage());
 		} finally {
 			$data['source'] = $this->sourcename();
-			return $data;
 		}
+
+		return $data;
 	}
 
 	public function sourcename() {

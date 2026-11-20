@@ -2103,9 +2103,9 @@ class Logbook_model extends CI_Model {
 		} catch (Exception $e) {
 			$retvals['success']=false;
 			$retvals['detail']=$e;
-		} finally {
-			return($retvals);
 		}
+
+		return($retvals);
 	}
 
 	/*
@@ -6412,9 +6412,10 @@ class Logbook_model extends CI_Model {
 
 			$callbook = $this->callbook->getCallbookData($callsign);
 
-		} finally {
-			return $callbook;
+		} catch (Throwable $e) {
+			log_message("error", "Callbook loading failed: " . $e->getMessage());
 		}
+		return $callbook;
 	}
 
 	public function update_station_ids($station_id, $station_callsign, $qsoids) {
