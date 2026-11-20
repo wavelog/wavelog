@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-20 10:02+0000\n"
-"PO-Revision-Date: 2026-11-13 01:03+0000\n"
+"POT-Creation-Date: 2026-11-19 07:11+0000\n"
+"PO-Revision-Date: 2026-11-20 07:21+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -241,12 +241,12 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/User.php:1918 application/controllers/User.php:1942
 #: application/controllers/User_options.php:8
 #: application/controllers/Usermode.php:14
-#: application/controllers/Version_Dialog.php:15
 #: application/controllers/Wabtool.php:30
 #: application/controllers/Webadif.php:10
 #: application/controllers/Webadif.php:103
 #: application/controllers/Zonechecker.php:16
 #: application/models/Club_model.php:84
+#: application/controllers/Version_Dialog.php:15
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -4161,11 +4161,11 @@ msgstr "Uppdateringen av POTA-gränser misslyckades. Resultat: "
 
 #: application/controllers/Update.php:633
 msgid "WWFF boundaries update complete. Result: "
-msgstr ""
+msgstr "Uppdateringen av WWFF-gränserna är klar. Resultat: "
 
 #: application/controllers/Update.php:635
 msgid "WWFF boundaries update failed. Result: "
-msgstr ""
+msgstr "Uppdateringen av WWFF-gränserna misslyckades. Resultat: "
 
 #: application/controllers/Update.php:655
 msgid "TLE Update complete. Result: "
@@ -5070,11 +5070,11 @@ msgstr ""
 
 #: application/models/Api_v2_model.php:112
 msgid "Log and Station Upload"
-msgstr ""
+msgstr "Uppladdning av logg och station"
 
 #: application/models/Api_v2_model.php:113
 msgid "Upload QSOs and manage station locations and logbooks."
-msgstr ""
+msgstr "Ladda upp QSOs och hantera stationsplatser och loggböcker."
 
 #: application/models/Api_v2_model.php:119
 msgid "Read-only"
@@ -5514,7 +5514,7 @@ msgstr "POTA-referens redan i loggen"
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
-#: application/models/Logbook_model.php:6734
+#: application/models/Logbook_model.php:6733
 #: application/views/activated_gridmap/index.php:109
 #: application/views/activationplanner/index.php:9
 #: application/views/awards/ffma/index.php:42
@@ -5528,6 +5528,7 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:333 application/views/user/edit.php:356
 #: application/views/user/edit.php:379 application/views/user/edit.php:404
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6734
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -15869,7 +15870,7 @@ msgstr "POTA parkgränser (GeoJSON)"
 
 #: application/views/debug/index.php:773
 msgid "WWFF reference boundaries"
-msgstr ""
+msgstr "WWFF-referensgränser"
 
 #: application/views/debug/index.php:779
 msgid "SCP file download"
@@ -16605,7 +16606,7 @@ msgstr "LoTW-användare. Dagar sedan senaste uppladdning: "
 
 #: application/views/hamsat/index.php:22
 msgid "Most wanted grid score according to gridmaster.fr"
-msgstr ""
+msgstr "Mest eftertraktade lokatorruta enligt gridmaster.fr"
 
 #: application/views/hamsat/index.php:33
 #, php-format
