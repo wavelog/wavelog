@@ -40,7 +40,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-19 07:11+0000\n"
-"PO-Revision-Date: 2026-11-20 07:21+0000\n"
+"PO-Revision-Date: 2026-11-20 10:02+0000\n"
 "Last-Translator: Yuanhang Liu <1258306366@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -931,7 +931,7 @@ msgstr "WPX"
 #: application/views/awards/pl_polska/index.php:41
 #: application/views/interface_assets/header.php:295
 msgid "\"Polska\" Award"
-msgstr "“波兰”奖项"
+msgstr "“波兰” 奖"
 
 #: application/controllers/Awards.php:3257
 msgid "Awards - AMSAT Rover"
@@ -2847,13 +2847,13 @@ msgstr "快速查找"
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:1114 application/views/visitor/index.php:326
 msgid "Logbook of the World"
-msgstr "Logbook of the World (LoTW)"
+msgstr "Logbook of The World (LoTW)"
 
 #: application/controllers/Lotw.php:128
 msgid ""
 "The uploaded file is invalid. Please upload a Logbook of the World .p12 "
 "certificate file."
-msgstr "上传的文件无效。请上传 Logbook of the World（LoTW）的 .p12 证书文件。"
+msgstr "上传的文件无效。请上传 Logbook of The World（LoTW）的 .p12 证书文件。"
 
 #: application/controllers/Lotw.php:134
 msgid "The uploaded file could not be read."
@@ -3777,7 +3777,7 @@ msgstr "请检查网格定位的值 ( %s )"
 #: application/views/interface_assets/header.php:701
 #: application/views/most_wanted_squares/index.php:9
 msgid "Station Setup"
-msgstr "设置台站"
+msgstr "台站设置"
 
 #: application/controllers/Stationsetup.php:75
 #: application/controllers/Stationsetup.php:93
@@ -3811,7 +3811,7 @@ msgstr "错误"
 #: application/controllers/Stationsetup.php:184
 #: application/views/stationsetup/stationsetup.php:34
 msgid "Create Station Logbook"
-msgstr "新建台站日志"
+msgstr "新建台站日志簿"
 
 #: application/controllers/Stationsetup.php:191
 msgid "Edit container name"
@@ -3819,11 +3819,11 @@ msgstr "编辑容器名"
 
 #: application/controllers/Stationsetup.php:206
 msgid "Edit linked locations"
-msgstr "编辑绑定的地址"
+msgstr "编辑绑定的位置"
 
 #: application/controllers/Stationsetup.php:215
 msgid "Edit visitor site"
-msgstr "编辑访客地址"
+msgstr "编辑访客站点地址"
 
 #: application/controllers/Stationsetup.php:237
 msgid "Error. Link is already in use!"
@@ -3849,7 +3849,7 @@ msgstr "已禁用"
 #: application/controllers/Stationsetup.php:286
 #: application/views/stationsetup/stationsetup.php:58
 msgid "Set as Active Logbook"
-msgstr "设置为正在使用的日志"
+msgstr "设为当前日志簿"
 
 #: application/controllers/Stationsetup.php:288
 #: application/views/interface_assets/header.php:699
@@ -4333,12 +4333,11 @@ msgstr "台站网格坐标"
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
-msgstr ""
-"电台站创建成功！欢迎来到 Wavelog ！为了完成电台站设置，请 %s点击这里%s 。"
+msgstr "台站创建成功！欢迎来到 Wavelog ！为了完成台站设置，请 %s点击这里%s 。"
 
 #: application/controllers/User.php:1576
 msgid "Station setup failed! Please set up your station manually."
-msgstr "电台站设置失败！请手动设置你的电台站。"
+msgstr "台站设置失败！请手动设置你的台站。"
 
 #: application/controllers/User.php:1593
 msgid "Password Reset is disabled on the Demo!"
@@ -6740,7 +6739,7 @@ msgid ""
 "regardless if they match to the chosen station-location."
 msgstr ""
 "如果勾选，Wavelog 将尝试从 ADIF 中导入 %s所有%s QSO，而不检查它们是否与所选的"
-"电台地址相匹配。"
+"台站位置相匹配。"
 
 #: application/views/adif/import.php:173
 msgid "Ignore grid check on import"
@@ -10166,7 +10165,7 @@ msgstr "省份"
 
 #: application/views/awards/wap/index.php:24
 msgid "VRZA WAP Award"
-msgstr "荷兰业余无线电协会通联各省奖状"
+msgstr "荷兰业余无线电协会通联各省奖"
 
 #: application/views/awards/wap/index.php:25
 msgid ""
@@ -10192,8 +10191,8 @@ msgid ""
 "country, promoting both national connectivity and operational skill."
 msgstr ""
 "VRZA（荷兰业余无线电爱好者协会）给确认了荷兰所有十二个省的通联的爱好者颁发通"
-"联各省（WAP）奖状。这个奖状鼓励操作员与荷兰各地的电台通联，并促进全国连通和运"
-"营技能。"
+"联各省（WAP）奖。这个奖项鼓励操作员与荷兰各地的电台通联，既促进了全国范围内的"
+"通联，也提升了操作技能。"
 
 #: application/views/awards/wap/index.php:27
 #, php-format
@@ -10350,8 +10349,8 @@ msgid ""
 "radio operators to leave their shacks and operate portable in Protected "
 "Flora & Fauna areas (PFF) worldwide."
 msgstr ""
-"WWFF，即“业余无线电世界动植物群”，鼓励获得许可的业余无线电操作员离开棚屋，在"
-"全球动植物保护区 (PFF) 进行便携式操作。"
+"WWFF，即“业余无线电中的世界动植物”，鼓励持证业余无线电操作员离开棚屋，在全球"
+"的动植物保护区 (PFF) 进行便携式操作。"
 
 #: application/views/awards/wwff/index.php:22
 msgid ""
@@ -10359,7 +10358,7 @@ msgid ""
 "registered in the WWFF Directory. Hunters and Activators can apply for "
 "colorful awards, both globally and nationally."
 msgstr ""
-"全球已有超过 26,000 个动植物保护区 (PFF) 已在 WWFF 名录中注册 猎人和激活者可"
+"全球已有超过 26,000 个动植物保护区（PFF）已在 WWFF 名录中注册。猎人和激活者可"
 "以申请全球和国内的丰富多彩的奖项。"
 
 #: application/views/awards/wwff/index.php:24
@@ -14289,7 +14288,7 @@ msgstr "已（被）请求"
 #: application/views/dashboard/index.php:574
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
-msgstr "Logbook of the World (LoTW)"
+msgstr "Logbook of The World (LoTW)"
 
 #: application/views/dashboard/solar_data.php:6
 msgid "Solar Data & Propagation"
@@ -16167,7 +16166,7 @@ msgstr "LoTW 用户。距上次上传已经过天数： "
 
 #: application/views/hamsat/index.php:22
 msgid "Most wanted grid score according to gridmaster.fr"
-msgstr "根据 gridmaster.fr 的最想要网格评分"
+msgstr "根据 gridmaster.fr 的最稀缺网格评分"
 
 #: application/views/hamsat/index.php:33
 #, php-format
@@ -16673,7 +16672,7 @@ msgstr "目前已禁用 CAT 连接。请启用 CAT 连接，以连接你的电�
 msgid ""
 "To connect your radio to Wavelog, visit the Wavelog Wiki for setup "
 "instructions."
-msgstr "要将你的电台连接到 Wavelog，请访问 Wavelog 维基获取设置说明。"
+msgstr "要将你的电台连接到 Wavelog，请访问 Wavelog Wiki 获取设置说明。"
 
 #: application/views/interface_assets/footer.php:231
 #: application/views/interface_assets/header.php:631
@@ -16939,11 +16938,11 @@ msgstr "ITU"
 
 #: application/views/interface_assets/header.php:216
 msgid "Worked All Europe (WAE)"
-msgstr "全欧通信竞赛（WAE）"
+msgstr "全欧洲DX竞赛（WAE）"
 
 #: application/views/interface_assets/header.php:220
 msgid "Worked All Prefixes (WPX)"
-msgstr "Worked All Prefixes (WPX)"
+msgstr "全前缀奖（WPX）"
 
 #: application/views/interface_assets/header.php:222
 msgid "World Wide Flora Fauna (WWFF)"
@@ -22217,7 +22216,7 @@ msgstr "基地台 QTH"
 #: application/views/station_profile/edit.php:74
 #, php-format
 msgid "Shortname for the station location. For example: %s"
-msgstr "台站的地址简写，例如：%s"
+msgstr "台站位置简写，例如：%s"
 
 #: application/views/station_profile/create.php:62
 #: application/views/station_profile/edit.php:79
@@ -22287,7 +22286,7 @@ msgstr "如果你不清楚自己的 ITU 分区，%s 查看！"
 #: application/views/station_profile/edit.php:187
 #: application/views/station_profile/edit.php:190
 msgid "Station Gridsquare"
-msgstr "台站网格地址"
+msgstr "台站网格位置"
 
 #: application/views/station_profile/create.php:172
 #: application/views/station_profile/edit.php:194
@@ -22397,7 +22396,7 @@ msgstr "电台兴趣组标识（如：DA/NW-357）。"
 #: application/views/user/edit.php:1142
 #, php-format
 msgid "Trouble? Check the %swiki%s."
-msgstr "遇到麻烦了？请参考%s维基%s。"
+msgstr "遇到麻烦了？请参考%sWiki%s。"
 
 #: application/views/station_profile/create.php:280
 #: application/views/station_profile/edit.php:302
@@ -22595,7 +22594,7 @@ msgstr "CQ 分区覆盖"
 #: application/views/stationsetup/exportmapoptions.php:15
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
-msgstr "网格地址覆盖"
+msgstr "网格位置覆盖"
 
 #: application/views/stationsetup/exportmapoptions.php:19
 msgctxt "Map Options"
@@ -22616,7 +22615,7 @@ msgstr "选择可用台站位置"
 
 #: application/views/stationsetup/linkedlocations.php:25
 msgid "Link Location"
-msgstr "链接的台站位置"
+msgstr "链接台站位置"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:155
@@ -22625,7 +22624,7 @@ msgstr "名称"
 
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
-msgstr "取消链接的台站位置"
+msgstr "解除链接台站位置"
 
 #: application/views/stationsetup/locationlist.php:3
 msgid "Limited to station locations linked to active logbook"
@@ -22700,11 +22699,11 @@ msgstr "编辑容器名"
 #: application/views/stationsetup/stationsetup.php:7
 #: application/views/stationsetup/stationsetup.php:45
 msgid "Edit Linked Locations"
-msgstr "编辑绑定的地址"
+msgstr "编辑绑定的位置"
 
 #: application/views/stationsetup/stationsetup.php:9
 msgid "Create a New Station Logbook"
-msgstr "新建台站日志"
+msgstr "新建一个台站日志簿"
 
 #: application/views/stationsetup/stationsetup.php:10
 msgid "Create a New Station Location"
@@ -22733,7 +22732,7 @@ msgstr "台站位置"
 msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
-msgstr "台站位置为电台使用位置，如你的，朋友的或移动台的位置。"
+msgstr "台站位置为电台使用位置，如你的，朋友的或移动台的 QTH。"
 
 #: application/views/stationsetup/stationsetup.php:127
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
@@ -22757,7 +22756,7 @@ msgstr "创建一个台站位置"
 
 #: application/views/stationsetup/stationsetup.php:132
 msgid "Show only locations from the active logbook"
-msgstr "仅显示当前日志中的位置"
+msgstr "仅显示当前日志簿中的位置"
 
 #: application/views/stationsetup/stationsetup.php:133
 msgid "Show all locations"
@@ -22795,11 +22794,11 @@ msgstr "已绑定"
 
 #: application/views/stationsetup/stationsetup.php:168
 msgid "Favorite"
-msgstr "喜爱的"
+msgstr "收藏"
 
 #: application/views/stationsetup/stationsetup.php:215
 msgid "mark/unmark as favorite"
-msgstr "标记/取消 为喜爱的"
+msgstr "标记/取消 收藏"
 
 #: application/views/stationsetup/visitor.php:1
 msgid ""
@@ -23024,7 +23023,7 @@ msgstr "添加主题"
 msgid ""
 "This defines wherever the theme is a light or a dark one. On this basis the "
 "Logo is chosen."
-msgstr "此选项定义主题是浅色或者深色，并在此基础上选择 Logo。"
+msgstr "此选项定义主题是浅色或者深色，并据此选择 Logo。"
 
 #: application/views/themes/edit.php:36
 msgid "Update theme"
@@ -23512,8 +23511,8 @@ msgid ""
 "Show the Station Locations Quickswitch in the main menu. You can add "
 "locations by adding them to favourites at the station setup page."
 msgstr ""
-"在主菜单中显示台址快速切换功能。你可以在设置台站页面将台址设置为“喜爱的”来增"
-"加可快速切换的台址。"
+"在主菜单中显示台站位置快速切换功能。你可以在台站设置页面将台站位置添加到收藏"
+"夹。"
 
 #: application/views/user/edit.php:622
 msgid "UTC Time in Menu"
@@ -23852,8 +23851,8 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
-"如果你配置了多个 CAT 无线电，则此设置控制小部件是否应显示用户的所有电台，还是"
-"仅显示最近更新的电台。如果你只有一个电台，则此设置无效。"
+"如果你配置了多个 CAT 电台，则此设置控制小部件是否应显示用户的所有电台，还是仅"
+"显示最近更新的电台。如果你只有一个电台，则此设置无效。"
 
 #: application/views/user/edit.php:1274
 msgid "QSOs widget"
@@ -24762,7 +24761,7 @@ msgstr "在 QRZ.com 上查找%s"
 #: src/QSLManager/QSO.php:899
 #, php-format
 msgid "Lookup %s on HamQTH"
-msgstr "在 HamQTH上查找%s"
+msgstr "在 HamQTH 上查找%s"
 
 #: src/QSLManager/QSO.php:900
 msgid "Clublog Log Search"
