@@ -163,6 +163,7 @@
     }
     $current_opts = json_decode($options);
     echo "var user_options = $options;";
+    echo "\nvar lba_column_order = " . ($column_order ?? '[]') . ";";
     if (!isset($current_opts->qslmsgs)) {
         echo "\nvar o_template = { qslmsgs: {show: 'false'}};";
         echo "\nuser_options={...user_options, ...o_template};";
