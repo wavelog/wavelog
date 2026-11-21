@@ -38,6 +38,9 @@ class Logbookadvanced extends CI_Controller {
 			$data['options'] = $userOptions[0]->option_value;
 		}
 
+		$columnOrder = $this->user_options_model->get_options('LogbookAdvanced', array('option_name' => 'column_order', 'option_key' => 'order'))->row();
+		$data['column_order'] = ($columnOrder && $this->isColumnOrderJson($columnOrder->option_value)) ? $columnOrder->option_value : '[]';
+
 		$mapoptions['gridsquare_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'gridsquare_layer','option_key'=>'boolean'))->row();
 		$mapoptions['path_lines'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'path_lines','option_key'=>'boolean'))->row();
 		$mapoptions['cqzones_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'cqzones_layer','option_key'=>'boolean'))->row();
@@ -685,6 +688,42 @@ class Logbookadvanced extends CI_Controller {
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'cqzones_layer',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('cqzone_layer')))));
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'ituzones_layer',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('ituzone_layer')))));
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'nightshadow_layer',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('nightshadow_layer')))));
+	}
+
+	/**
+	 * Save the column order of the advanced logbook table for the logged-in user.
+	 *
+	 * @return void Outputs {"success": true|false} as JSON
+	 */
+	public function saveColumnOrder() {
+		$raw = $this->input->post('order');
+		$success = false;
+		if (is_string($raw) && $this->isColumnOrderJson($raw)) {
+			$this->load->model('user_options_model');
+			$success = (bool) $this->user_options_model->set_option('LogbookAdvanced', 'column_order', array('order' => $raw));
+		}
+		header('Content-Type: application/json');
+		echo json_encode(array('success' => $success));
+	}
+
+	/**
+	 * Validate a column order JSON payload.
+	 *
+	 * @param string $json raw payload string
+	 * @return bool true if payload is a valid column order
+	 */
+	private function isColumnOrderJson($json) {
+		$arr = json_decode((string) $json);
+		if (!is_array($arr) || count($arr) < 1 || count($arr) > 200) {
+			return false;
+		}
+		$len = count($arr);
+		foreach ($arr as $v) {
+			if (!is_int($v) || $v < 0 || $v >= $len) {
+				return false;
+			}
+		}
+		return count(array_unique($arr, SORT_REGULAR)) === $len;
 	}
 
 	private function def_boolean($value, $default_value='false') {

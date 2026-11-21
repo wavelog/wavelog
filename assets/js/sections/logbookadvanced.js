@@ -263,15 +263,14 @@ function loadQSOTable(rows) {
 			const savedColCount = Array.isArray(state.columns) ? state.columns.length
 				: Array.isArray(state.colReorder) ? state.colReorder.length
 				: colCount;
-			if (savedColCount === colCount) continue;
 			let dirty = false;
 			if (Array.isArray(state.colReorder)) { delete state.colReorder; dirty = true; }
-			if (Array.isArray(state.order))      { delete state.order;      dirty = true; }
+			if (savedColCount !== colCount && Array.isArray(state.order)) { delete state.order; dirty = true; }
 			if (dirty) localStorage.setItem(key, JSON.stringify(state));
 		}
 
 		const table = $table.DataTable({
-			colReorder: true,
+			colReorder: Array.isArray(lba_column_order) && lba_column_order.length === colCount ? { order: lba_column_order } : true,
 			stateSave: true,
 			searching: false,
 			responsive: false,
@@ -341,6 +340,14 @@ function loadQSOTable(rows) {
 							}
 						}
                     ]
+		});
+
+		table.on('column-reorder', function () {
+			$.ajax({
+				url: base_url + 'index.php/logbookadvanced/saveColumnOrder',
+				type: 'post',
+				data: { order: JSON.stringify(table.colReorder.order()) }
+			});
 		});
 
 		// Place buttons in custom container
