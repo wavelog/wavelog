@@ -40,7 +40,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-19 07:11+0000\n"
-"PO-Revision-Date: 2026-11-20 10:02+0000\n"
+"PO-Revision-Date: 2026-11-22 14:42+0000\n"
 "Last-Translator: Yuanhang Liu <1258306366@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -1087,7 +1087,7 @@ msgstr "未选择成员。"
 
 #: application/controllers/Club.php:194 application/controllers/Club.php:263
 msgid "None of the selected users are members of this club."
-msgstr "所选用户中没有一个是该俱乐部的成员。"
+msgstr "所选用户中没有该俱乐部的成员。"
 
 #: application/controllers/Club.php:203 application/controllers/Club.php:271
 msgid ""
@@ -2882,13 +2882,13 @@ msgstr "快速查找"
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:1114 application/views/visitor/index.php:326
 msgid "Logbook of the World"
-msgstr "Logbook of The World (LoTW)"
+msgstr "Logbook of The World"
 
 #: application/controllers/Lotw.php:128
 msgid ""
 "The uploaded file is invalid. Please upload a Logbook of the World .p12 "
 "certificate file."
-msgstr "上传的文件无效。请上传 Logbook of The World（LoTW）的 .p12 证书文件。"
+msgstr "上传的文件无效。请上传 Logbook of The World 的 .p12 证书文件。"
 
 #: application/controllers/Lotw.php:134
 msgid "The uploaded file could not be read."
@@ -3888,7 +3888,7 @@ msgstr "已禁用"
 #: application/controllers/Stationsetup.php:286
 #: application/views/stationsetup/stationsetup.php:58
 msgid "Set as Active Logbook"
-msgstr "设为当前日志簿"
+msgstr "设为激活日志簿"
 
 #: application/controllers/Stationsetup.php:288
 #: application/views/interface_assets/header.php:699
@@ -6893,7 +6893,7 @@ msgstr "%s详细日志%s 中可使用更多筛选器选项，也可导出日志�
 #: application/views/adif/import.php:275
 #: application/views/search/lotw_unconfirmed.php:24
 msgid "All is limited to station locations linked to active logbook"
-msgstr "“全部”仅限绑定到已激活日志簿的台站位置"
+msgstr "“所有”选项仅限已激活日志簿绑定的台站位置"
 
 #: application/views/adif/import.php:296
 #: application/views/clublog/export.php:73 application/views/csv/index.php:104
@@ -9065,7 +9065,7 @@ msgid ""
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
 "Fred Fish 纪念奖是为了纪念 Fred Fish, W5FF (SK) 而设立，他是第一个在 6 米频段"
-"上通联并确认了美国 48 个邻近地区的所有 488 个网格的业余爱好者。"
+"上通联并确认了美国 48 个邻近地区的所有 488 个网格的业余无线电爱好者。"
 
 #: application/views/awards/ffma/index.php:13
 msgid ""
@@ -9235,9 +9235,9 @@ msgid ""
 "enhance the experience of all those active on the amateur bands. To achieve "
 "this, it draws on the widespread mystique surrounding islands."
 msgstr ""
-"IOTA 是一项令人兴奋且创新的活动，吸引了全球数千名无线电爱好者的兴趣 它成立于 "
-"1964 年，致力于促进与世界各地岛屿电台的无线电联系，以增强所有活跃在业余频段的"
-"用户的体验 为了实现这一目标，它利用了岛屿周围普遍存在的神秘感。"
+"IOTA 是一项令人兴奋且创新的活动，吸引了全球数千名无线电爱好者的兴趣。它成立"
+"于 1964 年，致力于促进与世界各地岛屿电台的无线电联系，以增强所有活跃在业余频"
+"段的用户的体验 为了实现这一目标，它利用了岛屿周围普遍存在的神秘感。"
 
 #: application/views/awards/iota/index.php:23
 msgid ""
@@ -10285,8 +10285,8 @@ msgid ""
 msgstr ""
 "荷兰南北长约 300 公里，东西宽约 200 公里。在该国的 1800 万人口中，大约有 "
 "11500 名持证业余无线电操作员。荷兰最大的无线电协会是 VERON（荷兰实验无线电研"
-"究协会）和 VRZA（荷兰业余无线电爱好者协会）。这两个组织都积极组织活动、比赛和"
-"培训，并在国内和国际上代表荷兰业余爱好者。"
+"究协会）和 VRZA（荷兰业余无线电爱好者协会）。这两个组织都积极举办活动，参加比"
+"赛和进行培训，并在国内和国际上代表荷兰业余无线电爱好者。"
 
 #: application/views/awards/wap/index.php:26
 msgid ""
@@ -14422,7 +14422,7 @@ msgstr "已（被）请求"
 #: application/views/dashboard/index.php:574
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
-msgstr "Logbook of The World (LoTW)"
+msgstr "Logbook of The World"
 
 #: application/views/dashboard/solar_data.php:6
 msgid "Solar Data & Propagation"
@@ -14722,7 +14722,7 @@ msgstr "DXCC CQ 分区"
 #: application/views/dbtools/checkresult.php:283
 #: application/views/dbtools/checkresult.php:359
 msgid "No incorrect CQ Zones were found."
-msgstr "全部 CQ 分区填写正确。"
+msgstr "所有 CQ 分区填写正确。"
 
 #: application/views/dbtools/checkresult.php:288
 msgid "ITU Zone Check Results"
@@ -14820,7 +14820,7 @@ msgstr "数据修复工具"
 
 #: application/views/dbtools/index.php:30
 msgid "All Station Locations"
-msgstr "全部电台位置"
+msgstr "所有台站位置"
 
 #: application/views/dbtools/index.php:44
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
@@ -17330,7 +17330,7 @@ msgstr "台站位置和日志簿"
 
 #: application/views/interface_assets/header.php:653
 msgid "Select a Location"
-msgstr "选择电台站位置"
+msgstr "选择台站位置"
 
 #: application/views/interface_assets/header.php:701
 msgid "You miss station-locations here? Go to stationsetup and fav them"
@@ -21997,7 +21997,7 @@ msgstr "QSO 未在 LoTW 确认"
 
 #: application/views/search/filter.php:31 application/views/search/main.php:23
 msgid "Search is limited to station locations linked to active logbook"
-msgstr "搜索范围仅限于与有效日志簿关联的站点位置"
+msgstr "搜索范围仅限于与有效日志簿关联的台站位置"
 
 #: application/views/search/filter.php:40
 msgid "Save query"
@@ -22039,7 +22039,7 @@ msgstr "LoTW 上次更新"
 
 #: application/views/search/lotw_unconfirmed_result.php:41
 msgid "No QSOs with outstanding LoTW upload were found."
-msgstr "全部 QSO 已上传至 LoTW。"
+msgstr "所有 QSO 已上传至 LoTW。"
 
 #: application/views/search/main.php:26
 msgid "Callsign / Gridsquare"
@@ -22398,7 +22398,7 @@ msgstr "QSL-信息（注意！目前在 wavelog 中不可见！）："
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
-msgstr "你可以使用注释语法来填充 Wavelog-导入支持的 ADIF 字段："
+msgstr "你可以使用注释语法，填写 Wavelog 导入支持的 ADIF 字段："
 
 #: application/views/simplefle/syntax_help.php:66
 msgid "Contest exchange"
@@ -22900,7 +22900,7 @@ msgstr "解除链接台站位置"
 
 #: application/views/stationsetup/locationlist.php:3
 msgid "Limited to station locations linked to active logbook"
-msgstr "仅限与有效日志簿关联的站点位置"
+msgstr "仅限与有效日志簿关联的台站位置"
 
 #: application/views/stationsetup/locationlist.php:11
 msgid "QSO Count"
@@ -24611,7 +24611,7 @@ msgstr "不再显示"
 #: application/views/view_log/index.php:6
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
-msgstr "显示该日志簿下全部 QSO"
+msgstr "显示该日志簿下所有 QSO"
 
 #: application/views/view_log/partial/log_ajax.php:448
 #: application/views/view_log/partial/log_ajax.php:505
@@ -24840,7 +24840,7 @@ msgstr ""
 msgid ""
 "There are currently no outstanding QSOs that need to be uploaded to the "
 "QO-100 Dx Club's API."
-msgstr "目前全部 QSO 已上传至 QO-100 Dx Club。"
+msgstr "目前所有 QSO 已上传至 QO-100 Dx Club。"
 
 #: application/views/webadif/export.php:64
 msgid "Go ahead and turn on your QO-100 station!"
