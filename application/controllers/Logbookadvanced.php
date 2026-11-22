@@ -532,6 +532,7 @@ class Logbookadvanced extends CI_Controller {
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
 		$data['orbit'] = $qso['orbit'] ?? null;
+		$data['sat'] = $this->satpos_for($qso);
 		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
 		$data['dxccFlag'] = $this->dxccflag->get($qso['COL_DXCC']);
 		$data['id'] = $qso['COL_PRIMARY_KEY'];
@@ -598,11 +599,42 @@ class Logbookadvanced extends CI_Controller {
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
 		$data['orbit'] = $qso['orbit'] ?? null;
+		$data['sat'] = $this->satpos_for($qso);
 		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
 		$data['dxccFlag'] = $this->dxccflag->get($qso['COL_DXCC']);
 		$data['id'] = $qso['COL_PRIMARY_KEY'];
 
 		return $data;
+	}
+
+	/**
+	 * Determine the sub-satellite point for a SAT QSO.
+	 *
+	 * Returns null for non-SAT QSOs, unknown satellites or when the stored
+	 * TLE is too far from the QSO time to give a reliable position.
+	 *
+	 * @param array $qso QSO row with COL_SAT_NAME and COL_TIME_ON
+	 *
+	 * @return array|null Sub-satellite data (lat, lng, alt, footprint) or null
+	 */
+	private function satpos_for($qso) {
+		if (empty($qso['COL_SAT_NAME'])) {
+			return null;
+		}
+		static $tles = null;
+		if ($tles === null) {
+			$this->load->model('satellite_model');
+			$tles = [];
+			foreach ($this->satellite_model->get_all_satellites_with_tle() as $sat_tle) {
+				$tles[$sat_tle->satname] = $sat_tle;
+				$tles[$sat_tle->displayname] = $sat_tle;
+			}
+		}
+		if (!isset($tles[$qso['COL_SAT_NAME']])) {
+			return null;
+		}
+		$this->load->library('satpredict');
+		return $this->satpredict->subsat_point($tles[$qso['COL_SAT_NAME']], $qso['COL_TIME_ON']);
 	}
 
 	public function userOptions() {
