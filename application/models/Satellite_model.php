@@ -29,7 +29,7 @@ class Satellite_model extends CI_Model {
 	}
 
 	function get_all_satellites_with_tle() {
-		$sql = "select satellite.id, satellite.name as satname, satellite.displayname as displayname, tle.tle
+		$sql = "select satellite.id, satellite.name as satname, satellite.displayname as displayname, satellite.orbit, tle.tle
 		from satellite
 		join tle on satellite.id = tle.satelliteid
 		where tle is not NULL
