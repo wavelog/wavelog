@@ -2074,6 +2074,12 @@ class Logbook_model extends CI_Model {
 			'COL_REGION' => $region ?? '',
 		);
 
+		// Moved to another station location: take its details, as an import onto it would.
+		if ((string) $stationId !== (string) $qso->station_id) {
+			$their = $data['COL_GRIDSQUARE'] !== '' ? $data['COL_GRIDSQUARE'] : $data['COL_VUCC_GRIDS'];
+			$data = array_merge($data, $this->station_move_fields($this->station_row($stationId), $their, $data['COL_ANT_PATH']));
+		}
+
 		if ($this->exists_hrdlog_credentials($data['station_id']) && !$qrz_modified) {
 			$data['COL_HRDLOG_QSO_UPLOAD_STATUS'] = 'M';
 		}
