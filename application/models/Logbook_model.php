@@ -3039,6 +3039,83 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
+	 * A station location with its DXCC entity name as station_country, cached
+	 * per request (the ADIF import asks for the same station once per QSO).
+	 *
+	 * @param int $station_id station_profile id
+	 * @return array|null The station_profile row, or null if there is none.
+	 */
+	public function station_row($station_id) {
+		if (!(array_key_exists($station_id, $this->station_result))) {
+			$this->db->select('station_profile.*, dxcc_entities.name as station_country');
+			$this->db->where('station_id', $station_id);
+			$this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
+			$this->station_result[$station_id] = $this->db->get('station_profile');
+		}
+		if ($this->station_result[$station_id]->num_rows() == 0) {
+			return null;
+		}
+		return $this->station_result[$station_id]->row_array();
+	}
+
+	/**
+	 * The QSO columns a station location sets (my grid or VUCC grids, city,
+	 * references, DXCC, country, county, zones, station callsign), the same for
+	 * an imported QSO and one moved to the station.
+	 *
+	 * @param array $row A station_row() result.
+	 * @return array COL_* => value
+	 */
+	public function station_qso_fields($row) {
+		$data = [];
+		if (strpos(trim($row['station_gridsquare']), ',') !== false) {
+			$data['COL_MY_VUCC_GRIDS'] = strtoupper(trim($row['station_gridsquare']));
+		} else {
+			$data['COL_MY_GRIDSQUARE'] = strtoupper(trim($row['station_gridsquare']));
+		}
+
+		$data['COL_MY_CITY'] = trim($row['station_city']);
+		$data['COL_MY_IOTA'] = strtoupper(trim($row['station_iota'] ?? ''));
+		$data['COL_MY_SOTA_REF'] = strtoupper(trim($row['station_sota'] ?? ''));
+		$data['COL_MY_WWFF_REF'] = strtoupper(trim($row['station_wwff'] ?? ''));
+		$data['COL_MY_POTA_REF'] = strtoupper(trim($row['station_pota'] ?? ''));
+		$data['COL_MY_SIG'] = strtoupper(trim($row['station_sig'] ?? ''));
+		$data['COL_MY_SIG_INFO'] = strtoupper(trim($row['station_sig_info'] ?? ''));
+
+		$data['COL_STATION_CALLSIGN'] = strtoupper(trim($row['station_callsign'] ?? ''));
+		$data['COL_MY_DXCC'] = strtoupper(trim($row['station_dxcc'] ?? ''));
+		$data['COL_MY_COUNTRY'] = strtoupper(trim($row['station_country'] ?? ''));
+		$data['COL_MY_CNTY'] = strtoupper(trim($row['station_cnty'] ?? ''));
+		$data['COL_MY_CQ_ZONE'] = strtoupper(trim($row['station_cq'] ?? ''));
+		$data['COL_MY_ITU_ZONE'] = strtoupper(trim($row['station_itu'] ?? ''));
+		return $data;
+	}
+
+	/**
+	 * The columns a QSO moved to another station location gets: the location's
+	 * station_qso_fields(), the other of my grid / my VUCC grids cleared, and the
+	 * distance measured from the new grid when the other station's grid is known.
+	 *
+	 * @param array       $station  station_row() of the new location.
+	 * @param string|null $their    The other station's gridsquare or VUCC grids.
+	 * @param string|null $ant_path ADIF ANT_PATH of the QSO.
+	 * @return array COL_* => value
+	 */
+	public function station_move_fields($station, $their, $ant_path = null) {
+		$fields = $this->station_qso_fields($station);
+		if (array_key_exists('COL_MY_VUCC_GRIDS', $fields)) {
+			$fields['COL_MY_GRIDSQUARE'] = '';
+		} else {
+			$fields['COL_MY_VUCC_GRIDS'] = '';
+		}
+		if (trim((string) $their) !== '') {
+			$this->load->is_loaded('Qra') ?: $this->load->library('Qra');
+			$fields['COL_DISTANCE'] = $this->qra->distance(strtoupper(trim($station['station_gridsquare'])), $their, 'K', $ant_path);
+		}
+		return $fields;
+	}
+
+	/**
 	 * Set Club Log upload status to 'modified'.
 	 *
 	 * Club Log reacts to the exported confirmation fields and dates, not to
@@ -6076,38 +6153,10 @@ class Logbook_model extends CI_Model {
 
 			// Collect field information from the station profile table thats required for the QSO.
 			if ($station_id != "0") {
-				if (!(array_key_exists($station_id, $this->station_result))) {
-					$this->db->select('station_profile.*, dxcc_entities.name as station_country');
-					$this->db->where('station_id', $station_id);
-					$this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
-					$this->station_result[$station_id] = $this->db->get('station_profile');
-				}
-
-				if ($this->station_result[$station_id]->num_rows() > 0) {
+				$row = $this->station_row($station_id);
+				if ($row !== null) {
 					$data['station_id'] = $station_id;
-
-					$row = $this->station_result[$station_id]->row_array();
-
-					if (strpos(trim($row['station_gridsquare']), ',') !== false) {
-						$data['COL_MY_VUCC_GRIDS'] = strtoupper(trim($row['station_gridsquare']));
-					} else {
-						$data['COL_MY_GRIDSQUARE'] = strtoupper(trim($row['station_gridsquare']));
-					}
-
-					$data['COL_MY_CITY'] = trim($row['station_city']);
-					$data['COL_MY_IOTA'] = strtoupper(trim($row['station_iota'] ?? ''));
-					$data['COL_MY_SOTA_REF'] = strtoupper(trim($row['station_sota'] ?? ''));
-					$data['COL_MY_WWFF_REF'] = strtoupper(trim($row['station_wwff'] ?? ''));
-					$data['COL_MY_POTA_REF'] = strtoupper(trim($row['station_pota'] ?? ''));
-					$data['COL_MY_SIG'] = strtoupper(trim($row['station_sig'] ?? ''));
-					$data['COL_MY_SIG_INFO'] = strtoupper(trim($row['station_sig_info'] ?? ''));
-
-					$data['COL_STATION_CALLSIGN'] = strtoupper(trim($row['station_callsign'] ?? ''));
-					$data['COL_MY_DXCC'] = strtoupper(trim($row['station_dxcc'] ?? ''));
-					$data['COL_MY_COUNTRY'] = strtoupper(trim($row['station_country'] ?? ''));
-					$data['COL_MY_CNTY'] = strtoupper(trim($row['station_cnty'] ?? ''));
-					$data['COL_MY_CQ_ZONE'] = strtoupper(trim($row['station_cq'] ?? ''));
-					$data['COL_MY_ITU_ZONE'] = strtoupper(trim($row['station_itu'] ?? ''));
+					$data = array_merge($data, $this->station_qso_fields($row));
 				}
 			}
 

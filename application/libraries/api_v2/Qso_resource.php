@@ -675,9 +675,9 @@ class Qso_resource extends Api_v2_resource {
 			if (!$this->CI->stations->check_station_against_user($station_profile_id, $this->user_id())) {
 				throw new Api_v2_exception('forbidden', 'station_profile_id does not belong to the API token owner', 403);
 			}
-			$profile = $this->CI->stations->profile_clean($station_profile_id);
+			$station = $this->CI->logbook_model->station_row($station_profile_id);
 			$data['station_id'] = $station_profile_id;
-			$data['COL_STATION_CALLSIGN'] = trim($profile->station_callsign);
+			$data = array_merge($data, $this->station_move_fields($id, $station, $data));
 		}
 
 		if (empty($data)) {
@@ -689,6 +689,25 @@ class Qso_resource extends Api_v2_resource {
 		// Respond with the fresh state of the QSO.
 		$query = $this->CI->logbook_model->get_qso($id, true);
 		$this->CI->api_v2_response->respond($this->format_qso($query->row()));
+	}
+
+	/**
+	 * Columns a move to another station location changes, see
+	 * Logbook_model::station_move_fields(). The distance goes to a gridsquare
+	 * sent in the same PATCH, else the stored gridsquare or VUCC grids.
+	 *
+	 * @param int   $id      QSO primary key.
+	 * @param array $station Logbook_model::station_row() of the new station.
+	 * @param array $data    The update built so far.
+	 * @return array COL_* => value
+	 */
+	protected function station_move_fields($id, $station, $data) {
+		$row = $this->CI->logbook_model->get_qso($id, true)->row();
+		$their = $data['COL_GRIDSQUARE'] ?? $row->COL_GRIDSQUARE ?? '';
+		if (trim((string) $their) === '') {
+			$their = $row->COL_VUCC_GRIDS ?? '';
+		}
+		return $this->CI->logbook_model->station_move_fields($station, $their, $row->COL_ANT_PATH ?? null);
 	}
 
 	/**
