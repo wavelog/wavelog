@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-21 09:11+0000\n"
-"PO-Revision-Date: 2026-11-24 04:26+0000\n"
+"PO-Revision-Date: 2026-11-25 05:47+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -27,7 +27,7 @@ msgstr ""
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
-msgstr "航空機の散乱"
+msgstr "航空機散乱"
 
 #: application/config/adif_propmodes.php:8
 msgctxt "Propagation Mode"
@@ -52,7 +52,7 @@ msgstr "エコーリンク"
 #: application/config/adif_propmodes.php:12
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
-msgstr "地球-月-地球"
+msgstr "EME（月面反射）"
 
 #: application/config/adif_propmodes.php:13
 msgctxt "Propagation Mode"
@@ -62,7 +62,7 @@ msgstr "Eスポ"
 #: application/config/adif_propmodes.php:14
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
-msgstr "磁場に沿った不規則性"
+msgstr "FAI（沿磁力線イレギュラリティ）"
 
 #: application/config/adif_propmodes.php:15
 msgctxt "Propagation Mode"
@@ -77,7 +77,7 @@ msgstr "地表波"
 #: application/config/adif_propmodes.php:17
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
-msgstr "インターネット支援"
+msgstr "インターネット支援通信"
 
 #: application/config/adif_propmodes.php:18
 msgctxt "Propagation Mode"
@@ -4619,7 +4619,7 @@ msgstr "CBR ファイルが壊れています - QSO データが見つかりま�
 
 #: application/libraries/Cbr_parser.php:154
 msgid "Broken CBR file - incomplete header found."
-msgstr "壊れた CBR ファイル - 不完全なヘッダーが見つかりました。"
+msgstr "破損した CBR ファイル - 不完全なヘッダーが見つかりました。"
 
 #: application/libraries/Satpredict.php:95
 #: application/libraries/Satpredict.php:146
@@ -18759,7 +18759,7 @@ msgstr "キュー"
 #: application/views/view_log/partial/log_ajax.php:283
 #: src/QSLManager/QSO.php:449 src/QSLManager/QSO.php:492
 msgid "Direct"
-msgstr "直接"
+msgstr "ダイレクト"
 
 #: application/views/logbookadvanced/edit.php:222
 #: application/views/logbookadvanced/index.php:619
@@ -19575,11 +19575,11 @@ msgstr "列 ネット"
 
 #: application/views/logbookadvanced/index.php:839
 msgid "Sent (Bureau)"
-msgstr "送信（無線局）"
+msgstr "送信（ビューロー）"
 
 #: application/views/logbookadvanced/index.php:840
 msgid "Sent (Direct)"
-msgstr "送信（直接）"
+msgstr "送信（ダイレクト）"
 
 #: application/views/logbookadvanced/index.php:841
 msgid "Sent (Electronic)"
@@ -19599,11 +19599,11 @@ msgstr "未受信"
 
 #: application/views/logbookadvanced/index.php:847
 msgid "Received (Bureau)"
-msgstr "受領（無線局）"
+msgstr "受領（ビューロー）"
 
 #: application/views/logbookadvanced/index.php:848
 msgid "Received (Direct)"
-msgstr "受信（直接）"
+msgstr "受信（ダイレクト）"
 
 #: application/views/logbookadvanced/index.php:849
 msgid "Received (Electronic)"
@@ -20901,7 +20901,7 @@ msgstr ""
 #: application/views/oqrs/request.php:55
 #: application/views/oqrs/request_grouped.php:59
 msgid "Direct (write address in message below)"
-msgstr "直接（以下のメッセージに住所を記入してください）"
+msgstr "ダイレクト（以下のメッセージに住所を記入してください）"
 
 #: application/views/oqrs/request.php:72
 #: application/views/oqrs/request_grouped.php:76
@@ -22365,7 +22365,7 @@ msgstr "QSL送信をマーク（ビューロー）"
 #: application/views/search/search_result_ajax.php:464
 #: application/views/view_log/partial/log_ajax.php:616
 msgid "Mark QSL Sent (Direct)"
-msgstr "QSL 送信済み（直接）をマーク"
+msgstr "QSL 送信済み（ダイレクト）をマーク"
 
 #: application/views/search/search_result_ajax.php:471
 #: application/views/view_log/partial/log_ajax.php:626
@@ -22377,7 +22377,7 @@ msgstr "QSL受信をマーク（ビューロー）"
 #: application/views/view_log/partial/log_ajax.php:627
 #: application/views/view_log/qso.php:777
 msgid "Mark QSL Received (Direct)"
-msgstr "QSL 受信をマーク（直接）"
+msgstr "QSL 受信をマーク（ダイレクト）"
 
 #: application/views/search/search_result_ajax.php:473
 #: application/views/view_log/partial/log_ajax.php:617
@@ -22389,7 +22389,7 @@ msgstr "QSLカードの申請をマーク（ビューロー）"
 #: application/views/view_log/partial/log_ajax.php:618
 #: application/views/view_log/qso.php:787
 msgid "Mark QSL Card Requested (Direct)"
-msgstr "QSLカードのリクエストをマーク（直接）"
+msgstr "QSLカードのリクエストをマーク（ダイレクト）"
 
 #: application/views/search/search_result_ajax.php:475
 #: application/views/view_log/partial/log_ajax.php:619
@@ -24334,12 +24334,13 @@ msgstr ""
 
 #: application/views/user/edit.php:992
 msgid "Automatic OQRS matching for direct requests"
-msgstr "直接リクエストの自動OQRSマッチング"
+msgstr "ダイレクトリクエストの自動OQRSマッチング"
 
 #: application/views/user/edit.php:993
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
-"これがオンの場合、直接リクエストに対する自動 OQRS マッチングが行われます。"
+"これがオンの場合、ダイレクトリクエストに対する自動 OQRS マッチングが行われま"
+"す。"
 
 #: application/views/user/edit.php:998
 msgid "QSL delivery methods offered via OQRS"
@@ -24347,7 +24348,7 @@ msgstr "OQRS経由で提供されるQSLカード送付方法"
 
 #: application/views/user/edit.php:1000
 msgid "Bureau and Direct"
-msgstr "無線局と直轄"
+msgstr "ビューローとダイレクト"
 
 #: application/views/user/edit.php:1001
 msgid "Bureau only"
@@ -24355,7 +24356,7 @@ msgstr "事務局のみ"
 
 #: application/views/user/edit.php:1002
 msgid "Direct only"
-msgstr "直接販売のみ"
+msgstr "ダイレクトのみ"
 
 #: application/views/user/edit.php:1004
 msgid ""
@@ -25067,7 +25068,7 @@ msgstr "QSLカードは事務局から送られました"
 
 #: application/views/view_log/qso.php:450
 msgid "QSL Card has been sent via direct"
-msgstr "QSLカードは直接送信されました"
+msgstr "QSLカードはダイレクトで送付されました"
 
 #: application/views/view_log/qso.php:452
 msgid "QSL Card has been sent electronically"
@@ -25087,7 +25088,7 @@ msgstr "QSLカードは事務局経由で受領されました"
 
 #: application/views/view_log/qso.php:467
 msgid "QSL Card has been received via direct"
-msgstr "QSLカードは直接受け取りました"
+msgstr "QSLカードはダイレクトで受け取られました"
 
 #: application/views/view_log/qso.php:469
 msgid "QSL Card has been received electronically"
