@@ -15,8 +15,10 @@
 				<option value="date"><?= __("Date"); ?></option>
 				<option value="distance"><?= __("Distance"); ?></option>
 				<option value="mode"><?= __("Mode"); ?></option>
+				<option value="name"><?= __("Name"); ?></option>
 				<?php if (clubaccess_check(9)) { ?><option value="operator"><?= __("Operator"); ?></option><?php } ?>
 				<option value="propagation"><?= __("Propagation"); ?></option>
+				<option value="qth"><?= __("QTH"); ?></option>
 				<option value="rstr"><?= __("RST (R)"); ?></option>
 				<option value="rsts"><?= __("RST (S)"); ?></option>
 				<option value="satellite"><?= __("Satellite"); ?></option>

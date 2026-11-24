@@ -1203,6 +1203,8 @@ class Logbookadvanced_model extends CI_Model {
 			case "propagation": $column = 'COL_PROP_MODE'; break;
 			case "station": $column = 'station_id'; break;
 			case "operator": $column = 'COL_OPERATOR'; break;
+		case "name": $column = 'COL_NAME'; break;
+		case "qth": $column = 'COL_QTH'; break;
 			case "comment": $column = 'COL_COMMENT'; break;
 			case "band": $column = 'COL_BAND'; break;
 			case "mode": $column = 'COL_MODE'; break;
@@ -1246,6 +1248,12 @@ class Logbookadvanced_model extends CI_Model {
 
 		if ($column == 'COL_DARC_DOK') {
 			$value=strtoupper($value);
+		}
+		if ($column == 'COL_NAME') {
+			$value = mb_substr(trim($value ?? ''), 0, 128);
+		}
+		if ($column == 'COL_QTH') {
+			$value = mb_substr(trim($value ?? ''), 0, 64);
 		}
 		if ($column == 'COL_SIG') {
 			$value=strtoupper($value);
