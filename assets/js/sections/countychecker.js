@@ -259,25 +259,6 @@ function addCountyLegend(map, entries) {
 	legend.addTo(map);
 }
 
-// Check if jQuery is loaded, if not wait for it
-if (typeof $ === 'undefined') {
-	// jQuery not yet loaded, add event listener
-	document.addEventListener('DOMContentLoaded', function() {
-		if (typeof $ === 'undefined') {
-			// Wait for jQuery to load
-			var checkJQuery = setInterval(function() {
-				if (typeof $ !== 'undefined') {
-					clearInterval(checkJQuery);
-					bindCountyCheck();
-				}
-			}, 100);
-		} else {
-			bindCountyCheck();
-		}
-	});
-} else {
-	// jQuery already loaded
-	$(document).ready(function() {
-		bindCountyCheck();
-	});
-}
+$(document).ready(function() {
+	bindCountyCheck();
+});
