@@ -150,7 +150,6 @@
 						</a>
 					</div>
 				</div>
-				<?php if ($this->session->userdata('user_type') == 99) { ?>
 				<div class="col-md-6 col-xl-4 d-flex">
 					<div class="border rounded p-2 w-100 d-flex justify-content-between align-items-center gap-2">
 						<div>
@@ -162,7 +161,6 @@
 						</a>
 					</div>
 				</div>
-				<?php } ?>
 			</div>
 
 			<div class="result"></div>
