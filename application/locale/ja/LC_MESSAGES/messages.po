@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-11-21 09:11+0000\n"
-"PO-Revision-Date: 2026-11-25 05:47+0000\n"
+"PO-Revision-Date: 2026-11-25 15:34+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -3922,7 +3922,7 @@ msgstr "ログブックの公開ページを表示: "
 #: application/controllers/Stationsetup.php:306
 #: application/views/stationsetup/stationsetup.php:91
 msgid "Are you sure you want to delete the public slug?"
-msgstr "パブリックスラッグを削除してもよろしいですか?"
+msgstr "公開スラッグを削除してもよろしいですか？"
 
 #: application/controllers/Stationsetup.php:306
 #: application/views/stationsetup/stationsetup.php:90
@@ -3940,17 +3940,17 @@ msgstr "エクスポートマップオプションを編集"
 #, php-format
 msgid ""
 "Are you sure you want to make the station profile %s the active station?"
-msgstr "無線局プロファイル %s をアクティブな局に設定してもよろしいですか？"
+msgstr "運用場所 %s を現在の運用場所に設定してもよろしいですか？"
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:189
 msgid "Set Active"
-msgstr "アクティブに設定"
+msgstr "現在の運用場所に設定"
 
 #: application/controllers/Stationsetup.php:393
 #: application/views/stationsetup/stationsetup.php:191
 msgid "Active Station"
-msgstr "アクティブな無線局"
+msgstr "現在の運用場所"
 
 #: application/controllers/Stationsetup.php:396
 #: application/views/interface_assets/header.php:138
@@ -3972,7 +3972,7 @@ msgstr[0] "QSO"
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:220
 msgid "Are you sure you want to delete all QSOs within this station profile?"
-msgstr "この無線局プロファイル内のすべての QSO を削除してもよろしいですか?"
+msgstr "この運用場所内のすべての QSO を削除してもよろしいですか?"
 
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:170
@@ -3995,8 +3995,8 @@ msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
 "within this station profile."
 msgstr ""
-"無線局プロファイルを削除してもよろしいですか? %s '? これにより、この無線局プ"
-"ロファイル内のすべての QSO が削除されます。"
+"運用場所「%s」を削除してもよろしいですか？これにより、この運用場所内のすべて"
+"の QSO が削除されます。"
 
 #: application/controllers/Stationsetup.php:421
 #: application/views/qso/edit_ajax.php:221
@@ -4075,19 +4075,19 @@ msgstr "アップデート"
 
 #: application/controllers/Update.php:73
 msgid "Preparing DXCC-Entries: "
-msgstr "DXCCエントリの準備： "
+msgstr "DXCCエントリを準備中: "
 
 #: application/controllers/Update.php:137
 msgid "Preparing DXCC Exceptions: "
-msgstr "DXCC例外の準備： "
+msgstr "DXCC例外を準備中: "
 
 #: application/controllers/Update.php:187
 msgid "Preparing DXCC Prefixes: "
-msgstr "DXCC プレフィックスの準備: "
+msgstr "DXCCプレフィックスを準備中: "
 
 #: application/controllers/Update.php:294
 msgid "DONE"
-msgstr "終了"
+msgstr "完了"
 
 #: application/controllers/Update.php:367
 msgid "Updating..."
