@@ -2,10 +2,14 @@
 
 class Activationplanner_model extends CI_Model {
 
-	/*
-	 * WWFF/POTA/SOTA references + WAB squares within $max_km of [$lat, $lng],
-	 * each tagged with its type and great-circle distance (km). Sorted
-	 * ascending by distance.
+	/**
+	 * WWFF/POTA/SOTA references and WAB squares within the given range of a
+	 * position, each tagged with its type and great-circle distance (km).
+	 *
+	 * @param float $lat Latitude of the position in decimal degrees
+	 * @param float $lng Longitude of the position in decimal degrees
+	 * @param float $max_km Maximum great-circle distance in kilometres
+	 * @return array Rows with type ('WWFF'|'POTA'|'SOTA'|'WAB'), ref, name and dist (km), sorted ascending by distance
 	 */
 	function refs_nearby($lat, $lng, $max_km = 20.0) {
 		$sources = array(
@@ -62,10 +66,16 @@ class Activationplanner_model extends CI_Model {
 		return $result;
 	}
 
-	/*
-	 * WAB squares have no DB table — their geometry lives in the same geojson
-	 * the WAB award map draws. Nearby = the square centre points within range
-	 * (same bbox prefilter + haversine as refs_nearby_in).
+	/**
+	 * WAB squares near a position. They have no DB table — their geometry
+	 * lives in the same geojson the WAB award map draws — so nearby = the
+	 * square centre points within range (same bbox prefilter + haversine
+	 * as refs_nearby_in).
+	 *
+	 * @param float $lat Latitude of the position in decimal degrees
+	 * @param float $lng Longitude of the position in decimal degrees
+	 * @param float $max_km Maximum great-circle distance in kilometres
+	 * @return array Rows with type 'WAB', ref (square reference), name (always null) and dist (km)
 	 */
 	private function wab_squares_nearby($lat, $lng, $max_km) {
 		$this->load->library('Geojson');
