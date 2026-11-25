@@ -173,6 +173,44 @@ class Satpredict {
 		return $data;
 	}
 
+	/**
+	 * Calculate the sub-satellite point (lat/lng/altitude) and footprint
+	 * diameter of a satellite at a given time, using the stored TLE.
+	 *
+	 * Returns null when no TLE is available or the TLE epoch is more than
+	 * 14 days away from the given time (position would be unreliable).
+	 *
+	 * @param object $sat_tle  Satellite object with 'tle' property (TLE text or OMM JSON)
+	 * @param string $datetime Time of interest (any format strtotime() understands, e.g. COL_TIME_ON)
+	 * @return array|null ['lat', 'lng', 'alt', 'footprint'] (lat/lng degrees, alt/footprint km) or null
+	 */
+	public function subsat_point($sat_tle, $datetime) {
+		if (!isset($sat_tle->tle) || $sat_tle->tle == null || trim($sat_tle->tle) === '') {
+			return null;
+		}
+		try {
+			$ts = strtotime($datetime);
+			if ($ts === false) {
+				return null;
+			}
+			$daynum = Predict_Time::unix2daynum($ts, 0);
+			$qth = new Predict_QTH();
+			$sat = new Predict_Sat($this->build_tle($sat_tle));
+			if (($sat_tle->orbit ?? '') !== 'GEO' && abs($daynum - $sat->jul_epoch) > 14) {
+				return null;
+			}
+			$predict = new Predict();
+			$predict->predict_calc($sat, $qth, $daynum);
+			if (!is_finite($sat->ssplat) || !is_finite($sat->ssplon) || !is_finite($sat->alt) || !is_finite($sat->footprint)) {
+				return null;
+			}
+			return ['lat' => $sat->ssplat, 'lng' => $sat->ssplon, 'alt' => $sat->alt, 'footprint' => $sat->footprint];
+		} catch (\Throwable $th) {
+			log_message('error', 'Exception calculating subsat point for SAT '.($sat_tle->satellite ?? $sat_tle->displayname ?? ''));
+			return null;
+		}
+	}
+
 	public function next_pass($sat_tle, $yourgrid, $minelevation = 0, $horizon_days = 1, $timeRes = 60, $numEntries = 8) {
 		$qth = $this->qth_from_grid($yourgrid);
 		if ($qth === false) {

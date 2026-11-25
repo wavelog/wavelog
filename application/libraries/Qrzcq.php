@@ -57,16 +57,24 @@ class Qrzcq {
 			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
 			$xml = curl_exec($ch);
 			$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-			if ($httpcode != 200) return $data['error'] = 'Problems with qrzcq.com communication'; // Exit function if no 200. If request fails, 0 is returned
+			if ($httpcode != 200) {
+				$data['error'] = 'Problems with qrzcq.com communication'; // Exit function if no 200. If request fails, 0 is returned
+				$data['source'] = $this->sourcename();
+				return $data;
+			}
 
 			// Create XML object
 			$xml = simplexml_load_string($xml);
 			if ($xml === false) {
 				log_message('error', 'QRZCQ.com search for callsign: ' . $callsign . ': could not parse XML response');
-				return $data['error'] = 'Problems with qrzcq.com communication';
+				$data['error'] = 'Problems with qrzcq.com communication';
+				$data['source'] = $this->sourcename();
+				return $data;
 			}
 			if (!empty($xml->Session->Error)) {
-				return $data['error'] = $xml->Session->Error;
+				$data['error'] = (string) $xml->Session->Error;
+				$data['source'] = $this->sourcename();
+				return $data;
 			}
 
 			// Return Required Fields
@@ -118,10 +126,13 @@ class Qrzcq {
 				$data['cqz'] = '';
 
 			}
+		} catch (Throwable $e) {
+			log_message('error', 'QRZCQ.com search for callsign: ' . $callsign . ' failed: ' . $e->getMessage());
 		} finally {
 			$data['source'] = $this->sourcename();
-			return $data;
 		}
+
+		return $data;
 	}
 
 	public function sourcename() {

@@ -172,10 +172,13 @@ class Qrzcall {
 				$data['ituzone']    = '';
 				$data['cqzone']     = '';
 			}
+		} catch (Throwable $e) {
+			log_message('error', 'QRZCALL.EU search for callsign: ' . $callsign . ' failed: ' . $e->getMessage());
 		} finally {
 			$data['source'] = $this->sourcename();
-			return $data;
 		}
+
+		return $data;
 	}
 
 	public function sourcename() {

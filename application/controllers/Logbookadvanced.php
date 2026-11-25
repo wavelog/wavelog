@@ -38,6 +38,9 @@ class Logbookadvanced extends CI_Controller {
 			$data['options'] = $userOptions[0]->option_value;
 		}
 
+		$columnOrder = $this->user_options_model->get_options('LogbookAdvanced', array('option_name' => 'column_order', 'option_key' => 'order'))->row();
+		$data['column_order'] = ($columnOrder && $this->isColumnOrderJson($columnOrder->option_value)) ? $columnOrder->option_value : '[]';
+
 		$mapoptions['gridsquare_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'gridsquare_layer','option_key'=>'boolean'))->row();
 		$mapoptions['path_lines'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'path_lines','option_key'=>'boolean'))->row();
 		$mapoptions['cqzones_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'cqzones_layer','option_key'=>'boolean'))->row();
@@ -501,6 +504,18 @@ class Logbookadvanced extends CI_Controller {
 		return false;
 	}
 
+	/**
+	 * Build the map payload for a QSO with known gridsquare.
+	 *
+	 * @param array $qso               QSO row (must contain COL_ANT_PATH)
+	 * @param string $locator1         Station (own) gridsquare
+	 * @param string $locator2         DX gridsquare
+	 * @param string $measurement_base Unit of measurement ('K', 'M' or 'N')
+	 * @param string $var_dist         Suffix string for distances
+	 * @param string $custom_date_format Date format for the datetime field
+	 *
+	 * @return array Mapped QSO data for the Leaflet map (incl. antpath)
+	 */
 	public function calculate($qso, $locator1, $locator2, $measurement_base, $var_dist, $custom_date_format) {
 		if(!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
@@ -508,6 +523,7 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
+		$data['antpath'] = $qso['COL_ANT_PATH'] ?? null;
 		$data['callsign'] = $qso['COL_CALL'];
 		$data['band'] = $qso['COL_BAND'];
 		$data['mode'] = $qso['COL_MODE'];
@@ -516,6 +532,7 @@ class Logbookadvanced extends CI_Controller {
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
 		$data['orbit'] = $qso['orbit'] ?? null;
+		$data['sat'] = $this->satpos_for($qso);
 		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
 		$data['dxccFlag'] = $this->dxccflag->get($qso['COL_DXCC']);
 		$data['id'] = $qso['COL_PRIMARY_KEY'];
@@ -540,12 +557,27 @@ class Logbookadvanced extends CI_Controller {
 		return $data;
 	}
 
+	/**
+	 * Build the map payload for a QSO with given lat/long (no gridsquare).
+	 *
+	 * @param array $qso               QSO row (must contain COL_ANT_PATH)
+	 * @param float $lat                DX latitude
+	 * @param float $long               DX longitude
+	 * @param string $mygrid            Station (own) gridsquare
+	 * @param string $measurement_base Unit of measurement ('K', 'M' or 'N')
+	 * @param string $var_dist         Suffix string for distances
+	 * @param string $custom_date_format Date format for the datetime field
+	 *
+	 * @return array Mapped QSO data for the Leaflet map (incl. antpath)
+	 */
 	public function calculateCoordinates($qso, $lat, $long, $mygrid, $measurement_base, $var_dist, $custom_date_format) {
 		if(!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
 		}
 
 		$this->load->model('logbook_model');
+
+		$data['antpath'] = $qso['COL_ANT_PATH'] ?? null;
 
 		if (!empty($mygrid)) {
 			$latlng1 = $this->qra->qra2latlong($mygrid);
@@ -567,11 +599,42 @@ class Logbookadvanced extends CI_Controller {
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
 		$data['orbit'] = $qso['orbit'] ?? null;
+		$data['sat'] = $this->satpos_for($qso);
 		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
 		$data['dxccFlag'] = $this->dxccflag->get($qso['COL_DXCC']);
 		$data['id'] = $qso['COL_PRIMARY_KEY'];
 
 		return $data;
+	}
+
+	/**
+	 * Determine the sub-satellite point for a SAT QSO.
+	 *
+	 * Returns null for non-SAT QSOs, unknown satellites or when the stored
+	 * TLE is too far from the QSO time to give a reliable position.
+	 *
+	 * @param array $qso QSO row with COL_SAT_NAME and COL_TIME_ON
+	 *
+	 * @return array|null Sub-satellite data (lat, lng, alt, footprint) or null
+	 */
+	private function satpos_for($qso) {
+		if (empty($qso['COL_SAT_NAME'])) {
+			return null;
+		}
+		static $tles = null;
+		if ($tles === null) {
+			$this->load->model('satellite_model');
+			$tles = [];
+			foreach ($this->satellite_model->get_all_satellites_with_tle() as $sat_tle) {
+				$tles[$sat_tle->satname] = $sat_tle;
+				$tles[$sat_tle->displayname] = $sat_tle;
+			}
+		}
+		if (!isset($tles[$qso['COL_SAT_NAME']])) {
+			return null;
+		}
+		$this->load->library('satpredict');
+		return $this->satpredict->subsat_point($tles[$qso['COL_SAT_NAME']], $qso['COL_TIME_ON']);
 	}
 
 	public function userOptions() {
@@ -657,6 +720,42 @@ class Logbookadvanced extends CI_Controller {
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'cqzones_layer',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('cqzone_layer')))));
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'ituzones_layer',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('ituzone_layer')))));
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'nightshadow_layer',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('nightshadow_layer')))));
+	}
+
+	/**
+	 * Save the column order of the advanced logbook table for the logged-in user.
+	 *
+	 * @return void Outputs {"success": true|false} as JSON
+	 */
+	public function saveColumnOrder() {
+		$raw = $this->input->post('order');
+		$success = false;
+		if (is_string($raw) && $this->isColumnOrderJson($raw)) {
+			$this->load->model('user_options_model');
+			$success = (bool) $this->user_options_model->set_option('LogbookAdvanced', 'column_order', array('order' => $raw));
+		}
+		header('Content-Type: application/json');
+		echo json_encode(array('success' => $success));
+	}
+
+	/**
+	 * Validate a column order JSON payload.
+	 *
+	 * @param string $json raw payload string
+	 * @return bool true if payload is a valid column order
+	 */
+	private function isColumnOrderJson($json) {
+		$arr = json_decode((string) $json);
+		if (!is_array($arr) || count($arr) < 1 || count($arr) > 200) {
+			return false;
+		}
+		$len = count($arr);
+		foreach ($arr as $v) {
+			if (!is_int($v) || $v < 0 || $v >= $len) {
+				return false;
+			}
+		}
+		return count(array_unique($arr, SORT_REGULAR)) === $len;
 	}
 
 	private function def_boolean($value, $default_value='false') {

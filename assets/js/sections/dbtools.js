@@ -870,11 +870,10 @@ function checkIota() {
 			$('.result').html(response);
 			initDbtoolsTable('#iotaCheckTable', {
 				textExtractor: function ($cell) {
-					// Get text from the first anchor link which contains the IOTA reference
+					// Get text from the first anchor link which contains the IOTA reference,
+					// otherwise the full cell text (values may contain spaces, e.g. country names)
 					var $anchor = $cell.find('a').first();
-					var text = $anchor.length ? $anchor.text().trim() : $cell.text().trim();
-					// Remove any extra whitespace
-					return text.split(/\s+/)[0];
+					return $anchor.length ? $anchor.text().trim() : $cell.text().trim();
 				},
 			});
 		},
