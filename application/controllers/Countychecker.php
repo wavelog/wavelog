@@ -47,6 +47,7 @@ class Countychecker extends CI_Controller {
 	 */
 	function __construct() {
 		parent::__construct();
+		$this->load->model('countychecker_model');
 
 		if (!$this->user_model->authorize(2)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
@@ -75,37 +76,7 @@ class Countychecker extends CI_Controller {
 	}
 
 	/**
-	 * Fetches the QSOs to check: the user's QSOs with a logged gridsquare of
-	 * 6+ characters against a US DXCC (291, 6, 110)
-	 *
-	 * @param string $station_id Station location to restrict to, or 'all' for every location
-	 * @return object Query result
-	 */
-	function getQsos($station_id) {
-		$sql = 'select col_call, col_dxcc, col_state, col_cnty, col_time_on, station_profile.station_profile_name, col_primary_key, col_gridsquare, col_band,
-				col_qsl_rcvd, col_qslrdate, col_lotw_qsl_rcvd, col_lotw_qslrdate, lotw_users.lastupload
-			from ' . $this->config->item('table_name') . '
-			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
-			left outer join lotw_users on lotw_users.callsign = ' . $this->config->item('table_name') . '.col_call
-			where station_profile.user_id = ?
-			and length(col_gridsquare) >= 6
-			and col_dxcc in (' . implode(',', self::$countyFiles) . ')';
-		$params[] = $this->session->userdata('user_id');
-
-		if ($station_id && is_numeric($station_id)) {
-			$sql .= ' and ' . $this->config->item('table_name') . '.station_id = ?';
-			$params[] = $station_id;
-		}
-
-		$sql .= ' order by station_profile.station_profile_name asc, col_time_on desc';
-
-		$query = $this->db->query($sql, $params);
-
-		return $query;
-	}
-
-	/**
-	 * Runs the county check over the QSOs from getQsos() and renders the
+	 * Runs the county check over the QSOs from the model and renders the
 	 * result table. QSOs whose gridsquare resolves to no county polygon or
 	 * to more than one (uncertain) are left out; QSOs without a logged
 	 * county are listed as backfill candidates, the others as potential
@@ -121,7 +92,7 @@ class Countychecker extends CI_Controller {
 		$result = array();
 		$this->gridsquareCache = array(); // Reset cache
 
-		$callarray = $this->getQsos($de)->result();
+		$callarray = $this->countychecker_model->getQsos($de, self::$countyFiles)->result();
 		if (!empty($callarray)) {
 			$this->loadCountyDatasets();
 		}
@@ -819,13 +790,7 @@ class Countychecker extends CI_Controller {
 				continue;
 			}
 
-			$sql = 'update ' . $this->config->item('table_name') . ' qsos
-				join station_profile on station_profile.station_id = qsos.station_id
-				set qsos.COL_CNTY = ?, qsos.last_modified = now()
-				where qsos.COL_PRIMARY_KEY = ?
-				and station_profile.user_id = ?';
-			$this->db->query($sql, array($state . ',' . $county, $id, $this->session->userdata('user_id')));
-			$updated += $this->db->affected_rows();
+			$updated += $this->countychecker_model->updateCounty($id, $state . ',' . $county);
 		}
 
 		echo json_encode(['updated' => $updated]);
