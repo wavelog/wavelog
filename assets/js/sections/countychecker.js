@@ -25,6 +25,15 @@ function bindCountyCheck() {
 		$('.county-update-check').prop('checked', this.checked);
 	});
 
+	// Check only the checkboxes of one row group: QSOs with no county
+	// logged, or QSOs whose logged county mismatches the geojson one
+	$(document).on('click', '.county-select-missing', function() {
+		selectCountyRows(true);
+	});
+	$(document).on('click', '.county-select-wrong', function() {
+		selectCountyRows(false);
+	});
+
 	// Write the geojson county of the checked rows into the log
 	$(document).on('click', '#updateCountiesBtn', function() {
 		applyCountyUpdates();
@@ -38,8 +47,7 @@ function runCountyCheck() {
 		url: site_url + '/countychecker/doCountyCheck',
 		type: "POST",
 		data: {
-			de: $('#de').val(),
-			includeMissing: $('#includeMissing').is(':checked') ? 1 : 0
+			de: $('#de').val()
 		},
 		success: function(response) {
 			$('.result').html(response);
@@ -55,6 +63,17 @@ function runCountyCheck() {
 			$('#startCountyCheck').removeClass('running').prop('disabled', false);
 		}
 	});
+}
+
+/* Check only the checkboxes of one row group in the result table:
+   missing = QSOs with no county logged (backfill candidates), otherwise
+   QSOs whose logged county does not match the geojson one. */
+function selectCountyRows(missing) {
+	$('.county-update-check').each(function() {
+		var isMissing = $(this).closest('tr').data('missing') == 1;
+		this.checked = missing ? isMissing : !isMissing;
+	});
+	$('#countySelectAll').prop('checked', $('.county-update-check:not(:checked)').length === 0);
 }
 
 function applyCountyUpdates() {

@@ -18,10 +18,6 @@
 						</option>
 					<?php } ?>
 				</select>
-				<div class="form-check ms-2">
-					<input class="form-check-input" type="checkbox" id="includeMissing" checked>
-					<label class="form-check-label" for="includeMissing"><?= __("Also list QSOs with no county logged"); ?></label>
-				</div>
 				<button id="startCountyCheck" class="btn btn-primary btn-sm ld-ext-right ms-1"><?= __("Start County Check"); ?><div class="ld ld-ring ld-spin"></div></button>
 			</div>
 			<div class='result'>

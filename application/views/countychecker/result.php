@@ -15,33 +15,6 @@ if (!function_exists('calltester_base_call')) {
 	}
 }
 
-// Compact statistics row. Only the vivid theme colors are used (info /
-// warning / success / danger) - primary and secondary are too dim to see on
-// the darker themes. The border color signals the category: cyan =
-// informational, amber = fix these, green = all good.
-$mismatch_count = count($result) - $missing;
-
-echo '<div class="row mb-3 g-2">';
-
-$stats = [
-	['label' => __("QSOs Tested"), 'value' => $calls_tested, 'border' => 'info', 'text' => 'body'],
-	['label' => __("Execution Time"), 'value' => round($execution_time, 2) . 's', 'border' => 'info', 'text' => 'info'],
-	['label' => __("Potential Wrong Counties"), 'value' => $mismatch_count, 'border' => 'warning', 'text' => 'warning'],
-	['label' => __("No County logged"), 'value' => $missing, 'border' => $missing > 0 ? 'info' : 'success', 'text' => $missing > 0 ? 'info' : 'body'],
-	['label' => __("Not Found (no polygon)"), 'value' => $not_found, 'border' => 'info', 'text' => 'body'],
-];
-
-foreach ($stats as $stat) {
-	echo '<div class="col">
-		<div class="card border-' . $stat['border'] . ' text-center py-2">
-			<div class="h5 mb-0 text-' . $stat['text'] . '">' . $stat['value'] . '</div>
-			<small class="text-muted">' . $stat['label'] . '</small>
-		</div>
-	</div>';
-}
-
-echo '</div>';
-
 // Get Date format
 if($this->session->userdata('user_date_format')) {
 	// If Logged in and session exists
@@ -53,8 +26,10 @@ if($this->session->userdata('user_date_format')) {
 
 if ($result) { ?>
 <div class="d-flex align-items-center flex-wrap gap-2 mb-2">
+	<button class="btn btn-sm btn-outline-info county-select-missing"><?= __("Select QSOs missing a county"); ?></button>
+	<button class="btn btn-sm btn-outline-warning county-select-wrong"><?= __("Select QSOs with wrong county"); ?></button>
 	<button id="updateCountiesBtn" class="btn btn-primary btn-sm"><?= __("Update selected QSOs"); ?></button>
-	<small class="text-muted"><?= __("Writes the geojson county into the log. Rows with uncertain confidence start unchecked."); ?></small>
+	<small class="text-muted"><?= __("Writes the geojson county into the log."); ?></small>
 </div>
 <div class="table-responsive" style="max-height:70vh; overflow:auto;">
 	<table class="table table-sm table-striped table-bordered table-condensed mb-0">
@@ -71,14 +46,13 @@ if ($result) { ?>
 				<th><?= __("Confirmed"); ?></th>
 				<th><?= __("County (log)"); ?></th>
 				<th><?= __("County (geojson)"); ?></th>
-				<th><?= __("Confidence"); ?></th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php foreach ($result as $qso): ?>
 				<?php $base_call = calltester_base_call($qso['callsign']); ?>
-				<tr>
-					<td class="text-center"><input type="checkbox" class="county-update-check" data-id="<?php echo (int)$qso['id']; ?>" data-state="<?php echo htmlspecialchars($qso['derived_state'], ENT_QUOTES); ?>" data-county="<?php echo htmlspecialchars($qso['derived_county'], ENT_QUOTES); ?>"<?php echo $qso['confidence'] >= 100 ? ' checked' : ''; ?>></td>
+				<tr data-missing="<?php echo $qso['logged_county'] === '' ? 1 : 0; ?>">
+					<td class="text-center"><input type="checkbox" class="county-update-check" data-id="<?php echo (int)$qso['id']; ?>" data-state="<?php echo htmlspecialchars($qso['derived_state'], ENT_QUOTES); ?>" data-county="<?php echo htmlspecialchars($qso['derived_county'], ENT_QUOTES); ?>" checked></td>
 					<td><?php echo ++$i; ?></td>
 					<td>
 						<div class="d-flex align-items-center justify-content-between">
@@ -129,7 +103,6 @@ if ($result) { ?>
 						? '<span class="text-muted">—</span>'
 						: htmlspecialchars($qso['logged_state'] . ($qso['logged_state'] !== '' ? ', ' : '') . $qso['logged_county']); ?></td>
 					<td><?php echo htmlspecialchars($qso['derived_state'] . ', ' . $qso['derived_county']); ?></td>
-					<td><span class="<?php echo $qso['confidence'] >= 100 ? 'text-success' : 'text-danger'; ?>" data-bs-toggle="tooltip" title="<?php echo sprintf(__("Gridsquare overlaps %d counties"), $qso['boxcount']); ?>"><?php echo $qso['confidence']; ?>%</span></td>
 				</tr>
 			<?php endforeach; ?>
 		</tbody>
@@ -139,64 +112,5 @@ if ($result) { ?>
 <?php } else { ?>
 <div class="alert alert-success mb-0">
 	<?= __("No county issues found. All QSOs have correct county information."); ?>
-</div>
-<?php } ?>
-
-<?php if (!empty($not_found_list)) { ?>
-<div class="mt-3">
-	<div class="d-flex align-items-center flex-wrap gap-2">
-		<button class="btn btn-sm btn-outline-info" data-bs-toggle="collapse" data-bs-target="#countyNotFoundTable">
-			<?= __("QSOs without county polygon"); ?> (<?php echo count($not_found_list); ?>)
-		</button>
-		<small class="text-muted"><?= __("The gridsquare of these QSOs does not fall inside any county polygon (e.g. water or outside the US), so their county cannot be verified."); ?></small>
-	</div>
-	<div class="collapse mt-2" id="countyNotFoundTable">
-		<div class="table-responsive" style="max-height:70vh; overflow:auto;">
-			<table class="table table-sm table-striped table-bordered table-condensed mb-0">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th><?= __("Callsign"); ?></th>
-						<th><?= __("QSO Date"); ?></th>
-						<th><?= __("Time"); ?></th>
-						<th><?= __("Station Profile"); ?></th>
-						<th><?= __("Gridsquare"); ?></th>
-						<th><?= __("Band"); ?></th>
-						<th><?= __("County (log)"); ?></th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ($not_found_list as $qso): ?>
-						<?php $base_call = calltester_base_call($qso['callsign']); ?>
-						<tr>
-							<td><?php echo ++$i; ?></td>
-							<td>
-								<div class="d-flex align-items-center justify-content-between">
-									<a id="edit_qso" href="javascript:displayQso(<?php echo $qso['id']; ?>)"><?php echo htmlspecialchars($qso['callsign']); ?></a>
-									<span class="d-flex align-items-center gap-2">
-										<a href="https://www.qrz.com/db/<?php echo htmlspecialchars($base_call, ENT_QUOTES); ?>" target="_blank" rel="noopener" data-bs-toggle="tooltip" title="<?= __("Lookup on QRZ.com"); ?>"><img style="vertical-align: baseline" width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="<?= __("Lookup on QRZ.com"); ?>"></a>
-										<a href="#" class="callsign-search" data-call="<?php echo htmlspecialchars($base_call, ENT_QUOTES); ?>" data-bs-toggle="tooltip" title="<?= __("Show all QSOs with this callsign"); ?>"><i class="fas fa-search"></i></a>
-									</span>
-								</div>
-							</td>
-							<td><?php echo date($custom_date_format, strtotime($qso['qso_date'])); ?></td>
-							<td><?php echo date('H:i', strtotime($qso['qso_date'])); ?></td>
-							<td><?php echo $qso['station_profile']; ?></td>
-							<td>
-								<div class="d-flex align-items-center justify-content-between">
-									<span><?php echo $qso['gridsquare']; ?></span>
-									<a href="#" class="county-map" data-grid="<?php echo htmlspecialchars($qso['gridsquare'], ENT_QUOTES); ?>" data-loggedstate="<?php echo htmlspecialchars($qso['logged_state'], ENT_QUOTES); ?>" data-loggedcounty="<?php echo htmlspecialchars($qso['logged_county'], ENT_QUOTES); ?>" data-bs-toggle="tooltip" title="<?= __("Show on map"); ?>"><i class="fas fa-map-marked-alt"></i></a>
-								</div>
-							</td>
-							<td><?php echo $qso['band'] ?? ''; ?></td>
-							<td><?php echo $qso['logged_county'] === ''
-								? '<span class="text-muted">—</span>'
-								: htmlspecialchars($qso['logged_state'] . ($qso['logged_state'] !== '' ? ', ' : '') . $qso['logged_county']); ?></td>
-						</tr>
-					<?php endforeach; ?>
-				</tbody>
-			</table>
-		</div>
-	</div>
 </div>
 <?php } ?>

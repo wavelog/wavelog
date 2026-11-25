@@ -65,7 +65,7 @@ class Countychecker extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	function getQsos($station_id, $include_missing = false) {
+	function getQsos($station_id) {
 		$sql = 'select col_call, col_dxcc, col_state, col_cnty, col_time_on, station_profile.station_profile_name, col_primary_key, col_gridsquare, col_band,
 				col_qsl_rcvd, col_qslrdate, col_lotw_qsl_rcvd, col_lotw_qslrdate, lotw_users.lastupload
 			from ' . $this->config->item('table_name') . '
@@ -74,12 +74,6 @@ class Countychecker extends CI_Controller {
 			where station_profile.user_id = ?
 			and length(col_gridsquare) >= 6
 			and col_dxcc in (' . implode(',', self::$countyFiles) . ')';
-		if (!$include_missing) {
-			// Only QSOs with a logged county; with $include_missing, DXCCs
-			// 291/6/110 without one are included too (their county can be
-			// backfilled from the gridsquare)
-			$sql .= ' and coalesce(col_cnty, \'\') <> \'\'';
-		}
 		$params[] = $this->session->userdata('user_id');
 
 		if ($station_id && is_numeric($station_id)) {
@@ -100,28 +94,16 @@ class Countychecker extends CI_Controller {
 		ini_set('memory_limit', '512M');
 
 		$de = $this->input->post('de', true);
-		$include_missing = $this->input->post('includeMissing', true) === '1';
 
-		$i = 0;
-		$not_found = 0;
-		$missing = 0;
 		$result = array();
-		$not_found_list = array();
 		$this->gridsquareCache = array(); // Reset cache
 
-		$callarray = $this->getQsos($de, $include_missing)->result();
+		$callarray = $this->getQsos($de)->result();
 		if (!empty($callarray)) {
 			$this->loadCountyDatasets();
 		}
 
-		// Starting clock time in seconds
-		$start_time = microtime(true);
-
-		$hits = 0; // Track cache hits for performance metrics
-		$misses = 0; // Track cache misses
-
 		foreach ($callarray as $qso) {
-			$i++;
 			$gridsquare = $qso->col_gridsquare;
 
 			// Check cache first - avoid redundant gridsquare->county conversions
@@ -130,25 +112,27 @@ class Countychecker extends CI_Controller {
 				$boxcount = 1;
 				$coords = $this->gridsquareToLatLng($gridsquare);
 				if ($coords !== null) {
+					$box = $this->gridBox($gridsquare, $coords['lat'], $coords['lng']);
 					$county = $this->findCountyFromLatlng($coords['lat'], $coords['lng']);
-					if ($county !== null) {
+					if ($county === null && $box !== null) {
+						// The center point is not inside any county polygon
+						// (e.g. coastal water): fall back to the corners of
+						// the grid box instead
+						$county = $this->findCountyAtCorners($box);
+					}
+					if ($county !== null && $box !== null) {
 						// How many counties the grid box overlaps: more than
 						// one means the grid straddles a county line and the
-						// center-derived county is uncertain.
-						$box = $this->gridBox($gridsquare, $coords['lat'], $coords['lng']);
-						if ($box !== null) {
-							$boxcount = max(1, count($this->findCountiesIntersectingBox($box)));
-						}
+						// derived county is uncertain.
+						$boxcount = max(1, count($this->findCountiesIntersectingBox($box)));
 					}
 				}
 				$this->gridsquareCache[$gridsquare] = $county === null
 					? array('notfound' => true)
 					: array('state' => $county['state'], 'county' => $county['county'], 'boxcount' => $boxcount);
 				$county = $this->gridsquareCache[$gridsquare];
-				$misses++;
 			} else {
 				$county = $this->gridsquareCache[$gridsquare];
-				$hits++;
 			}
 
 			// COL_CNTY is "STATE,COUNTY" (ADIF); fall back to COL_STATE when
@@ -157,27 +141,21 @@ class Countychecker extends CI_Controller {
 			$logged_county = trim($parts[count($parts) - 1]);
 			$logged_state = strtoupper(trim(count($parts) == 2 ? $parts[0] : (string)$qso->col_state));
 
-			// Gridsquare resolved to water/nowhere with a county polygon -
-			// collect for the informational "no polygon" table
+			// Gridsquare resolved to water/nowhere with a county polygon
 			if (!isset($county['state'])) {
-				$not_found++;
-				$not_found_list[] = [
-					'id' => $qso->col_primary_key,
-					'qso_date' => $qso->col_time_on,
-					'callsign' => $qso->col_call,
-					'station_profile' => $qso->station_profile_name,
-					'gridsquare' => $qso->col_gridsquare,
-					'band' => $qso->col_band,
-					'logged_state' => $logged_state,
-					'logged_county' => $logged_county,
-				];
+				continue;
+			}
+
+			// The grid box overlaps more than one county: the derived county
+			// is ambiguous, so the QSO is skipped entirely - it is neither
+			// reported as a mismatch nor offered as a backfill candidate
+			if ($county['boxcount'] > 1) {
 				continue;
 			}
 
 			if ($logged_county === '') {
 				// No county logged but the gridsquare resolves to one - a
 				// candidate for backfilling, not a mismatch.
-				$missing++;
 				$result[] = [
 					'id' => $qso->col_primary_key,
 					'qso_date' => $qso->col_time_on,
@@ -189,8 +167,6 @@ class Countychecker extends CI_Controller {
 					'logged_county' => '',
 					'derived_state' => $county['state'],
 					'derived_county' => $county['county'],
-					'confidence' => intdiv(100, max(1, $county['boxcount'])),
-					'boxcount' => $county['boxcount'],
 					'missing' => true,
 					'lotw_lastupload' => $qso->lastupload,
 					'qsl_rcvd' => $qso->col_qsl_rcvd,
@@ -216,8 +192,6 @@ class Countychecker extends CI_Controller {
 				'logged_county' => $logged_county,
 				'derived_state' => $county['state'],
 				'derived_county' => $county['county'],
-				'confidence' => intdiv(100, max(1, $county['boxcount'])),
-				'boxcount' => $county['boxcount'],
 				'lotw_lastupload' => $qso->lastupload,
 				'qsl_rcvd' => $qso->col_qsl_rcvd,
 				'qslrdate' => $qso->col_qslrdate,
@@ -226,20 +200,6 @@ class Countychecker extends CI_Controller {
 			];
 		}
 
-		// End clock time in seconds
-		$end_time = microtime(true);
-
-		// Calculate script execution time
-		$execution_time = ($end_time - $start_time);
-
-		$data['execution_time'] = $execution_time;
-		$data['calls_tested'] = $i;
-		$data['not_found'] = $not_found;
-		$data['not_found_list'] = $not_found_list;
-		$data['missing'] = $missing;
-		$data['cache_hits'] = $hits;
-		$data['cache_misses'] = $misses;
-		$data['cache_hit_rate'] = $i > 0 ? round(($hits / $i) * 100, 2) : 0;
 		$data['result'] = $result;
 
 		$this->loadView($data);
@@ -423,6 +383,33 @@ class Countychecker extends CI_Controller {
 			}
 		}
 		return null;
+	}
+
+	/* The county the four corners of a grid box land in, when every corner
+	   that is inside a county polygon agrees on the same one. Used when the
+	   box center is not inside any county (e.g. coastal water). Returns null
+	   when no corner lands in a county or the corners disagree. */
+	private function findCountyAtCorners($box) {
+		list($lat_min, $lng_min, $lat_max, $lng_max) = $box;
+
+		$county = null;
+		foreach (array(
+			array($lat_min, $lng_min), array($lat_min, $lng_max),
+			array($lat_max, $lng_min), array($lat_max, $lng_max),
+		) as $corner) {
+			$props = $this->findCountyFromLatlng($corner[0], $corner[1]);
+			if ($props === null) {
+				continue;
+			}
+			if ($county === null) {
+				$county = $props;
+			} elseif (strtoupper($county['state']) !== strtoupper($props['state'])
+				|| self::normCounty($county['county']) !== self::normCounty($props['county'])) {
+				return null; // corners land in different counties: ambiguous
+			}
+		}
+
+		return $county;
 	}
 
 	// ============================================================================
@@ -785,14 +772,18 @@ class Countychecker extends CI_Controller {
 		$grid_bounds = $this->gridBox($gridsquare, $coords['lat'], $coords['lng']);
 
 		$derived = $this->findCountyFromLatlng($coords['lat'], $coords['lng']);
+		if ($derived === null && $grid_bounds !== null) {
+			// Same corner fallback as doCountyCheck, so the map shows the
+			// county the result table derived
+			$derived = $this->findCountyAtCorners($grid_bounds);
+		}
 
 		$feature = null;
 		if ($derived !== null) {
 			$feature = $this->findCountyFeature($derived['state'], $derived['county']);
 		}
 
-		// Every county the grid box overlaps, minus the center one: when the
-		// confidence is below 100% the QSO could be in any of them
+		// Every county the grid box overlaps, minus the derived one
 		$candidates = array();
 		if ($grid_bounds !== null) {
 			foreach ($this->findCountiesIntersectingBox($grid_bounds) as $f) {
