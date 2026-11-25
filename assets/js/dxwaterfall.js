@@ -88,7 +88,7 @@ var DX_WATERFALL_CONSTANTS = {
     // Canvas dimensions and spacing
     CANVAS: {
         MIN_TEXT_AREA_WIDTH: 100,          	// Minimum width to display text labels
-        RULER_HEIGHT: 25,                  	// Height of the frequency ruler at bottom
+        RULER_HEIGHT: 28,                  	// Height of the frequency ruler at bottom
         TOP_MARGIN: 10,                    	// Top margin for spot labels
         BOTTOM_MARGIN: 10,                 	// Bottom margin above ruler
         SPOT_PADDING: 2,                   	// Padding around spot labels
@@ -141,8 +141,8 @@ var DX_WATERFALL_CONSTANTS = {
 
         // Frequency ruler
         RULER_BACKGROUND: '#000000bb',
-        RULER_LINE: '#888888',
-        RULER_TEXT: '#888888',
+        RULER_LINE: '#BBBBBB',
+        RULER_TEXT: '#CCCCCC',
         INVALID_FREQUENCY_OVERLAY: 'rgba(128, 128, 128, 0.5)',
 
         // Center marker and bandwidth
@@ -186,7 +186,7 @@ var DX_WATERFALL_CONSTANTS = {
     // Font configurations
     FONTS: {
         FAMILY: '"Consolas", "Courier New", monospace',
-        RULER: '11px "Consolas", "Courier New", monospace',
+        RULER: '13px "Consolas", "Courier New", monospace',
         CENTER_MARKER: '12px "Consolas", "Courier New", monospace',
         SPOT_LABELS: 'bold 13px "Consolas", "Courier New", monospace',  // Increased from 12px to 13px (5% larger)
         SPOT_INFO: '11px "Consolas", "Courier New", monospace',

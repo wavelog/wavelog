@@ -226,7 +226,7 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'region') {
 		value = $("#editRegion").val();
 	}
-	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia' || column == 'qslmsg' || column == 'stationpower' || column == 'stxstring' || column == 'rsts' || column == 'rstr') {
+	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia' || column == 'qslmsg' || column == 'stationpower' || column == 'stxstring' || column == 'rsts' || column == 'rstr' || column == 'name' || column == 'qth') {
 		value = $("#editTextInput").val();
 	}
 	if (column == 'distance') {
@@ -377,7 +377,7 @@ function changeEditType(type) {
 		$('#editContinent').show();
 	} else if (type == "stationpower") {
 		$('#editTextInput').attr('type', 'number').attr('step', 'any').show();
-	} else if (type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest" || type == "qslmsg" || type == 'stxstring' || type == 'rsts' || type == 'rstr') {
+	} else if (type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest" || type == "qslmsg" || type == 'stxstring' || type == 'rsts' || type == 'rstr' || type == 'name' || type == 'qth') {
 		$('#editTextInput').attr('type', 'text').removeAttr('step').show();
 	} else if (type == "region") {
 		$('#editRegion').show();

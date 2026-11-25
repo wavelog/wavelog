@@ -2005,7 +2005,7 @@ $("#callsign").on("focusout", function () {
 
 					// Google Maps link if coordinates available with pin marker
 					if (result.profile_lat && result.profile_lon) {
-						let mapsUrl = 'https://www.google.com/maps/place/' + result.profile_lat + ',' + result.profile_lon + '/@' + result.profile_lat + ',' + result.profile_lon + ',15z/data=!3m1!1e3';
+						let mapsUrl = 'https://www.openstreetmap.org/?mlat='+result.profile_lat+'&mlon='+result.profile_lon+'#map=15/'+result.profile_lat+'/'+result.profile_lon;
 						profileInfo += ' <a href="' + mapsUrl + '" target="_blank" title="' + lang_qso_profile_view_location_maps + '"><i class="fas fa-map"></i></a>';
 					}
 					profileInfo += '</p>';
