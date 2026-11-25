@@ -42,6 +42,9 @@ class Countychecker extends CI_Controller {
 	   QSOs logged against the wrong state/DXCC. */
 	private static $countyFiles = array('291', '6', '110');
 
+	/**
+	 * Constructor; requires a logged-in user
+	 */
 	function __construct() {
 		parent::__construct();
 
@@ -51,6 +54,9 @@ class Countychecker extends CI_Controller {
 		}
 	}
 
+	/**
+	 * Renders the checker's start page with the station location selector
+	 */
 	public function index() {
 
 		$this->load->model('stations');
@@ -68,6 +74,13 @@ class Countychecker extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+	/**
+	 * Fetches the QSOs to check: the user's QSOs with a logged gridsquare of
+	 * 6+ characters against a US DXCC (291, 6, 110)
+	 *
+	 * @param string $station_id Station location to restrict to, or 'all' for every location
+	 * @return object Query result
+	 */
 	function getQsos($station_id) {
 		$sql = 'select col_call, col_dxcc, col_state, col_cnty, col_time_on, station_profile.station_profile_name, col_primary_key, col_gridsquare, col_band,
 				col_qsl_rcvd, col_qslrdate, col_lotw_qsl_rcvd, col_lotw_qslrdate, lotw_users.lastupload
@@ -91,6 +104,13 @@ class Countychecker extends CI_Controller {
 		return $query;
 	}
 
+	/**
+	 * Runs the county check over the QSOs from getQsos() and renders the
+	 * result table. QSOs whose gridsquare resolves to no county polygon or
+	 * to more than one (uncertain) are left out; QSOs without a logged
+	 * county are listed as backfill candidates, the others as potential
+	 * wrong counties.
+	 */
 	function doCountyCheck() {
 		set_time_limit(3600);
 		// Decoding the three county geojson files peaks at ~256 MB
@@ -208,18 +228,31 @@ class Countychecker extends CI_Controller {
 		$this->loadView($data);
 	}
 
-	/* Lowercased letters only, with "St", "Ste", "Saint" and "Sainte" all
-	   treated as the same word, so "St. Clair", "Saint Clair", "Ste.
-	   Genevieve" and "Sainte Genevieve" compare equal - as do "La Salle"
-	   and "LaSalle". */
+	/**
+	 * Lowercased letters only, with "St", "Ste", "Saint" and "Sainte" all
+	 * treated as the same word, so "St. Clair", "Saint Clair", "Ste.
+	 * Genevieve" and "Sainte Genevieve" compare equal - as do "La Salle"
+	 * and "LaSalle".
+	 *
+	 * @param string $county County name
+	 * @return string Normalized county name
+	 */
 	private static function normCounty($county) {
 		$s = strtolower((string)$county);
 		$s = preg_replace('/\bsainte?\b|\bste\b/', 'st', $s);
 		return preg_replace('/[^a-z0-9]/', '', $s);
 	}
 
-	/* True when the logged state/county can be considered the same county as
-	   the one derived from the geojson polygons. */
+	/**
+	 * True when the logged state/county can be considered the same county as
+	 * the one derived from the geojson polygons.
+	 *
+	 * @param string $logged_state   State as logged ('' when unknown)
+	 * @param string $logged_county County as logged
+	 * @param string $derived_state  State derived from the geojson polygons
+	 * @param string $derived_county County derived from the geojson polygons
+	 * @return bool
+	 */
 	private function countyMatches($logged_state, $logged_county, $derived_state, $derived_county) {
 		if ($logged_state !== '' && strtoupper($logged_state) !== strtoupper($derived_state)) {
 			return false;
@@ -237,6 +270,10 @@ class Countychecker extends CI_Controller {
 	// COUNTY DATASETS
 	// ============================================================================
 
+	/**
+	 * Loads the county geojson files and builds their spatial indexes,
+	 * caching one dataset per DXCC
+	 */
 	private function loadCountyDatasets() {
 		foreach (self::$countyFiles as $dxcc) {
 			if (!isset($this->datasets[$dxcc])) {
@@ -258,6 +295,12 @@ class Countychecker extends CI_Controller {
 		}
 	}
 
+	/**
+	 * Loads and decodes a geojson file
+	 *
+	 * @param string $filepath Path relative to the app root
+	 * @return array|null Decoded FeatureCollection, or null when missing or invalid
+	 */
 	public function loadGeoJsonFile($filepath) {
 		$fullpath = FCPATH . $filepath;
 
@@ -290,6 +333,9 @@ class Countychecker extends CI_Controller {
 	 * Pre-process a decoded FeatureCollection: bake a bounding box into every
 	 * feature and build a coarse 10x10 degree grid index over them. This
 	 * dramatically speeds up point-in-polygon lookups.
+	 *
+	 * @param array $geojsonData Decoded FeatureCollection (modified in place)
+	 * @return array Spatial index: global bounds plus a 10x10 grid of feature indexes
 	 */
 	private function buildSpatialIndex(&$geojsonData) {
 		$index = array(
@@ -330,6 +376,8 @@ class Countychecker extends CI_Controller {
 
 	/**
 	 * Calculate bounding box for a feature
+	 *
+	 * @param array $feature GeoJSON feature
 	 * @return array|null [minLng, minLat, maxLng, maxLat] or null
 	 */
 	private function calculateFeatureBoundingBox($feature) {
@@ -364,6 +412,12 @@ class Countychecker extends CI_Controller {
 
 	/**
 	 * Update min/max bounds from coordinate array
+	 *
+	 * @param array $coords Coordinate ring: [[lng, lat], ...]
+	 * @param float $minLng Updated with the smallest longitude
+	 * @param float $minLat Updated with the smallest latitude
+	 * @param float $maxLng Updated with the largest longitude
+	 * @param float $maxLat Updated with the largest latitude
 	 */
 	private function updateBoundsFromCoords($coords, &$minLng, &$minLat, &$maxLng, &$maxLat) {
 		foreach ($coords as $point) {
@@ -376,6 +430,9 @@ class Countychecker extends CI_Controller {
 
 	/**
 	 * Find the county containing a point across all three county datasets
+	 *
+	 * @param float $lat Latitude of the point
+	 * @param float $lng Longitude of the point
 	 * @return array|null Feature properties ({state, county}) or null
 	 */
 	private function findCountyFromLatlng($lat, $lng) {
@@ -388,10 +445,15 @@ class Countychecker extends CI_Controller {
 		return null;
 	}
 
-	/* The county the four corners of a grid box land in, when every corner
-	   that is inside a county polygon agrees on the same one. Used when the
-	   box center is not inside any county (e.g. coastal water). Returns null
-	   when no corner lands in a county or the corners disagree. */
+	/**
+	 * The county the four corners of a grid box land in, when every corner
+	 * that is inside a county polygon agrees on the same one. Used when the
+	 * box center is not inside any county (e.g. coastal water). Returns null
+	 * when no corner lands in a county or the corners disagree.
+	 *
+	 * @param array $box Grid box from gridBox(): [latMin, lngMin, latMax, lngMax]
+	 * @return array|null Feature properties ({state, county}) or null
+	 */
 	private function findCountyAtCorners($box) {
 		list($lat_min, $lng_min, $lat_max, $lng_max) = $box;
 
@@ -521,7 +583,12 @@ class Countychecker extends CI_Controller {
 	 * Bounding box [latMin, lngMin, latMax, lngMax] of the (sub)square the
 	 * locator resolves to - Qra returns the square's exact center, so the box
 	 * is simply center +/- half the square's extent at the locator's
-	 * precision. Returns null for a malformed locator.
+	 * precision.
+	 *
+	 * @param string $gridsquare Maidenhead locator
+	 * @param float $lat Latitude of the square's center
+	 * @param float $lng Longitude of the square's center
+	 * @return array|null [latMin, lngMin, latMax, lngMax], or null for a malformed locator
 	 */
 	private function gridBox($gridsquare, $lat, $lng) {
 		$grid = strtoupper(preg_replace('/\s+/', '', (string)$gridsquare));
@@ -543,6 +610,9 @@ class Countychecker extends CI_Controller {
 	 * All county features the box overlaps with. Counties do not overlap each
 	 * other, so a single result means the whole grid box is inside one county
 	 * and the center-derived county is certain.
+	 *
+	 * @param array $box Grid box from gridBox(): [latMin, lngMin, latMax, lngMax]
+	 * @return array The overlapping county features
 	 */
 	private function findCountiesIntersectingBox($box) {
 		list($lat_min, $lng_min, $lat_max, $lng_max) = $box;
@@ -584,6 +654,13 @@ class Countychecker extends CI_Controller {
 
 	/**
 	 * True when the box intersects any outer ring of the feature
+	 *
+	 * @param float $lat_min Southern edge of the box
+	 * @param float $lng_min Western edge of the box
+	 * @param float $lat_max Northern edge of the box
+	 * @param float $lng_max Eastern edge of the box
+	 * @param array $feature GeoJSON feature
+	 * @return bool
 	 */
 	private function boxIntersectsFeature($lat_min, $lng_min, $lat_max, $lng_max, $feature) {
 		$coordinates = $feature['geometry']['coordinates'];
@@ -602,6 +679,13 @@ class Countychecker extends CI_Controller {
 	 * True when the box and a filled polygon's outer ring share any area:
 	 * either a box corner lies inside the polygon, or some polygon vertex
 	 * lies inside the box, or some polygon edge crosses into the box.
+	 *
+	 * @param float $lat_min Southern edge of the box
+	 * @param float $lng_min Western edge of the box
+	 * @param float $lat_max Northern edge of the box
+	 * @param float $lng_max Eastern edge of the box
+	 * @param array $ring Polygon outer ring: [[lng, lat], ...]
+	 * @return bool
 	 */
 	private function boxIntersectsRing($lat_min, $lng_min, $lat_max, $lng_max, $ring) {
 		$n = count($ring);
@@ -628,6 +712,14 @@ class Countychecker extends CI_Controller {
 	/**
 	 * True when any part of segment p1-p2 lies inside the box
 	 * (Liang-Barsky clipping)
+	 *
+	 * @param array $p1 Segment endpoint [lng, lat]
+	 * @param array $p2 Segment endpoint [lng, lat]
+	 * @param float $lat_min Southern edge of the box
+	 * @param float $lng_min Western edge of the box
+	 * @param float $lat_max Northern edge of the box
+	 * @param float $lng_max Eastern edge of the box
+	 * @return bool
 	 */
 	private function segmentIntersectsRect($p1, $p2, $lat_min, $lng_min, $lat_max, $lng_max) {
 		$dx = $p2[0] - $p1[0];
@@ -662,6 +754,12 @@ class Countychecker extends CI_Controller {
 		return true;
 	}
 
+	/**
+	 * Converts a maidenhead gridsquare to lat/lng via the Qra library
+	 *
+	 * @param string $gridsquare Maidenhead locator
+	 * @return array|null {lat, lng} or null when the locator is invalid
+	 */
 	public function gridsquareToLatLng($gridsquare) {
 		if (!$this->qralib) {
 			$this->load->library('Qra');
@@ -685,13 +783,22 @@ class Countychecker extends CI_Controller {
 		];
 	}
 
+	/**
+	 * Renders the result table of a finished county check
+	 *
+	 * @param array $data View data built by doCountyCheck()
+	 */
 	function loadView($data) {
 		$this->load->view('countychecker/result', $data);
 	}
 
-	/* Updates COL_CNTY of the posted QSOs with the state/county pairs from
-	   the result table's geojson column. Only QSOs belonging to the current
-	   user are touched. */
+	/**
+	 * Updates COL_CNTY of the posted QSOs with the state/county pairs from
+	 * the result table's geojson column. Only QSOs belonging to the current
+	 * user are touched.
+	 *
+	 * @return void Outputs JSON: {updated: n} or {error: message}
+	 */
 	function updateCounties() {
 		header('Content-Type: application/json');
 
@@ -724,8 +831,14 @@ class Countychecker extends CI_Controller {
 		echo json_encode(['updated' => $updated]);
 	}
 
-	/* Returns the full geojson feature for a state/county (alias-aware), so
-	   the map dialog can draw the logged county's outline. */
+	/**
+	 * Returns the full geojson feature for a state/county (alias-aware), so
+	 * the map dialog can draw the logged county's outline.
+	 *
+	 * @param string $state Two-letter state code
+	 * @param string $county County name
+	 * @return array|null GeoJSON feature or null when no polygon matches
+	 */
 	private function findCountyFeature($state, $county) {
 		$state = strtoupper(trim((string)$state));
 		$wanted = self::normCounty($county);
@@ -750,8 +863,14 @@ class Countychecker extends CI_Controller {
 		return null;
 	}
 
-	/* Returns lat/lng of a gridsquare plus the county features for the map
-	   dialog: the one derived from the gridsquare and the logged one. */
+	/**
+	 * Returns lat/lng of a gridsquare plus the county features for the map
+	 * dialog: the one derived from the gridsquare and the logged one.
+	 *
+	 * @return void Outputs JSON with the gridsquare's coordinates, the
+	 *               derived and logged county features and the other
+	 *               counties the grid box overlaps
+	 */
 	function mapData() {
 		// Decoding the three county geojson files peaks at ~256 MB
 		ini_set('memory_limit', '512M');
