@@ -45,7 +45,10 @@ class Countychecker extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 
-		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		if (!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
 	}
 
 	public function index() {
