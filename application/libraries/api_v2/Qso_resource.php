@@ -964,6 +964,14 @@ class Qso_resource extends Api_v2_resource {
 			$qso[$key] = $value;
 		}
 
+		foreach (self::station_fields() as $key => $column) {
+			$qso[$key] = $row->{$column} ?? null;
+		}
+		$grid = (string) ($row->station_gridsquare ?? '');
+		$vucc = strpos($grid, ',') !== false;
+		$qso['my_gridsquare'] = $vucc ? '' : $grid;
+		$qso['my_vucc_grids'] = $vucc ? $grid : '';
+
 		// Driven by editable_fields() on purpose: a client must be able to read
 		// back every field it may write, or a read-modify-write cycle would
 		// silently drop whatever GET never showed it.
@@ -994,20 +1002,29 @@ class Qso_resource extends Api_v2_resource {
 			'freq_rx'    => ['COL_FREQ_RX', 'string'],
 			'qslsdate'   => ['COL_QSLSDATE', 'string'],
 			'qslrdate'   => ['COL_QSLRDATE', 'string'],
-			// Set at creation (POST) and not changeable via PATCH, but needed to
-			// tell QSOs apart: who operated, under which callsign, from where.
+			// Set at creation (POST) and not changeable via PATCH.
 			'qso_date_off'     => ['COL_TIME_OFF', 'string'],
 			'operator'         => ['COL_OPERATOR', 'string'],
-			'station_callsign' => ['COL_STATION_CALLSIGN', 'string'],
 			'owner_callsign'   => ['COL_OWNER_CALLSIGN', 'string'],
-			'my_gridsquare'    => ['COL_MY_GRIDSQUARE', 'string'],
-			'my_sota_ref'      => ['COL_MY_SOTA_REF', 'string'],
-			'my_pota_ref'      => ['COL_MY_POTA_REF', 'string'],
-			'my_wwff_ref'      => ['COL_MY_WWFF_REF', 'string'],
-			'my_sig'           => ['COL_MY_SIG', 'string'],
-			'my_sig_info'      => ['COL_MY_SIG_INFO', 'string'],
 			'tx_pwr'           => ['COL_TX_PWR', 'float'],
 			'contest_id'       => ['COL_CONTEST_ID', 'string'],
+		];
+	}
+
+	/**
+	 * Station side of the QSO: json key => station_profile column. Read from
+	 * the joined station location like the ADIF export (AdifHelper), so GET
+	 * and the export always agree. my_gridsquare / my_vucc_grids are added in
+	 * format_qso(), split on a comma the same way.
+	 */
+	protected static function station_fields() {
+		return [
+			'station_callsign' => 'station_callsign',
+			'my_sota_ref'      => 'station_sota',
+			'my_pota_ref'      => 'station_pota',
+			'my_wwff_ref'      => 'station_wwff',
+			'my_sig'           => 'station_sig',
+			'my_sig_info'      => 'station_sig_info',
 		];
 	}
 
