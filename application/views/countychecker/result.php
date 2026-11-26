@@ -71,10 +71,10 @@ if ($result) { ?>
 					</td>
 					<td><?php echo date($custom_date_format, strtotime($qso['qso_date'])); ?></td>
 					<td><?php echo date('H:i', strtotime($qso['qso_date'])); ?></td>
-					<td><?php echo $qso['station_profile']; ?></td>
+					<td><?php echo htmlspecialchars($qso['station_profile'], ENT_QUOTES); ?></td>
 					<td>
 						<div class="d-flex align-items-center justify-content-between">
-							<span><?php echo $qso['gridsquare']; ?></span>
+							<span><?php echo htmlspecialchars($qso['gridsquare'], ENT_QUOTES); ?></span>
 							<a href="#" class="county-map" data-grid="<?php echo htmlspecialchars($qso['gridsquare'], ENT_QUOTES); ?>" data-loggedstate="<?php echo htmlspecialchars($qso['logged_state'], ENT_QUOTES); ?>" data-loggedcounty="<?php echo htmlspecialchars($qso['logged_county'], ENT_QUOTES); ?>" data-bs-toggle="tooltip" title="<?= __("Show on map"); ?>"><i class="fas fa-map-marked-alt"></i></a>
 						</div>
 					</td>

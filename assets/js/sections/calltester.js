@@ -31,7 +31,7 @@
 
 	function showCallQsos(call) {
 		BootstrapDialog.show({
-			title: call,
+			title: escapeHtml(call),
 			cssClass: 'qso-dialog',
 			size: BootstrapDialog.SIZE_WIDE,
 			nl2br: false,

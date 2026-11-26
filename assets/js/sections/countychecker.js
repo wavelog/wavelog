@@ -128,7 +128,7 @@ function applyCountyUpdates() {
 
 function showCallQsos(call) {
 	BootstrapDialog.show({
-		title: call,
+		title: escapeHtml(call),
 		cssClass: 'qso-dialog',
 		size: BootstrapDialog.SIZE_WIDE,
 		nl2br: false,
@@ -145,7 +145,7 @@ function showCallQsos(call) {
 
 function openCountyMap(grid, loggedState, loggedCounty) {
 	let dialog = BootstrapDialog.show({
-		title: grid + ' · ' + (loggedState ? loggedState + ', ' : '') + loggedCounty,
+		title: escapeHtml(grid) + ' · ' + (loggedState ? escapeHtml(loggedState) + ', ' : '') + escapeHtml(loggedCounty),
 		size: BootstrapDialog.SIZE_WIDE,
 		nl2br: false,
 		message: '<div class="text-center p-3"><div class="spinner-border text-primary" role="status"></div></div>',
@@ -189,7 +189,7 @@ function renderCountyMap(data, grid, mapId) {
 		layers.push(L.geoJSON({ type: 'FeatureCollection', features: [data.feature] }, {
 			style: { color: '#ff4136', weight: 2, fillColor: '#ff4136', fillOpacity: 0.15 },
 			onEachFeature: function (feature, lyr) {
-				lyr.bindTooltip(data.state + ', ' + data.county, labelOpts);
+				lyr.bindTooltip(escapeHtml(data.state + ', ' + data.county), labelOpts);
 			}
 		}).addTo(map));
 	}
@@ -199,7 +199,7 @@ function renderCountyMap(data, grid, mapId) {
 		layers.push(L.geoJSON({ type: 'FeatureCollection', features: [data.logged_feature] }, {
 			style: { color: '#0074d9', weight: 2, fillColor: '#0074d9', fillOpacity: 0.15 },
 			onEachFeature: function (feature, lyr) {
-				lyr.bindTooltip(data.logged_state + ', ' + data.logged_county, labelOpts);
+				lyr.bindTooltip(escapeHtml(data.logged_state + ', ' + data.logged_county), labelOpts);
 			}
 		}).addTo(map));
 	}
@@ -211,7 +211,7 @@ function renderCountyMap(data, grid, mapId) {
 		layers.push(L.geoJSON({ type: 'FeatureCollection', features: [cand.feature] }, {
 			style: { color: '#ff851b', weight: 2, fillColor: '#ff851b', fillOpacity: 0.15 },
 			onEachFeature: function (feature, lyr) {
-				lyr.bindTooltip(cand.state + ', ' + cand.county, labelOpts);
+				lyr.bindTooltip(escapeHtml(cand.state + ', ' + cand.county), labelOpts);
 			}
 		}).addTo(map));
 		candidateLegendEntries.push({ style: 'background:#ff851b;', label: 'Possible: ' + cand.state + ', ' + cand.county });
@@ -221,12 +221,12 @@ function renderCountyMap(data, grid, mapId) {
 	if (data.grid_bounds) {
 		L.rectangle([[data.grid_bounds[0], data.grid_bounds[1]], [data.grid_bounds[2], data.grid_bounds[3]]], {
 			color: '#ffdc00', weight: 2, fill: false, dashArray: '4 3', interactive: false
-		}).bindTooltip(grid, { permanent: true, direction: 'top', offset: [0, -4], className: 'overlay-region-label' }).addTo(map);
+		}).bindTooltip(escapeHtml(grid), { permanent: true, direction: 'top', offset: [0, -4], className: 'overlay-region-label' }).addTo(map);
 	}
 
-	var popup = '<b>' + grid + '</b>'
-		+ '<br>' + (data.state ? 'GeoJSON: ' + data.state + ', ' + data.county : '')
-		+ '<br>' + (data.logged_state ? 'Log: ' + data.logged_state + ', ' + data.logged_county : '');
+	var popup = '<b>' + escapeHtml(grid) + '</b>'
+		+ '<br>' + (data.state ? 'GeoJSON: ' + escapeHtml(data.state + ', ' + data.county) : '')
+		+ '<br>' + (data.logged_state ? 'Log: ' + escapeHtml(data.logged_state + ', ' + data.logged_county) : '');
 
 	L.marker([data.lat, data.lng]).addTo(map).bindPopup(popup).openPopup();
 
@@ -252,7 +252,7 @@ function addCountyLegend(map, entries) {
 	legend.onAdd = function() {
 		var div = L.DomUtil.create('div', 'legend');
 		div.innerHTML = entries.map(function(e) {
-			return '<i style="' + e.style + '"></i><span>' + e.label + '</span><br>';
+			return '<i style="' + e.style + '"></i><span>' + escapeHtml(e.label) + '</span><br>';
 		}).join('');
 		return div;
 	};
