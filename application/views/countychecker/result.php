@@ -11,6 +11,9 @@ if($this->session->userdata('user_date_format')) {
 }
 
 if ($result) { ?>
+<?php if (!empty($more)) { ?>
+<div class="alert alert-warning mb-2"><?= sprintf(__("Only the first %s QSOs with a county issue are shown. Update them and run the check again for the next ones."), count($result)); ?></div>
+<?php } ?>
 <div class="d-flex align-items-center flex-wrap gap-2 mb-2">
 	<button class="btn btn-sm btn-outline-info county-select-missing"><?= __("Select QSOs missing a county"); ?></button>
 	<button class="btn btn-sm btn-outline-warning county-select-wrong"><?= __("Select QSOs with wrong county"); ?></button>

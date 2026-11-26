@@ -33,6 +33,13 @@ class Zonechecker extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+	/**
+	 * Streams the QSOs to check one row at a time: the current user's QSOs
+	 * with a logged gridsquare of 6+ characters
+	 *
+	 * @param string $station_id Station location to restrict to, or 'all' for every location
+	 * @return \Generator Yields one stdClass per QSO (see db_unbuffered_rows())
+	 */
 	function getQsos($station_id) {
 		$sql = 'select distinct col_country, col_call, col_dxcc, col_time_on, station_profile.station_profile_name, col_primary_key, col_cqz, col_ituz, col_gridsquare, col_band
 			from ' . $this->config->item('table_name') . '
@@ -48,9 +55,8 @@ class Zonechecker extends CI_Controller {
 
 		$sql .= ' order by station_profile.station_profile_name asc, col_time_on desc';
 
-        $query = $this->db->query($sql, $params);
-
-		return $query;
+		$this->load->helper('db');
+		return db_unbuffered_rows($sql, $params);
 	}
 
 
@@ -62,8 +68,6 @@ class Zonechecker extends CI_Controller {
 		$i = 0;
 		$result = array();
 		$this->gridsquareCache = array(); // Reset cache
-
-		$callarray = $this->getQsos($de)->result();
 
 		// Starting clock time in seconds
 		$start_time = microtime(true);
@@ -86,7 +90,7 @@ class Zonechecker extends CI_Controller {
         $hits = 0; // Track cache hits for performance metrics
         $misses = 0; // Track cache misses
 
-		foreach ($callarray as $qso) {
+		foreach ($this->getQsos($de) as $qso) {
 			$i++;
 			$gridsquare = $qso->col_gridsquare;
 

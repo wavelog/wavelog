@@ -5,12 +5,12 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Countychecker_model extends CI_Model {
 
 	/**
-	 * Fetches the QSOs to check: the current user's QSOs with a logged
-	 * gridsquare of 6+ characters against one of the county DXCCs
+	 * Streams the QSOs to check one row at a time: the current user's QSOs with
+	 * a logged gridsquare of 6+ characters against one of the county DXCCs
 	 *
 	 * @param string $station_id Station location to restrict to, or 'all' for every location
 	 * @param array $county_dxccs DXCC entity numbers with county polygons (see Countychecker::$countyFiles)
-	 * @return object Query result
+	 * @return \Generator Yields one stdClass per QSO (see db_unbuffered_rows())
 	 */
 	public function getQsos($station_id, $county_dxccs) {
 		$sql = 'select col_call, col_dxcc, col_state, col_cnty, col_time_on, station_profile.station_profile_name, col_primary_key, col_gridsquare, col_band,
@@ -30,7 +30,8 @@ class Countychecker_model extends CI_Model {
 
 		$sql .= ' order by station_profile.station_profile_name asc, col_time_on desc';
 
-		return $this->db->query($sql, $params);
+		$this->load->helper('db');
+		return db_unbuffered_rows($sql, $params);
 	}
 
 	/**

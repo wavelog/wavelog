@@ -81,7 +81,8 @@ class Countychecker extends CI_Controller {
 	 * result table. QSOs whose gridsquare resolves to no county polygon or
 	 * to more than one (uncertain) are left out; QSOs without a logged
 	 * county are listed as backfill candidates, the others as potential
-	 * wrong counties.
+	 * wrong counties. The QSOs are streamed one row at a time and at most
+	 * 5000 are listed.
 	 */
 	function doCountyCheck() {
 		set_time_limit(3600);
@@ -91,19 +92,20 @@ class Countychecker extends CI_Controller {
 		$de = $this->input->post('de', true);
 
 		$result = array();
+		$more = false;
 		$this->gridsquareCache = array(); // Reset cache
 
-		$callarray = $this->countychecker_model->getQsos($de, self::$countyFiles)->result();
-		if (!empty($callarray)) {
-			$this->loadCountyDatasets();
-		}
+		foreach ($this->countychecker_model->getQsos($de, self::$countyFiles) as $qso) {
+			if (empty($this->datasets)) {
+				$this->loadCountyDatasets();
+			}
 
-		foreach ($callarray as $qso) {
 			$gridsquare = $qso->col_gridsquare;
 
 			// Check cache first - avoid redundant gridsquare->county conversions
 			if (!isset($this->gridsquareCache[$gridsquare])) {
-				$this->gridsquareCache[$gridsquare] = $this->deriveCounty($gridsquare);
+				$derived = $this->deriveCounty($gridsquare);
+				$this->gridsquareCache[$gridsquare] = array('county' => $derived['county'], 'boxcount' => $derived['boxcount']);
 			}
 			$derived = $this->gridsquareCache[$gridsquare];
 
@@ -130,6 +132,10 @@ class Countychecker extends CI_Controller {
 			// county derived from the gridsquare (a mismatch)
 			if ($logged_county === ''
 				|| !$this->countyMatches($logged_state, $logged_county, $county['state'], $county['county'])) {
+				if (count($result) >= 5000) {
+					$more = true;
+					break;
+				}
 				$result[] = [
 					'id' => $qso->col_primary_key,
 					'qso_date' => $qso->col_time_on,
@@ -151,6 +157,7 @@ class Countychecker extends CI_Controller {
 		}
 
 		$data['result'] = $result;
+		$data['more'] = $more;
 
 		$this->loadView($data);
 	}
