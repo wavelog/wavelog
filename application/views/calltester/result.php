@@ -18,21 +18,6 @@ foreach ($stats as $stat) {
 }
 echo '</div>';
 
-// Resolve the home callsign from a (possibly portable) callsign: the longest
-// "/"-separated segment is the base call. e.g. TF/DL2NWK/P -> DL2NWK.
-// Used for lookups so the link targets the station's real callsign and the
-// resulting URL has no "/" to break path-based routing.
-function calltester_base_call($call) {
-	$base = '';
-	foreach (explode('/', $call) as $seg) {
-		if (strlen($seg) > strlen($base)) {
-			$base = $seg;
-		}
-	}
-	return strtoupper(trim($base));
-}
-?>
-<?php
 // Get Date format
 if($this->session->userdata('user_date_format')) {
 	// If Logged in and session exists

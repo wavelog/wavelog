@@ -1,20 +1,6 @@
 <?php
 $i = 0;
 
-if (!function_exists('calltester_base_call')) {
-	// Resolve the home callsign from a (possibly portable) callsign: the longest
-	// "/"-separated segment is the base call. e.g. TF/DL2NWK/P -> DL2NWK.
-	function calltester_base_call($call) {
-		$base = '';
-		foreach (explode('/', $call) as $seg) {
-			if (strlen($seg) > strlen($base)) {
-				$base = $seg;
-			}
-		}
-		return strtoupper(trim($base));
-	}
-}
-
 // Get Date format
 if($this->session->userdata('user_date_format')) {
 	// If Logged in and session exists
@@ -25,6 +11,9 @@ if($this->session->userdata('user_date_format')) {
 }
 
 if ($result) { ?>
+<?php if (!empty($more)) { ?>
+<div class="alert alert-warning mb-2"><?= sprintf(__("Only the first %s QSOs with a county issue are shown. Update them and run the check again for the next ones."), count($result)); ?></div>
+<?php } ?>
 <div class="d-flex align-items-center flex-wrap gap-2 mb-2">
 	<button class="btn btn-sm btn-outline-info county-select-missing"><?= __("Select QSOs missing a county"); ?></button>
 	<button class="btn btn-sm btn-outline-warning county-select-wrong"><?= __("Select QSOs with wrong county"); ?></button>
@@ -71,10 +60,10 @@ if ($result) { ?>
 					</td>
 					<td><?php echo date($custom_date_format, strtotime($qso['qso_date'])); ?></td>
 					<td><?php echo date('H:i', strtotime($qso['qso_date'])); ?></td>
-					<td><?php echo $qso['station_profile']; ?></td>
+					<td><?php echo htmlspecialchars($qso['station_profile'], ENT_QUOTES); ?></td>
 					<td>
 						<div class="d-flex align-items-center justify-content-between">
-							<span><?php echo $qso['gridsquare']; ?></span>
+							<span><?php echo htmlspecialchars($qso['gridsquare'], ENT_QUOTES); ?></span>
 							<a href="#" class="county-map" data-grid="<?php echo htmlspecialchars($qso['gridsquare'], ENT_QUOTES); ?>" data-loggedstate="<?php echo htmlspecialchars($qso['logged_state'], ENT_QUOTES); ?>" data-loggedcounty="<?php echo htmlspecialchars($qso['logged_county'], ENT_QUOTES); ?>" data-bs-toggle="tooltip" title="<?= __("Show on map"); ?>"><i class="fas fa-map-marked-alt"></i></a>
 						</div>
 					</td>

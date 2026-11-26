@@ -1,21 +1,6 @@
 <?php
 $i = 0;
 
-// Resolve the home callsign from a (possibly portable) callsign: the longest
-// "/"-separated segment is the base call. Used for the QRZ link so the URL has
-// no "/" to break path-based routing. (Mirrors calltester/result.php.)
-if ( ! function_exists('calltester_base_call')) {
-	function calltester_base_call($call) {
-		$base = '';
-		foreach (explode('/', $call) as $seg) {
-			if (strlen($seg) > strlen($base)) {
-				$base = $seg;
-			}
-		}
-		return strtoupper(trim($base));
-	}
-}
-
 $show_time = isset($show_time) ? $show_time : true;
 
 // Header summary cards (only when we have at least one matching QSO)
