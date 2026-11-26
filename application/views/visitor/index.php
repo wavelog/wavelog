@@ -20,6 +20,7 @@ function echo_table_header_col($ctx, $name)
 		case 'SOTA':
 			echo '<th>' . __("SOTA") . '</th>';
 			break;
+		case 'DOK': echo '<th>' . __("DOK") . '</th>'; break;
 		case 'State':
 			echo '<th>' . __("State") . '</th>';
 			break;
@@ -82,6 +83,7 @@ function echo_table_col($row, $name)
 		case 'SOTA':
 			echo '<td>' . html_escape($row->COL_SOTA_REF) . '</td>';
 			break;
+		case 'DOK': echo '<td>' . html_escape($row->COL_DARC_DOK ?? '') . '</td>'; break;
 		case 'WWFF':
 			echo '<td>' . html_escape($row->COL_WWFF_REF) . '</td>';
 			break;

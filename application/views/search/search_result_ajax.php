@@ -9,6 +9,7 @@ function echo_table_header_col($name) {
 		case 'SOTA':      echo __("SOTA"); break;
 		case 'WWFF':      echo __("WWFF"); break;
 		case 'POTA':      echo __("POTA"); break;
+		case 'DOK':       echo __("DOK"); break;
 		case 'State':     echo __("State"); break;
 		case 'Grid':      echo __("Gridsquare"); break;
 		case 'Distance':  echo __("Distance"); break;
@@ -46,6 +47,7 @@ function echo_table_col($row, $name) {
         case 'POTA':
             echo html_escape($row->COL_POTA_REF);
             break;
+        case 'DOK': echo html_escape($row->COL_DARC_DOK ?? ''); break;
         case 'Grid':
             echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;
             break;

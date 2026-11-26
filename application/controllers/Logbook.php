@@ -795,7 +795,7 @@ class Logbook extends CI_Controller {
 				qsos.COL_STATE, qsos.COL_QRZCOM_QSO_UPLOAD_STATUS,
 				qsos.COL_QRZCOM_QSO_DOWNLOAD_STATUS, qsos.COL_CLUBLOG_QSO_UPLOAD_STATUS,
 				qsos.COL_CLUBLOG_QSO_DOWNLOAD_STATUS, qsos.COL_POTA_REF, qsos.COL_IOTA,
-				qsos.COL_SOTA_REF, qsos.COL_WWFF_REF, qsos.COL_OPERATOR, qsos.COL_COUNTRY,
+				qsos.COL_SOTA_REF, qsos.COL_WWFF_REF, qsos.COL_OPERATOR, qsos.COL_COUNTRY, qsos.COL_DARC_DOK,
 				station_profile.*
 				FROM " . $this->config->item('table_name') . " qsos
 				JOIN station_profile ON station_profile.station_id = qsos.station_id
@@ -1158,7 +1158,7 @@ class Logbook extends CI_Controller {
 			COL_QRZCOM_QSO_DOWNLOAD_DATE, COL_QRZCOM_QSO_DOWNLOAD_STATUS, COL_QRZCOM_QSO_UPLOAD_DATE,
 			COL_QRZCOM_QSO_UPLOAD_STATUS, COL_QSL_RCVD, COL_QSL_RCVD_VIA, COL_QSLRDATE, COL_QSLSDATE, COL_QSL_SENT,
 			COL_QSL_SENT_VIA, COL_QSL_VIA, COL_RST_RCVD, COL_RST_SENT, COL_SAT_NAME, COL_SOTA_REF, COL_SRX,
-			COL_SRX_STRING, COL_STATE, COL_STX, COL_STX_STRING, COL_SUBMODE, COL_TIME_ON, COL_VUCC_GRIDS, COL_WWFF_REF,
+			COL_SRX_STRING, COL_STATE, COL_STX, COL_STX_STRING, COL_SUBMODE, COL_TIME_ON, COL_VUCC_GRIDS, COL_WWFF_REF, COL_DARC_DOK,
 			dxcc_entities.end, lotw_users.lastupload, satellite.name AS sat_name, satellite.displayname AS sat_displayname,
 			station_profile.station_callsign, station_profile.station_gridsquare, station_profile.station_profile_name,
 			dxcc_entities.name
@@ -1512,6 +1512,7 @@ class Logbook extends CI_Controller {
 		case 'SOTA': $ret.= '<th>'.__("SOTA").'</th>'; break;
 		case 'WWFF': $ret.= '<th>'.__("WWFF").'</th>'; break;
 		case 'POTA': $ret.= '<th>'.__("POTA").'</th>'; break;
+		case 'DOK': $ret.= '<th>'.__("DOK").'</th>'; break;
 		case 'State': $ret.= '<th>'.__("State").'</th>'; break;
 		case 'Grid': $ret.= '<th>'.__("Gridsquare").'</th>'; break;
 		case 'Distance': $ret.= '<th>'.__("Distance").'</th>'; break;
@@ -1543,6 +1544,7 @@ class Logbook extends CI_Controller {
 		case 'SOTA':    $ret.= '<td>' . html_escape($row->COL_SOTA_REF) . '</td>'; break;
 		case 'WWFF':    $ret.= '<td>' . html_escape($row->COL_WWFF_REF) . '</td>'; break;
 		case 'POTA':    $ret.= '<td>' . html_escape($row->COL_POTA_REF) . '</td>'; break;
+		case 'DOK':    $ret.= '<td>' . html_escape($row->COL_DARC_DOK ?? '') . '</td>'; break;
 		case 'Grid':    $ret.= '<td>' . $this->part_QrbCalcLink($row->COL_MY_GRIDSQUARE, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE) . '</td>'; break;
 		case 'Distance':    $ret.= '<td>' . (($row->COL_DISTANCE ?? '' != '') ? $row->COL_DISTANCE . '&nbsp;km' : '') . '</td>'; break;
       case 'Band':    $ret.= '<td>'; if($row->COL_SAT_NAME != null) { $ret.= '<a href="https://db.satnogs.org/search/?q='.html_escape($row->COL_SAT_NAME).'" target="_blank">'.html_escape($row->sat_displayname != null ? $row->sat_displayname." (".$row->COL_SAT_NAME.")" : $row->COL_SAT_NAME).'</a></td>'; } else { $ret.= html_escape(strtolower($row->COL_BAND)); } $ret.= '</td>'; break;
