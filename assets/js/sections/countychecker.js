@@ -34,6 +34,11 @@ function bindCountyCheck() {
 		selectCountyRows(false);
 	});
 
+	// Check only the checkboxes of QSOs that are neither QSL-card nor LoTW confirmed
+	$(document).on('click', '.county-select-unconfirmed', function() {
+		selectUnconfirmedCountyRows();
+	});
+
 	// Write the geojson county of the checked rows into the log
 	$(document).on('click', '#updateCountiesBtn', function() {
 		applyCountyUpdates();
@@ -72,6 +77,15 @@ function selectCountyRows(missing) {
 	$('.county-update-check').each(function() {
 		var isMissing = $(this).closest('tr').data('missing') == 1;
 		this.checked = missing ? isMissing : !isMissing;
+	});
+	$('#countySelectAll').prop('checked', $('.county-update-check:not(:checked)').length === 0);
+}
+
+/* Check only the checkboxes of QSOs with neither a received QSL card nor a
+   LoTW confirmation (data-confirmed is 0 in that case). */
+function selectUnconfirmedCountyRows() {
+	$('.county-update-check').each(function() {
+		this.checked = $(this).closest('tr').data('confirmed') != 1;
 	});
 	$('#countySelectAll').prop('checked', $('.county-update-check:not(:checked)').length === 0);
 }

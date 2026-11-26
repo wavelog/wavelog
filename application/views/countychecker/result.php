@@ -17,6 +17,7 @@ if ($result) { ?>
 <div class="d-flex align-items-center flex-wrap gap-2 mb-2">
 	<button class="btn btn-sm btn-outline-info county-select-missing"><?= __("Select QSOs missing a county"); ?></button>
 	<button class="btn btn-sm btn-outline-warning county-select-wrong"><?= __("Select QSOs with wrong county"); ?></button>
+	<button class="btn btn-sm btn-outline-primary county-select-unconfirmed"><?= __("Select unconfirmed only"); ?></button>
 	<button id="updateCountiesBtn" class="btn btn-primary btn-sm"><?= __("Update selected QSOs"); ?></button>
 	<small class="text-muted"><?= __("Writes the geojson county into the log."); ?></small>
 </div>
@@ -39,8 +40,12 @@ if ($result) { ?>
 		</thead>
 		<tbody>
 			<?php foreach ($result as $qso): ?>
-				<?php $base_call = calltester_base_call($qso['callsign']); ?>
-				<tr data-missing="<?php echo $qso['logged_county'] === '' ? 1 : 0; ?>">
+				<?php
+				$base_call = calltester_base_call($qso['callsign']);
+				$qsl_confirmed = $qso['qsl_rcvd'] === 'Y';
+				$lotw_confirmed = $qso['lotw_rcvd'] === 'Y';
+				?>
+				<tr data-missing="<?php echo $qso['logged_county'] === '' ? 1 : 0; ?>" data-confirmed="<?php echo ($qsl_confirmed || $lotw_confirmed) ? 1 : 0; ?>">
 					<td class="text-center"><input type="checkbox" class="county-update-check" data-id="<?php echo (int)$qso['id']; ?>" data-state="<?php echo htmlspecialchars($qso['derived_state'], ENT_QUOTES); ?>" data-county="<?php echo htmlspecialchars($qso['derived_county'], ENT_QUOTES); ?>" checked></td>
 					<td><?php echo ++$i; ?></td>
 					<td>
@@ -70,8 +75,6 @@ if ($result) { ?>
 					<td><?php echo $qso['band'] ?? ''; ?></td>
 					<td class="text-nowrap">
 						<?php
-						$qsl_confirmed = $qso['qsl_rcvd'] === 'Y';
-						$lotw_confirmed = $qso['lotw_rcvd'] === 'Y';
 						if (!$qsl_confirmed && !$lotw_confirmed) {
 							echo '<span class="text-muted">—</span>';
 						} else {
