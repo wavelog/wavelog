@@ -3,7 +3,6 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Countychecker extends CI_Controller {
-	private $qralib;
 	private $gridsquareCache = array(); // Cache gridsquare->county lookups
 	private $datasets = array();        // dxcc => ['data' => geojson array, 'index' => spatial index]
 
@@ -48,6 +47,8 @@ class Countychecker extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('countychecker_model');
+		$this->load->library('Geojson');
+		$this->load->helper('callsign');
 
 		if (!$this->user_model->authorize(2)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
@@ -102,32 +103,9 @@ class Countychecker extends CI_Controller {
 
 			// Check cache first - avoid redundant gridsquare->county conversions
 			if (!isset($this->gridsquareCache[$gridsquare])) {
-				$county = null;
-				$boxcount = 1;
-				$coords = $this->gridsquareToLatLng($gridsquare);
-				if ($coords !== null) {
-					$box = $this->gridBox($gridsquare, $coords['lat'], $coords['lng']);
-					$county = $this->findCountyFromLatlng($coords['lat'], $coords['lng']);
-					if ($county === null && $box !== null) {
-						// The center point is not inside any county polygon
-						// (e.g. coastal water): fall back to the corners of
-						// the grid box instead
-						$county = $this->findCountyAtCorners($box);
-					}
-					if ($county !== null && $box !== null) {
-						// How many counties the grid box overlaps: more than
-						// one means the grid straddles a county line and the
-						// derived county is uncertain.
-						$boxcount = max(1, count($this->findCountiesIntersectingBox($box)));
-					}
-				}
-				$this->gridsquareCache[$gridsquare] = $county === null
-					? array('notfound' => true)
-					: array('state' => $county['state'], 'county' => $county['county'], 'boxcount' => $boxcount);
-				$county = $this->gridsquareCache[$gridsquare];
-			} else {
-				$county = $this->gridsquareCache[$gridsquare];
+				$this->gridsquareCache[$gridsquare] = $this->deriveCounty($gridsquare);
 			}
+			$derived = $this->gridsquareCache[$gridsquare];
 
 			// COL_CNTY is "STATE,COUNTY" (ADIF); fall back to COL_STATE when
 			// the county was logged without the state prefix.
@@ -135,21 +113,23 @@ class Countychecker extends CI_Controller {
 			$logged_county = trim($parts[count($parts) - 1]);
 			$logged_state = strtoupper(trim(count($parts) == 2 ? $parts[0] : (string)$qso->col_state));
 
-			// Gridsquare resolved to water/nowhere with a county polygon
-			if (!isset($county['state'])) {
+			// Gridsquare invalid or resolved to water/nowhere with a county polygon
+			if ($derived['county'] === null) {
 				continue;
 			}
+			$county = $derived['county'];
 
 			// The grid box overlaps more than one county: the derived county
 			// is ambiguous, so the QSO is skipped entirely - it is neither
 			// reported as a mismatch nor offered as a backfill candidate
-			if ($county['boxcount'] > 1) {
+			if ($derived['boxcount'] > 1) {
 				continue;
 			}
 
-			if ($logged_county === '') {
-				// No county logged but the gridsquare resolves to one - a
-				// candidate for backfilling, not a mismatch.
+			// No county logged (a backfill candidate), or one that differs from the
+			// county derived from the gridsquare (a mismatch)
+			if ($logged_county === ''
+				|| !$this->countyMatches($logged_state, $logged_county, $county['state'], $county['county'])) {
 				$result[] = [
 					'id' => $qso->col_primary_key,
 					'qso_date' => $qso->col_time_on,
@@ -158,40 +138,16 @@ class Countychecker extends CI_Controller {
 					'gridsquare' => $qso->col_gridsquare,
 					'band' => $qso->col_band,
 					'logged_state' => $logged_state,
-					'logged_county' => '',
+					'logged_county' => $logged_county,
 					'derived_state' => $county['state'],
 					'derived_county' => $county['county'],
-					'missing' => true,
 					'lotw_lastupload' => $qso->lastupload,
 					'qsl_rcvd' => $qso->col_qsl_rcvd,
 					'qslrdate' => $qso->col_qslrdate,
 					'lotw_rcvd' => $qso->col_lotw_qsl_rcvd,
 					'lotwrdate' => $qso->col_lotw_qslrdate,
 				];
-				continue;
 			}
-
-			if ($this->countyMatches($logged_state, $logged_county, $county['state'], $county['county'])) {
-				continue;
-			}
-
-			$result[] = [
-				'id' => $qso->col_primary_key,
-				'qso_date' => $qso->col_time_on,
-				'callsign' => $qso->col_call,
-				'station_profile' => $qso->station_profile_name,
-				'gridsquare' => $qso->col_gridsquare,
-				'band' => $qso->col_band,
-				'logged_state' => $logged_state,
-				'logged_county' => $logged_county,
-				'derived_state' => $county['state'],
-				'derived_county' => $county['county'],
-				'lotw_lastupload' => $qso->lastupload,
-				'qsl_rcvd' => $qso->col_qsl_rcvd,
-				'qslrdate' => $qso->col_qslrdate,
-				'lotw_rcvd' => $qso->col_lotw_qsl_rcvd,
-				'lotwrdate' => $qso->col_lotw_qslrdate,
-			];
 		}
 
 		$data['result'] = $result;
@@ -248,154 +204,16 @@ class Countychecker extends CI_Controller {
 	private function loadCountyDatasets() {
 		foreach (self::$countyFiles as $dxcc) {
 			if (!isset($this->datasets[$dxcc])) {
-				$data = $this->loadGeoJsonFile("assets/json/geojson/counties_{$dxcc}.geojson");
+				$data = $this->geojson->loadGeoJsonFile("assets/json/geojson/counties_{$dxcc}.geojson");
 				if ($data === null) {
 					$this->datasets[$dxcc] = array('data' => null, 'index' => null);
 					continue;
 				}
-				// Build the index (which bakes bounding boxes into $data's
-				// features) before copying $data into the dataset - PHP arrays
-				// are copied by value, so doing both in one array literal would
-				// store the features without their bounding boxes.
-				$index = $this->buildSpatialIndex($data);
 				$this->datasets[$dxcc] = array(
 					'data' => $data,
-					'index' => $index,
+					'index' => $this->geojson->buildSpatialIndex($data),
 				);
 			}
-		}
-	}
-
-	/**
-	 * Loads and decodes a geojson file
-	 *
-	 * @param string $filepath Path relative to the app root
-	 * @return array|null Decoded FeatureCollection, or null when missing or invalid
-	 */
-	public function loadGeoJsonFile($filepath) {
-		$fullpath = FCPATH . $filepath;
-
-		if (!file_exists($fullpath)) {
-			return null;
-		}
-
-		$geojsonData = file_get_contents($fullpath);
-
-		if ($geojsonData === false) {
-			return null;
-		}
-
-		// Remove BOM if present (UTF-8, UTF-16, UTF-32)
-		$geojsonData = preg_replace('/^\xEF\xBB\xBF|\xFF\xFE|\xFE\xFF|\x00\x00\xFE\xFF|\xFF\xFE\x00\x00/', '', $geojsonData);
-
-		// Additional cleanup: trim whitespace
-		$geojsonData = trim($geojsonData);
-
-		$data = json_decode($geojsonData, true);
-
-		if (json_last_error() !== JSON_ERROR_NONE) {
-			return null;
-		}
-
-		return $data;
-	}
-
-	/**
-	 * Pre-process a decoded FeatureCollection: bake a bounding box into every
-	 * feature and build a coarse 10x10 degree grid index over them. This
-	 * dramatically speeds up point-in-polygon lookups.
-	 *
-	 * @param array $geojsonData Decoded FeatureCollection (modified in place)
-	 * @return array Spatial index: global bounds plus a 10x10 grid of feature indexes
-	 */
-	private function buildSpatialIndex(&$geojsonData) {
-		$index = array(
-			'minLng' => 180,
-			'maxLng' => -180,
-			'minLat' => 90,
-			'maxLat' => -90,
-			'grid' => array()
-		);
-
-		if (!isset($geojsonData['features']) || !is_array($geojsonData['features'])) {
-			return $index;
-		}
-
-		foreach ($geojsonData['features'] as $i => &$feature) {
-			$bbox = $this->calculateFeatureBoundingBox($feature);
-
-			if ($bbox === null) {
-				continue;
-			}
-
-			$feature['bbox'] = $bbox;
-
-			$index['minLng'] = min($index['minLng'], $bbox[0]);
-			$index['maxLng'] = max($index['maxLng'], $bbox[2]);
-			$index['minLat'] = min($index['minLat'], $bbox[1]);
-			$index['maxLat'] = max($index['maxLat'], $bbox[3]);
-
-			for ($lng = floor($bbox[0] / 10) * 10; $lng <= $bbox[2]; $lng += 10) {
-				for ($lat = floor($bbox[1] / 10) * 10; $lat <= $bbox[3]; $lat += 10) {
-					$index['grid'][$lng . ',' . $lat][] = $i;
-				}
-			}
-		}
-
-		return $index;
-	}
-
-	/**
-	 * Calculate bounding box for a feature
-	 *
-	 * @param array $feature GeoJSON feature
-	 * @return array|null [minLng, minLat, maxLng, maxLat] or null
-	 */
-	private function calculateFeatureBoundingBox($feature) {
-		if (!isset($feature['geometry']['coordinates']) || !isset($feature['geometry']['type'])) {
-			return null;
-		}
-
-		$geometryType = $feature['geometry']['type'];
-		$coordinates = $feature['geometry']['coordinates'];
-
-		$minLng = 180;
-		$maxLng = -180;
-		$minLat = 90;
-		$maxLat = -90;
-
-		if ($geometryType === 'Polygon') {
-			$this->updateBoundsFromCoords($coordinates[0], $minLng, $minLat, $maxLng, $maxLat);
-		} elseif ($geometryType === 'MultiPolygon') {
-			foreach ($coordinates as $polygon) {
-				$this->updateBoundsFromCoords($polygon[0], $minLng, $minLat, $maxLng, $maxLat);
-			}
-		} else {
-			return null;
-		}
-
-		if ($minLng > $maxLng || $minLat > $maxLat) {
-			return null;
-		}
-
-		return array($minLng, $minLat, $maxLng, $maxLat);
-	}
-
-	/**
-	 * Update min/max bounds from coordinate array
-	 *
-	 * @param array $coords Coordinate ring: [[lng, lat], ...]
-	 * @param float $minLng Updated with the smallest longitude
-	 * @param float $minLat Updated with the smallest latitude
-	 * @param float $maxLng Updated with the largest longitude
-	 * @param float $maxLat Updated with the largest latitude
-	 */
-	private function updateBoundsFromCoords($coords, &$minLng, &$minLat, &$maxLng, &$maxLat) {
-		foreach ($coords as $point) {
-			$minLng = min($minLng, $point[0]);
-			$maxLng = max($maxLng, $point[0]);
-			$minLat = min($minLat, $point[1]);
-			$maxLat = max($maxLat, $point[1]);
 		}
 	}
 
@@ -408,7 +226,7 @@ class Countychecker extends CI_Controller {
 	 */
 	private function findCountyFromLatlng($lat, $lng) {
 		foreach (self::$countyFiles as $dxcc) {
-			$props = $this->findFeatureContainingPoint($lat, $lng, $this->datasets[$dxcc]);
+			$props = $this->geojson->findFeatureContainingPoint($lat, $lng, $this->datasets[$dxcc]['data'], $this->datasets[$dxcc]['index']);
 			if ($props !== null) {
 				return $props;
 			}
@@ -448,106 +266,32 @@ class Countychecker extends CI_Controller {
 		return $county;
 	}
 
-	// ============================================================================
-	// GEOMETRIC ALGORITHMS - Point-in-polygon detection
-	// ============================================================================
-
 	/**
-	 * Check if a point (latitude, longitude) is inside a polygon
-	 * Uses optimized ray casting algorithm
+	 * Derives the county a gridsquare lies in: the polygon containing the
+	 * square's center or, failing that (e.g. coastal water), the one all four
+	 * corners of the square agree on
 	 *
-	 * @param float $lat Latitude of the point
-	 * @param float $lng Longitude of the point
-	 * @param array $polygon GeoJSON polygon coordinates array [[[lng, lat], [lng, lat], ...]]
-	 * @return bool True if point is inside polygon, false otherwise
+	 * @param string $gridsquare Maidenhead locator
+	 * @return array coords and box of the square (null for an invalid locator),
+	 *               county: the feature properties ({state, county}) or null,
+	 *               boxcount: how many counties the square overlaps
 	 */
-	public function isPointInPolygon($lat, $lng, $polygon) {
-		if (!is_numeric($lat) || !is_numeric($lng) || !is_array($polygon) || empty($polygon)) {
-			return false;
+	private function deriveCounty($gridsquare) {
+		$coords = $this->geojson->gridsquareToLatLng($gridsquare);
+		$box = $coords === null ? null : $this->gridBox($gridsquare, $coords['lat'], $coords['lng']);
+		$county = $coords === null ? null : $this->findCountyFromLatlng($coords['lat'], $coords['lng']);
+
+		// The center point is not inside any county polygon (e.g. coastal
+		// water): fall back to the corners of the grid box instead
+		if ($county === null && $box !== null) {
+			$county = $this->findCountyAtCorners($box);
 		}
 
-		$inside = false;
-		$count = count($polygon);
+		// How many counties the grid box overlaps: more than one means the
+		// grid straddles a county line and the derived county is uncertain
+		$boxcount = $box === null ? 1 : max(1, count($this->findCountiesIntersectingBox($box)));
 
-		// Ray casting algorithm - optimized with minimal variable assignments
-		for ($i = 0, $j = $count - 1; $i < $count; $j = $i++) {
-			$xi = $polygon[$i][0];
-			$yi = $polygon[$i][1];
-			$xj = $polygon[$j][0];
-			$yj = $polygon[$j][1];
-
-			$intersect = (($yi > $lat) != ($yj > $lat))
-				&& ($lng < ($xj - $xi) * ($lat - $yi) / ($yj - $yi) + $xi);
-
-			$inside ^= $intersect;
-		}
-
-		return $inside;
-	}
-
-	/**
-	 * Find which feature in a county dataset contains a given point, using
-	 * the dataset's spatial index and per-feature bounding boxes
-	 *
-	 * @param float $lat Latitude of the point
-	 * @param float $lng Longitude of the point
-	 * @param array $dataset Entry from $this->datasets
-	 * @return array|null Feature properties if found, null otherwise
-	 */
-	public function findFeatureContainingPoint($lat, $lng, $dataset) {
-		if ($dataset === null || !isset($dataset['data']['features']) || !is_array($dataset['data']['features'])) {
-			return null;
-		}
-
-		$index = $dataset['index'];
-		$features = $dataset['data']['features'];
-
-		// Early exit: check global bounds
-		if ($lng < $index['minLng'] || $lng > $index['maxLng'] ||
-			$lat < $index['minLat'] || $lat > $index['maxLat']) {
-			return null;
-		}
-
-		// Only features whose bounding box covers this 10x10 degree cell can
-		// contain the point; an unregistered cell means open water/land
-		// without county polygons.
-		$key = floor($lng / 10) * 10 . ',' . floor($lat / 10) * 10;
-		if (!isset($index['grid'][$key])) {
-			return null;
-		}
-
-		foreach ($index['grid'][$key] as $i) {
-			$feature = $features[$i];
-
-			// Fast bounding box check
-			$bbox = $feature['bbox'];
-			if ($lng < $bbox[0] || $lng > $bbox[2] || $lat < $bbox[1] || $lat > $bbox[3]) {
-				continue;
-			}
-
-			$geometryType = $feature['geometry']['type'];
-			$coordinates = $feature['geometry']['coordinates'];
-
-			// Handle Polygon geometry
-			if ($geometryType === 'Polygon') {
-				// For Polygon, coordinates[0] is the outer ring
-				if ($this->isPointInPolygon($lat, $lng, $coordinates[0])) {
-					return $feature['properties'];
-				}
-			}
-			// Handle MultiPolygon geometry
-			elseif ($geometryType === 'MultiPolygon') {
-				foreach ($coordinates as $polygon) {
-					// For MultiPolygon, each polygon is [[[lng,lat],...]]
-					// We need to pass just the outer ring (first element)
-					if ($this->isPointInPolygon($lat, $lng, $polygon[0])) {
-						return $feature['properties'];
-					}
-				}
-			}
-		}
-
-		return null;
+		return array('coords' => $coords, 'box' => $box, 'county' => $county, 'boxcount' => $boxcount);
 	}
 
 	/**
@@ -610,7 +354,7 @@ class Countychecker extends CI_Controller {
 
 			foreach (array_keys($candidates) as $i) {
 				$feature = $dataset['data']['features'][$i];
-				$bbox = $feature['bbox'];
+				$bbox = $dataset['index']['bbox'][$i];
 				if ($lng_min > $bbox[2] || $lng_max < $bbox[0] || $lat_min > $bbox[3] || $lat_max < $bbox[1]) {
 					continue; // bounding boxes don't even touch
 				}
@@ -661,10 +405,10 @@ class Countychecker extends CI_Controller {
 	private function boxIntersectsRing($lat_min, $lng_min, $lat_max, $lng_max, $ring) {
 		$n = count($ring);
 
-		if ($this->isPointInPolygon($lat_min, $lng_min, $ring)) return true;
-		if ($this->isPointInPolygon($lat_max, $lng_max, $ring)) return true;
-		if ($this->isPointInPolygon($lat_min, $lng_max, $ring)) return true;
-		if ($this->isPointInPolygon($lat_max, $lng_min, $ring)) return true;
+		if ($this->geojson->isPointInPolygon($lat_min, $lng_min, $ring)) return true;
+		if ($this->geojson->isPointInPolygon($lat_max, $lng_max, $ring)) return true;
+		if ($this->geojson->isPointInPolygon($lat_min, $lng_max, $ring)) return true;
+		if ($this->geojson->isPointInPolygon($lat_max, $lng_min, $ring)) return true;
 
 		for ($i = 0, $j = $n - 1; $i < $n; $j = $i++) {
 			$lng = $ring[$i][0];
@@ -723,35 +467,6 @@ class Countychecker extends CI_Controller {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Converts a maidenhead gridsquare to lat/lng via the Qra library
-	 *
-	 * @param string $gridsquare Maidenhead locator
-	 * @return array|null {lat, lng} or null when the locator is invalid
-	 */
-	public function gridsquareToLatLng($gridsquare) {
-		if (!$this->qralib) {
-			$this->load->library('Qra');
-			$this->qralib = $this->qra;
-		}
-
-		if (!is_string($gridsquare) || strlen($gridsquare) < 2) {
-			return null;
-		}
-
-		$result = $this->qralib->qra2latlong($gridsquare);
-
-		if ($result === false || !is_array($result) || count($result) < 2) {
-			return null;
-		}
-
-		// Qra library returns [lat, lng], we need to return associative array
-		return [
-			'lat' => $result[0],
-			'lng' => $result[1]
-		];
 	}
 
 	/**
@@ -848,22 +563,20 @@ class Countychecker extends CI_Controller {
 
 		$this->loadCountyDatasets();
 
-		$coords = $this->gridsquareToLatLng($gridsquare);
-		if ($coords === null) {
+		// Same derivation as doCountyCheck, so the map shows the county the
+		// result table derived
+		$located = $this->deriveCounty($gridsquare);
+		if ($located['coords'] === null) {
 			echo json_encode(['error' => __("Invalid gridsquare")]);
 			return;
 		}
+		$coords = $located['coords'];
 
 		// Bounding box of the gridsquare's (sub)square, so the map can draw
 		// its outline
-		$grid_bounds = $this->gridBox($gridsquare, $coords['lat'], $coords['lng']);
+		$grid_bounds = $located['box'];
 
-		$derived = $this->findCountyFromLatlng($coords['lat'], $coords['lng']);
-		if ($derived === null && $grid_bounds !== null) {
-			// Same corner fallback as doCountyCheck, so the map shows the
-			// county the result table derived
-			$derived = $this->findCountyAtCorners($grid_bounds);
-		}
+		$derived = $located['county'];
 
 		$feature = null;
 		if ($derived !== null) {

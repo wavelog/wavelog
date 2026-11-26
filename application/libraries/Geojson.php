@@ -268,19 +268,49 @@ class Geojson {
     /**
      * Find which feature in a GeoJSON FeatureCollection contains a given point
      *
+     * With a spatial index (see buildSpatialIndex()) only the features of the
+     * point's 10x10 degree cell are checked, after a bounding box pre-check;
+     * without one every feature is checked.
+     *
      * @param float $lat Latitude of the point
      * @param float $lng Longitude of the point
      * @param array $geojsonData Decoded GeoJSON FeatureCollection
+     * @param array|null $index Spatial index from buildSpatialIndex(), or null to check every feature
      * @return array|null Feature properties if found, null otherwise
      */
-    public function findFeatureContainingPoint($lat, $lng, $geojsonData) {
+    public function findFeatureContainingPoint($lat, $lng, $geojsonData, $index = null) {
         if (!isset($geojsonData['features']) || !is_array($geojsonData['features'])) {
             return null;
         }
 
-        foreach ($geojsonData['features'] as $feature) {
+        $features = $geojsonData['features'];
+
+        if ($index === null) {
+            $candidates = array_keys($features);
+        } else {
+            // Early exit: check global bounds
+            if ($lng < $index['minLng'] || $lng > $index['maxLng'] ||
+                $lat < $index['minLat'] || $lat > $index['maxLat']) {
+                return null;
+            }
+
+            // The point's 10x10 degree cell lists every feature that can contain it
+            $candidates = $index['grid'][floor($lng / 10) * 10 . ',' . floor($lat / 10) * 10] ?? array();
+        }
+
+        // Check only candidate features
+        foreach ($candidates as $i) {
+            $feature = $features[$i];
             if (!isset($feature['geometry']['coordinates']) || !isset($feature['geometry']['type'])) {
                 continue;
+            }
+
+            // Fast bounding box check
+            if ($index !== null) {
+                $bbox = $index['bbox'][$i];
+                if ($lng < $bbox[0] || $lng > $bbox[2] || $lat < $bbox[1] || $lat > $bbox[3]) {
+                    continue; // Point is outside bounding box, skip detailed check
+                }
             }
 
             $geometryType = $feature['geometry']['type'];
@@ -306,5 +336,110 @@ class Geojson {
         }
 
         return null;
+    }
+
+    // ============================================================================
+    // SPATIAL INDEX - fast point lookups in large FeatureCollections
+    // ============================================================================
+
+    /**
+     * Calculate a bounding box for every feature of a decoded FeatureCollection
+     * and build a coarse 10x10 degree grid index over them. This dramatically
+     * speeds up point-in-polygon lookups.
+     *
+     * @param array $geojsonData Decoded FeatureCollection
+     * @return array Spatial index: global bounds, a 10x10 grid of feature
+     *               indexes and the bounding box of every feature
+     */
+    public function buildSpatialIndex($geojsonData) {
+        $index = array(
+            'minLng' => 180,
+            'maxLng' => -180,
+            'minLat' => 90,
+            'maxLat' => -90,
+            'grid' => array(),
+            'bbox' => array()
+        );
+
+        if (!isset($geojsonData['features']) || !is_array($geojsonData['features'])) {
+            return $index;
+        }
+
+        foreach ($geojsonData['features'] as $i => $feature) {
+            $bbox = $this->calculateFeatureBoundingBox($feature);
+
+            if ($bbox === null) {
+                continue;
+            }
+
+            $index['bbox'][$i] = $bbox;
+
+            $index['minLng'] = min($index['minLng'], $bbox[0]);
+            $index['maxLng'] = max($index['maxLng'], $bbox[2]);
+            $index['minLat'] = min($index['minLat'], $bbox[1]);
+            $index['maxLat'] = max($index['maxLat'], $bbox[3]);
+
+            for ($lng = floor($bbox[0] / 10) * 10; $lng <= $bbox[2]; $lng += 10) {
+                for ($lat = floor($bbox[1] / 10) * 10; $lat <= $bbox[3]; $lat += 10) {
+                    $index['grid'][$lng . ',' . $lat][] = $i;
+                }
+            }
+        }
+
+        return $index;
+    }
+
+    /**
+     * Calculate bounding box for a feature
+     *
+     * @param array $feature GeoJSON feature
+     * @return array|null [minLng, minLat, maxLng, maxLat] or null
+     */
+    private function calculateFeatureBoundingBox($feature) {
+        if (!isset($feature['geometry']['coordinates']) || !isset($feature['geometry']['type'])) {
+            return null;
+        }
+
+        $geometryType = $feature['geometry']['type'];
+        $coordinates = $feature['geometry']['coordinates'];
+
+        $minLng = 180;
+        $maxLng = -180;
+        $minLat = 90;
+        $maxLat = -90;
+
+        if ($geometryType === 'Polygon') {
+            $this->updateBoundsFromCoords($coordinates[0], $minLng, $minLat, $maxLng, $maxLat);
+        } elseif ($geometryType === 'MultiPolygon') {
+            foreach ($coordinates as $polygon) {
+                $this->updateBoundsFromCoords($polygon[0], $minLng, $minLat, $maxLng, $maxLat);
+            }
+        } else {
+            return null;
+        }
+
+        if ($minLng > $maxLng || $minLat > $maxLat) {
+            return null;
+        }
+
+        return array($minLng, $minLat, $maxLng, $maxLat);
+    }
+
+    /**
+     * Update min/max bounds from coordinate array
+     *
+     * @param array $coords Coordinate ring: [[lng, lat], ...]
+     * @param float $minLng Updated with the smallest longitude
+     * @param float $minLat Updated with the smallest latitude
+     * @param float $maxLng Updated with the largest longitude
+     * @param float $maxLat Updated with the largest latitude
+     */
+    private function updateBoundsFromCoords($coords, &$minLng, &$minLat, &$maxLng, &$maxLat) {
+        foreach ($coords as $point) {
+            $minLng = min($minLng, $point[0]);
+            $maxLng = max($maxLng, $point[0]);
+            $minLat = min($minLat, $point[1]);
+            $maxLat = max($maxLat, $point[1]);
+        }
     }
 }

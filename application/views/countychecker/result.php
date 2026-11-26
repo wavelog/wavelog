@@ -1,20 +1,6 @@
 <?php
 $i = 0;
 
-if (!function_exists('calltester_base_call')) {
-	// Resolve the home callsign from a (possibly portable) callsign: the longest
-	// "/"-separated segment is the base call. e.g. TF/DL2NWK/P -> DL2NWK.
-	function calltester_base_call($call) {
-		$base = '';
-		foreach (explode('/', $call) as $seg) {
-			if (strlen($seg) > strlen($base)) {
-				$base = $seg;
-			}
-		}
-		return strtoupper(trim($base));
-	}
-}
-
 // Get Date format
 if($this->session->userdata('user_date_format')) {
 	// If Logged in and session exists
