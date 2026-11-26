@@ -10,6 +10,7 @@ function echo_table_header_col($ctx, $name) {
 		case 'SOTA': echo '<th scope="col">'.__("SOTA").'</th>'; break;
 		case 'WWFF': echo '<th scope="col">'.__("WWFF").'</th>'; break;
 		case 'POTA': echo '<th scope="col">'.__("POTA").'</th>'; break;
+		case 'DOK': echo '<th scope="col">'.__("DOK").'</th>'; break;
 		case 'State': echo '<th scope="col">'.__("State").'</th>'; break;
 		case 'Grid': echo '<th scope="col">'.__("Gridsquare").'</th>'; break;
 		case 'Distance': echo '<th scope="col">'.__("Distance").'</th>'; break;
@@ -34,6 +35,7 @@ function echo_table_col($row, $name, $adif_propmodes) {
 		case 'SOTA':    echo '<td>' . html_escape($row->COL_SOTA_REF ?? '') . '</td>'; break;
 		case 'WWFF':    echo '<td>' . html_escape($row->COL_WWFF_REF ?? '') . '</td>'; break;
 		case 'POTA':    echo '<td>' . html_escape($row->COL_POTA_REF ?? '') . '</td>'; break;
+		case 'DOK':    $dok = $row->COL_DARC_DOK ?? ''; echo '<td>' . (preg_match('/^[A-Y]\d{2}$/', $dok) ? '<a href="https://www.darc.de/' . $dok . '" target="_blank">' . $dok . '</a>' : (preg_match('/^Z\d{2}$/', $dok) ? '<a href="https://' . $dok . '.vfdb.org" target="_blank">' . $dok . '</a>' : html_escape($dok))) . '</td>'; break;
 		case 'Grid':
 			if(!$ci->load->is_loaded('Qra')) {
 				$ci->load->library('Qra');
