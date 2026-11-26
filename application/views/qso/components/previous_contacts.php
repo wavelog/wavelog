@@ -61,6 +61,7 @@ function echo_table_col($row, $name) {
 		case 'SOTA':    echo '<td>' . html_escape($row->COL_SOTA_REF) . '</td>'; break;
 		case 'WWFF':    echo '<td>' . html_escape($row->COL_WWFF_REF) . '</td>'; break;
 		case 'POTA':    echo '<td>' . html_escape($row->COL_POTA_REF) . '</td>'; break;
+		case 'DOK':    $dok = $row->COL_DARC_DOK ?? ''; echo '<td>' . (preg_match('/^[A-Y]\d{2}$/', $dok) ? '<a href="https://www.darc.de/' . $dok . '" target="_blank">' . $dok . '</a>' : (preg_match('/^Z\d{2}$/', $dok) ? '<a href="https://' . $dok . '.vfdb.org" target="_blank">' . $dok . '</a>' : html_escape($dok))) . '</td>'; break;
 		case 'Grid':
 			echo '<td>' . ($ci->qra->echoQrbCalcLink($row->COL_MY_GRIDSQUARE, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE)) . '</td>'; break;
 		case 'Distance':    echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : '') . '</td>'; break;
@@ -82,6 +83,7 @@ function echo_table_header_col($ctx, $name) {
 		case 'SOTA': echo '<th>'.__("SOTA").'</th>'; break;
 		case 'WWFF': echo '<th>'.__("WWFF").'</th>'; break;
 		case 'POTA': echo '<th>'.__("POTA").'</th>'; break;
+		case 'DOK': echo '<th>'.__("DOK").'</th>'; break;
 		case 'State': echo '<th>'.__("State").'</th>'; break;
 		case 'Grid': echo '<th>'.__("Gridsquare").'</th>'; break;
 		case 'Distance': echo '<th>'.__("Distance").'</th>'; break;

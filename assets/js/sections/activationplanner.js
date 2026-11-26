@@ -18,6 +18,7 @@
 	let wwffBoundaryRefsUrl = cfg.wwffBoundaryRefsUrl || '';
 	let sotaUrl         = cfg.sotaUrl || '';
 	let iotaUrl         = cfg.iotaUrl || '';
+	let wabGeojsonUrl   = cfg.wabGeojsonUrl || '';
 	let dxccGridUrl     = cfg.dxccGridUrl || '';
 	let mwPercUrl       = cfg.mwPercUrl || '';
 	let mwPercLbl       = decodeHtml(cfg.mwPercLbl) || 'In log of %s (SAT)';
@@ -67,7 +68,7 @@
 	let zoneFetching = {};   // zoneId -> in-flight fetch Promise
 	let zoneReq = 0;         // monotonic guard so stale zone lookups don't overwrite the info bar
 
-	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, iotaLayer, bordersControl, bordersOverlay, refOverlay, searchOverlay, localGridLayer, localGridPoint, trackTimer = null;
+	let map, highlight, highlight2, marker, marker2, pathLine, gridOverlay, clickMarker, clickSquare, wwffCluster, potaCluster, sotaCluster, iotaLayer, wabLayer, bordersControl, bordersOverlay, refOverlay, searchOverlay, localGridLayer, localGridPoint, trackTimer = null;
 	// Drawn POTA park boundaries, keyed by reference (ref -> L.geoJSON layer).
 	// Populated on demand when a marker is clicked; cleared by clearAll().
 	let boundaryLayers = {};
@@ -498,20 +499,37 @@
 	}
 
 	/*
-	 * WWFF/POTA/SOTA/IOTA directory lookup for the clicked 6-character
+	 * WWFF/POTA/SOTA/IOTA/WAB directory lookup for the clicked 6-character
 	 * (subsquare) grid and the search box. The full directories (reference,
 	 * name, lat, lon — or a bounding box for IOTA) are fetched once from the
 	 * existing endpoints, cached, then filtered by the square's bounds. The
 	 * IOTA overlay fetches independently in enableIota(); this only powers the
 	 * search index.
 	 */
-	let refDirs = { wwff: null, pota: null, sota: null, iota: null };
+	let refDirs = { wwff: null, pota: null, sota: null, iota: null, wab: null };
+	/* Flatten the WAB squares geojson into directory rows (reference, lat, lon
+	 * + the outline ring as [lat, lng] pairs for L.polygon) so the search can
+	 * treat WAB like the other reference directories. */
+	function wabDirectory(data) {
+		let rings = {}, rows = [];
+		((data && data.features) || []).forEach(function (f) {
+			let g = f.geometry || {}, n = f.properties && f.properties.name;
+			if (!n) { return; }
+			if (g.type === 'MultiLineString' && g.coordinates[0]) {
+				rings[n] = g.coordinates[0].map(function (c) { return [c[1], c[0]]; });
+			} else if (g.type === 'Point') {
+				rows.push({ reference: n, lat: g.coordinates[1], lon: g.coordinates[0] });
+			}
+		});
+		rows.forEach(function (r) { r.ring = rings[r.reference] || null; });
+		return rows;
+	}
 	function loadRefDir(type) {
 		if (refDirs[type] !== null) { return Promise.resolve(refDirs[type]); }   // array done, or in-flight promise
-		let url = type === 'wwff' ? wwffUrl : type === 'pota' ? potaUrl : type === 'sota' ? sotaUrl : type === 'iota' ? iotaUrl : '';
+		let url = type === 'wwff' ? wwffUrl : type === 'pota' ? potaUrl : type === 'sota' ? sotaUrl : type === 'iota' ? iotaUrl : type === 'wab' ? wabGeojsonUrl : '';
 		if (!url) { refDirs[type] = []; return Promise.resolve([]); }
 		let p = fetch(url).then(function (r) { return r.json(); }).then(function (d) {
-			refDirs[type] = Array.isArray(d) ? d : [];
+			refDirs[type] = type === 'wab' ? wabDirectory(d) : (Array.isArray(d) ? d : []);
 			return refDirs[type];
 		}).catch(function (err) { console.warn(type + ' directory load failed:', err); refDirs[type] = []; return []; });
 		refDirs[type] = p;   // share one in-flight request across callers
@@ -672,7 +690,7 @@
 
 		let body = bands.map(function (b) {
 			let trs = b.rows.map(function (r) {
-				let col = r.type === 'POTA' ? '#238b45' : r.type === 'SOTA' ? '#d95f0e' : '#2b8cbe';
+				let col = r.type === 'POTA' ? '#238b45' : r.type === 'SOTA' ? '#d95f0e' : r.type === 'WAB' ? '#d62728' : '#2b8cbe';
 				return '<tr><td><span class="gl-pop-ref-type" style="background:' + col + '">' + esc(r.type) + '</span></td><td>' + esc(r.ref) + '</td><td>' +
 					esc(r.name || '') + '</td><td class="text-end">' + groupThousands(kmToUnit(r.dist, u)) + ' ' + ul + '</td></tr>';
 			}).join('');
@@ -1188,7 +1206,7 @@
 					));
 					let cLat = -(Number(D.lat1) + Number(D.lat2)) / 2;
 					let cLng = (g.lon1 + g.lon2) / 2;
-					let m = L.marker([cLat, cLng], { icon: iotaIcon(D.tag) });
+					let m = L.marker([cLat, cLng], { icon: chipIcon(D.tag, 'iota-label', 48) });
 					m.refData = D;
 					m.bindPopup(iotaPopupRich);
 					cluster.addLayer(m);
@@ -1211,13 +1229,14 @@
 		}
 		return { lon1: lon1, lon2: lon2 };
 	}
-	/* Clickable tag label (e.g. EU-001) shown centred on each rectangle. */
-	function iotaIcon(tag) {
+	/* Clickable chip label shown centred on a region: IOTA tags (e.g. EU-001)
+	 * and WAB square names. cls carries the colour scheme, width the chip size. */
+	function chipIcon(text, cls, width) {
 		return L.divIcon({
-			className: 'iota-label',
-			html: esc(tag),
-			iconSize: [48, 14],
-			iconAnchor: [24, 7]
+			className: cls,
+			html: esc(text),
+			iconSize: [width, 14],
+			iconAnchor: [width / 2, 7]
 		});
 	}
 	/* IOTA popup, styled like the WWFF/POTA/SOTA reference popups. The tag links
@@ -1263,9 +1282,61 @@
 		return iotaPopup(D, cLat, cLng, baseHref, baseSpot);
 	}
 
-	/* ---- Reference search (WWFF / POTA / SOTA / IOTA by name or reference) ---- */
+	/* ---- WAB squares overlay ---- */
+	/* The WAB award map's geojson (assets/js/sections/wab_geojson.js): each
+	 * square is a MultiLineString outline plus a Point at its centre. Outlines
+	 * are drawn as plain non-interactive lines; the centre points become chip
+	 * labels clustered like the IOTA tags, each opening a small info popup. */
+	function enableWab() {
+		if (!wabGeojsonUrl) { return; }
+		if (wabLayer) { map.addLayer(wabLayer); return; }        // cached after first load
+		if (typeof L.markerClusterGroup !== 'function') { return; }  // plugin not loaded
+
+		mapLoadingStart();
+		fetch(wabGeojsonUrl)
+			.then(function (r) { return r.json(); })
+			.then(function (data) {
+				wabLayer = L.featureGroup();   // FeatureGroup (not LayerGroup) so getBounds() exists for fitBounds
+				wabLayer.addLayer(L.geoJSON(data, {
+					filter: function (f) { return f.geometry && f.geometry.type !== 'Point'; },
+					style: function () { return { color: '#d62728', weight: 1, opacity: 0.85, interactive: false }; }
+				}));
+				let cluster = L.markerClusterGroup({
+					chunkedLoading: true,
+					maxClusterRadius: 40,
+					showCoverageOnHover: false
+				});
+				(data.features || []).forEach(function (f) {
+					if (!f.geometry || f.geometry.type !== 'Point' || !f.properties || !f.properties.name) { return; }
+					let ll = [f.geometry.coordinates[1], f.geometry.coordinates[0]];
+					let m = L.marker(ll, { icon: chipIcon(f.properties.name, 'wab-label', 36) });
+					m.bindPopup(wabPopup(f.properties.name, ll));
+					cluster.addLayer(m);
+				});
+				wabLayer.addLayer(cluster);   // cluster rides inside the group → atomic add/remove
+				map.addLayer(wabLayer);
+				map.fitBounds(wabLayer.getBounds(), { padding: [20, 20] });
+				mapLoadingDone();
+			})
+			.catch(function (err) { console.error('WAB squares load failed:', err); mapLoadingDone(); });
+	}
+	function disableWab() {
+		if (wabLayer) { map.removeLayer(wabLayer); }
+	}
+	/* Minimal info popup for a WAB square: name, the Maidenhead locator of its
+	 * centre and the coordinates. */
+	function wabPopup(name, ll) {
+		return '<div class="ref-popup" style="border-left-color:#d62728">' +
+			'<div class="ref-popup-top"><span class="ref-popup-type" style="background:#d62728">WAB</span>' +
+			'<span class="ref-popup-ref">' + esc(name) + '</span></div>' +
+			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(ll[0], ll[1], 3)) + '</span></div>' +
+			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(ll[0]) + ', ' + fmtLng(ll[1]) + '</span></div>' +
+			'</div>';
+	}
+
+	/* ---- Reference search (WWFF / POTA / SOTA / IOTA / WAB by name or reference) ---- */
 	/*
-	 * Unified free-text search across the four cached directories. The lowercased
+	 * Unified free-text search across the cached directories. The lowercased
 	 * search index per directory is built lazily on first search (so toggling an
 	 * overlay but never searching costs nothing), then reused for the session.
 	 * Match is a case-insensitive substring on the reference/tag AND the name.
@@ -1274,7 +1345,8 @@
 		{ type: 'wwff', label: 'WWFF', letter: 'W', color: '#2b8cbe' },
 		{ type: 'pota', label: 'POTA', letter: 'P', color: '#238b45' },
 		{ type: 'sota', label: 'SOTA', letter: 'S', color: '#d95f0e' },
-		{ type: 'iota', label: 'IOTA', letter: 'I', color: '#17a2b8' }
+		{ type: 'iota', label: 'IOTA', letter: 'I', color: '#17a2b8' },
+		{ type: 'wab',  label: 'WAB',  letter: 'W', color: '#d62728' }
 	];
 	let SEARCH_PER_TYPE = 8, SEARCH_TOTAL = 30, SEARCH_MIN = 2, SEARCH_DEBOUNCE = 180;
 	let searchIndexes = null;     // {wwff,pota,sota,iota} -> [{a,b,r}], built once
@@ -1297,10 +1369,10 @@
 		return out;
 	}
 
-	/* Load all four directories (cached) and build their indexes once. */
+	/* Load all five directories (cached) and build their indexes once. */
 	function ensureSearchIndexes() {
 		if (searchIndexes) { return Promise.resolve(searchIndexes); }
-		return Promise.all([loadRefDir('wwff'), loadRefDir('pota'), loadRefDir('sota'), loadRefDir('iota')]).then(function () {
+		return Promise.all([loadRefDir('wwff'), loadRefDir('pota'), loadRefDir('sota'), loadRefDir('iota'), loadRefDir('wab')]).then(function () {
 			searchIndexes = {};
 			SEARCH_TYPES.forEach(function (t) { searchIndexes[t.type] = buildSearchIndex(t.type); });
 			return searchIndexes;
@@ -1480,7 +1552,7 @@
 				[[lat1, g.lon1], [lat2, g.lon1], [lat2, g.lon2], [lat1, g.lon2]],
 				{ interactive: false, color: '#17a2b8', weight: 1, fillColor: '#17a2b8', fillOpacity: 0.12 }
 			));
-			let m = L.marker([cLat, cLng], { icon: iotaIcon(r.tag) });
+			let m = L.marker([cLat, cLng], { icon: chipIcon(r.tag, 'iota-label', 48) });
 			m.refData = r;
 			m.bindPopup(iotaPopupRich);
 			searchOverlay.addLayer(m);
@@ -1488,6 +1560,24 @@
 				map.flyTo([cLat, cLng], 9);
 			} else {
 				map.fitBounds([[Math.min(lat1, lat2), g.lon1], [Math.max(lat1, lat2), g.lon2]], { padding: [40, 40], maxZoom: 11 });
+			}
+			m.openPopup();
+			return;
+		}
+
+		if (row.type === 'wab') {
+			// Draw the square's outline (same recipe as the IOTA selection) + chip + popup at its centre.
+			let square = (r.ring && r.ring.length) ? L.polygon(r.ring, {
+				interactive: false, color: '#d62728', weight: 2, fillColor: '#d62728', fillOpacity: 0.15
+			}) : null;
+			if (square) { searchOverlay.addLayer(square); }
+			let m = L.marker([r.lat, r.lon], { icon: chipIcon(r.reference, 'wab-label', 36) });
+			m.bindPopup(wabPopup(r.reference, [r.lat, r.lon]));
+			searchOverlay.addLayer(m);
+			if (square) {
+				map.fitBounds(square.getBounds(), { padding: [40, 40], maxZoom: 13 });
+			} else {
+				map.flyTo([r.lat, r.lon], 12);
 			}
 			m.openPopup();
 			return;
@@ -1824,6 +1914,12 @@
 		if (iotaCb) {
 			iotaCb.addEventListener('change', function () {
 				if (this.checked) { enableIota(); } else { disableIota(); }
+			});
+		}
+		let wabCb = document.getElementById('glWabSquares');
+		if (wabCb) {
+			wabCb.addEventListener('change', function () {
+				if (this.checked) { enableWab(); } else { disableWab(); }
 			});
 		}
 

@@ -15,6 +15,7 @@
 				case 'Country': echo __("Country"); break;
 				case 'IOTA': echo __("IOTA"); break;
 				case 'SOTA': echo __("SOTA"); break;
+				case 'DOK': echo __("DOK"); break;
 				case 'State': echo __("State"); break;
 				case 'Grid': echo __("Gridsquare"); break;
 				case 'Distance': echo __("Distance"); break;
@@ -31,6 +32,7 @@
 				case 'Country': echo __("Country"); break;
 				case 'IOTA': echo __("IOTA"); break;
 				case 'SOTA': echo __("SOTA"); break;
+				case 'DOK': echo __("DOK"); break;
 				case 'State': echo __("State"); break;
 				case 'Grid': echo __("Gridsquare"); break;
 				case 'Distance': echo __("Distance"); break;
@@ -47,6 +49,7 @@
 				case 'Country': echo __("Country"); break;
 				case 'IOTA': echo __("IOTA"); break;
 				case 'SOTA': echo __("SOTA"); break;
+				case 'DOK': echo __("DOK"); break;
 				case 'State': echo __("State"); break;
 				case 'Grid': echo __("Gridsquare"); break;
 				case 'Distance': echo __("Distance"); break;
@@ -63,6 +66,7 @@
 				case 'Country': echo __("Country"); break;
 				case 'IOTA': echo __("IOTA"); break;
 				case 'SOTA': echo __("SOTA"); break;
+				case 'DOK': echo __("DOK"); break;
 				case 'State': echo __("State"); break;
 				case 'Grid': echo __("Gridsquare"); break;
 				case 'Distance': echo __("Distance"); break;
@@ -79,6 +83,7 @@
 				case 'Country': echo __("Country"); break;
 				case 'IOTA': echo __("IOTA"); break;
 				case 'SOTA': echo __("SOTA"); break;
+				case 'DOK': echo __("DOK"); break;
 				case 'State': echo __("State"); break;
 				case 'Grid': echo __("Gridsquare"); break;
 				case 'Distance': echo __("Distance"); break;
@@ -116,6 +121,7 @@
 				case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY)));; break;
 				case 'IOTA':    echo '<td>' . html_escape($row->COL_IOTA); break;
 				case 'SOTA':    echo '<td>' . html_escape($row->COL_SOTA_REF); break;
+				case 'DOK':    $dok = $row->COL_DARC_DOK ?? ''; echo '<td>' . (preg_match('/^[A-Y]\d{2}$/', $dok) ? '<a href="https://www.darc.de/' . $dok . '" target="_blank">' . $dok . '</a>' : (preg_match('/^Z\d{2}$/', $dok) ? '<a href="https://' . $dok . '.vfdb.org" target="_blank">' . $dok . '</a>' : html_escape($dok))); break;
 				case 'WWFF':    echo '<td>' . html_escape($row->COL_WWFF_REF); break;
 				case 'POTA':    echo '<td>' . html_escape($row->COL_POTA_REF); break;
 				case 'Grid':    echo '<td>'; echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;
@@ -132,6 +138,7 @@
 				case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY)));; break;
 				case 'IOTA':    echo '<td>' . html_escape($row->COL_IOTA); break;
 				case 'SOTA':    echo '<td>' . html_escape($row->COL_SOTA_REF); break;
+				case 'DOK':    $dok = $row->COL_DARC_DOK ?? ''; echo '<td>' . (preg_match('/^[A-Y]\d{2}$/', $dok) ? '<a href="https://www.darc.de/' . $dok . '" target="_blank">' . $dok . '</a>' : (preg_match('/^Z\d{2}$/', $dok) ? '<a href="https://' . $dok . '.vfdb.org" target="_blank">' . $dok . '</a>' : html_escape($dok))); break;
 				case 'WWFF':    echo '<td>' . html_escape($row->COL_WWFF_REF); break;
 				case 'POTA':    echo '<td>' . html_escape($row->COL_POTA_REF); break;
 				case 'Grid':    echo '<td>'; echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;
@@ -149,6 +156,7 @@
 				case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY)));; break;
 				case 'IOTA':    echo '<td>' . html_escape($row->COL_IOTA); break;
 				case 'SOTA':    echo '<td>' . html_escape($row->COL_SOTA_REF); break;
+				case 'DOK':    $dok = $row->COL_DARC_DOK ?? ''; echo '<td>' . (preg_match('/^[A-Y]\d{2}$/', $dok) ? '<a href="https://www.darc.de/' . $dok . '" target="_blank">' . $dok . '</a>' : (preg_match('/^Z\d{2}$/', $dok) ? '<a href="https://' . $dok . '.vfdb.org" target="_blank">' . $dok . '</a>' : html_escape($dok))); break;
 				case 'WWFF':    echo '<td>' . html_escape($row->COL_WWFF_REF); break;
 				case 'POTA':    echo '<td>' . html_escape($row->COL_POTA_REF); break;
 				case 'Grid':    echo '<td>'; echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;
@@ -165,6 +173,7 @@
 				case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY)));; break;
 				case 'IOTA':    echo '<td>' . html_escape($row->COL_IOTA); break;
 				case 'SOTA':    echo '<td>' . html_escape($row->COL_SOTA_REF); break;
+				case 'DOK':    $dok = $row->COL_DARC_DOK ?? ''; echo '<td>' . (preg_match('/^[A-Y]\d{2}$/', $dok) ? '<a href="https://www.darc.de/' . $dok . '" target="_blank">' . $dok . '</a>' : (preg_match('/^Z\d{2}$/', $dok) ? '<a href="https://' . $dok . '.vfdb.org" target="_blank">' . $dok . '</a>' : html_escape($dok))); break;
 				case 'WWFF':    echo '<td>' . html_escape($row->COL_WWFF_REF); break;
 				case 'POTA':    echo '<td>' . html_escape($row->COL_POTA_REF); break;
 				case 'Grid':    echo '<td>'; echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;
@@ -181,6 +190,7 @@
 				case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY)));; break;
 				case 'IOTA':    echo '<td>' . html_escape($row->COL_IOTA); break;
 				case 'SOTA':    echo '<td>' . html_escape($row->COL_SOTA_REF); break;
+				case 'DOK':    $dok = $row->COL_DARC_DOK ?? ''; echo '<td>' . (preg_match('/^[A-Y]\d{2}$/', $dok) ? '<a href="https://www.darc.de/' . $dok . '" target="_blank">' . $dok . '</a>' : (preg_match('/^Z\d{2}$/', $dok) ? '<a href="https://' . $dok . '.vfdb.org" target="_blank">' . $dok . '</a>' : html_escape($dok))); break;
 				case 'WWFF':    echo '<td>' . html_escape($row->COL_WWFF_REF); break;
 				case 'POTA':    echo '<td>' . html_escape($row->COL_POTA_REF); break;
 				case 'Grid':    echo '<td>'; echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;

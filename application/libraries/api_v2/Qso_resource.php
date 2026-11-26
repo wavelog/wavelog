@@ -69,6 +69,9 @@ class Qso_resource extends Api_v2_resource {
 	 *   ?since_id=   only QSOs with a primary key greater than this (default 0)
 	 *   ?qso_since=  YYYY-MM-DD, oldest QSO date to include (whole day)
 	 *   ?qso_until=  YYYY-MM-DD, newest QSO date to include (whole day)
+	 *   ?operator=   exact match on the operator callsign (COL_OPERATOR); ignored
+	 *                for club members below officer level, who only ever see
+	 *                their own QSOs anyway
 	 * Pagination: ?page= / ?per_page= (max 5000; default 50 for JSON, 1000 for
 	 *             ADIF), or ?limit= as a shortcut for the newest N QSOs (overrides
 	 *             page/per_page).
@@ -129,7 +132,11 @@ class Qso_resource extends Api_v2_resource {
 
 		// A club member below officer level only ever sees its own QSOs - in the
 		// JSON list and the ADIF export alike, since both run the same query.
-		$operator = $this->is_restricted_club_member() ? (string) $this->operator_callsign() : '';
+		// Everyone else may narrow the list to one operator, e.g. an officer
+		// fetching only his own QSOs from the club log.
+		$operator = $this->is_restricted_club_member()
+			? (string) $this->operator_callsign()
+			: $this->normalize_callsign($this->param('operator'));
 
 		$filters = [
 			'station_ids' => $station_ids,
@@ -949,8 +956,21 @@ class Qso_resource extends Api_v2_resource {
 
 		foreach (self::read_only_fields() as $key => $spec) {
 			$value = $row->{$spec[0]} ?? null;
-			$qso[$key] = ($spec[1] === 'integer' && $value !== null) ? (int) $value : $value;
+			if ($value !== null && $spec[1] === 'integer') {
+				$value = (int) $value;
+			} elseif ($value !== null && $value !== '' && $spec[1] === 'float') {
+				$value = (float) $value;
+			}
+			$qso[$key] = $value;
 		}
+
+		foreach (self::station_fields() as $key => $column) {
+			$qso[$key] = $row->{$column} ?? null;
+		}
+		$grid = (string) ($row->station_gridsquare ?? '');
+		$vucc = strpos($grid, ',') !== false;
+		$qso['my_gridsquare'] = $vucc ? '' : $grid;
+		$qso['my_vucc_grids'] = $vucc ? $grid : '';
 
 		// Driven by editable_fields() on purpose: a client must be able to read
 		// back every field it may write, or a read-modify-write cycle would
@@ -982,6 +1002,29 @@ class Qso_resource extends Api_v2_resource {
 			'freq_rx'    => ['COL_FREQ_RX', 'string'],
 			'qslsdate'   => ['COL_QSLSDATE', 'string'],
 			'qslrdate'   => ['COL_QSLRDATE', 'string'],
+			// Set at creation (POST) and not changeable via PATCH.
+			'qso_date_off'     => ['COL_TIME_OFF', 'string'],
+			'operator'         => ['COL_OPERATOR', 'string'],
+			'owner_callsign'   => ['COL_OWNER_CALLSIGN', 'string'],
+			'tx_pwr'           => ['COL_TX_PWR', 'float'],
+			'contest_id'       => ['COL_CONTEST_ID', 'string'],
+		];
+	}
+
+	/**
+	 * Station side of the QSO: json key => station_profile column. Read from
+	 * the joined station location like the ADIF export (AdifHelper), so GET
+	 * and the export always agree. my_gridsquare / my_vucc_grids are added in
+	 * format_qso(), split on a comma the same way.
+	 */
+	protected static function station_fields() {
+		return [
+			'station_callsign' => 'station_callsign',
+			'my_sota_ref'      => 'station_sota',
+			'my_pota_ref'      => 'station_pota',
+			'my_wwff_ref'      => 'station_wwff',
+			'my_sig'           => 'station_sig',
+			'my_sig_info'      => 'station_sig_info',
 		];
 	}
 
