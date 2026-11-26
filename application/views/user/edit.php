@@ -302,6 +302,7 @@
 											<option value="SOTA" <?php if ($user_column1 == "SOTA") { echo " selected =\"selected\""; } ?>><?= __("SOTA"); ?></option>
 											<option value="WWFF" <?php if ($user_column1 == "WWFF") { echo " selected =\"selected\""; } ?>><?= __("WWFF"); ?></option>
 											<option value="POTA" <?php if ($user_column1 == "POTA") { echo " selected =\"selected\""; } ?>><?= __("POTA"); ?></option>
+											<option value="DOK" <?php if ($user_column1 == "DOK") { echo " selected =\"selected\""; } ?>><?= __("DOK"); ?></option>
 											<option value="State" <?php if ($user_column1 == "State") { echo " selected =\"selected\""; } ?>><?= __("State"); ?></option>
 											<option value="Grid" <?php if ($user_column1 == "Grid") { echo " selected =\"selected\""; } ?>><?= __("Gridsquare"); ?></option>
 											<option value="Distance" <?php if ($user_column1 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
@@ -325,6 +326,7 @@
 											<option value="SOTA" <?php if ($user_column2 == "SOTA") { echo " selected =\"selected\""; } ?>><?= __("SOTA"); ?></option>
 											<option value="WWFF" <?php if ($user_column2 == "WWFF") { echo " selected =\"selected\""; } ?>><?= __("WWFF"); ?></option>
 											<option value="POTA" <?php if ($user_column2 == "POTA") { echo " selected =\"selected\""; } ?>><?= __("POTA"); ?></option>
+											<option value="DOK" <?php if ($user_column2 == "DOK") { echo " selected =\"selected\""; } ?>><?= __("DOK"); ?></option>
 											<option value="State" <?php if ($user_column2 == "State") { echo " selected =\"selected\""; } ?>><?= __("State"); ?></option>
 											<option value="Grid" <?php if ($user_column2 == "Grid") { echo " selected =\"selected\""; } ?>><?= __("Gridsquare"); ?></option>
 											<option value="Distance" <?php if ($user_column2 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
@@ -348,6 +350,7 @@
 											<option value="SOTA" <?php if ($user_column3 == "SOTA") { echo " selected =\"selected\""; } ?>><?= __("SOTA"); ?></option>
 											<option value="WWFF" <?php if ($user_column3 == "WWFF") { echo " selected =\"selected\""; } ?>><?= __("WWFF"); ?></option>
 											<option value="POTA" <?php if ($user_column3 == "POTA") { echo " selected =\"selected\""; } ?>><?= __("POTA"); ?></option>
+											<option value="DOK" <?php if ($user_column3 == "DOK") { echo " selected =\"selected\""; } ?>><?= __("DOK"); ?></option>
 											<option value="State" <?php if ($user_column3 == "State") { echo " selected =\"selected\""; } ?>><?= __("State"); ?></option>
 											<option value="Grid" <?php if ($user_column3 == "Grid") { echo " selected =\"selected\""; } ?>><?= __("Gridsquare"); ?></option>
 											<option value="Distance" <?php if ($user_column3 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
@@ -371,6 +374,7 @@
 											<option value="SOTA" <?php if ($user_column4 == "SOTA") { echo " selected =\"selected\""; } ?>><?= __("SOTA"); ?></option>
 											<option value="WWFF" <?php if ($user_column4 == "WWFF") { echo " selected =\"selected\""; } ?>><?= __("WWFF"); ?></option>
 											<option value="POTA" <?php if ($user_column4 == "POTA") { echo " selected =\"selected\""; } ?>><?= __("POTA"); ?></option>
+											<option value="DOK" <?php if ($user_column4 == "DOK") { echo " selected =\"selected\""; } ?>><?= __("DOK"); ?></option>
 											<option value="State" <?php if ($user_column4 == "State") { echo " selected =\"selected\""; } ?>><?= __("State"); ?></option>
 											<option value="Grid" <?php if ($user_column4 == "Grid") { echo " selected =\"selected\""; } ?>><?= __("Gridsquare"); ?></option>
 											<option value="Distance" <?php if ($user_column4 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
@@ -395,6 +399,7 @@
 											<option value="SOTA" <?php if ($user_column5 == "SOTA") { echo " selected =\"selected\""; } ?>><?= __("SOTA"); ?></option>
 											<option value="WWFF" <?php if ($user_column5 == "WWFF") { echo " selected =\"selected\""; } ?>><?= __("WWFF"); ?></option>
 											<option value="POTA" <?php if ($user_column5 == "POTA") { echo " selected =\"selected\""; } ?>><?= __("POTA"); ?></option>
+											<option value="DOK" <?php if ($user_column5 == "DOK") { echo " selected =\"selected\""; } ?>><?= __("DOK"); ?></option>
 											<option value="State" <?php if ($user_column5 == "State") { echo " selected =\"selected\""; } ?>><?= __("State"); ?></option>
 											<option value="Grid" <?php if ($user_column5 == "Grid") { echo " selected =\"selected\""; } ?>><?= __("Gridsquare"); ?></option>
 											<option value="Distance" <?php if ($user_column5 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
