@@ -17,6 +17,7 @@
 		wwffBoundaryRefsUrl: <?php echo json_encode(site_url('activationplanner/wwff_boundary_refs')); ?>,
 		sotaUrl:    <?php echo json_encode(site_url('activationplanner/sota_directory')); ?>,
 		iotaUrl:    <?php echo json_encode(site_url('activationplanner/iota_directory')); ?>,
+		wabGeojsonUrl: <?php echo json_encode(base_url('assets/js/sections/wab_geojson.js')); ?>,
 		dxccGridUrl: <?php echo json_encode(site_url('activationplanner/dxcc_for_grid')); ?>,
 		mwPercUrl:  <?php echo json_encode(site_url('activationplanner/perc_for_grid')); ?>,
 		mwPercLbl:  <?php echo json_encode(__("In log of %s (SAT)")); ?>,
@@ -88,7 +89,7 @@
 						<i class="fas fa-magnifying-glass gl-search-icon"></i>
 						<input type="text" id="glRefSearch" class="gl-search-input form-control form-control-sm"
 							autocomplete="off" spellcheck="false"
-							placeholder="<?= __("Search references…"); ?>" title="<?= __("Search WWFF / POTA / SOTA / IOTA by name or reference — Enter searches place names (OpenStreetMap)"); ?>">
+							placeholder="<?= __("Search references…"); ?>" title="<?= __("Search WWFF / POTA / SOTA / IOTA / WAB by name or reference — Enter searches place names (OpenStreetMap)"); ?>">
 						<div class="gl-search-results" id="glRefSearchResults" hidden></div>
 					</div>
 					<div class="gl-refsrow gl-secondary">
@@ -96,10 +97,11 @@
 							<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><?= __("Refs"); ?></button>
 							<ul class="dropdown-menu p-2" style="max-height:60vh; overflow-y:auto;">
 								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glGridOverlay"><?= __("Gridsquare"); ?></label></li>
-								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glWwffDir"><?= __("WWFF"); ?><span class="ref-menu-dot ms-auto" style="background:#2b8cbe">W</span></label></li>
-								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glPotaDir"><?= __("POTA"); ?><span class="ref-menu-dot ms-auto" style="background:#238b45">P</span></label></li>
-								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glSotaDir"><?= __("SOTA"); ?><span class="ref-menu-dot ms-auto" style="background:#d95f0e">S</span></label></li>
-								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glIotaDir"><?= __("IOTA"); ?><span class="ref-menu-dot ms-auto" style="background:#17a2b8">I</span></label></li>
+								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glWwffDir"><span class="me-2"><?= __("WWFF"); ?></span><span class="ref-menu-dot ms-auto" style="background:#2b8cbe">W</span></label></li>
+								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glPotaDir"><span class="me-2"><?= __("POTA"); ?></span><span class="ref-menu-dot ms-auto" style="background:#238b45">P</span></label></li>
+								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glSotaDir"><span class="me-2"><?= __("SOTA"); ?></span><span class="ref-menu-dot ms-auto" style="background:#d95f0e">S</span></label></li>
+								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glIotaDir"><span class="me-2"><?= __("IOTA"); ?></span><span class="ref-menu-dot ms-auto" style="background:#17a2b8">I</span></label></li>
+								<li><label class="dropdown-item d-flex align-items-center"><input type="checkbox" class="form-check-input me-2" id="glWabSquares"><span class="me-2"><?= __("WAB squares"); ?></span><span class="ref-menu-dot ms-auto" style="background:#d62728; border-radius:3px"></span></label></li>
 							</ul>
 						</div>
 						<div id="glOverlaysHost" class="gl-secondary"></div>

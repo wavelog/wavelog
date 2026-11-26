@@ -744,6 +744,7 @@ msgstr " 和 "
 #: application/views/user/edit.php:395
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/views/activationplanner/index.php:102
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -767,6 +768,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:349 application/views/user/edit.php:372
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/activationplanner/index.php:100
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -792,6 +794,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:350 application/views/user/edit.php:373
 #: application/views/user/edit.php:397
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/activationplanner/index.php:101
 msgid "POTA"
 msgstr "POTA"
 
@@ -1396,6 +1399,10 @@ msgstr "按条件统计 QSO"
 #: application/views/view_log/qso.php:630
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:68
+#: application/views/activationplanner/index.php:28
+#: application/views/activationplanner/index.php:76
+#: application/views/activationplanner/index.php:99
+#: application/views/activationplanner/index.php:125
 msgid "Gridsquare"
 msgstr "网格坐标"
 
@@ -1419,6 +1426,7 @@ msgstr "网格坐标"
 #: application/views/stationsetup/locationlist.php:22
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:24
+#: application/views/activationplanner/index.php:127
 msgid "ITU Zone"
 msgstr "ITU 分区"
 
@@ -1448,6 +1456,7 @@ msgstr "ITU 分区"
 #: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:23
+#: application/views/activationplanner/index.php:126
 msgid "CQ Zone"
 msgstr "CQ 分区"
 
@@ -2564,6 +2573,7 @@ msgstr "DXCC 实体"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/views/activationplanner/index.php:103
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -2628,6 +2638,7 @@ msgstr "州"
 #: application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/visitor/index.php:30
+#: application/views/activationplanner/index.php:34
 msgid "Distance"
 msgstr "距离"
 
@@ -3806,6 +3817,7 @@ msgstr "不允许"
 #: application/views/widgets/lotw_upload.php:123
 #: application/views/widgets/on_air.php:190
 #: application/views/widgets/on_air.php:249
+#: application/views/activationplanner/index.php:36
 msgid "Error"
 msgstr "错误"
 
@@ -5900,6 +5912,7 @@ msgstr "奖杯"
 #: application/views/user/modals/more_actions_modal.php:117
 #: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
+#: application/views/activationplanner/index.php:35
 msgid "Close"
 msgstr "关闭"
 
@@ -6043,6 +6056,7 @@ msgstr "清除标记"
 #: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:109
+#: application/views/activationplanner/index.php:123
 msgid "Latitude"
 msgstr "纬度"
 
@@ -6055,6 +6069,7 @@ msgstr "纬度"
 #: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:110
+#: application/views/activationplanner/index.php:124
 msgid "Longitude"
 msgstr "经度"
 
@@ -6064,25 +6079,31 @@ msgid ""
 msgstr "无效网格—使用 2、4、6、8 或 10 个字符（例如：FN，FN31，FN31pr）。"
 
 #: application/views/activationplanner/index.php:22
+#: application/views/activationplanner/index.php:23
 #, php-format
 msgid "In log of %s (SAT)"
 msgstr "在 %s 的日志中 (SAT)"
 
 #: application/views/activationplanner/index.php:25
 #: application/views/satellite/pass.php:21
+#: application/views/activationplanner/index.php:26
 msgid "Satellite passes"
 msgstr "卫星过境"
 
 #: application/views/activationplanner/index.php:26
+#: application/views/activationplanner/index.php:27
 msgid "Gridsquare borders"
 msgstr "网格边框"
 
 #: application/views/activationplanner/index.php:28
 #: application/views/activationplanner/index.php:86
+#: application/views/activationplanner/index.php:29
+#: application/views/activationplanner/index.php:87
 msgid "Nearby refs"
 msgstr "附近的参考号"
 
 #: application/views/activationplanner/index.php:29
+#: application/views/activationplanner/index.php:30
 #, php-format
 msgid "References within %s of the gridsquare"
 msgstr "此网格周边 %s 的活动编号"
@@ -6090,12 +6111,14 @@ msgstr "此网格周边 %s 的活动编号"
 #: application/views/activationplanner/index.php:30
 #: application/views/qslcard/confirmationresult.php:21
 #: application/views/user/index.php:30
+#: application/views/activationplanner/index.php:31
 msgid "Type"
 msgstr "类型"
 
 #: application/views/activationplanner/index.php:31
 #: application/views/awards/sig/qso_list.php:13
 #: application/views/countqsoby/index.php:13
+#: application/views/activationplanner/index.php:32
 msgid "Reference"
 msgstr "编号"
 
@@ -6129,10 +6152,12 @@ msgstr "编号"
 #: application/views/view_log/partial/log_ajax.php:20
 #: application/views/view_log/qso.php:220
 #: application/views/view_log/qso.php:625
+#: application/views/activationplanner/index.php:33
 msgid "Name"
 msgstr "名称"
 
 #: application/views/activationplanner/index.php:36
+#: application/views/activationplanner/index.php:37
 msgid "Tracking"
 msgstr "追踪中"
 
@@ -6140,38 +6165,47 @@ msgstr "追踪中"
 #: application/views/labeldesigner/designer.php:290
 #: application/views/logbookadvanced/mergedialog.php:71
 #: application/views/qslpostcard/designer.php:241
+#: application/views/activationplanner/index.php:38
 msgid "Field"
 msgstr "字段"
 
 #: application/views/activationplanner/index.php:38
+#: application/views/activationplanner/index.php:39
 msgid "Square"
 msgstr "网格"
 
 #: application/views/activationplanner/index.php:39
+#: application/views/activationplanner/index.php:40
 msgid "Subsquare"
 msgstr "子网格"
 
 #: application/views/activationplanner/index.php:40
+#: application/views/activationplanner/index.php:41
 msgid "Locating…"
 msgstr "定位中…"
 
 #: application/views/activationplanner/index.php:41
+#: application/views/activationplanner/index.php:42
 msgid "Location access denied."
 msgstr "位置访问被拒绝。"
 
 #: application/views/activationplanner/index.php:42
+#: application/views/activationplanner/index.php:43
 msgid "Location unavailable."
 msgstr "位置不可用。"
 
 #: application/views/activationplanner/index.php:43
+#: application/views/activationplanner/index.php:44
 msgid "Location request timed out."
 msgstr "定位请求超时。"
 
 #: application/views/activationplanner/index.php:45
+#: application/views/activationplanner/index.php:46
 msgid "Create station location"
 msgstr "创建台站位置"
 
 #: application/views/activationplanner/index.php:46
+#: application/views/activationplanner/index.php:47
 msgid "References in this grid"
 msgstr "此网格中的活动"
 
@@ -6182,85 +6216,106 @@ msgstr "此网格中的活动"
 #: application/views/labels/index.php:83
 #: application/views/statistics/index.php:113
 #: application/views/statistics/index.php:161
+#: application/views/activationplanner/index.php:48
 msgid "QSOs"
 msgstr "QSO"
 
 #: application/views/activationplanner/index.php:48
+#: application/views/activationplanner/index.php:49
 msgid "last"
 msgstr "上次"
 
 #: application/views/activationplanner/index.php:49
+#: application/views/activationplanner/index.php:50
 msgid "Inactive"
 msgstr "不活跃"
 
 #: application/views/activationplanner/index.php:50
+#: application/views/activationplanner/index.php:51
 msgid "valid"
 msgstr "有效的"
 
 #: application/views/activationplanner/index.php:52
 #: application/views/view_log/qso.php:611
+#: application/views/activationplanner/index.php:53
 msgid "Share"
 msgstr "分享"
 
 #: application/views/activationplanner/index.php:53
+#: application/views/activationplanner/index.php:54
 msgid "Share activation"
 msgstr "分享激活信息"
 
 #: application/views/activationplanner/index.php:54
+#: application/views/activationplanner/index.php:55
 #, php-format
 msgid "📻 Planning an activation from %s"
 msgstr "📻从%s开始规划"
 
 #: application/views/activationplanner/index.php:55
 #: application/views/activationplanner/index.php:91
+#: application/views/activationplanner/index.php:56
+#: application/views/activationplanner/index.php:92
 msgid "Search references…"
 msgstr "搜索编号…"
 
 #: application/views/activationplanner/index.php:56
+#: application/views/activationplanner/index.php:57
 msgid "No matches"
 msgstr "无匹配条目"
 
 #: application/views/activationplanner/index.php:57
+#: application/views/activationplanner/index.php:58
 msgid "Loading…"
 msgstr "加载中…"
 
 #: application/views/activationplanner/index.php:58
+#: application/views/activationplanner/index.php:59
 msgid "References"
 msgstr "编号"
 
 #: application/views/activationplanner/index.php:59
+#: application/views/activationplanner/index.php:60
 msgid "Places"
 msgstr "地点"
 
 #: application/views/activationplanner/index.php:60
+#: application/views/activationplanner/index.php:61
 msgid "Press Enter to search places"
 msgstr "按下回车键搜索地点"
 
 #: application/views/activationplanner/index.php:70
+#: application/views/activationplanner/index.php:71
 msgid "Plan your activity here"
 msgstr "在此开始规划"
 
 #: application/views/activationplanner/index.php:78
+#: application/views/activationplanner/index.php:79
 msgid "2, 4, 6, 8 or 10 character Maidenhead locator"
 msgstr "2、 4、 6、 8 或 10 个字符的梅登黑德网格定位编码"
 
 #: application/views/activationplanner/index.php:78
+#: application/views/activationplanner/index.php:79
 msgid "e.g. FN31pr"
 msgstr "例：OM89ev"
 
 #: application/views/activationplanner/index.php:79
+#: application/views/activationplanner/index.php:80
 msgid "to"
 msgstr "至"
 
 #: application/views/activationplanner/index.php:82
+#: application/views/activationplanner/index.php:83
 msgid "Optional second gridsquare for distance and bearing"
 msgstr "可选的第二网格，用于计算距离和方位"
 
 #: application/views/activationplanner/index.php:82
+#: application/views/activationplanner/index.php:83
 msgid "e.g. JN58qm"
 msgstr "例：JN58qm"
 
 #: application/views/activationplanner/index.php:83
+#: application/views/activationplanner/index.php:84
 msgid "Go"
 msgstr "Go"
 
@@ -6278,14 +6333,17 @@ msgstr "Go"
 #: application/views/interface_assets/footer.php:58
 #: application/views/logbookadvanced/index.php:360
 #: application/views/qso/index.php:757 application/views/user/edit.php:1422
+#: application/views/activationplanner/index.php:85
 msgid "Clear"
 msgstr "清除"
 
 #: application/views/activationplanner/index.php:85
+#: application/views/activationplanner/index.php:86
 msgid "Find my location and gridsquare"
 msgstr "查找我的位置和网格"
 
 #: application/views/activationplanner/index.php:85
+#: application/views/activationplanner/index.php:86
 msgid "Locate me"
 msgstr "我的位置"
 
@@ -6297,15 +6355,18 @@ msgstr "通过名称或编号搜索 WWFF / POTA / SOTA / IOTA 地点 (OpenStreet
 
 #: application/views/activationplanner/index.php:96
 #: application/views/simplefle/index.php:162
+#: application/views/activationplanner/index.php:97
 msgid "Refs"
 msgstr "参考号"
 
 #: application/views/activationplanner/index.php:109
 #: application/views/qso/index.php:758
+#: application/views/activationplanner/index.php:111
 msgid "More options"
 msgstr "更多选项"
 
 #: application/views/activationplanner/index.php:110
+#: application/views/activationplanner/index.php:112
 msgid "Hide options"
 msgstr "隐藏选项"
 
@@ -24772,6 +24833,16 @@ msgstr "Clublog 日志搜索"
 #: src/QSLManager/QSO.php:921
 msgid "LoTW User. Last upload was "
 msgstr "LoTW 用户。最后上传于 "
+
+#: application/views/activationplanner/index.php:92
+msgid ""
+"Search WWFF / POTA / SOTA / IOTA / WAB by name or reference — Enter searches "
+"place names (OpenStreetMap)"
+msgstr ""
+
+#: application/views/activationplanner/index.php:104
+msgid "WAB squares"
+msgstr ""
 
 #~ msgid "Callsigns tested: "
 #~ msgstr "已测试的呼号： "
