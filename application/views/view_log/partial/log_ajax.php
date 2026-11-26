@@ -35,7 +35,7 @@ function echo_table_col($row, $name, $adif_propmodes) {
 		case 'SOTA':    echo '<td>' . html_escape($row->COL_SOTA_REF ?? '') . '</td>'; break;
 		case 'WWFF':    echo '<td>' . html_escape($row->COL_WWFF_REF ?? '') . '</td>'; break;
 		case 'POTA':    echo '<td>' . html_escape($row->COL_POTA_REF ?? '') . '</td>'; break;
-		case 'DOK':    echo '<td>' . html_escape($row->COL_DARC_DOK ?? '') . '</td>'; break;
+		case 'DOK':    $dok = $row->COL_DARC_DOK ?? ''; echo '<td>' . (preg_match('/^[A-Y]\d{2}$/', $dok) ? '<a href="https://www.darc.de/' . $dok . '" target="_blank">' . $dok . '</a>' : (preg_match('/^Z\d{2}$/', $dok) ? '<a href="https://' . $dok . '.vfdb.org" target="_blank">' . $dok . '</a>' : html_escape($dok))) . '</td>'; break;
 		case 'Grid':
 			if(!$ci->load->is_loaded('Qra')) {
 				$ci->load->library('Qra');

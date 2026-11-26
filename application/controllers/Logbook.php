@@ -1544,7 +1544,7 @@ class Logbook extends CI_Controller {
 		case 'SOTA':    $ret.= '<td>' . html_escape($row->COL_SOTA_REF) . '</td>'; break;
 		case 'WWFF':    $ret.= '<td>' . html_escape($row->COL_WWFF_REF) . '</td>'; break;
 		case 'POTA':    $ret.= '<td>' . html_escape($row->COL_POTA_REF) . '</td>'; break;
-		case 'DOK':    $ret.= '<td>' . html_escape($row->COL_DARC_DOK ?? '') . '</td>'; break;
+		case 'DOK':    $dok = $row->COL_DARC_DOK ?? ''; $ret.= '<td>' . (preg_match('/^[A-Y]\d{2}$/', $dok) ? '<a href="https://www.darc.de/' . $dok . '" target="_blank">' . $dok . '</a>' : (preg_match('/^Z\d{2}$/', $dok) ? '<a href="https://' . $dok . '.vfdb.org" target="_blank">' . $dok . '</a>' : html_escape($dok))) . '</td>'; break;
 		case 'Grid':    $ret.= '<td>' . $this->part_QrbCalcLink($row->COL_MY_GRIDSQUARE, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE) . '</td>'; break;
 		case 'Distance':    $ret.= '<td>' . (($row->COL_DISTANCE ?? '' != '') ? $row->COL_DISTANCE . '&nbsp;km' : '') . '</td>'; break;
       case 'Band':    $ret.= '<td>'; if($row->COL_SAT_NAME != null) { $ret.= '<a href="https://db.satnogs.org/search/?q='.html_escape($row->COL_SAT_NAME).'" target="_blank">'.html_escape($row->sat_displayname != null ? $row->sat_displayname." (".$row->COL_SAT_NAME.")" : $row->COL_SAT_NAME).'</a></td>'; } else { $ret.= html_escape(strtolower($row->COL_BAND)); } $ret.= '</td>'; break;

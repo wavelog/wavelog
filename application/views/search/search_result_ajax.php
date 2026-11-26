@@ -47,7 +47,7 @@ function echo_table_col($row, $name) {
         case 'POTA':
             echo html_escape($row->COL_POTA_REF);
             break;
-        case 'DOK': echo html_escape($row->COL_DARC_DOK ?? ''); break;
+        case 'DOK': $dok = $row->COL_DARC_DOK ?? ''; echo (preg_match('/^[A-Y]\d{2}$/', $dok) ? '<a href="https://www.darc.de/' . $dok . '" target="_blank">' . $dok . '</a>' : (preg_match('/^Z\d{2}$/', $dok) ? '<a href="https://' . $dok . '.vfdb.org" target="_blank">' . $dok . '</a>' : html_escape($dok))); break;
         case 'Grid':
             echo html_escape(strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''); break;
             break;
