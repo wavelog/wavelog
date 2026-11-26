@@ -92,7 +92,7 @@ function applyCountyUpdates() {
 
 	BootstrapDialog.confirm({
 		title: 'Update counties',
-		message: 'Write the geojson county into the log for ' + rows.length + ' QSO(s)? This overwrites the current county value of those QSOs.',
+		message: 'Write the geojson county into the log for ' + rows.length + ' QSO(s)? This overwrites the current state and county of those QSOs.',
 		btnOKLabel: 'Update',
 		btnOKClass: 'btn-warning',
 		callback: function(confirmed) {

@@ -35,7 +35,7 @@ class Countychecker_model extends CI_Model {
 
 	/**
 	 * Writes a "STATE,COUNTY" pair (ADIF notation) into COL_CNTY of a single
-	 * QSO belonging to the current user
+	 * QSO belonging to the current user, and the pair's state into COL_STATE
 	 *
 	 * @param int $qso_id COL_PRIMARY_KEY of the QSO
 	 * @param string $state_county "STATE,COUNTY" pair to write
@@ -44,10 +44,10 @@ class Countychecker_model extends CI_Model {
 	public function updateCounty($qso_id, $state_county) {
 		$sql = 'update ' . $this->config->item('table_name') . ' qsos
 			join station_profile on station_profile.station_id = qsos.station_id
-			set qsos.COL_CNTY = ?, qsos.last_modified = now()
+			set qsos.COL_CNTY = ?, qsos.COL_STATE = ?, qsos.last_modified = now()
 			where qsos.COL_PRIMARY_KEY = ?
 			and station_profile.user_id = ?';
-		$this->db->query($sql, array($state_county, $qso_id, $this->session->userdata('user_id')));
+		$this->db->query($sql, array($state_county, explode(',', $state_county)[0], $qso_id, $this->session->userdata('user_id')));
 
 		return $this->db->affected_rows();
 	}
