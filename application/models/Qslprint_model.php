@@ -70,6 +70,19 @@ class Qslprint_model extends CI_Model {
 	function get_qsos_for_print($station_id = 'All') {
 		$binding = [];
 		$binding[] = $this->session->userdata('user_id');
+		
+		//get limit from config, default to 1000
+		$limit = filter_var(
+			$this->config->item('qslprint_queue_limit'),
+			FILTER_VALIDATE_INT,
+			['options' => ['min_range' => 1]]
+		);
+
+		if ($limit === false) {
+			$limit = 1000;
+		}
+		
+		//database statement
 		$sql = "SELECT
 			COALESCE(prev.previous_qsl, 0) AS previous_qsl,
 			COALESCE(sr.qsl_sent_to_call, 0) AS qsl_sent_to_call,
@@ -102,7 +115,7 @@ class Qslprint_model extends CI_Model {
 			$binding[] = $station_id;
 		}
 		$sql .= " AND log.`COL_QSL_SENT` IN('R', 'Q')
-			ORDER BY log.`COL_DXCC` ASC, log.`COL_CALL` ASC, log.`COL_SAT_NAME` ASC, log.`COL_SAT_MODE` ASC, log.`COL_BAND_RX` ASC, log.`COL_TIME_ON` ASC, log.`COL_MODE` ASC LIMIT 1000";
+			ORDER BY log.`COL_DXCC` ASC, log.`COL_CALL` ASC, log.`COL_SAT_NAME` ASC, log.`COL_SAT_MODE` ASC, log.`COL_BAND_RX` ASC, log.`COL_TIME_ON` ASC, log.`COL_MODE` ASC LIMIT " . $limit;
 
 		$query = $this->db->query($sql, $binding);
 		return $query;
