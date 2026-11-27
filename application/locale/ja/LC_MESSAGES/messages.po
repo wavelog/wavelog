@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-11-26 19:22+0000\n"
+"POT-Creation-Date: 2026-11-27 06:21+0000\n"
 "PO-Revision-Date: 2026-11-25 15:34+0000\n"
 "Last-Translator: \"Xu, Zefan (BI1GHZ)\" <ceba_robot@outlook.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -142,7 +142,7 @@ msgstr "対流圏ダクト"
 #: application/controllers/Bandmap.php:8
 #: application/controllers/Cabrillo.php:10
 #: application/controllers/Callstats.php:12
-#: application/controllers/Calltester.php:12
+#: application/controllers/Calltester.php:13
 #: application/controllers/Club.php:42 application/controllers/Club.php:80
 #: application/controllers/Club.php:118 application/controllers/Club.php:144
 #: application/controllers/Club.php:177 application/controllers/Club.php:246
@@ -159,10 +159,11 @@ msgstr "対流圏ダクト"
 #: application/controllers/Contesting_import.php:94
 #: application/controllers/Contesting_import.php:124
 #: application/controllers/Continents.php:7
-#: application/controllers/Countqsoby.php:9 application/controllers/Cron.php:25
-#: application/controllers/Cron.php:170 application/controllers/Cron.php:216
-#: application/controllers/Cron.php:229 application/controllers/Csv.php:6
-#: application/controllers/Csv.php:28
+#: application/controllers/Countqsoby.php:9
+#: application/controllers/Countychecker.php:54
+#: application/controllers/Cron.php:25 application/controllers/Cron.php:170
+#: application/controllers/Cron.php:216 application/controllers/Cron.php:229
+#: application/controllers/Csv.php:6 application/controllers/Csv.php:28
 #: application/controllers/Dayswithqso.php:10
 #: application/controllers/Dbtools.php:13 application/controllers/Dcl.php:10
 #: application/controllers/Dcl.php:18 application/controllers/Dcl.php:44
@@ -575,8 +576,8 @@ msgstr "DOK"
 #: application/controllers/Countqsoby.php:73
 #: application/views/awards/index.php:7 application/views/awards/wab/list.php:5
 #: application/views/bandmap/list.php:102 application/views/bands/index.php:51
-#: application/views/calltester/call_info.php:29
-#: application/views/calltester/call_info.php:61
+#: application/views/calltester/call_info.php:14
+#: application/views/calltester/call_info.php:47
 #: application/views/countqsoby/index.php:12
 #: application/views/countqsoby/index.php:67 application/views/csv/index.php:58
 #: application/views/dashboard/index.php:418
@@ -996,21 +997,21 @@ msgstr " 及びバンド "
 msgid " and sat "
 msgstr " 及び衛星 "
 
-#: application/controllers/Calltester.php:30
+#: application/controllers/Calltester.php:31
 msgid "Call Tester"
 msgstr "コールテスター"
 
-#: application/controllers/Calltester.php:164
+#: application/controllers/Calltester.php:165
 #: application/controllers/Qso.php:897
 msgid "No callsign provided."
 msgstr "コールサインが提供されていません。"
 
-#: application/controllers/Calltester.php:286
-#: application/controllers/Calltester.php:346
+#: application/controllers/Calltester.php:287
+#: application/controllers/Calltester.php:347
 msgid "CSV Call Tester"
 msgstr "CSV コールテスター"
 
-#: application/controllers/Calltester.php:963
+#: application/controllers/Calltester.php:964
 msgid "Callsign Tester"
 msgstr "コールサインテスター"
 
@@ -1343,13 +1344,14 @@ msgstr "交信数をカウントする..."
 #: application/views/awards/vucc/band.php:17
 #: application/views/awards/wab/index.php:188
 #: application/views/awards/wab/list.php:7
-#: application/views/calltester/comparison_result.php:80
-#: application/views/calltester/comparison_result.php:129
-#: application/views/calltester/comparison_result.php:178
-#: application/views/calltester/result.php:54
+#: application/views/calltester/comparison_result.php:66
+#: application/views/calltester/comparison_result.php:115
+#: application/views/calltester/comparison_result.php:164
+#: application/views/calltester/result.php:39
 #: application/views/contesting/logger/components/map.php:80
 #: application/views/countqsoby/index.php:11
 #: application/views/countqsoby/index.php:68
+#: application/views/countychecker/result.php:34
 #: application/views/dashboard/index.php:15
 #: application/views/dbtools/checkresult.php:156
 #: application/views/dbtools/checkresult.php:235
@@ -1392,7 +1394,7 @@ msgstr "交信数をカウントする..."
 #: application/views/view_log/qso.php:156
 #: application/views/view_log/qso.php:630
 #: application/views/visitor/index.php:28
-#: application/views/zonechecker/result.php:68
+#: application/views/zonechecker/result.php:54
 msgid "Gridsquare"
 msgstr "グリッドスクエア"
 
@@ -1489,8 +1491,9 @@ msgstr "WWFFリファレンス"
 #: application/views/calltester/index.php:11
 #: application/views/contesting/manager/components/session_modal.php:63
 #: application/views/countqsoby/index.php:16
-#: application/views/countqsoby/index.php:71 application/views/csv/index.php:19
-#: application/views/dbtools/index.php:28
+#: application/views/countqsoby/index.php:71
+#: application/views/countychecker/index.php:27
+#: application/views/csv/index.php:19 application/views/dbtools/index.php:28
 #: application/views/dxatlas/index.php:19
 #: application/views/labels/index.php:126
 #: application/views/logbookadvanced/edit.php:25
@@ -1507,6 +1510,21 @@ msgstr "WWFFリファレンス"
 #: application/views/zonechecker/index.php:11
 msgid "Station Location"
 msgstr "運用場所"
+
+#: application/controllers/Countychecker.php:73
+#: application/views/dbtools/index.php:156
+msgid "Gridsquare County checker"
+msgstr ""
+
+#: application/controllers/Countychecker.php:500
+msgid "Invalid request"
+msgstr ""
+
+#: application/controllers/Countychecker.php:577
+#: application/controllers/Wabtool.php:174
+#: application/controllers/Zonechecker.php:202
+msgid "Invalid gridsquare"
+msgstr "無効なグリッドマス"
 
 #: application/controllers/Cron.php:37
 #: application/views/interface_assets/header.php:373
@@ -2236,8 +2254,9 @@ msgstr "ログブック"
 #: application/views/awards/was/index.php:92
 #: application/views/awards/wpx/index.php:33
 #: application/views/awards/wwff/index.php:104
-#: application/views/calltester/call_info.php:66
+#: application/views/calltester/call_info.php:52
 #: application/views/countqsoby/index.php:164
+#: application/views/countychecker/result.php:84
 #: application/views/dashboard/index.php:420
 #: application/views/gridmap/index.php:174
 #: application/views/interface_assets/footer.php:119
@@ -2280,7 +2299,7 @@ msgstr "QSL"
 #: application/views/awards/was/index.php:96
 #: application/views/awards/wpx/index.php:37
 #: application/views/awards/wwff/index.php:108
-#: application/views/calltester/call_info.php:80
+#: application/views/calltester/call_info.php:66
 #: application/views/countqsoby/index.php:172
 #: application/views/dashboard/_options_menu.php:23
 #: application/views/dashboard/index.php:510
@@ -2334,7 +2353,7 @@ msgstr "LoTW"
 #: application/views/awards/was/index.php:100
 #: application/views/awards/wpx/index.php:41
 #: application/views/awards/wwff/index.php:112
-#: application/views/calltester/call_info.php:81
+#: application/views/calltester/call_info.php:67
 #: application/views/countqsoby/index.php:180
 #: application/views/dbtools/missinggridlist.php:60
 #: application/views/gridmap/index.php:190
@@ -2398,7 +2417,7 @@ msgstr "すべてのコールブック検索が失敗したか、結果が提供
 #: application/views/bandmap/list.php:603
 #: application/views/bands/bandedges.php:31
 #: application/views/callstats/index.php:54
-#: application/views/calltester/call_info.php:59
+#: application/views/calltester/call_info.php:44
 #: application/views/contesting/logger/components/qso-form.php:151
 #: application/views/contesting/logger/components/radio.php:73
 #: application/views/contesting/manager/export_cbr.php:106
@@ -2687,17 +2706,18 @@ msgstr "距離"
 #: application/views/bandmap/list.php:601 application/views/bands/create.php:24
 #: application/views/bands/edit.php:7 application/views/bands/index.php:48
 #: application/views/callstats/index.php:12
-#: application/views/calltester/call_info.php:58
-#: application/views/calltester/comparison_result.php:81
-#: application/views/calltester/comparison_result.php:130
-#: application/views/calltester/comparison_result.php:179
-#: application/views/calltester/result.php:55
+#: application/views/calltester/call_info.php:43
+#: application/views/calltester/comparison_result.php:67
+#: application/views/calltester/comparison_result.php:116
+#: application/views/calltester/comparison_result.php:165
+#: application/views/calltester/result.php:40
 #: application/views/contesting/logger/components/qso-form.php:150
 #: application/views/contesting/logger/components/radio.php:90
 #: application/views/contesting/manager/export_cbr.php:76
 #: application/views/continents/index.php:35
-#: application/views/countqsoby/index.php:78 application/views/csv/index.php:31
-#: application/views/dashboard/index.php:17
+#: application/views/countqsoby/index.php:78
+#: application/views/countychecker/result.php:35
+#: application/views/csv/index.php:31 application/views/dashboard/index.php:17
 #: application/views/dbtools/checkresult.php:91
 #: application/views/dbtools/checkresult.php:151
 #: application/views/dbtools/checkresult.php:234
@@ -2756,7 +2776,7 @@ msgstr "距離"
 #: application/views/view_log/qso.php:95 application/views/visitor/index.php:34
 #: application/views/visitor/mini.php:184
 #: application/views/wabtool/table.php:19 application/views/widgets/qsos.php:21
-#: application/views/zonechecker/result.php:69
+#: application/views/zonechecker/result.php:55
 msgid "Band"
 msgstr "バンド"
 
@@ -4530,11 +4550,6 @@ msgstr "運用場所が見つかりませんでした"
 msgid "No QSOs selected"
 msgstr "交信は選択されていません"
 
-#: application/controllers/Wabtool.php:174
-#: application/controllers/Zonechecker.php:483
-msgid "Invalid gridsquare"
-msgstr "無効なグリッドマス"
-
 #: application/controllers/Webadif.php:108
 #: application/controllers/Webadif.php:189
 #: application/views/interface_assets/header.php:604
@@ -4592,7 +4607,7 @@ msgstr "スラッグで複数のユーザーが見つかりました"
 msgid "Gridsquare Zone finder"
 msgstr "グリッドスクエアゾーンファインダー"
 
-#: application/controllers/Zonechecker.php:477
+#: application/controllers/Zonechecker.php:196
 msgid "GeoJSON data unavailable"
 msgstr "GeoJSONデータが利用できません"
 
@@ -5758,6 +5773,7 @@ msgstr "違い"
 #: application/views/countqsoby/index.php:117
 #: application/views/countqsoby/index.php:133
 #: application/views/countqsoby/index.php:146
+#: application/views/countychecker/index.php:29
 #: application/views/csv/index.php:21 application/views/csv/index.php:33
 #: application/views/csv/index.php:44 application/views/csv/index.php:60
 #: application/views/csv/index.php:82 application/views/csv/index.php:94
@@ -5999,6 +6015,7 @@ msgstr "トロフィー"
 #: application/views/contesting/manager/components/confirm_delete.php:6
 #: application/views/contesting/manager/components/session_modal.php:12
 #: application/views/contesting/manager/index.php:124
+#: application/views/countychecker/index.php:11
 #: application/views/interface_assets/footer.php:56
 #: application/views/logbookadvanced/index.php:55
 #: application/views/simplefle/index.php:21
@@ -6285,7 +6302,7 @@ msgid "References in this grid"
 msgstr "このグリッド内の参照"
 
 #: application/views/activationplanner/index.php:48
-#: application/views/calltester/call_info.php:30
+#: application/views/calltester/call_info.php:15
 #: application/views/countqsoby/index.php:7
 #: application/views/dbtools/statecheckresult.php:16
 #: application/views/labels/index.php:83
@@ -6480,15 +6497,16 @@ msgstr "何も見つかりません!"
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:171
 #: application/views/bandmap/list.php:567
 #: application/views/callstats/index.php:139
-#: application/views/calltester/call_info.php:28
-#: application/views/calltester/call_info.php:57
-#: application/views/calltester/comparison_result.php:77
-#: application/views/calltester/comparison_result.php:126
-#: application/views/calltester/comparison_result.php:175
-#: application/views/calltester/result.php:51
+#: application/views/calltester/call_info.php:13
+#: application/views/calltester/call_info.php:42
+#: application/views/calltester/comparison_result.php:63
+#: application/views/calltester/comparison_result.php:112
+#: application/views/calltester/comparison_result.php:161
+#: application/views/calltester/result.php:36
 #: application/views/club/permissions.php:284
 #: application/views/contesting/logger/components/qso-form.php:67
 #: application/views/contesting/logger/components/qso-form.php:148
+#: application/views/countychecker/result.php:30
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:345
 #: application/views/dbtools/checkresult.php:89
 #: application/views/dbtools/checkresult.php:149
@@ -6532,7 +6550,7 @@ msgstr "何も見つかりません!"
 #: application/views/visitor/mini.php:183
 #: application/views/wabtool/table.php:18
 #: application/views/widgets/lotw_upload.php:97
-#: application/views/zonechecker/result.php:64
+#: application/views/zonechecker/result.php:50
 msgid "Callsign"
 msgstr "コールサイン"
 
@@ -6611,7 +6629,7 @@ msgstr ""
 #: application/views/awards/sota/index.php:179
 #: application/views/awards/wab/list.php:9
 #: application/views/awards/wwff/index.php:177
-#: application/views/calltester/call_info.php:55
+#: application/views/calltester/call_info.php:40
 #: application/views/contesting/logger/components/qso-form.php:146
 #: application/views/dashboard/index.php:341
 #: application/views/dbtools/checkresult.php:231
@@ -6660,9 +6678,10 @@ msgstr "日付"
 #: application/views/awards/sota/index.php:180
 #: application/views/awards/wwff/index.php:178
 #: application/views/bandmap/list.php:142
-#: application/views/calltester/call_info.php:56
+#: application/views/calltester/call_info.php:41
 #: application/views/contesting/logger/components/qso-form.php:147
 #: application/views/contesting/manager/export_cbr.php:158
+#: application/views/countychecker/result.php:32
 #: application/views/dashboard/index.php:343
 #: application/views/dbtools/checkresult.php:232
 #: application/views/dbtools/checkresult.php:308
@@ -6685,7 +6704,7 @@ msgstr "日付"
 #: application/views/view_log/partial/log_ajax.php:138
 #: application/views/visitor/index.php:156
 #: application/views/webadif/rejected.php:10
-#: application/views/zonechecker/result.php:66
+#: application/views/zonechecker/result.php:52
 msgid "Time"
 msgstr "時間"
 
@@ -8055,7 +8074,7 @@ msgid "Grid Activations"
 msgstr "グリッドアクティベーション"
 
 #: application/views/awards/amsat_rover/index.php:221
-#: application/views/calltester/call_info.php:60
+#: application/views/calltester/call_info.php:45
 #: application/views/contesting/logger/components/qso-form.php:155
 #: application/views/satellite/skedtable.php:40
 #: application/views/stationsetup/locationlist.php:14
@@ -8130,6 +8149,7 @@ msgstr "CSVファイルをダウンロード"
 #: application/views/awards/counties/details_ajax.php:9
 #: application/views/awards/counties/index.php:8
 #: application/views/awards/counties/state_ajax.php:7
+#: application/views/calltester/call_info.php:46
 #: application/views/logbookadvanced/index.php:485
 #: application/views/logbookadvanced/index.php:1005
 #: application/views/logbookadvanced/useroptions.php:187
@@ -8370,6 +8390,7 @@ msgstr "%s %%が 全体で確認済み"
 #: application/views/awards/wpx/wpx_details.php:24
 #: application/views/bandmap/list.php:92 application/views/bandmap/list.php:307
 #: application/views/countqsoby/index.php:9
+#: application/views/countychecker/result.php:36
 #: application/views/dashboard/index.php:431
 #: application/views/dashboard/index.php:440
 #: application/views/dashboard/index.php:507
@@ -10578,16 +10599,17 @@ msgid "View progress of WPX awards"
 msgstr "WPXアワードの進捗状況を見る"
 
 #: application/views/awards/wpx/wpx_details.php:21
-#: application/views/calltester/comparison_result.php:78
-#: application/views/calltester/comparison_result.php:127
-#: application/views/calltester/comparison_result.php:176
-#: application/views/calltester/result.php:52
+#: application/views/calltester/comparison_result.php:64
+#: application/views/calltester/comparison_result.php:113
+#: application/views/calltester/comparison_result.php:162
+#: application/views/calltester/result.php:37
+#: application/views/countychecker/result.php:31
 #: application/views/dbtools/checkresult.php:90
 #: application/views/dbtools/checkresult.php:150
 #: application/views/dbtools/checkresult.php:378
 #: application/views/oqrs/showrequests.php:91
 #: application/views/simplefle/index.php:78
-#: application/views/zonechecker/result.php:65
+#: application/views/zonechecker/result.php:51
 msgid "QSO Date"
 msgstr "QSO日付"
 
@@ -11001,6 +11023,7 @@ msgid "Worked, not Confirmed"
 msgstr "交信済だが未確認"
 
 #: application/views/bandmap/list.php:94 application/views/bandmap/list.php:324
+#: application/views/countychecker/result.php:59
 #: application/views/lookup/lotwuser.php:2
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:70
@@ -11840,32 +11863,32 @@ msgstr "最初のQSO"
 msgid "Last QSO"
 msgstr "Last QSO"
 
-#: application/views/calltester/call_info.php:47
+#: application/views/calltester/call_info.php:32
 #, php-format
 msgid "No QSOs with %s found in your logbook."
 msgstr "ログブックには、%s とのQSOは見つかりませんでした。"
 
-#: application/views/calltester/call_info.php:62
-#: application/views/zonechecker/result.php:74
+#: application/views/calltester/call_info.php:48
+#: application/views/zonechecker/result.php:60
 msgid "CQz"
 msgstr "CQz"
 
-#: application/views/calltester/call_info.php:63
-#: application/views/zonechecker/result.php:71
+#: application/views/calltester/call_info.php:49
+#: application/views/zonechecker/result.php:57
 msgid "ITUz"
 msgstr "ITUz"
 
-#: application/views/calltester/call_info.php:64
+#: application/views/calltester/call_info.php:50
 #: application/views/contesting/logger/components/qso-form.php:86
 msgid "RST S"
 msgstr "RST S"
 
-#: application/views/calltester/call_info.php:65
+#: application/views/calltester/call_info.php:51
 #: application/views/contesting/logger/components/qso-form.php:90
 msgid "RST R"
 msgstr "RST R"
 
-#: application/views/calltester/call_info.php:67
+#: application/views/calltester/call_info.php:53
 #: application/views/contesting/manager/export_cbr.php:194
 #: application/views/logbookadvanced/index.php:873
 #: application/views/oqrs/showrequests.php:36
@@ -11875,125 +11898,129 @@ msgstr "RST R"
 msgid "Location"
 msgstr "位置"
 
-#: application/views/calltester/call_info.php:79
+#: application/views/calltester/call_info.php:65
+#: application/views/countychecker/result.php:82
 #: application/views/dbtools/missinggridlist.php:58
 msgid "QSL card"
 msgstr "QSLカード"
 
-#: application/views/calltester/call_info.php:91
-#: application/views/calltester/comparison_result.php:97
-#: application/views/calltester/comparison_result.php:146
-#: application/views/calltester/comparison_result.php:195
-#: application/views/calltester/result.php:71
+#: application/views/calltester/call_info.php:77
+#: application/views/calltester/comparison_result.php:83
+#: application/views/calltester/comparison_result.php:132
+#: application/views/calltester/comparison_result.php:181
+#: application/views/calltester/result.php:56
+#: application/views/countychecker/result.php:61
 #: application/views/hamsat/index.php:17
 #: application/views/search/search_result_ajax.php:484
 #: application/views/view_log/partial/log_ajax.php:636
-#: application/views/zonechecker/result.php:88
+#: application/views/zonechecker/result.php:74
 msgid "Lookup on QRZ.com"
 msgstr "QRZ.comで検索"
 
-#: application/views/calltester/comparison_result.php:44
+#: application/views/calltester/comparison_result.php:30
 msgid "DXCC Class Results"
 msgstr "DXCCクラスの結果"
 
-#: application/views/calltester/comparison_result.php:46
-#: application/views/calltester/comparison_result.php:53
+#: application/views/calltester/comparison_result.php:32
+#: application/views/calltester/comparison_result.php:39
 msgid "Calls tested"
 msgstr "通話テスト済み"
 
-#: application/views/calltester/comparison_result.php:47
-#: application/views/calltester/comparison_result.php:54
+#: application/views/calltester/comparison_result.php:33
+#: application/views/calltester/comparison_result.php:40
 #: application/views/calltester/result.php:6
 msgid "Execution time"
 msgstr "翻訳"
 
-#: application/views/calltester/comparison_result.php:48
-#: application/views/calltester/comparison_result.php:55
+#: application/views/calltester/comparison_result.php:34
+#: application/views/calltester/comparison_result.php:41
 msgid "Issues found"
 msgstr "発見された問題点"
 
-#: application/views/calltester/comparison_result.php:51
+#: application/views/calltester/comparison_result.php:37
 msgid "Logbook Model Results"
 msgstr "ログブックモデルの結果"
 
-#: application/views/calltester/comparison_result.php:61
+#: application/views/calltester/comparison_result.php:47
 msgid "Comparison Summary"
 msgstr "比較の概要"
 
-#: application/views/calltester/comparison_result.php:62
+#: application/views/calltester/comparison_result.php:48
 msgid "Only found in DXCC Class:"
 msgstr "DXCC クラスのみで見つかります:"
 
-#: application/views/calltester/comparison_result.php:63
+#: application/views/calltester/comparison_result.php:49
 msgid "Only found in Logbook Model:"
 msgstr "ログブックモデルでのみ見つかります:"
 
-#: application/views/calltester/comparison_result.php:64
+#: application/views/calltester/comparison_result.php:50
 msgid "Found in both methods:"
 msgstr "両方の方法で見つかりました:"
 
-#: application/views/calltester/comparison_result.php:71
+#: application/views/calltester/comparison_result.php:57
 msgid "Issues found only in DXCC Class (not in Logbook Model):"
 msgstr "DXCC クラスでのみ見つかった問題 (ログブック モデルでは見つかりません):"
 
-#: application/views/calltester/comparison_result.php:79
-#: application/views/calltester/comparison_result.php:128
-#: application/views/calltester/comparison_result.php:177
-#: application/views/calltester/result.php:53
+#: application/views/calltester/comparison_result.php:65
+#: application/views/calltester/comparison_result.php:114
+#: application/views/calltester/comparison_result.php:163
+#: application/views/calltester/result.php:38
+#: application/views/countychecker/result.php:33
 #: application/views/dbtools/checkresult.php:94
 #: application/views/dbtools/checkresult.php:154
 #: application/views/dbtools/checkresult.php:382
-#: application/views/zonechecker/result.php:67
+#: application/views/zonechecker/result.php:53
 msgid "Station Profile"
 msgstr "無線局プロフィール"
 
-#: application/views/calltester/comparison_result.php:82
-#: application/views/calltester/comparison_result.php:131
-#: application/views/calltester/comparison_result.php:180
-#: application/views/calltester/result.php:56
+#: application/views/calltester/comparison_result.php:68
+#: application/views/calltester/comparison_result.php:117
+#: application/views/calltester/comparison_result.php:166
+#: application/views/calltester/result.php:41
 #: application/views/dbtools/checkresult.php:95
 msgid "Existing DXCC"
 msgstr "既存のDXCC"
 
-#: application/views/calltester/comparison_result.php:83
-#: application/views/calltester/comparison_result.php:132
-#: application/views/calltester/comparison_result.php:181
-#: application/views/calltester/result.php:57
+#: application/views/calltester/comparison_result.php:69
+#: application/views/calltester/comparison_result.php:118
+#: application/views/calltester/comparison_result.php:167
+#: application/views/calltester/result.php:42
 msgid "Existing ADIF"
 msgstr "既存のADIF"
 
-#: application/views/calltester/comparison_result.php:84
-#: application/views/calltester/comparison_result.php:133
-#: application/views/calltester/comparison_result.php:182
-#: application/views/calltester/result.php:58
+#: application/views/calltester/comparison_result.php:70
+#: application/views/calltester/comparison_result.php:119
+#: application/views/calltester/comparison_result.php:168
+#: application/views/calltester/result.php:43
 #: application/views/dbtools/checkresult.php:96
 msgid "Result DXCC"
 msgstr "結果 DXCC"
 
-#: application/views/calltester/comparison_result.php:85
-#: application/views/calltester/comparison_result.php:134
-#: application/views/calltester/comparison_result.php:183
-#: application/views/calltester/result.php:59
+#: application/views/calltester/comparison_result.php:71
+#: application/views/calltester/comparison_result.php:120
+#: application/views/calltester/comparison_result.php:169
+#: application/views/calltester/result.php:44
 msgid "Result ADIF"
 msgstr "結果 ADIF"
 
-#: application/views/calltester/comparison_result.php:98
-#: application/views/calltester/comparison_result.php:147
-#: application/views/calltester/comparison_result.php:196
-#: application/views/calltester/result.php:72
-#: application/views/zonechecker/result.php:89
+#: application/views/calltester/comparison_result.php:84
+#: application/views/calltester/comparison_result.php:133
+#: application/views/calltester/comparison_result.php:182
+#: application/views/calltester/result.php:57
+#: application/views/countychecker/result.php:62
+#: application/views/zonechecker/result.php:75
 msgid "Show all QSOs with this callsign"
 msgstr "このコールサインとのすべての交信を表示する"
 
-#: application/views/calltester/comparison_result.php:120
+#: application/views/calltester/comparison_result.php:106
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
 msgstr "ログブック モデルでのみ見つかった問題 (DXCC クラスでは見つかりません):"
 
-#: application/views/calltester/comparison_result.php:169
+#: application/views/calltester/comparison_result.php:155
 msgid "Issues found in both methods:"
 msgstr "両方の方法で見つかった問題:"
 
-#: application/views/calltester/comparison_result.php:218
+#: application/views/calltester/comparison_result.php:204
 msgid ""
 "No DXCC issues found in either method. All calls have correct DXCC "
 "information."
@@ -12006,6 +12033,7 @@ msgid "Callsign DXCC identification"
 msgstr "コールサインDXCC識別"
 
 #: application/views/calltester/index.php:16
+#: application/views/countychecker/index.php:32
 #: application/views/dbtools/index.php:33
 #: application/views/interface_assets/footer.php:902
 #: application/views/logbookadvanced/index.php:878
@@ -12030,7 +12058,7 @@ msgstr "テスト済みのコールサイン"
 msgid "Potential wrong DXCC"
 msgstr "DXCC登録の誤りの可能性"
 
-#: application/views/calltester/result.php:92
+#: application/views/calltester/result.php:77
 msgid "No DXCC issues found. All calls have correct DXCC information."
 msgstr ""
 "DXCCに関する問題は見つかりませんでした。すべての通話番号に正しいDXCC情報が含"
@@ -14098,6 +14126,163 @@ msgstr "日付プリセット"
 msgid "Count QSOs by"
 msgstr "QSOをカウントする"
 
+#: application/views/countychecker/index.php:2
+msgid "An error occurred while processing the request."
+msgstr "リクエストの処理中にエラーが発生しました。"
+
+#: application/views/countychecker/index.php:3
+msgid "Update counties"
+msgstr ""
+
+#: application/views/countychecker/index.php:4
+msgid "No rows selected."
+msgstr ""
+
+#: application/views/countychecker/index.php:5
+#, php-format
+msgid ""
+"Write the geojson county into the log for %s QSO(s)? This overwrites the "
+"current state and county of those QSOs."
+msgstr ""
+
+#: application/views/countychecker/index.php:6
+#: application/views/debug/index.php:745 application/views/debug/index.php:752
+#: application/views/debug/index.php:758 application/views/debug/index.php:764
+#: application/views/debug/index.php:770 application/views/debug/index.php:776
+#: application/views/debug/index.php:782 application/views/debug/index.php:788
+#: application/views/debug/index.php:794 application/views/debug/index.php:800
+#: application/views/debug/index.php:806 application/views/debug/index.php:812
+#: application/views/debug/index.php:818 application/views/debug/index.php:824
+#: application/views/station_profile/edit.php:53
+msgid "Update"
+msgstr "アップデート"
+
+#: application/views/countychecker/index.php:7
+msgid "Update failed."
+msgstr ""
+
+#: application/views/countychecker/index.php:8
+#, php-format
+msgid "Updated the county of %s QSO(s)."
+msgstr ""
+
+#: application/views/countychecker/index.php:9
+msgid "No county found for this gridsquare."
+msgstr ""
+
+#: application/views/countychecker/index.php:10
+msgid "Error loading map data."
+msgstr ""
+
+#: application/views/countychecker/index.php:12
+msgid "GeoJSON"
+msgstr ""
+
+#: application/views/countychecker/index.php:13
+#: application/views/interface_assets/header.php:424
+msgid "Log"
+msgstr "ログ"
+
+#: application/views/countychecker/index.php:14
+msgid "Possible"
+msgstr ""
+
+#: application/views/countychecker/index.php:23
+#: application/views/dbtools/index.php:157
+msgid "Gridsquare County identification"
+msgstr ""
+
+#: application/views/countychecker/index.php:37
+msgid "Start County Check"
+msgstr ""
+
+#: application/views/countychecker/result.php:15
+#, php-format
+msgid ""
+"Only the first %s QSOs with a county issue are shown. Update them and run "
+"the check again for the next ones."
+msgstr ""
+
+#: application/views/countychecker/result.php:18
+msgid "Select QSOs missing a county"
+msgstr ""
+
+#: application/views/countychecker/result.php:19
+msgid "Select QSOs with wrong county"
+msgstr ""
+
+#: application/views/countychecker/result.php:20
+msgid "Select unconfirmed only"
+msgstr ""
+
+#: application/views/countychecker/result.php:21
+msgid "Update selected QSOs"
+msgstr ""
+
+#: application/views/countychecker/result.php:22
+msgid "Writes the geojson county into the log."
+msgstr ""
+
+#: application/views/countychecker/result.php:37
+msgid "County (log)"
+msgstr ""
+
+#: application/views/countychecker/result.php:38
+msgid "County (geojson)"
+msgstr ""
+
+#: application/views/countychecker/result.php:59
+msgid "Last upload"
+msgstr ""
+
+#: application/views/countychecker/result.php:72
+#: application/views/zonechecker/result.php:85
+msgid "Show on map"
+msgstr "地図で表示"
+
+#: application/views/countychecker/result.php:82
+#: application/views/countychecker/result.php:87
+#: application/views/dashboard/index.php:555
+#: application/views/dashboard/index.php:590
+#: application/views/dashboard/index.php:620
+#: application/views/dashboard/index.php:650
+#: application/views/dashboard/index.php:680
+#: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
+#: application/views/oqrs/qsolist.php:175
+#: application/views/qslprint/qsolist.php:126
+#: application/views/qslprint/qsolist.php:177
+#: application/views/qslprint/qsolist.php:208
+#: application/views/qso/edit_ajax.php:459
+#: application/views/qso/edit_ajax.php:499
+#: application/views/qso/edit_ajax.php:543
+#: application/views/qso/edit_ajax.php:572
+#: application/views/qso/edit_ajax.php:597
+#: application/views/qso/edit_ajax.php:622
+#: application/views/search/search_result_ajax.php:227
+#: application/views/search/search_result_ajax.php:278
+#: application/views/search/search_result_ajax.php:318
+#: application/views/search/search_result_ajax.php:356
+#: application/views/search/search_result_ajax.php:392
+#: application/views/search/search_result_ajax.php:428
+#: application/views/view_log/partial/log_ajax.php:260
+#: application/views/view_log/partial/log_ajax.php:337
+#: application/views/view_log/partial/log_ajax.php:404
+#: application/views/view_log/partial/log_ajax.php:466
+#: application/views/view_log/partial/log_ajax.php:523
+#: application/views/view_log/partial/log_ajax.php:568
+#: application/views/visitor/index.php:296
+#: application/views/visitor/index.php:319
+#: application/views/visitor/index.php:337 src/QSLManager/QSO.php:465
+#: src/QSLManager/QSO.php:548 src/QSLManager/QSO.php:625
+#: src/QSLManager/QSO.php:691 src/QSLManager/QSO.php:771
+#: src/QSLManager/QSO.php:838
+msgid "Received"
+msgstr "受領"
+
+#: application/views/countychecker/result.php:106
+msgid "No county issues found. All QSOs have correct county information."
+msgstr ""
+
 #: application/views/cron/edit.php:11
 msgid "Identifier"
 msgstr "識別子"
@@ -14581,43 +14766,6 @@ msgstr "確認待ち"
 #: src/QSLManager/QSO.php:810
 msgid "Sent"
 msgstr "送信済み"
-
-#: application/views/dashboard/index.php:555
-#: application/views/dashboard/index.php:590
-#: application/views/dashboard/index.php:620
-#: application/views/dashboard/index.php:650
-#: application/views/dashboard/index.php:680
-#: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
-#: application/views/oqrs/qsolist.php:175
-#: application/views/qslprint/qsolist.php:126
-#: application/views/qslprint/qsolist.php:177
-#: application/views/qslprint/qsolist.php:208
-#: application/views/qso/edit_ajax.php:459
-#: application/views/qso/edit_ajax.php:499
-#: application/views/qso/edit_ajax.php:543
-#: application/views/qso/edit_ajax.php:572
-#: application/views/qso/edit_ajax.php:597
-#: application/views/qso/edit_ajax.php:622
-#: application/views/search/search_result_ajax.php:227
-#: application/views/search/search_result_ajax.php:278
-#: application/views/search/search_result_ajax.php:318
-#: application/views/search/search_result_ajax.php:356
-#: application/views/search/search_result_ajax.php:392
-#: application/views/search/search_result_ajax.php:428
-#: application/views/view_log/partial/log_ajax.php:260
-#: application/views/view_log/partial/log_ajax.php:337
-#: application/views/view_log/partial/log_ajax.php:404
-#: application/views/view_log/partial/log_ajax.php:466
-#: application/views/view_log/partial/log_ajax.php:523
-#: application/views/view_log/partial/log_ajax.php:568
-#: application/views/visitor/index.php:296
-#: application/views/visitor/index.php:319
-#: application/views/visitor/index.php:337 src/QSLManager/QSO.php:465
-#: src/QSLManager/QSO.php:548 src/QSLManager/QSO.php:625
-#: src/QSLManager/QSO.php:691 src/QSLManager/QSO.php:771
-#: src/QSLManager/QSO.php:838
-msgid "Received"
-msgstr "受領"
 
 #: application/views/dashboard/index.php:560
 #: application/views/logbookadvanced/edit.php:184
@@ -15174,6 +15322,7 @@ msgid "Batch assign WAB squares from logged gridsquares"
 msgstr "ログに記録されたグリッドスクエアからWABスクエアを一括割り当てする"
 
 #: application/views/dbtools/index.php:149
+#: application/views/dbtools/index.php:160
 msgid "Open"
 msgstr "開ける"
 
@@ -15834,17 +15983,6 @@ msgstr "最終更新日"
 #: application/views/debug/index.php:742
 msgid "DXCC update from Club Log"
 msgstr "クラブログからのDXCCアップデート"
-
-#: application/views/debug/index.php:745 application/views/debug/index.php:752
-#: application/views/debug/index.php:758 application/views/debug/index.php:764
-#: application/views/debug/index.php:770 application/views/debug/index.php:776
-#: application/views/debug/index.php:782 application/views/debug/index.php:788
-#: application/views/debug/index.php:794 application/views/debug/index.php:800
-#: application/views/debug/index.php:806 application/views/debug/index.php:812
-#: application/views/debug/index.php:818 application/views/debug/index.php:824
-#: application/views/station_profile/edit.php:53
-msgid "Update"
-msgstr "アップデート"
 
 #: application/views/debug/index.php:749
 msgid "DOK file download"
@@ -17495,10 +17633,6 @@ msgstr "デバッグ情報"
 #: application/views/interface_assets/header.php:422
 msgid "Add/Search Callsign"
 msgstr "コールサインの追加/検索"
-
-#: application/views/interface_assets/header.php:424
-msgid "Log"
-msgstr "ログ"
 
 #: application/views/interface_assets/header.php:431
 #: application/views/logbookadvanced/index.php:779
@@ -25408,43 +25542,39 @@ msgstr "ゾーンタイプ"
 msgid "Start Zone Check"
 msgstr "ゾーンチェックを開始"
 
-#: application/views/zonechecker/result.php:30
+#: application/views/zonechecker/result.php:16
 msgid "Callsigns Tested"
 msgstr "テストされたコールサイン"
 
-#: application/views/zonechecker/result.php:31
+#: application/views/zonechecker/result.php:17
 msgid "Execution Time"
 msgstr "実行時間"
 
-#: application/views/zonechecker/result.php:32
+#: application/views/zonechecker/result.php:18
 msgid "Potential Wrong Zones"
 msgstr "潜在的な間違ったゾーン"
 
-#: application/views/zonechecker/result.php:33
+#: application/views/zonechecker/result.php:19
 msgid "Cache Hits"
 msgstr "キャッシュヒット"
 
-#: application/views/zonechecker/result.php:34
+#: application/views/zonechecker/result.php:20
 msgid "Cache Misses"
 msgstr "キャッシュミス"
 
-#: application/views/zonechecker/result.php:35
+#: application/views/zonechecker/result.php:21
 msgid "Hit Rate"
 msgstr "ヒット率"
 
-#: application/views/zonechecker/result.php:72
+#: application/views/zonechecker/result.php:58
 msgid "ITUz geojson"
 msgstr "ITUz geojson"
 
-#: application/views/zonechecker/result.php:75
+#: application/views/zonechecker/result.php:61
 msgid "CQz geojson"
 msgstr "CQz geojson"
 
-#: application/views/zonechecker/result.php:99
-msgid "Show on map"
-msgstr "地図で表示"
-
-#: application/views/zonechecker/result.php:118
+#: application/views/zonechecker/result.php:104
 msgid "No zone issues found. All QSOs have correct zone information."
 msgstr ""
 "ゾーンに関する問題は見つかりませんでした。すべての交信記録に正しいゾーン情報"
@@ -25676,9 +25806,6 @@ msgstr "LoTWユーザー。最後のアップロードは "
 
 #~ msgid "Processing..."
 #~ msgstr "処理..."
-
-#~ msgid "An error occurred while processing the request."
-#~ msgstr "リクエストの処理中にエラーが発生しました。"
 
 #~ msgid "Invalid logging token."
 #~ msgstr "ログ認証トークンが無効です。"
