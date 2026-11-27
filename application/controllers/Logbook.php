@@ -72,6 +72,22 @@ class Logbook extends CI_Controller {
 		echo json_encode($return, JSON_PRETTY_PRINT);
 	}
 
+	/*
+	 * Callsign lookup for the QSO entry form, answered as JSON.
+	 *
+	 * Besides callbook/logbook data and the DXCC entity the response carries dxcc_bearing:
+	 * the ready-to-display bearing and distance to the DXCC reference coordinates (center
+	 * of the entity), so the client can show an estimated bearing even when a callbook
+	 * grid is known but not prefilled. NULL when it can't be calculated.
+	 *
+	 * @param string   $tempcallsign   Callsign to look up, '/' encoded as '-'
+	 * @param string   $tempband       Band, or 'SAT'
+	 * @param string   $tempmode       Mode
+	 * @param int|null $tempstation_id Station profile ID (optional)
+	 * @param string   $date           QSO date in the user's date format (optional)
+	 * @param int      $count          Number of previous QSOs to include (optional, default 5)
+	 * @return void                   Outputs the JSON and returns
+	 */
 	function json($tempcallsign, $tempband, $tempmode, $tempstation_id = null, $date = "", $count = 5) {
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 		session_write_close();
@@ -264,6 +280,18 @@ class Logbook extends CI_Controller {
 				$bearing_deg = get_bearing($mylatlng[0], $mylatlng[1], $dxcc_lat, $dxcc_long);
 				$return['bearing_deg'] = ($bearing_deg === false) ? null : (int)$bearing_deg;
 				$return['callsign_distance'] = calc_distance($mylatlng[0], $mylatlng[1], $dxcc_lat, $dxcc_long, 'K');
+			}
+		}
+
+		$return['dxcc_bearing'] = null;
+		if (!empty($return['dxcc']['adif']) && !empty($return['dxcc']['lat']) && !empty($return['dxcc']['long'])) {
+			if( !$this->load->is_loaded('Qra') ) {
+				$this->load->library('Qra');
+			}
+			$mylocator = $this->my_locator($station_id);
+			$mylatlng = ($mylocator === false) ? false : $this->qra->qra2latlong($mylocator);
+			if ($mylatlng !== false) {
+				$return['dxcc_bearing'] = bearing($mylatlng[0], $mylatlng[1], (float) $return['dxcc']['lat'], (float) $return['dxcc']['long'], $measurement_base);
 			}
 		}
 		$return['callbook_source'] = $callbook['source'] ?? '';

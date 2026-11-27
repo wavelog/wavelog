@@ -1422,6 +1422,7 @@ $(document).ready(function() {
                     bearing: data.bearing,
                     azimuth: cleanAzimuth,
                     distance: data.distance,
+                    bearing_estimated: !!data.bearing_estimated,
                     lotw_member: data.lotw_member,
                     lotw_days: data.lotw_days,
                     eqsl_member: data.eqsl_member,
