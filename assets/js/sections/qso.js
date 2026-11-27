@@ -862,6 +862,7 @@ var referenceSequence = 0;
 // Track last lookup to prevent duplicate calls
 var lastLookupCallsign = null;
 var lookupInProgress = false;
+var dxcc_estimate_text = "";
 
 var deferredLookupSubmit = false;
 
@@ -1447,6 +1448,7 @@ function reset_fields() {
 	$('#name').val("");
 	$('#qth').val("");
 	$('#locator').val("");
+	dxcc_estimate_text = "";
 	$('#ant_path').val("");
 	$('#iota_ref').val("");
 	$("#locator").removeClass("confirmedGrid");
@@ -1663,6 +1665,7 @@ $("#callsign").on("focusout", function () {
 						us_county: result.callsign_us_county,
 						bearing: ($("#sat_name").val() != "") ? null : result.bearing,
 						distance: result.callsign_distance,
+						bearing_estimated: !(result.callsign_qra != "" && (result.callsign_geoloc != 'grid' || result.timesWorked > 0)) && !!result.bearing,
 						lotw_member: result.lotw_member,
 						lotw_days: result.lotw_days,
 						eqsl_member: result.eqsl_member,
@@ -1880,13 +1883,16 @@ $("#callsign").on("focusout", function () {
 
 				/* Find Locator if the field is empty */
 				if ($('#locator').val() == "") {
-					if (result.callsign_geoloc != 'grid' || result.timesWorked > 0) {
+					if (result.callsign_qra != "" && (result.callsign_geoloc != 'grid' || result.timesWorked > 0)) {
 						$('#locator').val(result.callsign_qra);
 						$('#locator_info').html(result.bearing);
 						set_ant_az_from_bearing(result.bearing_deg);
+					} else if (result.dxcc_bearing) {
+						dxcc_estimate_text = '≈ ' + result.dxcc_bearing;
+						$('#locator_info').html(dxcc_estimate_text);
 					}
 
-					if (result.callsign_distance != "" && result.callsign_distance != 0) {
+					if (result.callsign_qra != "" && result.callsign_distance != "" && result.callsign_distance != 0) {
 						document.getElementById("distance").value = result.callsign_distance;
 					}
 
@@ -2953,7 +2959,11 @@ $("#locator").on("input focus", function () {
 
 $("#locator").on("focusout", function () {
 	if ($(this).val().length == 0) {
-		$('#locator_info').text("");
+		if (dxcc_estimate_text) {
+			$('#locator_info').html(dxcc_estimate_text);
+		} else {
+			$('#locator_info').text("");
+		}
 		document.getElementById("distance").value = null;
 		clear_auto_ant_az();
 	}
@@ -3131,6 +3141,7 @@ function resetDefaultQSOFields() {
 	$('#name').val("");
 	$('#qth').val("");
 	$('#locator').val("");
+	dxcc_estimate_text = "";
 	$('#iota_ref').val("");
 
 	// Clear Selectize fields properly
