@@ -1,0 +1,261 @@
+// Notice shown above the result after an update re-run, set by applyCountyUpdates()
+var pendingUpdateNotice = null;
+
+// Bind the county-check click handler (defined once, bound once jQuery is available)
+function bindCountyCheck() {
+	$('#startCountyCheck').on('click', function() {
+		runCountyCheck();
+	});
+
+	// Open every QSO with the given callsign in a modal dialog (delegated so it
+	// survives re-rendering of the result table)
+	$(document).on('click', '.callsign-search', function(e) {
+		e.preventDefault();
+		showCallQsos($(this).attr('data-call'));
+	});
+
+	// Open a map dialog for a gridsquare showing its derived and logged counties
+	$(document).on('click', '.county-map', function(e) {
+		e.preventDefault();
+		openCountyMap($(this).attr('data-grid'), $(this).attr('data-loggedstate'), $(this).attr('data-loggedcounty'));
+	});
+
+	// Select/deselect every row checkbox
+	$(document).on('change', '#countySelectAll', function() {
+		$('.county-update-check').prop('checked', this.checked);
+	});
+
+	// Check only the checkboxes of one row group: QSOs with no county
+	// logged, or QSOs whose logged county mismatches the geojson one
+	$(document).on('click', '.county-select-missing', function() {
+		selectCountyRows(true);
+	});
+	$(document).on('click', '.county-select-wrong', function() {
+		selectCountyRows(false);
+	});
+
+	// Check only the checkboxes of QSOs that are neither QSL-card nor LoTW confirmed
+	$(document).on('click', '.county-select-unconfirmed', function() {
+		selectUnconfirmedCountyRows();
+	});
+
+	// Write the geojson county of the checked rows into the log
+	$(document).on('click', '#updateCountiesBtn', function() {
+		applyCountyUpdates();
+	});
+}
+
+function runCountyCheck() {
+	$('#startCountyCheck').addClass('running').prop('disabled', true);
+	$('.result').html('');
+	$.ajax({
+		url: site_url + '/countychecker/doCountyCheck',
+		type: "POST",
+		data: {
+			de: $('#de').val()
+		},
+		success: function(response) {
+			$('.result').html(response);
+			if (pendingUpdateNotice) {
+				$('.result').prepend('<div class="alert alert-success">' + pendingUpdateNotice + '</div>');
+				pendingUpdateNotice = null;
+			}
+			$('.result [data-bs-toggle="tooltip"]').tooltip();
+			$('#startCountyCheck').removeClass('running').prop('disabled', false);
+		},
+		error: function(xhr, status, error) {
+			$('.result').html('<div class="alert alert-danger" role="alert">' + lang_county_check_error + '</div>');
+			$('#startCountyCheck').removeClass('running').prop('disabled', false);
+		}
+	});
+}
+
+/* Check only the checkboxes of one row group in the result table:
+   missing = QSOs with no county logged (backfill candidates), otherwise
+   QSOs whose logged county does not match the geojson one. */
+function selectCountyRows(missing) {
+	$('.county-update-check').each(function() {
+		var isMissing = $(this).closest('tr').data('missing') == 1;
+		this.checked = missing ? isMissing : !isMissing;
+	});
+	$('#countySelectAll').prop('checked', $('.county-update-check:not(:checked)').length === 0);
+}
+
+/* Check only the checkboxes of QSOs with neither a received QSL card nor a
+   LoTW confirmation (data-confirmed is 0 in that case). */
+function selectUnconfirmedCountyRows() {
+	$('.county-update-check').each(function() {
+		this.checked = $(this).closest('tr').data('confirmed') != 1;
+	});
+	$('#countySelectAll').prop('checked', $('.county-update-check:not(:checked)').length === 0);
+}
+
+function applyCountyUpdates() {
+	var rows = [];
+	$('.county-update-check:checked').each(function() {
+		rows.push({ id: $(this).data('id'), state: $(this).data('state'), county: $(this).data('county') });
+	});
+	if (!rows.length) {
+		BootstrapDialog.show({
+			title: lang_county_update_title,
+			message: lang_county_update_none,
+			buttons: [{ label: lang_county_close, action: function(d) { d.close(); } }]
+		});
+		return;
+	}
+
+	BootstrapDialog.confirm({
+		title: lang_county_update_title,
+		message: lang_county_update_confirm.replace('%s', rows.length),
+		btnOKLabel: lang_county_update_button,
+		btnOKClass: 'btn-warning',
+		callback: function(confirmed) {
+			if (!confirmed) { return; }
+			$.ajax({
+				url: site_url + '/countychecker/updateCounties',
+				type: 'POST',
+				dataType: 'json',
+				data: { qsos: JSON.stringify(rows) },
+				success: function(resp) {
+					if (!resp || resp.error) {
+						BootstrapDialog.show({
+							title: lang_county_update_title,
+							message: '<div class="alert alert-danger mb-0">' + ((resp && resp.error) ? resp.error : lang_county_update_failed) + '</div>',
+							buttons: [{ label: lang_county_close, action: function(d) { d.close(); } }]
+						});
+						return;
+					}
+					pendingUpdateNotice = lang_county_updated.replace('%s', resp.updated);
+					runCountyCheck();
+				},
+				error: function() {
+					BootstrapDialog.show({
+						title: lang_county_update_title,
+						message: '<div class="alert alert-danger mb-0">' + lang_county_update_failed + '</div>',
+						buttons: [{ label: lang_county_close, action: function(d) { d.close(); } }]
+					});
+				}
+			});
+		}
+	});
+}
+
+function openCountyMap(grid, loggedState, loggedCounty) {
+	let dialog = BootstrapDialog.show({
+		title: escapeHtml(grid) + ' · ' + (loggedState ? escapeHtml(loggedState) + ', ' : '') + escapeHtml(loggedCounty),
+		size: BootstrapDialog.SIZE_WIDE,
+		nl2br: false,
+		message: '<div class="text-center p-3"><div class="spinner-border text-primary" role="status"></div></div>',
+		buttons: [{ label: lang_county_close, action: function(d) { d.close(); } }]
+	});
+
+	$.ajax({
+		url: site_url + '/countychecker/mapData',
+		type: 'POST',
+		dataType: 'json',
+		data: { gridsquare: grid, loggedState: loggedState, loggedCounty: loggedCounty },
+		success: function(data) {
+			if (!data || data.error || (!data.feature && !data.logged_feature)) {
+				dialog.setMessage('<div class="alert alert-warning mb-0">' + ((data && data.error) ? data.error : lang_county_map_notfound) + '</div>');
+				return;
+			}
+			var mapId = 'countychecker_map_' + Math.random().toString(36).slice(2, 10);
+			dialog.setMessage('<div id="' + mapId + '" style="width:100%; height:60vh;"></div>');
+			renderCountyMap(data, grid, mapId);
+		},
+		error: function() {
+			dialog.setMessage('<div class="alert alert-danger mb-0">' + lang_county_map_error + '</div>');
+		}
+	});
+}
+
+function renderCountyMap(data, grid, mapId) {
+	var map = L.map(mapId).setView([data.lat, data.lng], 9);
+
+	L.tileLayer(option_map_tile_server, {
+		attribution: option_map_tile_server_copyright,
+		maxZoom: 18
+	}).addTo(map);
+
+	var layers = [];
+	// Permanent map labels, styled like the activation planner overlays
+	var labelOpts = { permanent: true, direction: 'center', className: 'overlay-region-label' };
+
+	// County derived from the gridsquare (red)
+	if (data.feature) {
+		layers.push(L.geoJSON({ type: 'FeatureCollection', features: [data.feature] }, {
+			style: { color: '#ff4136', weight: 2, fillColor: '#ff4136', fillOpacity: 0.15 },
+			onEachFeature: function (feature, lyr) {
+				lyr.bindTooltip(escapeHtml(data.state + ', ' + data.county), labelOpts);
+			}
+		}).addTo(map));
+	}
+
+	// County as logged in the QSO (blue)
+	if (data.logged_feature) {
+		layers.push(L.geoJSON({ type: 'FeatureCollection', features: [data.logged_feature] }, {
+			style: { color: '#0074d9', weight: 2, fillColor: '#0074d9', fillOpacity: 0.15 },
+			onEachFeature: function (feature, lyr) {
+				lyr.bindTooltip(escapeHtml(data.logged_state + ', ' + data.logged_county), labelOpts);
+			}
+		}).addTo(map));
+	}
+
+	// Other counties the grid box overlaps (orange): with confidence below
+	// 100% the QSO could be in any of them
+	var candidateLegendEntries = [];
+	(data.candidates || []).forEach(function(cand) {
+		layers.push(L.geoJSON({ type: 'FeatureCollection', features: [cand.feature] }, {
+			style: { color: '#ff851b', weight: 2, fillColor: '#ff851b', fillOpacity: 0.15 },
+			onEachFeature: function (feature, lyr) {
+				lyr.bindTooltip(escapeHtml(cand.state + ', ' + cand.county), labelOpts);
+			}
+		}).addTo(map));
+		candidateLegendEntries.push({ style: 'background:#ff851b;', label: lang_county_label_possible + ': ' + cand.state + ', ' + cand.county });
+	});
+
+	// Outline of the gridsquare itself (6-char grids are 5' x 2.5')
+	if (data.grid_bounds) {
+		L.rectangle([[data.grid_bounds[0], data.grid_bounds[1]], [data.grid_bounds[2], data.grid_bounds[3]]], {
+			color: '#ffdc00', weight: 2, fill: false, dashArray: '4 3', interactive: false
+		}).bindTooltip(escapeHtml(grid), { permanent: true, direction: 'top', offset: [0, -4], className: 'overlay-region-label' }).addTo(map);
+	}
+
+	var popup = '<b>' + escapeHtml(grid) + '</b>'
+		+ '<br>' + (data.state ? lang_county_label_geojson + ': ' + escapeHtml(data.state + ', ' + data.county) : '')
+		+ '<br>' + (data.logged_state ? lang_county_label_log + ': ' + escapeHtml(data.logged_state + ', ' + data.logged_county) : '');
+
+	L.marker([data.lat, data.lng]).addTo(map).bindPopup(popup).openPopup();
+
+	addCountyLegend(map, [
+		data.feature && { style: 'background:#ff4136;', label: lang_county_label_geojson + ': ' + data.state + ', ' + data.county },
+		data.logged_feature && { style: 'background:#0074d9;', label: lang_county_label_log + ': ' + data.logged_state + ', ' + data.logged_county }
+	].concat(candidateLegendEntries).concat([
+		data.grid_bounds && { style: 'border:2px dashed #ffdc00;background:transparent;', label: grid }
+	]).filter(Boolean));
+
+	try {
+		map.fitBounds(L.featureGroup(layers).getBounds().pad(0.15));
+	} catch (e) { /* invalid bounds */ }
+
+	setTimeout(function() { map.invalidateSize(); }, 120);
+}
+
+/* Legend in the top right corner, styled like the DXCC award map legend
+   (.legend class from general.css), one entry per drawn layer. */
+function addCountyLegend(map, entries) {
+	if (!entries.length) { return; }
+	var legend = L.control({ position: 'topright' });
+	legend.onAdd = function() {
+		var div = L.DomUtil.create('div', 'legend');
+		div.innerHTML = entries.map(function(e) {
+			return '<i style="' + e.style + '"></i><span>' + escapeHtml(e.label) + '</span><br>';
+		}).join('');
+		return div;
+	};
+	legend.addTo(map);
+}
+
+$(document).ready(function() {
+	bindCountyCheck();
+});

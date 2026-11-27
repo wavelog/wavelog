@@ -8,6 +8,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Calltester extends CI_Controller {
 	function __construct() {
 		parent::__construct();
+		$this->load->helper('callsign');
 
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}

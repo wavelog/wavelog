@@ -1,21 +1,6 @@
 <?php
 $i = 0;
 
-// Resolve the home callsign from a (possibly portable) callsign: the longest
-// "/"-separated segment is the base call. Used for the QRZ link so the URL has
-// no "/" to break path-based routing. (Mirrors calltester/result.php.)
-if ( ! function_exists('calltester_base_call')) {
-	function calltester_base_call($call) {
-		$base = '';
-		foreach (explode('/', $call) as $seg) {
-			if (strlen($seg) > strlen($base)) {
-				$base = $seg;
-			}
-		}
-		return strtoupper(trim($base));
-	}
-}
-
 $show_time = isset($show_time) ? $show_time : true;
 
 // Header summary cards (only when we have at least one matching QSO)
@@ -58,6 +43,7 @@ if ($count == 0) { ?>
 				<th><?= __("Band"); ?></th>
 				<th><?= __("Mode"); ?></th>
 				<th><?= __("Grid"); ?></th>
+				<th><?= __("County"); ?></th>
 				<th><?= __("DXCC"); ?></th>
 				<th><?= __("CQz"); ?></th>
 				<th><?= __("ITUz"); ?></th>
@@ -94,6 +80,7 @@ if ($count == 0) { ?>
 					<td><?php echo ($row->COL_PROP_MODE ?? '') == 'SAT' ? htmlspecialchars($row->COL_SAT_NAME ?? 'SAT') : htmlspecialchars($row->COL_BAND ?? ''); ?></td>
 					<td><?php echo htmlspecialchars(($row->COL_SUBMODE ?? '') ?: ($row->COL_MODE ?? '')); ?></td>
 					<td><?php echo $grid !== '' ? htmlspecialchars(strtoupper($grid), ENT_QUOTES) : '<span class="text-muted">—</span>'; ?></td>
+					<td><?php echo !empty($row->COL_CNTY) ? htmlspecialchars($row->COL_CNTY, ENT_QUOTES) : '<span class="text-muted">—</span>'; ?></td>
 					<td><?php echo $dxcc !== '' ? htmlspecialchars(ucwords(strtolower($dxcc), "- (/"), ENT_QUOTES, 'UTF-8') : '<span class="text-muted">—</span>'; ?></td>
 					<td><?php echo !empty($row->COL_CQZ) ? htmlspecialchars($row->COL_CQZ, ENT_QUOTES) : '<span class="text-muted">—</span>'; ?></td>
 					<td><?php echo !empty($row->COL_ITUZ) ? htmlspecialchars($row->COL_ITUZ, ENT_QUOTES) : '<span class="text-muted">—</span>'; ?></td>

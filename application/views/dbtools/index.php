@@ -150,6 +150,17 @@
 						</a>
 					</div>
 				</div>
+				<div class="col-md-6 col-xl-4 d-flex">
+					<div class="border rounded p-2 w-100 d-flex justify-content-between align-items-center gap-2">
+						<div>
+							<h6 class="mb-1"><?= __("Gridsquare County checker") ?></h6>
+							<p class="mb-0 small text-muted"><?= __("Gridsquare County identification") ?></p>
+						</div>
+						<a href="<?php echo site_url('countychecker'); ?>" class="btn btn-sm btn-success flex-shrink-0">
+							<i class="fas fa-wrench"></i> <?= __("Open") ?>
+						</a>
+					</div>
+				</div>
 			</div>
 
 			<div class="result"></div>

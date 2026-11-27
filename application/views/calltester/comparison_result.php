@@ -10,20 +10,6 @@ if($this->session->userdata('user_date_format')) {
 	$custom_date_format = $this->config->item('qso_date_format');
 }
 
-if (!function_exists('calltester_base_call')) {
-	// Resolve the home callsign from a (possibly portable) callsign: the longest
-	// "/"-separated segment is the base call. e.g. TF/DL2NWK/P -> DL2NWK.
-	function calltester_base_call($call) {
-		$base = '';
-		foreach (explode('/', $call) as $seg) {
-			if (strlen($seg) > strlen($base)) {
-				$base = $seg;
-			}
-		}
-		return strtoupper(trim($base));
-	}
-}
-
 if (!function_exists('calltester_render_stats')) {
 	// Render a row of colored stat tiles (same style as result.php).
 	function calltester_render_stats($stats) {

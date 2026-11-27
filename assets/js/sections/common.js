@@ -261,6 +261,25 @@ function displayQso(id) {
 }
 
 // used in edit_ajax.php to update the currently editing QSO
+// Opens every QSO with the given callsign in a modal dialog (the calling
+// click handlers live in the section scripts of the checker pages)
+function showCallQsos(call) {
+    BootstrapDialog.show({
+        title: escapeHtml(call),
+        cssClass: 'qso-dialog',
+        size: BootstrapDialog.SIZE_WIDE,
+        nl2br: false,
+        message: function(dialog) {
+            var $content = $('<div class="text-center p-3"><div class="spinner-border text-primary" role="status"></div></div>');
+            $.get(site_url + '/calltester/call_info/' + encodeURIComponent(call), function(html) {
+                $content.html(html);
+                $content.find('[data-bs-toggle="tooltip"]').tooltip();
+            });
+            return $content;
+        }
+    });
+}
+
 function single_callbook_update() {
 
     var callsign = $('#edit_callsign').val();

@@ -28,20 +28,3 @@
 		e.preventDefault();
 		showCallQsos($(this).attr('data-call'));
 	});
-
-	function showCallQsos(call) {
-		BootstrapDialog.show({
-			title: call,
-			cssClass: 'qso-dialog',
-			size: BootstrapDialog.SIZE_WIDE,
-			nl2br: false,
-			message: function(dialog) {
-				let $content = $('<div class="text-center p-3"><div class="spinner-border text-primary" role="status"></div></div>');
-				$.get(site_url + '/calltester/call_info/' + encodeURIComponent(call), function(html) {
-					$content.html(html);
-					$content.find('[data-bs-toggle="tooltip"]').tooltip();
-				});
-				return $content;
-			}
-		});
-	}
