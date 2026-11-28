@@ -47,8 +47,8 @@ class Station extends CI_Controller
 			$data['sota'] = $this->input->post('sota') ?? $this->input->get('sota');
 			$data['wwff'] = $this->input->post('wwff') ?? $this->input->get('wwff');
 			$data['pota'] = $this->input->post('pota') ?? $this->input->get('pota');
-			$data['sig'] = $this->input->post('sig');
-			$data['sig_info'] = $this->input->post('sig_info');
+			$data['sig'] = $this->input->post('sig') ?? $this->input->get('sig');
+			$data['sig_info'] = $this->input->post('sig_info') ?? $this->input->get('sig_info');
 			$data['eqslnickname'] = $this->input->post('eqslnickname');
 			$data['eqsl_default_qslmsg'] = $this->input->post('eqsl_default_qslmsg');
 			$data['clublogignore'] = $this->input->post('clublogignore');
