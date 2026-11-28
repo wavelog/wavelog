@@ -1310,7 +1310,8 @@
 					if (!f.geometry || f.geometry.type !== 'Point' || !f.properties || !f.properties.name) { return; }
 					let ll = [f.geometry.coordinates[1], f.geometry.coordinates[0]];
 					let m = L.marker(ll, { icon: chipIcon(f.properties.name, 'wab-label', 36) });
-					m.bindPopup(wabPopup(f.properties.name, ll));
+					m.refData = f.properties.name;
+					m.bindPopup(wabPopupRich);
 					cluster.addLayer(m);
 				});
 				wabLayer.addLayer(cluster);   // cluster rides inside the group → atomic add/remove
@@ -1323,15 +1324,37 @@
 	function disableWab() {
 		if (wabLayer) { map.removeLayer(wabLayer); }
 	}
-	/* Minimal info popup for a WAB square: name, the Maidenhead locator of its
-	 * centre and the coordinates. */
-	function wabPopup(name, ll) {
+	/* Info popup for a WAB square: name, the Maidenhead locator of its centre
+	 * and the coordinates. */
+	function wabPopup(name, lat, lng, createHref, spotText) {
 		return '<div class="ref-popup" style="border-left-color:#d62728">' +
 			'<div class="ref-popup-top"><span class="ref-popup-type" style="background:#d62728">WAB</span>' +
 			'<span class="ref-popup-ref">' + esc(name) + '</span></div>' +
-			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(ll[0], ll[1], 3)) + '</span></div>' +
-			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(ll[0]) + ', ' + fmtLng(ll[1]) + '</span></div>' +
+			'<div class="ref-popup-row"><i class="fas fa-th"></i><span>' + esc(latLngToLocator(lat, lng, 3)) + '</span></div>' +
+			'<div class="ref-popup-row"><i class="fas fa-location-crosshairs"></i><span>' + fmtLat(lat) + ', ' + fmtLng(lng) + '</span></div>' +
+			((createHref || spotText) ? '<div class="gl-pop-actions">' +
+				(spotText ? '<a class="gl-pop-action gl-share" style="cursor: pointer;" data-spot="' + esc(spotText) + '"><i class="fas fa-share-nodes"></i> ' + esc(shareLbl) + '</a>' : '') +
+				(createHref ? '<a class="gl-pop-action" href="' + esc(createHref) + '"><i class="fas fa-plus"></i> ' + esc(newStationLocLbl) + '</a>' : '') +
+			'</div>' : '') +
 			'</div>';
+	}
+
+	function wabPopupRich(layer) {
+		let name = layer.refData;
+		if (!name) { return ''; }
+		let ll = layer.getLatLng();
+		let loc = latLngToLocator(ll.lat, ll.lng, 3);
+		let locDesc = name + ' (' + loc + ')';
+		let extraHash = '#WAB ' + name;
+		let extra = { sig: 'WAB', sig_info: name };
+		let baseHref = buildCreateHref(loc, null, extra);
+		let baseSpot = buildSpotText(locDesc, null, extraHash);
+		resolvePointMeta(ll.lat, ll.lng, loc).then(function (meta) {
+			if (layer.isPopupOpen && layer.isPopupOpen()) {
+				layer.setPopupContent(wabPopup(name, ll.lat, ll.lng, buildCreateHref(loc, meta, extra), buildSpotText(locDesc, meta, extraHash)));
+			}
+		}).catch(function () { /* leave sync create + share in place */ });
+		return wabPopup(name, ll.lat, ll.lng, baseHref, baseSpot);
 	}
 
 	/* ---- Reference search (WWFF / POTA / SOTA / IOTA / WAB by name or reference) ---- */
@@ -1572,7 +1595,8 @@
 			}) : null;
 			if (square) { searchOverlay.addLayer(square); }
 			let m = L.marker([r.lat, r.lon], { icon: chipIcon(r.reference, 'wab-label', 36) });
-			m.bindPopup(wabPopup(r.reference, [r.lat, r.lon]));
+			m.refData = r.reference;
+			m.bindPopup(wabPopupRich);
 			searchOverlay.addLayer(m);
 			if (square) {
 				map.fitBounds(square.getBounds(), { padding: [40, 40], maxZoom: 13 });
